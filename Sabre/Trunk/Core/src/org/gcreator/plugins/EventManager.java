@@ -1,6 +1,6 @@
 /*
 Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
-Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
+Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -78,12 +78,14 @@ public class EventManager {
     }
 
     /**
-     * Throws a new Event
+     * Fires a new event and notifies all listeners.
+     * 
      * @param sender The event sender. Typically, just use the keyword 'this'
      * @param type The type of the event. Must not be null nor "all"
      * @param arguments The arguments of the event. May be of any type and in any number.
      */
-    public static void throwEvent(Object sender, String type, Object... arguments) {
+    @SuppressWarnings("unchecked")
+    public static void fireEvent(Object sender, String type, Object... arguments) {
         if (type != null && !type.equals("all")) { //ALL can not be thrown.
             NotifyEvent evt = new NotifyEvent(sender, type, arguments);
             for (EventObject o : (Vector<EventObject>) highPriority.clone()) {
@@ -113,6 +115,7 @@ public class EventManager {
         }
     }
 
+    
     private static class EventObject {
 
         EventHandler handler;

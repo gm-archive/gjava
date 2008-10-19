@@ -1,7 +1,6 @@
 /*
 Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
-Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
-
+Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -19,16 +18,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
+ */
 package org.gcreator.plugins;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.gcreator.core.Core;
 
 /**
@@ -38,11 +41,11 @@ import org.gcreator.core.Core;
  */
 public final class PluginImporter {
 
-    //Can not construct
-    private PluginImporter(){
-        
+    /** Don't allow instantation
+     */
+    private PluginImporter() {
     }
-    
+
     /**
      * Loads the plugins.
      * This function should only be called once
@@ -52,6 +55,9 @@ public final class PluginImporter {
         importAppExePlugins();
     }
 
+    /**
+     * Imports the Application Data Plug-ins.
+     */
     public static void importAppDataPlugins() {
         File f = new File(Core.getStaticContext().getApplicationDataFolder().toString() + "/Plugins/");
         System.out.println(f.toString());
@@ -72,6 +78,9 @@ public final class PluginImporter {
         }
     }
 
+    /**
+     * Imports the Application Executable Plug-ins.
+     */
     public static void importAppExePlugins() {
         File f = new File(Core.getStaticContext().getApplicationExecutableFolder().toString() + "/Plugins/");
         System.out.println(f.toString());
@@ -93,6 +102,11 @@ public final class PluginImporter {
         }
     }
 
+    /**
+     * Imports a plug-in from a {@link File}.
+     * 
+     * @param f The File to import the plug-in from.
+     */
     public static void importPlugin(File f) {
         try {
             System.out.println("Loading plugin: " + f.toString());
@@ -101,27 +115,43 @@ public final class PluginImporter {
             jaris.close();
             Attributes a = m.getMainAttributes();
             load(f, a.getValue("Pineapple-EntryPoint"));
-            /*for(Object obj : o){
-                System.out.println("Key: " + obj);
-                System.out.println("Value: " + s.get(obj.toString()));
-            }
-            if (s.containsKey("Sabre-EntryPoint")) {
-                load(f, s.get("Sabre-EntryPoint").getValue(""));
-            }*/
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public static void load(File f, String entryPoint) {
+    /**
+     * Loads a class from a JAR {@link java.io.File}, and attempts to initilize a given class from the JAR.
+     * 
+     * @param f The Jar {@link java.io.File}.
+     * @param className The {@link java.lang.Class} to load and initilize from the JAR.
+     * 
+     * @throws java.lang.ClassNotFoundException  If the given class was not found in the JAR.
+     * @throws java.lang.InstantiationException If the class failed to initilize
+     * @throws java.lang.reflect.InvocationTargetException If an error occurs while initilizing the class.
+     */
+    @SuppressWarnings("unchecked")
+    public static void load(File f, String className) throws 
+            ClassNotFoundException, InstantiationException, InvocationTargetException {
+        
         try {
             System.out.println("Loading " + f.toString());
             URLClassLoader clsloader = new URLClassLoader(new URL[]{f.toURI().toURL()});
-            Class c = clsloader.loadClass(entryPoint);
+            Class c = clsloader.loadClass(className);
             Object o = c.getConstructor().newInstance();
             c.getMethod("initialize").invoke(o);
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IllegalAccessException ex) {
+            /* Should not happen */
+            Logger.getLogger(PluginImporter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            /* Should not happen */
+            Logger.getLogger(PluginImporter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
+            /* Should not happen */
+            Logger.getLogger(PluginImporter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            /* Should not happen */
+            Logger.getLogger(PluginImporter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

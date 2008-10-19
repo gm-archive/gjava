@@ -1,6 +1,6 @@
 /*
 Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
-Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
+Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
+ */
 package org.gcreator.gui;
 
 import javax.swing.JFrame;
@@ -35,24 +35,35 @@ import org.gcreator.plugins.NotifyEvent;
  * 
  * @author Serge Humphrey
  */
-public class MainFrame extends JFrame implements EventHandler{
+public class MainFrame extends JFrame implements EventHandler {
+
     private static final long serialVersionUID = 1;
 
+    /**
+     * Sets up the frame for any modules to handle its content.
+     */
     public void initialize() {
-        setSize(320, 240);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(640, 480);
-        setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(640, 480);
         EventManager.addEventHandler(this, "window-dispose", EventPriority.LOW);
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void dispose(){
-        EventManager.throwEvent(this, "window-dispose");
+    public void dispose() {
+        EventManager.fireEvent(this, "window-dispose");
     }
-    
-    public void handleEvent(NotifyEvent event){
-        if(event.getEventType().equals("window-dispose")){
+
+    /**
+     * Handles an event. This may, for example, dispose the window,
+     * if the event type is "window-dispose".
+     * 
+     * @param event The {@link NotifyEvent} That is to be handled.
+     */
+    public void handleEvent(NotifyEvent event) {
+        if (event.getEventType().equals("window-dispose")) {
             super.dispose();
         }
     }

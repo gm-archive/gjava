@@ -1,6 +1,6 @@
 /*
 Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
-Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
+Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,8 @@ THE SOFTWARE.
 package org.gcreator.plugins;
 
 /**
- * EventHandlers are classes designed to catch certain types of events.
+ * An Event handeler is just like an AWT Event Listener,
+ * but for Sabre, not Swing.
  * 
  * @author Luís Reis
  * @see EventManager
@@ -31,8 +32,9 @@ package org.gcreator.plugins;
  */
 public interface EventHandler {
     /**
-     * Catches an event
-     * @param event The event that was received
+     * Called when an event occurs and should be handeled.
+     * 
+     * @param event The {@link NotifyEvent} that resembles the event.
      */
     void handleEvent(NotifyEvent event);
 }

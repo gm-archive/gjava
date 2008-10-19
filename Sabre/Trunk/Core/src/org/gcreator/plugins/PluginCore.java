@@ -1,6 +1,6 @@
 /*
 Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
-Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
+Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,8 @@ public class PluginCore implements EventHandler {
     /**
      * Gets the plugin name.
      * Defaults to "untitled"
+     * 
+     * @return The plugin's name
      */
     public String getName() {
         return "untitled";
@@ -40,6 +42,8 @@ public class PluginCore implements EventHandler {
     /**
      * Gets the plugin author(s)
      * Defaults to "anonymous"
+     * 
+     * @return The author of the plug-in.
      */
     public String getAuthor() {
         return "anonymous";
@@ -47,6 +51,8 @@ public class PluginCore implements EventHandler {
 
     /**
      * Gets the plugin description.
+     * 
+     * @return This plugin's description.
      */
     public String getDescription() {
         return "";
@@ -65,10 +71,10 @@ public class PluginCore implements EventHandler {
     }
     
     /**
-     * Catches an event
+     * Handles an an event.
+     * 
      * @param event The event that was received
      */
     public void handleEvent(NotifyEvent event) {
-
     }
 }
