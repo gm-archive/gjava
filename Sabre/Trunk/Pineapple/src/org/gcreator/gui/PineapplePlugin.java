@@ -32,6 +32,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 import org.gcreator.core.Core;
 import org.gcreator.editors.ImagePreviewer;
 import org.gcreator.editors.TextEditor;
@@ -53,10 +54,12 @@ public class PineapplePlugin extends PluginCore {
      */
     public static JSplitPane splitter;
     public static JTree tree;
+    public static DefaultMutableTreeNode projectNode;
     public static JMenuBar menubar;
     public static JMenu fileMenu;
     public static JMenu editMenu;
     public static JMenuItem fileOpenFile;
+    public static JMenuItem fileOpenProject;
     public static JMenuItem fileSave;
     public static JMenuItem fileExit;
     /**
@@ -79,10 +82,12 @@ public class PineapplePlugin extends PluginCore {
             splitter = new JSplitPane();
             splitter.setVisible(true);
             f.setLayout(new BorderLayout());
-
             f.add(splitter, BorderLayout.CENTER);
-            tree = new JTree();
+            
+            projectNode = new DefaultMutableTreeNode(null);
+            tree = new JTree(projectNode);
             tree.setVisible(true);
+            tree.setCellRenderer(new ProjectTreeRenderer());
             splitter.setLeftComponent(tree);
             
             dip = new TabbedInterfaceProvider();
@@ -97,6 +102,16 @@ public class PineapplePlugin extends PluginCore {
             fileMenu.setMnemonic('F');
             fileMenu.setVisible(true);
             menubar.add(fileMenu);
+            
+            fileOpenProject = new JMenuItem("Open Project");
+            fileOpenProject.setMnemonic('j');
+            fileOpenProject.setVisible(true);
+            fileOpenProject.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent evt){
+                    openProject();
+                }
+            });
+            fileMenu.add(fileOpenProject);
             
             fileOpenFile = new JMenuItem("Open File");
             fileOpenFile.setMnemonic('O');
@@ -194,6 +209,10 @@ public class PineapplePlugin extends PluginCore {
             t.start();
             dip.updateUI();
         }
+    }
+    
+    public void openProject(){
+        
     }
     
     public void saveFile(){
