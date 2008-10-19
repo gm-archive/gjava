@@ -93,5 +93,24 @@ public class DocumentPane extends JPanel{
      */
     public void setModified(boolean modified){
         this.modified = modified;
+        PineapplePlugin.dip.updateUI();
+    }
+    
+    /**
+     * Gets the title of the document
+     */
+    public String getTitle(){
+        String title = "";
+        File f = null;
+        f = getFile();
+        if(f==null)
+            title = "untitled";
+        else
+            title = f.getName();
+        
+        if(isModified())
+            title += "*";
+        
+        return title;
     }
 }

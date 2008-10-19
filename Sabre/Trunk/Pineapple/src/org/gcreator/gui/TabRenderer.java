@@ -46,7 +46,8 @@ public class TabRenderer extends JPanel{
             public String getText(){
                 try{
                     TabbedInterfaceProvider pane = TabRenderer.this.tabs.get();
-                    return pane.getTitleAt(pane.tabs.indexOfTabComponent(TabRenderer.this));
+                    return pane.getDocumentAt(pane.tabs.indexOfTabComponent
+                            (TabRenderer.this)).getTitle();
                 }
                 catch(Exception e){
                     return null;

@@ -129,4 +129,11 @@ public class TabbedInterfaceProvider extends DocumentInterfaceProvider{
     public int getDocumentIndex(DocumentPane pane){
         return tabs.indexOfComponent(pane);
     }
+    
+    @Override
+    public void updateUI() {
+        super.updateUI();
+        if(tabs!=null)
+            tabs.updateUI();
+    }
 }
