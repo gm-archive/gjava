@@ -22,22 +22,16 @@ THE SOFTWARE.
 */
 package org.gcreator.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * Provides a way for {@link TabbedInterfaceProvider} to have close buttons
@@ -92,9 +86,10 @@ public class TabRenderer extends JPanel{
                 DocumentPane doc = pane.getDocumentAt(pane.tabs.indexOfTabComponent(
                         TabRenderer.this));
                 if(doc.canSave()){
+                    String title = doc.getTitle();
                     int res = JOptionPane.showConfirmDialog(TabRenderer.this,
                             "Do you wish to save document "
-                            + "\"" + doc.getTitle() + "\" before closing?");
+                            + "\"" + title.substring(0, title.length()-1) + "\" before closing?");
                     if(res==JOptionPane.CANCEL_OPTION)
                         return;
                     if(res==JOptionPane.YES_OPTION){

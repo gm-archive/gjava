@@ -24,7 +24,9 @@ package org.gcreator.core;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Vector;
 import org.gcreator.gui.MainFrame;
+import org.gcreator.plugins.PluginCore;
 
 /**
  * This class handles G-Creator's application data, making sure all of the
@@ -37,6 +39,7 @@ public final class StaticContext {
     private File appDataFolder = null;
     private File appExeFolder = null;
     private MainFrame mainFrame = null;
+    private Vector<PluginCore> plugins = null;
 
     /**
      * Creates a new {@link StaticContext} and ensures
@@ -100,5 +103,19 @@ public final class StaticContext {
      */
     public File getApplicationExecutableFolder() {
         return appExeFolder;
+    }
+    
+    /**
+     * Adds a plugin to the plugin list.
+     */
+    public void addPlugin(PluginCore plugin){
+        plugins.add(plugin);
+    }
+    
+    /**
+     * Gets the loaded plugins
+     */
+    public Vector<PluginCore> getPlugins(){
+        return (Vector<PluginCore>) plugins.clone();
     }
 }

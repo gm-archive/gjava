@@ -130,6 +130,9 @@ public class TabbedInterfaceProvider extends DocumentInterfaceProvider{
         return tabs.indexOfComponent(pane);
     }
     
+    /**
+     * Updates the look&feel of the tabs
+     */
     @Override
     public void updateUI() {
         super.updateUI();

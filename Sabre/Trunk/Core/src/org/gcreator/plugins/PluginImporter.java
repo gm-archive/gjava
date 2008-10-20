@@ -139,6 +139,7 @@ public final class PluginImporter {
             URLClassLoader clsloader = new URLClassLoader(new URL[]{f.toURI().toURL()});
             Class c = clsloader.loadClass(className);
             Object o = c.getConstructor().newInstance();
+            Core.getStaticContext().addPlugin((PluginCore) o);
             c.getMethod("initialize").invoke(o);
         } catch (IllegalAccessException ex) {
             /* Should not happen */
