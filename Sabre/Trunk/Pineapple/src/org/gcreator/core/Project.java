@@ -147,7 +147,7 @@ public class Project {
         }
         if(!modified){
             Node n = new Node(root, "setting", null);
-            n.setAttribute("setting", setting);
+            n.setAttribute("key", setting);
             n.setAttribute("value", value);
             root.addChild(n);
         }

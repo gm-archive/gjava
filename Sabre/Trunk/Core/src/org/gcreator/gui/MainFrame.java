@@ -46,7 +46,7 @@ public class MainFrame extends JFrame implements EventHandler {
     public void initialize() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(640, 480);
-        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_DISPOSE, EventPriority.LOW);
+        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_DISPOSED, EventPriority.LOW);
     }
 
     /**
@@ -54,7 +54,7 @@ public class MainFrame extends JFrame implements EventHandler {
      */
     @Override
     public void dispose() {
-        EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSE);
+        EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSED);
     }
 
     /**
@@ -64,7 +64,7 @@ public class MainFrame extends JFrame implements EventHandler {
      * @param event The {@link NotifyEvent} That is to be handled.
      */
     public void handleEvent(NotifyEvent event) {
-        if (event.getEventType().equals(DefaultEventTypes.WINDOW_DISPOSE)) {
+        if (event.getEventType().equals(DefaultEventTypes.WINDOW_DISPOSED)) {
             System.out.println("Performing final disposal");
             super.dispose();
             System.exit(0);

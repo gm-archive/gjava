@@ -55,6 +55,11 @@ public final class DefaultEventTypes {
     public static final String FILE_CHANGED = "file-changed";
     
     /**
+     * When a project is opened
+     */
+    public static final String PROJECT_OPENED = "project-opened";
+    
+    /**
      * When the application is initilized.
      */
     public static final String APPLICATION_INITIALIZED = "application-initilized";
@@ -67,7 +72,7 @@ public final class DefaultEventTypes {
     /**
      * When the window is disposed
      */
-    public static final String WINDOW_DISPOSE = "window-dispose";
+    public static final String WINDOW_DISPOSED = "window-disposed";
     
     /**
      * All events.

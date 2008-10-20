@@ -35,6 +35,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import org.gcreator.core.Core;
+import org.gcreator.core.Project;
 import org.gcreator.editors.ImagePreviewer;
 import org.gcreator.editors.TextEditor;
 import org.gcreator.plugins.DefaultEventTypes;
@@ -70,14 +71,20 @@ public class PineapplePlugin extends PluginCore {
     public static DocumentInterfaceProvider dip;
 
     /**
+     * The current project
+     */
+    public static Project project = null;
+    
+    /**
      * Initializes the plugin(Registers the event handlers)
      */
     @Override
     public void initialize() {
         EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_CREATED, EventPriority.MEDIUM);
-        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_DISPOSE, EventPriority.MEDIUM);
+        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_DISPOSED, EventPriority.MEDIUM);
         EventManager.addEventHandler(this, DefaultEventTypes.FILE_OPENED, EventPriority.LOW);
         EventManager.addEventHandler(this, DefaultEventTypes.FILE_CHANGED, EventPriority.MEDIUM);
+        EventManager.addEventHandler(this, DefaultEventTypes.PROJECT_OPENED, EventPriority.MEDIUM);
     }
 
     /**
@@ -154,7 +161,7 @@ public class PineapplePlugin extends PluginCore {
             fileExit.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent evt) {
-                    EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSE);
+                    EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSED);
                 }
             });
             fileMenu.add(fileExit);
@@ -188,13 +195,25 @@ public class PineapplePlugin extends PluginCore {
             }
             dip.add(p.getFile().getName(), p);
             evt.handleEvent();
-        } else if (evt.getEventType().equals(DefaultEventTypes.WINDOW_DISPOSE)){
+        } else if (evt.getEventType().equals(DefaultEventTypes.WINDOW_DISPOSED)){
             for(DocumentPane doc : dip.getDocuments()){
                 if(doc!=null)
                     if(!doc.dispose()){
                         evt.handleEvent();
                         return;
                     }
+            }
+        } else if (evt.getEventType().equals(DefaultEventTypes.PROJECT_OPENED)){
+            project = new Project((File) evt.getArguments()[0]);
+            projectNode.setUserObject(project);
+            try{
+            for(File f : project.getFiles()){
+                //TODO: Folders. May be convenient to discuss this in community.
+                projectNode.add(new DefaultMutableTreeNode(f));
+            }
+            }
+            catch(Exception e){
+                
             }
         }
     }
@@ -247,9 +266,30 @@ public class PineapplePlugin extends PluginCore {
     }
 
     /**
-     * Opens a project(Not yet implemented)
+     * Opens a project
      */
     public void openProject() {
+        if(project!=null){
+            closeProject();
+        }
+        
+        JFileChooser chooser = new JFileChooser();
+        chooser.setMultiSelectionEnabled(false);
+        chooser.setDialogTitle("Select the project to open");
+        int res = chooser.showDialog(Core.getStaticContext().getMainFrame(), "OK");
+        if(res!=JFileChooser.CANCEL_OPTION){
+            EventManager.fireEvent(this, DefaultEventTypes.PROJECT_OPENED, chooser.getSelectedFile());
+        }
+        
+        tree.updateUI();
+    }
+    
+    /**
+     * Closes the current project
+     */
+    public void closeProject(){
+        projectNode.removeAllChildren();
+        projectNode.setUserObject(null);
     }
 
     /**

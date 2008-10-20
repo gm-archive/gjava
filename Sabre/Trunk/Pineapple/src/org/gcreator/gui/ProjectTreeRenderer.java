@@ -24,6 +24,7 @@ package org.gcreator.gui;
 
 import java.awt.Component;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import org.gcreator.core.Project;
 
@@ -37,15 +38,18 @@ public class ProjectTreeRenderer extends DefaultTreeCellRenderer{
     }
     
     @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value,
+    public Component getTreeCellRendererComponent(JTree tree, Object val,
             boolean isSelected, boolean isExpanded, boolean isLeaf, int row,
             boolean hasFocus){
         
-        super.getTreeCellRendererComponent(tree, value, isSelected, isExpanded, isLeaf, row, hasFocus);
+        super.getTreeCellRendererComponent(tree, val, isSelected, isExpanded, isLeaf, row, hasFocus);
+        
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) val;
+        Object value = node.getUserObject();
         
         if(value instanceof Project){
             try{
-                setText(((Project) value).getSettings().get("Name"));
+                setText(((Project) value).getSettings().get("name"));
             }
             catch(Exception e){
                 setText("invalid");
