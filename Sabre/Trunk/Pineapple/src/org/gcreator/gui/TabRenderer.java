@@ -35,6 +35,7 @@ import java.lang.ref.WeakReference;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -45,6 +46,11 @@ import javax.swing.plaf.basic.BasicButtonUI;
  */
 public class TabRenderer extends JPanel{
     private WeakReference<TabbedInterfaceProvider> tabs;
+    
+    /**
+     * Creates a new TabRenderer
+     * @param tabs The TabbedInterfaceProvider
+     */
     public TabRenderer(TabbedInterfaceProvider tabs){
         this.tabs = new WeakReference<TabbedInterfaceProvider>(tabs);
         setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -65,27 +71,9 @@ public class TabRenderer extends JPanel{
         label.setVisible(true);
         add(label);
         final JButton b = new JButton("X");
-        //b.setUI(new BasicButtonUI());
         b.setContentAreaFilled(false);
         b.setFocusable(false);
         b.setRolloverEnabled(true);
-        /*final JButton b = new JButton(){
-            @Override
-            public void paint(Graphics g){
-                if(getModel().isPressed())
-                    g.setColor(Color.BLUE);
-                else
-                    g.setColor(Color.BLACK);
-                int width = getWidth();
-                int height = getHeight();
-                if(getModel().isRollover()){
-                    g.drawRect(-1, -1, width, height);
-                }
-                g.drawLine(0, 0, width, height);
-                g.drawLine(0, height, width, 0);
-            }
-        };*/
-        //b.setPreferredSize(new Dimension(17, 17));
         b.addMouseListener(new MouseListener(){
             public void mouseEntered(MouseEvent evt){
                 b.repaint();
@@ -101,8 +89,20 @@ public class TabRenderer extends JPanel{
             @Override
             public void actionPerformed(ActionEvent evt){
                 TabbedInterfaceProvider pane = TabRenderer.this.tabs.get();
-                pane.remove(pane.getDocumentAt(pane.tabs.indexOfTabComponent(
-                        TabRenderer.this)));
+                DocumentPane doc = pane.getDocumentAt(pane.tabs.indexOfTabComponent(
+                        TabRenderer.this));
+                if(doc.canSave()){
+                    int res = JOptionPane.showConfirmDialog(TabRenderer.this,
+                            "Do you wish to save document "
+                            + "\"" + doc.getTitle() + "\" before closing?");
+                    if(res==JOptionPane.CANCEL_OPTION)
+                        return;
+                    if(res==JOptionPane.YES_OPTION){
+                        if(!doc.save())
+                            return; //If can not save, then do not close
+                    }
+                }
+                pane.remove(doc);
             }
         });
         add(b);

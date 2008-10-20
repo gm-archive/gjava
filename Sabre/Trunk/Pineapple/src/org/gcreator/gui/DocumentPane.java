@@ -73,15 +73,19 @@ public class DocumentPane extends JPanel{
     
     /**
      * Saves the file
+     * @return Whether or not the file was saved
      */
-    public void save(){
+    public boolean save(){
         if(file==null)
             if(!saveas())
-                return;
+                return false;
         //no else here
         
-        if(saveBackend())
+        if(saveBackend()){
             setModified(false);
+            return true;
+        }
+        return false;
     }
     
     /**
