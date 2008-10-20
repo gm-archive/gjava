@@ -19,13 +19,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
+ */
 package org.gcreator.gui;
 
 import java.io.File;
 import java.net.URI;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.gcreator.core.Core;
 
@@ -33,73 +34,75 @@ import org.gcreator.core.Core;
  * DocumentPane is the most basic unit of file editing.
  * @author Luís Reis
  */
-public class DocumentPane extends JPanel{
+public class DocumentPane extends JPanel {
+
     private File file;
-    
+
     /**
      * Creates a DocumentPane for a specific file.
      * @param file The file
      */
-    public DocumentPane(File file){
+    public DocumentPane(File file) {
         this.file = file;
     }
-    
+
     /**
      * Creates a DocumentPane from an URI location.
      * @param fileLocation The location
      * 
      * @see #DocumentPane(File)
      */
-    public DocumentPane(URI fileLocation){
+    public DocumentPane(URI fileLocation) {
         this(new File(fileLocation));
     }
-    
+
     /**
      * Creates a DocumentPane from a file name.
      * @param filename The name of the file to create.
      * 
      * @see #DocumentPane(File)
      */
-    public DocumentPane(String filename){
+    public DocumentPane(String filename) {
         this(new File(filename));
     }
-    
+
     /**
      * Gets the file
      */
-    public File getFile(){
+    public File getFile() {
         return file;
     }
-    
+
     /**
      * Saves the file
      * @return Whether or not the file was saved
      */
-    public boolean save(){
-        if(file==null)
-            if(!saveas())
+    public boolean save() {
+        if (file == null) {
+            if (!saveas()) {
                 return false;
-        //no else here
-        
-        if(saveBackend()){
+            //no else here
+            }
+        }
+        if (saveBackend()) {
             setModified(false);
             return true;
         }
         return false;
     }
-    
+
     /**
      * Saves the backend with no interface requests
      */
-    public boolean saveBackend(){
+    public boolean saveBackend() {
         return false;
     }
-    
+
     /**
      * Saves the file with a new location
      * @return Whether save was sucessful or not
      */
-    public boolean saveas(){
+    public boolean saveas() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Select where to save");
         chooser.setDialogType(JFileChooser.SAVE_DIALOG);
@@ -109,58 +112,80 @@ public class DocumentPane extends JPanel{
         }
         return false;
     }
-    
+
     /**
      * Sets the content of the 'edit' menu.
      * @param editMenu The 'edit' menu
      * @return Whether or not the edit menu should be disabled.
      */
-    public boolean setupEditMenu(JMenu editMenu){
+    public boolean setupEditMenu(JMenu editMenu) {
         return false;
     }
-    
     private boolean modified = false;
-    
+
     /**
      * Returns whether or not the file was modified
      */
-    public boolean isModified(){
+    public boolean isModified() {
         return modified;
     }
-    
+
     /**
      * Sets whether or not the file was modified
      * @param modified Whether or not the file was modified
      */
-    public void setModified(boolean modified){
+    public void setModified(boolean modified) {
         this.modified = modified;
-        if(PineapplePlugin.dip.getSelectedDocument()==this)
+        if (PineapplePlugin.dip.getSelectedDocument() == this) {
             PineapplePlugin.fileSave.setEnabled(canSave());
+        }
         PineapplePlugin.dip.updateUI();
     }
-    
+
     /**
      * Gets whether or not the file can be saved
      */
-    public boolean canSave(){
-        return isModified()||!getFile().exists();
+    public boolean canSave() {
+        return isModified() || !getFile().exists();
     }
-    
+
     /**
      * Gets the title of the document
      */
-    public String getTitle(){
+    public String getTitle() {
         String title = "";
         File f = null;
         f = getFile();
-        if(f==null)
+        if (f == null) {
             title = "untitled";
-        else
+        } else {
             title = f.getName();
-        
-        if(isModified())
+        }
+        if (isModified()) {
             title += "*";
-        
+        }
         return title;
+    }
+
+    /**
+     * Destroys, but asks whether or not to save the document first
+     * Returns whether or not is was disposed
+     */
+    public boolean dispose() {
+        if (canSave()) {
+            String title = getTitle();
+            int res = JOptionPane.showConfirmDialog(Core.getStaticContext().getMainFrame(),
+                    "Do you wish to save document " + "\"" + title.substring(0, title.length() - 1) + "\" before closing?");
+            if (res == JOptionPane.CANCEL_OPTION) {
+                return false;
+            }
+            if (res == JOptionPane.YES_OPTION) {
+                if (!save()) {
+                    return false; //If can not save, then do not close
+                }
+            }
+        }
+        PineapplePlugin.dip.remove(this);
+        return true;
     }
 }

@@ -23,6 +23,7 @@ THE SOFTWARE.
 package org.gcreator.gui;
 
 import javax.swing.JFrame;
+import org.gcreator.plugins.DefaultEventTypes;
 import org.gcreator.plugins.EventHandler;
 import org.gcreator.plugins.EventManager;
 import org.gcreator.plugins.EventPriority;
@@ -43,9 +44,9 @@ public class MainFrame extends JFrame implements EventHandler {
      * Sets up the frame for any modules to handle its content.
      */
     public void initialize() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(640, 480);
-        EventManager.addEventHandler(this, "window-dispose", EventPriority.LOW);
+        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_DISPOSE, EventPriority.LOW);
     }
 
     /**
@@ -53,7 +54,7 @@ public class MainFrame extends JFrame implements EventHandler {
      */
     @Override
     public void dispose() {
-        EventManager.fireEvent(this, "window-dispose");
+        EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSE);
     }
 
     /**
@@ -63,8 +64,10 @@ public class MainFrame extends JFrame implements EventHandler {
      * @param event The {@link NotifyEvent} That is to be handled.
      */
     public void handleEvent(NotifyEvent event) {
-        if (event.getEventType().equals("window-dispose")) {
+        if (event.getEventType().equals(DefaultEventTypes.WINDOW_DISPOSE)) {
+            System.out.println("Performing final disposal");
             super.dispose();
+            System.exit(0);
         }
     }
 }

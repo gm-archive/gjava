@@ -85,19 +85,7 @@ public class TabRenderer extends JPanel{
                 TabbedInterfaceProvider pane = TabRenderer.this.tabs.get();
                 DocumentPane doc = pane.getDocumentAt(pane.tabs.indexOfTabComponent(
                         TabRenderer.this));
-                if(doc.canSave()){
-                    String title = doc.getTitle();
-                    int res = JOptionPane.showConfirmDialog(TabRenderer.this,
-                            "Do you wish to save document "
-                            + "\"" + title.substring(0, title.length()-1) + "\" before closing?");
-                    if(res==JOptionPane.CANCEL_OPTION)
-                        return;
-                    if(res==JOptionPane.YES_OPTION){
-                        if(!doc.save())
-                            return; //If can not save, then do not close
-                    }
-                }
-                pane.remove(doc);
+                doc.dispose();
             }
         });
         add(b);

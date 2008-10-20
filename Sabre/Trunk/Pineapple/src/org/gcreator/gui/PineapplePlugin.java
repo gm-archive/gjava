@@ -30,6 +30,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -49,6 +50,7 @@ import org.gcreator.plugins.PluginCore;
  * @author Luís Reis
  */
 public class PineapplePlugin extends PluginCore {
+
     /**
      * Owns {@link #tree} and the tabbed pane
      */
@@ -67,12 +69,21 @@ public class PineapplePlugin extends PluginCore {
      */
     public static DocumentInterfaceProvider dip;
 
+    /**
+     * Initializes the plugin(Registers the event handlers)
+     */
     @Override
     public void initialize() {
         EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_CREATED, EventPriority.MEDIUM);
+        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_DISPOSE, EventPriority.MEDIUM);
+        EventManager.addEventHandler(this, DefaultEventTypes.FILE_OPENED, EventPriority.LOW);
         EventManager.addEventHandler(this, DefaultEventTypes.FILE_CHANGED, EventPriority.MEDIUM);
     }
 
+    /**
+     * Handles any provided events
+     * @param evt The sent event
+     */
     @Override
     public void handleEvent(NotifyEvent evt) {
         if (evt.getEventType().equals(DefaultEventTypes.WINDOW_CREATED)) {
@@ -83,13 +94,13 @@ public class PineapplePlugin extends PluginCore {
             splitter.setVisible(true);
             f.setLayout(new BorderLayout());
             f.add(splitter, BorderLayout.CENTER);
-            
+
             projectNode = new DefaultMutableTreeNode(null);
             tree = new JTree(projectNode);
             tree.setVisible(true);
             tree.setCellRenderer(new ProjectTreeRenderer());
             splitter.setLeftComponent(tree);
-            
+
             dip = new TabbedInterfaceProvider();
             dip.setVisible(true);
             splitter.setRightComponent(dip);
@@ -102,69 +113,96 @@ public class PineapplePlugin extends PluginCore {
             fileMenu.setMnemonic('F');
             fileMenu.setVisible(true);
             menubar.add(fileMenu);
-            
+
             fileOpenProject = new JMenuItem("Open Project");
             fileOpenProject.setMnemonic('j');
             fileOpenProject.setVisible(true);
-            fileOpenProject.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent evt){
+            fileOpenProject.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent evt) {
                     openProject();
                 }
             });
             fileMenu.add(fileOpenProject);
-            
+
             fileOpenFile = new JMenuItem("Open File");
             fileOpenFile.setMnemonic('O');
             fileOpenFile.setVisible(true);
-            fileOpenFile.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent evt){
+            fileOpenFile.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent evt) {
                     openFile();
                 }
             });
             fileMenu.add(fileOpenFile);
-            
+
             fileSave = new JMenuItem("Save");
             fileSave.setMnemonic('S');
             fileSave.setVisible(true);
             fileSave.setEnabled(false);
-            fileSave.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent evt){
+            fileSave.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent evt) {
                     saveFile();
                 }
             });
             fileMenu.add(fileSave);
-            
+
             fileExit = new JMenuItem("Exit");
             fileExit.setMnemonic('x');
             fileExit.setVisible(true);
-            fileExit.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent evt){
+            fileExit.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent evt) {
                     EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSE);
                 }
             });
             fileMenu.add(fileExit);
-            
+
             editMenu = new JMenu("Edit");
             editMenu.setMnemonic('E');
             editMenu.setEnabled(false);
             editMenu.setVisible(true);
             menubar.add(editMenu);
-        }
-        else if(evt.getEventType().equals(DefaultEventTypes.FILE_CHANGED)){
+        } else if (evt.getEventType().equals(DefaultEventTypes.FILE_CHANGED)) {
             DocumentPane pane = dip.getSelectedDocument();
             editMenu.removeAll();
-            if(pane!=null){
+            if (pane != null) {
                 editMenu.setEnabled(pane.setupEditMenu(editMenu));
                 fileSave.setEnabled(pane.canSave());
-            }
-            else{
+            } else {
                 editMenu.setEnabled(false);
                 fileSave.setEnabled(false);
             }
+        } else if (evt.getEventType().equals(DefaultEventTypes.FILE_OPENED)) {
+            DocumentPane p;
+            Object[] arguments = evt.getArguments();
+            File f = (File) arguments[0];
+            String format = arguments[1].toString(); //Good to avoid exceptions
+            if (format.equals("png") ||
+                    format.equals("jpg") || format.equals("jpeg") ||
+                    format.equals("gif") || format.equals("bmp")) {
+                p = new ImagePreviewer(f);
+            } else {
+                p = new TextEditor(f);
+            }
+            dip.add(p.getFile().getName(), p);
+            evt.handleEvent();
+        } else if (evt.getEventType().equals(DefaultEventTypes.WINDOW_DISPOSE)){
+            for(DocumentPane doc : dip.getDocuments()){
+                if(doc!=null)
+                    if(!doc.dispose()){
+                        evt.handleEvent();
+                        return;
+                    }
+            }
         }
     }
-    
-    public void openFile(){
+
+    /**
+     * Opens a file
+     */
+    public void openFile() {
         JFileChooser chooser = new JFileChooser();
         chooser.setMultiSelectionEnabled(true);
         chooser.setDialogTitle("Select files to open");
@@ -175,14 +213,18 @@ public class PineapplePlugin extends PluginCore {
             }
         }
     }
-    
-    public void openFile(final File f){
+
+    /**
+     * Opens a given file
+     * @param f The file to open
+     */
+    public void openFile(final File f) {
         DocumentPane[] comps = dip.getDocuments();
         boolean canOpen = true;
         for (DocumentPane component : comps) {
-                if (component!=null&&component.getFile() == f) {
-                    canOpen = false;
-                    break;
+            if (component != null && component.getFile() == f) {
+                canOpen = false;
+                break;
             }
         }
         if (canOpen) {
@@ -190,34 +232,33 @@ public class PineapplePlugin extends PluginCore {
 
                 @Override
                 public void run() {
-                    DocumentPane p;
                     String s = f.getName();
                     String format = "???";
-                    try{
-                        format = s.substring(s.lastIndexOf('.')+1);
+                    try {
+                        format = s.substring(s.lastIndexOf('.') + 1);
+                    } catch (Exception e) {
                     }
-                    catch(Exception e){}
-                    if(format.equals("png")||
-                            format.equals("jpg")||format.equals("jpeg")||
-                            format.equals("gif")||format.equals("bmp"))
-                        p = new ImagePreviewer(f);
-                    else
-                        p = new TextEditor(f);
-                    dip.add(p.getFile().getName(), p);
+                    EventManager.fireEvent(this, DefaultEventTypes.FILE_OPENED, f, format);
+                    dip.updateUI();
                 }
             };
             t.start();
-            dip.updateUI();
         }
     }
-    
-    public void openProject(){
-        
+
+    /**
+     * Opens a project(Not yet implemented)
+     */
+    public void openProject() {
     }
-    
-    public void saveFile(){
+
+    /**
+     * Saves the currently open file
+     */
+    public void saveFile() {
         DocumentPane p = dip.getSelectedDocument();
-        if(p!=null)
+        if (p != null) {
             p.save();
+        }
     }
 }

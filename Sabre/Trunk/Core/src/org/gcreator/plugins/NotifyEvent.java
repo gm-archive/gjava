@@ -87,4 +87,11 @@ public class NotifyEvent {
     public String getEventType() {
         return type;
     }
+    
+    /**
+     * Gets the event arguments.
+     */
+    public Object[] getArguments(){
+        return arguments;
+    }
 }

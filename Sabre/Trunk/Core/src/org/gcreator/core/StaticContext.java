@@ -64,6 +64,7 @@ public final class StaticContext {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        plugins = new Vector<PluginCore>();
     }
 
     /**
