@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+LGM-Plugin: org.lgj.Plugin
+Class-Path: ../lateralgm.jar
+
