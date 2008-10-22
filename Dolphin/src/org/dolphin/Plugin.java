@@ -1,4 +1,4 @@
-package org.lgj;
+package org.dolphin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -172,14 +172,10 @@ public class Plugin implements ActionListener, SubframeListener {
 			zipFile.close();
 
 		} catch (IOException ioe) {
-
 			ioe.printStackTrace();
-			// JOptionPane.showMessageDialog(null, "Error unziping, are you sure
-			// it was a valid zip file? The link has to be directly to a zip not
-			// to a php page!");
-
-			// return;
 		}
 	}
+	
+	
 	
 }

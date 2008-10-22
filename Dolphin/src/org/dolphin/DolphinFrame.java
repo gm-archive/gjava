@@ -1,4 +1,4 @@
-package org.lgj;
+package org.dolphin;
 
 import java.awt.BorderLayout;
 

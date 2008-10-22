@@ -1,4 +1,4 @@
-package org.lgj;
+package org.dolphin;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -45,6 +45,21 @@ public class DolphinWriter {
 				FileWriter sceneFW = new FileWriter(FileFolder + r.getName()
 						+ ".java");
 				BufferedWriter scene = new BufferedWriter(sceneFW);
+				
+				print(scene, "package org.dolphin.game;");
+		        print(scene, "");
+
+		        print(scene, "import java.awt.Color;");
+		        print(scene, "import org.dolphin.game.core.*;");
+		        print(scene, "import org.dolphin.game.api.*;");
+		        print(scene, "import org.dolphin.game.api.Integer;");
+		        print(scene, "import org.dolphin.game.api.Double;");
+		        print(scene, "import org.dolphin.game.api.components.Background;");
+
+		        print(scene, "public class " + r.getName() + " extends org.dolphin.game.gtge.Scene2D {");
+		        print(scene, "");
+		        print(scene, "    " + r.getName() + "() {");
+				
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -52,4 +67,11 @@ public class DolphinWriter {
 		}
 	}
 
+	/*
+	 * Print a line to the BufferedWriter
+	 */ 
+    public static void print(BufferedWriter file, String printString) throws IOException {
+        file.write(printString);
+        file.newLine();
+    }
 }
