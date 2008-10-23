@@ -20,7 +20,7 @@ package com.golden.gamedev.engine.input;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
-import org.gcreator.compilers.gjava.Game;
+//import org.gcreator.compilers.gjava.Game;
 
 public class EnhancedAWTInput extends AWTInput {
 	
@@ -59,8 +59,8 @@ public class EnhancedAWTInput extends AWTInput {
 	protected class EnhancedInputListener extends InputListener {
 		
 		public void keyPressed(KeyEvent e) {
-                    Game.lastkey=e.getKeyCode();
-                    Game.lastchar=""+e.getKeyChar();
+                    //Game.lastkey=e.getKeyCode();
+                    //Game.lastchar=""+e.getKeyChar();
                     System.out.println("used");
 			if (!EnhancedAWTInput.this.keyDown.get(e.getKeyCode())) {
 				EnhancedAWTInput.this.keyDown.set(e.getKeyCode());

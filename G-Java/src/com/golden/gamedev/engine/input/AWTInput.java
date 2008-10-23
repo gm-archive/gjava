@@ -36,11 +36,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.engine.BaseInput;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.gcreator.compilers.gjava.Game;
-import org.gcreator.compilers.gjava.api.Actor;
-import org.gcreator.compilers.gjava.api.DestroyException;
+
 
 /**
  * Input engine using AWT Component as the input listener.
@@ -428,7 +424,7 @@ public class AWTInput implements BaseInput {
 				        .getKeyCode();
 				AWTInput.this.pressedKey++;
 			}
-			
+			/*
                         for (int i = 0; i < Game.Current.instances.size(); i++) {
                 try {
                     if (((Actor) Game.Current.instances.elementAt(i)).visible) {
@@ -436,12 +432,78 @@ public class AWTInput implements BaseInput {
                     }
                 } catch (DestroyException ex) {
                     Logger.getLogger(AWTInput.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
         }
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void focusGained(FocusEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
                         
 			// make sure the key isn't processed for anything else
 			// for example ALT key won't open frame menu
-			e.consume();
+			//e.consume();
 		}
 		
 		public void keyReleased(KeyEvent e) {
@@ -450,6 +512,7 @@ public class AWTInput implements BaseInput {
 			AWTInput.this.keyReleased[AWTInput.this.releasedKey] = e
 			        .getKeyCode();
 			AWTInput.this.releasedKey++;
+			/*
 			for (int i = 0; i < Game.Current.instances.size(); i++) {
                 try {
                     if (((Actor) Game.Current.instances.elementAt(i)).visible) {
@@ -458,7 +521,9 @@ public class AWTInput implements BaseInput {
                 } catch (DestroyException ex) {
                     Logger.getLogger(AWTInput.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
         }
+        */
 			// make sure the key isn't processed for anything else
 			e.consume();
 		}
@@ -519,9 +584,10 @@ public class AWTInput implements BaseInput {
 			AWTInput.this.refresh();
 		}
 		
-	}
+	//}
 	
 	// ////////////////////////////////////////////////////////////////////////////
 	/** ******************** END OF AWT INPUT LISTENER ************************** */
 	// ////////////////////////////////////////////////////////////////////////////
 }
+//}
