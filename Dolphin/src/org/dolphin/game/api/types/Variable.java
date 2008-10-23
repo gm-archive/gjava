@@ -1,4 +1,4 @@
-package org.dolphin.game.api;
+package org.dolphin.game.api.types;
 
 /**
  * The Basic Object Class
