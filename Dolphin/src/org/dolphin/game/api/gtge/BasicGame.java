@@ -16,7 +16,7 @@ import com.golden.gamedev.GameLoader;
 
 public class BasicGame extends Game {
 
-	private Room2D currentRoom;
+	public static Room2D currentRoom;
 	/*
 	 * auto_redraw is whether the room are drawn (to set use
 	 * set_automatic_draw(boolean))

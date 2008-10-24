@@ -20,5 +20,13 @@ public class Room2D {
 	 public void update()  {
 		 
 	 }
+
+	 /*
+	  * Called when an objects depth is changed so that it will update the vector
+	  */
+	public void SortDepth() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

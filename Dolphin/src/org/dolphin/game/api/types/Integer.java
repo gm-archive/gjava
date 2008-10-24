@@ -1,0 +1,198 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.dolphin.game.api.types;
+
+/**
+ * The Integer class wraps a value of the primitive type int  in an object. 
+ * In addition, this class provides several methods for converting an int to a String and a String to an int, as well as other constants and methods useful when dealing with an int.
+ * @author TGMG
+ */
+public class Integer extends Variable {
+
+    int i;
+
+   public Integer(int ii) {
+        i = ii;
+    }
+
+    @Override
+    public Variable bnegate() {
+        return new Integer(~i);
+        
+    }
+
+    @Override
+    public Variable negate() {
+        return new Integer(-i);
+    }
+   
+   
+    @Override
+    public double getDouble() {
+        return i;
+    }
+
+    @Override
+    public Variable setsub(Variable o) {
+        i-= (int) (o.getDouble());
+        return this;
+    }
+    
+    @Override
+    public Variable sub(Variable o) {
+        return new Integer( (int)(i-o.getDouble()));
+        
+    }
+    
+    @Override
+    public Variable setadd(Variable o) {
+         i+= (int) (o.getDouble());
+         return this;
+    }
+
+    public Variable setadd(double o) {
+         i+= o;
+         return this;
+    }
+
+    @Override
+    public Variable add(Variable o) {
+        return new Integer(i+ (int) (o.getDouble()));
+    }
+    
+     @Override
+    public Variable div(Variable o) {
+         if (o.getDouble() != 0)
+       return new Integer(i / (int) (o.getDouble()));
+         else 
+             return new Integer(0);
+    }
+     
+      @Override
+    public Variable setdiv(Variable o) {
+       i /= (int) (o.getDouble());
+       return this;
+    }
+      
+      @Override
+    public Variable mult(Variable o) {
+        return new Integer(i *(int) (o.getDouble()));
+        
+    }
+
+    @Override
+    public Variable setmult(Variable o) {
+        i *= (int) (o.getDouble());
+        return this;
+    }
+
+    @Override
+    public Variable setband(Variable o) {
+        i &= (int) (o.getDouble());
+        return this;
+    }
+    
+    @Override
+    public Variable band(Variable o) {
+         return new Integer(i &(int) (o.getDouble()));
+    }
+
+    @Override
+    public Variable setbor(Variable o) {
+        i |= (int) (o.getDouble());
+        return this;
+    }
+    
+     @Override
+    public Variable bor(Variable o) {
+        return new Integer(i |(int) (o.getDouble()));
+    }
+
+    @Override
+    public Variable setbxor(Variable o) {
+        i ^= (int) (o.getDouble());
+        return this;
+    }
+    
+    @Override
+    public Variable bxor(Variable o) {
+        return new Integer(i ^(int) (o.getDouble()));
+    }
+
+    @Override
+   public int getInt(){
+       return i;
+   }
+
+    @Override
+    public boolean getBoolean() {
+        return !(i == 0);
+    }
+
+    @Override
+    public Boolean gt(Variable obj) {
+        return new Boolean(i>obj.getInt());
+    }
+
+    @Override
+    public Boolean gte(Variable obj) {
+        return new Boolean(i>=obj.getInt());
+    }
+
+    @Override
+    public Boolean lt(Variable obj) {
+        return new Boolean(i<obj.getInt());
+    }
+
+    public boolean lt(int obj) {
+        return /*new Boolean*/(i<obj);
+    }
+
+    @Override
+    public Boolean lte(Variable obj) {
+        return new Boolean(i>=obj.getInt());
+    }
+
+
+
+    @Override
+    public String getString() {
+        return new String(""+i);
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return ""+i;
+    }
+    
+
+    @Override
+    public Boolean equals(Variable obj) {
+        return new Boolean(i == (obj).getDouble());
+    }
+
+    public Variable setValue(int v){
+        this.i=v;
+        return this;
+    }
+
+
+    
+    @Override
+    public int compareTo(java.lang.Object o)
+    {
+        if ((o instanceof Double) || (o instanceof Integer))
+        {
+            if (getDouble() < ((Variable)o).getDouble())
+                return -1;
+            else if (getDouble() > ((Variable)o).getDouble())
+                return 1;
+            else
+                return 0;
+        }
+        else
+            return super.compareTo(o);  //No order - go by toString
+    }
+}
