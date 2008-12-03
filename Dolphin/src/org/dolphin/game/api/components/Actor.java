@@ -28,7 +28,10 @@ public class Actor extends Tile {
 
     protected org.dolphin.game.api.types.Variable alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     
-    protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
+    protected double xprevious,  xstart,  yprevious,  ystart;
+	public double hspeed;
+	public double vspeed;
+	protected double speed;
     public boolean visible = true,  mouseover = false,active=true;
     protected int posinvector = -1;
     public double id=0;//the instance id

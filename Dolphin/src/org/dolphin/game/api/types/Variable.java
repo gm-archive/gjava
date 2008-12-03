@@ -18,7 +18,6 @@ public class Variable implements Cloneable, Comparable {
 	 * name.
 	 */
 	public void setVariable(java.lang.String name, Variable value) {
-
 	}
 
 	/*

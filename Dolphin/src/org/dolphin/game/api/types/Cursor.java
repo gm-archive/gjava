@@ -10,7 +10,7 @@ package org.dolphin.game.api.types;
  * @author TGMG
  */
 public class Cursor extends Variable {
-java.awt.Cursor c;
+public java.awt.Cursor c;
 
 public Cursor(java.awt.Cursor c)
 {

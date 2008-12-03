@@ -1,5 +1,6 @@
 package org.dolphin.game.api.gtge;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.io.PrintWriter;
@@ -15,14 +16,31 @@ import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 
 public class BasicGame extends Game {
-
+	
+	/*
+	 * Can't remember what this is for
+	 * TODO: remember what this is for
+	 */
+	public static Graphics2D graphics=null;
+	
+	/*
+	 * Can't remember what this is for
+	 * TODO: remember what this is for
+	 */
+	public static Container canvas;
+	
+	/*
+	 * The current room being used
+	 */
 	public static Room2D currentRoom;
 	/*
 	 * auto_redraw is whether the room are drawn (to set use
 	 * set_automatic_draw(boolean))
 	 */
-	private boolean auto_redraw;
-
+	public static boolean auto_redraw;
+	
+	public static boolean fullscreen=false;
+	
 	/*
 	 * parameter_count is a variable that can be called in gml to get the number
 	 * of parameters
@@ -30,7 +48,7 @@ public class BasicGame extends Game {
 	public static int parameter_count = 0;
 
 	/*
-	 * The list of parameters
+	 * The list of parameters passed to the program
 	 */
 	public static String[] parameters;
 
