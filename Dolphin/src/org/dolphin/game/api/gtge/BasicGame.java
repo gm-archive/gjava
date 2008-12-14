@@ -1,5 +1,7 @@
 package org.dolphin.game.api.gtge;
 
+import static org.dolphin.game.api.gtge.BasicGame.rooms;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -50,6 +52,9 @@ public class BasicGame extends Game {
 	 * set_automatic_draw(boolean))
 	 */
 	public static boolean auto_redraw=true;
+	
+	/*The rooms*/
+	public static Vector<Room2D> rooms;
 	
 	public static boolean fullscreen=false;
 	
@@ -128,6 +133,28 @@ public class BasicGame extends Game {
 	public static void setupGame() {
 		//game = new GameLoader();
 		//game.setup(new BasicGame(), new Dimension(640, 480), false);
+	}
+	
+	/*
+	 * Go to the next room
+	 */
+	public static void nextRoom(){
+		if (currentRoom.id <=rooms.size())
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).vectorid==(currentRoom.vectorid+1)){
+				currentRoom=rooms.get(i);
+		}}
+	}
+	
+	/*
+	 * Go to the previous room
+	 */
+	public static void previousRoom(){
+		if (currentRoom.id !=0)
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).vectorid==(currentRoom.vectorid-1)){
+				currentRoom=rooms.get(i);
+		}}
 	}
 
 	/*

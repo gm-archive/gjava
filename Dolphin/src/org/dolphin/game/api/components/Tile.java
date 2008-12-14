@@ -59,7 +59,7 @@ public class Tile extends Scripts implements Comparable {
 	}
 
 	public Tile(double x, double y, double tileX, double tileY, double tileW,
-			double tileH, double depth, double id, int background) {
+			double tileH, double depth, double id, Background background) {
 		this.x = x;
 		this.y = y;
 		this.tileX = tileX;
@@ -68,7 +68,7 @@ public class Tile extends Scripts implements Comparable {
 		this.tileH = tileH;
 		this.depth = depth;
 		this.id = id;
-		this.background = background;
+		//this.background = background;
 		Load_image();
 	}
 

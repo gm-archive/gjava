@@ -1038,7 +1038,7 @@ public static Variable instance_create(Variable x, Variable y, Variable obj)
         try {
             Class ins = Class.forName("org.gcreator.compilers.gjava."+obj.toString());
             Game.maxInstanceId++;
-            Variable o = (Variable) ins.getDeclaredConstructor(Variable.class,Variable.class,Variable.class).newInstance(x,y,new Double(Game.maxInstanceId));
+            Actor o = (Actor) ins.getDeclaredConstructor(Variable.class,Variable.class,Variable.class).newInstance(x,y,new Double(Game.maxInstanceId));
             
             Game.currentRoom.instances.add(o);
             Game.allinstances.put(Game.maxInstanceId, o);
@@ -1054,7 +1054,7 @@ public Variable instance_copy(Variable performevent)
     Game.maxInstanceId++;
         try {
             
-            Variable o = (Variable) this.clone();
+            Actor o = (Actor) this.clone();
             Game.currentRoom.instances.add(o);
             //Game.allinstances.put(Game.maxInstanceId, o);
         } catch (CloneNotSupportedException ex) {

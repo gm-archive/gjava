@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import org.dolphin.game.api.Clipboard;
+import org.dolphin.game.api.components.Background;
 import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
@@ -18,32 +19,37 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
 
 	public static Frame frame;
 	//test fields
-	Vector<Room2D> rooms;
+	public static Background bg0;
 	
-	public Game(){
-		System.out.println("test");
-		
-	}
+	public Game(){}
 	
 	public static void setupGame() {
-		System.out.println("test2");
 		game = new GameLoader();
 		game.setup(new Game(), new Dimension(640, 480), false);
 		frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();
 	}
 	
+	public void initBackgrounds(){
+		bg0=new Background(false,0,0,0,0,0,0,0,0,0,0,0,0,0,null);
+	}
+	
 	public void initRooms(){
 		rooms=new Vector<Room2D>();
-		rooms.add(0,new Room0());
+		rooms.add(new Room0(0));
+		rooms.add(new Room1(1));
 		currentRoom=rooms.firstElement();
+		
+		previousRoom();
+		nextRoom();
 	}
+	
+	
 	
 	@Override
 	public void initResources() {
 		super.initResources();
 		initRooms();
 		System.out.println("init resources");
-		
 	}
 	
 	public static void main(java.lang.String[] args) {

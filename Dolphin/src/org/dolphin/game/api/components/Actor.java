@@ -40,9 +40,21 @@ public class Actor extends Tile {
     public Actor() {
         
     }
+    
+    /*
+     * Create a new actor using primitives
+     */
+    public Actor(double x,double y,double instance_id){
+    	xstart=x;
+    	ystart=y;
+    	id=instance_id;
+    	this.x=x;
+    	this.y=y;
+    	self=this;
+    }
 
     /**
-     * Create a new Actor
+     * Create a new Actor using variable objects
      */
     public Actor(Variable X, Variable Y, Variable instance_id) {
         this.xstart = ((Variable) X).getFloat();

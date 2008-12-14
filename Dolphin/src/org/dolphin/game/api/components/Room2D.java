@@ -7,13 +7,14 @@ import java.util.Collections;
 import java.util.Vector;
 
 import org.dolphin.game.Game;
+import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.types.Variable;
 
 /*
  * The 2D room component, all rooms should use this class as a parent.
  */
-public class Room2D {
+public class Room2D extends GCL{
 
 
 /** The container for the test */
@@ -23,13 +24,16 @@ Frame Frame;
 /**
  * All the instances in this room as a {@link Vector} object
  */
-public Vector<Variable> instances = new Vector<Variable>();
+public Vector<Actor> instances = new Vector<Actor>();
 
 /**
  * All the instances and tiles in this room as a {@link Vector} object sorted by
  * depth
  */
 private Vector depth = new Vector();
+
+/*The id in the vector*/
+public int vectorid=0;
 
 /*Vector of deactivated instances*/
 public Vector deactivated = new Vector();
@@ -38,7 +42,7 @@ public Vector deactivated = new Vector();
 /**
  * All the tiles in this room as a {@link Vector} object
  */
-private static Vector tiles = new Vector();
+protected static Vector<Tile> tiles = new Vector<Tile>();
 
 /**
  * The caption of this room
@@ -49,7 +53,8 @@ public String Caption="Dolphin Game";
  * The speed of the scene
  */
 public double speed = 60;
-   
+
+public double id=0;
 
 /**
  * The height of the scene
@@ -63,6 +68,9 @@ public int width;
 
 /*Whether to show the background color*/
 public boolean showcolor=true;  
+
+/*If room is persistent or not*/
+public boolean persistent=false;
  
 /*The vector of background to draw in this room*/
 public Vector<Background> backgrounds = new Vector();
@@ -97,20 +105,21 @@ public Room2D(){
  * @param backcolor
  *            The room backgound color
  */
-public Room2D(Frame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
+public Room2D(Frame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor,boolean drawbackground,boolean persistent,double id) {
    
     this.speed = fps;
     Game.game.getGame().setFPS((int)fps-1);
     this.height = RoomH;
     this.width = RoomW;
-// this.Width = RoomW + 7;
-// this.Height = RoomH + 25;
+    this.showcolor=drawbackground;
     this.backcolor = backcolor;
     this.Caption = Caption;
+    this.persistent = persistent;
+    this.id= id;
     
     R.setSize(width+5, height+25);
        
-    
+    setupScene();
     
     // room creation code
     Creation_code();
@@ -146,6 +155,7 @@ public void updateCaption()
 @SuppressWarnings("unchecked")
 public void SortDepth() {
     depth.addAll(instances);
+    depth.addAll(tiles);
     java.util.Collections.sort(depth,java.util.Collections.reverseOrder());
     depth.trimToSize();
 }
@@ -165,7 +175,7 @@ public void Creation_code(){
 /**
  * Create all the actors, backgrounds tiles etc. Override this!
  */
-private void setupScene() {
+protected void setupScene() {
     System.out.println("Warning: Nothing in setup scene!");
 }
 
