@@ -31,6 +31,7 @@ public Vector<Variable> instances = new Vector<Variable>();
  */
 private Vector depth = new Vector();
 
+/*Vector of deactivated instances*/
 public Vector deactivated = new Vector();
 
 
@@ -42,7 +43,7 @@ private static Vector tiles = new Vector();
 /**
  * The caption of this room
  */
-public String Caption;
+public String Caption="Dolphin Game";
 
 /**
  * The speed of the scene
@@ -60,11 +61,13 @@ public int height;
  */
 public int width;
 
- public boolean showcolor=true;  
-   
- public Vector<Background> backgrounds = new Vector();
+/*Whether to show the background color*/
+public boolean showcolor=true;  
  
- public Graphics2D g2d=null,bg2d=null;
+/*The vector of background to draw in this room*/
+public Vector<Background> backgrounds = new Vector();
+ 
+public Graphics2D g2d=null,bg2d=null;
  
 /**
  * The background color for this room, using java color object
@@ -105,14 +108,14 @@ public Room2D(Frame R, String Caption, long fps,int RoomW,int RoomH,Color backco
     this.backcolor = backcolor;
     this.Caption = Caption;
     
-    Frame.setSize(width+5, height+25);
+    R.setSize(width+5, height+25);
        
     
     
     // room creation code
     Creation_code();
     
-    Frame.setTitle(Caption); // set room caption
+    R.setTitle(Caption); // set room caption
 }
 
 
@@ -131,10 +134,10 @@ public void updateCaption()
     Frame.setTitle(Caption+" "+ cap);
 }
 
-public int getFPS()
+/*public int getFPS()
 {
-   return Game.game.getGame().getCurrentFPS();// container.getFPS();
-}   
+   return Game.game.getGame().getCurrentFPS();
+}   */
 
 /**
  * This will sort the depth vector by depth TODO move this method to another
@@ -160,7 +163,7 @@ public void Creation_code(){
 
 
 /**
- * Create all the actors, backgrounds tiles etc
+ * Create all the actors, backgrounds tiles etc. Override this!
  */
 private void setupScene() {
     System.out.println("Warning: Nothing in setup scene!");
@@ -172,12 +175,15 @@ public void init() {
 }
 
 
+/*
+ * Update method. Called every step should not be overridden
+ */
 public void update()  {
    for (int i = 0; i < instances.size(); i++) {
        if (instances.elementAt(i) !=null)
         ((Actor)instances.elementAt(i)).callEvents();
     }
-   updateCaption();
+   //updateCaption();
 }
 
 public void render(Graphics2D g)  {
@@ -189,6 +195,7 @@ public void render(Graphics2D g)  {
     if (showcolor) {
     g.setColor( backcolor );
     g.fillRect( 0, 0, width, height );
+    
     }
     
     // Draw background

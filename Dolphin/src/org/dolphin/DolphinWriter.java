@@ -56,7 +56,7 @@ public class DolphinWriter {
 		        print(scene, "import org.dolphin.game.api.Double;");
 		        print(scene, "import org.dolphin.game.api.components.Background;");
 
-		        print(scene, "public class " + r.getName() + " extends org.dolphin.game.gtge.Scene2D {");
+		        print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");
 		        print(scene, "");
 		        print(scene, "    " + r.getName() + "() {");
 				

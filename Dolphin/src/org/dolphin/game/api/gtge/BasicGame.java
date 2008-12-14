@@ -1,5 +1,6 @@
 package org.dolphin.game.api.gtge;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -48,7 +49,7 @@ public class BasicGame extends Game {
 	 * auto_redraw is whether the room are drawn (to set use
 	 * set_automatic_draw(boolean))
 	 */
-	public static boolean auto_redraw;
+	public static boolean auto_redraw=true;
 	
 	public static boolean fullscreen=false;
 	
@@ -106,6 +107,7 @@ public class BasicGame extends Game {
 		// draw the current room
 		if (auto_redraw)
 			currentRoom.render(g);
+		
 	}
 
 	/*
@@ -117,14 +119,15 @@ public class BasicGame extends Game {
 	public void update(long elapsedTime) {
 		// update the current room
 		currentRoom.update();
+		
 	}
 
 	/*
 	 * Every game should override this method
 	 */
 	public static void setupGame() {
-		game = new GameLoader();
-		game.setup(new BasicGame(), new Dimension(640, 480), false);
+		//game = new GameLoader();
+		//game.setup(new BasicGame(), new Dimension(640, 480), false);
 	}
 
 	/*
@@ -155,6 +158,7 @@ public class BasicGame extends Game {
 									+ ". \n Stack trace:"
 									+ result.toString()
 									+ "\n \n The Error has been added to clipboard, just before the previous contents of the clipboard. \n Please contact the G-Java development team for help. http://forums.g-java.com");
+			System.out.println("Exception:"+result.toString());
 			System.exit(1); // Exit the game
 		}
 
