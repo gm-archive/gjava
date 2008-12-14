@@ -9,7 +9,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +35,7 @@ import org.dolphin.game.api.types.Stack;
 import org.dolphin.game.api.types.Queue;
 import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.PriorityQueue;
+import org.dolphin.game.api.Date;
 
 import sun.applet.Main;
 
@@ -1231,7 +1231,8 @@ return new Variable();
  */
 public static Variable show_debug_message(Variable str)
 {
-    Game.debug.println(str);
+    //Game.debug.println(str);
+	System.out.println(str);
     return new Variable();
 }
 
@@ -1317,9 +1318,10 @@ return new Variable();
  */
 public static Variable keyboard_set_map(Variable key1, Variable key2)
 {
-    if (Game.keymap == null)
+   /* keymaps currently don't work
+	if (Game.keymap == null)
         Game.keymap = new Hashtable();
-    Game.keymap.put(key1.getInt(), key2.getInt());
+    Game.keymap.put(key1.getInt(), key2.getInt());*/
 return new Variable();
 }
 
@@ -1684,7 +1686,7 @@ return new Variable();
 
 public static Variable draw_ellipse(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
 {
-    Draw.ellipse(x1.getDouble(), y1.getDouble(), x2.getDouble(), y2.getDouble(), outline.getBoolean());
+    //Draw.ellipse(x1.getDouble(), y1.getDouble(), x2.getDouble(), y2.getDouble(), outline.getBoolean());
 return new Variable();
 }
 

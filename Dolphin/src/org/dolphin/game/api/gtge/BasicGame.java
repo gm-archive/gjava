@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Hashtable;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
@@ -15,6 +17,11 @@ import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
 
+/*
+ * The Basicgame class is used in every game as the main class that is run. 
+ * This is always extended with a Game Object.
+ * 
+ */
 public class BasicGame extends Game {
 	
 	/*
@@ -29,9 +36,13 @@ public class BasicGame extends Game {
 	 */
 	public static Container canvas;
 	
-	/*
-	 * The current room being used
-	 */
+	/* All the instances used throuhout the whole game*/
+	public static Hashtable allinstances;
+	
+	/* The current maximum instance id */
+	public static int maxInstanceId; 
+	
+	/* The current room being used */
 	public static Room2D currentRoom;
 	/*
 	 * auto_redraw is whether the room are drawn (to set use
@@ -135,11 +146,9 @@ public class BasicGame extends Game {
 			final Writer result = new StringWriter();
 			final PrintWriter printWriter = new PrintWriter(result);
 			e.printStackTrace(printWriter);
-			Clipboard.setText(("" + result.toString() + Clipboard.getText()));
+			Clipboard.setText(new org.dolphin.game.api.types.String(("" + result.toString() + Clipboard.getText())));
 			JOptionPane
-					.showMessageDialog(
-							null,
-							"Error: "
+					.showMessageDialog(null,"Error: "
 									+ e
 									+ ", "
 									+ e.getMessage()

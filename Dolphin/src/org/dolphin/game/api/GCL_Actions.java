@@ -5,8 +5,13 @@
 
 package org.dolphin.game.api;
 
+import org.dolphin.game.api.types.Variable;
+import org.dolphin.game.api.types.String;
+import org.dolphin.game.api.types.Integer;
+
 /**
- *
+ * This class is used for all the gcl action functions.
+ * All Objects should extend this class
  * Use for releative:
  * if (argument_relative.getBoolean())
  *
@@ -14,277 +19,277 @@ package org.dolphin.game.api;
  */
 public class GCL_Actions extends GCL {
 
-public static Object action_another_room(Object... obj)
+public static Variable action_another_room(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_bounce(Object... obj)
+public static Variable action_bounce(Variable... obj)
 {
    // System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
 self.hspeed=-self.hspeed;
 self.vspeed=-self.vspeed;
     System.out.println("bounce");
-    return new Object();
+    return new Variable();
 }
 
-public static Object action_cd_pause(Object... obj)
+public static Variable action_cd_pause(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_cd_play(Object... obj)
+public static Variable action_cd_play(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_cd_playing(Object... obj)
+public static Variable action_cd_playing(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_cd_present(Object... obj)
+public static Variable action_cd_present(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_cd_resume(Object... obj)
+public static Variable action_cd_resume(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_cd_stop(Object... obj)
+public static Variable action_cd_stop(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_change_object(Object... obj)
+public static Variable action_change_Variable(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_color(Object... obj)
+public static Variable action_color(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_create_object(Object... obj)
+public static Variable action_create_Variable(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_create_object_motion(Object... obj)
+public static Variable action_create_Variable_motion(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_create_object_random(Object... obj)
+public static Variable action_create_Variable_random(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_current_room(Object... obj)
+public static Variable action_current_room(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_arrow(Object... obj)
+public static Variable action_draw_arrow(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_background(Object... obj)
+public static Variable action_draw_background(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_ellipse(Object... obj)
+public static Variable action_draw_ellipse(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_ellipse_gradient(Object... obj)
+public static Variable action_draw_ellipse_gradient(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_gradient_hor(Object... obj)
+public static Variable action_draw_gradient_hor(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_gradient_vert(Object... obj)
+public static Variable action_draw_gradient_vert(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_health(Object... obj)
+public static Variable action_draw_health(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_life(Object... obj)
+public static Variable action_draw_life(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_life_images(Object... obj)
+public static Variable action_draw_life_images(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_line(Object... obj)
+public static Variable action_draw_line(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_rectangle(Object... obj)
+public static Variable action_draw_rectangle(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_score(Object... obj)
+public static Variable action_draw_score(Variable... obj)
 {
 
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_sprite(Object... obj)
+public static Variable action_draw_sprite(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_text(Object... obj)
+public static Variable action_draw_text(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_text_transformed(Object... obj)
+public static Variable action_draw_text_transformed(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_draw_variable(Object... obj)
+public static Variable action_draw_variable(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_effect(Object... obj)
+public static Variable action_effect(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_end_game(Object... obj)
+public static Variable action_end_game(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_end_sound(Object... obj)
+public static Variable action_end_sound(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_execute_script(Object... obj)
+public static Variable action_execute_script(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_font(Object... obj)
+public static Variable action_font(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_fullscreen(Object... obj)
+public static Variable action_fullscreen(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_highscore_clear(Object... obj)
+public static Variable action_highscore_clear(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_highscore_show(Object... obj)
+public static Variable action_highscore_show(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if(Object... obj)
+public static Variable action_if(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_aligned(Object... obj)
+public static Variable action_if_aligned(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_collision(Object... obj)
+public static Variable action_if_collision(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_dice(Object... obj)
+public static Variable action_if_dice(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_empty(Object... obj)
+public static Variable action_if_empty(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_health(Object... obj)
+public static Variable action_if_health(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_life(Object... obj)
+public static Variable action_if_life(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_mouse(Object... obj)
+public static Variable action_if_mouse(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_next_room(Object... obj)
+public static Variable action_if_next_room(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_number(Object... obj)
+public static Variable action_if_number(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_object(Object... obj)
+public static Variable action_if_Variable(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_previous_room(Object... obj)
+public static Variable action_if_previous_room(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_question(Object... obj)
+public static Variable action_if_question(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_score(Object... obj)
+public static Variable action_if_score(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_sound(Object... obj)
+public static Variable action_if_sound(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_if_variable(Object... obj)
+public static Variable action_if_variable(Variable... obj)
 {
     if (obj[2].getInt() ==0) {
         System.out.println("action_if_variable, equals:"+obj[0].equals(obj[1]));
@@ -299,41 +304,41 @@ public static Object action_if_variable(Object... obj)
                             return obj[0].gt(obj[1]);
                         }
     System.out.println("action_if_variable, error:"+obj[2]);
-return new Object();
+return new Variable();
 }
 
-public static Object action_inherited(Object... obj)
+public static Variable action_inherited(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_kill_object(Object... obj)
+public static Variable action_kill_Variable(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_kill_position(Object... obj)
+public static Variable action_kill_position(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_linear_step(Object... obj)
+public static Variable action_linear_step(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_load_game(Object... obj)
+public static Variable action_load_game(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_message(Object obj)
+public static Variable action_message(Variable obj)
 {
     show_message(obj);
-return new Object();
+return new Variable();
 }
 
-public static Object action_move(Object dirs, Object speed)
+public static Variable action_move(Variable dirs, Variable speed)
 {
     int no = round(random(string_count(new String("1"),dirs))).getInt()+1;
     System.out.println("no"+no);
@@ -377,34 +382,34 @@ public static Object action_move(Object dirs, Object speed)
                                     self.setDirection(new Integer(45));
                                     }
                                     }
-                                    //action_move(new Object[5]);
+                                    //action_move(new Variable[5]);
 
     }}
-return new Object();
+return new Variable();
 }
 
-public static Object action_move_contact(Object... obj)
+public static Variable action_move_contact(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_move_point(Object... obj)
+public static Variable action_move_point(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_move_random(Object... obj)
+public static Variable action_move_random(Variable... obj)
 {
     move_random(obj[0], obj[1]);
-return new Object();
+return new Variable();
 }
 
-public static Object action_move_start(Object... obj)
+public static Variable action_move_start(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_move_to(Object... obj)
+public static Variable action_move_to(Variable... obj)
 {
     self.hspeed=1;
     System.out.println("move to x:"+self.x+"id"+self.id);
@@ -418,203 +423,203 @@ public static Object action_move_to(Object... obj)
     self.y=self.y+obj[1].getDouble();
     }
     System.out.println("x:"+self.x);
-return new Object();
+return new Variable();
 }
 
-public static Object action_next_room(Object... obj)
+public static Variable action_next_room(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partemit_burst(Object... obj)
+public static Variable action_partemit_burst(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partemit_create(Object... obj)
+public static Variable action_partemit_create(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partemit_destroy(Object... obj)
+public static Variable action_partemit_destroy(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partemit_stream(Object... obj)
+public static Variable action_partemit_stream(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partsyst_clear(Object... obj)
+public static Variable action_partsyst_clear(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partsyst_create(Object... obj)
+public static Variable action_partsyst_create(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_partsyst_destroy(Object... obj)
+public static Variable action_partsyst_destroy(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_parttype_color(Object... obj)
+public static Variable action_parttype_color(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_parttype_create(Object... obj)
+public static Variable action_parttype_create(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_parttype_gravity(Object... obj)
+public static Variable action_parttype_gravity(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_parttype_life(Object... obj)
+public static Variable action_parttype_life(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_parttype_secondary(Object... obj)
+public static Variable action_parttype_secondary(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_parttype_speed(Object... obj)
+public static Variable action_parttype_speed(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_path(Object... obj)
+public static Variable action_path(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_path_end(Object... obj)
+public static Variable action_path_end(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_path_position(Object... obj)
+public static Variable action_path_position(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_path_speed(Object... obj)
+public static Variable action_path_speed(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_potential_step(Object... obj)
+public static Variable action_potential_step(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_previous_room(Object... obj)
+public static Variable action_previous_room(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_replace_background(Object... obj)
+public static Variable action_replace_background(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_replace_sound(Object... obj)
+public static Variable action_replace_sound(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_replace_sprite(Object... obj)
+public static Variable action_replace_sprite(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_restart_game(Object... obj)
+public static Variable action_restart_game(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_reverse_xdir(Object... obj)
+public static Variable action_reverse_xdir(Variable... obj)
 {
     self.hspeed=-self.hspeed;
-return new Object();
+return new Variable();
 }
 
-public static Object action_reverse_ydir(Object... obj)
+public static Variable action_reverse_ydir(Variable... obj)
 {
     self.vspeed=-self.vspeed;
-return new Object();
+return new Variable();
 }
 
-public static Object action_save_game(Object... obj)
+public static Variable action_save_game(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_alarm(Object... obj)
+public static Variable action_set_alarm(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_caption(Object... obj)
+public static Variable action_set_caption(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_cursor(Object... obj)
+public static Variable action_set_cursor(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_friction(Object... obj)
+public static Variable action_set_friction(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_gravity(Object... obj)
+public static Variable action_set_gravity(Variable... obj)
 {
     if (argument_relative.getBoolean())
         self.setGravity(self.getGravity().add(obj[0]));
     else
     self.setGravity(obj[0]);
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_health(Object... obj)
+public static Variable action_set_health(Variable... obj)
 {
     if (argument_relative.getBoolean())
         setHealth(getHealth().add(obj[0]));
     else
        setHealth(obj[0]);
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_hspeed(Object... obj)
+public static Variable action_set_hspeed(Variable... obj)
 {
     if (argument_relative.getBoolean())
       self.hspeed=self.hspeed+obj[0].getDouble();
     else
     self.hspeed=obj[0].getDouble();
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_life(Object... obj)
+public static Variable action_set_life(Variable... obj)
 {
 //    if (argument_relative.getBoolean())
 //        setLife(obj[0]);
 //    else
 //        setLife(obj[0]);
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_motion(Object... obj)
+public static Variable action_set_motion(Variable... obj)
 {
     if (argument_relative.getBoolean())
     {
@@ -624,86 +629,86 @@ public static Object action_set_motion(Object... obj)
     self.setDirection(obj[0]);
     self.setSpeed(obj[1]);
     }
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_score(Object score)
+public static Variable action_set_score(Variable score)
 {
     if (argument_relative.getBoolean())
         setScore(getScore().add(score));
     else
     setScore(score);
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_timeline(Object... obj)
+public static Variable action_set_timeline(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_timeline_position(Object... obj)
+public static Variable action_set_timeline_position(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_set_vspeed(Object... obj)
+public static Variable action_set_vspeed(Variable... obj)
 {
     self.vspeed=obj[0].getDouble();
-return new Object();
+return new Variable();
 }
 
-public static Object action_show_info(Object... obj)
+public static Variable action_show_info(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_show_video(Object... obj)
+public static Variable action_show_video(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_sleep(Object... obj)
+public static Variable action_sleep(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_snap(Object... obj)
+public static Variable action_snap(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_snapshot(Object... obj)
+public static Variable action_snapshot(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_sound(Object... obj)
+public static Variable action_sound(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_sprite_color(Object... obj)
+public static Variable action_sprite_color(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_sprite_set(Object... obj)
+public static Variable action_sprite_set(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_sprite_transform(Object... obj)
+public static Variable action_sprite_transform(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_webpage(Object... obj)
+public static Variable action_webpage(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 
-public static Object action_wrap(Object... obj)
+public static Variable action_wrap(Variable... obj)
 {
-return new Object();
+return new Variable();
 }
 }

@@ -1,7 +1,6 @@
 package org.dolphin.game.api.components;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -13,7 +12,7 @@ import org.dolphin.game.api.types.Integer;
 import org.dolphin.game.api.types.Variable;
 import org.dolphin.game.api.types.Boolean;
 import org.dolphin.game.api.Variables;
-import org.dolphin.game.api.Math;;
+import org.dolphin.game.api.Math;
 
 
 /**
@@ -24,7 +23,7 @@ import org.dolphin.game.api.Math;;
 public class Actor extends Tile {
 
     Hashtable variables = new Hashtable();
-    protected Sprite sprite;
+    public Sprite sprite;
 
     protected org.dolphin.game.api.types.Variable alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     

@@ -11,7 +11,6 @@ package org.dolphin.game.api;
 
 import java.util.Calendar;
 
-
 /**
  * Date class
  */
