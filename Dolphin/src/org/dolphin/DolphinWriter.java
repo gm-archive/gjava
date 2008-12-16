@@ -1,20 +1,14 @@
 package org.dolphin;
 
-import java.awt.Color;
-import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.ArrayList;
 
-import org.dolphin.game.Game;
 import org.lateralgm.file.GmFile;
+import org.lateralgm.file.GmFormatException;
+import org.lateralgm.resources.GmObject;
 import org.lateralgm.resources.Room;
 import org.lateralgm.resources.sub.BackgroundDef;
 import org.lateralgm.resources.sub.Instance;
@@ -23,17 +17,22 @@ import org.lateralgm.resources.sub.Tile;
 public class DolphinWriter {
 	DolphinFrame df;
 	GmFile gmFile;
-	String FileFolder;
+	String FileFolder,filename;
 	File location;
 
 	public DolphinWriter(DolphinFrame df, GmFile gmFile, File file) {
-		df.progress(1, "Starting to parse files", "Starting Dolphin");
+            filename=gmFile.filename.substring(gmFile.filename.lastIndexOf(File.separator)+1);
+            df.progress(1, "Starting to parse files", "Starting Dolphin for "+filename);
 		this.df = df;
 		this.gmFile = gmFile;
 		this.location = file;
 		this.FileFolder = file.getPath() + File.separator + "Dolphin Projects"
-				+ File.separator + gmFile.filename + File.separator;
+				+ File.separator + filename + File.separator;
 		new File(FileFolder).mkdirs();
+                try{
+                parseObjects();
+                parseRooms();
+                }catch(Exception e){showException(e);}
 	}
 
 	
@@ -42,6 +41,38 @@ public class DolphinWriter {
 		System.out.println("Moving folders");
 
 	}
+	
+	void parseBackgrounds(){
+		for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
+			
+		}
+	}
+	
+	void parseObjects() throws GmFormatException{
+		ArrayList<String> names = new ArrayList<String>(gmFile.gmObjects.size());
+		
+		for (GmObject o : gmFile.gmObjects)
+			{
+			/*check for duplicate objects*/
+			String name = o.getName();
+			if (names.contains(name))
+				throw new GmFormatException(gmFile,"Duplicate object name: " + name);
+			try{
+			FileWriter actorFW = new FileWriter(FileFolder + o.getName()
+					+ ".java");
+			BufferedWriter actor = new BufferedWriter(actorFW);
+			
+			print(actor, "package org.dolphin.game;");
+	        print(actor, "");
+                actor.close();
+			}catch(Exception e){showException(e);}
+			}
+	}
+
+        void showException(Exception e){
+            e.printStackTrace();
+            df.progress(0, "Exception failed to convert!", "Error:"+e.getMessage()+""+e.getStackTrace());
+        }
 
 	void parseRooms() {
 		// out.write4(f.rooms.size());
@@ -80,6 +111,8 @@ public class DolphinWriter {
 		        /*Create the backgrounds*/
 		        for (int i = 0; i < r.backgroundDefs.length; i++) {
 		        	BackgroundDef b = r.backgroundDefs[i];
+                                System.out.println("b.backgroundId:"+b.backgroundId);
+                                if (b.backgroundId!=null)
 		        	print(scene, "backgrounds.add(Game."+b.backgroundId.get().getName()+");");
 				}
 		        
@@ -87,12 +120,15 @@ public class DolphinWriter {
 		        /*Create the tiles*/
 		        for (int i = 0; i < r.tiles.size(); i++) {
 		        	Tile t = r.tiles.get(i);
+                                if (t!=null)
 		        	print(scene, "tiles.add(new Tile("+t.getRoomPosition().x+", "+t.getRoomPosition().y+","+t.getBackgroundPosition().x+", "+t.getBackgroundPosition().y+", "+t.getSize().width+","+t.getSize().height+""+t.getDepth()+", "+t.tileId+",Game."+t.getBackground().get().getName()+");");
 				}
 		        
 		        print(scene, "");
+                        print(scene, "  }");//end setupScene
+                        scene.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				showException(e);
 			}
 		}
 	}

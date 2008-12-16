@@ -196,6 +196,45 @@ public void update()  {
    //updateCaption();
 }
 
+private void drawBackgrounds(Graphics2D g,boolean foreground){
+// Draw background
+    for (int i = 0; i < backgrounds.size(); i++) {
+        System.out.println("draw background");
+        Background object = backgrounds.elementAt(i);
+        if (object.background_visible && object.background_foreground == foreground)
+        {
+
+        int w = object.background_scale ? this.width : object.background_width;
+		int h = object.background_scale ? this.height : object.background_height;
+        if (object.background_htiled || object.background_vtiled)
+			{
+			int x = object.background_x;
+			int y = object.background_y;
+			int ncol = 1;
+			int nrow = 1;
+			if (object.background_htiled)
+				{
+				x = 1 + ((x + w - 1) % w) - w;
+				ncol = 1 + (width - x - 1) / w;
+				}
+			if (object.background_vtiled)
+				{
+				y = 1 + ((y + h - 1) % h) - h;
+				nrow = 1 + (height - y - 1) / h;
+				}
+			for (int row = 0; row < nrow; row++)
+				for (int col = 0; col < ncol; col++)
+					g.drawImage(object.background_image,(x + w * col),(y + h * row),w,h,null);
+			}
+		//g.drawImage(bi,bd.x,bd.y,w,h,this);
+                object.background_x+=object.background_hspeed;
+                object.background_y+=object.background_vspeed;
+                g.drawImage(object.background_image, object.background_x, object.background_y,w,h,null);
+        }
+        object.update();
+    }
+}
+
 public void render(Graphics2D g)  {
     if (Game.graphics == null)
         g2d = g;
@@ -208,14 +247,7 @@ public void render(Graphics2D g)  {
     
     }
     
-    // Draw background
-    for (int i = 0; i < backgrounds.size(); i++) {
-        
-        Background object = backgrounds.elementAt(i);
-        if (object.background_visible)
-        g.drawImage(object.background_image, null, object.background_x, object.background_y);
-        object.update();
-    }
+    drawBackgrounds(g,false);
 
     
     // Draw instances
@@ -224,6 +256,12 @@ public void render(Graphics2D g)  {
             if (instances.elementAt(i) !=null)
         ((Actor)instances.elementAt(i)).Draw_event(g);
     }
+
+    //draw tiles
+
+    //draw foregrounds
+    drawBackgrounds(g,true);
+
    
 }
 }
