@@ -13,6 +13,7 @@ import org.lateralgm.resources.Room;
 import org.lateralgm.resources.sub.BackgroundDef;
 import org.lateralgm.resources.sub.Instance;
 import org.lateralgm.resources.sub.Tile;
+import org.lateralgm.resources.sub.View;
 
 public class DolphinWriter {
 	DolphinFrame df;
@@ -124,7 +125,15 @@ public class DolphinWriter {
                                 if (t!=null)
 		        	print(scene, "tiles.add(new Tile("+t.getRoomPosition().x+", "+t.getRoomPosition().y+","+t.getBackgroundPosition().x+", "+t.getBackgroundPosition().y+", "+t.getSize().width+","+t.getSize().height+""+t.getDepth()+", "+t.tileId+",Game."+t.getBackground().get().getName()+");");
 				}
-		        
+
+                        print(scene, "    /*Create the views*/");
+		        /*Create the tiles*/
+		        for (int i = 0; i < r.views.length; i++) {
+		        	View v = r.views[i];
+                                if (v!=null)
+		        	print(scene, "views.add(new View("+v.viewX+", "+v.viewY+","+v.viewW+", "+v.viewH+", "+v.portX+","+v.portY+""+v.portW+", "+v.portH+","+v.hspeed+","+v.vspeed+","+v.hbor+","+v.vbor+","+v.visible+");");
+				}
+
 		        print(scene, "");
                         print(scene, "  }");//end setupScene
                         scene.close();

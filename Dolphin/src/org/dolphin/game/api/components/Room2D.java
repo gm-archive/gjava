@@ -2,7 +2,9 @@ package org.dolphin.game.api.components;
 
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -25,6 +27,8 @@ Frame Frame;
  * All the instances in this room as a {@link Vector} object
  */
 public Vector<Actor> instances = new Vector<Actor>();
+
+public Vector<View> views = new Vector<View>();
 
 /**
  * All the instances and tiles in this room as a {@link Vector} object sorted by
@@ -238,7 +242,11 @@ private void drawBackgrounds(Graphics2D g,boolean foreground){
     }
 }
 
-public void render(Graphics2D g)  {
+public void render(Graphics2D g2d2)  {
+
+    BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    Graphics2D g = bi.createGraphics();
+    /*code used for drawing using gm functions*/
     if (Game.graphics == null)
         g2d = g;
     else
@@ -267,7 +275,15 @@ public void render(Graphics2D g)  {
 
     //draw foregrounds
     drawBackgrounds(g,true);
+    g.dispose();
+    //view code goes here
 
+    if (true){
+    for (int i = 0; i < views.size(); i++) {
+    View v = views.get(i);
+    g2d2.drawImage(bi.getSubimage(v.x, v.y, v.width, v.height),v.portx,v.porty,v.portwidth,v.portheight,null);
+    }
+    }else{g2d2.drawImage(bi, 10, 10,null);}
    
 }
 }
