@@ -105,26 +105,27 @@ public Room2D(){
  * @param backcolor
  *            The room backgound color
  */
-public Room2D(Frame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor,boolean drawbackground,boolean persistent,double id) {
-   
+public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backcolor,boolean drawbackground,boolean persistent,double id) {
+   this.Frame=R;
     this.speed = fps;
     Game.game.getGame().setFPS((int)fps-1);
     this.height = RoomH;
     this.width = RoomW;
     this.showcolor=drawbackground;
     this.backcolor = backcolor;
-    this.Caption = Caption;
+    this.Caption = caption;
+    
     this.persistent = persistent;
-    this.id= id;
-    
-    R.setSize(width+5, height+25);
-       
+    this.id= id;    
+}
+
+public void setvisible(){
     setupScene();
-    
+Frame.setSize(width+5, height+25);
+    Frame.setTitle(Caption); // set room caption
+
     // room creation code
     Creation_code();
-    
-    R.setTitle(Caption); // set room caption
 }
 
 

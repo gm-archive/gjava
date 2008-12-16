@@ -16,14 +16,18 @@ import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
+import org.dolphin.game.api.components.Sprite;
 
 public class Game extends org.dolphin.game.api.gtge.BasicGame {
-
+        //to move to basicgame
 	public static Frame frame;
+
 	//test fields
-	public static Background bg0;
-        public Hashtable backgrounds = new Hashtable();
-        static org.dolphin.game.Game thegame;
+        public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable();
+
+        //proper fields
+        static org.dolphin.game.Game thegame;//used to get this game object
+
 	
 	public Game(){}
 	
@@ -42,18 +46,27 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
         }
         return (BufferedImage)backgrounds.get(name);
         }
+
+        public Sprite loadSprite(String name){
+          if (!sprites.containsKey(name))
+        {
+            sprites.put(name, getSprite(name));
+        }
+          return (Sprite)sprites.get(name);
+        }
+
+        public Sprite getSprite(String name){
+            if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0, new BufferedImage[]{getImage("sprimg_wall_0.png")});
+        return null;
+        }
 	
-	public void initBackgrounds(){
-            //load the background images
-		bg0=new Background(this.getImage("car.jpg"));
-	}
 	
 	public void initRooms(){
 		rooms=new Vector<Room2D>();
 		rooms.add(new Room0(0));
 		rooms.add(new Room1(1));
 		currentRoom=rooms.firstElement();
-		
+		currentRoom.setvisible();
 		//previousRoom();
 		//nextRoom();
                 
@@ -64,7 +77,6 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
 	@Override
 	public void initResources() {
 		super.initResources();
-                initBackgrounds();
 		initRooms();
 
 		System.out.println("init resources");

@@ -113,8 +113,9 @@ public class DolphinWriter {
 		        	BackgroundDef b = r.backgroundDefs[i];
                                 System.out.println("b.backgroundId:"+b.backgroundId);
                                 if (b.backgroundId!=null)
-		        	print(scene, "backgrounds.add(Game."+b.backgroundId.get().getName()+");");
-				}
+		        	print(scene, "backgrounds.add(new Background()Game."+b.backgroundId.get().getName()+");");
+			//TODO fix the above code to write backgrounds
+                        }
 		        
 		        print(scene, "    /*Create the tiles*/");
 		        /*Create the tiles*/
