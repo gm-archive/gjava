@@ -31,7 +31,7 @@ public class Actor extends Tile {
 	public double hspeed;
 	public double vspeed;
 	protected double speed;
-    public boolean visible = true,  mouseover = false,active=true;
+    public boolean mouseover = false,active=true;
     protected int posinvector = -1;
     public double id=0;//the instance id
 
@@ -202,7 +202,6 @@ public class Actor extends Tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
-        System.out.println("before move:"+x);
         xprevious = x;
         yprevious = y;
 
@@ -231,16 +230,20 @@ public class Actor extends Tile {
         
         x = x + hspeed;
         y = y + vspeed;
-        System.out.println("after move:x:"+x);
+       
     }
+
+
 
     /**
      * Override with the Draw event of the actor but don't call this method!
      * @param g 
      */
-    public void Draw_event(Graphics2D g) {
+    @Override
+    public void Draw_event(Graphics g) {
+        System.out.println("draw actor");
         if (sprite != null) {
-            g.drawImage(sprite.imshow(), null, (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset);
+            g.drawImage(sprite.imshow(), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,null);
 
         } else {
             //System.out.println("sprite is null");

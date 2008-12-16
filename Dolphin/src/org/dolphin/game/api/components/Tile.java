@@ -3,6 +3,7 @@ package org.dolphin.game.api.components;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 
@@ -45,7 +46,7 @@ public class Tile extends Scripts implements Comparable {
 	/**
 	 * Whether or not the tile is visible
 	 */
-	public boolean visible;
+	public boolean visible=true;
 	/**
 	 * The tile Image
 	 */
@@ -59,7 +60,7 @@ public class Tile extends Scripts implements Comparable {
 	}
 
 	public Tile(double x, double y, double tileX, double tileY, double tileW,
-			double tileH, double depth, double id, Background background) {
+			double tileH, double depth, double id, BufferedImage background) {
 		this.x = x;
 		this.y = y;
 		this.tileX = tileX;
@@ -68,7 +69,7 @@ public class Tile extends Scripts implements Comparable {
 		this.tileH = tileH;
 		this.depth = depth;
 		this.id = id;
-		//this.background = background;
+		tileimage=background;
 		Load_image();
 	}
 
@@ -95,8 +96,8 @@ public class Tile extends Scripts implements Comparable {
 	public void Load_image() {
 		// load the image
 		// check if the image has to be cropped
-		// tileimage =
-		// cropImage(basicgame.background[background].show(),(int)tileX,(int)tileY,(int)tileW,(int)tileH);
+		 tileimage =
+		 cropImage(tileimage,(int)tileX,(int)tileY,(int)tileW,(int)tileH);
 	}
 
 	/**
@@ -106,6 +107,7 @@ public class Tile extends Scripts implements Comparable {
 	 */
 	public void Draw_event(Graphics g) {
 		g.drawImage(get_image(), (int) x, (int) y, null);
+                System.out.println("draw tile");
 	}
 
 	/**

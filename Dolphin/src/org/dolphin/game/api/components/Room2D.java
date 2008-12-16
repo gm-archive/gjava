@@ -108,7 +108,7 @@ public Room2D(){
 public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backcolor,boolean drawbackground,boolean persistent,double id) {
    this.Frame=R;
     this.speed = fps;
-    Game.game.getGame().setFPS((int)fps-1);
+    
     this.height = RoomH;
     this.width = RoomW;
     this.showcolor=drawbackground;
@@ -121,9 +121,10 @@ public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backco
 
 public void setvisible(){
     setupScene();
+    SortDepth();
 Frame.setSize(width+5, height+25);
     Frame.setTitle(Caption); // set room caption
-
+Game.game.getGame().setFPS((int)speed);
     // room creation code
     Creation_code();
 }
@@ -158,7 +159,8 @@ public void SortDepth() {
     depth.addAll(instances);
     depth.addAll(tiles);
     java.util.Collections.sort(depth,java.util.Collections.reverseOrder());
-    depth.trimToSize();
+    //depth.trimToSize();
+    
 }
 
 public void disposeScene()
@@ -251,14 +253,17 @@ public void render(Graphics2D g)  {
     drawBackgrounds(g,false);
 
     
-    // Draw instances
-    for (int i = 0; i < instances.size(); i++) {
-        if (((Actor)instances.elementAt(i)).visible)
-            if (instances.elementAt(i) !=null)
-        ((Actor)instances.elementAt(i)).Draw_event(g);
+    // Draw instances and tiles
+    for (int i = 0; i < depth.size(); i++) {
+        
+        if (((Tile)depth.elementAt(i)).visible){
+            if (depth.elementAt(i) !=null)
+        ((Tile)depth.elementAt(i)).Draw_event(g);
+        }
+        
     }
 
-    //draw tiles
+    
 
     //draw foregrounds
     drawBackgrounds(g,true);
