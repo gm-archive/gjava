@@ -2,21 +2,19 @@ package org.dolphin.game.api.components;
 
 import java.awt.Color;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.Collections;
 import java.util.Vector;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
-import org.dolphin.game.api.types.Variable;
-
-/*
- * The 2D room component, all rooms should use this class as a parent.
- */
-public class Room2D extends GCL{
+import org.dolphin.game.api.exceptions.DestroyException;
+public class Room2D extends GCL implements KeyListener, MouseListener{
 
 
 /** The container for the test */
@@ -71,7 +69,10 @@ public int height;
 public int width;
 
 /*Whether to show the background color*/
-public boolean showcolor=true;  
+public boolean showcolor=true;
+
+/*whether to use views*/
+public boolean showviews=false;
 
 /*If room is persistent or not*/
 public boolean persistent=false;
@@ -128,9 +129,14 @@ public void setvisible(){
     SortDepth();
 Frame.setSize(width+5, height+25);
     Frame.setTitle(Caption); // set room caption
+    Frame.addKeyListener(this);
 Game.game.getGame().setFPS((int)speed);
     // room creation code
     Creation_code();
+}
+
+public void setinvisible(){
+Frame.removeKeyListener(this);
 }
 
 
@@ -242,10 +248,17 @@ private void drawBackgrounds(Graphics2D g,boolean foreground){
     }
 }
 
-public void render(Graphics2D g2d2)  {
+BufferedImage bi; //the buffered image to use for views
 
-    BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
-    Graphics2D g = bi.createGraphics();
+public void render(Graphics2D g2d2)  {
+    Graphics2D g;
+    
+    if (showviews){
+    bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+    g = bi.createGraphics();
+    } else{
+    g=g2d2;
+    }
     /*code used for drawing using gm functions*/
     if (Game.graphics == null)
         g2d = g;
@@ -278,12 +291,51 @@ public void render(Graphics2D g2d2)  {
     g.dispose();
     //view code goes here
 
-    if (true){
+   if (showviews){
     for (int i = 0; i < views.size(); i++) {
     View v = views.get(i);
+    if (v.visible)
     g2d2.drawImage(bi.getSubimage(v.x, v.y, v.width, v.height),v.portx,v.porty,v.portwidth,v.portheight,null);
     }
-    }else{g2d2.drawImage(bi, 10, 10,null);}
+    }else{}
    
 }
+
+    public void keyTyped(KeyEvent e) {
+        //key typed not used
+    }
+
+    public void keyPressed(KeyEvent e) {
+        for (int i = 0; i < instances.size(); i++) {
+            Actor actor = instances.get(i);
+            try{
+            actor.KeyPressed(e.getKeyCode());
+            }catch(DestroyException d){}
+        }
+        System.out.println("keypress");
+    }
+
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

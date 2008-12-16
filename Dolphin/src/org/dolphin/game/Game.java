@@ -26,7 +26,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
         public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable();
 
         //proper fields
-        static org.dolphin.game.Game thegame;//used to get this game object
+        public static org.dolphin.game.Game thegame;//used to get this game object
 
 	
 	public Game(){}
@@ -56,7 +56,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
         }
 
         public Sprite getSprite(String name){
-            if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0, new BufferedImage[]{getImage("sprimg_wall_0.png")});
+            if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0, new BufferedImage[]{getImage("sprimg_wall_0.png"),getImage("image.png")});
         return null;
         }
 	

@@ -12,8 +12,9 @@ package org.dolphin.game.api.components;
 public class View {
 
     int x,y,width,height,portx,porty,portwidth,portheight;
+    boolean visible;
 
-    public View(int viewx,int viewy,int viewwidth,int viewheight,int portx,int porty,int portwidth,int portheight){
+    public View(int viewx,int viewy,int viewwidth,int viewheight,int portx,int porty,int portwidth,int portheight,boolean visible){
 
         x=viewx;
         y=viewy;
@@ -23,5 +24,6 @@ public class View {
         this.porty=porty;
         this.portwidth=portwidth;
         this.portheight=portheight;
+        this.visible=visible;
     }
 }

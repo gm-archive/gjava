@@ -36,6 +36,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.engine.BaseInput;
+import org.dolphin.game.Game;
+import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.exceptions.DestroyException;
 
 
 /**
@@ -424,19 +427,12 @@ public class AWTInput implements BaseInput {
 				        .getKeyCode();
 				AWTInput.this.pressedKey++;
 			}
-			/*
-                        for (int i = 0; i < Game.Current.instances.size(); i++) {
-                try {
-                    if (((Actor) Game.Current.instances.elementAt(i)).visible) {
-                        ((Actor) Game.Current.instances.elementAt(i)).KeyPressed(e.getKeyCode());
-                    }
-                } catch (DestroyException ex) {
-                    Logger.getLogger(AWTInput.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
+			
+                        
         }
 
 		@Override
-		public void keyReleased(KeyEvent arg0) {
+		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}

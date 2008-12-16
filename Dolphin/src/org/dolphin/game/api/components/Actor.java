@@ -25,8 +25,8 @@ public class Actor extends Tile {
     Hashtable variables = new Hashtable();
     public Sprite sprite;
 
-    protected org.dolphin.game.api.types.Variable alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
-    
+    protected org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
+    protected int[] alarm = new int[11];
     protected double xprevious,  xstart,  yprevious,  ystart;
 	public double hspeed;
 	public double vspeed;
@@ -68,7 +68,7 @@ public class Actor extends Tile {
 
     static Variable DSolid,DVisible,DSprite,DDepth,Dpersistent;
     /**
-     * Creates a new actor, don't call this, call other constructor
+     * Creates a new actor using variables
      */
     public Actor(Variable Object_name, Sprite spr, Variable Solid, Variable Visible, Variable Depth, Variable Persistent) {
         solid = Solid;
@@ -77,10 +77,10 @@ public class Actor extends Tile {
         persistent = Persistent;
         sprite = spr;
         self=this;
-        System.out.println("correct constructor");
         Create();
     }
 
+    /*Creates a new actor using primitives*/
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, double Depth, boolean Persistent) {
         solid = new Boolean(Solid);
@@ -92,17 +92,18 @@ public class Actor extends Tile {
         Create();
     }
 
-    public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
+   /* public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, double Depth, boolean Persistent, int actorindex) {
         this(new String(Object_name), spr, new Boolean(Solid),
                 new Boolean(Visible), new Double(Depth), new Boolean(Persistent));
-    }
+        System.out.println("constructor3");
+    }*/
 
     /**
      * Override with actor create event
      */
     public void Create() {
-        //return null;
+        
     }
 
     /**
@@ -118,11 +119,25 @@ public class Actor extends Tile {
     public void BeginStep() throws DestroyException {
     }
 
+    
+    public void Alarm() {
+        for (int i = 0; i < alarm.length; i++) {
+            int variable = alarm[i];
+            if (alarm[i]>0){
+            alarm[i]--;
+            if (alarm[i]==0){
+            performAlarm(i);
+            }
+            } else {
+            //alarm not active
+            }
+        }
+    }
+
     /**
      * Override with Alarm event code
      */
-    public void Alarm() {
-    }
+    public void performAlarm(int alarmid){}
 
     /**
      * Override with actor Step event
@@ -188,6 +203,7 @@ public class Actor extends Tile {
         try {
             BeginStep();
             Step();
+            Alarm();
             Move();
             EndStep();
         } catch (DestroyException d) {
@@ -241,7 +257,7 @@ public class Actor extends Tile {
      */
     @Override
     public void Draw_event(Graphics g) {
-        System.out.println("draw actor");
+        
         if (sprite != null) {
             g.drawImage(sprite.imshow(), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,null);
 
@@ -251,13 +267,7 @@ public class Actor extends Tile {
 
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
-    public Variable getAlarm() {
-        if (alarm == null) {
-            alarm = _0;
-        }
-        return alarm;
-    }
-
+    
     public Variable getBbox_bottom() {
         if (sprite == null) {
             return new Integer(0);
@@ -575,10 +585,7 @@ public class Actor extends Tile {
     }
     // </editor-fold>   
 // <editor-fold defaultstate="collapsed" desc="Setters"> 
-    public void setAlarm(Variable alarm) {
-        this.alarm = alarm;
-    }
-
+   
     public void setBbox_bottom(Variable bbox_bottom) {
         if (sprite == null) {
             return;

@@ -107,7 +107,7 @@ public class Tile extends Scripts implements Comparable {
 	 */
 	public void Draw_event(Graphics g) {
 		g.drawImage(get_image(), (int) x, (int) y, null);
-                System.out.println("draw tile");
+                
 	}
 
 	/**
