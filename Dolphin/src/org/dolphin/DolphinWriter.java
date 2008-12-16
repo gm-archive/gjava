@@ -74,7 +74,7 @@ public class DolphinWriter {
 
                 print(actor, "public class " + name + " extends Actor {");
                 print(actor, "");
-                print(actor, " public   " +name + "(int X,int Y,double instance_id) {");
+                print(actor, " public   " + name + "(int X,int Y,double instance_id) {");
 
                 if (a.getSprite() == null) {
                     print(actor, "        super(\"" + a.getName() + "\", null, " + a.solid + ", " + a.visible + ", " + a.depth + ", " + a.persistent + ");");
@@ -88,11 +88,14 @@ public class DolphinWriter {
                 print(actor, "        this.instance_id = instance_id;");
                 print(actor, "    }");
 
-                for (int j = 0; j < 11; j++){
-				for (Event ev : a.mainEvents[j].events){
-                                    if (j==0){writeCreateEvent(actor,ev);}
-                                    System.out.println(""+ev.id+" "+getActionsCode(ev));
-                                }
+                for (int j = 0; j < 11; j++) {
+                    for (Event ev : a.mainEvents[j].events) {
+                        if (j == 0) {
+                            writeCreateEvent(actor, ev);
+                        }
+                        else if (j==1){writeDestroyEvent(actor, ev);}
+                        System.out.println("" + ev.id + " " + getActionsCode(ev));
+                    }
                 }
 
                 print(actor, "");
@@ -103,13 +106,18 @@ public class DolphinWriter {
         }
     }
 
-    public void writeCreateEvent(BufferedWriter actor, Event ev) throws IOException{
-    print(actor,"  public void Create() {");
-    print(actor, " "+parseGCL(getActionsCode(ev)));
-    print(actor, " }");
+    public void writeCreateEvent(BufferedWriter actor, Event ev) throws IOException {
+        print(actor, "  public void Create() {");
+        print(actor, " " + parseGCL(getActionsCode(ev)));
+        print(actor, " }");
     }
 
-    PlatformCore pc= new PlatformCore();
+    public void writeDestroyEvent(BufferedWriter actor, Event ev) throws IOException {
+        print(actor, "  public void Destroy() {");
+        print(actor, " " + parseGCL(getActionsCode(ev)));
+        print(actor, " }");
+    }
+    PlatformCore pc = new PlatformCore();
 
     public String parseGCL(String code) throws IOException {
         //change code simply for testing
@@ -126,44 +134,41 @@ public class DolphinWriter {
         lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
         CommonTokenStream tokens = new CommonTokenStream(lex);
         try {
-        parser = new gscriptParser(tokens);
-        //parser.DEFAULT_TOKEN_CHANNEL=80;
+            parser = new gscriptParser(tokens);
+            //parser.DEFAULT_TOKEN_CHANNEL=80;
 
-        parser.setPlatform(pc);
+            parser.setPlatform(pc);
 
 
             parser.code();
 
-            System.out.println("Finished! Code output:"+pc.returncode);
+            System.out.println("Finished! Code output:" + pc.returncode);
         } catch (Exception e) {
-            System.out.println("Error with parser:"+e + e.getLocalizedMessage() + " " + e.getMessage()+"\n code:"+code);
+            System.out.println("Error with parser:" + e + e.getLocalizedMessage() + " " + e.getMessage() + "\n code:" + code);
         }
         return pc.returncode;
     }
 
 
     /*credits to enigma team for this code*/
-    public String getActionsCode(Event ev)
-		{
-		String code = "";
-		for (Action act : ev.actions)
-			{
+    public String getActionsCode(Event ev) {
+        String code = "";
+        for (Action act : ev.actions) {
 
-			if (act.getLibAction().actionKind == Action.ACT_CODE)
-				code += act.getArguments().get(0).getVal() + System.getProperty("line.separator");
-			else
-				{
-				/*if (!actionDemise)
-					{
-					String mess = "Warning, you have a D&D action which is unsupported by this compiler."
-							+ " This and future unsupported D&D actions will be discarded.";
-					JOptionPane.showMessageDialog(null,mess);
-					actionDemise = true;
-					}*/
-				}
-			}
-		return code;
-		}
+            if (act.getLibAction().actionKind == Action.ACT_CODE) {
+                code += act.getArguments().get(0).getVal() + System.getProperty("line.separator");
+            } else {
+                /*if (!actionDemise)
+                {
+                String mess = "Warning, you have a D&D action which is unsupported by this compiler."
+                + " This and future unsupported D&D actions will be discarded.";
+                JOptionPane.showMessageDialog(null,mess);
+                actionDemise = true;
+                }*/
+            }
+        }
+        return code;
+    }
 
     void showException(Exception e) {
         e.printStackTrace();
