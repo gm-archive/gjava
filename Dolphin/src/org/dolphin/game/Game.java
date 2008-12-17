@@ -1,7 +1,6 @@
 package org.dolphin.game;
 
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -10,33 +9,28 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import org.dolphin.game.api.Clipboard;
-import org.dolphin.game.api.components.Background;
 import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.image.BufferedImage;
-import java.util.Hashtable;
 import org.dolphin.game.api.components.Sprite;
 
 public class Game extends org.dolphin.game.api.gtge.BasicGame {
         //to move to basicgame
-	public static Frame frame;
+	
 
 	//test fields
-        public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable();
+        
 
         //proper fields
         public static org.dolphin.game.Game thegame;//used to get this game object
 
-	
-	public Game(){}
 	
 	public static void setupGame() {
 		game = new GameLoader();
                 thegame=new Game();
 		game.setup(thegame, new Dimension(640, 480), false);
 		frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();
-		//game.getImage("sprimg_wall_0.png");
 	}
 
         public BufferedImage loadBackground(String name){

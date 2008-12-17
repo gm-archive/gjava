@@ -25,8 +25,14 @@ import com.golden.gamedev.GameLoader;
  * This is always extended with a Game Object.
  * 
  */
+import java.awt.Frame;
 public class BasicGame extends Game {
-	
+    /*The main game Frame*/
+    public static Frame frame;
+
+    /*Hashtables used to store used resources*/
+    public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable();
+
 	/*
 	 * Can't remember what this is for
 	 * TODO: remember what this is for

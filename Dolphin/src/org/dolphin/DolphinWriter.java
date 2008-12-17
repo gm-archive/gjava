@@ -39,8 +39,10 @@ public class DolphinWriter {
         this.location = file;
         this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator;
         new File(FileFolder).mkdirs();
+        createFolders();
+
         try {
-            parseObjects();
+            //parseObjects();
             parseRooms();
         } catch (Exception e) {
             showException(e);
@@ -49,7 +51,35 @@ public class DolphinWriter {
 
     public void createFolders() {
         System.out.println("Moving folders");
+        System.out.println("file:"+System.getProperty("user.dir")+File.separator+"plugins" + File.separator+"com");
+        try{
+        pc.copyDirectory(new File(System.getProperty("user.dir")+File.separator+"plugins"+ File.separator+"runner" ), new File(FileFolder));
+        }catch(Exception e){e.printStackTrace();}
+    }
 
+    public void writeGameJava() throws IOException{
+        FileWriter gameFW = new FileWriter(FileFolder + "Game.java");
+                BufferedWriter game = new BufferedWriter(gameFW);
+                print(game,"import java.awt.Dimension;");
+                print(game,"import java.io.PrintWriter;");
+                print(game,"import java.io.StringWriter;");
+                print(game,"import java.io.Writer;");
+                print(game,"import java.util.Vector;");
+
+                print(game,"import javax.swing.JOptionPane;");
+
+                print(game,"import org.dolphin.game.api.Clipboard;");
+                print(game,"import org.dolphin.game.api.components.Room2D;");
+                print(game,"import com.golden.gamedev.GameLoader;");
+                print(game,"import com.golden.gamedev.engine.graphics.WindowedMode;");
+                print(game,"import java.awt.image.BufferedImage;");
+                print(game,"import org.dolphin.game.api.components.Sprite;");
+
+                print(game,"public class Game extends org.dolphin.game.api.gtge.BasicGame {");
+
+                print(game,"public static org.dolphin.game.Game thegame;//used to get this game object");
+
+                print(game,"}");//end class
     }
 
     void parseBackgrounds() {
@@ -89,20 +119,35 @@ public class DolphinWriter {
                 print(actor, "    }");
 
                 for (int j = 0; j < 11; j++) {
-                    for (Event ev : a.mainEvents[j].events) {
-                        if (j == 0) {
+                    if (j == 0) {
+                        for (Event ev : a.mainEvents[j].events) {
                             writeCreateEvent(actor, ev);
                         }
-                        else if (j==1){writeDestroyEvent(actor, ev);}
+                    } else if (j == 1) {
+                        for (Event ev : a.mainEvents[j].events) {
+                            writeDestroyEvent(actor, ev);
+                        }
+                    } else if (j == 2) {
+                        print(actor, "   public void performAlarm(int alarmid) {");
+                        for (Event ev : a.mainEvents[j].events) {
+                            writeAlarmEvent(actor, ev);
+                        }
+                        print(actor, "    }");
+                        }
+                    else for (Event ev : a.mainEvents[j].events) {
+
+
                         System.out.println("" + ev.id + " " + getActionsCode(ev));
                     }
                 }
 
                 print(actor, "");
+                print(actor, "}");//end the class
                 actor.close();
             } catch (Exception e) {
                 showException(e);
             }
+            
         }
     }
 
@@ -114,6 +159,12 @@ public class DolphinWriter {
 
     public void writeDestroyEvent(BufferedWriter actor, Event ev) throws IOException {
         print(actor, "  public void Destroy() {");
+        print(actor, " " + parseGCL(getActionsCode(ev)));
+        print(actor, " }");
+    }
+
+    public void writeAlarmEvent(BufferedWriter actor, Event ev) throws IOException {
+        print(actor, "  if (alarmid=="+ev.id+") {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
@@ -238,6 +289,7 @@ public class DolphinWriter {
 
                 print(scene, "");
                 print(scene, "  }");//end setupScene
+                print(scene, "}");//end class
                 scene.close();
             } catch (Exception e) {
                 showException(e);

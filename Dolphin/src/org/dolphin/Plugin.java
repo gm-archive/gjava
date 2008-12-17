@@ -27,7 +27,7 @@ public class Plugin implements ActionListener, SubframeListener {
 	public JMenuItem run, debug, build, compile;
 	public DolphinFrame df;
 	public DolphinWriter dw;
-	public File pluginLocation;
+	public static File pluginLocation;
 	
 	public Plugin() {
 		JMenu menu = new JMenu("Dolphin");
@@ -148,32 +148,38 @@ public class Plugin implements ActionListener, SubframeListener {
 	 * to the directory of the game project.
 	 */
 	public void extractRunners() {
-		System.out.println("plugin dir:"+this.pluginLocation);
-		try {
-			ZipFile zipFile = new ZipFile(this.pluginLocation);
+		System.out.println("plugin dir:"+Plugin.pluginLocation);
+		try{
+			ZipFile zipFile = new ZipFile(Plugin.pluginLocation);
 
-			for (Enumeration entries = zipFile.entries(); entries
-					.hasMoreElements();) {
+			for (Enumeration entries = zipFile.entries(); entries.hasMoreElements();) {
+                            
 				ZipEntry entry = (ZipEntry) entries.nextElement();
+
 				if (entry.isDirectory()) {
 					System.out.println("Folder:" + entry.getName());
-					(new File(System.getProperty("user.dir")+File.separator+"plugins" + File.separator
+					(new File(System.getProperty("user.dir")+File.separator+"plugins" + File.separator+"runner"+ File.separator
 							+ (entry.getName()).toString())).mkdirs();
 				} else {
-					new File(System.getProperty("user.dir")+File.separator+
-											"plugins" + File.separator).mkdirs();
+                                    try{
+                                    //System.out.println("the file:"+System.getProperty("user.dir")+File.separator+
+					//						"plugins" + File.separator+"runner"+ File.separator+entry.getName());
+                                    //new File(System.getProperty("user.dir")+File.separator+
+					//						"plugins" + File.separator+"runner"+ File.separator+entry.getName()).mkdirs();
+					//new File(System.getProperty("user.dir")+File.separator+
+					//						"plugins" + File.separator+"runner"+ File.separator+entry.getName()).createNewFile();//.mkdirs();
 					copyInputStream(zipFile.getInputStream(entry),
 							new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir")+File.separator+
-											"plugins" + File.separator+
+											"plugins" + File.separator+"runner"+ File.separator +
 											entry.getName())));
+                                        }catch(Exception e){e.printStackTrace();}
 				}
+                            
 			}
-
+                        
 			zipFile.close();
-
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
+                        }catch(Exception e){System.out.println("could not open/close zip");e.printStackTrace();}
+		
 	}
 	
 	
