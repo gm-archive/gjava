@@ -1,11 +1,13 @@
 package org.dolphin;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -28,7 +30,7 @@ public class DolphinWriter {
 
     DolphinFrame df;
     GmFile gmFile;
-    String FileFolder, filename;
+    public static String FileFolder, filename,projectfolder;
     File location;
 
     public DolphinWriter(DolphinFrame df, GmFile gmFile, File file) {
@@ -37,54 +39,109 @@ public class DolphinWriter {
         this.df = df;
         this.gmFile = gmFile;
         this.location = file;
-        this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator;
+        this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator+"org"+File.separator+"dolphin"+File.separator+"game"+File.separator;
+        projectfolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator;
         new File(FileFolder).mkdirs();
         createFolders();
 
         try {
+            df.progress(10, "Writing Game.java", "Writing Game.java and extracting sprites ");
+            writeGameJava();
+            df.progress(20, "Extracting backgrounds", "Extracting backgrounds");
+            parseBackgrounds();
             //parseObjects();
+            df.progress(80, "Writing room code", "Writing room code");
             parseRooms();
+            df.progress(90, "Compiling java files", "Compiling java files");
+            DolphinCompiler compiler = new DolphinCompiler();
         } catch (Exception e) {
             showException(e);
         }
     }
 
+
+
     public void createFolders() {
-        System.out.println("Moving folders");
-        System.out.println("file:"+System.getProperty("user.dir")+File.separator+"plugins" + File.separator+"com");
-        try{
-        pc.copyDirectory(new File(System.getProperty("user.dir")+File.separator+"plugins"+ File.separator+"runner" ), new File(FileFolder));
-        }catch(Exception e){e.printStackTrace();}
-    }
-
-    public void writeGameJava() throws IOException{
-        FileWriter gameFW = new FileWriter(FileFolder + "Game.java");
-                BufferedWriter game = new BufferedWriter(gameFW);
-                print(game,"import java.awt.Dimension;");
-                print(game,"import java.io.PrintWriter;");
-                print(game,"import java.io.StringWriter;");
-                print(game,"import java.io.Writer;");
-                print(game,"import java.util.Vector;");
-
-                print(game,"import javax.swing.JOptionPane;");
-
-                print(game,"import org.dolphin.game.api.Clipboard;");
-                print(game,"import org.dolphin.game.api.components.Room2D;");
-                print(game,"import com.golden.gamedev.GameLoader;");
-                print(game,"import com.golden.gamedev.engine.graphics.WindowedMode;");
-                print(game,"import java.awt.image.BufferedImage;");
-                print(game,"import org.dolphin.game.api.components.Sprite;");
-
-                print(game,"public class Game extends org.dolphin.game.api.gtge.BasicGame {");
-
-                print(game,"public static org.dolphin.game.Game thegame;//used to get this game object");
-
-                print(game,"}");//end class
-    }
-
-    void parseBackgrounds() {
-        for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
+        try {
+            pc.copyDirectory(new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner"), new File(projectfolder));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    public void writeGameJava() throws IOException {
+        FileWriter gameFW = new FileWriter(FileFolder + "Game.java");
+        BufferedWriter game = new BufferedWriter(gameFW);
+        print(game, "import java.awt.Dimension;");
+        print(game, "import java.io.PrintWriter;");
+        print(game, "import java.io.StringWriter;");
+        print(game, "import java.io.Writer;");
+        print(game, "import java.util.Vector;");
+
+        print(game, "import javax.swing.JOptionPane;");
+
+        print(game, "import org.dolphin.game.api.Clipboard;");
+        print(game, "import org.dolphin.game.api.components.Room2D;");
+        print(game, "import com.golden.gamedev.GameLoader;");
+        print(game, "import com.golden.gamedev.engine.graphics.WindowedMode;");
+        print(game, "import java.awt.image.BufferedImage;");
+        print(game, "import org.dolphin.game.api.components.Sprite;");
+
+        print(game, "public class Game extends org.dolphin.game.api.gtge.BasicGame {");
+
+        print(game, "public static org.dolphin.game.Game thegame;//used to get this game object");
+        print(game, "");
+        print(game, "public static void setupGame() {");
+	print(game, "	game = new GameLoader();");
+        print(game, "        thegame=new Game();");
+	print(game, "	game.setup(thegame, new Dimension(640, 480), false);");
+	print(game, "	frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();");
+	print(game, "}");
+        print(game, "");
+        print(game, "public BufferedImage loadBackground(String name){");
+        print(game, "if (!backgrounds.containsKey(name))");
+        print(game, "{");
+        print(game, "    backgrounds.put(name, getImage(name+\".png\"));");
+        print(game, "}");
+        print(game, "return (BufferedImage)backgrounds.get(name);");
+        print(game, "}");
+        print(game, "");
+        print(game, "public Sprite loadSprite(String name){");
+        print(game, "  if (!sprites.containsKey(name))");
+        print(game, "{");
+        print(game, "    sprites.put(name, getSprite(name));");
+        print(game, "}");
+        print(game, "  return (Sprite)sprites.get(name);");
+        print(game, "}");
+
+
+        parseSprites(game);
+
+        print(game, "}");//end class
+        game.close();
+    }
+
+    void parseBackgrounds() throws IOException {
+        for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
+            ImageIO.write( b.getBackgroundImage(), "png", new File(FileFolder+File.separator+b.getName()+".png"));
+
+        }
+    }
+
+    void parseSprites(BufferedWriter game) throws IOException {
+        print(game,"  public Sprite getSprite(String name){");
+        for (org.lateralgm.resources.Sprite s : gmFile.sprites) {
+            String subimg="";
+            for (int i = 0; i < s.subImages.size(); i++) {
+                BufferedImage img = s.subImages.get(i);
+                ImageIO.write(img, "png", new File(FileFolder+File.separator+s.getName()+"["+i+"].png"));
+                subimg+=",getImage(\""+s.getName()+"["+i+"].png"+"\")";
+            }
+        print(game,"if (name.equals(\""+s.getName()+"\")) return new Sprite(\""+s.getName()+"\","+s.getDisplayImage().getHeight()+", "+s.getDisplayImage().getWidth()+", "+s.boundingBoxLeft+", "+s.boundingBoxRight+", "+s.boundingBoxBottom+", "+s.boundingBoxTop+", "+s.originX+", "+s.originY+", "+s.transparent+", new BufferedImage[]{"+subimg.substring(1)+"});");
+            
+
+        }
+        print(game,"  }");
     }
 
     void parseObjects() throws GmFormatException {
@@ -109,7 +166,7 @@ public class DolphinWriter {
                 if (a.getSprite() == null) {
                     print(actor, "        super(\"" + a.getName() + "\", null, " + a.solid + ", " + a.visible + ", " + a.depth + ", " + a.persistent + ");");
                 } else {
-                    print(actor, "        super(\"" + a.getName() + "\", Game.thegame.loadSprite(" + a.getSprite().get().getName() + "," + a.solid + ", " + a.visible + ", " + a.depth + ".0 , " + a.persistent + ");");
+                    print(actor, "        super(\"" + a.getName() + "\", Game.thegame.loadSprite(\"" + a.getSprite().get().getName() + "\")," + a.solid + ", " + a.visible + ", " + a.depth + ".0 , " + a.persistent + ");");
                 }
                 print(actor, "        xstart = X;xprevious=X;yprevious=Y;");
                 print(actor, "        ystart = Y;");
@@ -133,11 +190,12 @@ public class DolphinWriter {
                             writeAlarmEvent(actor, ev);
                         }
                         print(actor, "    }");
+                    } else {
+                        for (Event ev : a.mainEvents[j].events) {
+
+
+                            System.out.println("" + ev.id + " " + getActionsCode(ev));
                         }
-                    else for (Event ev : a.mainEvents[j].events) {
-
-
-                        System.out.println("" + ev.id + " " + getActionsCode(ev));
                     }
                 }
 
@@ -147,7 +205,7 @@ public class DolphinWriter {
             } catch (Exception e) {
                 showException(e);
             }
-            
+
         }
     }
 
@@ -164,7 +222,7 @@ public class DolphinWriter {
     }
 
     public void writeAlarmEvent(BufferedWriter actor, Event ev) throws IOException {
-        print(actor, "  if (alarmid=="+ev.id+") {");
+        print(actor, "  if (alarmid==" + ev.id + ") {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }

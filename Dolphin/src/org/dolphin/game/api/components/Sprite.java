@@ -18,7 +18,7 @@ public class Sprite extends Variable {
 
     String filename;
     BufferedImage[] spritename;
-    public int Transparent;
+   // public int Transparent;
     public int sprite_width;
     public int sprite_height;
     public int sprite_xoffset=0;
@@ -33,6 +33,7 @@ public class Sprite extends Variable {
     public int BBTop;
     public int BBBottom;
     public double image_xscale=1,image_yscale=1,image_angle=0;
+    public boolean transparent;
     
     
     public Sprite() {
@@ -61,7 +62,7 @@ public class Sprite extends Variable {
      * @param OriginY
      * @param subimages
      */
-    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, BufferedImage[] images) {
+    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY,boolean transparent, BufferedImage[] images) {
         //a=new Animation(images,1);
         this.sprite_width = images[0].getWidth();//Width;
         this.sprite_height = images[0].getHeight();//Height;
@@ -71,6 +72,7 @@ public class Sprite extends Variable {
         this.BBLeft = BBLeft;
         this.sprite_xoffset = OriginX;
         this.sprite_yoffset = OriginY;
+        this.transparent=transparent;
 
         this.subimages = images.length;
         System.out.println("subimages"+subimages);

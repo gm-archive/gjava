@@ -26,6 +26,7 @@ import com.golden.gamedev.GameLoader;
  * 
  */
 import java.awt.Frame;
+import org.dolphin.game.api.components.Sprite;
 public class BasicGame extends Game {
     /*The main game Frame*/
     public static Frame frame;
@@ -107,6 +108,7 @@ public class BasicGame extends Game {
 		// TODO Auto-generated method stub
 
 	}
+
 
 	/*
 	 * Overrides method from GTGE to draw the game
@@ -196,4 +198,6 @@ public class BasicGame extends Game {
 		}
 
 	}
-}
+
+         }
+    

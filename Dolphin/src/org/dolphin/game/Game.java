@@ -50,7 +50,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
         }
 
         public Sprite getSprite(String name){
-            if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0, new BufferedImage[]{getImage("sprimg_wall_0.png"),getImage("image.png")});
+            if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0,true, new BufferedImage[]{getImage("sprimg_wall_0.png"),getImage("image.png")});
         return null;
         }
 	
