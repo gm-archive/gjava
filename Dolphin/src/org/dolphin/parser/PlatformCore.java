@@ -307,7 +307,7 @@ public class PlatformCore  {
      * @return
      */
     public String bstatement(String st) {
-        return "{ \n"+st+"\n }";
+        return "{ \n"+st+"}";
     }
 
     /**

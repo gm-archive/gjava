@@ -16,6 +16,7 @@ import org.dolphin.parser.gscriptLexer;
 import org.dolphin.parser.gscriptParser;
 import org.lateralgm.file.GmFile;
 import org.lateralgm.file.GmFormatException;
+import org.lateralgm.main.LGM;
 import org.lateralgm.resources.GmObject;
 import org.lateralgm.resources.Room;
 import org.lateralgm.resources.sub.Action;
@@ -46,7 +47,7 @@ public class DolphinWriter {
         projectfolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator;
         new File(FileFolder).mkdirs();
         createFolders();
-
+        LGM.commitAll();
         try {
             df.progress(10, "Writing Game.java", "Writing Game.java and extracting sprites ");
             writeGameJava();
@@ -222,6 +223,7 @@ print(game, "	}");
                 print(actor,"import org.dolphin.game.api.types.Integer;");
                 print(actor,"import org.dolphin.game.api.types.Double;");
                 print(actor,"import org.dolphin.game.api.types.String;");
+                print(actor,"import org.dolphin.game.api.types.Boolean;");
 
                 print(actor,"");
                 print(actor, "public class " + name + " extends Actor {");
@@ -283,7 +285,83 @@ print(game, "	}");
                             print(actor,"   "+parseGCL(getActionsCode(ev)));
                             print(actor, "    }");
                         }
+                    }
+                    /*
+                     * Collision Event
+                     */
+                    else if (j == 4) {
 
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"//collision event:"+ev.id+ev.other.get().getName());
+                        }
+                    }
+                    /*
+                     * Keyboard Event
+                     */
+                    else if (j == 5) {
+
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"//keyboard event:"+ev.id);
+                        }
+                    }
+                    /*
+                     * Mouse Event
+                     */
+                    else if (j == 6) {
+
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"//mouse event:"+ev.id);
+                        }
+                    }
+                    /*
+                     * Other Event
+                     */
+                    else if (j == 7) {
+
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"//other event:"+ev.id);
+                        }
+                    }
+                    /*
+                     * Draw Event
+                     */
+                    else if (j == 8) {
+
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"//draw event:"+ev.id);
+                        }
+                    }
+                    /*
+                     * Key press Event
+                     */
+                    else if (j == 9) {
+                        print(actor,"   public void KeyPressed(int keycode) throws DestroyException {");
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"     if (keycode=="+ev.id+"){");
+                            print(actor,"   "+parseGCL(getActionsCode(ev)));
+                            print(actor,"     }");
+                        }
+                        print(actor,"   }");
+                    }
+                    /*
+                     * Key release Event
+                     */
+                    else if (j == 10) {
+
+                        print(actor,"   public void KeyReleased(int keycode) throws DestroyException {");
+                        for (Event ev : a.mainEvents[j].events) {
+                            System.out.println("ev.id"+ev.id);
+                            print(actor,"     if (keycode=="+ev.id+"){");
+                            print(actor,"        "+parseGCL(getActionsCode(ev)));
+                            print(actor,"     }");
+                        }
+                        print(actor,"   }");
                     }
                     else {
                         for (Event ev : a.mainEvents[j].events) {
@@ -361,9 +439,9 @@ print(game, "	}");
     public String getActionsCode(Event ev) {
         String code = "";
         for (Action act : ev.actions) {
-
+            code+= System.getProperty("line.separator");
             if (act.getLibAction().actionKind == Action.ACT_CODE) {
-                code += act.getArguments().get(0).getVal() + System.getProperty("line.separator");
+                code += "{"+act.getArguments().get(0).getVal() +"}";
             }
             else if (act.getLibAction().actionKind == Action.ACT_BEGIN){
             code+="{";
@@ -390,7 +468,16 @@ print(game, "	}");
             code+="repeat("+act.getArguments().get(0).getVal()+")";
             }
             else {
-                
+                if (act.getLibAction().question)
+                {
+                    System.out.println("question:"+act.getLibAction().execInfo);
+                    code+="if (";
+                }
+                else{
+                    code+="{";
+                    if(act.isRelative())
+                    code+="argument_relative="+act.isRelative()+"; ";
+                }
                 code+=act.getLibAction().execInfo+"(";
                 
                 for (int i = 0; i < act.getArguments().size(); i++) {
@@ -422,11 +509,17 @@ print(game, "	}");
                     else
                         code+=arg.getVal();
                 }
-                code+=");";
                 
+                if (act.getLibAction().question)
+                {
+                    code+="))";
+                }
+                else{code+=");}";}
+
             }
+
         }
-        
+        System.out.println("code:"+code);
         return code;
     }
 

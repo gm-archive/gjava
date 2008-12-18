@@ -34,8 +34,8 @@ static int i=1;
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
         System.out.println("key pressed");
-        if (i==1){
-        action_create_object(new GMResource(Actor0.class));
+        if (keycode==1){
+        action_create_object(new GMResource(Actor0.class),new Integer(10),new Integer(10));
         i++;}
     }
 

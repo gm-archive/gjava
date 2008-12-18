@@ -15,8 +15,9 @@ import org.dolphin.game.api.types.Integer;
 /**
  * This class is used for all the gcl action functions.
  * All Objects should extend this class
- * Use for releative:
- * if (argument_relative.getBoolean())
+ * To use reative use :
+ * argument_relative.getBoolean()
+ * Only set it to false after it has been true
  *
  * @author TGMG
  */
@@ -80,8 +81,13 @@ public static Variable action_create_object(Variable... obj)
 {
     try{
     if (obj[0] instanceof GMResource){
-        Actor a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(200,300,0);
-    Game.currentRoom.instances.add(a);
+        Actor a;
+        if (argument_relative.getBoolean())
+        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+obj[1].getDouble(),self.y+obj[2].getDouble(),Game.maxInstanceId);
+        else
+            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(obj[1].getDouble(),obj[2].getDouble(),Game.maxInstanceId);
+        Game.maxInstanceId++;
+        Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
     Game.currentRoom.SortDepth();
     }
