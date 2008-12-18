@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.dolphin.DolphinWriter;
 
 
 /**
@@ -725,6 +726,7 @@ public class PlatformCore  {
     public void showError(String msg)
     {
         JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
+        DolphinWriter.df.ta.append("Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
     }
 
     /**

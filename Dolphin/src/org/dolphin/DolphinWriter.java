@@ -28,10 +28,12 @@ import org.lateralgm.resources.sub.View;
 
 public class DolphinWriter {
 
-    DolphinFrame df;
+    public static DolphinFrame df;
     GmFile gmFile;
     public static String FileFolder, filename,projectfolder;
     File location;
+
+     PlatformCore pc = new PlatformCore();
 
     public DolphinWriter(DolphinFrame df, GmFile gmFile, File file) {
         filename = gmFile.filename.substring(gmFile.filename.lastIndexOf(File.separator) + 1);
@@ -49,7 +51,8 @@ public class DolphinWriter {
             writeGameJava();
             df.progress(20, "Extracting backgrounds", "Extracting backgrounds");
             parseBackgrounds();
-            //parseObjects();
+            df.progress(70, "Writing object code", "Writing object code");
+            parseObjects();
             df.progress(80, "Writing room code", "Writing room code");
             parseRooms();
             df.progress(90, "Compiling java files", "Compiling java files");
@@ -75,6 +78,7 @@ public class DolphinWriter {
         print(game,"  public void initRooms(){");
         print(game,"     rooms=new Vector<Room2D>();");
         int i=0;
+
         for (Room o : gmFile.rooms){
         print(game,"     rooms.add(new "+o.getName()+"("+i+"));");
         i++;
@@ -203,6 +207,7 @@ print(game, "	}");
         for (GmObject a : gmFile.gmObjects) {
             /*check for duplicate objects*/
             String name = a.getName();
+            pc.current=name;
             if (names.contains(name)) {
                 throw new GmFormatException(gmFile, "Duplicate object name: " + name);
             }
@@ -263,23 +268,26 @@ print(game, "	}");
     }
 
     public void writeCreateEvent(BufferedWriter actor, Event ev) throws IOException {
+        pc.event="Create Event";
         print(actor, "  public void Create() {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
 
     public void writeDestroyEvent(BufferedWriter actor, Event ev) throws IOException {
+        pc.event="Destroy Event";
         print(actor, "  public void Destroy() {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
 
     public void writeAlarmEvent(BufferedWriter actor, Event ev) throws IOException {
+        pc.event="Alarm"+ev.id+" Event";
         print(actor, "  if (alarmid==" + ev.id + ") {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
-    PlatformCore pc = new PlatformCore();
+   
 
     public String parseGCL(String code) throws IOException {
         //change code simply for testing
@@ -304,7 +312,7 @@ print(game, "	}");
 
             parser.code();
 
-            System.out.println("Finished! Code output:" + pc.returncode);
+            //System.out.println("Finished! Code output:" + pc.returncode);
         } catch (Exception e) {
             System.out.println("Error with parser:" + e + e.getLocalizedMessage() + " " + e.getMessage() + "\n code:" + code);
         }
@@ -357,7 +365,7 @@ print(game, "	}");
                 print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");
                 print(scene, "");
                 print(scene, "	public " + r.getName() + "() {");
-                print(scene, "		super(Game.frame," + r.caption + "," + r.speed + "," + r.width + "," + r.height + ",new Color(" + r.backgroundColor.getRed() + "," + r.backgroundColor.getGreen() + "," + r.backgroundColor.getBlue() + "," + r.drawBackgroundColor + "," + r.persistent + "," + r.getId() + ");");
+                print(scene, "		super(Game.frame,\"" + r.caption + "\"," + r.speed + "," + r.width + "," + r.height + ",new Color(" + r.backgroundColor.getRed() + "," + r.backgroundColor.getGreen() + "," + r.backgroundColor.getBlue() + ")," + r.drawBackgroundColor + "," + r.persistent + "," + r.getId() + ");");
                 print(scene, "      this.vectorid=vectorid;");
                 print(scene, "  }");
                 print(scene, "");
@@ -373,9 +381,9 @@ print(game, "	}");
                 /*Create the backgrounds*/
                 for (int i = 0; i < r.backgroundDefs.length; i++) {
                     BackgroundDef b = r.backgroundDefs[i];
-                    System.out.println("b.backgroundId:" + b.backgroundId);
+                    
                     if (b.backgroundId != null) {
-                        print(scene, "backgrounds.add(new Background()Game." + b.backgroundId.get().getName() + ");");
+                        print(scene, "backgrounds.add(new Background("+b.visible+","+b.foreground+","+b.x+","+b.y+","+b.backgroundId.get().width+","+b.backgroundId.get().height+","+b.tileHoriz+","+b.tileVert+","+b.stretch+","+b.horizSpeed+","+b.vertSpeed+","+b.backgroundId.get().smoothEdges+","+b.backgroundId.get().transparent+",Game.thegame.loadBackground(\"" + b.backgroundId.get().getName() + "\")));");
                     }
                 //TODO fix the above code to write backgrounds
                 }
