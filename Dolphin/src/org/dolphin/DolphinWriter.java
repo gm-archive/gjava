@@ -60,7 +60,9 @@ public class DolphinWriter {
     }
 
 
-
+    /*
+     * Copy the runner folders to the project folder
+     */
     public void createFolders() {
         try {
             pc.copyDirectory(new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner"), new File(projectfolder));
@@ -69,9 +71,23 @@ public class DolphinWriter {
         }
     }
 
+    public void writeinitRooms(BufferedWriter game) throws IOException{
+        print(game,"  public void initRooms(){");
+        print(game,"     rooms=new Vector<Room2D>();");
+        int i=0;
+        for (Room o : gmFile.rooms){
+        print(game,"     rooms.add(new "+o.getName()+"("+i+"));");
+        i++;
+        }
+        print(game,"    currentRoom=rooms.firstElement();");
+        print(game,"    currentRoom.setvisible();");
+        print(game,"  }");
+    }
+
     public void writeGameJava() throws IOException {
         FileWriter gameFW = new FileWriter(FileFolder + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
+        print(game,"package org.dolphin.game;");
         print(game, "import java.awt.Dimension;");
         print(game, "import java.io.PrintWriter;");
         print(game, "import java.io.StringWriter;");
@@ -116,6 +132,41 @@ public class DolphinWriter {
 
 
         parseSprites(game);
+        writeinitRooms(game);
+
+print(game, "        public void initResources() {");
+print(game, "		super.initResources();");
+print(game, "		initRooms();");
+print(game, "	}");
+print(game, "");
+print(game, "	public static void main(java.lang.String[] args) {");
+print(game, "		parameter_count = args.length;");
+print(game, "		parameters = args;");
+print(game, "		gameType = \"Application\";");
+print(game, "		try {");
+print(game, "			setupGame();");
+print(game, "			game.start();");
+print(game, "		} catch (Exception e) {");
+print(game, "			/*");
+print(game, "			 * Display any Exceptions that occur during the game");
+print(game, "			 */");
+print(game, "			final Writer result = new StringWriter();");
+print(game, "			final PrintWriter printWriter = new PrintWriter(result);");
+print(game, "			e.printStackTrace(printWriter);");
+print(game, "			Clipboard.setText(new org.dolphin.game.api.types.String((\"\" + result.toString() + Clipboard.getText())));");
+print(game, "			JOptionPane");
+print(game, "					.showMessageDialog(null,\"Error: \"");
+print(game, "									+ e");
+print(game, "									+ \", \"");
+print(game, "									+ e.getMessage()");
+print(game, "									+ \". \\n Stack trace:\"");
+print(game, "									+ result.toString()");
+print(game, "									+ \"\\n \\n The Error has been added to clipboard, just before the previous contents of the clipboard. \\n Please contact the G-Java development team for help. http://forums.g-java.com\");");
+print(game, "			System.out.println(\"Exception:\"+result.toString());");
+print(game, "			System.exit(1); // Exit the game");
+print(game, "		}");
+print(game, "");
+print(game, "	}");
 
         print(game, "}");//end class
         game.close();
@@ -130,6 +181,7 @@ public class DolphinWriter {
 
     void parseSprites(BufferedWriter game) throws IOException {
         print(game,"  public Sprite getSprite(String name){");
+        String theelse="   ";
         for (org.lateralgm.resources.Sprite s : gmFile.sprites) {
             String subimg="";
             for (int i = 0; i < s.subImages.size(); i++) {
@@ -137,10 +189,11 @@ public class DolphinWriter {
                 ImageIO.write(img, "png", new File(FileFolder+File.separator+s.getName()+"["+i+"].png"));
                 subimg+=",getImage(\""+s.getName()+"["+i+"].png"+"\")";
             }
-        print(game,"if (name.equals(\""+s.getName()+"\")) return new Sprite(\""+s.getName()+"\","+s.getDisplayImage().getHeight()+", "+s.getDisplayImage().getWidth()+", "+s.boundingBoxLeft+", "+s.boundingBoxRight+", "+s.boundingBoxBottom+", "+s.boundingBoxTop+", "+s.originX+", "+s.originY+", "+s.transparent+", new BufferedImage[]{"+subimg.substring(1)+"});");
-            
+        print(game,theelse+" if (name.equals(\""+s.getName()+"\")) return new Sprite(\""+s.getName()+"\","+s.getDisplayImage().getHeight()+", "+s.getDisplayImage().getWidth()+", "+s.boundingBoxLeft+", "+s.boundingBoxRight+", "+s.boundingBoxBottom+", "+s.boundingBoxTop+", "+s.originX+", "+s.originY+", "+s.transparent+", new BufferedImage[]{"+subimg.substring(1)+"});");
+        theelse="   else";
 
         }
+        print(game," return null;");
         print(game,"  }");
     }
 

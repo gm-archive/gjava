@@ -96,7 +96,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             manifestFW = new FileWriter(DolphinWriter.projectfolder + File.separator + "manifest.txt");
             BufferedWriter manifest = new BufferedWriter(manifestFW);
             DolphinWriter.print(manifest, "Manifest-Version: 1.0");
-            DolphinWriter.print(manifest, "Main-Class: org.gcreator.compilers.DolphinWriter.Game");
+            DolphinWriter.print(manifest, "Main-Class: org.dolphin.game.Game");
             DolphinWriter.print(manifest, "Created-By: 1.2 (Sun Microsystems Inc.)");
             //DolphinWriter.print(manifest,"Class-Path: org");
             manifest.close();
@@ -119,7 +119,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
 
             FileWriter batFW = new FileWriter(DolphinWriter.projectfolder + File.separator + "run_windows.bat");
             BufferedWriter bat = new BufferedWriter(batFW);
-            DolphinWriter.print(bat, "java -jar *.jar");
+            DolphinWriter.print(bat, "java -jar \""+/*DolphinWriter.projectfolder + File.separator +*/ DolphinWriter.filename+ ".jar\"");
             DolphinWriter.print(bat, "pause");
             bat.close();
 
@@ -150,8 +150,8 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 FileWriter batFW = new FileWriter(DolphinWriter.FileFolder+File.separator + "compile_windows.bat");
                 BufferedWriter bat = new BufferedWriter(batFW);
                 DolphinWriter.print(bat, "del *.class");
-                //DolphinWriter.print(bat, "javac -classpath \"" +
-                   //     new File("Projects" + File.separator + DolphinWriter.filename + File.separator + "Java" + File.separator).getAbsolutePath() + "\" Game.java");
+                DolphinWriter.print(bat, "javac -classpath \"" +
+                        new File(DolphinWriter.projectfolder+ File.separator).getAbsolutePath() + "\" Game.java");
                 DolphinWriter.print(bat, "pause");
                 bat.close();
                 System.out.println("just before compile");
@@ -176,7 +176,8 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                  * Create the Jar file
                  *
                  */
-                args = new String[]{"cfm", "Projects" + File.separator + DolphinWriter.projectfolder + File.separator + DolphinWriter.filename + ".jar",
+                new File(DolphinWriter.projectfolder + File.separator + DolphinWriter.filename+ ".jar").delete();
+                args = new String[]{"cfm", DolphinWriter.projectfolder + File.separator + DolphinWriter.filename+ ".jar",
                     DolphinWriter.projectfolder + File.separator + "manifest.txt", "-C",
                     DolphinWriter.projectfolder,
                     "com", DolphinWriter.projectfolder + File.separator+ "org"
@@ -230,7 +231,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             Process p;
             try {
                 p = Runtime.getRuntime().exec(
-                        "Java -jar " + "\"" + "Projects" + File.separator + DolphinWriter.filename + File.separator + "Java" + File.separator + DolphinWriter.filename + ".jar\"");
+                        "Java -jar " + "\"" + DolphinWriter.projectfolder + File.separator + DolphinWriter.filename+ ".jar\"");
                 p.waitFor();
                 BufferedReader b = new BufferedReader(new InputStreamReader(p.getErrorStream()));
                 String line = null;

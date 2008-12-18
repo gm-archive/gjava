@@ -72,20 +72,16 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
 	public void initResources() {
 		super.initResources();
 		initRooms();
-
-		System.out.println("init resources");
 	}
 	
 	public static void main(java.lang.String[] args) {
 		parameter_count = args.length;
 		parameters = args;
 		gameType = "Application";
-
 		try {
 			setupGame();
 			game.start();
 		} catch (Exception e) {
-
 			/*
 			 * Display any Exceptions that occur during the game
 			 */
