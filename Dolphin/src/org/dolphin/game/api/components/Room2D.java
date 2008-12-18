@@ -32,7 +32,7 @@ public Vector<View> views = new Vector<View>();
  * All the instances and tiles in this room as a {@link Vector} object sorted by
  * depth
  */
-private Vector depth = new Vector();
+public Vector depth = new Vector();
 
 /*The id in the vector*/
 public int vectorid=0;
@@ -126,6 +126,8 @@ public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backco
 
 public void setvisible(){
     setupScene();
+    depth.addAll(instances);
+    depth.addAll(tiles);
     SortDepth();
 Frame.setSize(width+5, height+25);
     Frame.setTitle(Caption); // set room caption
@@ -166,8 +168,7 @@ public void updateCaption()
  */
 @SuppressWarnings("unchecked")
 public void SortDepth() {
-    depth.addAll(instances);
-    depth.addAll(tiles);
+    
     java.util.Collections.sort(depth,java.util.Collections.reverseOrder());
     //depth.trimToSize();
     
@@ -202,7 +203,8 @@ public void init() {
  * Update method. Called every step should not be overridden
  */
 public void update()  {
-   for (int i = 0; i < instances.size(); i++) {
+    int thesize = instances.size();
+   for (int i = 0; i < thesize; i++) {
        if (instances.elementAt(i) !=null)
         ((Actor)instances.elementAt(i)).callEvents();
     }
@@ -275,6 +277,7 @@ public void render(Graphics2D g2d2)  {
 
     
     // Draw instances and tiles
+    int thesize=depth.size();
     for (int i = 0; i < depth.size(); i++) {
         
         if (((Tile)depth.elementAt(i)).visible){

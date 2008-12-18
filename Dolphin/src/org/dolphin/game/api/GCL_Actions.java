@@ -5,6 +5,9 @@
 
 package org.dolphin.game.api;
 
+import org.dolphin.game.Game;
+import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
 import org.dolphin.game.api.types.String;
 import org.dolphin.game.api.types.Integer;
@@ -63,7 +66,7 @@ public static Variable action_cd_stop(Variable... obj)
 return new Variable();
 }
 
-public static Variable action_change_Variable(Variable... obj)
+public static Variable action_change_object(Variable... obj)
 {
 return new Variable();
 }
@@ -73,17 +76,26 @@ public static Variable action_color(Variable... obj)
 return new Variable();
 }
 
-public static Variable action_create_Variable(Variable... obj)
+public static Variable action_create_object(Variable... obj)
+{
+    try{
+    if (obj[0] instanceof GMResource){
+        Actor a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(200,300,0);
+    Game.currentRoom.instances.add(a);
+    Game.currentRoom.depth.add(a);
+    Game.currentRoom.SortDepth();
+    }
+    }catch(Exception e){e.printStackTrace();}
+
+return new Variable();
+}
+
+public static Variable action_create_object_motion(Variable... obj)
 {
 return new Variable();
 }
 
-public static Variable action_create_Variable_motion(Variable... obj)
-{
-return new Variable();
-}
-
-public static Variable action_create_Variable_random(Variable... obj)
+public static Variable action_create_object_random(Variable... obj)
 {
 return new Variable();
 }
@@ -312,7 +324,7 @@ public static Variable action_inherited(Variable... obj)
 return new Variable();
 }
 
-public static Variable action_kill_Variable(Variable... obj)
+public static Variable action_kill_object(Variable... obj)
 {
 return new Variable();
 }

@@ -68,7 +68,8 @@ public class EnhancedAWTInput extends AWTInput {
 
                 EnhancedAWTInput.this.keyPressed[EnhancedAWTInput.this.pressedKey] = e.getKeyCode();
                 EnhancedAWTInput.this.pressedKey++;
-                for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+                int thesize=Game.currentRoom.instances.size();
+                for (int i = 0; i < thesize; i++) {
                 try {
 
                     (Game.currentRoom.instances.elementAt(i)).KeyPressed(e.getKeyCode());
@@ -88,8 +89,8 @@ public class EnhancedAWTInput extends AWTInput {
 
             EnhancedAWTInput.this.keyReleased[EnhancedAWTInput.this.releasedKey] = e.getKeyCode();
             EnhancedAWTInput.this.releasedKey++;
-
-            for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            int thesize=Game.currentRoom.instances.size();
+            for (int i = 0; i < thesize; i++) {
                 try {
 
                     (Game.currentRoom.instances.elementAt(i)).KeyReleased(e.getKeyCode());

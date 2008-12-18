@@ -130,11 +130,14 @@ public class Sprite extends Variable {
 //    
     
 
+
+    /*
+     * No longer needed as actors keep track of their own subimage
+     */
     public BufferedImage imshow() {
         index += image_speed;
-        //index++;
-        //System.out.println(""+index);
-        while (index >= subimages) index -= subimages;//index = 0;
+        
+        while (index >= subimages) index -= subimages;
         
         return imshow((int)index);
         //return spritename[0];

@@ -250,6 +250,7 @@ public class Actor extends Tile {
     }
 
 
+    int sprite_index=0;
 
     /**
      * Override with the Draw event of the actor but don't call this method!
@@ -259,7 +260,10 @@ public class Actor extends Tile {
     public void Draw_event(Graphics g) {
         
         if (sprite != null) {
-            g.drawImage(sprite.imshow(), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,null);
+            sprite_index += sprite.image_speed;
+
+        while (sprite_index >= sprite.subimages) sprite_index -= sprite.subimages;
+            g.drawImage(sprite.imshow(sprite_index), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,null);
 
         } else {
             //System.out.println("sprite is null");
@@ -371,7 +375,7 @@ public class Actor extends Tile {
         if (sprite == null) {
             return new Integer(0);
         }
-        return new Double(sprite.index);
+        return new Double(sprite_index);
     }
 
     public Variable getImage_number() {
@@ -665,7 +669,7 @@ public class Actor extends Tile {
 
     public void setImage_index(Variable image_index) {
         if (sprite != null) {
-            sprite.index = (int) image_index.getDouble();
+            sprite_index = (int) image_index.getDouble();
         }
     }
 
