@@ -26,6 +26,11 @@ public class Actor0 extends Actor {
         }
     }
 
+    public void Collision(java.lang.String name)
+    {
+        if(name.equals("")){}
+    }
+
     @Override
     public void EndStep() throws DestroyException {
         //System.out.println("alarm[0]"+alarm[0]);

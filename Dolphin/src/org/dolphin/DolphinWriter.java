@@ -290,21 +290,26 @@ print(game, "	}");
                      * Collision Event
                      */
                     else if (j == 4) {
-
+                        print(actor,"   public void Collision(java.lang.String name){");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id"+ev.id);
-                            print(actor,"//collision event:"+ev.id+ev.other.get().getName());
+                            print(actor,"   if(name.equals(\""+ev.other.get().getName()+"\")){");
+                            print(actor,"   "+parseGCL(getActionsCode(ev)));
+                            print(actor,"}");
                         }
+                        print(actor,"}");
                     }
                     /*
                      * Keyboard Event
                      */
                     else if (j == 5) {
-
+                        print(actor,"   public void Keyboard() {");
+//
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id"+ev.id);
-                            print(actor,"//keyboard event:"+ev.id);
+                            print(actor, "if (Game.game.getGame().keyDown(" + ev.id + "))");
                         }
+                        print(actor,"}");
                     }
                     /*
                      * Mouse Event
@@ -330,11 +335,12 @@ print(game, "	}");
                      * Draw Event
                      */
                     else if (j == 8) {
-
+                         print(actor,"    public void Draw_event(Graphics2D g){");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id"+ev.id);
-                            print(actor,"//draw event:"+ev.id);
+                           print(actor,"   "+parseGCL(getActionsCode(ev)));
                         }
+                        print(actor,"     }");
                     }
                     /*
                      * Key press Event

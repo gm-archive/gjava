@@ -34,6 +34,7 @@ public class Actor extends Tile {
     public boolean mouseover = false,active=true;
     protected int posinvector = -1;
     public double id=0;//the instance id
+    public java.lang.String name;
 
     final Integer _0 = new Integer(0);
     
@@ -77,6 +78,7 @@ public class Actor extends Tile {
         persistent = Persistent;
         sprite = spr;
         self=this;
+        name=Object_name.toString();
         Create();
     }
 
@@ -89,6 +91,7 @@ public class Actor extends Tile {
         persistent = new Boolean(Persistent);
         sprite = spr;
         self = this;
+        name=Object_name;
         Create();
     }
 
@@ -180,10 +183,28 @@ public class Actor extends Tile {
     public void mouse_Pressed(int keycode, int xx, int yy) {
     }
 
+    public void Collision(java.lang.String name)
+    {
+
+    }
+
     /**
-     * Override with actor Collision event
+     * check collision and call the collision event
      */
     public void checkCollision() {
+        double start = System.currentTimeMillis();
+        for (int i = 0; i < Game.currentRoom.instances.size(); i++)
+        {
+        Actor G_Java_a = ((Actor)Game.currentRoom.instances.elementAt(i));
+        if (G_Java_a == this) return;
+        if (G_Java_a.getBounds().intersects(getBounds())){
+            if (G_Java_a.getSolid().getBoolean()){x=xprevious;y=yprevious;}
+                System.out.println("Collided");
+            Collision(G_Java_a.name);
+        }
+        }
+        double end = System.currentTimeMillis();
+        System.out.println("Time taken:"+(end-start));
     }
 
     /**
@@ -204,6 +225,8 @@ public class Actor extends Tile {
             BeginStep();
             Step();
             Alarm();
+            Keyboard();
+            checkCollision();
             Move();
             EndStep();
         } catch (DestroyException d) {

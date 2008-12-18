@@ -26,7 +26,7 @@ COMMENT1 = '//';
 DOC_COMMENT;
 }
 @members {
-public PlatformCore pc = new PlatformCore();
+public org.dolphin.parser.PlatformCore pc = new org.dolphin.parser.PlatformCore();
 
 public void setPlatform(PlatformCore p)
 {
@@ -62,7 +62,11 @@ code // never put: returns after this! This is for script and parameter code
 ;
 
 statement returns [String value]
-: {$value = "";}  (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}|';'{$value +=";";}) (';')* 	
+: {$value = "";}  (java=javacode{$value += $java.value;}|b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}|';'{$value +=";";}) (';')* 	
+;
+
+javacode returns [String value]
+:	jcode=JAVACODE  {$value=$jcode.getText().replaceAll("@@java_Begin", "{").replaceAll("@@java_End", "}");;}
 ;
 
 field returns [String value] //their are 2 finals in this for a reason ;)
@@ -242,6 +246,10 @@ ML_COMMENT
    
 STRING : STRING_DOUBLE|STRING_SINGLE
 ;
+
+JAVACODE 
+	:  '@@java_Begin' (options {greedy=false;} : .)* '@@java_End'	
+	;
   
 STRING_DOUBLE
   : '"'
