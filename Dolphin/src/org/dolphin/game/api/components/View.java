@@ -14,7 +14,7 @@ public class View {
     int x,y,width,height,portx,porty,portwidth,portheight;
     boolean visible;
 
-    public View(int viewx,int viewy,int viewwidth,int viewheight,int portx,int porty,int portwidth,int portheight,boolean visible){
+    public View(int viewx,int viewy,int viewwidth,int viewheight,int portx,int porty,int portwidth,int portheight,int hspeed,int vspeed,int hbor,int vbor,boolean visible){
 
         x=viewx;
         y=viewy;

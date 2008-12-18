@@ -18,7 +18,7 @@ public class Background extends Variable {
     }
     
     /*create bakcgound using full details*/
-    public Background(boolean background_visible, boolean background_foreground, int background_x, int background_y, int background_width, int background_height, boolean background_htiled, boolean background_vtiled, boolean background_scale, int background_hspeed, int background_vspeed, int smooth, int transparent, BufferedImage background_image) {
+    public Background(boolean background_visible, boolean background_foreground, int background_x, int background_y, int background_width, int background_height, boolean background_htiled, boolean background_vtiled, boolean background_scale, int background_hspeed, int background_vspeed, boolean smooth, boolean transparent, BufferedImage background_image) {
         this.background_visible = background_visible;//if the background is visible or not (works 15dec08)
         this.background_foreground = background_foreground;
         this.background_x = background_x; //the x offset of the background (works 15dec08)

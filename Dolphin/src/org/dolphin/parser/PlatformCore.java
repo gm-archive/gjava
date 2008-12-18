@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -30,6 +31,8 @@ import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.dolphin.DolphinWriter;
+import org.dolphin.game.api.Constants;
+import org.dolphin.game.api.Variables;
 
 
 /**
@@ -199,6 +202,31 @@ public class PlatformCore  {
     
     public boolean checkvariable(String name)
     {
+
+        java.lang.String nm = name;
+        try {
+
+            Method m = org.dolphin.game.api.components.Actor.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
+            return true;
+        } catch (NoSuchMethodException ex) {
+            //System.out.println("not in actor: " + ex);
+            try {
+                Method m = org.dolphin.game.api.Variables.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
+                return true;
+            } catch (Exception e) {
+                //System.out.println("not in variables" + e);
+                try {
+                    Method m = Constants.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
+                    return true;
+                } catch (Exception ee) {
+                    //System.out.println("no method" + ee);
+                }
+            }
+
+        } catch (SecurityException ex) {
+            System.out.println("security:" + ex);
+
+        }
         return false;
        
     }
@@ -616,7 +644,7 @@ public class PlatformCore  {
             instance = "self";
         }
         
-//        if (actorlocal.contains(","+variable+","))
+        /*check if it is a resource*/
         if (resources.contains(variable))
         {
         return "Game."+variable;

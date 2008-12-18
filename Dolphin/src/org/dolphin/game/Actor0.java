@@ -2,6 +2,7 @@ package org.dolphin.game;
 
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.exceptions.DestroyException;
+import org.dolphin.game.api.types.Integer;
 
 public class Actor0 extends Actor {
 
