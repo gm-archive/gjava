@@ -59,8 +59,8 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
 	
 	public void initRooms(){
 		rooms=new Vector<Room2D>();
-		rooms.add(new Room0(0));
-		rooms.add(new Room1(1));
+		rooms.add(new Dolphin_Room0(0));
+		rooms.add(new Dolphin_Room1(1));
 		currentRoom=rooms.firstElement();
 		currentRoom.setvisible();
 		//previousRoom();

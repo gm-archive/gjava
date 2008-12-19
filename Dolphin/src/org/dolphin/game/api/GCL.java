@@ -755,6 +755,9 @@ self.y = round(new Double(self.y/vsnap.getDouble())).getDouble() * vsnap.getDoub
 return new Variable();
 }
 
+/*
+ * TODO: Fix this function
+ */
 public static Variable move_towards_point(Variable xto, Variable yto, Variable sp)
 {
    double dist=sqrt(new Double((xto.getDouble()-self.x)*(xto.getDouble()-self.x)+(yto.getDouble()-self.y)*(yto.getDouble()-self.y))).getDouble();
@@ -3489,42 +3492,42 @@ public static Variable actor_get_name(Variable ind)
 return ind;
 }
 
-public static Variable Variable_get_sprite(Variable ind)
+public static Variable object_get_sprite(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_get_solid(Variable ind)
+public static Variable object_get_solid(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_get_visible(Variable ind)
+public static Variable object_get_visible(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_get_depth(Variable ind)
+public static Variable object_get_depth(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_get_persistent(Variable ind)
+public static Variable object_get_persistent(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_get_mask(Variable ind)
+public static Variable object_get_mask(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_get_parent(Variable ind)
+public static Variable object_get_parent(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_is_ancestor(Variable ind1, Variable ind2)
+public static Variable object_is_ancestor(Variable ind1, Variable ind2)
 {
 return new Variable();
 }

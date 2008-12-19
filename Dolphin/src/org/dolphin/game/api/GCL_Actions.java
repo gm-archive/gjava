@@ -413,7 +413,10 @@ return new Variable();
 
 public static Variable action_move_point(Variable... obj)
 {
-return new Variable();
+    if (argument_relative.getBoolean())
+ return   move_towards_point(obj[0],obj[1],self.getSpeed().add(obj[2]));
+    else
+        return   move_towards_point(obj[0],obj[1],obj[2]);
 }
 
 public static Variable action_move_random(Variable... obj)
@@ -621,7 +624,8 @@ return new Variable();
 
 public static Variable action_set_hspeed(Variable... obj)
 {
-    if (argument_relative.getBoolean())
+    System.out.println("relative:"+getArgument_relative().getBoolean());
+    if (getArgument_relative().getBoolean())
       self.hspeed=self.hspeed+obj[0].getDouble();
     else
     self.hspeed=obj[0].getDouble();

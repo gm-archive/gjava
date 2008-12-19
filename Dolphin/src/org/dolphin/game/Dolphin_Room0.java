@@ -7,8 +7,8 @@ import org.dolphin.game.api.components.Room2D;
 import org.dolphin.game.api.components.Tile;
 import org.dolphin.game.api.components.View;
 
-public class Room0 extends Room2D {
-	public Room0(int vectorid){
+public class Dolphin_Room0 extends Room2D {
+	public Dolphin_Room0(int vectorid){
 		super(Game.frame,"caption works!",30,640,480,Color.BLUE,true,false,1);
 		this.vectorid=vectorid;
 		
