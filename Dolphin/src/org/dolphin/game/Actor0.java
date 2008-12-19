@@ -48,7 +48,10 @@ public class Actor0 extends Actor {
     public void KeyPressed(int keycode) throws DestroyException {
         
         if (keycode==67){
+            self=this;
+            System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);
         action_change_object(new GMResource(Actor1.class));
+        System.out.println("!!!!!after: s.hspeed:"+self.hspeed+" hpseed"+hspeed);
         }
     }
 

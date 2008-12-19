@@ -75,7 +75,7 @@ public class Sprite extends Variable {
         this.transparent=transparent;
 
         this.subimages = images.length;
-        System.out.println("subimages"+subimages);
+        
         filename = sprite_name;
         this.spritename = images;//new BufferedImage[subimages-1];
         
