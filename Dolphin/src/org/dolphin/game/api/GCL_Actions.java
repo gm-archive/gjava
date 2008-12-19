@@ -709,6 +709,7 @@ return new Variable();
 
 public static Variable action_snap(Variable... obj)
 {
+   move_snap(obj[0], obj[1]);
 return new Variable();
 }
 
