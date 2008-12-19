@@ -19,6 +19,7 @@ import org.lateralgm.file.GmFormatException;
 import org.lateralgm.main.LGM;
 import org.lateralgm.resources.GmObject;
 import org.lateralgm.resources.Room;
+import org.lateralgm.resources.Script;
 import org.lateralgm.resources.sub.Action;
 import org.lateralgm.resources.sub.Argument;
 import org.lateralgm.resources.sub.BackgroundDef;
@@ -32,10 +33,9 @@ public class DolphinWriter {
 
     public static DolphinFrame df;
     GmFile gmFile;
-    public static String FileFolder, filename,projectfolder;
+    public static String FileFolder,  filename,  projectfolder;
     File location;
-
-     PlatformCore pc = new PlatformCore();
+    PlatformCore pc = new PlatformCore();
 
     public DolphinWriter(DolphinFrame df, GmFile gmFile, File file) {
         filename = gmFile.filename.substring(gmFile.filename.lastIndexOf(File.separator) + 1);
@@ -43,7 +43,7 @@ public class DolphinWriter {
         this.df = df;
         this.gmFile = gmFile;
         this.location = file;
-        this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator+"org"+File.separator+"dolphin"+File.separator+"game"+File.separator;
+        this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator + "org" + File.separator + "dolphin" + File.separator + "game" + File.separator;
         projectfolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator;
         new File(FileFolder).mkdirs();
         createFolders();
@@ -53,6 +53,8 @@ public class DolphinWriter {
             writeGameJava();
             df.progress(20, "Extracting backgrounds", "Extracting backgrounds");
             parseBackgrounds();
+            df.progress(30, "Writing scripts", "Writing scripts");
+            parseScripts();
             df.progress(70, "Writing object code", "Writing object code");
             parseObjects();
             df.progress(80, "Writing room code", "Writing room code");
@@ -76,24 +78,24 @@ public class DolphinWriter {
         }
     }
 
-    public void writeinitRooms(BufferedWriter game) throws IOException{
-        print(game,"  public void initRooms(){");
-        print(game,"     rooms=new Vector<Room2D>();");
-        int i=0;
+    public void writeinitRooms(BufferedWriter game) throws IOException {
+        print(game, "  public void initRooms(){");
+        print(game, "     rooms=new Vector<Room2D>();");
+        int i = 0;
 
-        for (Room o : gmFile.rooms){
-        print(game,"     rooms.add(new "+o.getName()+"("+i+"));");
-        i++;
+        for (Room o : gmFile.rooms) {
+            print(game, "     rooms.add(new " + o.getName() + "(" + i + "));");
+            i++;
         }
-        print(game,"    currentRoom=rooms.firstElement();");
-        print(game,"    currentRoom.setvisible();");
-        print(game,"  }");
+        print(game, "    currentRoom=rooms.firstElement();");
+        print(game, "    currentRoom.setvisible();");
+        print(game, "  }");
     }
 
     public void writeGameJava() throws IOException {
         FileWriter gameFW = new FileWriter(FileFolder + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
-        print(game,"package org.dolphin.game;");
+        print(game, "package org.dolphin.game;");
         print(game, "import java.awt.Dimension;");
         print(game, "import java.io.PrintWriter;");
         print(game, "import java.io.StringWriter;");
@@ -114,11 +116,11 @@ public class DolphinWriter {
         print(game, "public static org.dolphin.game.Game thegame;//used to get this game object");
         print(game, "");
         print(game, "public static void setupGame() {");
-	print(game, "	game = new GameLoader();");
+        print(game, "	game = new GameLoader();");
         print(game, "        thegame=new Game();");
-	print(game, "	game.setup(thegame, new Dimension(640, 480), false);");
-	print(game, "	frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();");
-	print(game, "}");
+        print(game, "	game.setup(thegame, new Dimension(640, 480), false);");
+        print(game, "	frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();");
+        print(game, "}");
         print(game, "");
         print(game, "public BufferedImage loadBackground(String name){");
         print(game, "if (!backgrounds.containsKey(name))");
@@ -140,39 +142,39 @@ public class DolphinWriter {
         parseSprites(game);
         writeinitRooms(game);
 
-print(game, "        public void initResources() {");
-print(game, "		super.initResources();");
-print(game, "		initRooms();");
-print(game, "	}");
-print(game, "");
-print(game, "	public static void main(java.lang.String[] args) {");
-print(game, "		parameter_count = args.length;");
-print(game, "		parameters = args;");
-print(game, "		gameType = \"Application\";");
-print(game, "		try {");
-print(game, "			setupGame();");
-print(game, "			game.start();");
-print(game, "		} catch (Exception e) {");
-print(game, "			/*");
-print(game, "			 * Display any Exceptions that occur during the game");
-print(game, "			 */");
-print(game, "			final Writer result = new StringWriter();");
-print(game, "			final PrintWriter printWriter = new PrintWriter(result);");
-print(game, "			e.printStackTrace(printWriter);");
-print(game, "			Clipboard.setText(new org.dolphin.game.api.types.String((\"\" + result.toString() + Clipboard.getText())));");
-print(game, "			JOptionPane");
-print(game, "					.showMessageDialog(null,\"Error: \"");
-print(game, "									+ e");
-print(game, "									+ \", \"");
-print(game, "									+ e.getMessage()");
-print(game, "									+ \". \\n Stack trace:\"");
-print(game, "									+ result.toString()");
-print(game, "									+ \"\\n \\n The Error has been added to clipboard, just before the previous contents of the clipboard. \\n Please contact the G-Java development team for help. http://forums.g-java.com\");");
-print(game, "			System.out.println(\"Exception:\"+result.toString());");
-print(game, "			System.exit(1); // Exit the game");
-print(game, "		}");
-print(game, "");
-print(game, "	}");
+        print(game, "        public void initResources() {");
+        print(game, "		super.initResources();");
+        print(game, "		initRooms();");
+        print(game, "	}");
+        print(game, "");
+        print(game, "	public static void main(java.lang.String[] args) {");
+        print(game, "		parameter_count = args.length;");
+        print(game, "		parameters = args;");
+        print(game, "		gameType = \"Application\";");
+        print(game, "		try {");
+        print(game, "			setupGame();");
+        print(game, "			game.start();");
+        print(game, "		} catch (Exception e) {");
+        print(game, "			/*");
+        print(game, "			 * Display any Exceptions that occur during the game");
+        print(game, "			 */");
+        print(game, "			final Writer result = new StringWriter();");
+        print(game, "			final PrintWriter printWriter = new PrintWriter(result);");
+        print(game, "			e.printStackTrace(printWriter);");
+        print(game, "			Clipboard.setText(new org.dolphin.game.api.types.String((\"\" + result.toString() + Clipboard.getText())));");
+        print(game, "			JOptionPane");
+        print(game, "					.showMessageDialog(null,\"Error: \"");
+        print(game, "									+ e");
+        print(game, "									+ \", \"");
+        print(game, "									+ e.getMessage()");
+        print(game, "									+ \". \\n Stack trace:\"");
+        print(game, "									+ result.toString()");
+        print(game, "									+ \"\\n \\n The Error has been added to clipboard, just before the previous contents of the clipboard. \\n Please contact the G-Java development team for help. http://forums.g-java.com\");");
+        print(game, "			System.out.println(\"Exception:\"+result.toString());");
+        print(game, "			System.exit(1); // Exit the game");
+        print(game, "		}");
+        print(game, "");
+        print(game, "	}");
 
         print(game, "}");//end class
         game.close();
@@ -180,27 +182,67 @@ print(game, "	}");
 
     void parseBackgrounds() throws IOException {
         for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
-            ImageIO.write( b.getBackgroundImage(), "png", new File(FileFolder+File.separator+b.getName()+".png"));
+            ImageIO.write(b.getBackgroundImage(), "png", new File(FileFolder + File.separator + b.getName() + ".png"));
 
         }
     }
 
     void parseSprites(BufferedWriter game) throws IOException {
-        print(game,"  public Sprite getSprite(String name){");
-        String theelse="   ";
+        print(game, "  public Sprite getSprite(String name){");
+        String theelse = "   ";
         for (org.lateralgm.resources.Sprite s : gmFile.sprites) {
-            String subimg="";
+            String subimg = "";
             for (int i = 0; i < s.subImages.size(); i++) {
                 BufferedImage img = s.subImages.get(i);
-                ImageIO.write(img, "png", new File(FileFolder+File.separator+s.getName()+"["+i+"].png"));
-                subimg+=",getImage(\""+s.getName()+"["+i+"].png"+"\")";
+                ImageIO.write(img, "png", new File(FileFolder + File.separator + s.getName() + "[" + i + "].png"));
+                subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
             }
-        print(game,theelse+" if (name.equals(\""+s.getName()+"\")) return new Sprite(\""+s.getName()+"\","+s.getDisplayImage().getHeight()+", "+s.getDisplayImage().getWidth()+", "+s.boundingBoxLeft+", "+s.boundingBoxRight+", "+s.boundingBoxBottom+", "+s.boundingBoxTop+", "+s.originX+", "+s.originY+", "+s.transparent+", new BufferedImage[]{"+subimg.substring(1)+"});");
-        theelse="   else";
+            print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\"," + s.getDisplayImage().getHeight() + ", " + s.getDisplayImage().getWidth() + ", " + s.boundingBoxLeft + ", " + s.boundingBoxRight + ", " + s.boundingBoxBottom + ", " + s.boundingBoxTop + ", " + s.originX + ", " + s.originY + ", " + s.transparent + ", new BufferedImage[]{" + subimg.substring(1) + "});");
+            theelse = "   else";
 
         }
-        print(game," return null;");
-        print(game,"  }");
+        print(game, " return null;");
+        print(game, "  }");
+    }
+
+    void parseScripts() throws GmFormatException {
+        ArrayList<String> names = new ArrayList<String>(gmFile.gmObjects.size());
+
+
+
+        try {
+            FileWriter scriptFW = new FileWriter(FileFolder +"Scripts.java");
+            BufferedWriter script = new BufferedWriter(scriptFW);
+
+            print(script, "package org.dolphin.game;");
+
+            print(script, "import org.dolphin.game.api.GCL_Actions;");
+            print(script, "import org.dolphin.game.api.types.Variable;");
+            print(script, "import org.dolphin.game.api.types.Integer;");
+                print(script, "import org.dolphin.game.api.types.Double;");
+                print(script, "import org.dolphin.game.api.types.String;");
+                print(script, "import org.dolphin.game.api.types.Boolean;");
+            print(script, "public class Scripts extends GCL_Actions {");
+
+            for (Script s : gmFile.scripts) {
+                /*check for duplicate scripts*/
+                String name = s.getName();
+                pc.current = name;
+                if (names.contains(name)) {
+                    throw new GmFormatException(gmFile, "Duplicate object name: " + name);
+                }
+                print(script,"public static Variable "+name+"(Variable... parameters){");
+                print(script,""+this.parseGCL(s.scriptStr));
+                print(script,"return new Variable();");
+                print(script,"}");
+            }
+            print(script,"}");//end scripts class
+            script.close();
+        } catch (Exception e) {
+            showException(e);
+        }
+
+
     }
 
     void parseObjects() throws GmFormatException {
@@ -209,7 +251,7 @@ print(game, "	}");
         for (GmObject a : gmFile.gmObjects) {
             /*check for duplicate objects*/
             String name = a.getName();
-            pc.current=name;
+            pc.current = name;
             if (names.contains(name)) {
                 throw new GmFormatException(gmFile, "Duplicate object name: " + name);
             }
@@ -220,12 +262,12 @@ print(game, "	}");
                 print(actor, "package org.dolphin.game;");
                 print(actor, "import org.dolphin.game.api.components.Actor;");
                 print(actor, "import org.dolphin.game.api.exceptions.DestroyException;");
-                print(actor,"import org.dolphin.game.api.types.Integer;");
-                print(actor,"import org.dolphin.game.api.types.Double;");
-                print(actor,"import org.dolphin.game.api.types.String;");
-                print(actor,"import org.dolphin.game.api.types.Boolean;");
-                print(actor,"import java.awt.Graphics2D;");
-                print(actor,"");
+                print(actor, "import org.dolphin.game.api.types.Integer;");
+                print(actor, "import org.dolphin.game.api.types.Double;");
+                print(actor, "import org.dolphin.game.api.types.String;");
+                print(actor, "import org.dolphin.game.api.types.Boolean;");
+                print(actor, "import java.awt.Graphics2D;");
+                print(actor, "");
                 print(actor, "public class " + name + " extends Actor {");
                 print(actor, "");
                 print(actor, " public   " + name + "(int X,int Y,double instance_id) {");
@@ -250,128 +292,108 @@ print(game, "	}");
                         for (Event ev : a.mainEvents[j].events) {
                             writeCreateEvent(actor, ev);
                         }
-                    }
-                    /*
+                    } /*
                      * Destroy Event
-                     */
-                    else if (j == 1) {
+                     */ else if (j == 1) {
                         for (Event ev : a.mainEvents[j].events) {
                             writeDestroyEvent(actor, ev);
                         }
-                    }
-                    /*
+                    } /*
                      * Alarm Event
-                     */
-                    else if (j == 2) {
+                     */ else if (j == 2) {
                         print(actor, "   public void performAlarm(int alarmid) {");
                         for (Event ev : a.mainEvents[j].events) {
                             writeAlarmEvent(actor, ev);
                         }
                         print(actor, "    }");
-                    }
-                    /*
+                    } /*
                      * Step Event
-                     */
-                    else if (j == 3) {
+                     */ else if (j == 3) {
 
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                            if (ev.id==1)
-                            print(actor, "   public void BeginStep() throws DestroyException {");
-                            else if (ev.id==0)
+                            System.out.println("ev.id" + ev.id);
+                            if (ev.id == 1) {
+                                print(actor, "   public void BeginStep() throws DestroyException {");
+                            } else if (ev.id == 0) {
                                 print(actor, "   public void Step() throws DestroyException {");
-                            else if (ev.id==2)
+                            } else if (ev.id == 2) {
                                 print(actor, "   public void EndStep() throws DestroyException {");
-                            print(actor,"   "+parseGCL(getActionsCode(ev)));
+                            }
+                            print(actor, "   " + parseGCL(getActionsCode(ev)));
                             print(actor, "    }");
                         }
-                    }
-                    /*
+                    } /*
                      * Collision Event
-                     */
-                    else if (j == 4) {
-                        print(actor,"   public void Collision(java.lang.String name){");
+                     */ else if (j == 4) {
+                        print(actor, "   public void Collision(java.lang.String name){");
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                            print(actor,"   if(name.equals(\""+ev.other.get().getName()+"\")){");
-                            print(actor,"   "+parseGCL(getActionsCode(ev)));
-                            print(actor,"}");
+                            System.out.println("ev.id" + ev.id);
+                            print(actor, "   if(name.equals(\"" + ev.other.get().getName() + "\")){");
+                            print(actor, "   " + parseGCL(getActionsCode(ev)));
+                            print(actor, "}");
                         }
-                        print(actor,"}");
-                    }
-                    /*
+                        print(actor, "}");
+                    } /*
                      * Keyboard Event
-                     */
-                    else if (j == 5) {
-                        print(actor,"   public void Keyboard() {");
+                     */ else if (j == 5) {
+                        print(actor, "   public void Keyboard() {");
 //
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
+                            System.out.println("ev.id" + ev.id);
                             print(actor, "if (Game.game.getGame().keyDown(" + ev.id + ")){");
-                            print(actor,"   "+parseGCL(getActionsCode(ev)));
-                            print(actor,"}");
+                            print(actor, "   " + parseGCL(getActionsCode(ev)));
+                            print(actor, "}");
                         }
-                        print(actor,"}");
-                    }
-                    /*
+                        print(actor, "}");
+                    } /*
                      * Mouse Event
-                     */
-                    else if (j == 6) {
+                     */ else if (j == 6) {
 
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                            print(actor,"//mouse event:"+ev.id);
+                            System.out.println("ev.id" + ev.id);
+                            print(actor, "//mouse event:" + ev.id);
                         }
-                    }
-                    /*
+                    } /*
                      * Other Event
-                     */
-                    else if (j == 7) {
+                     */ else if (j == 7) {
 
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                            print(actor,"//other event:"+ev.id);
+                            System.out.println("ev.id" + ev.id);
+                            print(actor, "//other event:" + ev.id);
                         }
-                    }
-                    /*
+                    } /*
                      * Draw Event
-                     */
-                    else if (j == 8) {
-                         print(actor,"    public void Draw_event(Graphics2D g){");
+                     */ else if (j == 8) {
+                        print(actor, "    public void Draw_event(Graphics2D g){");
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                           print(actor,"   "+parseGCL(getActionsCode(ev)));
+                            System.out.println("ev.id" + ev.id);
+                            print(actor, "   " + parseGCL(getActionsCode(ev)));
                         }
-                        print(actor,"     }");
-                    }
-                    /*
+                        print(actor, "     }");
+                    } /*
                      * Key press Event
-                     */
-                    else if (j == 9) {
-                        print(actor,"   public void KeyPressed(int keycode) throws DestroyException {");
+                     */ else if (j == 9) {
+                        print(actor, "   public void KeyPressed(int keycode) throws DestroyException {");
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                            print(actor,"     if (keycode=="+ev.id+"){");
-                            print(actor,"   "+parseGCL(getActionsCode(ev)));
-                            print(actor,"     }");
+                            System.out.println("ev.id" + ev.id);
+                            print(actor, "     if (keycode==" + ev.id + "){");
+                            print(actor, "   " + parseGCL(getActionsCode(ev)));
+                            print(actor, "     }");
                         }
-                        print(actor,"   }");
-                    }
-                    /*
+                        print(actor, "   }");
+                    } /*
                      * Key release Event
-                     */
-                    else if (j == 10) {
+                     */ else if (j == 10) {
 
-                        print(actor,"   public void KeyReleased(int keycode) throws DestroyException {");
+                        print(actor, "   public void KeyReleased(int keycode) throws DestroyException {");
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id"+ev.id);
-                            print(actor,"     if (keycode=="+ev.id+"){");
-                            print(actor,"        "+parseGCL(getActionsCode(ev)));
-                            print(actor,"     }");
+                            System.out.println("ev.id" + ev.id);
+                            print(actor, "     if (keycode==" + ev.id + "){");
+                            print(actor, "        " + parseGCL(getActionsCode(ev)));
+                            print(actor, "     }");
                         }
-                        print(actor,"   }");
-                    }
-                    else {
+                        print(actor, "   }");
+                    } else {
                         for (Event ev : a.mainEvents[j].events) {
 
 
@@ -391,26 +413,25 @@ print(game, "	}");
     }
 
     public void writeCreateEvent(BufferedWriter actor, Event ev) throws IOException {
-        pc.event="Create Event";
+        pc.event = "Create Event";
         print(actor, "  public void Create() {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
 
     public void writeDestroyEvent(BufferedWriter actor, Event ev) throws IOException {
-        pc.event="Destroy Event";
+        pc.event = "Destroy Event";
         print(actor, "  public void Destroy() {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
 
     public void writeAlarmEvent(BufferedWriter actor, Event ev) throws IOException {
-        pc.event="Alarm"+ev.id+" Event";
+        pc.event = "Alarm" + ev.id + " Event";
         print(actor, "  if (alarmid==" + ev.id + ") {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
-   
 
     public String parseGCL(String code) throws IOException {
         //change code simply for testing
@@ -435,7 +456,7 @@ print(game, "	}");
 
             parser.code();
 
-            //System.out.println("Finished! Code output:" + pc.returncode);
+        //System.out.println("Finished! Code output:" + pc.returncode);
         } catch (Exception e) {
             System.out.println("Error with parser:" + e + e.getLocalizedMessage() + " " + e.getMessage() + "\n code:" + code);
         }
@@ -447,87 +468,81 @@ print(game, "	}");
     public String getActionsCode(Event ev) {
         String code = "";
         for (Action act : ev.actions) {
-            code+= System.getProperty("line.separator");
+            code += System.getProperty("line.separator");
             if (act.getLibAction().actionKind == Action.ACT_CODE) {
-                code += "{"+act.getArguments().get(0).getVal() +"}";
-            }
-            else if (act.getLibAction().actionKind == Action.ACT_BEGIN){
-            code+="{";
-            }
-            else if (act.getLibAction().actionKind == Action.ACT_END){
-            code+="}";
-            }
-            else if (act.getLibAction().actionKind == Action.ACT_ELSE){
-            code+=" else ";
-            }
-            else if (act.getLibAction().actionKind == Action.ACT_VARIABLE){
-                if (act.isRelative())
-                    code+=""+act.getArguments().get(0).getVal()+" += ("+act.getArguments().get(1).getVal()+");";
-                else
-            code+=""+act.getArguments().get(0).getVal()+" = ("+act.getArguments().get(1).getVal()+");";
-            }
-            /*else if (act.getLibAction().actionKind == 0){
+                code += "{" + act.getArguments().get(0).getVal() + "}";
+            } else if (act.getLibAction().actionKind == Action.ACT_BEGIN) {
+                code += "{";
+            } else if (act.getLibAction().actionKind == Action.ACT_END) {
+                code += "}";
+            } else if (act.getLibAction().actionKind == Action.ACT_ELSE) {
+                code += " else ";
+            } else if (act.getLibAction().actionKind == Action.ACT_VARIABLE) {
+                if (act.isRelative()) {
+                    code += "" + act.getArguments().get(0).getVal() + " += (" + act.getArguments().get(1).getVal() + ");";
+                } else {
+                    code += "" + act.getArguments().get(0).getVal() + " = (" + act.getArguments().get(1).getVal() + ");";
+                }
+            } /*else if (act.getLibAction().actionKind == 0){
             code+="//some comment";//+act.getArguments().get(0).getVal();
-            }*/
-            else if (act.getLibAction().actionKind == Action.ACT_EXIT){
-            code+="return;";
-            }
-            else if (act.getLibAction().actionKind == Action.ACT_REPEAT){
-            code+="repeat("+act.getArguments().get(0).getVal()+")";
-            }
-            else {
-                if (act.getLibAction().question)
-                {
-                    System.out.println("question:"+act.getLibAction().execInfo);
-                    code+="if (";
+            }*/ else if (act.getLibAction().actionKind == Action.ACT_EXIT) {
+                code += "return;";
+            } else if (act.getLibAction().actionKind == Action.ACT_REPEAT) {
+                code += "repeat(" + act.getArguments().get(0).getVal() + ")";
+            } else {
+                if (act.getLibAction().question) {
+                    System.out.println("question:" + act.getLibAction().execInfo);
+                    code += "if (";
+                } else {
+                    code += "{";
+                    if (act.isRelative()) {
+                        code += "argument_relative=" + act.isRelative() + "; ";
+                    }
                 }
-                else{
-                    code+="{";
-                    if(act.isRelative())
-                    code+="argument_relative="+act.isRelative()+"; ";
-                }
-                code+=act.getLibAction().execInfo+"(";
-                
+                code += act.getLibAction().execInfo + "(";
+
                 for (int i = 0; i < act.getArguments().size(); i++) {
                     Argument arg = act.getArguments().get(i);
-                    if (i!=0)
-                        code+=", ";
-                    if (arg.kind==arg.ARG_STRING)
-                        code+="\""+arg.getVal()+"\"";
-                    else if (arg.kind==arg.ARG_BOTH)
-                        code+="\""+arg.getVal()+"\"";
-                    else if (arg.kind == arg.ARG_FONT)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_GMOBJECT)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_PATH)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_ROOM)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_SCRIPT)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_SOUND)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_SPRITE)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_TIMELINE)
-                        code+="\""+arg.getRes().get().getName()+"\"";
-                    else if (arg.kind == arg.ARG_COLOR)
-                        code+="\""+arg.getVal()+"\"";
-                    else
-                        code+=arg.getVal();
+                    if (i != 0) {
+                        code += ", ";
+                    }
+                    if (arg.kind == arg.ARG_STRING) {
+                        code += "\"" + arg.getVal() + "\"";
+                    } else if (arg.kind == arg.ARG_BOTH) {
+                        code += "\"" + arg.getVal() + "\"";
+                    } else if (arg.kind == arg.ARG_FONT) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_GMOBJECT) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_PATH) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_ROOM) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_SCRIPT) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_SOUND) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_SPRITE) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_TIMELINE) {
+                        code += "\"" + arg.getRes().get().getName() + "\"";
+                    } else if (arg.kind == arg.ARG_COLOR) {
+                        code += "\"" + arg.getVal() + "\"";
+                    } else {
+                        code += arg.getVal();
+                    }
                 }
-                
-                if (act.getLibAction().question)
-                {
-                    code+="))";
+
+                if (act.getLibAction().question) {
+                    code += "))";
+                } else {
+                    code += ");}";
                 }
-                else{code+=");}";}
 
             }
 
         }
-        System.out.println("code:"+code);
+        System.out.println("code:" + code);
         return code;
     }
 
@@ -549,15 +564,15 @@ print(game, "	}");
                 print(scene, "import java.awt.Color;");
                 print(scene, "");
                 print(scene, "import org.dolphin.game.api.*;");
-                
+
                 print(scene, "import org.dolphin.game.api.components.Background;");
                 print(scene, "import org.dolphin.game.api.components.Room2D;");
                 print(scene, "import org.dolphin.game.api.components.Tile;");
                 print(scene, "import org.dolphin.game.api.components.View;");
-                print(scene,"import org.dolphin.game.api.types.Integer;");
-                print(scene,"import org.dolphin.game.api.types.Double;");
-                print(scene,"import org.dolphin.game.api.types.String;");
-                print(scene,"import org.dolphin.game.api.types.Boolean;");
+                print(scene, "import org.dolphin.game.api.types.Integer;");
+                print(scene, "import org.dolphin.game.api.types.Double;");
+                print(scene, "import org.dolphin.game.api.types.String;");
+                print(scene, "import org.dolphin.game.api.types.Boolean;");
 
                 print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");
                 print(scene, "");
@@ -566,7 +581,7 @@ print(game, "	}");
                 print(scene, "          this.vectorid=vectorid;");
                 print(scene, "  }");
                 print(scene, "public void Creation_code(){");
-                print(scene, " "+parseGCL(r.creationCode));
+                print(scene, " " + parseGCL(r.creationCode));
                 print(scene, "}");
 
 
@@ -583,9 +598,9 @@ print(game, "	}");
                 /*Create the backgrounds*/
                 for (int i = 0; i < r.backgroundDefs.length; i++) {
                     BackgroundDef b = r.backgroundDefs[i];
-                    
+
                     if (b.backgroundId != null) {
-                        print(scene, "backgrounds.add(new Background("+b.visible+","+b.foreground+","+b.x+","+b.y+","+b.backgroundId.get().width+","+b.backgroundId.get().height+","+b.tileHoriz+","+b.tileVert+","+b.stretch+","+b.horizSpeed+","+b.vertSpeed+","+b.backgroundId.get().smoothEdges+","+b.backgroundId.get().transparent+",Game.thegame.loadBackground(\"" + b.backgroundId.get().getName() + "\")));");
+                        print(scene, "backgrounds.add(new Background(" + b.visible + "," + b.foreground + "," + b.x + "," + b.y + "," + b.backgroundId.get().width + "," + b.backgroundId.get().height + "," + b.tileHoriz + "," + b.tileVert + "," + b.stretch + "," + b.horizSpeed + "," + b.vertSpeed + "," + b.backgroundId.get().smoothEdges + "," + b.backgroundId.get().transparent + ",Game.thegame.loadBackground(\"" + b.backgroundId.get().getName() + "\")));");
                     }
                 //TODO fix the above code to write backgrounds
                 }
@@ -600,13 +615,14 @@ print(game, "	}");
                 }
 
                 print(scene, "    /*Create the views*/");
-                print(scene,"     this.showviews="+r.enableViews+";");
+                print(scene, "     this.showviews=" + r.enableViews + ";");
                 /*Create the tiles*/
                 for (int i = 0; i < r.views.length; i++) {
                     View v = r.views[i];
                     if (v != null) {
-                        if (v.visible)
-                        print(scene, "views.add(new View(" + v.viewX + ", " + v.viewY + "," + v.viewW + ", " + v.viewH + ", " + v.portX + "," + v.portY + "" + v.portW + ", " + v.portH + "," + v.hspeed + "," + v.vspeed + "," + v.hbor + "," + v.vbor + "," + v.visible + ");");
+                        if (v.visible) {
+                            print(scene, "views.add(new View(" + v.viewX + ", " + v.viewY + "," + v.viewW + ", " + v.viewH + ", " + v.portX + "," + v.portY + "" + v.portW + ", " + v.portH + "," + v.hspeed + "," + v.vspeed + "," + v.hbor + "," + v.vbor + "," + v.visible + ");");
+                        }
                     }
                 }
 

@@ -2976,7 +2976,6 @@ public static Variable show_message(Variable str)
 {
     JOptionPane.showMessageDialog(Game.frame, str.toString());
     Game.thegame.bsInput.refresh();
-    
 return new Variable();
 }
 
