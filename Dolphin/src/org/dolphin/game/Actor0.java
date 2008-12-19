@@ -1,6 +1,7 @@
 package org.dolphin.game;
 
 import java.awt.Graphics2D;
+import java.util.Random;
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
@@ -44,7 +45,7 @@ public class Actor0 extends Actor {
 
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
-        
+        System.out.println(""+random(new Integer(4)));
         if (keycode==67){
         action_create_object(new GMResource(Actor0.class),new Integer(10),new Integer(10));
         }

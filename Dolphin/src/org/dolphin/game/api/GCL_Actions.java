@@ -124,6 +124,8 @@ return new Variable();
 
 public static Variable action_create_object_random(Variable... obj)
 {
+
+    action_create_object(obj[(int)Math.random(4)],obj[4],obj[5]);
 return new Variable();
 }
 
