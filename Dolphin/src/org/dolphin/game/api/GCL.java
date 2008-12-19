@@ -739,7 +739,13 @@ return new Variable();
 
 public static Variable move_random(Variable hsnap, Variable vsnap)
 {
+    if (hsnap.equals(new Integer(0)).getBoolean())
+        self.x=round(random(getRoom_width())).getDouble();
+    else
     self.x=round(random(getRoom_width()).div(hsnap)).mult(hsnap).getDouble();
+    if (vsnap.equals(new Integer(0)).getBoolean())
+        self.y=round(random(getRoom_height())).getDouble();
+    else
     self.y=round(random(getRoom_height()).div(vsnap)).mult(vsnap).getDouble();
 return new Variable();
 }
