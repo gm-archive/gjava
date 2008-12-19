@@ -36,13 +36,13 @@ public class Actor0 extends Actor {
     public void EndStep() throws DestroyException {
         //System.out.println("alarm[0]"+alarm[0]);
     }
-static int i=1;
+
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
         System.out.println("key pressed");
         if (keycode==1){
         action_create_object(new GMResource(Actor0.class),new Integer(10),new Integer(10));
-        i++;}
+        }
     }
 
     @Override
@@ -51,6 +51,11 @@ static int i=1;
         Graphics2D g;
     }
 
+    public void Keyboard(){
+    if (Game.game.getGame().keyDown(32)){
+        System.out.println("space down");
+    }
+    }
     
 
 

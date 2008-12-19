@@ -217,7 +217,6 @@ public void update()  {
 private void drawBackgrounds(Graphics2D g,boolean foreground){
 // Draw background
     for (int i = 0; i < backgrounds.size(); i++) {
-        System.out.println("draw background");
         Background object = backgrounds.elementAt(i);
         if (object.background_visible && object.background_foreground == foreground)
         {

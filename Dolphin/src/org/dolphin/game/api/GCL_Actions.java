@@ -282,7 +282,7 @@ public static Variable action_if_number(Variable... obj)
 return new Variable();
 }
 
-public static Variable action_if_Variable(Variable... obj)
+public static Variable action_if_object(Variable... obj)
 {
 return new Variable();
 }
@@ -310,18 +310,18 @@ return new Variable();
 public static Variable action_if_variable(Variable... obj)
 {
     if (obj[2].getInt() ==0) {
-        System.out.println("action_if_variable, equals:"+obj[0].equals(obj[1]));
+        //System.out.println("action_if_variable, equals:"+obj[0].equals(obj[1]));
     return obj[0].equals(obj[1]);
     }//==
 			if (obj[2].getInt() ==1) {//<
-                            System.out.println("action_if_variable, <:"+obj[0].lt(obj[1]));
+                           // System.out.println("action_if_variable, <:"+obj[0].lt(obj[1]));
                             return obj[0].lt(obj[1]);
                         }
 			if (obj[2].getInt() ==2) {//">(";
-                            System.out.println("action_if_variable, >:"+obj[0].gt(obj[1]));
+                            //System.out.println("action_if_variable, >:"+obj[0].gt(obj[1]));
                             return obj[0].gt(obj[1]);
                         }
-    System.out.println("action_if_variable, error:"+obj[2]);
+    //System.out.println("action_if_variable, error:"+obj[2]);
 return new Variable();
 }
 

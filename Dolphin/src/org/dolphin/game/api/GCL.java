@@ -2974,7 +2974,9 @@ return new Variable();
  */
 public static Variable show_message(Variable str)
 {
-    JOptionPane.showMessageDialog(null, str.toString());
+    JOptionPane.showMessageDialog(Game.frame, str.toString());
+    Game.thegame.bsInput.refresh();
+    
 return new Variable();
 }
 
@@ -3916,22 +3918,22 @@ public static Variable Variable_set_parent(Variable ind, Variable obj)
 return new Variable();
 }
 
-public static Variable Variable_add()
+public static Variable object_add()
 {
 return new Variable();
 }
 
-public static Variable Variable_delete(Variable ind)
+public static Variable object_delete(Variable ind)
 {
 return new Variable();
 }
 
-public static Variable Variable_event_clear(Variable ind, Variable evtype, Variable evnumb)
+public static Variable object_event_clear(Variable ind, Variable evtype, Variable evnumb)
 {
 return new Variable();
 }
 
-public static Variable Variable_event_add(Variable ind, Variable evtype, Variable evnumb, Variable codestr)
+public static Variable object_event_add(Variable ind, Variable evtype, Variable evnumb, Variable codestr)
 {
 return new Variable();
 }
