@@ -224,7 +224,7 @@ print(game, "	}");
                 print(actor,"import org.dolphin.game.api.types.Double;");
                 print(actor,"import org.dolphin.game.api.types.String;");
                 print(actor,"import org.dolphin.game.api.types.Boolean;");
-
+                print(actor,"import java.awt.Graphics2D;");
                 print(actor,"");
                 print(actor, "public class " + name + " extends Actor {");
                 print(actor, "");
@@ -307,7 +307,9 @@ print(game, "	}");
 //
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id"+ev.id);
-                            print(actor, "if (Game.game.getGame().keyDown(" + ev.id + "))");
+                            print(actor, "if (Game.game.getGame().keyDown(" + ev.id + ")){");
+                            print(actor,"   "+parseGCL(getActionsCode(ev)));
+                            print(actor,"}");
                         }
                         print(actor,"}");
                     }
@@ -552,6 +554,10 @@ print(game, "	}");
                 print(scene, "import org.dolphin.game.api.components.Room2D;");
                 print(scene, "import org.dolphin.game.api.components.Tile;");
                 print(scene, "import org.dolphin.game.api.components.View;");
+                print(scene,"import org.dolphin.game.api.types.Integer;");
+                print(scene,"import org.dolphin.game.api.types.Double;");
+                print(scene,"import org.dolphin.game.api.types.String;");
+                print(scene,"import org.dolphin.game.api.types.Boolean;");
 
                 print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");
                 print(scene, "");
@@ -559,6 +565,11 @@ print(game, "	}");
                 print(scene, "		super(Game.frame,\"" + r.caption + "\"," + r.speed + "," + r.width + "," + r.height + ",new Color(" + r.backgroundColor.getRed() + "," + r.backgroundColor.getGreen() + "," + r.backgroundColor.getBlue() + ")," + r.drawBackgroundColor + "," + r.persistent + "," + r.getId() + ");");
                 print(scene, "          this.vectorid=vectorid;");
                 print(scene, "  }");
+                print(scene, "public void Creation_code(){");
+                print(scene, " "+parseGCL(r.creationCode));
+                print(scene, "}");
+
+
                 print(scene, "");
                 print(scene, "  protected void setupScene() {");
                 print(scene, "");

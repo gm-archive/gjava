@@ -11,10 +11,12 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import org.dolphin.game.Game;
+import org.dolphin.game.Scripts;
 import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.exceptions.DestroyException;
-public class Room2D extends GCL implements KeyListener, MouseListener{
+import org.dolphin.game.api.types.Variable;
+public class Room2D extends Scripts implements KeyListener, MouseListener{
 
 
 /** The container for the test */
@@ -125,6 +127,7 @@ public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backco
 }
 
 public void setvisible(){
+    //first create all objects and their create events
     setupScene();
     depth.addAll(instances);
     depth.addAll(tiles);
@@ -133,7 +136,7 @@ Frame.setSize(width+5, height+25);
     Frame.setTitle(Caption); // set room caption
     Frame.addKeyListener(this);
 Game.game.getGame().setFPS((int)speed);
-    // room creation code
+    // now execute room creation code
     Creation_code();
 }
 

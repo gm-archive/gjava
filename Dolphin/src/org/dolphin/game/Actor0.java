@@ -1,5 +1,6 @@
 package org.dolphin.game;
 
+import java.awt.Graphics2D;
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
@@ -47,6 +48,7 @@ static int i=1;
     @Override
     public void KeyReleased(int keycode) throws DestroyException {
         System.out.println("key released");
+        Graphics2D g;
     }
 
     
