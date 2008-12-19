@@ -427,23 +427,23 @@ return new Variable();
 
 public static Variable action_move_start(Variable... obj)
 {
+    self.x=self.getXstart().getDouble();
+    self.y=self.getYstart().getDouble();
 return new Variable();
 }
 
 public static Variable action_move_to(Variable... obj)
 {
-    self.hspeed=1;
-    System.out.println("move to x:"+self.x+"id"+self.id);
     if (argument_relative.getBoolean()){
-    self.x=obj[0].getDouble();
-    self.y=obj[1].getDouble();
+    self.x=self.x+obj[0].getDouble();
+    self.y=self.y+obj[1].getDouble();
     }
     else
     {
-       self.x=self.x+obj[0].getDouble();
-    self.y=self.y+obj[1].getDouble();
+       self.x=obj[0].getDouble();
+    self.y=obj[1].getDouble();
     }
-    System.out.println("x:"+self.x);
+    
 return new Variable();
 }
 
@@ -601,15 +601,25 @@ return new Variable();
 
 public static Variable action_set_friction(Variable... obj)
 {
+    if (getArgument_relative().getBoolean())
+      self.setFriction(self.getFriction().add(obj[0]));
+    else
+    self.setFriction(obj[0]);
 return new Variable();
 }
 
+/*
+ * TODO: Doesn't add direction when relative
+ */
 public static Variable action_set_gravity(Variable... obj)
 {
-    if (argument_relative.getBoolean())
-        self.setGravity(self.getGravity().add(obj[0]));
-    else
-    self.setGravity(obj[0]);
+    if (argument_relative.getBoolean()){
+        self.setGravity(self.getGravity().add(obj[1]));
+        self.setGravity_direction(obj[0]);}
+ else{
+    self.setGravity(obj[1]);
+    self.setGravity_direction(obj[0]);
+    }
 return new Variable();
 }
 
