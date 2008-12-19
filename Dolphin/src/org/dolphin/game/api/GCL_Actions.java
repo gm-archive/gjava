@@ -624,7 +624,7 @@ return new Variable();
 
 public static Variable action_set_hspeed(Variable... obj)
 {
-    System.out.println("relative:"+getArgument_relative().getBoolean());
+    
     if (getArgument_relative().getBoolean())
       self.hspeed=self.hspeed+obj[0].getDouble();
     else
@@ -675,6 +675,9 @@ return new Variable();
 
 public static Variable action_set_vspeed(Variable... obj)
 {
+    if (getArgument_relative().getBoolean())
+      self.vspeed=self.vspeed+obj[0].getDouble();
+    else
     self.vspeed=obj[0].getDouble();
 return new Variable();
 }
