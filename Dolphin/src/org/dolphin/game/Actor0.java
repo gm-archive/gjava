@@ -17,11 +17,12 @@ public class Actor0 extends Actor {
         this.x = x;
         this.y = y;
         this.instance_id = instance_id;
-        
+        self=this;
 	}
 
     public void Create(){
-    action_move((new String("000001000")), (new Integer(6)));
+    //action_move((new String("000001000")), (new Integer(6)));
+        hspeed=1;
     }
 
     @Override
@@ -45,9 +46,9 @@ public class Actor0 extends Actor {
 
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
-        System.out.println(""+random(new Integer(4)));
+        
         if (keycode==67){
-        action_create_object(new GMResource(Actor0.class),new Integer(10),new Integer(10));
+        action_change_object(new GMResource(Actor1.class));
         }
     }
 

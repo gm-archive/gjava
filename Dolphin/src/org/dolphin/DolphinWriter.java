@@ -283,6 +283,7 @@ public class DolphinWriter {
                 print(actor, "        x = X;");
                 print(actor, "        y = Y;");
                 print(actor, "        this.instance_id = instance_id;");
+                print(actor, "        self=this;");
                 print(actor, "    }");
 
                 for (int j = 0; j < 11; j++) {

@@ -70,6 +70,34 @@ return new Variable();
 
 public static Variable action_change_object(Variable... obj)
 {
+    int thesize=Game.currentRoom.instances.size();
+    for (int i = 0; i < thesize; i++) {
+        Actor object = Game.currentRoom.instances.elementAt(i);
+        System.out.println("obj.instance_id"+object.instance_id+"self.instance_id:"+self.instance_id);
+        if (object.instance_id == self.instance_id){
+            Actor a=null;
+            try{
+        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x,self.y+20,self.instance_id);
+            }catch(Exception e){}
+        a.instance_id=self.instance_id;
+        a.variables=self.variables;
+            System.out.println("hspeed:"+self.hspeed);
+        a.hspeed=self.hspeed;
+        a.vspeed=self.vspeed;
+        a.xstart=self.xstart;
+        a.ystart=self.ystart;
+        a.gravity=self.gravity;
+        a.gravity_direction=self.gravity_direction;
+        a.alarm=self.alarm;
+        a.friction=self.friction;
+        Game.currentRoom.instances.set(i, a);
+        Game.currentRoom.depth.set(Game.currentRoom.depth.indexOf(object),a);
+        a.self=self;
+        //self=a;
+        
+        //a.setVspeed(2);
+        }
+    }
 return new Variable();
 }
 
@@ -91,6 +119,7 @@ public static Variable action_create_object(Variable... obj)
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
     Game.currentRoom.SortDepth();
+    return a;
     }
     }catch(Exception e){e.printStackTrace();}
 

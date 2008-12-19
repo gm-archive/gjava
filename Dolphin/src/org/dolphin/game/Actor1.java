@@ -14,7 +14,7 @@ public class Actor1 extends Actor {
         this.x = x;
         this.y = y;
         this.instance_id = instance_id;
-
+        self=this;
 	}
 
     @Override
