@@ -11,6 +11,7 @@ import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
 import org.dolphin.game.api.types.String;
 import org.dolphin.game.api.types.Integer;
+import org.dolphin.game.api.types.Boolean;
 
 /**
  * This class is used for all the gcl action functions.
@@ -745,6 +746,13 @@ return new Variable();
 
 public static Variable action_wrap(Variable... obj)
 {
+    System.out.println("action_wrap:"+obj[0]);
+    if (obj[0].equals(new Integer(0)).getBoolean())
+    GCL_Actions.move_wrap(Boolean.TRUE, Boolean.FALSE, new Integer(0));
+    else if (obj[0].equals(new Integer(0)).getBoolean())
+    GCL_Actions.move_wrap(Boolean.FALSE, Boolean.TRUE, new Integer(0));
+    else
+        GCL_Actions.move_wrap(Boolean.TRUE, Boolean.TRUE, new Integer(0));
 return new Variable();
 }
 }

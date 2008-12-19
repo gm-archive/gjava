@@ -406,6 +406,8 @@ public class DolphinWriter {
                 print(actor, "}");//end the class
                 actor.close();
             } catch (Exception e) {
+                System.out.println("Exception while parsing an object/actor"+e.getMessage());
+
                 showException(e);
             }
 
@@ -510,21 +512,21 @@ public class DolphinWriter {
                         code += "\"" + arg.getVal() + "\"";
                     } else if (arg.kind == arg.ARG_BOTH) {
                         code += "\"" + arg.getVal() + "\"";
-                    } else if (arg.kind == arg.ARG_FONT) {
+                    } else if (arg.kind == arg.ARG_FONT && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_GMOBJECT) {
+                    } else if (arg.kind == arg.ARG_GMOBJECT && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_PATH) {
+                    } else if (arg.kind == arg.ARG_PATH && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_ROOM) {
+                    } else if (arg.kind == arg.ARG_ROOM && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_SCRIPT) {
+                    } else if (arg.kind == arg.ARG_SCRIPT && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_SOUND) {
+                    } else if (arg.kind == arg.ARG_SOUND && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_SPRITE) {
+                    } else if (arg.kind == arg.ARG_SPRITE && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_TIMELINE) {
+                    } else if (arg.kind == arg.ARG_TIMELINE && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_COLOR) {
                         code += "\"" + arg.getVal() + "\"";
