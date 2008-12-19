@@ -33,6 +33,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.dolphin.DolphinWriter;
 import org.dolphin.game.api.Constants;
 import org.dolphin.game.api.Variables;
+import org.lateralgm.resources.GmObject;
 
 
 /**
@@ -53,6 +54,8 @@ public class PlatformCore  {
     public double version = 1.0;
     
     public Vector<String> resources=new Vector(),stringResources=new Vector();
+
+   
 
     public void update(){
         String nextLine;
@@ -644,10 +647,10 @@ public class PlatformCore  {
             instance = "self";
         }
         
-        /*check if it is a resource*/
-        if (resources.contains(variable))
+        /*check if it is an object*/
+        if (DolphinWriter.gmFile.gmObjects.get(variable)!=null)
         {
-        return "Game."+variable;
+        return "new GMResource("+variable+".class)";
         }
         if (stringResources.contains(variable))
         {

@@ -25,16 +25,17 @@ public class Actor extends Tile {
     Hashtable variables = new Hashtable();
     public Sprite sprite;
 
-    protected org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
+    protected org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,   timeline_index,  timeline_position,  timeline_speed;
     protected int[] alarm = new int[11];
     protected double xprevious,  xstart,  yprevious,  ystart;
 	public double hspeed;
 	public double vspeed;
 	protected double speed;
-    public boolean mouseover = false,active=true;
+    public boolean mouseover = false,active=true,solid=true;
     protected int posinvector = -1;
     public double id=0;//the instance id
     public java.lang.String name;
+
 
     final Integer _0 = new Integer(0);
     
@@ -72,7 +73,7 @@ public class Actor extends Tile {
      * Creates a new actor using variables
      */
     public Actor(Variable Object_name, Sprite spr, Variable Solid, Variable Visible, Variable Depth, Variable Persistent) {
-        solid = Solid;
+        solid = Solid.getBoolean();
         visible = Visible.getBoolean();
         depth = Depth;
         persistent = Persistent;
@@ -85,7 +86,7 @@ public class Actor extends Tile {
     /*Creates a new actor using primitives*/
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, double Depth, boolean Persistent) {
-        solid = new Boolean(Solid);
+        solid = Solid;
         visible = Visible;
         depth = new Integer((int) Depth);
         persistent = new Boolean(Persistent);
@@ -192,19 +193,21 @@ public class Actor extends Tile {
      * check collision and call the collision event
      */
     public void checkCollision() {
-        double start = System.currentTimeMillis();
+       // double start = System.currentTimeMillis();
+        Rectangle thisbounds = getBounds();
+        System.out.println("size collision:"+Game.currentRoom.instances.size());
         for (int i = 0; i < Game.currentRoom.instances.size(); i++)
         {
         Actor G_Java_a = ((Actor)Game.currentRoom.instances.elementAt(i));
         if (G_Java_a == this) return;
-        if (G_Java_a.getBounds().intersects(getBounds())){
+        if (G_Java_a.getBounds().intersects(thisbounds)){
             if (G_Java_a.getSolid().getBoolean()){x=xprevious;y=yprevious;}
-                System.out.println("Collided");
+                //System.out.println("Collided");
             Collision(G_Java_a.name);
         }
         }
-        double end = System.currentTimeMillis();
-        System.out.println("Time taken:"+(end-start));
+        //double end = System.currentTimeMillis();
+        //System.out.println("Time taken:"+(end-start));
     }
 
     /**
@@ -507,10 +510,10 @@ public class Actor extends Tile {
     }
 
     public Variable getSolid() {
-        if (solid == null) {
-            solid = _0;
-        }
-        return solid;
+        if (solid)
+        return Boolean.TRUE;
+        else
+            return Boolean.FALSE;
     }
     public static Double returndouble = new Double(0);
 
@@ -753,7 +756,7 @@ public class Actor extends Tile {
     }
 
     public void setSolid(Variable solid) {
-        this.solid = solid;
+        this.solid = solid.getBoolean();
     }
 
     public void setSpeed(Variable speed) {

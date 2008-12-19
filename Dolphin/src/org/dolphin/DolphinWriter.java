@@ -32,7 +32,7 @@ import org.lateralgm.resources.sub.View;
 public class DolphinWriter {
 
     public static DolphinFrame df;
-    GmFile gmFile;
+    public static GmFile gmFile;
     public static String FileFolder,  filename,  projectfolder;
     File location;
     PlatformCore pc = new PlatformCore();
@@ -246,13 +246,13 @@ public class DolphinWriter {
     }
 
     void parseObjects() throws GmFormatException {
-        ArrayList<String> names = new ArrayList<String>(gmFile.gmObjects.size());
+        ArrayList<String> objectnames = new ArrayList<String>(gmFile.gmObjects.size());
 
         for (GmObject a : gmFile.gmObjects) {
             /*check for duplicate objects*/
             String name = a.getName();
             pc.current = name;
-            if (names.contains(name)) {
+            if (objectnames.contains(name)) {
                 throw new GmFormatException(gmFile, "Duplicate object name: " + name);
             }
             try {
@@ -266,11 +266,12 @@ public class DolphinWriter {
                 print(actor, "import org.dolphin.game.api.types.Double;");
                 print(actor, "import org.dolphin.game.api.types.String;");
                 print(actor, "import org.dolphin.game.api.types.Boolean;");
+                print(actor,"import org.dolphin.game.api.types.*;");
                 print(actor, "import java.awt.Graphics2D;");
                 print(actor, "");
                 print(actor, "public class " + name + " extends Actor {");
                 print(actor, "");
-                print(actor, " public   " + name + "(int X,int Y,double instance_id) {");
+                print(actor, " public   " + name + "(double X,double Y,double instance_id) {");
 
                 if (a.getSprite() == null) {
                     print(actor, "        super(\"" + a.getName() + "\", null, " + a.solid + ", " + a.visible + ", " + a.depth + ", " + a.persistent + ");");
@@ -515,7 +516,7 @@ public class DolphinWriter {
                     } else if (arg.kind == arg.ARG_FONT && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_GMOBJECT && arg.getRes()!=null) {
-                        code += "\"" + arg.getRes().get().getName() + "\"";
+                        code += "" + arg.getRes().get().getName() + "";
                     } else if (arg.kind == arg.ARG_PATH && arg.getRes()!=null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_ROOM && arg.getRes()!=null) {

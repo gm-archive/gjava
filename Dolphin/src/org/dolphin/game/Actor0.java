@@ -5,6 +5,7 @@ import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Integer;
+import org.dolphin.game.api.types.String;
 
 public class Actor0 extends Actor {
 
@@ -17,6 +18,10 @@ public class Actor0 extends Actor {
         this.instance_id = instance_id;
         
 	}
+
+    public void Create(){
+    action_move((new String("000001000")), (new Integer(6)));
+    }
 
     @Override
     public void performAlarm(int alarmid) {
@@ -39,22 +44,19 @@ public class Actor0 extends Actor {
 
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
-        System.out.println("key pressed");
-        if (keycode==1){
+        
+        if (keycode==67){
         action_create_object(new GMResource(Actor0.class),new Integer(10),new Integer(10));
         }
     }
 
     @Override
     public void KeyReleased(int keycode) throws DestroyException {
-        System.out.println("key released");
-        Graphics2D g;
+        
     }
 
     public void Keyboard(){
-    if (Game.game.getGame().keyDown(32)){
-        System.out.println("space down");
-    }
+    
     }
     
 

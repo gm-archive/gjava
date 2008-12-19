@@ -99,6 +99,26 @@ return new Variable();
 
 public static Variable action_create_object_motion(Variable... obj)
 {
+ try{
+    if (obj[0] instanceof GMResource){
+        Actor a;
+        if (argument_relative.getBoolean())
+        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+obj[1].getDouble(),self.y+obj[2].getDouble(),Game.maxInstanceId);
+        else
+            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(obj[1].getDouble(),obj[2].getDouble(),Game.maxInstanceId);
+        Game.maxInstanceId++;
+        Game.currentRoom.instances.add(a);
+    Game.currentRoom.depth.add(a);
+    Game.currentRoom.SortDepth();
+    if (argument_relative.getBoolean()){
+    a.setSpeed(a.getSpeed().add(obj[3]));
+    a.setDirection(a.getDirection().add(obj[4]));
+    } else {
+    a.setSpeed(obj[3]);
+    a.setDirection(obj[4]);
+    }
+    }
+    }catch(Exception e){e.printStackTrace();}
 return new Variable();
 }
 
