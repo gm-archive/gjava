@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -233,7 +234,40 @@ public class PlatformCore  {
         return false;
        
     }
-    
+
+    public boolean checkarray(String name)
+    {
+        java.lang.String nm = name.substring(0,name.indexOf("["));
+        System.out.println("checkarray:"+nm+" "+"get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "");
+        
+        try {
+
+            Method m = org.dolphin.game.api.components.Actor.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{int.class});
+            return true;
+        } catch (NoSuchMethodException ex) {
+            //System.out.println("not in actor: " + ex);
+            try {
+                Method m = org.dolphin.game.api.Variables.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{int.class});
+                return true;
+            } catch (Exception e) {
+                //System.out.println("not in variables" + e);
+                try {
+                    Method m = Constants.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{int.class});
+                    return true;
+                } catch (Exception ee) {
+                    //System.out.println("no method" + ee);
+                }
+            }
+
+        } catch (SecurityException ex) {
+            System.out.println("security:" + ex);
+
+        }
+        return false;
+
+    }
+
+
     public boolean checkfunction(String name)
     {
         return true;
@@ -485,6 +519,38 @@ public class PlatformCore  {
 //        return value;
 //        }
 
+        //check if it is an array
+        if (variable.contains("[")){
+            
+            if (checkarray(variable)) {
+                
+                if (operator.equals("=") || operator.equals("=")){
+                return instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+","+expression+")";
+                } else {
+                    
+                String s=instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+",";
+                s+=instance + ".get" + (""+variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+").";
+                if (operator.equals("+=")) {
+                s += "setadd(" + expression + ")";
+            } else if (operator.equals("*=")) {
+                s += "setmult(" + expression + ")";
+            } else if (operator.equals("-=")) {
+                s += "setsub(" + expression + ")";
+            } else if (operator.equals("/=")) {
+                s += "setdiv(" + expression + ")";
+            } else if (operator.equals("&=")) {
+                s +=  "setband(" + expression + ")";
+            } else if (operator.equals("|=")) {
+                s +=  "setbor(" + expression + ")";
+            } else if (operator.equals("^=")) {
+                s += "setbxor(" + expression + ")";
+            }
+                s+=")";
+                return s;
+                }
+            }
+        }
+
         //check if it is a built in variable
         if (checkvariable(tempvar)){
             String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
@@ -613,10 +679,10 @@ public class PlatformCore  {
         /// Constants
         ///////////////////////////////////////////
         if (variable.equals("true")) {
-            return "(new Boolean(true))";
+            return "(Boolean.TRUE)";
         }
         else if (variable.equals("false")) {
-            return "(new Boolean(false))";
+            return "(Boolean.FALSE)";
         }
         else if (variable.equals("pi")) {
             return "(new Double(PI))";
@@ -645,6 +711,14 @@ public class PlatformCore  {
         }
         else {
             instance = "self";
+        }
+
+        if (variable.contains("[")){
+            System.out.println("array detected!");
+            if (checkarray(variable)) {
+                System.out.println("it is a built in array!");
+                return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+")";
+            }
         }
         
         /*check if it is an object*/
@@ -764,9 +838,22 @@ public class PlatformCore  {
      */
     public void showError(String msg)
     {
-        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
-        DolphinWriter.df.ta.append("Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
-    }
+        try{
+        FileReader ftempcode = new FileReader("tempcode.gcl");
+        BufferedReader tempcode = new BufferedReader(ftempcode);
+        String s = tempcode.readLine();
+        String code="";
+        while(s !=null){
+        s = tempcode.readLine();
+        code+=s+"\n";
+        }
+        tempcode.close();
+        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"\nIn code:\n"+code);
+        DolphinWriter.df.ta.append("Syntax Error while parsing "+current+":"+event+"\n"+msg+"\n In code:\n"+code);
+        }catch(Exception e){e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg);
+        }
+        }
 
     /**
      * Parses code, you don't need to override this.

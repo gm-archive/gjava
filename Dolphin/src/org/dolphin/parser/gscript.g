@@ -58,7 +58,7 @@ classes
 ;
 
 code // never put: returns after this! This is for script and parameter code
-: { pc.returncode ="";} ((s=statement{pc.returncode += "\n " + $s.value;})*)	{System.out.println(""+pc.returncode);}
+: { pc.returncode ="";} ((s=statement{pc.returncode += "\n " + $s.value;})*)	{}
 ;
 
 statement returns [String value]

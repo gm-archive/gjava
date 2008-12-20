@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2008-12-18 22:27:49
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2008-12-20 22:33:06
 
 package org.dolphin.parser;
 
@@ -913,7 +913,6 @@ public class gscriptParser extends Parser {
             }
 
             if ( backtracking==0 ) {
-              System.out.println(""+pc.returncode);
             }
 
             }

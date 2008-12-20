@@ -927,4 +927,12 @@ public class Actor extends Tile {
         }
         return o;
     }
+
+    public Variable getAlarm(int id) {
+    return new Integer(alarm[id]);
+    }
+
+    public void setAlarm(int id,Variable v){
+    alarm[id]=v.getInt();
+    }
 }
