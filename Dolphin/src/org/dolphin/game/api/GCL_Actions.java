@@ -262,6 +262,7 @@ return new Variable();
 
 public /*static*/ Variable action_end_sound(Variable... obj)
 {
+    Game.thegame.loadSound(obj[0].toString()).stop();
 return new Variable();
 }
 
@@ -362,7 +363,8 @@ return new Variable();
 
 public /*static*/ Variable action_if_sound(Variable... obj)
 {
-return new Variable();
+    if (Game.thegame.loadSound(obj[0].toString()).isPlaying())return Boolean.TRUE;
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_variable(Variable... obj)
@@ -786,6 +788,10 @@ return new Variable();
 
 public /*static*/ Variable action_sound(Variable... obj)
 {
+    if (obj[1].getBoolean())
+        Game.thegame.loadSound(obj[0].toString()).loop();
+    else
+    Game.thegame.loadSound(obj[0].toString()).play();
 return new Variable();
 }
 

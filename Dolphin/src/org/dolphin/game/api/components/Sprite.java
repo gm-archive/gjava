@@ -190,7 +190,8 @@ public class Sprite extends Variable {
         this.BBBottom = (int)(this.BBBottom*yscale);
         this.image_yscale = yscale;
     }
-    
+
+    /*To fix does all objects instead of just the one that calls it*/
     public void angle(int angle){
         for (int i=0; i<subimages; i++)
         spritename[i] = ImageUtil.rotate(spritename[i], angle);

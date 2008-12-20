@@ -32,7 +32,7 @@ public class BasicGame extends Game {
     public static Frame frame;
 
     /*Hashtables used to store used resources*/
-    public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable();
+    public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable(),sounds= new Hashtable();
 
 	/*
 	 * Can't remember what this is for

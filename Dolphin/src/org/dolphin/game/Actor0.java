@@ -3,10 +3,12 @@ package org.dolphin.game;
 import java.awt.Graphics2D;
 import java.util.Random;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Integer;
 import org.dolphin.game.api.types.String;
+import org.dolphin.game.api.types.Boolean;
 
 public class Actor0 extends Actor {
 
@@ -46,7 +48,9 @@ public class Actor0 extends Actor {
 
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
-        System.out.println("id:"+self.instance_id);
+       // if(!action_if_sound(new String("sound0")).getBoolean())
+      action_sound(new String("sound0"),Boolean.FALSE);
+      action_end_sound(new String("sound0"));
         if (keycode==67){
             self=this;
             System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);
@@ -63,7 +67,10 @@ public class Actor0 extends Actor {
     public void Keyboard(){
     
     }
-    
+
+    public void Step(){
+        //if(Game.thegame.bsSound.getAudioRenderer("sound0..wav")!=null)
+             }
 
 
 }

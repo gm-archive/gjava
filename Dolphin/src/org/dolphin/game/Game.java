@@ -13,6 +13,7 @@ import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.image.BufferedImage;
+import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.components.Sprite;
 
 public class Game extends org.dolphin.game.api.gtge.BasicGame {
@@ -55,7 +56,21 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
 
             return null;
         }
-	
+
+        public Sound loadSound(String name){
+          if (!sounds.containsKey(name))
+        {
+            sounds.put(name, getSound(name));
+        }
+          return (Sound)sounds.get(name);
+        }
+
+        public Sound getSound(String name){
+            if (name.equals("sound0")) return new Sound("sound0.wav");
+
+
+            return null;
+        }
 	
 	public void initRooms(){
 		rooms=new Vector<Room2D>();

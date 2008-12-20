@@ -3,6 +3,7 @@ package org.dolphin;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,6 +56,8 @@ public class DolphinWriter {
             parseBackgrounds();
             df.progress(30, "Writing scripts", "Writing scripts");
             parseScripts();
+            
+            
             df.progress(70, "Writing object code", "Writing object code");
             parseObjects();
             df.progress(80, "Writing room code", "Writing room code");
@@ -95,6 +98,7 @@ public class DolphinWriter {
     public void writeGameJava() throws IOException {
         FileWriter gameFW = new FileWriter(FileFolder + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
+
         print(game, "package org.dolphin.game;");
         print(game, "import java.awt.Dimension;");
         print(game, "import java.io.PrintWriter;");
@@ -109,7 +113,7 @@ public class DolphinWriter {
         print(game, "import com.golden.gamedev.GameLoader;");
         print(game, "import com.golden.gamedev.engine.graphics.WindowedMode;");
         print(game, "import java.awt.image.BufferedImage;");
-        print(game, "import org.dolphin.game.api.components.Sprite;");
+        print(game, "import org.dolphin.game.api.components.*;");
 
         print(game, "public class Game extends org.dolphin.game.api.gtge.BasicGame {");
 
@@ -137,9 +141,17 @@ public class DolphinWriter {
         print(game, "}");
         print(game, "  return (Sprite)sprites.get(name);");
         print(game, "}");
+        print(game, "public Sound loadSound(String name){");
+        print(game, "  if (!sounds.containsKey(name))");
+        print(game, "{");
+        print(game, "    sounds.put(name, getSound(name));");
+        print(game, "}");
+        print(game, "  return (Sound)sounds.get(name);");
+        print(game, "}");
 
 
         parseSprites(game);
+        parseSounds(game);
         writeinitRooms(game);
 
         print(game, "        public void initResources() {");
@@ -180,6 +192,24 @@ public class DolphinWriter {
         game.close();
     }
 
+    void parseSounds(BufferedWriter game) throws IOException {
+        df.progress(40, "Extracting Sounds", "Extracting Sounds");
+        print(game, "  public Sound getSound(String name){");
+        String theelse = "   ";
+        for (org.lateralgm.resources.Sound s : gmFile.sounds) {
+            FileOutputStream f = new FileOutputStream(FileFolder + File.separator + s.getName() + s.fileType);
+            f.write(s.data);
+            f.close();
+
+            print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sound(\"" + s.getName() + s.fileType + "\");");
+            theelse = "   else";
+
+        }
+        print(game, " return null;");
+        print(game, "  }");
+
+    }
+
     void parseBackgrounds() throws IOException {
         for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
             ImageIO.write(b.getBackgroundImage(), "png", new File(FileFolder + File.separator + b.getName() + ".png"));
@@ -211,7 +241,7 @@ public class DolphinWriter {
 
 
         try {
-            FileWriter scriptFW = new FileWriter(FileFolder +"Scripts.java");
+            FileWriter scriptFW = new FileWriter(FileFolder + "Scripts.java");
             BufferedWriter script = new BufferedWriter(scriptFW);
 
             print(script, "package org.dolphin.game;");
@@ -219,9 +249,9 @@ public class DolphinWriter {
             print(script, "import org.dolphin.game.api.GCL_Actions;");
             print(script, "import org.dolphin.game.api.types.Variable;");
             print(script, "import org.dolphin.game.api.types.Integer;");
-                print(script, "import org.dolphin.game.api.types.Double;");
-                print(script, "import org.dolphin.game.api.types.String;");
-                print(script, "import org.dolphin.game.api.types.Boolean;");
+            print(script, "import org.dolphin.game.api.types.Double;");
+            print(script, "import org.dolphin.game.api.types.String;");
+            print(script, "import org.dolphin.game.api.types.Boolean;");
             print(script, "public class Scripts extends GCL_Actions {");
 
             for (Script s : gmFile.scripts) {
@@ -231,12 +261,12 @@ public class DolphinWriter {
                 if (names.contains(name)) {
                     throw new GmFormatException(gmFile, "Duplicate object name: " + name);
                 }
-                print(script,"public static Variable "+name+"(Variable... parameters){");
-                print(script,""+this.parseGCL(s.scriptStr));
-                print(script,"return new Variable();");
-                print(script,"}");
+                print(script, "public static Variable " + name + "(Variable... parameters){");
+                print(script, "" + this.parseGCL(s.scriptStr));
+                print(script, "return new Variable();");
+                print(script, "}");
             }
-            print(script,"}");//end scripts class
+            print(script, "}");//end scripts class
             script.close();
         } catch (Exception e) {
             showException(e);
@@ -266,7 +296,7 @@ public class DolphinWriter {
                 print(actor, "import org.dolphin.game.api.types.Double;");
                 print(actor, "import org.dolphin.game.api.types.String;");
                 print(actor, "import org.dolphin.game.api.types.Boolean;");
-                print(actor,"import org.dolphin.game.api.types.*;");
+                print(actor, "import org.dolphin.game.api.types.*;");
                 print(actor, "import java.awt.Graphics2D;");
                 print(actor, "");
                 print(actor, "public class " + name + " extends Actor {");
@@ -408,7 +438,7 @@ public class DolphinWriter {
                 print(actor, "}");//end the class
                 actor.close();
             } catch (Exception e) {
-                System.out.println("Exception while parsing an object/actor"+e.getMessage());
+                System.out.println("Exception while parsing an object/actor" + e.getMessage());
 
                 showException(e);
             }
@@ -495,8 +525,9 @@ public class DolphinWriter {
                 code += "repeat(" + act.getArguments().get(0).getVal() + ")";
             } else {
                 if (act.getLibAction().question) {
-                    System.out.println("question:" + act.getLibAction().execInfo);
+                    //System.out.println("question:" + act.getLibAction().execInfo);
                     code += "if (";
+                    if (act.isNot()) code+="!";
                 } else {
                     code += "{";
                     if (act.isRelative()) {
@@ -514,21 +545,21 @@ public class DolphinWriter {
                         code += "\"" + arg.getVal() + "\"";
                     } else if (arg.kind == arg.ARG_BOTH) {
                         code += "\"" + arg.getVal() + "\"";
-                    } else if (arg.kind == arg.ARG_FONT && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_FONT && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_GMOBJECT && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_GMOBJECT && arg.getRes() != null) {
                         code += "" + arg.getRes().get().getName() + "";
-                    } else if (arg.kind == arg.ARG_PATH && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_PATH && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_ROOM && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_ROOM && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_SCRIPT && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_SCRIPT && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_SOUND && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_SOUND && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_SPRITE && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_SPRITE && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
-                    } else if (arg.kind == arg.ARG_TIMELINE && arg.getRes()!=null) {
+                    } else if (arg.kind == arg.ARG_TIMELINE && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_COLOR) {
                         code += "\"" + arg.getVal() + "\"";
@@ -545,7 +576,7 @@ public class DolphinWriter {
                     if (act.isRelative()) {
                         code += "argument_relative=false; ";
                     }
-                    code+="}";
+                    code += "}";
                 }
 
             }
