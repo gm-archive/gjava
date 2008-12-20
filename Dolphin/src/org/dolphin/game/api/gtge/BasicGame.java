@@ -148,35 +148,38 @@ public class BasicGame extends Game {
 	 * Go to the next room
 	 */
 	public static void nextRoom() throws RoomChangedException{
-            System.out.println("start: currentRoom.vectorid:"+currentRoom.vectorid);
-		if (currentRoom.vectorid <=rooms.size())
+            
+		if (currentRoom.vectorid <rooms.size()-1){
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid+1)){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
                             currentRoom.setinvisible();
 				currentRoom=rooms.get(i);
                                 currentRoom.setvisible();
-                                System.out.println("set it:currentRoom.vectorid:"+currentRoom.vectorid);
                                 throw new RoomChangedException();
                         }}
+        } else {
+        JOptionPane.showMessageDialog(frame,"Error reached the last room can't go any further! Check first!");
+        }
 	}
 	
 	/*
 	 * Go to the previous room
 	 */
 	public static void previousRoom() throws RoomChangedException{
-            System.out.println("start: currentRoom.vectorid:"+currentRoom.vectorid);
-		if (currentRoom.vectorid !=0)
+            
+		if (currentRoom.vectorid !=0){
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid-1)){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
                                 currentRoom.setinvisible();
 				currentRoom=rooms.get(i);
                                 currentRoom.setvisible();
-
-                                System.out.println("set it: currentRoom.vectorid:"+currentRoom.vectorid);
 		throw new RoomChangedException();
                         }}
+                }else {
+                JOptionPane.showMessageDialog(frame,"Error reached the first room can't go any further! Check first!");
+                }
 	}
 
 	/*

@@ -334,7 +334,10 @@ return new Variable();
 
 public /*static*/ Variable action_if_next_room(Variable... obj)
 {
-return new Variable();
+if(Game.currentRoom.vectorid <Game.rooms.size()-1)
+        return Boolean.TRUE;
+    else
+        return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_number(Variable... obj)
@@ -346,10 +349,13 @@ public /*static*/ Variable action_if_object(Variable... obj)
 {
 return new Variable();
 }
-
+/*if previous room exists*/
 public /*static*/ Variable action_if_previous_room(Variable... obj)
 {
-return new Variable();
+    if(Game.currentRoom.vectorid !=0)
+        return Boolean.TRUE;
+    else
+        return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_question(Variable... obj)
