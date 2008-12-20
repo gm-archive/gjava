@@ -7,6 +7,7 @@ package org.dolphin.game.api;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
 import org.dolphin.game.api.types.String;
@@ -515,8 +516,9 @@ public /*static*/ Variable action_move_to(Variable... obj)
 return new Variable();
 }
 
-public /*static*/ Variable action_next_room(Variable... obj)
+public /*static*/ Variable action_next_room(Variable... obj) throws RoomChangedException
 {
+    Game.nextRoom();
 return new Variable();
 }
 
@@ -610,8 +612,9 @@ public /*static*/ Variable action_potential_step(Variable... obj)
 return new Variable();
 }
 
-public /*static*/ Variable action_previous_room(Variable... obj)
+public /*static*/ Variable action_previous_room(Variable... obj) throws RoomChangedException
 {
+        Game.previousRoom();
 return new Variable();
 }
 

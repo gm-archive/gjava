@@ -23,6 +23,7 @@ import java.util.BitSet;
 //import org.gcreator.compilers.gjava.Game;
 import org.dolphin.game.Game;
 import org.dolphin.game.api.exceptions.DestroyException;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 
 public class EnhancedAWTInput extends AWTInput {
 
@@ -62,7 +63,7 @@ public class EnhancedAWTInput extends AWTInput {
         public void keyPressed(KeyEvent e) {
             //Game.lastkey=e.getKeyCode();
             //Game.lastchar=""+e.getKeyChar();
-
+            try{
             if (!EnhancedAWTInput.this.keyDown.get(e.getKeyCode())) {
                 EnhancedAWTInput.this.keyDown.set(e.getKeyCode());
 
@@ -82,9 +83,11 @@ public class EnhancedAWTInput extends AWTInput {
             }
             
             e.consume();
+            }catch(RoomChangedException re){}
         }
 
         public void keyReleased(KeyEvent e) {
+            try{
             EnhancedAWTInput.this.keyDown.clear(e.getKeyCode());
 
             EnhancedAWTInput.this.keyReleased[EnhancedAWTInput.this.releasedKey] = e.getKeyCode();
@@ -102,6 +105,7 @@ public class EnhancedAWTInput extends AWTInput {
             }
 
             e.consume();
+            }catch(RoomChangedException re){}
         }
     }
 }

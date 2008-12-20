@@ -9,6 +9,7 @@ import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Integer;
 import org.dolphin.game.api.types.String;
 import org.dolphin.game.api.types.Boolean;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 
 public class Actor0 extends Actor {
 

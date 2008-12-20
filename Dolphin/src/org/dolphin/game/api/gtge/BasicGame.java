@@ -27,6 +27,7 @@ import com.golden.gamedev.GameLoader;
  */
 import java.awt.Frame;
 import org.dolphin.game.api.components.Sprite;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 public class BasicGame extends Game {
     /*The main game Frame*/
     public static Frame frame;
@@ -146,23 +147,34 @@ public class BasicGame extends Game {
 	/*
 	 * Go to the next room
 	 */
-	public static void nextRoom(){
-		if (currentRoom.id <=rooms.size())
+	public static void nextRoom() throws RoomChangedException{
+            System.out.println("start: currentRoom.vectorid:"+currentRoom.vectorid);
+		if (currentRoom.vectorid <=rooms.size())
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid+1)){
+                            org.dolphin.game.Game.thegame.bsInput.refresh();
 				currentRoom=rooms.get(i);
-		}}
+                                currentRoom.setvisible();
+                                System.out.println("set it:currentRoom.vectorid:"+currentRoom.vectorid);
+                                throw new RoomChangedException();
+                        }}
 	}
 	
 	/*
 	 * Go to the previous room
 	 */
-	public static void previousRoom(){
-		if (currentRoom.id !=0)
+	public static void previousRoom() throws RoomChangedException{
+            System.out.println("start: currentRoom.vectorid:"+currentRoom.vectorid);
+		if (currentRoom.vectorid !=0)
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid-1)){
+                            org.dolphin.game.Game.thegame.bsInput.refresh();
 				currentRoom=rooms.get(i);
-		}}
+                                currentRoom.setvisible();
+
+                                System.out.println("set it: currentRoom.vectorid:"+currentRoom.vectorid);
+		throw new RoomChangedException();
+                        }}
 	}
 
 	/*

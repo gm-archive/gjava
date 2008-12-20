@@ -13,6 +13,7 @@ import org.dolphin.game.api.types.Variable;
 import org.dolphin.game.api.types.Boolean;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.Math;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 
 
 /**
@@ -82,7 +83,10 @@ public class Actor extends Tile {
         sprite = spr;
         self=this;
         name=Object_name.toString();
+        try{
         Create();
+        } catch(RoomChangedException e){
+        }
     }
 
     /*Creates a new actor using primitives*/
@@ -95,7 +99,10 @@ public class Actor extends Tile {
         sprite = spr;
         self = this;
         name=Object_name;
+         try{
         Create();
+        } catch(RoomChangedException e){
+        }
     }
 
    /* public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
@@ -108,14 +115,14 @@ public class Actor extends Tile {
     /**
      * Override with actor create event
      */
-    public void Create() {
+    public void Create() throws RoomChangedException {
         
     }
 
     /**
      * Override with actor create event
      */
-    public void Destroy() {
+    public void Destroy() throws RoomChangedException {
         //return null;
     }
 
@@ -126,7 +133,7 @@ public class Actor extends Tile {
     }
 
     
-    public void Alarm() {
+    public void Alarm() throws RoomChangedException {
         for (int i = 0; i < alarm.length; i++) {
             int variable = alarm[i];
             if (alarm[i]>0){
@@ -143,50 +150,50 @@ public class Actor extends Tile {
     /**
      * Override with Alarm event code
      */
-    public void performAlarm(int alarmid){}
+    public void performAlarm(int alarmid) throws RoomChangedException{}
 
     /**
      * Override with actor Step event
      */
-    public void Step() throws DestroyException {
+    public void Step() throws DestroyException,RoomChangedException {
     }
 
     /**
      * Override with actor End Step event
      */
-    public void EndStep() throws DestroyException {
+    public void EndStep() throws DestroyException,RoomChangedException {
     }
 
     /**
      * Override with actor Key Pressed event
      * @param keycode 
      */
-    public void KeyPressed(int keycode) throws DestroyException {
+    public void KeyPressed(int keycode) throws DestroyException,RoomChangedException {
     }
 
     /**
      * Override with actor Key Released event
      * @param keycode 
      */
-    public void KeyReleased(int keycode) throws DestroyException {
+    public void KeyReleased(int keycode) throws DestroyException,RoomChangedException {
     }
 
     /**
      * Override with actor Keyboard event
      */
-    public void Keyboard() {
+    public void Keyboard() throws RoomChangedException {
     }
 
     /**
      * Override with actor mouse event
      */
-    public void Mouse() {
+    public void Mouse() throws RoomChangedException {
     }
 
-    public void mouse_Pressed(int keycode, int xx, int yy) {
+    public void mouse_Pressed(int keycode, int xx, int yy) throws RoomChangedException {
     }
 
-    public void Collision(java.lang.String name)
+    public void Collision(java.lang.String name) throws RoomChangedException
     {
 
     }
@@ -194,7 +201,7 @@ public class Actor extends Tile {
     /**
      * check collision and call the collision event
      */
-    public void checkCollision() {
+    public void checkCollision()throws RoomChangedException {
        // double start = System.currentTimeMillis();
         Rectangle thisbounds = getBounds();
         
@@ -228,7 +235,7 @@ public class Actor extends Tile {
         }
     }
 
-    public void callEvents() {
+    public void callEvents() throws RoomChangedException {
         try {
             BeginStep();
             Step();
@@ -288,7 +295,7 @@ public class Actor extends Tile {
      * @param g 
      */
     @Override
-    public void Draw_event(Graphics g) {
+    public void Draw_event(Graphics g) throws RoomChangedException {
         
         if (sprite != null) {
             sprite_index += sprite_speed;

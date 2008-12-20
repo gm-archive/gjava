@@ -297,6 +297,7 @@ public class DolphinWriter {
                 print(actor, "import org.dolphin.game.api.types.String;");
                 print(actor, "import org.dolphin.game.api.types.Boolean;");
                 print(actor, "import org.dolphin.game.api.types.*;");
+                print(actor, "import org.dolphin.game.api.exceptions.RoomChangedException;");
                 print(actor, "import java.awt.Graphics2D;");
                 print(actor, "");
                 print(actor, "public class " + name + " extends Actor {");
@@ -333,7 +334,7 @@ public class DolphinWriter {
                     } /*
                      * Alarm Event
                      */ else if (j == 2) {
-                        print(actor, "   public void performAlarm(int alarmid) {");
+                        print(actor, "   public void performAlarm(int alarmid) throws RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
                             writeAlarmEvent(actor, ev);
                         }
@@ -345,11 +346,11 @@ public class DolphinWriter {
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             if (ev.id == 1) {
-                                print(actor, "   public void BeginStep() throws DestroyException {");
+                                print(actor, "   public void BeginStep() throws DestroyException,RoomChangedException {");
                             } else if (ev.id == 0) {
-                                print(actor, "   public void Step() throws DestroyException {");
+                                print(actor, "   public void Step() throws DestroyException,RoomChangedException {");
                             } else if (ev.id == 2) {
-                                print(actor, "   public void EndStep() throws DestroyException {");
+                                print(actor, "   public void EndStep() throws DestroyException,RoomChangedException {");
                             }
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                             print(actor, "    }");
@@ -357,7 +358,7 @@ public class DolphinWriter {
                     } /*
                      * Collision Event
                      */ else if (j == 4) {
-                        print(actor, "   public void Collision(java.lang.String name){");
+                        print(actor, "   public void Collision(java.lang.String name) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "   if(name.equals(\"" + ev.other.get().getName() + "\")){");
@@ -368,7 +369,7 @@ public class DolphinWriter {
                     } /*
                      * Keyboard Event
                      */ else if (j == 5) {
-                        print(actor, "   public void Keyboard() {");
+                        print(actor, "   public void Keyboard() throws RoomChangedException {");
 //
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
@@ -396,7 +397,7 @@ public class DolphinWriter {
                     } /*
                      * Draw Event
                      */ else if (j == 8) {
-                        print(actor, "    public void Draw_event(Graphics2D g){");
+                        print(actor, "    public void Draw_event(Graphics2D g) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
@@ -405,7 +406,7 @@ public class DolphinWriter {
                     } /*
                      * Key press Event
                      */ else if (j == 9) {
-                        print(actor, "   public void KeyPressed(int keycode) throws DestroyException {");
+                        print(actor, "   public void KeyPressed(int keycode) throws DestroyException, RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "     if (keycode==" + ev.id + "){");
@@ -417,7 +418,7 @@ public class DolphinWriter {
                      * Key release Event
                      */ else if (j == 10) {
 
-                        print(actor, "   public void KeyReleased(int keycode) throws DestroyException {");
+                        print(actor, "   public void KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "     if (keycode==" + ev.id + "){");
@@ -448,14 +449,14 @@ public class DolphinWriter {
 
     public void writeCreateEvent(BufferedWriter actor, Event ev) throws IOException {
         pc.event = "Create Event";
-        print(actor, "  public void Create() {");
+        print(actor, "  public void Create() throws RoomChangedException {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }
 
     public void writeDestroyEvent(BufferedWriter actor, Event ev) throws IOException {
         pc.event = "Destroy Event";
-        print(actor, "  public void Destroy() {");
+        print(actor, "  public void Destroy() throws RoomChangedException {");
         print(actor, " " + parseGCL(getActionsCode(ev)));
         print(actor, " }");
     }

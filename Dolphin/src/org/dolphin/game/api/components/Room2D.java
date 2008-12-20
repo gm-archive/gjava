@@ -15,8 +15,9 @@ import org.dolphin.game.Scripts;
 import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.exceptions.DestroyException;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.Variable;
-public class Room2D extends Scripts implements KeyListener, MouseListener{
+public class Room2D extends Scripts {
 
 
 /** The container for the test */
@@ -134,14 +135,14 @@ public void setvisible(){
     SortDepth();
 Frame.setSize(width+5, height+25);
     Frame.setTitle(Caption); // set room caption
-    Frame.addKeyListener(this);
+    //Frame.addKeyListener(this);
 Game.game.getGame().setFPS((int)speed);
     // now execute room creation code
     Creation_code();
 }
 
 public void setinvisible(){
-Frame.removeKeyListener(this);
+//Frame.removeKeyListener(this);
 }
 
 
@@ -207,10 +208,12 @@ public void init() {
  */
 public void update()  {
    // int thesize = instances.size();
+    try{
    for (int i = 0; i < instances.size(); i++) {
        if (instances.elementAt(i) !=null)
         ((Actor)instances.elementAt(i)).callEvents();
     }
+    }catch(RoomChangedException rce){}
    //updateCaption();
 }
 
@@ -279,7 +282,7 @@ public void render(Graphics2D g2d2)  {
 
     
     // Draw instances and tiles
-    int thesize=depth.size();
+    try{
     for (int i = 0; i < depth.size(); i++) {
         
         if (((Tile)depth.elementAt(i)).visible){
@@ -288,7 +291,7 @@ public void render(Graphics2D g2d2)  {
         }
         
     }
-
+    }catch(RoomChangedException rce){}
     
 
     //draw foregrounds
@@ -306,41 +309,5 @@ public void render(Graphics2D g2d2)  {
    
 }
 
-    public void keyTyped(KeyEvent e) {
-        //key typed not used
-    }
-
-    public void keyPressed(KeyEvent e) {
-        for (int i = 0; i < instances.size(); i++) {
-            Actor actor = instances.get(i);
-            try{
-            actor.KeyPressed(e.getKeyCode());
-            }catch(DestroyException d){}
-        }
-        System.out.println("keypress");
-    }
-
-    public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 }

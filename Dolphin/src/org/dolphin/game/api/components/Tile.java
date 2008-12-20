@@ -8,6 +8,7 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 
 import org.dolphin.game.Scripts;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 
 public class Tile extends Scripts implements Comparable {
 	/**
@@ -105,7 +106,7 @@ public class Tile extends Scripts implements Comparable {
 	 * 
 	 * @param g
 	 */
-	public void Draw_event(Graphics g) {
+	public void Draw_event(Graphics g) throws RoomChangedException {
 		g.drawImage(get_image(), (int) x, (int) y, null);
                 
 	}
