@@ -12,7 +12,7 @@ import org.dolphin.game.api.types.Variable;
  * @author TGMG
  */
 public class Constants extends Variable {
-protected static Actor self,other;
+protected Actor self,other;
     
 
     public Object getBm_add() {

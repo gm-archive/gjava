@@ -665,14 +665,14 @@ return new Variable();
  * 
  */
 
-public static Variable motion_set(Variable dir, Variable speed)
+public /*static*/ Variable motion_set(Variable dir, Variable speed)
 {
     self.setDirection(dir);
     self.setSpeed(speed);
 return new Variable();
 }
 
-public static Variable motion_add(Variable dir, Variable speed)
+public /*static*/ Variable motion_add(Variable dir, Variable speed)
 {
    // self.hspeed += -(speed.getDouble());
    // self.vspeed += speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
@@ -682,7 +682,7 @@ public static Variable motion_add(Variable dir, Variable speed)
 return new Variable();
 }
 
-public static Variable place_free(Variable x, Variable y)
+public /*static*/ Variable place_free(Variable x, Variable y)
 {
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
@@ -704,7 +704,7 @@ public static Variable place_free(Variable x, Variable y)
 return new Boolean(true);
 }
 
-public static Variable place_empty(Variable x, Variable y)
+public /*static*/ Variable place_empty(Variable x, Variable y)
 {
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
@@ -729,7 +729,7 @@ public static Variable place_meeting(Variable x, Variable y, Variable obj)
 return new Variable();
 }
 
-public static Variable place_snapped(Variable hsnap, Variable vsnap)
+public /*static*/ Variable place_snapped(Variable hsnap, Variable vsnap)
 {
     if ((self.x % hsnap.getDouble() ==0) && (self.y % vsnap.getDouble()==0) )
         return new Boolean(true);
@@ -737,7 +737,7 @@ public static Variable place_snapped(Variable hsnap, Variable vsnap)
 return new Variable();
 }
 
-public static Variable move_random(Variable hsnap, Variable vsnap)
+public /*static*/ Variable move_random(Variable hsnap, Variable vsnap)
 {
     if (hsnap.equals(new Integer(0)).getBoolean())
         self.x=round(random(getRoom_width())).getDouble();
@@ -754,7 +754,7 @@ return new Variable();
  * 
  * @author hanson
  */
-public static Variable move_snap(Variable hsnap, Variable vsnap)
+public /*static*/ Variable move_snap(Variable hsnap, Variable vsnap)
 {
     self.x = round(new Double(self.x/hsnap.getDouble())).getDouble()  * hsnap.getDouble();
 self.y = round(new Double(self.y/vsnap.getDouble())).getDouble() * vsnap.getDouble();		
@@ -764,7 +764,7 @@ return new Variable();
 /*
  * TODO: Fix this function
  */
-public static Variable move_towards_point(Variable xto, Variable yto, Variable sp)
+public /*static*/ Variable move_towards_point(Variable xto, Variable yto, Variable sp)
 {
    double dist=sqrt(new Double((xto.getDouble()-self.x)*(xto.getDouble()-self.x)+(yto.getDouble()-self.y)*(yto.getDouble()-self.y))).getDouble();
    self.hspeed=((xto.getDouble()-self.x)/dist)*sp.getDouble();
@@ -802,7 +802,7 @@ public static Variable move_bounce_all(Variable advanced)
 return new Variable();
 }
 
-public static Variable move_wrap(Variable hor, Variable vert, Variable margin)
+public /*static*/ Variable move_wrap(Variable hor, Variable vert, Variable margin)
 {
     if(hor.getBoolean()==true){
       if((self.x<-margin.getDouble()) || (self.x>getRoom_width().getDouble()+margin.getDouble())){
@@ -817,14 +817,14 @@ public static Variable move_wrap(Variable hor, Variable vert, Variable margin)
 return new Variable();
 }
 
-public static Variable distance_to_point(Variable x, Variable y)
+public /*static*/ Variable distance_to_point(Variable x, Variable y)
 {
     double xd = x.getDouble()-self.x;
     double yd = y.getDouble()-self.y;
     return sqrt(new Double((xd)*(xd)+(yd)*(yd)));
 }
 
-public static Variable distance_to_Variable(Variable obj)
+public /*static*/ Variable distance_to_object(Variable obj)
 {
    // Game.currentRoom.instances
     /*double smalldist =-1 ;//= (Actor) Game.currentRoom.instances.elementAt(0);
@@ -1099,7 +1099,7 @@ return new Variable();
  * Deactivating instances
  * 
  */
-public static Variable instance_deactivate_all(Variable notme)
+public /*static*/ Variable instance_deactivate_all(Variable notme)
 {
     //Game.currentRoom.instances
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {

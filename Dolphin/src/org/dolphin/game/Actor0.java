@@ -46,7 +46,7 @@ public class Actor0 extends Actor {
 
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
-        
+        System.out.println("id:"+self.instance_id);
         if (keycode==67){
             self=this;
             System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);

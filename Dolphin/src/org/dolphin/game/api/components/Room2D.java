@@ -206,8 +206,8 @@ public void init() {
  * Update method. Called every step should not be overridden
  */
 public void update()  {
-    int thesize = instances.size();
-   for (int i = 0; i < thesize; i++) {
+   // int thesize = instances.size();
+   for (int i = 0; i < instances.size(); i++) {
        if (instances.elementAt(i) !=null)
         ((Actor)instances.elementAt(i)).callEvents();
     }

@@ -35,7 +35,8 @@ public class Actor extends Tile {
     protected int posinvector = -1;
     //public double id=1;
     public java.lang.String name;
-
+    public int sprite_index=0,image_xscale=1,image_yscale=1;
+    public double sprite_speed=0;
 
     final Integer _0 = new Integer(0);
     
@@ -92,7 +93,7 @@ public class Actor extends Tile {
         depth = new Integer((int) Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
-        self = this;
+        //self = this;
         name=Object_name;
         Create();
     }
@@ -196,7 +197,7 @@ public class Actor extends Tile {
     public void checkCollision() {
        // double start = System.currentTimeMillis();
         Rectangle thisbounds = getBounds();
-        System.out.println("size collision:"+Game.currentRoom.instances.size());
+        
         for (int i = 0; i < Game.currentRoom.instances.size(); i++)
         {
         Actor G_Java_a = ((Actor)Game.currentRoom.instances.elementAt(i));
@@ -217,8 +218,11 @@ public class Actor extends Tile {
      */
     public Rectangle getBounds() {
         if (sprite != null) {
-            //rectangle(x,y,width,height)
-            return new Rectangle((int) (sprite.BBLeft + x - sprite.sprite_xoffset), (int) (sprite.BBTop + y - sprite.sprite_yoffset),+(sprite.BBRight - sprite.BBLeft), +(sprite.BBBottom - sprite.BBTop));
+            if (image_xscale!=1 || image_yscale!=1)
+            return new Rectangle((int) ((sprite.BBLeft*image_xscale) + x - sprite.sprite_xoffset), (int) ((sprite.BBTop*image_yscale) + y - sprite.sprite_yoffset),+((sprite.BBRight*image_xscale) - sprite.BBLeft*image_xscale), +((sprite.BBBottom*image_yscale) - (sprite.BBTop*image_yscale)));
+            else
+             return new Rectangle((int) ((sprite.BBLeft) + x - sprite.sprite_xoffset), (int) ((sprite.BBTop) + y - sprite.sprite_yoffset),+((sprite.BBRight) - sprite.BBLeft), +((sprite.BBBottom) - (sprite.BBTop)));
+
         } else {
             return new Rectangle(0, 0, 0, 0);
         }
@@ -277,7 +281,7 @@ public class Actor extends Tile {
     }
 
 
-    int sprite_index=0;
+    
 
     /**
      * Override with the Draw event of the actor but don't call this method!
@@ -287,10 +291,10 @@ public class Actor extends Tile {
     public void Draw_event(Graphics g) {
         
         if (sprite != null) {
-            sprite_index += sprite.image_speed;
+            sprite_index += sprite_speed;
 
         while (sprite_index >= sprite.subimages) sprite_index -= sprite.subimages;
-            g.drawImage(sprite.imshow(sprite_index), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,null);
+            g.drawImage(sprite.imshow(sprite_index), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,sprite.sprite_width*image_xscale,sprite.sprite_height*image_yscale,null);
 
         } else {
             //System.out.println("sprite is null");
@@ -423,21 +427,21 @@ public class Actor extends Tile {
         if (sprite == null) {
             return new Integer(0);
         }
-        return new Double(sprite.image_speed);
+        return new Double(sprite_speed);
     }
 
     public Variable getImage_xscale() {
         if (sprite == null) {
-            return new Integer(0);
+            return new Integer(1);
         }
-        return new Double(sprite.image_xscale);
+        return new Double(image_xscale);
     }
 
     public Variable getImage_yscale() {
         if (sprite == null) {
-            return new Integer(0);
+            return new Integer(1);
         }
-        return new Double(sprite.image_yscale);
+        return new Double(image_yscale);
     }
 
     public Variable getMask_index() {
@@ -528,7 +532,7 @@ public class Actor extends Tile {
         if (sprite == null) {
             return new Integer(-1);
         }
-        return new Integer(sprite.sprite_height);
+        return new Integer(sprite.sprite_height*image_yscale);
     }
 
     public Variable getSprite_index() {
@@ -542,7 +546,7 @@ public class Actor extends Tile {
         if (sprite == null) {
             return new Integer(-1);
         }
-        return new Integer(sprite.sprite_width);
+        return new Integer(sprite.sprite_width*image_xscale);
     }
 
     public Variable getSprite_xoffset() {
@@ -709,15 +713,17 @@ public class Actor extends Tile {
     }
 
     public void setImage_speed(Variable image_speed) {
-        sprite.image_speed = image_speed.getDouble();
+        sprite_speed = image_speed.getDouble();
     }
 
     public void setImage_xscale(Variable image_xscale) {
-        sprite.xscale(image_xscale.getDouble());
+        this.image_xscale= image_xscale.getInt();
+        
     }
 
     public void setImage_yscale(Variable image_yscale) {
-        sprite.yscale(image_yscale.getDouble());
+        this.image_yscale= image_yscale.getInt();
+        
     }
 
     public void setObject_index(Variable object_index) {
