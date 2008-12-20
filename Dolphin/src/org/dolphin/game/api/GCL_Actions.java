@@ -165,8 +165,9 @@ public /*static*/ Variable action_create_object_random(Variable... obj)
 return new Variable();
 }
 
-public /*static*/ Variable action_current_room(Variable... obj)
+public /*static*/ Variable action_current_room(Variable... obj) throws RoomChangedException
 {
+    Game.currentRoom();
 return new Variable();
 }
 
@@ -434,7 +435,7 @@ return new Variable();
 public /*static*/ Variable action_move(Variable dirs, Variable speed)
 {
     int no = round(random(string_count(new String("1"),dirs))).getInt()+1;
-    System.out.println("no"+no);
+    
     int cur=0;
     self.setSpeed(speed);
     for (int subi = 1; subi <= 9; subi++)

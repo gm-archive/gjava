@@ -182,6 +182,17 @@ public class BasicGame extends Game {
                 }
 	}
 
+        /*
+         * Restart the current room
+         */
+        public static void currentRoom() throws RoomChangedException{
+            org.dolphin.game.Game.thegame.bsInput.refresh();
+                                currentRoom.setinvisible();
+				currentRoom=rooms.get(currentRoom.vectorid);
+                                currentRoom.setvisible();
+		throw new RoomChangedException();
+        }
+
 	/*
 	 * The main method used for calling the game
 	 */
