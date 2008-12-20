@@ -193,6 +193,22 @@ public class BasicGame extends Game {
 		throw new RoomChangedException();
         }
 
+        public static void certainRoom(int roomid) throws RoomChangedException{
+            for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).id==roomid){
+                            org.dolphin.game.Game.thegame.bsInput.refresh();
+                                currentRoom.setinvisible();
+				currentRoom=rooms.get(i);
+                                currentRoom.setvisible();
+		throw new RoomChangedException();
+                        }
+        }
+            //room was not changed
+            JOptionPane.showMessageDialog(frame,"A Room with that id does not exist :(");
+
+
+        }
+
 	/*
 	 * The main method used for calling the game
 	 */

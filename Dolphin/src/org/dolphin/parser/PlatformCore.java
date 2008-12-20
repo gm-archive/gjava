@@ -652,6 +652,14 @@ public class PlatformCore  {
         {
         return "new GMResource("+variable+".class)";
         }
+        
+        /*check if it is a room*/
+        if (DolphinWriter.gmFile.rooms.get(variable)!=null)
+        {
+        return "new Integer("+DolphinWriter.gmFile.rooms.get(variable).getId()+")";
+        }
+
+
         if (stringResources.contains(variable))
         {
         return "new String(\""+variable+"\")";

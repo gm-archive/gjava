@@ -553,7 +553,7 @@ public class DolphinWriter {
                     } else if (arg.kind == arg.ARG_PATH && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_ROOM && arg.getRes() != null) {
-                        code += "\"" + arg.getRes().get().getName() + "\"";
+                        code += arg.getRes().get().getName();
                     } else if (arg.kind == arg.ARG_SCRIPT && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_SOUND && arg.getRes() != null) {

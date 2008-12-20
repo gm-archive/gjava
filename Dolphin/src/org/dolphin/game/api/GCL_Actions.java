@@ -25,8 +25,9 @@ import org.dolphin.game.api.types.Boolean;
  */
 public class GCL_Actions extends GCL {
 
-public /*static*/ Variable action_another_room(Variable... obj)
+public /*static*/ Variable action_another_room(Variable... obj) throws RoomChangedException
 {
+    Game.certainRoom(obj[0].getInt());
 return new Variable();
 }
 
