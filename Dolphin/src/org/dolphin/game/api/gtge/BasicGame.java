@@ -153,6 +153,7 @@ public class BasicGame extends Game {
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid+1)){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
+                            currentRoom.setinvisible();
 				currentRoom=rooms.get(i);
                                 currentRoom.setvisible();
                                 System.out.println("set it:currentRoom.vectorid:"+currentRoom.vectorid);
@@ -169,6 +170,7 @@ public class BasicGame extends Game {
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid-1)){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
+                                currentRoom.setinvisible();
 				currentRoom=rooms.get(i);
                                 currentRoom.setvisible();
 

@@ -124,25 +124,34 @@ public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backco
     this.Caption = caption;
     
     this.persistent = persistent;
-    this.id= id;    
+    this.id= id;
+
 }
 
 public void setvisible(){
-    //first create all objects and their create events
+    Game.game.getGame().setFPS((int)speed);
+    Frame.setTitle(Caption); // set room caption
+    Frame.setSize(width+5, height+25);
+
+    if(instances.size()>0){
+    //persisten and going back to this room
+    } else{
+        //first create all objects and their create events
     setupScene();
     depth.addAll(instances);
     depth.addAll(tiles);
     SortDepth();
-Frame.setSize(width+5, height+25);
-    Frame.setTitle(Caption); // set room caption
-    //Frame.addKeyListener(this);
-Game.game.getGame().setFPS((int)speed);
     // now execute room creation code
     Creation_code();
+    }
+    
 }
 
 public void setinvisible(){
-//Frame.removeKeyListener(this);
+    if(!persistent){
+instances = new Vector<Actor>();
+depth=new Vector<Tile>();
+    }
 }
 
 
