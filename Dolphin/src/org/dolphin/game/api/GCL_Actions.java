@@ -665,6 +665,7 @@ return new Variable();
 
 public /*static*/ Variable action_set_alarm(Variable... obj)
 {
+    self.alarm[obj[1].getInt()]=obj[0].getInt();
 return new Variable();
 }
 
