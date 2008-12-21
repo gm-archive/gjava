@@ -41,6 +41,7 @@ import sun.applet.Main;
 
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
+import org.dolphin.game.api.types.GMResource;
 
 /**
  * This class is valid GCL, don't use java code here
@@ -726,9 +727,33 @@ public /*static*/ Variable place_empty(Variable x, Variable y)
 return Boolean.TRUE;
 }
 
-public static Variable place_meeting(Variable x, Variable y, Variable obj)
+public Variable place_meeting(Variable x, Variable y, Variable obj)
 {
-return new Variable();
+    java.lang.String name="";
+    if (obj instanceof GMResource){
+    name=((GMResource)obj).theclass.getName();
+    } else{
+    name=obj.getClass().getName();
+    }
+     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+           if (Game.currentRoom.instances.elementAt(i) !=null){
+               Actor a = (Game.currentRoom.instances.elementAt(i));
+               System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
+               if (a.getClass().getName().equals(name)) {
+                        System.out.println("correct name");
+                    if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+
+                        if (a.instance_id == self.instance_id) {
+                           // System.out.println("collided with self");
+                        } else {
+
+                            return Boolean.TRUE;
+                        }
+                    }
+                }
+           }
+        }
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable place_snapped(Variable hsnap, Variable vsnap)

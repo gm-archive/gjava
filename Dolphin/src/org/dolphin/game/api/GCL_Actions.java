@@ -385,7 +385,12 @@ return new Variable();
 
 public /*static*/ Variable action_if_object(Variable... obj)
 {
-return new Variable();
+    if (obj.length>3 && obj[3].getBoolean()){
+        obj[1].setadd(self.getX());
+        obj[2].setadd(self.getY());
+    }
+    return place_meeting(obj[1],obj[2],obj[0]);
+//return new Variable();
 }
 /*if previous room exists*/
 public /*static*/ Variable action_if_previous_room(Variable... obj)
