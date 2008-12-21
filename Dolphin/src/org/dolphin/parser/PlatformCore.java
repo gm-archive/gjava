@@ -665,7 +665,38 @@ public class PlatformCore  {
     public String methodstatement(String m, String retvalue, String name, String st, String args) {
         return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
-    
+
+
+/**
+#
+      * Count number of occurrences of arg2 in arg1.
+#
+      * @param arg1
+#
+      * @param arg2
+#
+      * @return int
+#
+      */
+
+     public static int countOccurrences(String arg1, String arg2) {
+
+          int count = 0;
+
+          int index = 0;
+
+          while ((index = arg1.indexOf(arg2, index)) != -1) {
+
+               index++;
+
+               count++;
+
+          }
+
+          return count;
+
+     }
+
     /**
      * Variable, converts "" to (new String("")) etc
      * @param variable
@@ -688,23 +719,30 @@ public class PlatformCore  {
             return "(new Double(PI))";
         }
         
-        if(variable.contains("all.")) {
-            instance = "(new All())";
+        /*
+        
+        */
+        if(variable.contains("self.")) {
+            instance = "self";
         }
         else if(variable.contains("other.")) {
             instance = "other";
         }
         else if(variable.contains("noone.")) {
-            instance = "(new Object())";
-        }
-        else if(variable.contains("self.")) {
-            instance = "self";
+            instance = "noone";
         }
         else if(variable.contains("global.")) {
             instance = "Global";
         }
+        if(variable.contains("all.")) {
+            instance = "Game.currentRoom.getfirst()";
+        }
+        else if (countOccurrences(variable,".")>1){
+            //mopre than one .
+            System.out.println("more than one . variable!");
+        }
         else if(variable.contains(".")) {
-            instance = "(new All(new " + variable + "()))";
+            instance = "Game.currentRoom.getActorwithname("+variable.substring(0, variable.indexOf("."))+".class)";
         }
         else if(variable.contains("(")) {
             instance = "()";

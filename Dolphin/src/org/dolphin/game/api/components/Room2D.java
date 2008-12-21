@@ -21,6 +21,7 @@ import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.exceptions.RoomChangedException;
+import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
 public class Room2D extends Scripts implements Serializable {
 private static final long serialVersionUID = 1L;
@@ -332,7 +333,40 @@ public void render(Graphics2D g2d2)  {
 
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         //none
+//        for (int i = 0; i < getActorwithname("").length; i++)
+//            getActorwithname("")[i].getX();
+            
+        
+        
     }
+
+    /*
+     * This method is used for getting all. variables
+     */
+    public Actor getfirst(){
+        if(instances.firstElement()!=null)
+    return instances.firstElement();
+        else
+            return noone;
+    }
+
+    /*
+     * This method is used for getting instance. variables
+     */
+    public Actor getActorwithname(Class name){
+        
+    for (int i = 0; i < instances.size(); i++) {
+           if (instances.elementAt(i) !=null){
+               Actor a = (Game.currentRoom.instances.elementAt(i));
+
+               if (a.getClass().getName().equals(name.getName())) {
+                     return a;
+                }
+           }
+        }
+        return noone;
+    }
+
 
     
 }

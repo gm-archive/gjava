@@ -61,7 +61,9 @@ public class Actor0 extends Actor {
         //setTimeline_index(new timeline0());
         action_if_empty(new Integer(0),new Integer(0),new Integer(0));
        // action_load_game();
-        System.out.println("x"+x);
+        
+        //Game.currentRoom.getActorwithname(Actor0.class).setX(new Integer(1));
+        System.out.println("x"+Game.currentRoom.getActorwithname(Actor0.class).x);
         if (keycode==67){
             self=this;
             System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);

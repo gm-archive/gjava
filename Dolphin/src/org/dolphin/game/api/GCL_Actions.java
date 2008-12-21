@@ -308,7 +308,7 @@ return new Variable();
 
 public /*static*/ Variable action_if(Variable... obj)
 {
-return new Variable();
+return obj[0];
 }
 
 public /*static*/ Variable action_if_aligned(Variable... obj)

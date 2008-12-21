@@ -234,9 +234,12 @@ private static final long serialVersionUID = 1L;
         if (G_Java_a.getBounds().intersects(thisbounds)){
             if (G_Java_a.getSolid().getBoolean()){x=xprevious;y=yprevious;}
                 //System.out.println("Collided");
+            other=G_Java_a;
             Collision(G_Java_a.name);
+
         }
         }
+        other=noone;
         //double end = System.currentTimeMillis();
         //System.out.println("Time taken:"+(end-start));
     }

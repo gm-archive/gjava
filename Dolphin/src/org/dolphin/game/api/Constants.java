@@ -12,8 +12,8 @@ import org.dolphin.game.api.types.Variable;
  * @author TGMG
  */
 public class Constants extends Variable {
-protected Actor self,other;
-    
+protected Actor self;
+public static Actor noone=new Actor(),other=noone;
 
     public Object getBm_add() {
         return new Variable(); //  new Variable(); //  bm_add;
