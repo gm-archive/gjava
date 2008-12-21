@@ -4,6 +4,7 @@ import com.golden.gamedev.util.ImageUtil;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import java.io.Serializable;
 import org.dolphin.game.api.types.Variable;
 
 
@@ -14,10 +15,11 @@ import org.dolphin.game.api.types.Variable;
  * @author G-Java development team
  * @version 1.0
  */
-public class Sprite extends Variable {
+public class Sprite extends Variable implements Serializable {
+private static final long serialVersionUID = 1L;
 
     String filename;
-    BufferedImage[] spritename;
+    transient BufferedImage[] spritename;
    // public int Transparent;
     public int sprite_width;
     public int sprite_height;

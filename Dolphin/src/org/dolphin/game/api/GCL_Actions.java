@@ -5,9 +5,19 @@
 
 package org.dolphin.game.api;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Game_Information;
+import org.dolphin.game.api.components.SaveFile;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
@@ -318,7 +328,15 @@ return new Variable();
 
 public /*static*/ Variable action_if_empty(Variable... obj)
 {
-return new Variable();
+    if(obj[2].getInt() == 0){
+        System.out.println("action_if_empty Solid");
+    return place_free(obj[0],obj[1]);
+    }
+    else{
+        System.out.println("action_if_empty All");
+    return place_empty(obj[0],obj[1]);
+    }
+
 }
 
 public /*static*/ Variable action_if_health(Variable... obj)
@@ -426,7 +444,30 @@ return new Variable();
 
 public /*static*/ Variable action_load_game(Variable... obj)
 {
-return new Variable();
+        //"C:\\\\Dolphin_save.sav"
+        FileInputStream istream = null;
+        try {
+            istream = new FileInputStream("C:\\\\Dolphin_save.sav");
+            ObjectInputStream p = new ObjectInputStream(istream);
+
+            SaveFile sf = (SaveFile)p.readObject();
+            Game.rooms=sf.rooms;
+            Game.currentRoom=sf.currentRoom;
+            System.out.println("size after load:"+Game.currentRoom.instances.size());
+
+            istream.close();
+
+            return new Variable();
+        } catch (Exception ex) {
+            Logger.getLogger(GCL_Actions.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                istream.close();
+            } catch (IOException ex) {
+                Logger.getLogger(GCL_Actions.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_message(Variable obj)
@@ -663,6 +704,27 @@ return new Variable();
 
 public /*static*/ Variable action_save_game(Variable... obj)
 {
+    try
+      {
+         /* Scanning for saving file */
+
+         File game = new File( "C:\\\\Dolphin_save.sav" );
+         FileOutputStream ostream = new FileOutputStream( game );
+         ObjectOutputStream p = new ObjectOutputStream(ostream);
+         SaveFile sf = new SaveFile();
+         sf.rooms=Game.rooms;
+         sf.currentRoom=Game.currentRoom;
+          p.writeObject( sf );
+
+         p.flush();
+         ostream.close();
+
+
+      } catch (Exception e) {
+         System.out.println( e.getMessage() );
+         e.printStackTrace();
+      }
+
 return new Variable();
 }
 

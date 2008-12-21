@@ -1,6 +1,11 @@
 package org.dolphin.game.api.components;
 
 import java.awt.*;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -21,7 +26,8 @@ import org.dolphin.game.api.exceptions.RoomChangedException;
  * @author G-Java development team
  * @version 1.0
  */
-public class Actor extends Tile {
+public class Actor extends Tile implements Serializable {
+private static final long serialVersionUID = 1L;
 
    public Hashtable variables = new Hashtable();
     public Sprite sprite;
@@ -948,4 +954,5 @@ public class Actor extends Tile {
     public void setAlarm(int id,Variable v){
     alarm[id]=v.getInt();
     }
+
 }

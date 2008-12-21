@@ -1,11 +1,14 @@
 package org.dolphin.game.api.types;
 
+import java.io.Serializable;
+
 /**
  * The Basic Object Class
  * 
  * @author TGMG
  */
-public class Variable implements Cloneable, Comparable {
+public class Variable implements Cloneable, Comparable, Serializable {
+private static final long serialVersionUID = 1L;
 
 	/*
 	 * This method is used for more complex gcl functions, not needed yet

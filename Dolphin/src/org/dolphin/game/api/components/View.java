@@ -5,11 +5,14 @@
 
 package org.dolphin.game.api.components;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ali
  */
-public class View {
+public class View implements Serializable {
+private static final long serialVersionUID = 1L;
 
     int x,y,width,height,portx,porty,portwidth,portheight;
     boolean visible;

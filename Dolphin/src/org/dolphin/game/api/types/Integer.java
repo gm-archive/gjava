@@ -4,12 +4,15 @@
  */
 package org.dolphin.game.api.types;
 
+import java.io.Serializable;
+
 /**
  * The Integer class wraps a value of the primitive type int  in an object. 
  * In addition, this class provides several methods for converting an int to a String and a String to an int, as well as other constants and methods useful when dealing with an int.
  * @author TGMG
  */
-public class Integer extends Variable {
+public class Integer extends Variable implements Serializable {
+private static final long serialVersionUID = 1L;
 
     int i;
 

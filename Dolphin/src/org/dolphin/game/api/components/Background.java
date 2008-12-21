@@ -5,8 +5,10 @@ import java.awt.image.BufferedImage;
 import org.dolphin.game.api.types.Variable;
 
 import com.golden.gamedev.util.ImageUtil;
+import java.io.Serializable;
 
-public class Background extends Variable {
+public class Background extends Variable implements Serializable {
+private static final long serialVersionUID = 1L;
 
 	public boolean background_visible,background_htiled,  background_vtiled,background_scale,background_foreground;
     public int background_x,  background_y,  background_width,  background_height,  background_xscale,  background_yscale,  background_hspeed,  background_vspeed,  background_blend,  background_alpha;

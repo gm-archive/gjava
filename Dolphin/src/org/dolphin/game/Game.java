@@ -1,6 +1,9 @@
 package org.dolphin.game;
 
 import java.awt.Dimension;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -13,13 +16,14 @@ import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.image.BufferedImage;
+import java.io.Externalizable;
+import java.io.Serializable;
 import javax.swing.UIManager;
 import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.components.Sprite;
 
-public class Game extends org.dolphin.game.api.gtge.BasicGame {
-        //to move to basicgame
-	
+public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externalizable {
+	private static final long serialVersionUID = 1L;
 
 	//test fields
         
@@ -121,4 +125,13 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
 		}
 
 	}
+
+    public void writeExternal(ObjectOutput out) throws IOException {
+
+       //no data
+    }
+
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        //no data
+    }
 }

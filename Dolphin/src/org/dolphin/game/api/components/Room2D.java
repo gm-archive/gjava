@@ -8,6 +8,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.util.Vector;
 
 import org.dolphin.game.Game;
@@ -17,12 +22,13 @@ import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.Variable;
-public class Room2D extends Scripts {
+public class Room2D extends Scripts implements Serializable {
+private static final long serialVersionUID = 1L;
 
 
 /** The container for the test */
 
-Frame Frame;
+//static Frame Frame;
 
 /**
  * All the instances in this room as a {@link Vector} object
@@ -83,7 +89,7 @@ public boolean persistent=false;
 /*The vector of background to draw in this room*/
 public Vector<Background> backgrounds = new Vector();
  
-public Graphics2D g2d=null,bg2d=null;
+transient public Graphics2D g2d=null,bg2d=null;
  
 /**
  * The background color for this room, using java color object
@@ -114,7 +120,7 @@ public Room2D(){
  *            The room backgound color
  */
 public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backcolor,boolean drawbackground,boolean persistent,double id) {
-   this.Frame=R;
+   //this.Frame=R;
     this.speed = fps;
     
     this.height = RoomH;
@@ -130,8 +136,8 @@ public Room2D(Frame R, String caption, long fps,int RoomW,int RoomH,Color backco
 
 public void setvisible(){
     Game.game.getGame().setFPS((int)speed);
-    Frame.setTitle(Caption); // set room caption
-    Frame.setSize(width+5, height+25);
+    Game.frame.setTitle(Caption); // set room caption
+    Game.frame.setSize(width+5, height+25);
 
     if(instances.size()>0){
     //persisten and going back to this room
@@ -167,7 +173,7 @@ public void updateCaption()
         cap += Variables.caption_lives.getString().add (Variables.lives.getString());
     if (Variables.show_health.getBoolean())
         cap += Variables.caption_health.getString().add (Variables.health.getString());
-    Frame.setTitle(Caption+" "+ cap);
+    Game.frame.setTitle(Caption+" "+ cap);
 }
 
 /*public int getFPS()
@@ -317,6 +323,16 @@ public void render(Graphics2D g2d2)  {
     }else{}
    
 }
+
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(views);
+        out.writeObject(this.backgrounds);
+        out.writeObject(this.tiles);
+    }
+
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        //none
+    }
 
     
 }

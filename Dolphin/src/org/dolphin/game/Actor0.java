@@ -14,6 +14,8 @@ import org.dolphin.game.api.exceptions.RoomChangedException;
 
 public class Actor0 extends Actor {
 
+    public Actor0(){}
+
 	public Actor0(double x,double y,double instance_id){
                 super("act_1", Game.thegame.loadSprite("wall"), true, true, 0, false);
         xstart = x;
@@ -27,7 +29,7 @@ public class Actor0 extends Actor {
     public void Create(){
     //action_move((new String("000001000")), (new Integer(6)));
         hspeed=1;
-        setTimeline_index(new timeline0());
+        //setTimeline_index(new timeline0());
         
     }
 
@@ -57,7 +59,8 @@ public class Actor0 extends Actor {
       //action_sound(new String("sound0"),Boolean.FALSE);
       //action_end_sound(new String("sound0"));
         //setTimeline_index(new timeline0());
-        action_end_game();
+        action_load_game();
+        System.out.println("x"+x);
         if (keycode==67){
             self=this;
             System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);

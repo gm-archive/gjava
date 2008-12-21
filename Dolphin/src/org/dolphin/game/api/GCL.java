@@ -686,42 +686,48 @@ public /*static*/ Variable place_free(Variable x, Variable y)
 {
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
-               Actor a = ((Actor)Game.currentRoom.instances.elementAt(i));
+               Actor a = (Game.currentRoom.instances.elementAt(i));
                if (a.getSolid().getBoolean()) {
-                    if (new Rectangle((int) self.x, (int) self.y, self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                   System.out.println("a.id:" + a.instance_id + " s.id" + self.instance_id);
+
+                    if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
                         //if not instance id
-                        if (a.getId().getDouble() == self.getId().getDouble()) {
-                            System.out.println("a.id:" + a.getId().getDouble() + " s.id" + self.getId().getDouble());
+                        if (a.instance_id == self.instance_id) {
+                            System.out.println("collided with self");
                         } else {
                             System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
                             System.out.println("" + a.getBounds().toString());
-                            return new Boolean(false);
+                            return Boolean.FALSE;
                         }
                     }
                 }
            }
         }
-return new Boolean(true);
+return Boolean.TRUE;
 }
 
 public /*static*/ Variable place_empty(Variable x, Variable y)
 {
-     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+   for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
-               Actor a = ((Actor)Game.currentRoom.instances.elementAt(i));
-                if (new Rectangle((int) self.x, (int) self.y, self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
-                    //if not instance id
-                    if (a.getId().getDouble() == self.getId().getDouble()) {
-                        System.out.println("a.id:" + a.getId().getDouble() + " s.id" + self.getId().getDouble());
-                    } else {
-                        System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
-                        System.out.println("" + a.getBounds().toString());
-                        return new Boolean(false);
+               Actor a = (Game.currentRoom.instances.elementAt(i));
+               {
+                   System.out.println("a.id:" + a.instance_id + " s.id" + self.instance_id);
+
+                    if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                        //if not instance id
+                        if (a.instance_id == self.instance_id) {
+                            System.out.println("collided with self");
+                        } else {
+                            System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
+                            System.out.println("" + a.getBounds().toString());
+                            return Boolean.FALSE;
+                        }
                     }
                 }
            }
         }
-return new Boolean(true);
+return Boolean.TRUE;
 }
 
 public static Variable place_meeting(Variable x, Variable y, Variable obj)

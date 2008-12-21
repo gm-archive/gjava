@@ -7,10 +7,16 @@ import java.awt.image.BufferedImage;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.io.Serializable;
 import org.dolphin.game.Scripts;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 
-public class Tile extends Scripts implements Comparable {
+public class Tile extends Scripts implements Comparable ,Externalizable {
+private static final long serialVersionUID = 1L;
 	/**
 	 * The depth of the tile
 	 */
@@ -136,4 +142,12 @@ public class Tile extends Scripts implements Comparable {
 				.getSource(), new CropImageFilter(x, y, width, height)));
 		return image;
 	}
+
+    public void writeExternal(ObjectOutput out) throws IOException {
+       // throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
