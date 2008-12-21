@@ -59,7 +59,8 @@ public class Actor0 extends Actor {
       //action_sound(new String("sound0"),Boolean.FALSE);
       //action_end_sound(new String("sound0"));
         //setTimeline_index(new timeline0());
-        action_load_game();
+        action_if_empty(new Integer(0),new Integer(0),new Integer(0));
+       // action_load_game();
         System.out.println("x"+x);
         if (keycode==67){
             self=this;

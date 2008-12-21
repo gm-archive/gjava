@@ -644,6 +644,9 @@ public class DolphinWriter {
                 }
 
                 if (act.getLibAction().question) {
+                    if (act.isRelative()) {
+                    code+=",true";
+                    }
                     code += "))";
                 } else {
 

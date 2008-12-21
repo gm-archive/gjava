@@ -688,15 +688,13 @@ public /*static*/ Variable place_free(Variable x, Variable y)
            if (Game.currentRoom.instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
                if (a.getSolid().getBoolean()) {
-                   System.out.println("a.id:" + a.instance_id + " s.id" + self.instance_id);
-
+                   
                     if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
                         //if not instance id
                         if (a.instance_id == self.instance_id) {
-                            System.out.println("collided with self");
+                           // System.out.println("collided with self");
                         } else {
-                            System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
-                            System.out.println("" + a.getBounds().toString());
+                            
                             return Boolean.FALSE;
                         }
                     }
@@ -712,15 +710,13 @@ public /*static*/ Variable place_empty(Variable x, Variable y)
            if (Game.currentRoom.instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
                {
-                   System.out.println("a.id:" + a.instance_id + " s.id" + self.instance_id);
-
+                   
                     if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
                         //if not instance id
                         if (a.instance_id == self.instance_id) {
-                            System.out.println("collided with self");
+                            //System.out.println("collided with self");
                         } else {
-                            System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
-                            System.out.println("" + a.getBounds().toString());
+                            //place is not free
                             return Boolean.FALSE;
                         }
                     }

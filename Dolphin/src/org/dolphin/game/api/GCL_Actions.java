@@ -328,12 +328,16 @@ return new Variable();
 
 public /*static*/ Variable action_if_empty(Variable... obj)
 {
+    if (obj.length>3 && obj[3].getBoolean()){
+        obj[0].setadd(self.getX());
+        obj[1].setadd(self.getY());
+    }
     if(obj[2].getInt() == 0){
-        System.out.println("action_if_empty Solid");
+        
     return place_free(obj[0],obj[1]);
     }
     else{
-        System.out.println("action_if_empty All");
+       
     return place_empty(obj[0],obj[1]);
     }
 
