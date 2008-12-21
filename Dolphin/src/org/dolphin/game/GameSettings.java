@@ -4,6 +4,6 @@ import java.awt.Color;
 
 public class GameSettings {
 
-	public Color Gameinfoback;
+	public static Color Gameinfoback = Color.BLUE;
 
 }

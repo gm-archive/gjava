@@ -87,7 +87,7 @@ public class DolphinWriter {
     }
 
     public void writeinitRooms(BufferedWriter game) throws IOException {
-        print(game, "  public void initRooms(){");
+        print(game, "  public static void initRooms(){");
         print(game, "     rooms=new Vector<Room2D>();");
         int i = 0;
 

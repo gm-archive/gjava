@@ -3,6 +3,7 @@ package org.dolphin.game;
 import java.awt.Graphics2D;
 import java.util.Random;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.components.Game_Information;
 import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
@@ -27,6 +28,7 @@ public class Actor0 extends Actor {
     //action_move((new String("000001000")), (new Integer(6)));
         hspeed=1;
         setTimeline_index(new timeline0());
+        
     }
 
     @Override
@@ -55,6 +57,7 @@ public class Actor0 extends Actor {
       //action_sound(new String("sound0"),Boolean.FALSE);
       //action_end_sound(new String("sound0"));
         //setTimeline_index(new timeline0());
+        action_end_game();
         if (keycode==67){
             self=this;
             System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);

@@ -261,6 +261,7 @@ return new Variable();
 
 public /*static*/ Variable action_end_game(Variable... obj)
 {
+    game_end();
 return new Variable();
 }
 
@@ -644,6 +645,7 @@ return new Variable();
 
 public /*static*/ Variable action_restart_game(Variable... obj)
 {
+    Game.initRooms();
 return new Variable();
 }
 

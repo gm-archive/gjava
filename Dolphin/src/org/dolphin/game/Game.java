@@ -13,6 +13,7 @@ import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.image.BufferedImage;
+import javax.swing.UIManager;
 import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.components.Sprite;
 
@@ -32,6 +33,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
                 thegame=new Game();
 		game.setup(thegame, new Dimension(640, 480), false);
 		frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();
+                
 	}
 
         public BufferedImage loadBackground(String name){
@@ -72,7 +74,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame {
             return null;
         }
 	
-	public void initRooms(){
+	public static void initRooms(){
 		rooms=new Vector<Room2D>();
 		rooms.add(new Dolphin_Room0(0));
 		rooms.add(new Dolphin_Room1(1));
