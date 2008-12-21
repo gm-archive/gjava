@@ -7,6 +7,7 @@ package org.dolphin.game.api;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.components.Game_Information;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
@@ -762,6 +763,10 @@ return new Variable();
 
 public /*static*/ Variable action_set_timeline_position(Variable... obj)
 {
+    if (argument_relative.getBoolean())
+    self.timeline_position+=obj[0].getDouble();
+    else
+        self.timeline_position=obj[0].getDouble();
 return new Variable();
 }
 
@@ -776,6 +781,7 @@ return new Variable();
 
 public /*static*/ Variable action_show_info(Variable... obj)
 {
+   Game_Information.mainFrame.setVisible(true);
 return new Variable();
 }
 

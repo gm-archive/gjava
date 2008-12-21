@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
@@ -59,7 +61,8 @@ public class DolphinWriter {
             parseScripts();
             df.progress(40, "Writing timelines", "Writing timelines");
             parseTimelines();
-
+             df.progress(50, "Exporting game information", "Exporting game information");
+            exportGameinfo();
             df.progress(70, "Writing object code", "Writing object code");
             parseObjects();
             df.progress(80, "Writing room code", "Writing room code");
@@ -275,6 +278,25 @@ public class DolphinWriter {
         }
 
 
+    }
+
+    void exportGameinfo(){
+        //gameinformation.rtf
+        FileWriter giFW = null;
+        try {
+            giFW = new FileWriter(FileFolder + "gameinformation.rtf");
+            BufferedWriter gi = new BufferedWriter(giFW);
+            print(gi, gmFile.gameInfo.gameInfoStr);
+            gi.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DolphinWriter.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                giFW.close();
+            } catch (IOException ex) {
+                Logger.getLogger(DolphinWriter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     void parseTimelines() throws GmFormatException {
