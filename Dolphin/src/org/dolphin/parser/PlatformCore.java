@@ -720,18 +720,26 @@ public class PlatformCore  {
                 return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+")";
             }
         }
-        
+
+        /*check if it is a timeline*/
+        if (DolphinWriter.gmFile.timelines.get(variable)!=null)
+        {
+        return "new "+DolphinWriter.gmFile.timelines.get(variable).getName()+"()";
+        }
+
+        /*check if it is a room*/
+        if (DolphinWriter.gmFile.rooms.get(variable)!=null)
+        {
+        return "new Integer("+DolphinWriter.gmFile.rooms.get(variable).getId()+")";
+        }
+
         /*check if it is an object*/
         if (DolphinWriter.gmFile.gmObjects.get(variable)!=null)
         {
         return "new GMResource("+variable+".class)";
         }
         
-        /*check if it is a room*/
-        if (DolphinWriter.gmFile.rooms.get(variable)!=null)
-        {
-        return "new Integer("+DolphinWriter.gmFile.rooms.get(variable).getId()+")";
-        }
+        
 
 
         if (stringResources.contains(variable))

@@ -26,6 +26,7 @@ public class Actor0 extends Actor {
     public void Create(){
     //action_move((new String("000001000")), (new Integer(6)));
         hspeed=1;
+        setTimeline_index(new timeline0());
     }
 
     @Override
@@ -50,8 +51,10 @@ public class Actor0 extends Actor {
     @Override
     public void KeyPressed(int keycode) throws DestroyException {
        // if(!action_if_sound(new String("sound0")).getBoolean())
-      action_sound(new String("sound0"),Boolean.FALSE);
-      action_end_sound(new String("sound0"));
+        
+      //action_sound(new String("sound0"),Boolean.FALSE);
+      //action_end_sound(new String("sound0"));
+        //setTimeline_index(new timeline0());
         if (keycode==67){
             self=this;
             System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);

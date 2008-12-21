@@ -21,6 +21,7 @@ import org.lateralgm.main.LGM;
 import org.lateralgm.resources.GmObject;
 import org.lateralgm.resources.Room;
 import org.lateralgm.resources.Script;
+import org.lateralgm.resources.Timeline;
 import org.lateralgm.resources.sub.Action;
 import org.lateralgm.resources.sub.Argument;
 import org.lateralgm.resources.sub.BackgroundDef;
@@ -56,8 +57,9 @@ public class DolphinWriter {
             parseBackgrounds();
             df.progress(30, "Writing scripts", "Writing scripts");
             parseScripts();
-            
-            
+            df.progress(40, "Writing timelines", "Writing timelines");
+            parseTimelines();
+
             df.progress(70, "Writing object code", "Writing object code");
             parseObjects();
             df.progress(80, "Writing room code", "Writing room code");
@@ -272,6 +274,53 @@ public class DolphinWriter {
             showException(e);
         }
 
+
+    }
+
+    void parseTimelines() throws GmFormatException {
+
+        ArrayList<String> objectnames = new ArrayList<String>(gmFile.gmObjects.size());
+
+        for (Timeline t : gmFile.timelines) {
+            /*check for duplicate objects*/
+            String name = t.getName();
+            pc.current = name;
+            if (objectnames.contains(name)) {
+                throw new GmFormatException(gmFile, "Duplicate object name: " + name);
+            }
+            try {
+                FileWriter tlFW = new FileWriter(FileFolder + name + ".java");
+                BufferedWriter tl = new BufferedWriter(tlFW);
+                print(tl, "package org.dolphin.game;");
+
+                print(tl, "import org.dolphin.game.api.components.Timeline;");
+                print(tl, "import org.dolphin.game.api.types.String;");
+                print(tl, "import org.dolphin.game.api.types.Integer;");
+                print(tl, "import org.dolphin.game.api.types.Double;");
+                print(tl, "import org.dolphin.game.api.types.String;");
+                print(tl, "import org.dolphin.game.api.types.Boolean;");
+                print(tl, "import org.dolphin.game.api.types.*;");
+                print(tl, "public class "+name+" extends Timeline {");
+                print(tl, "public void checksteps(double step){");
+                for (int i = 0; i < t.moments.size(); i++) {
+                    
+                    print(tl, "if (step=="+t.moments.get(i).stepNo+"){");
+                    Event ev = new Event();
+                    ev.actions = t.moments.get(i).actions;
+                print(tl, ""+parseGCL(getActionsCode(ev)));
+                print(tl, "}");
+                }
+
+                print(tl, "}");
+                print(tl, "}");//end the class
+                tl.close();
+            } catch (Exception e) {
+                System.out.println("Exception while parsing a timeline" + e.getMessage());
+
+                showException(e);
+            }
+
+        }
 
     }
 
@@ -494,6 +543,7 @@ public class DolphinWriter {
         //System.out.println("Finished! Code output:" + pc.returncode);
         } catch (Exception e) {
             System.out.println("Error with parser:" + e + e.getLocalizedMessage() + " " + e.getMessage() + "\n code:" + code);
+        e.printStackTrace();
         }
         return pc.returncode;
     }
@@ -528,7 +578,9 @@ public class DolphinWriter {
                 if (act.getLibAction().question) {
                     //System.out.println("question:" + act.getLibAction().execInfo);
                     code += "if (";
-                    if (act.isNot()) code+="!";
+                    if (act.isNot()) {
+                        code += "!";
+                    }
                 } else {
                     code += "{";
                     if (act.isRelative()) {
@@ -561,7 +613,7 @@ public class DolphinWriter {
                     } else if (arg.kind == arg.ARG_SPRITE && arg.getRes() != null) {
                         code += "\"" + arg.getRes().get().getName() + "\"";
                     } else if (arg.kind == arg.ARG_TIMELINE && arg.getRes() != null) {
-                        code += "\"" + arg.getRes().get().getName() + "\"";
+                        code += arg.getRes().get().getName();
                     } else if (arg.kind == arg.ARG_COLOR) {
                         code += "\"" + arg.getVal() + "\"";
                     } else {

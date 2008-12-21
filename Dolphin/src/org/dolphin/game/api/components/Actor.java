@@ -26,7 +26,7 @@ public class Actor extends Tile {
    public Hashtable variables = new Hashtable();
     public Sprite sprite;
 
-    public org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,   timeline_index,  timeline_position,  timeline_speed;
+    public org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
     public int[] alarm = new int[11];
    public double xprevious,  xstart,  yprevious,  ystart;
 	public double hspeed;
@@ -37,7 +37,9 @@ public class Actor extends Tile {
     //public double id=1;
     public java.lang.String name;
     public int sprite_index=0,image_xscale=1,image_yscale=1;
-    public double sprite_speed=0;
+    public double sprite_speed=0,timeline_speed=1,timeline_position=0;
+
+
 
     final Integer _0 = new Integer(0);
     
@@ -132,6 +134,20 @@ public class Actor extends Tile {
     public void BeginStep() throws DestroyException {
     }
 
+
+    public void checkTimeline(){
+        
+    if (timeline_index !=null){
+        System.out.println("check timeline not null");
+        ((Timeline)timeline_index).checksteps(timeline_position);
+        if (timeline_speed>1){
+            for(int i=0;i<timeline_speed;i++){
+            ((Timeline)timeline_index).checksteps(timeline_position);
+            }
+        }
+        this.timeline_position+=timeline_speed;
+    }
+    }
     
     public void Alarm() throws RoomChangedException {
         for (int i = 0; i < alarm.length; i++) {
@@ -241,6 +257,7 @@ public class Actor extends Tile {
             Step();
             Alarm();
             Keyboard();
+            checkTimeline();
             checkCollision();
             Move();
             EndStep();
@@ -578,17 +595,13 @@ public class Actor extends Tile {
     }
 
     public Variable getTimeline_position() {
-        if (timeline_position == null) {
-            timeline_position = _0;
-        }
-        return timeline_position;
+        
+        return new Double(timeline_position);
     }
 
     public Variable getTimeline_speed() {
-        if (timeline_speed == null) {
-            timeline_speed = _0;
-        }
-        return timeline_speed;
+        
+        return new Double(timeline_speed);
     }
 
     public Variable getVisible() {
@@ -808,11 +821,11 @@ public class Actor extends Tile {
     }
 
     public void setTimeline_position(Variable timeline_position) {
-        this.timeline_position = timeline_position;
+        this.timeline_position = timeline_position.getDouble();
     }
 
     public void setTimeline_speed(Variable timeline_speed) {
-        this.timeline_speed = timeline_speed;
+        this.timeline_speed = timeline_speed.getDouble();
     }
 
     public void setVisible(Variable visible) {

@@ -755,6 +755,8 @@ return new Variable();
 
 public /*static*/ Variable action_set_timeline(Variable... obj)
 {
+    self.timeline_index=obj[0];
+    self.timeline_position=obj[1].getDouble();
 return new Variable();
 }
 
@@ -784,6 +786,7 @@ return new Variable();
 
 public /*static*/ Variable action_sleep(Variable... obj)
 {
+    sleep(obj[0]);
 return new Variable();
 }
 
