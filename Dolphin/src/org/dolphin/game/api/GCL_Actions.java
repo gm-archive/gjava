@@ -318,7 +318,19 @@ return new Variable();
 
 public /*static*/ Variable action_if_collision(Variable... obj)
 {
-return new Variable();
+
+if (obj.length>3 && obj[3].getBoolean()){
+        obj[0].setadd(self.getX());
+        obj[1].setadd(self.getY());
+    }
+    if(obj[2].getInt() == 0){
+
+    return place_free(obj[0],obj[1]).not();
+    }
+    else{
+
+    return place_empty(obj[0],obj[1]).not();
+    }
 }
 
 public /*static*/ Variable action_if_dice(Variable... obj)
