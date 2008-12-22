@@ -791,6 +791,7 @@ public class PlatformCore  {
             }
         }
 
+        if(DolphinWriter.gmFile !=null){
         /*check if it is a timeline*/
         if (DolphinWriter.gmFile.timelines.get(variable)!=null)
         {
@@ -808,7 +809,7 @@ public class PlatformCore  {
         {
         return "new GMResource("+variable+".class)";
         }
-        
+        }
         
 
 
@@ -917,17 +918,21 @@ public class PlatformCore  {
     public void showError(String msg)
     {
         try{
+            String code="";
+            if ((new File("tempcode.gcl").exists())){
         FileReader ftempcode = new FileReader("tempcode.gcl");
         BufferedReader tempcode = new BufferedReader(ftempcode);
         String s = tempcode.readLine();
-        String code="";
+        
         while(s !=null){
         s = tempcode.readLine();
         code+=s+"\n";
         }
         tempcode.close();
+         
         JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"\nIn code:\n"+code);
         DolphinWriter.df.ta.append("Syntax Error while parsing "+current+":"+event+"\n"+msg+"\n In code:\n"+code);
+        }
         }catch(Exception e){e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg);
         }

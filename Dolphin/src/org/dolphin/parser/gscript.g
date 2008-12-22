@@ -141,7 +141,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value] @init {String a = "";}
   :
-  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = pc.stringval($s.text);}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
+  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = pc.stringval($s.text);}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
   ;
  
 repeatstatement returns [String value]
@@ -221,6 +221,10 @@ GLOBALVAR
 OIVAR : WORD '.' WORD ; /* Other instance variable */
 
 DECIMAL : NUMBER '.' NUMBER;
+
+STUPIDDECIMAL 
+	:	'.' NUMBER
+	;
 
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' WORD )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
 
