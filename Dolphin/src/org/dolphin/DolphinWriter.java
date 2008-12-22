@@ -415,14 +415,17 @@ public class DolphinWriter {
                     } /*
                      * Step Event
                      */ else if (j == 3) {
-
+                    	 
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             if (ev.id == 1) {
+                            	pc.event = "Begin Event";
                                 print(actor, "   public void BeginStep() throws DestroyException,RoomChangedException {");
                             } else if (ev.id == 0) {
+                            	pc.event = "Step Event";
                                 print(actor, "   public void Step() throws DestroyException,RoomChangedException {");
                             } else if (ev.id == 2) {
+                            	pc.event = "End Event";
                                 print(actor, "   public void EndStep() throws DestroyException,RoomChangedException {");
                             }
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
@@ -431,6 +434,7 @@ public class DolphinWriter {
                     } /*
                      * Collision Event
                      */ else if (j == 4) {
+                    	 pc.event = "Collision Event";
                         print(actor, "   public void Collision(java.lang.String name) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
@@ -442,9 +446,11 @@ public class DolphinWriter {
                     } /*
                      * Keyboard Event
                      */ else if (j == 5) {
+                    	 pc.event = "Keyboard Event";
                         print(actor, "   public void Keyboard() throws RoomChangedException {");
 //
                         for (Event ev : a.mainEvents[j].events) {
+                        	pc.event = "Keyboard"+Event.getGmKeyName(ev.id)+" Event";
                             System.out.println("ev.id" + ev.id);
                             print(actor, "if (Game.game.getGame().keyDown(" + ev.id + ")){");
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
@@ -454,15 +460,16 @@ public class DolphinWriter {
                     } /*
                      * Mouse Event
                      */ else if (j == 6) {
-
+                    	 pc.event = "Mouse Event";
                         for (Event ev : a.mainEvents[j].events) {
+                        	pc.event = "Mouse "+ev.id+" Event";
                             System.out.println("ev.id" + ev.id);
                             print(actor, "//mouse event:" + ev.id);
                         }
                     } /*
                      * Other Event
                      */ else if (j == 7) {
-
+                    	 pc.event = "Other Event";
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "//other event:" + ev.id);
@@ -470,6 +477,7 @@ public class DolphinWriter {
                     } /*
                      * Draw Event
                      */ else if (j == 8) {
+                    	 pc.event = "Draw Event";
                         print(actor, "    public void Draw_event(Graphics2D g) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
@@ -479,9 +487,11 @@ public class DolphinWriter {
                     } /*
                      * Key press Event
                      */ else if (j == 9) {
+                    	 pc.event = "Key press Event";
                         print(actor, "   public void KeyPressed(int keycode) throws DestroyException, RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id" + ev.id);
+                        	
+                        	pc.event = "Key press "+Event.getGmKeyName(ev.id)+" Event";
                             print(actor, "     if (keycode==" + ev.id + "){");
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                             print(actor, "     }");
@@ -490,10 +500,10 @@ public class DolphinWriter {
                     } /*
                      * Key release Event
                      */ else if (j == 10) {
-
+                    	 pc.event = "Key release Event";
                         print(actor, "   public void KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id" + ev.id);
+                        	pc.event = "Key release "+Event.getGmKeyName(ev.id)+" Event";
                             print(actor, "     if (keycode==" + ev.id + "){");
                             print(actor, "        " + parseGCL(getActionsCode(ev)));
                             print(actor, "     }");
@@ -579,7 +589,7 @@ public class DolphinWriter {
         for (Action act : ev.actions) {
             code += System.getProperty("line.separator");
             if (act.getLibAction().actionKind == Action.ACT_CODE) {
-                code += "{" + act.getArguments().get(0).getVal() + "}";
+                code += "{\n" + act.getArguments().get(0).getVal() + "\n}";
             } else if (act.getLibAction().actionKind == Action.ACT_BEGIN) {
                 code += "{";
             } else if (act.getLibAction().actionKind == Action.ACT_END) {
@@ -592,9 +602,9 @@ public class DolphinWriter {
                 } else {
                     code += "" + act.getArguments().get(0).getVal() + " = (" + act.getArguments().get(1).getVal() + ");";
                 }
-            } /*else if (act.getLibAction().actionKind == 0){
-            code+="//some comment";//+act.getArguments().get(0).getVal();
-            }*/ else if (act.getLibAction().actionKind == Action.ACT_EXIT) {
+            } else if (act.getLibAction().actionKind == 0){
+            code+="//"+act.getArguments().get(0).getVal()+"\n";
+            } else if (act.getLibAction().actionKind == Action.ACT_EXIT) {
                 code += "return;";
             } else if (act.getLibAction().actionKind == Action.ACT_REPEAT) {
                 code += "repeat(" + act.getArguments().get(0).getVal() + ")";
@@ -606,7 +616,7 @@ public class DolphinWriter {
                         code += "!";
                     }
                 } else {
-                    code += "{";
+                    code += "{\n";
                     if (act.isRelative()) {
                         code += "argument_relative=" + act.isRelative() + "; ";
                     }
@@ -656,13 +666,13 @@ public class DolphinWriter {
                     if (act.isRelative()) {
                         code += "argument_relative=false; ";
                     }
-                    code += "}";
+                    code += "\n}";
                 }
 
             }
 
         }
-        System.out.println("code:" + code);
+        System.out.println("codeee:" + code);
         return code;
     }
 

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2008-12-22 21:19:55
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2008-12-22 22:58:38
 
 package org.dolphin.parser;
 
@@ -1822,35 +1822,30 @@ public class gscriptLexer extends Lexer {
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:3: ( COMMENT1 (~ ( '\\n' | '\\r' ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:5: COMMENT1 (~ ( '\\n' | '\\r' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:3: ( '//' ( options {greedy=false; } : . )* ( '\\n' | '\\r' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:5: '//' ( options {greedy=false; } : . )* ( '\\n' | '\\r' )
             {
-            mCOMMENT1(); 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:14: (~ ( '\\n' | '\\r' ) )*
+            match("//"); 
+
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:10: ( options {greedy=false; } : . )*
             loop5:
             do {
                 int alt5=2;
                 int LA5_0 = input.LA(1);
 
-                if ( ((LA5_0>='\u0000' && LA5_0<='\t')||(LA5_0>='\u000B' && LA5_0<='\f')||(LA5_0>='\u000E' && LA5_0<='\uFFFE')) ) {
+                if ( (LA5_0=='\n'||LA5_0=='\r') ) {
+                    alt5=2;
+                }
+                else if ( ((LA5_0>='\u0000' && LA5_0<='\t')||(LA5_0>='\u000B' && LA5_0<='\f')||(LA5_0>='\u000E' && LA5_0<='\uFFFE')) ) {
                     alt5=1;
                 }
 
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:15: ~ ( '\\n' | '\\r' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:242:37: .
             	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
-            	        input.consume();
-
-            	    }
-            	    else {
-            	        MismatchedSetException mse =
-            	            new MismatchedSetException(null,input);
-            	        recover(mse);    throw mse;
-            	    }
-
+            	    matchAny(); 
 
             	    }
             	    break;
@@ -1859,6 +1854,16 @@ public class gscriptLexer extends Lexer {
             	    break loop5;
                 }
             } while (true);
+
+            if ( input.LA(1)=='\n'||input.LA(1)=='\r' ) {
+                input.consume();
+
+            }
+            else {
+                MismatchedSetException mse =
+                    new MismatchedSetException(null,input);
+                recover(mse);    throw mse;
+            }
 
              channel=HIDDEN; 
 
@@ -1875,12 +1880,12 @@ public class gscriptLexer extends Lexer {
     public final void mML_COMMENT() throws RecognitionException {
         try {
             int _type = ML_COMMENT;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:248:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:248:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:247:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:247:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:248:14: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:247:14: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -1905,7 +1910,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:248:41: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:247:41: .
             	    {
             	    matchAny(); 
 
@@ -1934,7 +1939,7 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING() throws RecognitionException {
         try {
             int _type = STRING;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:251:8: ( STRING_DOUBLE | STRING_SINGLE )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:8: ( STRING_DOUBLE | STRING_SINGLE )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1946,20 +1951,20 @@ public class gscriptLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("251:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 7, 0, input);
+                    new NoViableAltException("250:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:251:10: STRING_DOUBLE
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:10: STRING_DOUBLE
                     {
                     mSTRING_DOUBLE(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:251:24: STRING_SINGLE
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:24: STRING_SINGLE
                     {
                     mSTRING_SINGLE(); 
 
@@ -1978,12 +1983,12 @@ public class gscriptLexer extends Lexer {
     public final void mJAVACODE() throws RecognitionException {
         try {
             int _type = JAVACODE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:255:2: ( '@@java_Begin' ( options {greedy=false; } : . )* '@@java_End' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:255:5: '@@java_Begin' ( options {greedy=false; } : . )* '@@java_End'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:254:2: ( '@@java_Begin' ( options {greedy=false; } : . )* '@@java_End' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:254:5: '@@java_Begin' ( options {greedy=false; } : . )* '@@java_End'
             {
             match("@@java_Begin"); 
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:255:20: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:254:20: ( options {greedy=false; } : . )*
             loop8:
             do {
                 int alt8=2;
@@ -1995,10 +2000,7 @@ public class gscriptLexer extends Lexer {
                     if ( (LA8_1=='@') ) {
                         int LA8_3 = input.LA(3);
 
-                        if ( ((LA8_3>='\u0000' && LA8_3<='i')||(LA8_3>='k' && LA8_3<='\uFFFE')) ) {
-                            alt8=1;
-                        }
-                        else if ( (LA8_3=='j') ) {
+                        if ( (LA8_3=='j') ) {
                             int LA8_4 = input.LA(4);
 
                             if ( (LA8_4=='a') ) {
@@ -2064,6 +2066,9 @@ public class gscriptLexer extends Lexer {
 
 
                         }
+                        else if ( ((LA8_3>='\u0000' && LA8_3<='i')||(LA8_3>='k' && LA8_3<='\uFFFE')) ) {
+                            alt8=1;
+                        }
 
 
                     }
@@ -2080,7 +2085,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:255:47: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:254:47: .
             	    {
             	    matchAny(); 
 
@@ -2108,11 +2113,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_DOUBLE() throws RecognitionException {
         try {
             int _type = STRING_DOUBLE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:259:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:259:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:258:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:258:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
             {
             match('\"'); 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:260:5: ( '\"' '\"' | ~ ( '\"' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:259:5: ( '\"' '\"' | ~ ( '\"' ) )*
             loop9:
             do {
                 int alt9=3;
@@ -2134,7 +2139,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:260:7: '\"' '\"'
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:259:7: '\"' '\"'
             	    {
             	    match('\"'); 
             	    match('\"'); 
@@ -2142,7 +2147,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:261:7: ~ ( '\"' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:260:7: ~ ( '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2163,8 +2168,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:263:5: ( '\"' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:263:7: '\"'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:262:5: ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:262:7: '\"'
             {
             match('\"'); 
 
@@ -2184,11 +2189,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_SINGLE() throws RecognitionException {
         try {
             int _type = STRING_SINGLE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:268:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:268:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:267:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:267:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
             {
             match('\''); 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:268:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -2210,7 +2215,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:7: '\\'' '\\''
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:268:7: '\\'' '\\''
             	    {
             	    match('\''); 
             	    match('\''); 
@@ -2218,7 +2223,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:270:7: ~ ( '\\'' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:7: ~ ( '\\'' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2239,8 +2244,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:272:5: ( '\\'' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:272:7: '\\''
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:271:5: ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:271:7: '\\''
             {
             match('\''); 
 
@@ -2920,7 +2925,7 @@ public class gscriptLexer extends Lexer {
         "\1\uffff\1\70\7\uffff\1\31\4\uffff\1\41\1\50\1\uffff\1\51\1\54\1"+
         "\60\14\uffff\1\34\1\uffff\1\37\3\uffff\1\36\2\uffff\1\72\1\uffff"+
         "\1\75\3\uffff\1\25\2\uffff\1\30\1\63\1\40\5\uffff\1\66\1\67\1\uffff"+
-        "\1\22\1\26\1\71\2\uffff\1\62\1\33\2\uffff\1\23\2\uffff\1\73\1\uffff"+
+        "\1\22\1\26\1\71\2\uffff\1\33\1\62\2\uffff\1\23\2\uffff\1\73\1\uffff"+
         "\1\112\2\uffff\1\64\1\32";
     static final String DFA11_specialS =
         "\u00ee\uffff}>";
@@ -3007,7 +3012,7 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
-            "\12\171\1\uffff\2\171\1\uffff\ufff1\171",
+            "\uffff\171",
             "",
             "",
             "",
@@ -3050,7 +3055,7 @@ public class gscriptLexer extends Lexer {
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\16"+
             "\110\1\u0086\13\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\17"+
-            "\110\1\u0087\3\110\1\u0088\6\110",
+            "\110\1\u0088\3\110\1\u0087\6\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
             "\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
@@ -3128,10 +3133,10 @@ public class gscriptLexer extends Lexer {
             "\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
             "\110\1\u00a8\30\110",
-            "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00a9\25\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\24"+
-            "\110\1\u00aa\5\110",
+            "\110\1\u00a9\5\110",
+            "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
+            "\110\1\u00aa\25\110",
             "",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
             "\110\1\u00ab\14\110",
@@ -3187,10 +3192,10 @@ public class gscriptLexer extends Lexer {
             "",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
             "\u00c1\31\110",
-            "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00c2\31\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\u00c3\10\110",
+            "\110\1\u00c2\10\110",
+            "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
+            "\u00c3\31\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
             "\110",
             "",
@@ -3230,10 +3235,10 @@ public class gscriptLexer extends Lexer {
             "",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
             "\110\1\u00d3\16\110",
-            "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00d4\6\110",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\u00d5\14\110",
+            "\110\1\u00d4\14\110",
+            "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
+            "\110\1\u00d5\6\110",
             "",
             "\1\111\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
             "\110\1\u00d6\16\110",

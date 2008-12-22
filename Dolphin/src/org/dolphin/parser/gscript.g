@@ -239,8 +239,7 @@ LETTER : ('a'..'z'|'A'..'Z')
 
 
 COMMENT
-  : COMMENT1 (~('\n'|'\r'))*
-    { $channel=HIDDEN; } /* '//' comment ending with a newline */
+  : '//' (options {greedy=false;} : .)*    ('\n'|'\r') { $channel=HIDDEN; } /* '//' comment ending with a newline */
   ;
 
 // multiple-line comments

@@ -45,6 +45,7 @@ public class PlatformCore  {
 
     
     public static String returncode = "";
+    //static ParserError pe = new ParserError();
     int usingwith = 0;
     Vector localVariables  = new Vector(1);
     Vector fieldVariables  = new Vector(1);
@@ -929,10 +930,11 @@ public class PlatformCore  {
         code+=s+"\n";
         }
         tempcode.close();
-         
-        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"\nIn code:\n"+code);
+        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"\n See the Dolphin Progress frame for more information.");
+        //JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"\nIn code:\n"+code);
         DolphinWriter.df.ta.append("Syntax Error while parsing "+current+":"+event+"\n"+msg+"\n In code:\n"+code);
-        }
+        
+            }
         }catch(Exception e){e.printStackTrace();
         JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg);
         }

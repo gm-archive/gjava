@@ -116,26 +116,25 @@ LETTER : ('a'..'z'|'A'..'Z')
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 241
 COMMENT
-  : COMMENT1 (~('\n'|'\r'))*
-    { $channel=HIDDEN; } /* '//' comment ending with a newline */
+  : '//' (options {greedy=false;} : .)*    ('\n'|'\r') { $channel=HIDDEN; } /* '//' comment ending with a newline */
   ;
 
 // multiple-line comments
-// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 247
+// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 246
 ML_COMMENT
     :   '/*' (options {greedy=false;} : .)* '*/' {$channel=HIDDEN;}
     ;
    
-// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 251
+// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 250
 STRING : STRING_DOUBLE|STRING_SINGLE
 ;
 
-// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 254
+// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 253
 JAVACODE 
 	:  '@@java_Begin' (options {greedy=false;} : .)* '@@java_End'	
 	;
   
-// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 258
+// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 257
 STRING_DOUBLE
   : '"'
     ( '"' '"'
@@ -145,7 +144,7 @@ STRING_DOUBLE
    ;
  
 
-   // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 267
+   // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 266
 STRING_SINGLE
     : '\''
     ( '\'' '\''
