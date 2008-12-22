@@ -495,20 +495,25 @@ public class PlatformCore  {
         String tempvar=variable;
         
         if(variable.contains("all.")) {
-            instance = "(new All())";
+            instance = "noone";
         } else if(variable.contains("other.")) {
             instance = "other";
         } else if(variable.contains("noone.")) {
-            instance = "(new Object())";
+            instance = "noone";
         } else if(variable.contains("self.")) {
             instance = "self";
         } else if(variable.contains("global.")) {
             instance = "Global";
         } else if(variable.contains("(")) {
-            instance = "(new All" + variable.substring(0, variable.indexOf(".") - 1) + "))";
-        } else if(variable.contains(".")){
-            instance="(new All("+variable.substring(0,variable.indexOf(".")-1)+"))";
-            tempvar = variable.substring(0,variable.indexOf(".")-1);
+            instance = "";
+        } else if (countOccurrences(variable,".")>1){
+            //mopre than one .
+            System.out.println("more than one . variable!");
+        }
+         else if(variable.contains(".")){
+            instance="for (int i = 0; i < Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class).length; i++) Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class)[i]";
+            tempvar = variable.substring(variable.indexOf(".")+1);
+            variable=tempvar;
         } else {
             instance = "self";
         }
@@ -734,7 +739,7 @@ public class PlatformCore  {
         else if(variable.contains("global.")) {
             instance = "Global";
         }
-        if(variable.contains("all.")) {
+        else if(variable.contains("all.")) {
             instance = "Game.currentRoom.getfirst()";
         }
         else if (countOccurrences(variable,".")>1){

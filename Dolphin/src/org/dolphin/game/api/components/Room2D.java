@@ -367,6 +367,25 @@ public void render(Graphics2D g2d2)  {
         return noone;
     }
 
+     /*
+     * This method is used for setting instance. variables
+     */
+    public Actor[] setActorwithname(Class name){
+        Vector<Actor> ac = new Vector<Actor>();
+    for (int i = 0; i < instances.size(); i++) {
+           if (instances.elementAt(i) !=null){
+               Actor a = (Game.currentRoom.instances.elementAt(i));
+
+               if (a.getClass().getName().equals(name.getName())) {
+                     ac.add(a);
+                     
+                }
+           }
+        }
+        Actor[] a = new Actor[ac.size()];
+        return ac.toArray(a);
+    }
+
 
     
 }

@@ -44,7 +44,7 @@ public class Actor0 extends Actor {
 
     public void Collision(java.lang.String name)
     {
-        if(name.equals("")){}
+        //if(name.equals("")){}
     }
 
     @Override
@@ -59,17 +59,20 @@ public class Actor0 extends Actor {
       //action_sound(new String("sound0"),Boolean.FALSE);
       //action_end_sound(new String("sound0"));
         //setTimeline_index(new timeline0());
-        action_if_empty(new Integer(0),new Integer(0),new Integer(0));
+       // action_if_empty(new Integer(0),new Integer(0),new Integer(0));
        // action_load_game();
+        {Actor[] ac =Game.currentRoom.setActorwithname(Actor0.class); for (int i = 0; i < ac.length; i++)
+   ac[i]
+        .x = 1;}
+            
         
-        //Game.currentRoom.getActorwithname(Actor0.class).setX(new Integer(1));
-        System.out.println("x"+Game.currentRoom.getActorwithname(Actor0.class).x);
-        if (keycode==67){
-            self=this;
-            System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);
-        action_change_object(new GMResource(Actor1.class));
-        System.out.println("!!!!!after: s.hspeed:"+self.hspeed+" hpseed"+hspeed);
-        }
+       // System.out.println("x"+Game.currentRoom.getActorwithname(Actor0.class).x);
+//        if (keycode==67){
+//            self=this;
+//            System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);
+//        action_change_object(new GMResource(Actor1.class));
+//        System.out.println("!!!!!after: s.hspeed:"+self.hspeed+" hpseed"+hspeed);
+//        }
     }
 
     @Override

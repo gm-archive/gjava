@@ -16,7 +16,9 @@ public class Dolphin_Room0 extends Room2D {
 	
 	protected void setupScene() {
 	    instances.add(new Actor0(10,10,100002));
-            instances.add(new Actor0(10,10,100003));
+            instances.add(new Actor0(10,30,100003));
+            instances.add(new Actor0(10,60,100003));
+            instances.add(new Actor0(10,90,100003));
 	    //backgrounds.add(new Background(true,true,0,200,32,32,true,true,true,0,1,0,0,Game.thegame.loadBackground("sprimg_wall_0")));
 	    tiles.add(new Tile(100, 100, 0, 0, 32,32, 1, 1, Game.thegame.loadBackground("sprimg_wall_0")));
             //backgrounds.add(new Background(true,true,0,200,32,32,true,true,true,0,1,0,0,Game.thegame.loadBackground("image")));
