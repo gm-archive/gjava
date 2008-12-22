@@ -495,7 +495,9 @@ public class PlatformCore  {
         String tempvar=variable;
         
         if(variable.contains("all.")) {
-            instance = "noone";
+            instance = "{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i)";
+            tempvar=variable;
+            variable = variable.substring(variable.indexOf(".")+1);
         } else if(variable.contains("other.")) {
             instance = "other";
         } else if(variable.contains("noone.")) {

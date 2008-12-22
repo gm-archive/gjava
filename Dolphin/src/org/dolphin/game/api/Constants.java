@@ -13,7 +13,7 @@ import org.dolphin.game.api.types.Variable;
  */
 public class Constants extends Variable {
 protected Actor self;
-public static Actor noone=new Actor(),other=noone;
+public static Actor noone=new Actor(),other=noone,all=new Actor();
 
     public Object getBm_add() {
         return new Variable(); //  new Variable(); //  bm_add;

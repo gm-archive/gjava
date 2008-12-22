@@ -61,8 +61,8 @@ public class Actor0 extends Actor {
         //setTimeline_index(new timeline0());
        // action_if_empty(new Integer(0),new Integer(0),new Integer(0));
        // action_load_game();
-        {Actor[] ac =Game.currentRoom.setActorwithname(Actor0.class); for (int i = 0; i < ac.length; i++)
-   ac[i]
+        {for (int i = 0; i < Game.currentRoom.instances.size(); i++)
+   Game.currentRoom.instances.get(i)
         .x = 1;}
             
         
