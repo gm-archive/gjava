@@ -39,7 +39,7 @@ public class GCL_Actions extends GCL {
 public /*static*/ Variable action_another_room(Variable... obj) throws RoomChangedException
 {
     Game.certainRoom(obj[0].getInt());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_bounce(Variable... obj)
@@ -48,37 +48,37 @@ public /*static*/ Variable action_bounce(Variable... obj)
 self.hspeed=-self.hspeed;
 self.vspeed=-self.vspeed;
     System.out.println("bounce");
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_cd_pause(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_cd_play(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_cd_playing(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_cd_present(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_cd_resume(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_cd_stop(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_change_object(Variable... obj)
@@ -117,12 +117,12 @@ public /*static*/ Variable action_change_object(Variable... obj)
         //a.setVspeed(2);
         }
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_color(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_create_object(Variable... obj)
@@ -142,7 +142,7 @@ public /*static*/ Variable action_create_object(Variable... obj)
     }
     }catch(Exception e){e.printStackTrace();}
 
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_create_object_motion(Variable... obj)
@@ -167,143 +167,143 @@ public /*static*/ Variable action_create_object_motion(Variable... obj)
     }
     }
     }catch(Exception e){e.printStackTrace();}
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_create_object_random(Variable... obj)
 {
 
     action_create_object(obj[(int)Math.random(4)],obj[4],obj[5]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_current_room(Variable... obj) throws RoomChangedException
 {
     Game.currentRoom();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_arrow(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_background(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_ellipse(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_ellipse_gradient(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_gradient_hor(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_gradient_vert(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_health(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_life(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_life_images(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_line(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_rectangle(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_score(Variable... obj)
 {
 
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_sprite(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_text(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_text_transformed(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_draw_variable(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_effect(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_end_game(Variable... obj)
 {
     game_end();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_end_sound(Variable... obj)
 {
     Game.thegame.loadSound(obj[0].toString()).stop();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_execute_script(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_font(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_fullscreen(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_highscore_clear(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_highscore_show(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if(Variable... obj)
@@ -313,7 +313,7 @@ return obj[0];
 
 public /*static*/ Variable action_if_aligned(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_collision(Variable... obj)
@@ -335,7 +335,7 @@ if (obj.length>3 && obj[3].getBoolean()){
 
 public /*static*/ Variable action_if_dice(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_empty(Variable... obj)
@@ -357,17 +357,17 @@ public /*static*/ Variable action_if_empty(Variable... obj)
 
 public /*static*/ Variable action_if_health(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_life(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_mouse(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_next_room(Variable... obj)
@@ -380,7 +380,7 @@ if(Game.currentRoom.vectorid <Game.rooms.size()-1)
 
 public /*static*/ Variable action_if_number(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_object(Variable... obj)
@@ -390,7 +390,7 @@ public /*static*/ Variable action_if_object(Variable... obj)
         obj[2].setadd(self.getY());
     }
     return place_meeting(obj[1],obj[2],obj[0]);
-//return new Variable();
+//return Boolean.FALSE;
 }
 /*if previous room exists*/
 public /*static*/ Variable action_if_previous_room(Variable... obj)
@@ -403,12 +403,12 @@ public /*static*/ Variable action_if_previous_room(Variable... obj)
 
 public /*static*/ Variable action_if_question(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_score(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_sound(Variable... obj)
@@ -432,19 +432,19 @@ public /*static*/ Variable action_if_variable(Variable... obj)
                             return obj[0].gt(obj[1]);
                         }
     //System.out.println("action_if_variable, error:"+obj[2]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_inherited(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_kill_object(Variable... obj)
 {
     Game.currentRoom.depth.remove(Game.currentRoom.depth.indexOf(self));
     Game.currentRoom.instances.remove(Game.currentRoom.instances.indexOf(self));
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_kill_position(Variable... obj)
@@ -455,12 +455,12 @@ public /*static*/ Variable action_kill_position(Variable... obj)
     } else{
     if(self.getBounds().contains(obj[0].getInt(), obj[1].getInt())){
         self.action_kill_object();}}
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_linear_step(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_load_game(Variable... obj)
@@ -478,7 +478,7 @@ public /*static*/ Variable action_load_game(Variable... obj)
 
             istream.close();
 
-            return new Variable();
+            return Boolean.FALSE;
         } catch (Exception ex) {
             Logger.getLogger(GCL_Actions.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -494,7 +494,7 @@ public /*static*/ Variable action_load_game(Variable... obj)
 public /*static*/ Variable action_message(Variable obj)
 {
     show_message(obj);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_move(Variable dirs, Variable speed)
@@ -544,12 +544,12 @@ public /*static*/ Variable action_move(Variable dirs, Variable speed)
                                     //action_move(new Variable[5]);
 
     }}
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_move_contact(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_move_point(Variable... obj)
@@ -563,14 +563,14 @@ public /*static*/ Variable action_move_point(Variable... obj)
 public /*static*/ Variable action_move_random(Variable... obj)
 {
     move_random(obj[0], obj[1]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_move_start(Variable... obj)
 {
     self.x=self.getXstart().getDouble();
     self.y=self.getYstart().getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_move_to(Variable... obj)
@@ -585,142 +585,142 @@ public /*static*/ Variable action_move_to(Variable... obj)
     self.y=obj[1].getDouble();
     }
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_next_room(Variable... obj) throws RoomChangedException
 {
     Game.nextRoom();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partemit_burst(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partemit_create(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partemit_destroy(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partemit_stream(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partsyst_clear(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partsyst_create(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_partsyst_destroy(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_parttype_color(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_parttype_create(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_parttype_gravity(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_parttype_life(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_parttype_secondary(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_parttype_speed(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_path(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_path_end(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_path_position(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_path_speed(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_potential_step(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_previous_room(Variable... obj) throws RoomChangedException
 {
         Game.previousRoom();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_replace_background(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_replace_sound(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_replace_sprite(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_restart_game(Variable... obj)
 {
     Game.initRooms();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_reverse_xdir(Variable... obj)
 {
     self.hspeed=-self.hspeed;
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_reverse_ydir(Variable... obj)
 {
     self.vspeed=-self.vspeed;
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_save_game(Variable... obj)
@@ -746,23 +746,23 @@ public /*static*/ Variable action_save_game(Variable... obj)
          e.printStackTrace();
       }
 
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_alarm(Variable... obj)
 {
     self.alarm[obj[1].getInt()]=obj[0].getInt();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_caption(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_cursor(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_friction(Variable... obj)
@@ -771,7 +771,7 @@ public /*static*/ Variable action_set_friction(Variable... obj)
       self.setFriction(self.getFriction().add(obj[0]));
     else
     self.setFriction(obj[0]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -786,7 +786,7 @@ public /*static*/ Variable action_set_gravity(Variable... obj)
     self.setGravity(obj[1]);
     self.setGravity_direction(obj[0]);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_health(Variable... obj)
@@ -795,7 +795,7 @@ public /*static*/ Variable action_set_health(Variable... obj)
         setHealth(getHealth().add(obj[0]));
     else
        setHealth(obj[0]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_hspeed(Variable... obj)
@@ -805,7 +805,7 @@ public /*static*/ Variable action_set_hspeed(Variable... obj)
       self.hspeed=self.hspeed+obj[0].getDouble();
     else
     self.hspeed=obj[0].getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_life(Variable... obj)
@@ -814,7 +814,7 @@ public /*static*/ Variable action_set_life(Variable... obj)
 //        setLife(obj[0]);
 //    else
 //        setLife(obj[0]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_motion(Variable... obj)
@@ -827,7 +827,7 @@ public /*static*/ Variable action_set_motion(Variable... obj)
     self.setDirection(obj[0]);
     self.setSpeed(obj[1]);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_score(Variable score)
@@ -836,14 +836,14 @@ public /*static*/ Variable action_set_score(Variable score)
         setScore(getScore().add(score));
     else
     setScore(score);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_timeline(Variable... obj)
 {
     self.timeline_index=obj[0];
     self.timeline_position=obj[1].getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_timeline_position(Variable... obj)
@@ -852,7 +852,7 @@ public /*static*/ Variable action_set_timeline_position(Variable... obj)
     self.timeline_position+=obj[0].getDouble();
     else
         self.timeline_position=obj[0].getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_set_vspeed(Variable... obj)
@@ -861,35 +861,35 @@ public /*static*/ Variable action_set_vspeed(Variable... obj)
       self.vspeed=self.vspeed+obj[0].getDouble();
     else
     self.vspeed=obj[0].getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_show_info(Variable... obj)
 {
    Game_Information.mainFrame.setVisible(true);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_show_video(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_sleep(Variable... obj)
 {
     sleep(obj[0]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_snap(Variable... obj)
 {
    move_snap(obj[0], obj[1]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_snapshot(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_sound(Variable... obj)
@@ -898,12 +898,12 @@ public /*static*/ Variable action_sound(Variable... obj)
         Game.thegame.loadSound(obj[0].toString()).loop();
     else
     Game.thegame.loadSound(obj[0].toString()).play();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_sprite_color(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_sprite_set(Variable... obj)
@@ -912,7 +912,7 @@ public /*static*/ Variable action_sprite_set(Variable... obj)
    self.sprite= Game.thegame.loadSprite(obj[0].toString());
    self.sprite_index=obj[1].getInt();
    self.sprite_speed=obj[2].getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_sprite_transform(Variable... obj)
@@ -921,12 +921,12 @@ public /*static*/ Variable action_sprite_transform(Variable... obj)
     self.setImage_xscale(obj[0]);
     self.setImage_yscale(obj[1]);
     self.setImage_angle(obj[2]);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_webpage(Variable... obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_wrap(Variable... obj)
@@ -938,6 +938,6 @@ public /*static*/ Variable action_wrap(Variable... obj)
     move_wrap(Boolean.FALSE, Boolean.TRUE, new Integer(0));
     else
         move_wrap(Boolean.TRUE, Boolean.TRUE, new Integer(0));
-return new Variable();
+return Boolean.FALSE;
 }
 }

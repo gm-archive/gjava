@@ -147,29 +147,12 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                     DolphinWriter.FileFolder + "Game.java"
                 };
 
-                FileWriter batFW = new FileWriter(DolphinWriter.FileFolder+File.separator + "compile_windows.bat");
-                BufferedWriter bat = new BufferedWriter(batFW);
-                DolphinWriter.print(bat, "del *.class");
-                DolphinWriter.print(bat, "javac -classpath \"" +
-                        new File(DolphinWriter.projectfolder+ File.separator).getAbsolutePath() + "\" Game.java");
-                DolphinWriter.print(bat, "pause");
-                bat.close();
-                System.out.println("just before compile");
+                
+                
                 int status2 = Main.compile(args);
-//				args = new String[] {
-//						"-classpath",
-//						DolphinWriter.FileFolder+File.separator,
-//						DolphinWriter.FileFolder + "gjava" + File.separator + "runner" + File.separator
-//						+ "basicgame.java"
-//				};
 
-//				int status3 = javac.compile(args);
-//				
-//				args = new String[] {
-//						DolphinWriter.FileFolder + DolphinWriter.projectname + ".java"
-//				};
-//				
-//				int status4 = javac.compile(args);
+                // Delete files if standalone
+                deleteSourceFiles();
 
                 /*
                  *
@@ -185,6 +168,21 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
 
                 sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream, printStream, "cfm " + DolphinWriter.filename + ".jar manifest.txt *.class org com");
                 jar.run(args);
+
+                /*
+                 *
+                 * Create the compile file to help with debugging
+                 *
+                 */
+                if (!DolphinWriter.standalone){
+                FileWriter batFW = new FileWriter(DolphinWriter.FileFolder+File.separator + "compile_windows.bat");
+                BufferedWriter bat = new BufferedWriter(batFW);
+                DolphinWriter.print(bat, "del *.class");
+                DolphinWriter.print(bat, "javac -classpath \"" +
+                        new File(DolphinWriter.projectfolder+ File.separator).getAbsolutePath() + "\" Game.java");
+                DolphinWriter.print(bat, "pause");
+                bat.close();
+                }
 
                 FileInputStream fstream = new FileInputStream(file);
 
@@ -206,6 +204,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                     runapp.setEnabled(true);
                     runapplet.setEnabled(true);
                     textbox.setText(textbox.getText() + "\n\n" + "Finished compiling with no errors! Now press one of the test buttons below, to test your new java game.");
+                //only in standalone mode
                 } else {
                     textbox.setText(textbox.getText() + "\n\n" + "Finished compiling with errors! Please contact a member to the g-java development team. http://www.g-java.com/forums/");
                 }
@@ -213,7 +212,26 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 in.close();
 
             } catch (Exception e) {
+                e.printStackTrace();
             }
+        }
+    }
+
+    /*
+     * This will delete the source files only to be used in standalone mode
+     *
+     */
+    public void deleteSourceFiles(){
+        System.out.println("delete source files");
+        if (DolphinWriter.standalone){
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"components"+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"exceptions"+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"gtge"+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"resources"+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"types"+File.separator, ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev", ".java");
         }
     }
 

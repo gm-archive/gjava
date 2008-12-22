@@ -10,12 +10,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import org.dolphin.parser.PlatformCore;
 import org.lateralgm.components.impl.ResNode;
 import org.lateralgm.components.mdi.MDIFrame;
 import org.lateralgm.main.LGM;
@@ -24,7 +27,7 @@ import org.lateralgm.subframes.SubframeInformer;
 import org.lateralgm.subframes.SubframeInformer.SubframeListener;
 
 public class Plugin implements ActionListener, SubframeListener {
-	public JMenuItem run, debug, build, compile;
+	public JMenuItem run, debug, build, compile,standalone;
 	public DolphinFrame df;
 	public DolphinWriter dw;
 	public static File pluginLocation;
@@ -34,16 +37,22 @@ public class Plugin implements ActionListener, SubframeListener {
 
 		run = new JMenuItem("Run");
 		run.addActionListener(this);
-		menu.add(run);
+		//menu.add(run);
+                run.setEnabled(false);
 		debug = new JMenuItem("Debug");
 		debug.addActionListener(this);
 		menu.add(debug);
+                debug.setEnabled(false);
 		build = new JMenuItem("Build");
 		build.addActionListener(this);
 		menu.add(build);
-		compile = new JMenuItem("Compile");
+                build.setEnabled(false);
+		compile = new JMenuItem("Compile (source)");
 		compile.addActionListener(this);
 		menu.add(compile);
+                standalone = new JMenuItem("Create Standalone (no source)");
+		standalone.addActionListener(this);
+		menu.add(standalone);
 
 		LGM.frame.getJMenuBar().add(menu,5);
 		SubframeInformer.addSubframeListener(this);
@@ -79,6 +88,12 @@ public class Plugin implements ActionListener, SubframeListener {
 		}
 	if (e.getSource() == compile)
 		{
+            DolphinWriter.standalone=false;
+		compile();
+		}
+                if (e.getSource() == standalone)
+		{
+                    DolphinWriter.standalone=true;
 		compile();
 		}
 		
@@ -179,9 +194,26 @@ public class Plugin implements ActionListener, SubframeListener {
                         
 			zipFile.close();
                         }catch(Exception e){System.out.println("could not open/close zip");e.printStackTrace();}
-		
+		deleteUnusedRunners();
 	}
 	
-	
+	void deleteUnusedRunners(){
+        try {
+            PlatformCore.recursivelyDeleteDirectory(new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "antlr"));
+            PlatformCore.recursivelyDeleteDirectory(new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator + "parser"));
+            //(new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator + "Plugin.class")).delete();
+            DolphinWriter.deleteFiles((new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator)).getPath(), ".class");
+            DolphinWriter.deleteFiles((new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator)).getPath(), ".java");
+            DolphinWriter.deleteFiles((new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator+"game" + File.separator)).getPath(), ".png");
+             DolphinWriter.deleteFiles((new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator+"game" + File.separator)).getPath(), ".java");
+             DolphinWriter.deleteFiles((new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator+"game" + File.separator)).getPath(), ".wav");
+             DolphinWriter.deleteFiles((new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "runner" + File.separator + "org" + File.separator + "dolphin" + File.separator+"game" + File.separator)).getPath(), ".jpg");
+
+        } catch (IOException ex) {
+            Logger.getLogger(Plugin.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+
+        }
 	
 }

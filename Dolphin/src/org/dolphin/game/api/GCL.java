@@ -91,7 +91,7 @@ public static Variable choose(Variable... x)
                   return n;
               i++;
           }
-return new Variable();
+return Boolean.FALSE;
 }
 public static Variable abs(Variable x)
 {
@@ -410,7 +410,7 @@ return new Boolean(Clipboard.hasText());
 public static Variable clipboard_set_text(Variable str)
 {
     Clipboard.setText(str.getString());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable clipboard_get_text()
@@ -437,72 +437,72 @@ return round(new Double(Date.currentDate()));
 
 public static Variable date_current_time()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_create_datetime(Variable year, Variable month, Variable day, Variable hour, Variable minute, Variable second)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_create_date(Variable year, Variable month, Variable day)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_create_time(Variable hour, Variable minute, Variable second)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_valid_datetime(Variable year, Variable month, Variable day, Variable hour, Variable minute, Variable second)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_valid_date(Variable year, Variable month, Variable day)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_valid_time(Variable hour, Variable minute, Variable second)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_year(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_month(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_week(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_day(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_hour(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_minute(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_inc_second(Variable date, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_year(Variable date)
@@ -512,152 +512,152 @@ return new Double(Date.getYear(date.getDouble()));
 
 public static Variable date_get_month(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_week(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_day(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_hour(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_minute(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_second(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_weekday(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_day_of_year(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_hour_of_year(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_minute_of_year(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_get_second_of_year(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_year_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_month_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_week_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_day_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_hour_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_minute_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_second_span(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_compare_datetime(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_compare_date(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_compare_time(Variable date1, Variable date2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_date_of(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_time_of(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_datetime_string(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_date_string(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_time_string(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_days_in_month(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_days_in_year(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_leap_year(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable date_is_today(Variable date)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -670,7 +670,7 @@ public /*static*/ Variable motion_set(Variable dir, Variable speed)
 {
     self.setDirection(dir);
     self.setSpeed(speed);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable motion_add(Variable dir, Variable speed)
@@ -680,7 +680,7 @@ public /*static*/ Variable motion_add(Variable dir, Variable speed)
     //self.speed += speed.getDouble();
     self.setDirection(new Double(self.getDirection().getDouble() + dir.getDouble()));
     self.setSpeed(speed.add(self.getSpeed()));
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable place_free(Variable x, Variable y)
@@ -761,7 +761,7 @@ public /*static*/ Variable place_snapped(Variable hsnap, Variable vsnap)
     if ((self.x % hsnap.getDouble() ==0) && (self.y % vsnap.getDouble()==0) )
         return new Boolean(true);
 
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable move_random(Variable hsnap, Variable vsnap)
@@ -774,7 +774,7 @@ public /*static*/ Variable move_random(Variable hsnap, Variable vsnap)
         self.y=round(random(getRoom_height())).getDouble();
     else
     self.y=round(random(getRoom_height()).div(vsnap)).mult(vsnap).getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -785,7 +785,7 @@ public /*static*/ Variable move_snap(Variable hsnap, Variable vsnap)
 {
     self.x = round(new Double(self.x/hsnap.getDouble())).getDouble()  * hsnap.getDouble();
 self.y = round(new Double(self.y/vsnap.getDouble())).getDouble() * vsnap.getDouble();		
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -796,37 +796,37 @@ public /*static*/ Variable move_towards_point(Variable xto, Variable yto, Variab
    double dist=sqrt(new Double((xto.getDouble()-self.x)*(xto.getDouble()-self.x)+(yto.getDouble()-self.y)*(yto.getDouble()-self.y))).getDouble();
    self.hspeed=((xto.getDouble()-self.x)/dist)*sp.getDouble();
    self.vspeed=((yto.getDouble()-self.y)/dist)*sp.getDouble();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable move_contact_solid(Variable dir, Variable maxdist)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable move_contact_all(Variable dir, Variable maxdist)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable move_outside_solid(Variable dir, Variable maxdist)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable move_outside_all(Variable dir, Variable maxdist)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable move_bounce_solid(Variable advanced)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable move_bounce_all(Variable advanced)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable move_wrap(Variable hor, Variable vert, Variable margin)
@@ -841,7 +841,7 @@ public /*static*/ Variable move_wrap(Variable hor, Variable vert, Variable margi
          self.y=getRoom_height().getDouble()-self.y;
       }
    }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public /*static*/ Variable distance_to_point(Variable x, Variable y)
@@ -874,12 +874,12 @@ public /*static*/ Variable distance_to_object(Variable obj)
 
 public static Variable position_empty(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable position_meeting(Variable x, Variable y, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -889,12 +889,12 @@ return new Variable();
  */
 public static Variable path_start(Variable path, Variable speed, Variable endaction, Variable absolute)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_end()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -905,97 +905,97 @@ return new Variable();
 
 public static Variable mp_linear_step(Variable x, Variable y, Variable speed, Variable checkall)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_potential_step(Variable x, Variable y, Variable speed, Variable checkall)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_linear_step_Variable(Variable x, Variable y, Variable speed, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_potential_step_Variable(Variable x, Variable y, Variable speed, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_potential_settings(Variable maxrot, Variable rotstep, Variable ahead, Variable onspot)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_linear_path(Variable path, Variable xg, Variable yg, Variable stepsize, Variable checkall)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_potential_path(Variable path, Variable xg, Variable yg, Variable stepsize, Variable factor, Variable checkall)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_linear_path_Variable(Variable path, Variable xg, Variable yg, Variable stepsize, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_potential_path_Variable(Variable path, Variable xg, Variable yg, Variable stepsize, Variable factor, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_create(Variable left, Variable top, Variable hcells, Variable vcells, Variable cellwidth, Variable cellheight)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_destroy(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_clear_all(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_clear_cell(Variable id, Variable h, Variable v)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_clear_rectangle(Variable id, Variable left, Variable top, Variable right, Variable bottom)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_add_cell(Variable id, Variable h, Variable v)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_add_rectangle(Variable id, Variable left, Variable top, Variable right, Variable bottom)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_add_instances(Variable id, Variable obj, Variable prec)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_path(Variable id, Variable path, Variable xstart, Variable ystart, Variable xgoal, Variable ygoal, Variable allowdiag)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mp_grid_draw(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1005,27 +1005,27 @@ return new Variable();
  */
 public static Variable collision_point(Variable x, Variable y, Variable obj, Variable prec, Variable notme)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable collision_rectangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable obj, Variable prec, Variable notme)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable collision_circle(Variable x1, Variable y1, Variable radius, Variable obj, Variable prec, Variable notme)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable collision_ellipse(Variable x1, Variable y1, Variable x2, Variable y2, Variable obj, Variable prec, Variable notme)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable collision_line(Variable x1, Variable y1, Variable x2, Variable y2, Variable obj, Variable prec, Variable notme)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1036,37 +1036,37 @@ return new Variable();
 
 public static Variable instance_find(Variable obj, Variable n)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_exists(Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_number(Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_position(Variable x, Variable y, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_nearest(Variable x, Variable y, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_furthest(Variable x, Variable y, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_place(Variable x, Variable y, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_create(Variable x, Variable y, Variable obj)
@@ -1103,22 +1103,22 @@ public static Variable instance_change(Variable obj, Variable performevents)
 {
     System.out.println("instance change");
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_destroy()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable position_destroy(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable position_change(Variable x, Variable y, Variable obj, Variable performevents)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1135,32 +1135,32 @@ public /*static*/ Variable instance_deactivate_all(Variable notme)
     }
      if (notme.getBoolean())
        self.active=true;
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_deactivate_Variable(Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_deactivate_region(Variable left, Variable top, Variable width, Variable height, Variable inside, Variable notme)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_activate_all()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_activate_Variable(Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable instance_activate_region(Variable left, Variable top, Variable width, Variable height, Variable inside)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1176,7 +1176,7 @@ public static Variable sleep(Variable millisec)
         } catch (InterruptedException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Variable();
+        return Boolean.FALSE;
 }
 
 /*
@@ -1186,53 +1186,53 @@ public static Variable sleep(Variable millisec)
  */
 public static Variable room_goto(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_goto_previous()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_goto_next()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_previous(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_next(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_restart()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable game_end()
 {
     System.exit(0);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable game_restart()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable game_load(Variable filename)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable game_save(Variable filename)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1242,22 +1242,22 @@ return new Variable();
  */
 public static Variable event_perform(Variable type, Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable event_user(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable event_perform_Variable(Variable obj, Variable type, Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable event_inherited()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1269,82 +1269,82 @@ public static Variable show_debug_message(Variable str)
 {
     //Game.debug.println(str);
 	System.out.println(str);
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable variable_global_exists(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_global_get(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_global_array_get(Variable name, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_global_array2_get(Variable name, Variable ind1, Variable ind2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_global_set(Variable name, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_global_array_set(Variable name, Variable ind, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_global_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_exists(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_get(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_array_get(Variable name, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_array2_get(Variable name, Variable ind1, Variable ind2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_set(Variable name, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_array_set(Variable name, Variable ind, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable variable_local_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable set_program_priority(Variable priority)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1358,17 +1358,17 @@ public static Variable keyboard_set_map(Variable key1, Variable key2)
 	if (Game.keymap == null)
         Game.keymap = new Hashtable();
     Game.keymap.put(key1.getInt(), key2.getInt());*/
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_get_map(Variable key)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_unset_map()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_check(Variable key)
@@ -1379,13 +1379,13 @@ return new Boolean( Game.game.getGame().bsInput.isKeyDown(key.getInt()));
 public static Variable keyboard_check_pressed(Variable key)
 {
    return new Boolean( Game.game.getGame().bsInput.isKeyPressed(key.getInt()));
-//return new Variable();
+//return Boolean.FALSE;
 }
 
 public static Variable keyboard_check_released(Variable key)
 {
     return new Boolean( Game.game.getGame().bsInput.isKeyReleased(key.getInt()));
-//return new Variable();
+//return Boolean.FALSE;
 }
 
 public static Variable keyboard_check_direct(Variable key)
@@ -1395,42 +1395,42 @@ return keyboard_check(key);
 
 public static Variable keyboard_get_numlock()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_set_numlock(Variable on)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_key_press(Variable key)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_key_release(Variable key)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_clear(Variable key)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable io_clear()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable io_handle()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable keyboard_wait()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1440,27 +1440,27 @@ return new Variable();
  */
 public static Variable mouse_check_button(Variable button)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mouse_check_button_pressed(Variable button)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mouse_check_button_released(Variable button)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mouse_clear(Variable button)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mouse_wait()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1470,72 +1470,72 @@ return new Variable();
  */
 public static Variable joystick_exists(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_direction(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_name(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_axes(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_buttons(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_has_pov(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_check_button(Variable id, Variable button)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_xpos(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_ypos(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_zpos(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_rpos(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_upos(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_vpos(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable joystick_pov(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1548,93 +1548,93 @@ public static Variable draw_sprite(Variable sprite, Variable subimg, Variable x,
 {
     
     Game.currentRoom.g2d.drawImage(((Sprite)sprite).imshow((int)subimg.getDouble()), null, (int)x.getDouble(), (int)y.getDouble());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_ext(Variable sprite, Variable subimg, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_stretched(Variable sprite, Variable subimg, Variable x, Variable y, Variable w, Variable h)
 {
     Game.currentRoom.g2d.drawImage(ImageUtil.resize(((Sprite)sprite).imshow((int)subimg.getDouble()),(int)w.getDouble(),(int)y.getDouble()), null, (int)x.getDouble(), (int)y.getDouble());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_stretched_ext(Variable sprite, Variable subimg, Variable x, Variable y, Variable w, Variable h, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_tiled(Variable sprite, Variable subimg, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_tiled_ext(Variable sprite, Variable subimg, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_part(Variable sprite, Variable subimg, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_part_ext(Variable sprite, Variable subimg, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_sprite_general(Variable sprite, Variable subimg, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background(Variable back, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_ext(Variable back, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_stretched(Variable back, Variable x, Variable y, Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_stretched_ext(Variable back, Variable x, Variable y, Variable w, Variable h, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_tiled(Variable back, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_tiled_ext(Variable back, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_part(Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_part_ext(Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_background_general(Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1646,24 +1646,24 @@ public static Variable draw_clear(Variable col)
 {
     Game.currentRoom.g2d.setColor( ((Color)col).c );
         Game.currentRoom.g2d.fillRect( 0, 0, Game.currentRoom.width, Game.currentRoom.height );
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_clear_alpha(Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_point(Variable x, Variable y)
 {
     Game.currentRoom.g2d.fillRect((int)x.getDouble(), (int)y.getDouble(), 1, 1);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_line(Variable x1, Variable y1, Variable x2, Variable y2)
 {
     Game.currentRoom.g2d.drawLine(x1.getInt(), (int)y1.getDouble(), (int)x2.getDouble(), (int)y2.getDouble());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_rectangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
@@ -1684,7 +1684,7 @@ public static Variable draw_rectangle(Variable x1, Variable y1, Variable x2, Var
     else
         Game.currentRoom.g2d.fillRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()));
     
-    return new Variable();
+    return Boolean.FALSE;
 }
 static Variable temp= new Variable();
 public static Variable draw_roundrect(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
@@ -1704,62 +1704,62 @@ public static Variable draw_roundrect(Variable x1, Variable y1, Variable x2, Var
     else
         Game.currentRoom.g2d.fillRoundRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()),10,10);
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_triangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable x3, Variable y3, Variable outline)
 {
    // int[] xpoints = {(int)x1.getDouble(),(int)x2.getDouble(),(int)x3.getDouble()};
    // Game.currentRoom.g2d.drawPolygon(xPoints, yPoints, nPoints);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_circle(Variable x, Variable y, Variable r, Variable outline)
 {
     //Game.currentRoom.g2d.drawArc(x, y, width, height, startAngle, arcAngle);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_ellipse(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
 {
     //Draw.ellipse(x1.getDouble(), y1.getDouble(), x2.getDouble(), y2.getDouble(), outline.getBoolean());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_arrow(Variable x1, Variable y1, Variable x2, Variable y2, Variable size)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_button(Variable x1, Variable y1, Variable x2, Variable y2, Variable up)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_path(Variable path, Variable x, Variable y, Variable absolute)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_healthbar(Variable x1, Variable y1, Variable x2, Variable y2, Variable amount, Variable backcol, Variable mincol, Variable maxcol, Variable direction, Variable showback, Variable showborder)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_getpixel(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_set_color(Variable col)
 {
    Game.currentRoom.g2d.setColor(((Color)col).c); 
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_set_alpha(Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_get_color()
@@ -1769,7 +1769,7 @@ public static Variable draw_get_color()
 
 public static Variable draw_get_alpha()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable make_color_rgb(Variable red, Variable green, Variable blue)
@@ -1799,32 +1799,32 @@ return new Integer(((Color)col).c.getBlue());
 
 public static Variable color_get_hue(Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable color_get_saturation(Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable color_get_value(Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable merge_color(Variable col1, Variable col2, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable screen_save(Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable screen_save_part(Variable fname, Variable x, Variable y, Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 
@@ -1835,29 +1835,29 @@ return new Variable();
  */
 public static Variable draw_set_font(Variable font)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_set_halign(Variable halign)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_set_valign(Variable valign)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text(Variable x, Variable y, Variable string)
 {
     Game.currentRoom.g2d.drawString(""+string, x.getInt(), y.getInt());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_ext(Variable x, Variable y, Variable string, Variable sep, Variable w)
 {
     draw_text(x,y,string);
-return new Variable();
+return Boolean.FALSE;
 }
 
 
@@ -1865,14 +1865,14 @@ public static Variable string_width(Variable string)
 {
     if (Game.currentRoom.g2d !=null)
     return new Integer( Game.currentRoom.g2d.getFontMetrics().stringWidth(""+string));
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable string_height(Variable string)
 {
     if (Game.currentRoom.g2d !=null)
     return new Integer( Game.currentRoom.g2d.getFontMetrics().getHeight());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable string_width_ext(Variable string, Variable sep, Variable w)
@@ -1892,7 +1892,7 @@ AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadian
     Game.currentRoom.g2d.setFont ( Game.currentRoom.g2d.getFont().deriveFont ( at ) );
     Game.currentRoom.g2d.drawString(""+string, x.getInt(), y.getInt());
 Game.currentRoom.g2d.setFont(f);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_transformed(Variable x, Variable y, Variable string, Variable xscale, Variable yscale, Variable angle)
@@ -1902,37 +1902,37 @@ AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadian
     Game.currentRoom.g2d.setFont ( Game.currentRoom.g2d.getFont().deriveFont ( at ) );
     Game.currentRoom.g2d.drawString(""+string, x.getInt(), y.getInt());
 Game.currentRoom.g2d.setFont(f);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_ext_transformed(Variable x, Variable y, Variable string, Variable sep, Variable w, Variable xscale, Variable yscale, Variable angle)
 {
     draw_text_transformed(x, y, string, xscale, yscale, angle);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_color(Variable x, Variable y, Variable string, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
     draw_text(x, y, string);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_ext_color(Variable x, Variable y, Variable string, Variable sep, Variable w, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
     draw_text(x, y, string);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_transformed_color(Variable x, Variable y, Variable string, Variable xscale, Variable yscale, Variable angle, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
     draw_text(x, y, string);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_text_ext_transformed_color(Variable x, Variable y, Variable string, Variable sep, Variable w, Variable xscale, Variable yscale, Variable angle, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
     draw_text(x, y, string);
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -1942,127 +1942,127 @@ return new Variable();
  */
 public static Variable draw_point_color(Variable x, Variable y, Variable col1)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_line_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_rectangle_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable col3, Variable col4, Variable outline)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_roundrect_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable outline)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_triangle_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable x3, Variable y3, Variable col1, Variable col2, Variable col3, Variable outline)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_circle_color(Variable x, Variable y, Variable r, Variable col1, Variable col2, Variable outline)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_ellipse_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable outline)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_primitive_begin(Variable kind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_vertex(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_vertex_color(Variable x, Variable y, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_primitive_end()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_texture(Variable spr, Variable subimg)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_texture(Variable back)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_preload(Variable texid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_set_priority(Variable texid, Variable prio)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_get_width(Variable texid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_get_height(Variable texid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_primitive_begin_texture(Variable kind, Variable texid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_vertex_texture(Variable x, Variable y, Variable xtex, Variable ytex)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_vertex_texture_color(Variable x, Variable y, Variable xtex, Variable ytex, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_set_interpolation(Variable linear)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_set_blending(Variable blend)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable texture_set_repeat(Variable repeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_set_blend_mode(Variable mode)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_set_blend_mode_ext(Variable src, Variable dest)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2078,13 +2078,13 @@ return new Surface(w.getInt(),h.getInt());
 public static Variable surface_free(Variable id)
 {
     //not needed
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_exists(Variable id)
 {
     //not needed
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_get_width(Variable id)
@@ -2100,7 +2100,7 @@ return new Integer(((Surface)id).height);
 public static Variable surface_get_texture(Variable id)
 {
     //not needed
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_set_target(Variable id)
@@ -2108,67 +2108,67 @@ public static Variable surface_set_target(Variable id)
     Game.graphics = Game.currentRoom.g2d;
     Game.currentRoom.g2d = ((Surface)id).b.createGraphics();
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_reset_target()
 {
     Game.graphics =null;
     System.out.println("surface");
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface(Variable id, Variable x, Variable y)
 {
     Game.currentRoom.g2d.drawImage(((Surface)id).b, null, x.getInt(), y.getInt());
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_stretched(Variable id, Variable x, Variable y, Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_tiled(Variable id, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_part(Variable id, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_ext(Variable id, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_stretched_ext(Variable id, Variable x, Variable y, Variable w, Variable h, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_tiled_ext(Variable id, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_part_ext(Variable id, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_surface_general(Variable id, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_getpixel(Variable id, Variable x, Variable y)
 {
     new Color(new java.awt.Color(((Surface) id).b.getRGB(x.getInt(), y.getInt())));
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_save(Variable id, Variable fname)
@@ -2176,11 +2176,11 @@ public static Variable surface_save(Variable id, Variable fname)
         try {
 
             ImageIO.write(((Surface) id).b, "png", new java.io.File("" + fname+".png"));
-            return new Variable();
+            return Boolean.FALSE;
         } catch (IOException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Variable();
+        return Boolean.FALSE;
 }
 
 public static Variable surface_save_part(Variable id, Variable fname, Variable x, Variable y, Variable w, Variable h)
@@ -2188,21 +2188,21 @@ public static Variable surface_save_part(Variable id, Variable fname, Variable x
  try {
 
             ImageIO.write(((Surface) id).b.getSubimage(x.getInt(), y.getInt(), w.getInt(), h.getInt()), "png", new java.io.File("" + fname+".png"));
-            return new Variable();
+            return Boolean.FALSE;
         } catch (IOException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Variable();
+        return Boolean.FALSE;
 }
 
 public static Variable surface_copy(Variable destination, Variable x, Variable y, Variable source)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable surface_copy_part(Variable destination, Variable x, Variable y, Variable source, Variable xs, Variable ys, Variable ws, Variable hs)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2212,157 +2212,157 @@ return new Variable();
  */
 public static Variable tile_add(Variable background, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_delete(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_exists(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_x(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_y(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_left(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_top(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_width(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_height(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_depth(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_visible(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_xscale(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_yscale(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_background(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_blend(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_get_alpha(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_position(Variable id, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_region(Variable id, Variable left, Variable right, Variable width, Variable height)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_background(Variable id, Variable background)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_visible(Variable id, Variable visible)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_depth(Variable id, Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_scale(Variable id, Variable xscale, Variable yscale)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_blend(Variable id, Variable color)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_set_alpha(Variable id, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_hide(Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_show(Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_delete(Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_shift(Variable depth, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_find(Variable depth, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_delete_at(Variable depth, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable tile_layer_depth(Variable depth, Variable newdepth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2397,42 +2397,42 @@ return new Boolean(Display.setSize((int)w.getDouble(),(int) h.getDouble()));
 
 public static Variable display_set_colordepth(Variable coldepth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_set_frequency(Variable frequency)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_set_all(Variable w, Variable h, Variable frequency, Variable coldepth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_test_all(Variable w, Variable h, Variable frequency, Variable coldepth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_reset()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_mouse_get_x()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_mouse_get_y()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable display_mouse_set(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2445,14 +2445,14 @@ public static Variable window_set_visible(Variable visible)
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(visible.getBoolean());
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_visible()
 {
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
         return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isVisible());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_set_fullscreen(Variable full)
@@ -2476,7 +2476,7 @@ public static Variable window_set_fullscreen(Variable full)
 			device.setFullScreenWindow(null); // comment this line if you want only undecorated frame
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
 		}
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_fullscreen()
@@ -2489,7 +2489,7 @@ public static Variable window_set_showborder(Variable show)
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(show.getBoolean()? false:true);
                         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_showborder()
@@ -2501,28 +2501,28 @@ return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isU
 public static Variable window_set_showicons(Variable show)
 {
     //((JFrame)((WindowedMode)Game.game.getGame().bsGraphics).getFrame()).getc.setWindowDecorationStyle(JRootPane.NONE);
-            return new Variable();
+            return Boolean.FALSE;
 }
 
 public static Variable window_get_showicons()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_set_stayontop(Variable stay)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_stayontop()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_set_sizeable(Variable sizeable)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(sizeable.getBoolean());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_sizeable()
@@ -2533,7 +2533,7 @@ return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isR
 public static Variable window_set_caption(Variable caption)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setTitle(""+caption);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_caption()
@@ -2545,7 +2545,7 @@ public static Variable window_set_cursor(Variable curs)
 {
     if(curs instanceof Cursor)
         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setCursor(((Cursor)curs).c);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_cursor()
@@ -2556,7 +2556,7 @@ return new Cursor(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getC
 public static Variable window_set_color(Variable color)
 {
   ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setBackground(((Color)color).c);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_color()
@@ -2566,31 +2566,31 @@ return new Color(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBa
 
 public static Variable window_set_region_scale(Variable scale, Variable adaptwindow)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_region_scale()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_set_position(Variable x, Variable y)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(x.getInt(), y.getInt());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_set_size(Variable w, Variable h)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(w.getInt(), h.getInt());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_set_rectangle(Variable x, Variable y, Variable w, Variable h)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(w.getInt(), h.getInt());
 ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(x.getInt(), y.getInt());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_center()
@@ -2599,7 +2599,7 @@ public static Variable window_center()
   Rectangle abounds = ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBounds();
   ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation((dim.width - abounds.width) / 2,
       (dim.height - abounds.height) / 2);
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_default()
@@ -2607,7 +2607,7 @@ public static Variable window_default()
     //sets to room hight/width
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(Game.currentRoom.width, Game.currentRoom.height);
     window_center();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_x()
@@ -2655,7 +2655,7 @@ public static Variable window_mouse_set(Variable x, Variable y)
         r.mouseMove(x.getInt(), y.getInt());
     } catch (AWTException aWTException) {
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2665,47 +2665,47 @@ return new Variable();
  */
 public static Variable window_set_region_size(Variable w, Variable h, Variable adaptwindow)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_region_width()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_get_region_height()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_view_mouse_get_x(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_view_mouse_get_y(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_view_mouse_set(Variable id, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_views_mouse_get_x()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_views_mouse_get_y()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_views_mouse_set(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2719,28 +2719,28 @@ public static Variable screen_redraw()
         Game.game.getGame().bsGraphics.flip();
        // Game.game.getGame().bsGraphics.getBackBuffer()
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable screen_refresh()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable screen_wait_vsync()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable set_automatic_draw(Variable value)
 {
     Game.auto_redraw = value.getBoolean();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable set_synchronization(Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2750,57 +2750,57 @@ return new Variable();
  */
 public static Variable sound_play(Variable index)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_loop(Variable index)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_stop(Variable index)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_stop_all()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_isplaying(Variable index)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_volume(Variable index, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_global_volume(Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_fade(Variable index, Variable value, Variable time)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_pan(Variable index, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_background_tempo(Variable factor)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_set_search_directory(Variable dir)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2810,42 +2810,42 @@ return new Variable();
  */
 public static Variable sound_effect_set(Variable snd, Variable effect)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_chorus(Variable snd, Variable wetdry, Variable depth, Variable feedback, Variable frequency, Variable wave, Variable delay, Variable phase)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_echo(Variable snd, Variable wetdry, Variable feedback, Variable leftdelay, Variable rightdelay, Variable pandelay)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_flanger(Variable snd, Variable wetdry, Variable depth, Variable feedback, Variable frequency, Variable wave, Variable delay, Variable phase)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_gargle(Variable snd, Variable rate, Variable wave)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_reverb(Variable snd, Variable gain, Variable mix, Variable time, Variable ratio)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_compressor(Variable snd, Variable gain, Variable attack, Variable release, Variable threshold, Variable ratio, Variable delay)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_effect_equalizer(Variable snd, Variable center, Variable bandwidth, Variable gain)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2855,22 +2855,22 @@ return new Variable();
  */
 public static Variable sound_3d_set_sound_position(Variable snd, Variable x, Variable y, Variable z)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_3d_set_sound_velocity(Variable snd, Variable x, Variable y, Variable z)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_3d_set_sound_distance(Variable snd, Variable mindist, Variable maxdist)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_3d_set_sound_cone(Variable snd, Variable x, Variable y, Variable z, Variable anglein, Variable angleout, Variable voloutside)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2880,97 +2880,97 @@ return new Variable();
  */
 public static Variable cd_init()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_present()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_number()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_playing()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_paused()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_track()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_length()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_track_length(Variable n)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_position()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_track_position()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_play(Variable first, Variable last)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_stop()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_pause()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_resume()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_set_position(Variable pos)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_set_track_position(Variable pos)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_open_door()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable cd_close_door()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable MCI_command(Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -2980,27 +2980,27 @@ return new Variable();
  */
 public static Variable show_image(Variable fname, Variable full, Variable delay)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_video(Variable fname, Variable full, Variable loop)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_text(Variable fname, Variable full, Variable backcol, Variable delay)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_info()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable load_info(Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3012,117 +3012,117 @@ public static Variable show_message(Variable str)
 {
     JOptionPane.showMessageDialog(Game.frame, str.toString());
     Game.thegame.bsInput.refresh();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_message_ext(Variable str, Variable but1, Variable but2, Variable but3)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_question(Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_integer(Variable str, Variable def)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_string(Variable str, Variable def)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_background(Variable back)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_button(Variable sprite)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_alpha(Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_text_font(Variable name, Variable size, Variable color, Variable style)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_button_font(Variable name, Variable size, Variable color, Variable style)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_input_font(Variable name, Variable size, Variable color, Variable style)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_mouse_color(Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_input_color(Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_position(Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_size(Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable message_caption(Variable show, Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_menu(Variable str, Variable def)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_menu_pos(Variable x, Variable y, Variable str, Variable def)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_color(Variable defcol)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_open_filename(Variable filter, Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_save_filename(Variable filter, Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_directory(Variable dname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable get_directory_alt(Variable capt, Variable root)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable show_error(Variable str, Variable abort)
@@ -3131,7 +3131,7 @@ public static Variable show_error(Variable str, Variable abort)
     if (abort.getBoolean())
         System.exit(1);
     
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 /*
@@ -3141,67 +3141,67 @@ public static Variable show_error(Variable str, Variable abort)
  */
 public static Variable highscore_show_ext(Variable numb, Variable back, Variable border, Variable col1, Variable col2, Variable name, Variable size)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_show(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_set_background(Variable back)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_set_border(Variable show)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_set_font(Variable name, Variable size, Variable style)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_set_strings(Variable caption, Variable nobody, Variable escape)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_set_colors(Variable back, Variable newc, Variable other)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_clear()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_add(Variable str, Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_add_current()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_value(Variable place)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable highscore_name(Variable place)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable draw_highscore(Variable x1, Variable y1, Variable x2, Variable y2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3211,82 +3211,82 @@ return new Variable();
  */
 public static Variable sprite_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_number(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_width(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_height(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_transparent(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_smooth(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_preload(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_xoffset(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_yoffset(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_bbox_mode(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_bbox_left(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_bbox_right(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_bbox_top(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_bbox_bottom(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_get_precise(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3296,32 +3296,32 @@ return new Variable();
  */
 public static Variable sound_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_get_kind(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_get_preload(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_discard(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_restore(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3331,37 +3331,37 @@ return new Variable();
  */
 public static Variable background_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_width(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_height(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_transparent(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_smooth(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_get_preload(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3371,37 +3371,37 @@ return new Variable();
  */
 public static Variable font_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_get_fontname(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_get_bold(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_get_italic(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_get_first(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_get_last(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3411,67 +3411,67 @@ return new Variable();
  */
 public static Variable path_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_length(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_kind(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_closed(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_precision(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_number(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_point_x(Variable ind, Variable n)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_point_y(Variable ind, Variable n)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_point_speed(Variable ind, Variable n)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_x(Variable ind, Variable pos)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_y(Variable ind, Variable pos)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_get_speed(Variable ind, Variable pos)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 
@@ -3482,17 +3482,17 @@ return new Variable();
  */
 public static Variable script_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable script_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable script_get_text(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3502,12 +3502,12 @@ return new Variable();
  */
 public static Variable timeline_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable timeline_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3517,7 +3517,7 @@ return new Variable();
  */
 public static Variable actor_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable actor_get_name(Variable ind)
@@ -3527,42 +3527,42 @@ return ind;
 
 public static Variable object_get_sprite(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_get_solid(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_get_visible(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_get_depth(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_get_persistent(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_get_mask(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_get_parent(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_is_ancestor(Variable ind1, Variable ind2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3573,12 +3573,12 @@ return new Variable();
 
 public static Variable room_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_get_name(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3588,77 +3588,77 @@ return new Variable();
  */
 public static Variable sprite_set_offset(Variable ind, Variable xoff, Variable yoff)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_set_bbox_mode(Variable ind, Variable mode)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_set_bbox(Variable ind, Variable left, Variable top, Variable right, Variable bottom)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_set_precise(Variable ind, Variable mode)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_duplicate(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_assign(Variable ind, Variable source)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_merge(Variable ind1, Variable ind2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_add(Variable fname, Variable imgnumb, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_replace(Variable ind, Variable fname, Variable imgnumb, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_create_from_screen(Variable x, Variable y, Variable w, Variable h, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_add_from_screen(Variable ind, Variable x, Variable y, Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_create_from_surface(Variable id, Variable x, Variable y, Variable w, Variable h, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_add_from_surface(Variable ind, Variable id, Variable x, Variable y, Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sprite_set_alpha_from_sprite(Variable ind, Variable spr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3668,17 +3668,17 @@ return new Variable();
  */
 public static Variable sound_add(Variable fname, Variable kind, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_replace(Variable ind, Variable fname, Variable kind, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable sound_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3688,52 +3688,52 @@ return new Variable();
  */
 public static Variable background_duplicate(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_assign(Variable ind, Variable source)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_add(Variable fname, Variable transparent, Variable smooth, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_replace(Variable ind, Variable fname, Variable transparent, Variable smooth, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_create_color(Variable w, Variable h, Variable col, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_create_gradient(Variable w, Variable h, Variable col1, Variable col2, Variable kind, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_create_from_screen(Variable x, Variable y, Variable w, Variable h, Variable transparent, Variable smooth, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_create_from_surface(Variable id, Variable x, Variable y, Variable w, Variable h, Variable transparent, Variable smooth, Variable preload)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable background_set_alpha_from_background(Variable ind, Variable back)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3743,27 +3743,27 @@ return new Variable();
  */
 public static Variable font_add(Variable name, Variable size, Variable bold, Variable italic, Variable first, Variable last)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_add_sprite(Variable spr, Variable first, Variable prop, Variable sep)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_replace(Variable ind, Variable name, Variable size, Variable bold, Variable italic, Variable first, Variable last)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_replace_sprite(Variable ind, Variable spr, Variable first, Variable prop, Variable sep)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable font_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3773,97 +3773,97 @@ return new Variable();
  */
 public static Variable path_set_kind(Variable ind, Variable kind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_set_closed(Variable ind, Variable closed)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_set_precision(Variable ind, Variable prec)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_add()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_assign(Variable ind, Variable path)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_duplicate(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_append(Variable ind, Variable path)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_add_point(Variable ind, Variable x, Variable y, Variable speed)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_insert_point(Variable ind, Variable n, Variable x, Variable y, Variable speed)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_change_point(Variable ind, Variable n, Variable x, Variable y, Variable speed)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_delete_point(Variable ind, Variable n)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_clear_points(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_reverse(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_mirror(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_flip(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_rotate(Variable ind, Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_scale(Variable ind, Variable xscale, Variable yscale)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable path_shift(Variable ind, Variable xshift, Variable yshift)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3874,17 +3874,17 @@ return new Variable();
 
 public static Variable execute_string(Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable execute_file(Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable script_execute(Variable ind, Variable arg0, Variable arg1)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3895,22 +3895,22 @@ return new Variable();
 
 public static Variable timeline_add()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable timeline_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable timeline_moment_clear(Variable ind, Variable step)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable timeline_moment_add(Variable ind, Variable step, Variable codestr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3920,57 +3920,57 @@ return new Variable();
  */
 public static Variable Variable_set_sprite(Variable ind, Variable spr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable Variable_set_solid(Variable ind, Variable solid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable Variable_set_visible(Variable ind, Variable vis)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable Variable_set_depth(Variable ind, Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable Variable_set_persistent(Variable ind, Variable pers)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable Variable_set_mask(Variable ind, Variable spr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable Variable_set_parent(Variable ind, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_add()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_delete(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_event_clear(Variable ind, Variable evtype, Variable evnumb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable object_event_add(Variable ind, Variable evtype, Variable evnumb, Variable codestr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -3980,87 +3980,87 @@ return new Variable();
  */
 public static Variable room_set_width(Variable ind, Variable w)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_height(Variable ind, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_caption(Variable ind, Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_persistent(Variable ind, Variable pers)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_code(Variable ind, Variable codestr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_background_color(Variable ind, Variable col, Variable show)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_background(Variable ind, Variable bind, Variable vis, Variable fore, Variable back, Variable x, Variable y, Variable htiled, Variable vtiled, Variable hspeed, Variable vspeed, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_view(Variable ind, Variable vind, Variable vis, Variable xview, Variable yview, Variable wview, Variable hview, Variable xport, Variable yport, Variable wport, Variable hport, Variable hborder, Variable vborder, Variable hspeed, Variable vspeed, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_set_view_enabled(Variable ind, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_add()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_duplicate(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_assign(Variable ind, Variable source)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_instance_add(Variable ind, Variable x, Variable y, Variable obj)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_instance_clear(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_tile_add(Variable ind, Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_tile_add_ext(Variable ind, Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable depth, Variable xscale, Variable yscale, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable room_tile_clear(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4095,7 +4095,7 @@ public static Variable file_text_close(Variable file)
     {
         ((File)file).close();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_text_write_string(Variable file, Variable str)
@@ -4104,7 +4104,7 @@ public static Variable file_text_write_string(Variable file, Variable str)
     {
         ((File)file).writeString(str.getString());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_text_write_real(Variable file, Variable val)
@@ -4113,7 +4113,7 @@ public static Variable file_text_write_real(Variable file, Variable val)
     {
         ((File)file).writeDouble(val.getDouble());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_text_writeln(Variable file)
@@ -4122,7 +4122,7 @@ public static Variable file_text_writeln(Variable file)
     {
         ((File)file).newLine();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_text_read_string(Variable file)
@@ -4144,7 +4144,7 @@ public static Variable file_text_read_real(Variable file)
      return new Double( java.lang.Double.parseDouble(""+((File)file).readString()));
     }
     }catch(Exception e){}
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_text_readln(Variable file)
@@ -4153,7 +4153,7 @@ public static Variable file_text_readln(Variable file)
     {
       ((File)file).readln();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_text_eof(Variable file)
@@ -4162,7 +4162,7 @@ public static Variable file_text_eof(Variable file)
     {
      return new Boolean( ((File)file).endOfFile());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_exists(Variable fname)
@@ -4173,19 +4173,19 @@ return new Boolean(File.exists(fname.getString()));
 public static Variable file_delete(Variable fname)
 {
     File.delete(fname.toString());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_rename(Variable oldname, Variable newname)
 {
     File.rename(oldname.toString(), newname.toString());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_copy(Variable fname, Variable newname)
 {
     File.copy(fname.toString(), newname.toString());
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable directory_exists(Variable dname)
@@ -4196,27 +4196,27 @@ return new Boolean(File.exists(dname.getString()));
 public static Variable directory_create(Variable dname)
 {
     (new java.io.File(dname.toString())).mkdirs();
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_find_first(Variable mask, Variable attr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_find_next()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_find_close()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_attributes(Variable fname, Variable attr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable filename_path(Variable fname)
@@ -4263,7 +4263,7 @@ public static Variable file_bin_rewrite(Variable file)
     {
     ((BinaryFile)file).rewrite();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_bin_close(Variable file)
@@ -4272,7 +4272,7 @@ public static Variable file_bin_close(Variable file)
     {
     ((BinaryFile)file).close();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_bin_position(Variable file)
@@ -4281,7 +4281,7 @@ public static Variable file_bin_position(Variable file)
     {
     return new Double(((BinaryFile)file).getPosition());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_bin_size(Variable file)
@@ -4290,7 +4290,7 @@ public static Variable file_bin_size(Variable file)
     {
     return new Double(((BinaryFile)file).getSize());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_bin_seek(Variable file, Variable pos)
@@ -4299,7 +4299,7 @@ public static Variable file_bin_seek(Variable file, Variable pos)
     {
     ((BinaryFile)file).seek(pos.getInt());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_bin_write_byte(Variable file, Variable BYTE)
@@ -4308,7 +4308,7 @@ public static Variable file_bin_write_byte(Variable file, Variable BYTE)
     {
     ((BinaryFile)file).writeByte((byte)BYTE.getInt());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable file_bin_read_byte(Variable file)
@@ -4317,7 +4317,7 @@ public static Variable file_bin_read_byte(Variable file)
     {
     return new Integer(((BinaryFile)file).readByte());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable parameter_count()
@@ -4330,7 +4330,7 @@ public static Variable parameter_string(Variable n)
     try{
 return new String(Game.parameters[n.getInt()]);
     }catch(Exception e){
-   return new Variable();
+   return Boolean.FALSE;
     }
 }
 
@@ -4346,57 +4346,57 @@ return new String(System.getenv(""+name));
  */
 public static Variable registry_write_string(Variable name, Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_write_real(Variable name, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_read_string(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_read_real(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_exists(Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_write_string_ext(Variable key, Variable name, Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_write_real_ext(Variable key, Variable name, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_read_string_ext(Variable key, Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_read_real_ext(Variable key, Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_exists_ext(Variable key, Variable name)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable registry_set_root(Variable root)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4406,52 +4406,52 @@ return new Variable();
  */
 public static Variable ini_open(Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_close()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_read_string(Variable section, Variable key, Variable DEFAULT)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_read_real(Variable section, Variable key, Variable DEFAULT)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_write_string(Variable section, Variable key, Variable str)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_write_real(Variable section, Variable key, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_key_exists(Variable section, Variable key)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_section_exists(Variable section)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_key_delete(Variable section, Variable key)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ini_section_delete(Variable section)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4475,13 +4475,13 @@ public static Variable execute_program(Variable prog, Variable arg, Variable wai
         ex.printStackTrace();
         System.err.println("Execute program exception!");
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable execute_shell(Variable prog, Variable arg)
 {
 	execute_program(new String("bash -i " + prog), arg, new Boolean(false));
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4489,7 +4489,7 @@ return new Variable();
  */
 public static Variable ds_set_precision(Variable prec)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4508,7 +4508,7 @@ public static Variable ds_stack_destroy(Variable id)
     {
       ((Stack)id).destroy();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_stack_clear(Variable id)
@@ -4517,7 +4517,7 @@ public static Variable ds_stack_clear(Variable id)
     {
       ((Stack)id).clear();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_stack_size(Variable id)
@@ -4526,7 +4526,7 @@ public static Variable ds_stack_size(Variable id)
     {
      return new Integer(((Stack)id).size());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_stack_empty(Variable id)
@@ -4535,7 +4535,7 @@ public static Variable ds_stack_empty(Variable id)
     {
      return new Boolean(((Stack)id).empty());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_stack_push(Variable id, Variable value)
@@ -4544,7 +4544,7 @@ public static Variable ds_stack_push(Variable id, Variable value)
     {
      ((Stack)id).push(value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_stack_pop(Variable id)
@@ -4553,7 +4553,7 @@ public static Variable ds_stack_pop(Variable id)
     {
      return ((Stack)id).pop();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_stack_top(Variable id)
@@ -4562,7 +4562,7 @@ public static Variable ds_stack_top(Variable id)
     {
      return ((Stack)id).top();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4582,7 +4582,7 @@ public static Variable ds_queue_destroy(Variable id)
     {
      ((Queue)id).destroy();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_clear(Variable id)
@@ -4591,7 +4591,7 @@ public static Variable ds_queue_clear(Variable id)
     {
      ((Queue)id).clear();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_size(Variable id)
@@ -4600,7 +4600,7 @@ public static Variable ds_queue_size(Variable id)
     {
     return new Integer(((Queue)id).size());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_empty(Variable id)
@@ -4609,7 +4609,7 @@ public static Variable ds_queue_empty(Variable id)
     {
     return new Boolean(((Queue)id).empty());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_enqueue(Variable id, Variable value)
@@ -4618,7 +4618,7 @@ public static Variable ds_queue_enqueue(Variable id, Variable value)
     {
     ((Queue)id).enqueue(value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_dequeue(Variable id)
@@ -4627,7 +4627,7 @@ public static Variable ds_queue_dequeue(Variable id)
     {
     return ((Queue)id).dequeue();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_head(Variable id)
@@ -4636,7 +4636,7 @@ public static Variable ds_queue_head(Variable id)
     {
     return ((Queue)id).head();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_queue_tail(Variable id)
@@ -4645,7 +4645,7 @@ public static Variable ds_queue_tail(Variable id)
     {
     return ((Queue)id).tail();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4664,7 +4664,7 @@ public static Variable ds_list_destroy(Variable id)
     {
      ((List)id).destroy();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_clear(Variable id)
@@ -4673,7 +4673,7 @@ public static Variable ds_list_clear(Variable id)
     {
      ((List)id).clear();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_size(Variable id)
@@ -4682,7 +4682,7 @@ public static Variable ds_list_size(Variable id)
     {
     return new Integer(((List)id).size());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_empty(Variable id)
@@ -4691,7 +4691,7 @@ public static Variable ds_list_empty(Variable id)
     {
     return new Boolean(((List)id).empty());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_add(Variable id, Variable value)
@@ -4700,7 +4700,7 @@ public static Variable ds_list_add(Variable id, Variable value)
     {
     ((List)id).addel(value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_insert(Variable id, Variable pos, Variable value)
@@ -4709,7 +4709,7 @@ public static Variable ds_list_insert(Variable id, Variable pos, Variable value)
     {
     ((List)id).insert(pos,value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_replace(Variable id, Variable pos, Variable value)
@@ -4718,7 +4718,7 @@ public static Variable ds_list_replace(Variable id, Variable pos, Variable value
     {
     ((List)id).replace(pos,value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_delete(Variable id, Variable pos)
@@ -4727,12 +4727,12 @@ public static Variable ds_list_delete(Variable id, Variable pos)
     {
     ((List)id).delete(pos);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_find_index(Variable id, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_find_value(Variable id, Variable pos)
@@ -4741,12 +4741,12 @@ public static Variable ds_list_find_value(Variable id, Variable pos)
     {
     return ((List)id).find_value(pos);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_list_sort(Variable id, Variable ascending)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -4765,7 +4765,7 @@ public static Variable ds_map_destroy(Variable id)
     {
      ((Map)id).destroy();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_clear(Variable id)
@@ -4774,7 +4774,7 @@ public static Variable ds_map_clear(Variable id)
     {
      ((Map)id).clear();
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_size(Variable id)
@@ -4783,7 +4783,7 @@ public static Variable ds_map_size(Variable id)
     {
     return new Integer(((Map)id).size());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_empty(Variable id)
@@ -4792,7 +4792,7 @@ public static Variable ds_map_empty(Variable id)
     {
     return new Boolean(((Map)id).empty());
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_add(Variable id, Variable key, Variable value)
@@ -4801,7 +4801,7 @@ public static Variable ds_map_add(Variable id, Variable key, Variable value)
     {
     ((Map)id).add(key,value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_replace(Variable id, Variable key, Variable value)
@@ -4810,7 +4810,7 @@ public static Variable ds_map_replace(Variable id, Variable key, Variable value)
     {
     ((Map)id).add(key,value);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_delete(Variable id, Variable key)
@@ -4819,7 +4819,7 @@ public static Variable ds_map_delete(Variable id, Variable key)
     {
     ((Map)id).delete(key);
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_exists(Variable id, Variable key)
@@ -4828,7 +4828,7 @@ public static Variable ds_map_exists(Variable id, Variable key)
     {
     return new Boolean(((Map)id).exists(key));
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_find_value(Variable id, Variable key)
@@ -4837,35 +4837,35 @@ public static Variable ds_map_find_value(Variable id, Variable key)
     {
     return (((Map)id).find(key));
     }
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_map_find_previous(Variable id, Variable key)
 {
     if (id instanceof Map)
         return ((Map)id).findPrevious(key);
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_map_find_next(Variable id, Variable key)
 {
     if (id instanceof Map)
         return ((Map)id).findNext(key);
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_map_find_first(Variable id)
 {
     if (id instanceof Map)
         return ((Map)id).findFirst();
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_map_find_last(Variable id)
 {
     if (id instanceof Map)
         return ((Map)id).findLast();
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 /*
@@ -4884,7 +4884,7 @@ public static Variable ds_priority_destroy(Variable id)
     {
         ((PriorityQueue)id).destroy();
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_clear(Variable id)
@@ -4893,7 +4893,7 @@ public static Variable ds_priority_clear(Variable id)
     {
         ((PriorityQueue)id).clear();
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_size(Variable id)
@@ -4902,7 +4902,7 @@ public static Variable ds_priority_size(Variable id)
     {
         return new Integer(((PriorityQueue)id).size());
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_empty(Variable id)
@@ -4911,7 +4911,7 @@ public static Variable ds_priority_empty(Variable id)
     {
         return new Boolean(((PriorityQueue)id).isEmpty());
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_add(Variable id, Variable value, Variable priority)
@@ -4920,7 +4920,7 @@ public static Variable ds_priority_add(Variable id, Variable value, Variable pri
     {
         ((PriorityQueue)id).add(value, priority);
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_change_priority(Variable id, Variable value, Variable priority)
@@ -4929,7 +4929,7 @@ public static Variable ds_priority_change_priority(Variable id, Variable value, 
     {
         ((PriorityQueue)id).changePriority(value, priority);
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_find_priority(Variable id, Variable value)
@@ -4938,7 +4938,7 @@ public static Variable ds_priority_find_priority(Variable id, Variable value)
     {
         return ((PriorityQueue)id).findPriority(value);
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_delete_value(Variable id, Variable value)
@@ -4947,7 +4947,7 @@ public static Variable ds_priority_delete_value(Variable id, Variable value)
     {
         ((PriorityQueue)id).deleteValue(value);
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_delete_min(Variable id)
@@ -4956,7 +4956,7 @@ public static Variable ds_priority_delete_min(Variable id)
     {
         return ((PriorityQueue)id).deleteMin();
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_find_min(Variable id)
@@ -4965,7 +4965,7 @@ public static Variable ds_priority_find_min(Variable id)
     {
         return ((PriorityQueue)id).findMin();
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_delete_max(Variable id)
@@ -4974,7 +4974,7 @@ public static Variable ds_priority_delete_max(Variable id)
     {
         return ((PriorityQueue)id).deleteMax();
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 public static Variable ds_priority_find_max(Variable id)
@@ -4983,7 +4983,7 @@ public static Variable ds_priority_find_max(Variable id)
     {
         return ((PriorityQueue)id).findMax();
     }
-    return new Variable();
+    return Boolean.FALSE;
 }
 
 /*
@@ -4993,152 +4993,152 @@ public static Variable ds_priority_find_max(Variable id)
  */
 public static Variable ds_grid_create(Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_destroy(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_resize(Variable id, Variable w, Variable h)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_width(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_height(Variable id)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_clear(Variable id, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_set(Variable id, Variable x, Variable y, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_add(Variable id, Variable x, Variable y, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_multiply(Variable id, Variable x, Variable y, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_set_region(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_add_region(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_multiply_region(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_set_disk(Variable id, Variable xm, Variable ym, Variable r, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_add_disk(Variable id, Variable xm, Variable ym, Variable r, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_multiply_disk(Variable id, Variable xm, Variable ym, Variable r, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get(Variable id, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_sum(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_max(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_min(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_mean(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_disk_sum(Variable id, Variable xm, Variable ym, Variable r)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_disk_min(Variable id, Variable xm, Variable ym, Variable r)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_disk_max(Variable id, Variable xm, Variable ym, Variable r)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_get_disk_mean(Variable id, Variable xm, Variable ym, Variable r)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_value_exists(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_value_x(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_value_y(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_value_disk_exists(Variable id, Variable xm, Variable ym, Variable r, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_value_disk_x(Variable id, Variable xm, Variable ym, Variable r, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable ds_grid_value_disk_y(Variable id, Variable xm, Variable ym, Variable r, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5148,17 +5148,17 @@ return new Variable();
  */
 public static Variable effect_create_below(Variable kind, Variable x, Variable y, Variable size, Variable color)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable effect_create_above(Variable kind, Variable x, Variable y, Variable size, Variable color)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable effect_clear()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5168,127 +5168,127 @@ return new Variable();
  */
 public static Variable part_type_create()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_destroy(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_clear(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_shape(Variable ind, Variable shape)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_sprite(Variable ind, Variable sprite, Variable animat, Variable stretch, Variable random)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_size(Variable ind, Variable size_min, Variable size_max, Variable size_incr, Variable size_wiggle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_scale(Variable ind, Variable xscale, Variable yscale)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_orientation(Variable ind, Variable ang_min, Variable ang_max, Variable ang_incr, Variable ang_wiggle, Variable ang_relative)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_life(Variable ind, Variable life_min, Variable life_max)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_step(Variable ind, Variable step_number, Variable step_type)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_death(Variable ind, Variable death_number, Variable death_type)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_speed(Variable ind, Variable speed_min, Variable speed_max, Variable speed_incr, Variable speed_wiggle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_direction(Variable ind, Variable dir_min, Variable dir_max, Variable dir_incr, Variable dir_wiggle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_gravity(Variable ind, Variable grav_amount, Variable grav_dir)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_color1(Variable ind, Variable color1)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_color2(Variable ind, Variable color1, Variable color2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_color3(Variable ind, Variable color1, Variable color2, Variable color3)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_color_mix(Variable ind, Variable color1, Variable color2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_color_rgb(Variable ind, Variable rmin, Variable rmax, Variable gmin, Variable gmax, Variable bmin, Variable bmax)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_color_hsv(Variable ind, Variable hmin, Variable hmax, Variable smin, Variable smax, Variable vmin, Variable vmax)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_alpha1(Variable ind, Variable alpha1)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_alpha2(Variable ind, Variable alpha1, Variable alpha2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_alpha3(Variable ind, Variable alpha1, Variable alpha2, Variable alpha3)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_type_blend(Variable ind, Variable additive)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5299,77 +5299,77 @@ return new Variable();
 
 public static Variable part_system_create()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_destroy(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_exists(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_clear(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_draw_order(Variable ind, Variable oldtonew)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_depth(Variable ind, Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_position(Variable ind, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_automatic_update(Variable ind, Variable automatic)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_automatic_draw(Variable ind, Variable draw)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_update(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_system_drawit(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_particles_create(Variable ind, Variable x, Variable y, Variable parttype, Variable number)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_particles_create_color(Variable ind, Variable x, Variable y, Variable parttype, Variable color, Variable number)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_particles_clear(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_particles_count(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 
@@ -5381,42 +5381,42 @@ return new Variable();
  */
 public static Variable part_emitter_create(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_destroy(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_destroy_all(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_exists(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_clear(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax, Variable shape, Variable distribution)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_burst(Variable ps, Variable ind, Variable parttype, Variable number)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_emitter_stream(Variable ps, Variable ind, Variable parttype, Variable number)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5426,37 +5426,37 @@ return new Variable();
  */
 public static Variable part_attractor_create(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_attractor_destroy(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_attractor_destroy_all(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_attractor_exists(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_attractor_clear(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_attractor_position(Variable ps, Variable ind, Variable x, Variable y)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_attractor_force(Variable ps, Variable ind, Variable force, Variable dist, Variable kind, Variable additive)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5466,32 +5466,32 @@ return new Variable();
  */
 public static Variable part_destroyer_create(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_destroyer_destroy(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_destroyer_destroy_all(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_destroyer_exists(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_destroyer_clear(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_destroyer_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax, Variable shape)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5501,42 +5501,42 @@ return new Variable();
  */
 public static Variable part_deflector_create(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_destroy(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_destroy_all(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_exists(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_clear(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_kind(Variable ps, Variable ind, Variable kind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_deflector_friction(Variable ps, Variable ind, Variable amount)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5546,42 +5546,42 @@ return new Variable();
  */
 public static Variable part_changer_create(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_destroy(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_destroy_all(Variable ps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_exists(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_clear(Variable ps, Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax, Variable shape)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_kind(Variable ps, Variable ind, Variable kind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable part_changer_types(Variable ps, Variable ind, Variable parttype1, Variable parttype2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5591,32 +5591,32 @@ return new Variable();
  */
 public static Variable mplay_init_ipx()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_init_tcpip(Variable addrstring)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_init_modem(Variable initstr, Variable phonenr)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_init_serial(Variable portno, Variable baudrate, Variable stopbits, Variable parity, Variable flow)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_connect_status()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_end()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_ipaddress()
@@ -5627,7 +5627,7 @@ public static Variable mplay_ipaddress()
    return new String(i.getHostAddress()); // IP address only
         } catch(Exception e){
         System.out.println(""+e.getMessage());}
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5637,37 +5637,37 @@ return new Variable();
  */
 public static Variable mplay_session_mode(Variable move)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_session_create(Variable sesname, Variable playnumb, Variable playername)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_session_find()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_session_name(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_session_join(Variable numb, Variable playername)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_session_status()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_session_end()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5677,17 +5677,17 @@ return new Variable();
  */
 public static Variable mplay_player_find()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_player_name(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_player_id(Variable numb)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5697,17 +5697,17 @@ return new Variable();
  */
 public static Variable mplay_data_write(Variable ind, Variable value)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_data_read(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_data_mode(Variable guaranteed)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5717,47 +5717,47 @@ return new Variable();
  */
 public static Variable mplay_message_send(Variable player, Variable id, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_send_guaranteed(Variable player, Variable id, Variable val)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_receive(Variable player)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_id()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_value()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_player()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_name()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_count(Variable player)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable mplay_message_clear(Variable player)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5767,22 +5767,22 @@ return new Variable();
  */
 public static Variable external_call(Variable id, Variable arg1, Variable arg2)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable external_define(Variable dll, Variable name, Variable calltype, Variable restype, Variable argnumb, Variable arg1type, Variable arg2type)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable external_free(Variable dllname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable window_handle()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 /*
@@ -5792,373 +5792,373 @@ return new Variable();
  */
 public static Variable d3d_start()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_end()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_hidden(Variable enable)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_perspective(Variable enable)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_depth(Variable depth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_primitive_begin(Variable kind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex(Variable x, Variable y, Variable z)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_color(Variable x, Variable y, Variable z, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_primitive_end()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_primitive_begin_texture(Variable kind, Variable texid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_texture(Variable x, Variable y, Variable z, Variable xtex, Variable ytex)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_texture_color(Variable x, Variable y, Variable z, Variable xtex, Variable ytex, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_draw_block(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_draw_cylinder(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_draw_cone(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_draw_ellipsoid(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat, Variable steps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_draw_wall(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_draw_floor(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_projection(Variable xfrom, Variable yfrom, Variable zfrom, Variable xto, Variable yto, Variable zto, Variable xup, Variable yup, Variable zup)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_projection_ext(Variable xfrom, Variable yfrom, Variable zfrom, Variable xto, Variable yto, Variable zto, Variable xup, Variable yup, Variable zup, Variable angle, Variable aspect, Variable znear, Variable zfar)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_projection_ortho(Variable x, Variable y, Variable w, Variable h, Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_projection_perspective(Variable x, Variable y, Variable w, Variable h, Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_identity()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_translation(Variable xt, Variable yt, Variable zt)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_scaling(Variable xs, Variable ys, Variable zs)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_rotation_x(Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_rotation_y(Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_rotation_z(Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_set_rotation_axis(Variable xa, Variable ya, Variable za, Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_add_translation(Variable xt, Variable yt, Variable zt)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_add_scaling(Variable xs, Variable ys, Variable zs)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_add_rotation_x(Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_add_rotation_y(Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_add_rotation_z(Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_add_rotation_axis(Variable xa, Variable ya, Variable za, Variable angle)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_stack_clear()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_stack_empty()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_stack_push()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_stack_pop()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_stack_top()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_transform_stack_discard()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_fog(Variable enable, Variable color, Variable start, Variable end)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_lighting(Variable enable)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_shading(Variable smooth)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_set_culling(Variable cull)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_light_define_direction(Variable ind, Variable dx, Variable dy, Variable dz, Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_light_define_point(Variable ind, Variable x, Variable y, Variable z, Variable range, Variable col)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_light_enable(Variable ind, Variable enable)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_normal(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_normal_color(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_normal_texture(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_vertex_normal_texture_color(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_create()
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_destroy(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_clear(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_save(Variable ind, Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_load(Variable ind, Variable fname)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_draw(Variable ind, Variable x, Variable y, Variable z, Variable texid)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_primitive_begin(Variable ind, Variable kind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex(Variable ind, Variable x, Variable y, Variable z)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_color(Variable ind, Variable x, Variable y, Variable z, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_texture(Variable ind, Variable x, Variable y, Variable z, Variable xtex, Variable ytex)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_texture_color(Variable ind, Variable x, Variable y, Variable z, Variable xtex, Variable ytex, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_normal(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_normal_color(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_normal_texture(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_vertex_normal_texture_color(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex, Variable col, Variable alpha)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_primitive_end(Variable ind)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_block(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_cylinder(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
 {
     
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_cone(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_ellipsoid(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat, Variable steps)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_wall(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 public static Variable d3d_model_floor(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat)
 {
-return new Variable();
+return Boolean.FALSE;
 }
 
 

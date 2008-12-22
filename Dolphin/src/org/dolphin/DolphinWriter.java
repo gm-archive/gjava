@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class DolphinWriter {
     public static DolphinFrame df;
     public static GmFile gmFile;
     public static String FileFolder,  filename,  projectfolder;
+    public static boolean standalone=false;
     File location;
     PlatformCore pc = new PlatformCore();
 
@@ -761,4 +763,33 @@ public class DolphinWriter {
         file.write(printString);
         file.newLine();
     }
+
+    public static void deleteFiles( String directory, String extension ) {
+    ExtensionFilter filter = new ExtensionFilter(extension);
+    File dir = new File(directory);
+
+    String[] list = dir.list(filter);
+    File file;
+    if (list.length == 0) return;
+
+    for (int i = 0; i < list.length; i++) {
+      //file = new File(directory + list[i]);
+      file = new File(directory, list[i]);
+      //System.out.print(file + "  deleted : " + file.delete());
+      file.delete();
+    }
+   }
+
 }
+
+class ExtensionFilter implements FilenameFilter {
+  private String extension;
+  public ExtensionFilter( String extension ) {
+    this.extension = extension;
+  }
+
+  public boolean accept(File dir, String name) {
+    return (name.endsWith(extension));
+  }
+}
+
