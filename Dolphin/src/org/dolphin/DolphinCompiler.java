@@ -245,7 +245,26 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
         DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"gtge"+File.separator, ".java");
         DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"resources"+File.separator, ".java");
         DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator+"api"+File.separator+"types"+File.separator, ".java");
+        /*
+         * Now the GTGE java files
+         */
         DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"engine", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"engine"+File.separator+"audio", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"engine"+File.separator+"graphics", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"engine"+File.separator+"input", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"engine"+File.separator+"timer", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"funbox", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"object", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"object"+File.separator+"background", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"object"+File.separator+"background"+File.separator+"abstraction", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"object"+File.separator+"collision", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"object"+File.separator+"font", ".java");
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"object"+File.separator+"sprite", ".java");
+
+        DolphinWriter.deleteFiles(DolphinWriter.projectfolder+File.separator+"com"+File.separator+"golden"+File.separator+"gamedev"+File.separator+"util", ".java");
+
+
         }
     }
 

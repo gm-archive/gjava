@@ -96,7 +96,7 @@ public class ANTLRStringStream implements CharStream {
 		markDepth = 0;
 	}
 
-    @Override
+    //@Override
     public void consume() {
 		//System.out.println("prev p="+p+", c="+(char)data[p]);
         if ( p < n ) {

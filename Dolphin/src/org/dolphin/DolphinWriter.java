@@ -268,7 +268,7 @@ public class DolphinWriter {
                 if (names.contains(name)) {
                     throw new GmFormatException(gmFile, "Duplicate object name: " + name);
                 }
-                print(script, "public static Variable " + name + "(Variable... parameters){");
+                print(script, "public Variable " + name + "(Variable... parameters){");
                 print(script, "" + this.parseGCL(s.scriptStr));
                 print(script, "return new Variable();");
                 print(script, "}");
