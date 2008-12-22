@@ -44,7 +44,7 @@ private static final long serialVersionUID = 1L;
     public java.lang.String name;
     public int sprite_index=0,image_xscale=1,image_yscale=1;
     public double sprite_speed=0,timeline_speed=1,timeline_position=0;
-
+    public LinkedList<Actor> selfs = new LinkedList();
 
 
     final Integer _0 = new Integer(0);

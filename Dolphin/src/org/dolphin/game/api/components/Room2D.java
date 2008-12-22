@@ -386,6 +386,38 @@ public void render(Graphics2D g2d2)  {
         return ac.toArray(a);
     }
 
+    /*
+     * Used to get the list for with statement
+     */
+    public Actor[] with(Variable v) {
+        Vector<Actor> ac = new Vector();
+        if (v == other) {
+            ac.add(other);
+            Actor[] at = {other};
+            return at;
+        } else if (v == noone) {
+            ac.add(noone);
+        } else if (v == self) {
+            Actor[] at = {self};
+            return at;
+        } else if (v == all) {
+            ac.addAll(Game.currentRoom.instances);
+        } else {
+            //certain object
+            for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+                if (Game.currentRoom.instances.elementAt(i) != null) {
+                    Actor a = (Game.currentRoom.instances.elementAt(i));
+
+                    if (a.getClass().getName().equals(v.toString())) {
+                        ac.add(a);
+                    }
+                }
+            }
+        }
+        Actor[] a = new Actor[1];
+        return ac.toArray(a);
+    }
+
 
     
 }

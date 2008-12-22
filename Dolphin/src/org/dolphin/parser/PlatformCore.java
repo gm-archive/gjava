@@ -476,9 +476,17 @@ public class PlatformCore  {
      * @return
      */
     public String withstatement(String exp, String statement) {
-        usingwith++;
-        with.add(exp);
-        return "\n{\n" + statement+"\n}\n";
+        //usingwith++;
+        //with.add(exp);
+        String s="";
+        s+="{Actor[] ac = Game.currentRoom.with("+exp+");";
+        s+="for (int i = 0; i < ac.length; i++){";
+        s+="    selfs.push(self);";
+        s+="    self = ac[i]; if(self!=null){\n";
+        s+=statement;
+        s+="\n}self = selfs.pop();}}\n";
+
+        return s;
     }    
     
     /**
@@ -730,7 +738,19 @@ public class PlatformCore  {
         else if (variable.equals("pi")) {
             return "(new Double(PI))";
         }
-        
+        else if (variable.equals("self")) {
+            return "(self)";
+        }
+        else if (variable.equals("all")) {
+            return "(all)";
+        }
+        else if (variable.equals("noone")) {
+            return "(noone)";
+        }
+        else if (variable.equals("other")) {
+            return "(other)";
+        }
+
         /*
         
         */
