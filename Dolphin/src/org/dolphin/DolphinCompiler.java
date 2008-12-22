@@ -4,8 +4,6 @@ import com.sun.tools.javac.Main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -16,6 +14,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -51,6 +51,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
         textbox.setLineWrap(true);
         textbox.setForeground(Color.red);
         textbox.setCaretPosition(textbox.getDocument().getLength());
+        textbox.setEditable(false);
         JScrollPane scroll = new JScrollPane(textbox);
         scroll.setBorder(BorderFactory.createBevelBorder(1));
         box1.add(scroll);
@@ -147,9 +148,22 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                     DolphinWriter.FileFolder + "Game.java"
                 };
 
+                PrintWriter textBoxWriter = new PrintWriter(new Writer() {
+
+					@Override
+					public void close() throws IOException {}
+
+					@Override
+					public void flush() throws IOException {}
+
+					@Override
+					public void write(char[] cbuf, int off, int len) throws IOException {
+						textbox.append(new String(cbuf, off, len).replaceAll("\n", "<br/>"));
+					}
+                	
+                }, true);
                 
-                
-                int status2 = Main.compile(args);
+                int status2 = Main.compile(args, textBoxWriter);
 
                 // Delete files if standalone
                 deleteSourceFiles();
@@ -284,11 +298,21 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             }
         } else {
             try{
-                System.out.println("nautilus"  + location);
-                Runtime.getRuntime().exec("nautilus " + location, environmentVars(), null); //GNOME
+                System.out.println("nautilus "  + location);
+                Runtime.getRuntime().exec("nautilus \"" + location + "\"", environmentVars(), null); //GNOME
+                return;
             }
             catch(Exception e){
             }
+            
+            try{
+                System.out.println("dolphin "  + location);
+                Runtime.getRuntime().exec("dolphin \"" + location + "\"", environmentVars(), null); //KDE
+                return;
+            }
+            catch(Exception e){
+            }
+            
             // Unsupported OS for opening the browser
         }
     }
