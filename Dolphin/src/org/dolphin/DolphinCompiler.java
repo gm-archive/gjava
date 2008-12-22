@@ -139,8 +139,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
 //						DolphinWriter.FileFolder  + File.separator +  "Global.java"
 //						 };
                 File file = new File("dolphin_compile.log");
-                PrintStream printStream = new PrintStream(file);
-                System.setErr(printStream);
+                final PrintStream printStream = new PrintStream(file);
 //		int status = javac.compile(args);
                 String[] args = new String[]{
                     "-classpath",
@@ -151,14 +150,20 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 PrintWriter textBoxWriter = new PrintWriter(new Writer() {
 
 					@Override
-					public void close() throws IOException {}
+					public void close() throws IOException {
+						printStream.close();
+					}
 
 					@Override
-					public void flush() throws IOException {}
+					public void flush() throws IOException {
+						printStream.flush();
+					}
 
 					@Override
 					public void write(char[] cbuf, int off, int len) throws IOException {
-						textbox.append(new String(cbuf, off, len).replaceAll("\n", "<br/>"));
+						String s = new String(cbuf, off, len);
+						textbox.append(s);
+						printStream.print(s);
 					}
                 	
                 }, true);
@@ -318,7 +323,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
         } else {
             try{
                 System.out.println("nautilus "  + location);
-                Runtime.getRuntime().exec("nautilus \"" + location + "\"", environmentVars(), null); //GNOME
+                Runtime.getRuntime().exec("nautilus " + location.replaceAll("\\", "/").replaceAll(" ", "\\ "), environmentVars(), null); //GNOME
                 return;
             }
             catch(Exception e){
@@ -326,7 +331,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             
             try{
                 System.out.println("dolphin "  + location);
-                Runtime.getRuntime().exec("dolphin \"" + location + "\"", environmentVars(), null); //KDE
+                Runtime.getRuntime().exec("dolphin " + location.replaceAll("\\", "/").replaceAll(" ", "\\ "), environmentVars(), null); //KDE
                 return;
             }
             catch(Exception e){
