@@ -511,9 +511,11 @@ public class PlatformCore  {
             System.out.println("more than one . variable!");
         }
          else if(variable.contains(".")){
-            instance="for (int i = 0; i < Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class).length; i++) Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class)[i]";
-            tempvar = variable.substring(variable.indexOf(".")+1);
-            variable=tempvar;
+            //instance="for (int i = 0; i < Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class).length; i++) Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class)[i]";
+            instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class); for (int i = 0; i < ac.length; i++) ac[i]";
+             tempvar=variable;
+            variable = variable.substring(variable.indexOf(".")+1);
+            
         } else {
             instance = "self";
         }
@@ -551,13 +553,14 @@ public class PlatformCore  {
                 s += "setbxor(" + expression + ")";
             }
                 s+=")";
+                if(tempvar.contains("."))s+="}";
                 return s;
                 }
             }
         }
 
         //check if it is a built in variable
-        if (checkvariable(tempvar)){
+        if (checkvariable(variable)){
             String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
        
             value=instance+".set"+var+"(";
@@ -581,7 +584,9 @@ public class PlatformCore  {
             } else if (operator.equals("^=")) {
                 value += instance + ".get" + var + "().setbxor(" + expression + ")";
             }
-        return value+")";
+        value+=")";
+        if(tempvar.contains("."))value+=";}";
+        return value;
         }
         
         variable = variable.substring(variable.indexOf(".")+1,variable.length());
