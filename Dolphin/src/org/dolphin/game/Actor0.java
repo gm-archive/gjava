@@ -111,9 +111,9 @@ public class Actor0 extends Actor {
     }
     
     public int s(){
-    	if(true)
+    	//if(true)
     	return 1;
-    	return 2;
+    	
     	
     }
 }

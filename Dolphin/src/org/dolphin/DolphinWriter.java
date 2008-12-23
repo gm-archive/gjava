@@ -250,7 +250,7 @@ public class DolphinWriter {
     void parseScripts() throws GmFormatException {
         ArrayList<String> names = new ArrayList<String>(gmFile.gmObjects.size());
 
-
+        pc.inscript=true;
 
         try {
             FileWriter scriptFW = new FileWriter(FileFolder + "Scripts.java");
@@ -285,7 +285,7 @@ public class DolphinWriter {
             showException(e);
         }
 
-
+        pc.inscript=false;
     }
 
     void exportGameinfo(){
@@ -357,6 +357,8 @@ public class DolphinWriter {
     void parseObjects() throws GmFormatException {
         ArrayList<String> objectnames = new ArrayList<String>(gmFile.gmObjects.size());
 
+        pc.inscript=false;//make sure it doesn't think it is a script
+        
         for (GmObject a : gmFile.gmObjects) {
             /*check for duplicate objects*/
             String name = a.getName();
@@ -419,13 +421,14 @@ public class DolphinWriter {
                         for (Event ev : a.mainEvents[j].events) {
                             writeAlarmEvent(actor, ev);
                         }
+                        
                         print(actor, "    }");
                     } /*
                      * Step Event
                      */ else if (j == 3) {
                     	 
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id" + ev.id);
+                            
                             if (ev.id == 1) {
                             	pc.event = "Begin Event";
                                 print(actor, "   public void BeginStep() throws DestroyException,RoomChangedException {");
@@ -437,6 +440,7 @@ public class DolphinWriter {
                                 print(actor, "   public void EndStep() throws DestroyException,RoomChangedException {");
                             }
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
+                            
                             print(actor, "    }");
                         }
                     } /*
@@ -450,6 +454,7 @@ public class DolphinWriter {
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                             print(actor, "}");
                         }
+                        
                         print(actor, "}");
                     } /*
                      * Keyboard Event
@@ -459,11 +464,12 @@ public class DolphinWriter {
 //
                         for (Event ev : a.mainEvents[j].events) {
                         	pc.event = "Keyboard"+Event.getGmKeyName(ev.id)+" Event";
-                            System.out.println("ev.id" + ev.id);
+                            
                             print(actor, "if (Game.game.getGame().keyDown(" + ev.id + ")){");
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                             print(actor, "}");
                         }
+                        
                         print(actor, "}");
                     } /*
                      * Mouse Event
@@ -471,15 +477,15 @@ public class DolphinWriter {
                     	 pc.event = "Mouse Event";
                         for (Event ev : a.mainEvents[j].events) {
                         	pc.event = "Mouse "+ev.id+" Event";
-                            System.out.println("ev.id" + ev.id);
-                            print(actor, "//mouse event:" + ev.id);
+                            System.out.println("Mouse event id:" + ev.id);
+                            print(actor, "//mouse event id:" + ev.id);
                         }
                     } /*
                      * Other Event
                      */ else if (j == 7) {
                     	 pc.event = "Other Event";
                         for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id" + ev.id);
+                            System.out.println("Other event id:" + ev.id);
                             print(actor, "//other event:" + ev.id);
                         }
                     } /*
@@ -491,37 +497,56 @@ public class DolphinWriter {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                         }
+                        
                         print(actor, "     }");
                     } /*
                      * Key press Event
                      */ else if (j == 9) {
+                    	 String events="";
                     	 pc.event = "Key press Event";
-                        print(actor, "   public void KeyPressed(int keycode) throws DestroyException, RoomChangedException {");
+                    	 int i=0;
                         for (Event ev : a.mainEvents[j].events) {
-                        	
-                        	pc.event = "Key press "+Event.getGmKeyName(ev.id)+" Event";
-                            print(actor, "     if (keycode==" + ev.id + "){");
-                            print(actor, "   " + parseGCL(getActionsCode(ev)));
-                            print(actor, "     }");
-                        }
-                        print(actor, "   }");
-                    } /*
-                     * Key release Event
-                     */ else if (j == 10) {
-                    	 pc.event = "Key release Event";
-                        print(actor, "   public void KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
-                        for (Event ev : a.mainEvents[j].events) {
-                        	pc.event = "Key release "+Event.getGmKeyName(ev.id)+" Event";
+                        	if (i!=0) events+=" else ";
+                        	String evname = Event.getGmKeyName(ev.id).replaceAll(" ", "_");
+                        	pc.event = "Key press "+evname+" Event";
+                        	events+="if (keycode==" + ev.id + "){"+evname+"KeyPressed(keycode);}\n";
+                        	print(actor, "   public void "+evname+"KeyPressed(int keycode) throws DestroyException, RoomChangedException {");
                             print(actor, "     if (keycode==" + ev.id + "){");
                             print(actor, "        " + parseGCL(getActionsCode(ev)));
                             print(actor, "     }");
+                            print(actor, "     }");
+                            i++;
                         }
+                        if (!events.equals("")){
+                            print(actor, "   public void KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
+                            print(actor,events);
+                            print(actor, "   }");
+                            }
+                    } 
+                    /*
+                     * Key release Event
+                     */ else if (j == 10) {
+                    	 pc.event = "Key release Event";
+                    	 String events=""; 
+                        for (Event ev : a.mainEvents[j].events) {
+                        	pc.event = "Key release "+Event.getGmKeyName(ev.id)+" Event";
+                        	events+=Event.getGmKeyName(ev.id)+"KeyReleased(keycode);";
+                        	print(actor, "   public void "+Event.getGmKeyName(ev.id)+"KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
+                            print(actor, "     if (keycode==" + ev.id + "){");
+                            print(actor, "        " + parseGCL(getActionsCode(ev)));
+                            print(actor, "     }"); 
+                            print(actor, "     }");
+                        }
+                        if (!events.equals("")){
+                        print(actor, "   public void KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
+                        print(actor,events);
                         print(actor, "   }");
+                        }
                     } else {
                         for (Event ev : a.mainEvents[j].events) {
 
 
-                            System.out.println("" + ev.id + " " + getActionsCode(ev));
+                            System.out.println("unknown event" + ev.id + " " + getActionsCode(ev));
                         }
                     }
                 	}catch(Exception e){

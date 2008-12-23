@@ -24,6 +24,7 @@ public class Actor1 extends Actor {
             System.out.println("alarm event!!!!");
 
         }
+        
     }
 
     @Override

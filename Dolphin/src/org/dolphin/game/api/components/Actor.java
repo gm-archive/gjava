@@ -138,6 +138,7 @@ private static final long serialVersionUID = 1L;
      * Override with actor Begin Step event
      */
     public void BeginStep() throws DestroyException {
+    	
     }
 
 
@@ -172,18 +173,22 @@ private static final long serialVersionUID = 1L;
     /**
      * Override with Alarm event code
      */
-    public void performAlarm(int alarmid) throws RoomChangedException{}
+    public void performAlarm(int alarmid) throws RoomChangedException{
+    	
+    }
 
     /**
      * Override with actor Step event
      */
     public void Step() throws DestroyException,RoomChangedException {
+    	
     }
 
     /**
      * Override with actor End Step event
      */
     public void EndStep() throws DestroyException,RoomChangedException {
+    	
     }
 
     /**
@@ -204,6 +209,7 @@ private static final long serialVersionUID = 1L;
      * Override with actor Keyboard event
      */
     public void Keyboard() throws RoomChangedException {
+    	
     }
 
     /**
@@ -217,7 +223,7 @@ private static final long serialVersionUID = 1L;
 
     public void Collision(java.lang.String name) throws RoomChangedException
     {
-
+    	
     }
 
     /**

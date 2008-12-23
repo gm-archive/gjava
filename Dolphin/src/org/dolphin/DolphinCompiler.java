@@ -133,6 +133,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 File file = new File("dolphin_compile.log");
                 final PrintStream printStream = new PrintStream(file);
                 String[] args = new String[]{
+                		"-nowarn",
                     "-classpath",
                     DolphinWriter.projectfolder,
                     DolphinWriter.FileFolder + "Game.java"

@@ -54,6 +54,7 @@ public class PlatformCore  {
     public String current="",event="";
     public String updateURL="";//,compilername="";
     public double version = 1.0;
+    public boolean inscript = false; //only scripts use return a value
     
     public Vector<String> resources=new Vector(),stringResources=new Vector();
 
@@ -307,7 +308,12 @@ public class PlatformCore  {
      * @return
      */
     public String returnstatement(String exp) {
-        return "return " + exp + ";";
+        String s;
+        if (inscript)
+        	s= "return " + exp + ";";
+        else
+        	s="return;";
+        return s;
     }
 
     /**
@@ -316,7 +322,12 @@ public class PlatformCore  {
      * @return
      */
     public String exitstatement() {
-        return "return null;";
+    	String s;
+        if (inscript)
+        	s= "return Boolean.FALSE;";
+        else
+        	s="return;";
+        return s;
     }
 
     /**
