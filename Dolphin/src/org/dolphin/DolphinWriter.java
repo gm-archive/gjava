@@ -233,6 +233,7 @@ public class DolphinWriter {
             String subimg = "";
             for (int i = 0; i < s.subImages.size(); i++) {
                 BufferedImage img = s.subImages.get(i);
+                if(img!=null)
                 ImageIO.write(img, "png", new File(FileFolder + File.separator + s.getName() + "[" + i + "].png"));
                 subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
             }
