@@ -219,6 +219,7 @@ public class DolphinWriter {
 
     void parseBackgrounds() throws IOException {
         for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
+        	if(b.getBackgroundImage()!=null)
             ImageIO.write(b.getBackgroundImage(), "png", new File(FileFolder + File.separator + b.getName() + ".png"));
 
         }

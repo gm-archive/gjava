@@ -109,4 +109,11 @@ public class Actor0 extends Actor {
     public void Step() {
         //if(Game.thegame.bsSound.getAudioRenderer("sound0..wav")!=null)
     }
+    
+    public int s(){
+    	if(true)
+    	return 1;
+    	return 2;
+    	
+    }
 }
