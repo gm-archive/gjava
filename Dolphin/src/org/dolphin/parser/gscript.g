@@ -61,8 +61,7 @@ code // never put: returns after this! This is for script and parameter code
 ;
 
 statement returns [String value]
-: {$value = "";}  (java=javacode{$value += $java.value;}|b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}|';'{$value +=";";}) (';')* 	
-;
+: {$value = "";}  (java=javacode{$value += $java.value;}|b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}|';'{$value +=";";}) (';')* 	;
 
 javacode returns [String value]
 :	jcode=JAVACODE  {$value=$jcode.getText().replaceAll("@@java_Begin", "{").replaceAll("@@java_End", "}");;}
@@ -140,7 +139,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value] @init {String a = "";}
   :
-  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}|p=pexpression{$value = $p.value;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|'<>'|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = pc.stringval($s.text.substring(1, $s.text.length()-1));}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}|exp=expression{a = $exp.value;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
+  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|('-'|'+') n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}|p=pexpression{$value = $p.value;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|'<>'|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = pc.stringval($s.text.substring(1, $s.text.length()-1));}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}|exp=expression{a = $exp.value;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
   ;
  
 repeatstatement returns [String value]
@@ -182,13 +181,13 @@ variable returns [String value]
 :  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}) ('.' (array|(WORD)) )*
 ;
 
+
 function returns [String value]
-: n=WORD '(' (e=expression {$value = $e.value;} ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' {$value =pc.functionstatement($n.text, $value);}
-;
+: n=WORD '(' (e=expression {$value = $e.value;} ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' {$value =pc.functionstatement($n.text, $value);};
+
 
 function2 returns [String value]
-	:	n=OIVAR '(' (e=expression {$value = $e.text;}((',') (e=expression{$value += ", "+$e.text;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}
-	;
+	:	n=OIVAR '(' (e=expression {$value = $e.text;}((',') (e=expression{$value += ", "+$e.text;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}	;
 
 array returns [String value]
   : valuee=(WORD|OIVAR|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']' {$value = pc.array($valuee.text,$value);}

@@ -1,1 +1,19 @@
-if x<>3 {}
+{
+//Create the particle system. Assign it to a variable(Sname is used here).
+Sname = part_system_create()
+
+//Create the particle. The script was exported with Particle Designer, and
+//imported into Game Maker(click 'Scripts' -> 'Import Scripts')
+scr_particle_itempop();
+//Create the emitter. Use the system variable.
+Ename = part_emitter_create(Sname)
+part_emitter_region(Sname,Ename,x,x,y,y,ps_shape_ellipse,ps_distr_linear)
+part_emitter_burst(Sname,Ename,particle1,1)
+
+}
+{
+//action_sound(, 0);
+}
+{
+action_set_alarm(30, 0);
+}

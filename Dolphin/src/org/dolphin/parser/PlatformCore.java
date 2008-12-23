@@ -903,7 +903,7 @@ public class PlatformCore  {
         else if (operator.equals(":=")) {
             return name + ".equals(" + name2 + ")";
         }
-        else if (operator.equals("!=")) {
+        else if (operator.equals("!=") || operator.equals("<>")) {
             return name + ".notequals(" + name2 + ")";
         }
         else if (operator.equals(">")) {
@@ -1107,6 +1107,32 @@ public class PlatformCore  {
         out.close();
         }catch(Exception e){e.printStackTrace();}
     }
+    
+    /*
+     * 
+     * This will attempt to fix resource names
+     * 
+     */
+    public static String fixName(String s)
+	{
+    	String original = s;
+	s = s.replaceAll(" ","___");
+	s = s.replaceAll("-","___");
+	s = s.replaceAll("/","___");
+	s = s.replaceAll("!","___");
+	//s = s.replaceAll("/?","___");
+	// s = s.replaceAll("*","_");
+	// s = s.replaceAll("\\","_");
+	if ((s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0)
+			|| (s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0)
+			|| (s.indexOf("0") == 0) || (s.indexOf("0") == 0)) s = "DOLPHIN____" + s;
+	if (!original.equals(s)){
+		//JOptionPane.showMessageDialog(null, "WARNING: One of your Resources has an illegal character in it, this will cause errors. Please change it from :"+original+" to "+s);
+		DolphinWriter.df.ta.append("WARNING: One of your Resources has an illegal character in it, this will cause errors. Please change it from :"+original+" to "+s);
+		
+	}
+	return s;
+	}
 
    
 }

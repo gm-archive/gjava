@@ -228,6 +228,7 @@ public class DolphinWriter {
         print(game, "  public Sprite getSprite(String name){");
         String theelse = "   ";
         for (org.lateralgm.resources.Sprite s : gmFile.sprites) {
+        	if (s!=null){
             String subimg = "";
             for (int i = 0; i < s.subImages.size(); i++) {
                 BufferedImage img = s.subImages.get(i);
@@ -238,9 +239,11 @@ public class DolphinWriter {
             theelse = "   else";
 
         }
+        }
         print(game, " return null;");
         print(game, "  }");
-    }
+        }
+    
 
     void parseScripts() throws GmFormatException {
         ArrayList<String> names = new ArrayList<String>(gmFile.gmObjects.size());
@@ -264,6 +267,7 @@ public class DolphinWriter {
             for (Script s : gmFile.scripts) {
                 /*check for duplicate scripts*/
                 String name = s.getName();
+                name = PlatformCore.fixName(name);
                 pc.current = name;
                 if (names.contains(name)) {
                     throw new GmFormatException(gmFile, "Duplicate object name: " + name);
@@ -354,6 +358,7 @@ public class DolphinWriter {
         for (GmObject a : gmFile.gmObjects) {
             /*check for duplicate objects*/
             String name = a.getName();
+            name = PlatformCore.fixName(name);
             pc.current = name;
             if (objectnames.contains(name)) {
                 throw new GmFormatException(gmFile, "Duplicate object name: " + name);
@@ -391,6 +396,7 @@ public class DolphinWriter {
                 print(actor, "    }");
 
                 for (int j = 0; j < 11; j++) {
+                	try{
                     /*
                      * Create Event
                      */
@@ -516,6 +522,10 @@ public class DolphinWriter {
                             System.out.println("" + ev.id + " " + getActionsCode(ev));
                         }
                     }
+                	}catch(Exception e){
+                		e.printStackTrace();
+                		df.ta.append(e.getMessage()+"\n"+e.getStackTrace().toString());
+                	}
                 }
 
                 print(actor, "");
@@ -602,20 +612,27 @@ public class DolphinWriter {
                 } else {
                     code += "" + act.getArguments().get(0).getVal() + " = (" + act.getArguments().get(1).getVal() + ");";
                 }
-            } else if (act.getLibAction().actionKind == 0){
-            code+="//"+act.getArguments().get(0).getVal()+"\n";
+            /*}else if (act.getLibAction()..actionKind == 0){
+            code+="\n";*/
+            
             } else if (act.getLibAction().actionKind == Action.ACT_EXIT) {
                 code += "return;";
             } else if (act.getLibAction().actionKind == Action.ACT_REPEAT) {
                 code += "repeat(" + act.getArguments().get(0).getVal() + ")";
+            } else if  (act.getLibAction().execType == Action.EXEC_NONE){
+            	System.out.println("comment:" );
+            	code="//action_comment";
             } else {
+            	
                 if (act.getLibAction().question) {
                     //System.out.println("question:" + act.getLibAction().execInfo);
                     code += "if (";
                     if (act.isNot()) {
                         code += "!";
                     }
-                } else {
+                }
+                
+                else {
                     code += "{\n";
                     if (act.isRelative()) {
                         code += "argument_relative=" + act.isRelative() + "; ";
@@ -684,8 +701,15 @@ public class DolphinWriter {
     void parseRooms() {
         // out.write4(f.rooms.size());
         for (Room r : gmFile.rooms) {
+        	/*check for duplicate objects*/
+            String name = r.getName();
+            name = PlatformCore.fixName(name);
+            pc.current = name;
+            /*if (objectnames.contains(name)) {
+                throw new GmFormatException(gmFile, "Duplicate object name: " + name);
+            }*/
             try {
-                FileWriter sceneFW = new FileWriter(FileFolder + r.getName() + ".java");
+                FileWriter sceneFW = new FileWriter(FileFolder + name + ".java");
                 BufferedWriter scene = new BufferedWriter(sceneFW);
 
                 print(scene, "package org.dolphin.game;");
