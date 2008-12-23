@@ -47,7 +47,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 "<html>Welcome to the Dolphin compiler! This will compile your game. Do not close the window unless it takes over an hour!");
         t.setPreferredSize(new Dimension(380, 48));
         box1.add(t);
-        textbox = new JTextArea("Please wait while G-java compiles your game into a jar file...");
+        textbox = new JTextArea("Please wait while G-java compiles your game into a jar file...\n\n");
         textbox.setLineWrap(true);
         textbox.setForeground(Color.red);
         textbox.setCaretPosition(textbox.getDocument().getLength());
@@ -131,38 +131,39 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
 
 {
             try {
-//                com.sun.tools.javac.Main javac = new com.sun.tools.javac.Main();
-
-//				String[] args = new String[] {
-//						"-classpath",
-//						DolphinWriter.FileFolder+File.separator,
-//						DolphinWriter.FileFolder  + File.separator +  "Global.java"
-//						 };
                 File file = new File("dolphin_compile.log");
                 final PrintStream printStream = new PrintStream(file);
-//		int status = javac.compile(args);
                 String[] args = new String[]{
                     "-classpath",
-                    DolphinWriter.projectfolder + File.separator + ";"/*+"Projects" + File.separator + DolphinWriter.projectname + File.separator + "Java"+ File.separator+"lib"+ File.separator+"GTGE.jar"*/,
+                    DolphinWriter.projectfolder,
                     DolphinWriter.FileFolder + "Game.java"
                 };
 
+                for (String s : args) {
+                	System.out.println("S: "+s);
+                }
                 PrintWriter textBoxWriter = new PrintWriter(new Writer() {
 
+                	private StringBuffer buffer = new StringBuffer(80);
+                	
 					@Override
 					public void close() throws IOException {
 						printStream.close();
+						textbox.append(buffer.toString());
+						buffer.delete(0, buffer.length());
 					}
 
 					@Override
 					public void flush() throws IOException {
+						textbox.append(buffer.toString());
+						buffer.delete(0, buffer.length());
 						printStream.flush();
 					}
 
 					@Override
 					public void write(char[] cbuf, int off, int len) throws IOException {
 						String s = new String(cbuf, off, len);
-						textbox.append(s);
+						buffer.append(s);
 						printStream.print(s);
 					}
                 	
@@ -240,7 +241,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
      * This will delete the source files only to be used in standalone mode
      *
      */
-    public void deleteSourceFiles(){
+    public void deleteSourceFiles() {
         System.out.println("delete source files");
         if (DolphinWriter.standalone){
         DolphinWriter.deleteFiles(DolphinWriter.FileFolder+File.separator, ".java");
@@ -306,7 +307,6 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             try {
                 openbrowser(gm.getCanonicalPath());
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         }
