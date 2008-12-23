@@ -23,7 +23,6 @@ GTE = '>=';
 LT = '<';
 LTE = '<=';
 COMMENT1 = '//';
-DOC_COMMENT;
 }
 @members {
 public org.dolphin.parser.PlatformCore pc = new org.dolphin.parser.PlatformCore();
@@ -104,7 +103,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (neg=negate{$value = $neg.value;}|p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ("+$e.value+")";}))* {$value =pc.expression($value);}
+:  (neg=negate{$value = $neg.value;}|r=relationalExpression{$value =$r.value;}|p=pexpression{$value =$p.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ("+$e.value+")";}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -141,7 +140,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value] @init {String a = "";}
   :
-  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}|exp=expression{a = $exp.value;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
+  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}|p=pexpression{$value = $p.value;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = pc.stringval($s.text.substring(1, $s.text.length()-1));}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}|exp=expression{a = $exp.value;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
   ;
  
 repeatstatement returns [String value]
@@ -168,7 +167,7 @@ forstatement returns [String value]
 ;
 
 switchstatement returns [String value]
-: 'switch' (expression) '{' (('case' expression|'default')  ':' (statement)*)* '}' {$value ="";} //BETA 
+: 'switch' (expression) ('{'|'begin') (('case' expression|'default')  ':' (statement)*)* ('}'|'end') {$value ="";} //BETA 
 ;
 
 withstatement returns [String value]
@@ -192,7 +191,7 @@ function2 returns [String value]
 	;
 
 array returns [String value]
-  : valuee=(WORD|OIVAR|GLOBALVAR) '[' e=expression (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']' {$value = pc.array($valuee.text,$e.text);}
+  : valuee=(WORD|OIVAR|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']' {$value = pc.array($valuee.text,$value);}
 ;
 
 //definestatement: '#define' WORD //used for testing scripts
@@ -231,7 +230,7 @@ WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' WORD )+  { $channel
 fragment DIGIT : '0'..'9' ;
 
 WORD
-: LETTER ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
+: ('_'|LETTER) ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
 ;
 
 LETTER : ('a'..'z'|'A'..'Z')
