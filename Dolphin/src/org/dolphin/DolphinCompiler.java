@@ -303,7 +303,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
         } else {
             try{
                 System.out.println("nautilus "  + location);
-                Runtime.getRuntime().exec("nautilus " + location.replaceAll("\\", "/").replaceAll(" ", "\\ "), environmentVars(), null); //GNOME
+                Runtime.getRuntime().exec("nautilus " + location, environmentVars(), null); //GNOME
                 return;
             }
             catch(Exception e){
@@ -311,7 +311,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             
             try{
                 System.out.println("dolphin "  + location);
-                Runtime.getRuntime().exec("dolphin " + location.replaceAll("\\", "/").replaceAll(" ", "\\ "), environmentVars(), null); //KDE
+                Runtime.getRuntime().exec("dolphin " + location, environmentVars(), null); //KDE
                 return;
             }
             catch(Exception e){
