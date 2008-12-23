@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2008-12-23 14:59:58
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2008-12-23 15:06:18
 
 package org.dolphin.parser;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class gscriptParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PLUS", "MINUS", "MULT", "DIV", "LPAREN", "RPAREN", "LBRAC", "RBRAC", "EQUALS", "EQUALS2", "NOT_EQUALS", "GT", "GTE", "LT", "LTE", "COMMENT1", "JAVACODE", "WORD", "NUMBER", "HEXNUMBER", "STRING", "DECIMAL", "STUPIDDECIMAL", "OIVAR", "GLOBALVAR", "DIGIT", "LETTER", "WHITESPACE", "COMMENT", "ML_COMMENT", "STRING_DOUBLE", "STRING_SINGLE", "';'", "'public'", "'private'", "'var'", "'final'", "'static'", "','", "'begin'", "'end'", "'globalvar'", "'return'", "'exit'", "'if'", "'then'", "'else'", "'elsif'", "'not'", "'!'", "'|'", "'&'", "'^'", "'<<'", "'>>'", "'div'", "'mod'", "'~'", "'&&'", "'and'", "'||'", "'or'", "'^^'", "'xor'", "':='", "'repeat'", "'break'", "'continue'", "'do'", "'until'", "'while'", "'for'", "'switch'", "'case'", "'default'", "':'", "'with'", "'+='", "'-='", "'*='", "'/='", "'|='", "'&='", "'^='", "'.'", "'['", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PLUS", "MINUS", "MULT", "DIV", "LPAREN", "RPAREN", "LBRAC", "RBRAC", "EQUALS", "EQUALS2", "NOT_EQUALS", "GT", "GTE", "LT", "LTE", "COMMENT1", "JAVACODE", "WORD", "NUMBER", "HEXNUMBER", "STRING", "DECIMAL", "STUPIDDECIMAL", "OIVAR", "GLOBALVAR", "DIGIT", "LETTER", "WHITESPACE", "COMMENT", "ML_COMMENT", "STRING_DOUBLE", "STRING_SINGLE", "';'", "'public'", "'private'", "'var'", "'final'", "'static'", "','", "'begin'", "'end'", "'globalvar'", "'return'", "'exit'", "'if'", "'then'", "'else'", "'elsif'", "'not'", "'!'", "'|'", "'&'", "'^'", "'<<'", "'>>'", "'div'", "'mod'", "'~'", "'&&'", "'and'", "'||'", "'or'", "'^^'", "'xor'", "':='", "'<>'", "'repeat'", "'break'", "'continue'", "'do'", "'until'", "'while'", "'for'", "'switch'", "'case'", "'default'", "':'", "'with'", "'+='", "'-='", "'*='", "'/='", "'|='", "'&='", "'^='", "'.'", "'['", "']'"
     };
     public static final int COMMENT1=19;
     public static final int LT=17;
@@ -50,7 +50,7 @@ public class gscriptParser extends Parser {
 
         public gscriptParser(TokenStream input) {
             super(input);
-            ruleMemo = new HashMap[165+1];
+            ruleMemo = new HashMap[166+1];
          }
         
 
@@ -113,13 +113,26 @@ public class gscriptParser extends Parser {
             	        case 40:
             	            {
             	            switch ( input.LA(3) ) {
-            	            case 39:
-            	            case 45:
+            	            case 41:
             	                {
-            	                alt1=2;
+            	                int LA1_29 = input.LA(4);
+
+            	                if ( (synpred1()) ) {
+            	                    alt1=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt1=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return ;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 29, input);
+
+            	                    throw nvae;
+            	                }
             	                }
             	                break;
-            	            case WORD:
+            	            case 40:
             	                {
             	                int LA1_30 = input.LA(4);
 
@@ -138,7 +151,13 @@ public class gscriptParser extends Parser {
             	                }
             	                }
             	                break;
-            	            case 41:
+            	            case 39:
+            	            case 45:
+            	                {
+            	                alt1=2;
+            	                }
+            	                break;
+            	            case WORD:
             	                {
             	                int LA1_32 = input.LA(4);
 
@@ -152,25 +171,6 @@ public class gscriptParser extends Parser {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 32, input);
-
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case 40:
-            	                {
-            	                int LA1_33 = input.LA(4);
-
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt1=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return ;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 33, input);
 
             	                    throw nvae;
             	                }
@@ -208,15 +208,9 @@ public class gscriptParser extends Parser {
             	                }
             	                }
             	                break;
-            	            case 39:
-            	            case 45:
-            	                {
-            	                alt1=2;
-            	                }
-            	                break;
             	            case WORD:
             	                {
-            	                int LA1_36 = input.LA(4);
+            	                int LA1_35 = input.LA(4);
 
             	                if ( (synpred1()) ) {
             	                    alt1=1;
@@ -227,10 +221,16 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 36, input);
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 35, input);
 
             	                    throw nvae;
             	                }
+            	                }
+            	                break;
+            	            case 39:
+            	            case 45:
+            	                {
+            	                alt1=2;
             	                }
             	                break;
             	            default:
@@ -284,13 +284,26 @@ public class gscriptParser extends Parser {
             	        case 40:
             	            {
             	            switch ( input.LA(3) ) {
-            	            case 39:
-            	            case 45:
+            	            case 41:
             	                {
-            	                alt1=2;
+            	                int LA1_40 = input.LA(4);
+
+            	                if ( (synpred1()) ) {
+            	                    alt1=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt1=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return ;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 40, input);
+
+            	                    throw nvae;
+            	                }
             	                }
             	                break;
-            	            case WORD:
+            	            case 40:
             	                {
             	                int LA1_41 = input.LA(4);
 
@@ -309,7 +322,13 @@ public class gscriptParser extends Parser {
             	                }
             	                }
             	                break;
-            	            case 41:
+            	            case 39:
+            	            case 45:
+            	                {
+            	                alt1=2;
+            	                }
+            	                break;
+            	            case WORD:
             	                {
             	                int LA1_43 = input.LA(4);
 
@@ -323,25 +342,6 @@ public class gscriptParser extends Parser {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 43, input);
-
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case 40:
-            	                {
-            	                int LA1_44 = input.LA(4);
-
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt1=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return ;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 44, input);
 
             	                    throw nvae;
             	                }
@@ -379,15 +379,9 @@ public class gscriptParser extends Parser {
             	                }
             	                }
             	                break;
-            	            case 39:
-            	            case 45:
-            	                {
-            	                alt1=2;
-            	                }
-            	                break;
             	            case WORD:
             	                {
-            	                int LA1_47 = input.LA(4);
+            	                int LA1_46 = input.LA(4);
 
             	                if ( (synpred1()) ) {
             	                    alt1=1;
@@ -398,10 +392,16 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 47, input);
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 46, input);
 
             	                    throw nvae;
             	                }
+            	                }
+            	                break;
+            	            case 39:
+            	            case 45:
+            	                {
+            	                alt1=2;
             	                }
             	                break;
             	            default:
@@ -414,29 +414,29 @@ public class gscriptParser extends Parser {
 
             	            }
             	            break;
-            	        case 39:
-            	        case 45:
-            	            {
-            	            alt1=2;
-            	            }
-            	            break;
             	        case WORD:
             	            {
-            	            int LA1_16 = input.LA(3);
+            	            int LA1_15 = input.LA(3);
 
-            	            if ( (LA1_16==LPAREN) ) {
+            	            if ( (LA1_15==LPAREN) ) {
             	                alt1=1;
             	            }
-            	            else if ( (LA1_16==WORD||(LA1_16>=OIVAR && LA1_16<=GLOBALVAR)) ) {
+            	            else if ( (LA1_15==WORD||(LA1_15>=OIVAR && LA1_15<=GLOBALVAR)) ) {
             	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 16, input);
+            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 15, input);
 
             	                throw nvae;
             	            }
+            	            }
+            	            break;
+            	        case 39:
+            	        case 45:
+            	            {
+            	            alt1=2;
             	            }
             	            break;
             	        default:
@@ -452,37 +452,12 @@ public class gscriptParser extends Parser {
             	    case 40:
             	        {
             	        switch ( input.LA(2) ) {
-            	        case 39:
-            	        case 45:
-            	            {
-            	            alt1=2;
-            	            }
-            	            break;
-            	        case WORD:
-            	            {
-            	            int LA1_19 = input.LA(3);
-
-            	            if ( (LA1_19==LPAREN) ) {
-            	                alt1=1;
-            	            }
-            	            else if ( (LA1_19==WORD||(LA1_19>=OIVAR && LA1_19<=GLOBALVAR)) ) {
-            	                alt1=2;
-            	            }
-            	            else {
-            	                if (backtracking>0) {failed=true; return ;}
-            	                NoViableAltException nvae =
-            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 19, input);
-
-            	                throw nvae;
-            	            }
-            	            }
-            	            break;
             	        case 41:
             	            {
             	            switch ( input.LA(3) ) {
             	            case 40:
             	                {
-            	                int LA1_53 = input.LA(4);
+            	                int LA1_51 = input.LA(4);
 
             	                if ( (synpred1()) ) {
             	                    alt1=1;
@@ -493,7 +468,26 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 53, input);
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 51, input);
+
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case WORD:
+            	                {
+            	                int LA1_52 = input.LA(4);
+
+            	                if ( (synpred1()) ) {
+            	                    alt1=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt1=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return ;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 52, input);
 
             	                    throw nvae;
             	                }
@@ -505,8 +499,21 @@ public class gscriptParser extends Parser {
             	                alt1=2;
             	                }
             	                break;
-            	            case WORD:
-            	                {
+            	            default:
+            	                if (backtracking>0) {failed=true; return ;}
+            	                NoViableAltException nvae =
+            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 18, input);
+
+            	                throw nvae;
+            	            }
+
+            	            }
+            	            break;
+            	        case 40:
+            	            {
+            	            int LA1_19 = input.LA(3);
+
+            	            if ( (LA1_19==WORD) ) {
             	                int LA1_55 = input.LA(4);
 
             	                if ( (synpred1()) ) {
@@ -522,46 +529,39 @@ public class gscriptParser extends Parser {
 
             	                    throw nvae;
             	                }
-            	                }
-            	                break;
-            	            default:
-            	                if (backtracking>0) {failed=true; return ;}
-            	                NoViableAltException nvae =
-            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 21, input);
-
-            	                throw nvae;
             	            }
-
-            	            }
-            	            break;
-            	        case 40:
-            	            {
-            	            int LA1_22 = input.LA(3);
-
-            	            if ( (LA1_22==39||LA1_22==45) ) {
+            	            else if ( (LA1_19==39||LA1_19==45) ) {
             	                alt1=2;
-            	            }
-            	            else if ( (LA1_22==WORD) ) {
-            	                int LA1_58 = input.LA(4);
-
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt1=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return ;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 58, input);
-
-            	                    throw nvae;
-            	                }
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 22, input);
+            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 19, input);
+
+            	                throw nvae;
+            	            }
+            	            }
+            	            break;
+            	        case 39:
+            	        case 45:
+            	            {
+            	            alt1=2;
+            	            }
+            	            break;
+            	        case WORD:
+            	            {
+            	            int LA1_21 = input.LA(3);
+
+            	            if ( (LA1_21==LPAREN) ) {
+            	                alt1=1;
+            	            }
+            	            else if ( (LA1_21==WORD||(LA1_21>=OIVAR && LA1_21<=GLOBALVAR)) ) {
+            	                alt1=2;
+            	            }
+            	            else {
+            	                if (backtracking>0) {failed=true; return ;}
+            	                NoViableAltException nvae =
+            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 21, input);
 
             	                throw nvae;
             	            }
@@ -584,11 +584,8 @@ public class gscriptParser extends Parser {
             	            {
             	            int LA1_23 = input.LA(3);
 
-            	            if ( (LA1_23==39||LA1_23==45) ) {
-            	                alt1=2;
-            	            }
-            	            else if ( (LA1_23==WORD) ) {
-            	                int LA1_61 = input.LA(4);
+            	            if ( (LA1_23==WORD) ) {
+            	                int LA1_60 = input.LA(4);
 
             	                if ( (synpred1()) ) {
             	                    alt1=1;
@@ -599,10 +596,13 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 61, input);
+            	                        new NoViableAltException("56:25: (f= method | m= field )", 1, 60, input);
 
             	                    throw nvae;
             	                }
+            	            }
+            	            else if ( (LA1_23==39||LA1_23==45) ) {
+            	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
@@ -613,29 +613,29 @@ public class gscriptParser extends Parser {
             	            }
             	            }
             	            break;
-            	        case 39:
-            	        case 45:
-            	            {
-            	            alt1=2;
-            	            }
-            	            break;
             	        case WORD:
             	            {
-            	            int LA1_25 = input.LA(3);
+            	            int LA1_24 = input.LA(3);
 
-            	            if ( (LA1_25==LPAREN) ) {
+            	            if ( (LA1_24==LPAREN) ) {
             	                alt1=1;
             	            }
-            	            else if ( (LA1_25==WORD||(LA1_25>=OIVAR && LA1_25<=GLOBALVAR)) ) {
+            	            else if ( (LA1_24==WORD||(LA1_24>=OIVAR && LA1_24<=GLOBALVAR)) ) {
             	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 25, input);
+            	                    new NoViableAltException("56:25: (f= method | m= field )", 1, 24, input);
 
             	                throw nvae;
             	            }
+            	            }
+            	            break;
+            	        case 39:
+            	        case 45:
+            	            {
+            	            alt1=2;
             	            }
             	            break;
             	        default:
@@ -788,7 +788,7 @@ public class gscriptParser extends Parser {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==LBRAC||(LA4_0>=JAVACODE && LA4_0<=WORD)||(LA4_0>=OIVAR && LA4_0<=GLOBALVAR)||LA4_0==36||LA4_0==39||LA4_0==43||(LA4_0>=45 && LA4_0<=48)||(LA4_0>=69 && LA4_0<=72)||(LA4_0>=74 && LA4_0<=76)||LA4_0==80) ) {
+                if ( (LA4_0==LBRAC||(LA4_0>=JAVACODE && LA4_0<=WORD)||(LA4_0>=OIVAR && LA4_0<=GLOBALVAR)||LA4_0==36||LA4_0==39||LA4_0==43||(LA4_0>=45 && LA4_0<=48)||(LA4_0>=70 && LA4_0<=73)||(LA4_0>=75 && LA4_0<=77)||LA4_0==81) ) {
                     alt4=1;
                 }
 
@@ -912,7 +912,6 @@ public class gscriptParser extends Parser {
                     break;
                 case EQUALS:
                 case 68:
-                case 81:
                 case 82:
                 case 83:
                 case 84:
@@ -921,6 +920,7 @@ public class gscriptParser extends Parser {
                 case 87:
                 case 88:
                 case 89:
+                case 90:
                     {
                     alt5=16;
                     }
@@ -957,42 +957,42 @@ public class gscriptParser extends Parser {
                 alt5=6;
                 }
                 break;
-            case 69:
+            case 70:
                 {
                 alt5=7;
                 }
                 break;
-            case 72:
+            case 73:
                 {
                 alt5=8;
                 }
                 break;
-            case 74:
+            case 75:
                 {
                 alt5=9;
                 }
                 break;
-            case 71:
+            case 72:
                 {
                 alt5=10;
                 }
                 break;
-            case 70:
+            case 71:
                 {
                 alt5=11;
                 }
                 break;
-            case 75:
+            case 76:
                 {
                 alt5=12;
                 }
                 break;
-            case 76:
+            case 77:
                 {
                 alt5=13;
                 }
                 break;
-            case 80:
+            case 81:
                 {
                 alt5=14;
                 }
@@ -1004,7 +1004,7 @@ public class gscriptParser extends Parser {
                 if ( (LA5_17==LPAREN) ) {
                     alt5=15;
                 }
-                else if ( (LA5_17==EQUALS||LA5_17==68||(LA5_17>=81 && LA5_17<=89)) ) {
+                else if ( (LA5_17==EQUALS||LA5_17==68||(LA5_17>=82 && LA5_17<=90)) ) {
                     alt5=16;
                 }
                 else {
@@ -1782,7 +1782,7 @@ public class gscriptParser extends Parser {
                 int alt18=2;
                 int LA18_0 = input.LA(1);
 
-                if ( (LA18_0==LBRAC||(LA18_0>=JAVACODE && LA18_0<=WORD)||(LA18_0>=OIVAR && LA18_0<=GLOBALVAR)||LA18_0==36||LA18_0==39||LA18_0==43||(LA18_0>=45 && LA18_0<=48)||(LA18_0>=69 && LA18_0<=72)||(LA18_0>=74 && LA18_0<=76)||LA18_0==80) ) {
+                if ( (LA18_0==LBRAC||(LA18_0>=JAVACODE && LA18_0<=WORD)||(LA18_0>=OIVAR && LA18_0<=GLOBALVAR)||LA18_0==36||LA18_0==39||LA18_0==43||(LA18_0>=45 && LA18_0<=48)||(LA18_0>=70 && LA18_0<=73)||(LA18_0>=75 && LA18_0<=77)||LA18_0==81) ) {
                     alt18=1;
                 }
 
@@ -1920,7 +1920,7 @@ public class gscriptParser extends Parser {
 
             if ( (LA20_0==WORD||(LA20_0>=OIVAR && LA20_0<=GLOBALVAR)) ) {
                 switch ( input.LA(2) ) {
-                case 89:
+                case 90:
                     {
                     switch ( input.LA(3) ) {
                     case MINUS:
@@ -2153,7 +2153,7 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 90:
+                    case 91:
                         {
                         int LA20_58 = input.LA(4);
 
@@ -2182,7 +2182,7 @@ public class gscriptParser extends Parser {
 
                     }
                     break;
-                case 88:
+                case 89:
                     {
                     int LA20_3 = input.LA(3);
 
@@ -2229,6 +2229,19 @@ public class gscriptParser extends Parser {
                     }
                     }
                     break;
+                case EQUALS:
+                case 68:
+                case 82:
+                case 83:
+                case 84:
+                case 85:
+                case 86:
+                case 87:
+                case 88:
+                    {
+                    alt20=2;
+                    }
+                    break;
                 case EOF:
                 case MINUS:
                 case LPAREN:
@@ -2262,7 +2275,6 @@ public class gscriptParser extends Parser {
                 case 52:
                 case 53:
                 case 61:
-                case 69:
                 case 70:
                 case 71:
                 case 72:
@@ -2272,22 +2284,10 @@ public class gscriptParser extends Parser {
                 case 76:
                 case 77:
                 case 78:
-                case 80:
+                case 79:
+                case 81:
                     {
                     alt20=1;
-                    }
-                    break;
-                case EQUALS:
-                case 68:
-                case 81:
-                case 82:
-                case 83:
-                case 84:
-                case 85:
-                case 86:
-                case 87:
-                    {
-                    alt20=2;
                     }
                     break;
                 default:
@@ -2358,7 +2358,7 @@ public class gscriptParser extends Parser {
 
             	    if ( (LA21_0==WORD||(LA21_0>=OIVAR && LA21_0<=GLOBALVAR)) ) {
             	        switch ( input.LA(2) ) {
-            	        case 89:
+            	        case 90:
             	            {
             	            switch ( input.LA(3) ) {
             	            case MINUS:
@@ -2591,7 +2591,7 @@ public class gscriptParser extends Parser {
             	                }
             	                }
             	                break;
-            	            case 90:
+            	            case 91:
             	                {
             	                int LA21_58 = input.LA(4);
 
@@ -2620,7 +2620,7 @@ public class gscriptParser extends Parser {
 
             	            }
             	            break;
-            	        case 88:
+            	        case 89:
             	            {
             	            int LA21_3 = input.LA(3);
 
@@ -2700,7 +2700,6 @@ public class gscriptParser extends Parser {
             	        case 52:
             	        case 53:
             	        case 61:
-            	        case 69:
             	        case 70:
             	        case 71:
             	        case 72:
@@ -2710,20 +2709,21 @@ public class gscriptParser extends Parser {
             	        case 76:
             	        case 77:
             	        case 78:
-            	        case 80:
+            	        case 79:
+            	        case 81:
             	            {
             	            alt21=1;
             	            }
             	            break;
             	        case EQUALS:
             	        case 68:
-            	        case 81:
             	        case 82:
             	        case 83:
             	        case 84:
             	        case 85:
             	        case 86:
             	        case 87:
+            	        case 88:
             	            {
             	            alt21=2;
             	            }
@@ -3755,7 +3755,7 @@ public class gscriptParser extends Parser {
                 case WORD:
                     {
                     switch ( input.LA(3) ) {
-                    case LPAREN:
+                    case 90:
                         {
                         int LA27_106 = input.LA(4);
 
@@ -3774,7 +3774,7 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 89:
+                    case LPAREN:
                         {
                         int LA27_107 = input.LA(4);
 
@@ -3793,7 +3793,16 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 88:
+                    case EQUALS:
+                    case EQUALS2:
+                    case NOT_EQUALS:
+                    case GT:
+                    case GTE:
+                    case LT:
+                    case LTE:
+                    case 53:
+                    case 68:
+                    case 69:
                         {
                         int LA27_108 = input.LA(4);
 
@@ -3812,15 +3821,17 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case EQUALS:
-                    case EQUALS2:
-                    case NOT_EQUALS:
-                    case GT:
-                    case GTE:
-                    case LT:
-                    case LTE:
-                    case 53:
-                    case 68:
+                    case PLUS:
+                    case MINUS:
+                    case MULT:
+                    case DIV:
+                    case 54:
+                    case 55:
+                    case 56:
+                    case 57:
+                    case 58:
+                    case 59:
+                    case 60:
                         {
                         int LA27_109 = input.LA(4);
 
@@ -3839,17 +3850,8 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case PLUS:
-                    case MINUS:
-                    case MULT:
-                    case DIV:
-                    case 54:
-                    case 55:
-                    case 56:
-                    case 57:
-                    case 58:
-                    case 59:
-                    case 60:
+                    case 62:
+                    case 63:
                         {
                         int LA27_110 = input.LA(4);
 
@@ -3868,8 +3870,8 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 62:
-                    case 63:
+                    case 64:
+                    case 65:
                         {
                         int LA27_111 = input.LA(4);
 
@@ -3888,8 +3890,8 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 64:
-                    case 65:
+                    case 66:
+                    case 67:
                         {
                         int LA27_112 = input.LA(4);
 
@@ -3908,8 +3910,7 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 66:
-                    case 67:
+                    case RPAREN:
                         {
                         int LA27_113 = input.LA(4);
 
@@ -3928,7 +3929,7 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case RPAREN:
+                    case 89:
                         {
                         int LA27_114 = input.LA(4);
 
@@ -3969,6 +3970,7 @@ public class gscriptParser extends Parser {
                     case LTE:
                     case 53:
                     case 68:
+                    case 69:
                         {
                         int LA27_115 = input.LA(4);
 
@@ -4117,6 +4119,7 @@ public class gscriptParser extends Parser {
                     case LTE:
                     case 53:
                     case 68:
+                    case 69:
                         {
                         int LA27_121 = input.LA(4);
 
@@ -4265,6 +4268,7 @@ public class gscriptParser extends Parser {
                     case LTE:
                     case 53:
                     case 68:
+                    case 69:
                         {
                         int LA27_127 = input.LA(4);
 
@@ -4405,7 +4409,7 @@ public class gscriptParser extends Parser {
                 case GLOBALVAR:
                     {
                     switch ( input.LA(3) ) {
-                    case 89:
+                    case 90:
                         {
                         int LA27_133 = input.LA(4);
 
@@ -4424,7 +4428,7 @@ public class gscriptParser extends Parser {
                         }
                         }
                         break;
-                    case 88:
+                    case 89:
                         {
                         int LA27_134 = input.LA(4);
 
@@ -4452,6 +4456,7 @@ public class gscriptParser extends Parser {
                     case LTE:
                     case 53:
                     case 68:
+                    case 69:
                         {
                         int LA27_135 = input.LA(4);
 
@@ -4600,6 +4605,7 @@ public class gscriptParser extends Parser {
                     case LTE:
                     case 53:
                     case 68:
+                    case 69:
                         {
                         int LA27_141 = input.LA(4);
 
@@ -4748,6 +4754,7 @@ public class gscriptParser extends Parser {
                     case LTE:
                     case 53:
                     case 68:
+                    case 69:
                         {
                         int LA27_147 = input.LA(4);
 
@@ -6068,7 +6075,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start relationalExpression
-    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:141:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )? ;
+    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:141:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )? ;
     public final String relationalExpression() throws RecognitionException {
         String value = null;
         int relationalExpression_StartIndex = input.index();
@@ -6090,8 +6097,8 @@ public class gscriptParser extends Parser {
         String a = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 22) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:142:3: ( (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )? )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )?
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:142:3: ( (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )? )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )?
             {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | p= pexpression )
             int alt33=10;
@@ -6288,7 +6295,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:427: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )?
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:427: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression ) )?
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -6301,7 +6308,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_62 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6310,7 +6317,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_63 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6319,7 +6326,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_64 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6328,7 +6335,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_65 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6337,7 +6344,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_66 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6346,7 +6353,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_67 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6356,7 +6363,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_68 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6365,7 +6372,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_69 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6374,7 +6381,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_70 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6383,7 +6390,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_71 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6393,7 +6400,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_72 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6409,7 +6416,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_73 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6418,7 +6425,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_74 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6427,7 +6434,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_75 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6436,7 +6443,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_76 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6445,7 +6452,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_77 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6454,7 +6461,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_78 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6464,7 +6471,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_79 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6473,7 +6480,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_80 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6482,7 +6489,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_81 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6491,7 +6498,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_82 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6501,7 +6508,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_83 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6514,7 +6521,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_53 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6523,7 +6530,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_54 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6532,7 +6539,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_55 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6541,7 +6548,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_56 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6551,7 +6558,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_57 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6560,7 +6567,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_58 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6569,7 +6576,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA35_59 = input.LA(3);
 
-                        if ( (synpred99()) ) {
+                        if ( (synpred100()) ) {
                             alt35=1;
                         }
                         }
@@ -6581,7 +6588,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_438 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6590,7 +6597,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_439 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6599,7 +6606,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_440 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6608,7 +6615,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_441 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6617,7 +6624,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_442 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6626,7 +6633,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_443 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6636,7 +6643,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_444 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6645,7 +6652,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_445 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6654,7 +6661,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_446 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6663,7 +6670,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_447 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6673,7 +6680,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_448 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6690,7 +6697,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_449 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6699,7 +6706,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_450 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6708,7 +6715,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_451 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6717,7 +6724,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_452 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6726,7 +6733,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_453 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6735,7 +6742,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_454 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6745,7 +6752,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_455 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6754,7 +6761,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_456 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6763,7 +6770,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_457 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6772,7 +6779,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_458 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6782,7 +6789,7 @@ public class gscriptParser extends Parser {
                                 {
                                 int LA35_459 = input.LA(4);
 
-                                if ( (synpred99()) ) {
+                                if ( (synpred100()) ) {
                                     alt35=1;
                                 }
                                 }
@@ -6794,15 +6801,15 @@ public class gscriptParser extends Parser {
                 }
 
             }
-            else if ( ((LA35_0>=EQUALS && LA35_0<=LTE)||LA35_0==68) ) {
+            else if ( ((LA35_0>=EQUALS && LA35_0<=LTE)||(LA35_0>=68 && LA35_0<=69)) ) {
                 alt35=1;
             }
             switch (alt35) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:429: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:429: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )
                     {
                     op=(Token)input.LT(1);
-                    if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==53||input.LA(1)==68 ) {
+                    if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==53||(input.LA(1)>=68 && input.LA(1)<=69) ) {
                         input.consume();
                         errorRecovery=false;failed=false;
                     }
@@ -6813,7 +6820,7 @@ public class gscriptParser extends Parser {
                         recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1082);    throw mse;
                     }
 
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )
                     int alt34=9;
                     switch ( input.LA(1) ) {
                     case WORD:
@@ -6823,10 +6830,10 @@ public class gscriptParser extends Parser {
                         if ( (LA34_1==LPAREN) ) {
                             alt34=1;
                         }
-                        else if ( (synpred95()) ) {
+                        else if ( (synpred96()) ) {
                             alt34=5;
                         }
-                        else if ( (synpred98()) ) {
+                        else if ( (synpred99()) ) {
                             alt34=8;
                         }
                         else if ( (true) ) {
@@ -6835,7 +6842,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 1, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 1, input);
 
                             throw nvae;
                         }
@@ -6845,7 +6852,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA34_2 = input.LA(2);
 
-                        if ( (synpred92()) ) {
+                        if ( (synpred93()) ) {
                             alt34=2;
                         }
                         else if ( (true) ) {
@@ -6854,7 +6861,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 2, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 2, input);
 
                             throw nvae;
                         }
@@ -6864,7 +6871,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA34_3 = input.LA(2);
 
-                        if ( (synpred93()) ) {
+                        if ( (synpred94()) ) {
                             alt34=3;
                         }
                         else if ( (true) ) {
@@ -6873,7 +6880,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 3, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 3, input);
 
                             throw nvae;
                         }
@@ -6883,7 +6890,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA34_4 = input.LA(2);
 
-                        if ( (synpred94()) ) {
+                        if ( (synpred95()) ) {
                             alt34=4;
                         }
                         else if ( (true) ) {
@@ -6892,7 +6899,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 4, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 4, input);
 
                             throw nvae;
                         }
@@ -6903,7 +6910,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA34_5 = input.LA(2);
 
-                        if ( (synpred95()) ) {
+                        if ( (synpred96()) ) {
                             alt34=5;
                         }
                         else if ( (true) ) {
@@ -6912,7 +6919,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 5, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 5, input);
 
                             throw nvae;
                         }
@@ -6922,7 +6929,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA34_6 = input.LA(2);
 
-                        if ( (synpred96()) ) {
+                        if ( (synpred97()) ) {
                             alt34=6;
                         }
                         else if ( (true) ) {
@@ -6931,7 +6938,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 6, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 6, input);
 
                             throw nvae;
                         }
@@ -6941,7 +6948,7 @@ public class gscriptParser extends Parser {
                         {
                         int LA34_7 = input.LA(2);
 
-                        if ( (synpred97()) ) {
+                        if ( (synpred98()) ) {
                             alt34=7;
                         }
                         else if ( (true) ) {
@@ -6950,7 +6957,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 7, input);
+                                new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 7, input);
 
                             throw nvae;
                         }
@@ -6968,16 +6975,16 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
-                            new NoViableAltException("143:483: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 0, input);
+                            new NoViableAltException("143:488: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | d= STUPIDDECIMAL | w= WORD | exp= expression )", 34, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt34) {
                         case 1 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:484: f= function
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:489: f= function
                             {
-                            pushFollow(FOLLOW_function_in_relationalExpression1105);
+                            pushFollow(FOLLOW_function_in_relationalExpression1107);
                             f=function();
                             _fsp--;
                             if (failed) return value;
@@ -6988,10 +6995,10 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:510: h= HEXNUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:515: h= HEXNUMBER
                             {
                             h=(Token)input.LT(1);
-                            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1110); if (failed) return value;
+                            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1112); if (failed) return value;
                             if ( backtracking==0 ) {
                               a = h.getText();
                             }
@@ -6999,10 +7006,10 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:536: s= STRING
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:541: s= STRING
                             {
                             s=(Token)input.LT(1);
-                            match(input,STRING,FOLLOW_STRING_in_relationalExpression1115); if (failed) return value;
+                            match(input,STRING,FOLLOW_STRING_in_relationalExpression1117); if (failed) return value;
                             if ( backtracking==0 ) {
                               a = pc.stringval(s.getText().substring(1, s.getText().length()-1));
                             }
@@ -7010,10 +7017,10 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:606: n= NUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:611: n= NUMBER
                             {
                             n=(Token)input.LT(1);
-                            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1120); if (failed) return value;
+                            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1122); if (failed) return value;
                             if ( backtracking==0 ) {
                               a = pc.intval(n.getText());
                             }
@@ -7021,9 +7028,9 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 5 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:640: v= variable
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:645: v= variable
                             {
-                            pushFollow(FOLLOW_variable_in_relationalExpression1125);
+                            pushFollow(FOLLOW_variable_in_relationalExpression1127);
                             v=variable();
                             _fsp--;
                             if (failed) return value;
@@ -7034,10 +7041,10 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 6 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:666: d= DECIMAL
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:671: d= DECIMAL
                             {
                             d=(Token)input.LT(1);
-                            match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1130); if (failed) return value;
+                            match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1132); if (failed) return value;
                             if ( backtracking==0 ) {
                               a = "(new Double("+d.getText()+"))";
                             }
@@ -7045,10 +7052,10 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 7 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:710: d= STUPIDDECIMAL
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:715: d= STUPIDDECIMAL
                             {
                             d=(Token)input.LT(1);
-                            match(input,STUPIDDECIMAL,FOLLOW_STUPIDDECIMAL_in_relationalExpression1135); if (failed) return value;
+                            match(input,STUPIDDECIMAL,FOLLOW_STUPIDDECIMAL_in_relationalExpression1137); if (failed) return value;
                             if ( backtracking==0 ) {
                               a = "(new Double(0"+d.getText()+"))";
                             }
@@ -7056,10 +7063,10 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 8 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:761: w= WORD
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:766: w= WORD
                             {
                             w=(Token)input.LT(1);
-                            match(input,WORD,FOLLOW_WORD_in_relationalExpression1140); if (failed) return value;
+                            match(input,WORD,FOLLOW_WORD_in_relationalExpression1142); if (failed) return value;
                             if ( backtracking==0 ) {
                               a = w.getText();
                             }
@@ -7067,9 +7074,9 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 9 :
-                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:782: exp= expression
+                            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:787: exp= expression
                             {
-                            pushFollow(FOLLOW_expression_in_relationalExpression1145);
+                            pushFollow(FOLLOW_expression_in_relationalExpression1147);
                             exp=expression();
                             _fsp--;
                             if (failed) return value;
@@ -7122,7 +7129,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:1: ( 'repeat' (e= expression )? (s= statement ) ( ';' )* )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:3: 'repeat' (e= expression )? (s= statement ) ( ';' )*
             {
-            match(input,69,FOLLOW_69_in_repeatstatement1168); if (failed) return value;
+            match(input,70,FOLLOW_70_in_repeatstatement1170); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:12: (e= expression )?
             int alt36=2;
             switch ( input.LA(1) ) {
@@ -7143,14 +7150,14 @@ public class gscriptParser extends Parser {
                 case WORD:
                     {
                     switch ( input.LA(2) ) {
-                        case 89:
+                        case 90:
                             {
                             switch ( input.LA(3) ) {
                                 case MINUS:
                                     {
                                     int LA36_115 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7159,7 +7166,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_116 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7168,7 +7175,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_117 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7177,7 +7184,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_118 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7186,7 +7193,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_119 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7195,7 +7202,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_120 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7205,7 +7212,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_121 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7214,7 +7221,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_122 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7223,7 +7230,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_123 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7232,7 +7239,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_124 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7242,7 +7249,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_125 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7251,16 +7258,16 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_126 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
-                                case 90:
+                                case 91:
                                     {
                                     int LA36_127 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7276,7 +7283,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_128 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7285,7 +7292,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_129 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7294,7 +7301,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_130 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7303,7 +7310,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_131 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7312,7 +7319,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_132 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7321,7 +7328,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_133 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7331,7 +7338,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_134 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7340,7 +7347,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_135 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7349,7 +7356,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_136 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7358,7 +7365,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_137 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7368,7 +7375,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_138 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7377,89 +7384,51 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_139 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                             }
 
-                            }
-                            break;
-                        case 88:
-                            {
-                            int LA36_31 = input.LA(3);
-
-                            if ( (LA36_31==WORD) ) {
-                                int LA36_140 = input.LA(4);
-
-                                if ( (synpred100()) ) {
-                                    alt36=1;
-                                }
-                            }
-                            else if ( ((LA36_31>=OIVAR && LA36_31<=GLOBALVAR)) ) {
-                                int LA36_141 = input.LA(4);
-
-                                if ( (synpred100()) ) {
-                                    alt36=1;
-                                }
-                            }
                             }
                             break;
                         case EQUALS:
                         case 68:
                             {
                             switch ( input.LA(3) ) {
-                                case MINUS:
-                                    {
-                                    int LA36_142 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case 61:
-                                    {
-                                    int LA36_143 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
                                 case WORD:
                                     {
-                                    int LA36_144 = input.LA(4);
+                                    int LA36_140 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA36_145 = input.LA(4);
+                                    int LA36_141 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA36_146 = input.LA(4);
+                                    int LA36_142 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA36_147 = input.LA(4);
+                                    int LA36_143 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7467,36 +7436,54 @@ public class gscriptParser extends Parser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA36_148 = input.LA(4);
+                                    int LA36_144 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA36_149 = input.LA(4);
+                                    int LA36_145 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case STUPIDDECIMAL:
                                     {
-                                    int LA36_150 = input.LA(4);
+                                    int LA36_146 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case MINUS:
+                                    {
+                                    int LA36_147 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case 61:
+                                    {
+                                    int LA36_148 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case LPAREN:
                                     {
-                                    int LA36_151 = input.LA(4);
+                                    int LA36_149 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7504,9 +7491,9 @@ public class gscriptParser extends Parser {
                                 case 52:
                                 case 53:
                                     {
-                                    int LA36_152 = input.LA(4);
+                                    int LA36_150 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7552,10 +7539,11 @@ public class gscriptParser extends Parser {
                         case 70:
                         case 71:
                         case 72:
-                        case 74:
+                        case 73:
                         case 75:
                         case 76:
-                        case 80:
+                        case 77:
+                        case 81:
                             {
                             alt36=1;
                             }
@@ -7563,73 +7551,73 @@ public class gscriptParser extends Parser {
                         case WORD:
                             {
                             switch ( input.LA(3) ) {
-                                case 89:
+                                case 90:
                                     {
-                                    int LA36_153 = input.LA(4);
+                                    int LA36_151 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case LPAREN:
                                     {
-                                    int LA36_154 = input.LA(4);
+                                    int LA36_152 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case 89:
+                                    {
+                                    int LA36_153 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA36_155 = input.LA(4);
+                                    int LA36_160 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case 88:
-                                    {
-                                    int LA36_156 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case EQUALS:
-                                case 68:
-                                case 81:
-                                case 82:
-                                case 83:
-                                case 84:
-                                case 85:
-                                case 86:
-                                case 87:
-                                    {
-                                    int LA36_157 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case OIVAR:
                                     {
-                                    int LA36_164 = input.LA(4);
+                                    int LA36_173 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case GLOBALVAR:
                                     {
-                                    int LA36_177 = input.LA(4);
+                                    int LA36_174 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case EQUALS:
+                                case 68:
+                                case 82:
+                                case 83:
+                                case 84:
+                                case 85:
+                                case 86:
+                                case 87:
+                                case 88:
+                                    {
+                                    int LA36_190 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7641,46 +7629,46 @@ public class gscriptParser extends Parser {
                         case OIVAR:
                             {
                             switch ( input.LA(3) ) {
-                                case 89:
+                                case 90:
                                     {
-                                    int LA36_193 = input.LA(4);
+                                    int LA36_191 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case LPAREN:
                                     {
-                                    int LA36_194 = input.LA(4);
+                                    int LA36_192 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
-                                case 88:
+                                case 89:
                                     {
-                                    int LA36_195 = input.LA(4);
+                                    int LA36_193 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case EQUALS:
                                 case 68:
-                                case 81:
                                 case 82:
                                 case 83:
                                 case 84:
                                 case 85:
                                 case 86:
                                 case 87:
+                                case 88:
                                     {
-                                    int LA36_196 = input.LA(4);
+                                    int LA36_230 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7692,43 +7680,63 @@ public class gscriptParser extends Parser {
                         case GLOBALVAR:
                             {
                             switch ( input.LA(3) ) {
-                                case 89:
+                                case 90:
                                     {
-                                    int LA36_233 = input.LA(4);
+                                    int LA36_231 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
-                                case 88:
+                                case 89:
                                     {
-                                    int LA36_234 = input.LA(4);
+                                    int LA36_232 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case EQUALS:
                                 case 68:
-                                case 81:
                                 case 82:
                                 case 83:
                                 case 84:
                                 case 85:
                                 case 86:
                                 case 87:
+                                case 88:
                                     {
-                                    int LA36_235 = input.LA(4);
+                                    int LA36_270 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                             }
 
+                            }
+                            break;
+                        case 89:
+                            {
+                            int LA36_55 = input.LA(3);
+
+                            if ( (LA36_55==WORD) ) {
+                                int LA36_271 = input.LA(4);
+
+                                if ( (synpred101()) ) {
+                                    alt36=1;
+                                }
+                            }
+                            else if ( ((LA36_55>=OIVAR && LA36_55<=GLOBALVAR)) ) {
+                                int LA36_272 = input.LA(4);
+
+                                if ( (synpred101()) ) {
+                                    alt36=1;
+                                }
+                            }
                             }
                             break;
                     }
@@ -7738,14 +7746,14 @@ public class gscriptParser extends Parser {
                 case OIVAR:
                     {
                     switch ( input.LA(2) ) {
-                        case 89:
+                        case 90:
                             {
                             switch ( input.LA(3) ) {
                                 case MINUS:
                                     {
                                     int LA36_273 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7754,7 +7762,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_274 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7763,7 +7771,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_275 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7772,7 +7780,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_276 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7781,7 +7789,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_277 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7790,7 +7798,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_278 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7800,7 +7808,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_279 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7809,7 +7817,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_280 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7818,7 +7826,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_281 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7827,7 +7835,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_282 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7837,7 +7845,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_283 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7846,16 +7854,16 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_284 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
-                                case 90:
+                                case 91:
                                     {
                                     int LA36_285 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7864,21 +7872,21 @@ public class gscriptParser extends Parser {
 
                             }
                             break;
-                        case 88:
+                        case 89:
                             {
                             int LA36_60 = input.LA(3);
 
                             if ( (LA36_60==WORD) ) {
                                 int LA36_286 = input.LA(4);
 
-                                if ( (synpred100()) ) {
+                                if ( (synpred101()) ) {
                                     alt36=1;
                                 }
                             }
                             else if ( ((LA36_60>=OIVAR && LA36_60<=GLOBALVAR)) ) {
                                 int LA36_287 = input.LA(4);
 
-                                if ( (synpred100()) ) {
+                                if ( (synpred101()) ) {
                                     alt36=1;
                                 }
                             }
@@ -7888,56 +7896,38 @@ public class gscriptParser extends Parser {
                         case 68:
                             {
                             switch ( input.LA(3) ) {
-                                case MINUS:
+                                case WORD:
                                     {
                                     int LA36_288 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case 61:
-                                    {
-                                    int LA36_289 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case WORD:
-                                    {
-                                    int LA36_290 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA36_291 = input.LA(4);
+                                    int LA36_289 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA36_292 = input.LA(4);
+                                    int LA36_290 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA36_293 = input.LA(4);
+                                    int LA36_291 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7945,27 +7935,45 @@ public class gscriptParser extends Parser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA36_294 = input.LA(4);
+                                    int LA36_292 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA36_295 = input.LA(4);
+                                    int LA36_293 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case STUPIDDECIMAL:
                                     {
+                                    int LA36_294 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case MINUS:
+                                    {
+                                    int LA36_295 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case 61:
+                                    {
                                     int LA36_296 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7974,7 +7982,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_297 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -7984,7 +7992,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_298 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8033,10 +8041,11 @@ public class gscriptParser extends Parser {
                         case 70:
                         case 71:
                         case 72:
-                        case 74:
+                        case 73:
                         case 75:
                         case 76:
-                        case 80:
+                        case 77:
+                        case 81:
                             {
                             alt36=1;
                             }
@@ -8048,14 +8057,14 @@ public class gscriptParser extends Parser {
                 case GLOBALVAR:
                     {
                     switch ( input.LA(2) ) {
-                        case 89:
+                        case 90:
                             {
                             switch ( input.LA(3) ) {
                                 case MINUS:
                                     {
                                     int LA36_299 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8064,7 +8073,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_300 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8073,7 +8082,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_301 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8082,7 +8091,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_302 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8091,7 +8100,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_303 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8100,7 +8109,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_304 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8110,7 +8119,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_305 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8119,7 +8128,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_306 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8128,7 +8137,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_307 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8137,7 +8146,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_308 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8147,7 +8156,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_309 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8156,16 +8165,16 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_310 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
-                                case 90:
+                                case 91:
                                     {
                                     int LA36_311 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8174,21 +8183,21 @@ public class gscriptParser extends Parser {
 
                             }
                             break;
-                        case 88:
+                        case 89:
                             {
                             int LA36_88 = input.LA(3);
 
                             if ( (LA36_88==WORD) ) {
                                 int LA36_312 = input.LA(4);
 
-                                if ( (synpred100()) ) {
+                                if ( (synpred101()) ) {
                                     alt36=1;
                                 }
                             }
                             else if ( ((LA36_88>=OIVAR && LA36_88<=GLOBALVAR)) ) {
                                 int LA36_313 = input.LA(4);
 
-                                if ( (synpred100()) ) {
+                                if ( (synpred101()) ) {
                                     alt36=1;
                                 }
                             }
@@ -8198,56 +8207,38 @@ public class gscriptParser extends Parser {
                         case 68:
                             {
                             switch ( input.LA(3) ) {
-                                case MINUS:
+                                case WORD:
                                     {
                                     int LA36_314 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case 61:
-                                    {
-                                    int LA36_315 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
-                                        alt36=1;
-                                    }
-                                    }
-                                    break;
-                                case WORD:
-                                    {
-                                    int LA36_316 = input.LA(4);
-
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA36_317 = input.LA(4);
+                                    int LA36_315 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA36_318 = input.LA(4);
+                                    int LA36_316 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA36_319 = input.LA(4);
+                                    int LA36_317 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8255,27 +8246,45 @@ public class gscriptParser extends Parser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA36_320 = input.LA(4);
+                                    int LA36_318 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA36_321 = input.LA(4);
+                                    int LA36_319 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
                                     break;
                                 case STUPIDDECIMAL:
                                     {
+                                    int LA36_320 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case MINUS:
+                                    {
+                                    int LA36_321 = input.LA(4);
+
+                                    if ( (synpred101()) ) {
+                                        alt36=1;
+                                    }
+                                    }
+                                    break;
+                                case 61:
+                                    {
                                     int LA36_322 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8284,7 +8293,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_323 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8294,7 +8303,7 @@ public class gscriptParser extends Parser {
                                     {
                                     int LA36_324 = input.LA(4);
 
-                                    if ( (synpred100()) ) {
+                                    if ( (synpred101()) ) {
                                         alt36=1;
                                     }
                                     }
@@ -8343,10 +8352,11 @@ public class gscriptParser extends Parser {
                         case 70:
                         case 71:
                         case 72:
-                        case 74:
+                        case 73:
                         case 75:
                         case 76:
-                        case 80:
+                        case 77:
+                        case 81:
                             {
                             alt36=1;
                             }
@@ -8361,7 +8371,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:13: e= expression
                     {
-                    pushFollow(FOLLOW_expression_in_repeatstatement1173);
+                    pushFollow(FOLLOW_expression_in_repeatstatement1175);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -8374,7 +8384,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:28: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:29: s= statement
             {
-            pushFollow(FOLLOW_statement_in_repeatstatement1180);
+            pushFollow(FOLLOW_statement_in_repeatstatement1182);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -8390,7 +8400,7 @@ public class gscriptParser extends Parser {
                 if ( (LA37_0==36) ) {
                     int LA37_1 = input.LA(2);
 
-                    if ( (synpred101()) ) {
+                    if ( (synpred102()) ) {
                         alt37=1;
                     }
 
@@ -8402,7 +8412,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:43: ';'
             	    {
-            	    match(input,36,FOLLOW_36_in_repeatstatement1184); if (failed) return value;
+            	    match(input,36,FOLLOW_36_in_repeatstatement1186); if (failed) return value;
 
             	    }
             	    break;
@@ -8441,7 +8451,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:151:1: ( 'break' )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:151:3: 'break'
             {
-            match(input,70,FOLLOW_70_in_breakstatement1202); if (failed) return value;
+            match(input,71,FOLLOW_71_in_breakstatement1204); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.breakstatement();
             }
@@ -8471,7 +8481,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:154:1: ( 'continue' )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:154:3: 'continue'
             {
-            match(input,71,FOLLOW_71_in_continuestatement1217); if (failed) return value;
+            match(input,72,FOLLOW_72_in_continuestatement1219); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.continuestatement();
             }
@@ -8506,13 +8516,13 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:158:1: ( 'do' s= statement 'until' e= expression )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:158:3: 'do' s= statement 'until' e= expression
             {
-            match(input,72,FOLLOW_72_in_dostatement1232); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_dostatement1236);
+            match(input,73,FOLLOW_73_in_dostatement1234); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_dostatement1238);
             s=statement();
             _fsp--;
             if (failed) return value;
-            match(input,73,FOLLOW_73_in_dostatement1238); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_dostatement1242);
+            match(input,74,FOLLOW_74_in_dostatement1240); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_dostatement1244);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -8550,15 +8560,15 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:162:1: ( 'while' e= expression (s= statement ) )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:162:3: 'while' e= expression (s= statement )
             {
-            match(input,74,FOLLOW_74_in_whilestatement1257); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_whilestatement1261);
+            match(input,75,FOLLOW_75_in_whilestatement1259); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_whilestatement1263);
             e=expression();
             _fsp--;
             if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:162:24: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:162:25: s= statement
             {
-            pushFollow(FOLLOW_statement_in_whilestatement1266);
+            pushFollow(FOLLOW_statement_in_whilestatement1268);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -8603,13 +8613,13 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:1: ( 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:3: 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement
             {
-            match(input,75,FOLLOW_75_in_forstatement1282); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1284); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1288);
+            match(input,76,FOLLOW_76_in_forstatement1284); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1286); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1290);
             s1=statement();
             _fsp--;
             if (failed) return value;
-            pushFollow(FOLLOW_expression_in_forstatement1292);
+            pushFollow(FOLLOW_expression_in_forstatement1294);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -8620,13 +8630,13 @@ public class gscriptParser extends Parser {
             if ( (LA38_0==36) ) {
                 int LA38_1 = input.LA(2);
 
-                if ( (LA38_1==LBRAC||(LA38_1>=JAVACODE && LA38_1<=WORD)||(LA38_1>=OIVAR && LA38_1<=GLOBALVAR)||LA38_1==39||LA38_1==43||(LA38_1>=45 && LA38_1<=48)||(LA38_1>=69 && LA38_1<=72)||(LA38_1>=74 && LA38_1<=76)||LA38_1==80) ) {
+                if ( (LA38_1==LBRAC||(LA38_1>=JAVACODE && LA38_1<=WORD)||(LA38_1>=OIVAR && LA38_1<=GLOBALVAR)||LA38_1==39||LA38_1==43||(LA38_1>=45 && LA38_1<=48)||(LA38_1>=70 && LA38_1<=73)||(LA38_1>=75 && LA38_1<=77)||LA38_1==81) ) {
                     alt38=1;
                 }
                 else if ( (LA38_1==36) ) {
                     int LA38_38 = input.LA(3);
 
-                    if ( (synpred102()) ) {
+                    if ( (synpred103()) ) {
                         alt38=1;
                     }
                 }
@@ -8635,19 +8645,19 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:40: ';'
                     {
-                    match(input,36,FOLLOW_36_in_forstatement1295); if (failed) return value;
+                    match(input,36,FOLLOW_36_in_forstatement1297); if (failed) return value;
 
                     }
                     break;
 
             }
 
-            pushFollow(FOLLOW_statement_in_forstatement1301);
+            pushFollow(FOLLOW_statement_in_forstatement1303);
             s2=statement();
             _fsp--;
             if (failed) return value;
-            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1303); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1307);
+            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1305); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1309);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -8680,11 +8690,11 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:1: ( 'switch' ( expression ) ( '{' | 'begin' ) ( ( 'case' expression | 'default' ) ':' ( statement )* )* ( '}' | 'end' ) )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:3: 'switch' ( expression ) ( '{' | 'begin' ) ( ( 'case' expression | 'default' ) ':' ( statement )* )* ( '}' | 'end' )
             {
-            match(input,76,FOLLOW_76_in_switchstatement1322); if (failed) return value;
+            match(input,77,FOLLOW_77_in_switchstatement1324); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:12: ( expression )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:13: expression
             {
-            pushFollow(FOLLOW_expression_in_switchstatement1325);
+            pushFollow(FOLLOW_expression_in_switchstatement1327);
             expression();
             _fsp--;
             if (failed) return value;
@@ -8699,7 +8709,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1328);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1330);    throw mse;
             }
 
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:39: ( ( 'case' expression | 'default' ) ':' ( statement )* )*
@@ -8708,7 +8718,7 @@ public class gscriptParser extends Parser {
                 int alt41=2;
                 int LA41_0 = input.LA(1);
 
-                if ( ((LA41_0>=77 && LA41_0<=78)) ) {
+                if ( ((LA41_0>=78 && LA41_0<=79)) ) {
                     alt41=1;
                 }
 
@@ -8721,10 +8731,10 @@ public class gscriptParser extends Parser {
             	    int alt39=2;
             	    int LA39_0 = input.LA(1);
 
-            	    if ( (LA39_0==77) ) {
+            	    if ( (LA39_0==78) ) {
             	        alt39=1;
             	    }
-            	    else if ( (LA39_0==78) ) {
+            	    else if ( (LA39_0==79) ) {
             	        alt39=2;
             	    }
             	    else {
@@ -8738,8 +8748,8 @@ public class gscriptParser extends Parser {
             	        case 1 :
             	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:41: 'case' expression
             	            {
-            	            match(input,77,FOLLOW_77_in_switchstatement1336); if (failed) return value;
-            	            pushFollow(FOLLOW_expression_in_switchstatement1338);
+            	            match(input,78,FOLLOW_78_in_switchstatement1338); if (failed) return value;
+            	            pushFollow(FOLLOW_expression_in_switchstatement1340);
             	            expression();
             	            _fsp--;
             	            if (failed) return value;
@@ -8749,21 +8759,21 @@ public class gscriptParser extends Parser {
             	        case 2 :
             	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:59: 'default'
             	            {
-            	            match(input,78,FOLLOW_78_in_switchstatement1340); if (failed) return value;
+            	            match(input,79,FOLLOW_79_in_switchstatement1342); if (failed) return value;
 
             	            }
             	            break;
 
             	    }
 
-            	    match(input,79,FOLLOW_79_in_switchstatement1344); if (failed) return value;
+            	    match(input,80,FOLLOW_80_in_switchstatement1346); if (failed) return value;
             	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:75: ( statement )*
             	    loop40:
             	    do {
             	        int alt40=2;
             	        int LA40_0 = input.LA(1);
 
-            	        if ( (LA40_0==LBRAC||(LA40_0>=JAVACODE && LA40_0<=WORD)||(LA40_0>=OIVAR && LA40_0<=GLOBALVAR)||LA40_0==36||LA40_0==39||LA40_0==43||(LA40_0>=45 && LA40_0<=48)||(LA40_0>=69 && LA40_0<=72)||(LA40_0>=74 && LA40_0<=76)||LA40_0==80) ) {
+            	        if ( (LA40_0==LBRAC||(LA40_0>=JAVACODE && LA40_0<=WORD)||(LA40_0>=OIVAR && LA40_0<=GLOBALVAR)||LA40_0==36||LA40_0==39||LA40_0==43||(LA40_0>=45 && LA40_0<=48)||(LA40_0>=70 && LA40_0<=73)||(LA40_0>=75 && LA40_0<=77)||LA40_0==81) ) {
             	            alt40=1;
             	        }
 
@@ -8772,7 +8782,7 @@ public class gscriptParser extends Parser {
             	    	case 1 :
             	    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:170:76: statement
             	    	    {
-            	    	    pushFollow(FOLLOW_statement_in_switchstatement1347);
+            	    	    pushFollow(FOLLOW_statement_in_switchstatement1349);
             	    	    statement();
             	    	    _fsp--;
             	    	    if (failed) return value;
@@ -8802,7 +8812,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1353);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1355);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -8839,12 +8849,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:174:1: ( 'with' e= expression s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:174:3: 'with' e= expression s= statement
             {
-            match(input,80,FOLLOW_80_in_withstatement1373); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_withstatement1378);
+            match(input,81,FOLLOW_81_in_withstatement1375); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_withstatement1380);
             e=expression();
             _fsp--;
             if (failed) return value;
-            pushFollow(FOLLOW_statement_in_withstatement1383);
+            pushFollow(FOLLOW_statement_in_withstatement1385);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -8883,12 +8893,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:178:1: (valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:178:4: valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression
             {
-            pushFollow(FOLLOW_variable_in_assignment1401);
+            pushFollow(FOLLOW_variable_in_assignment1403);
             valuee=variable();
             _fsp--;
             if (failed) return value;
             op=(Token)input.LT(1);
-            if ( input.LA(1)==EQUALS||input.LA(1)==68||(input.LA(1)>=81 && input.LA(1)<=87) ) {
+            if ( input.LA(1)==EQUALS||input.LA(1)==68||(input.LA(1)>=82 && input.LA(1)<=88) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -8896,10 +8906,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1405);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1407);    throw mse;
             }
 
-            pushFollow(FOLLOW_expression_in_assignment1428);
+            pushFollow(FOLLOW_expression_in_assignment1430);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -8947,10 +8957,10 @@ public class gscriptParser extends Parser {
             if ( (LA42_0==WORD||(LA42_0>=OIVAR && LA42_0<=GLOBALVAR)) ) {
                 int LA42_1 = input.LA(2);
 
-                if ( (LA42_1==89) ) {
+                if ( (LA42_1==90) ) {
                     alt42=1;
                 }
-                else if ( (LA42_1==EOF||(LA42_1>=PLUS && LA42_1<=LTE)||(LA42_1>=JAVACODE && LA42_1<=GLOBALVAR)||(LA42_1>=36 && LA42_1<=88)||LA42_1==90) ) {
+                else if ( (LA42_1==EOF||(LA42_1>=PLUS && LA42_1<=LTE)||(LA42_1>=JAVACODE && LA42_1<=GLOBALVAR)||(LA42_1>=36 && LA42_1<=89)||LA42_1==91) ) {
                     alt42=2;
                 }
                 else {
@@ -8972,7 +8982,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:182:5: a= array
                     {
-                    pushFollow(FOLLOW_array_in_variable1447);
+                    pushFollow(FOLLOW_array_in_variable1449);
                     a=array();
                     _fsp--;
                     if (failed) return retval;
@@ -8994,7 +9004,7 @@ public class gscriptParser extends Parser {
                         if (backtracking>0) {failed=true; return retval;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1452);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1454);    throw mse;
                     }
 
                     if ( backtracking==0 ) {
@@ -9012,7 +9022,7 @@ public class gscriptParser extends Parser {
                 int alt44=2;
                 int LA44_0 = input.LA(1);
 
-                if ( (LA44_0==88) ) {
+                if ( (LA44_0==89) ) {
                     alt44=1;
                 }
 
@@ -9021,7 +9031,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:182:116: '.' ( array | ( WORD ) )
             	    {
-            	    match(input,88,FOLLOW_88_in_variable1464); if (failed) return retval;
+            	    match(input,89,FOLLOW_89_in_variable1466); if (failed) return retval;
             	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:182:120: ( array | ( WORD ) )
             	    int alt43=2;
             	    int LA43_0 = input.LA(1);
@@ -9029,10 +9039,10 @@ public class gscriptParser extends Parser {
             	    if ( (LA43_0==WORD) ) {
             	        int LA43_1 = input.LA(2);
 
-            	        if ( (LA43_1==89) ) {
+            	        if ( (LA43_1==90) ) {
             	            alt43=1;
             	        }
-            	        else if ( (LA43_1==EOF||(LA43_1>=PLUS && LA43_1<=LTE)||(LA43_1>=JAVACODE && LA43_1<=GLOBALVAR)||(LA43_1>=36 && LA43_1<=88)||LA43_1==90) ) {
+            	        else if ( (LA43_1==EOF||(LA43_1>=PLUS && LA43_1<=LTE)||(LA43_1>=JAVACODE && LA43_1<=GLOBALVAR)||(LA43_1>=36 && LA43_1<=89)||LA43_1==91) ) {
             	            alt43=2;
             	        }
             	        else {
@@ -9057,7 +9067,7 @@ public class gscriptParser extends Parser {
             	        case 1 :
             	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:182:121: array
             	            {
-            	            pushFollow(FOLLOW_array_in_variable1467);
+            	            pushFollow(FOLLOW_array_in_variable1469);
             	            array();
             	            _fsp--;
             	            if (failed) return retval;
@@ -9070,7 +9080,7 @@ public class gscriptParser extends Parser {
             	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:182:127: ( WORD )
             	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:182:128: WORD
             	            {
-            	            match(input,WORD,FOLLOW_WORD_in_variable1470); if (failed) return retval;
+            	            match(input,WORD,FOLLOW_WORD_in_variable1472); if (failed) return retval;
 
             	            }
 
@@ -9122,8 +9132,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:186:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function1490); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function1492); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function1492); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function1494); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:186:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt47=2;
             int LA47_0 = input.LA(1);
@@ -9135,7 +9145,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:186:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function1497);
+                    pushFollow(FOLLOW_expression_in_function1499);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -9160,7 +9170,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:186:50: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:186:51: ','
                     	    {
-                    	    match(input,42,FOLLOW_42_in_function1503); if (failed) return value;
+                    	    match(input,42,FOLLOW_42_in_function1505); if (failed) return value;
 
                     	    }
 
@@ -9175,7 +9185,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:186:57: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function1509);
+                    	            pushFollow(FOLLOW_expression_in_function1511);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -9203,7 +9213,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function1518); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function1520); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.functionstatement(n.getText(), value);
             }
@@ -9238,8 +9248,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:190:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,OIVAR,FOLLOW_OIVAR_in_function21536); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21538); if (failed) return value;
+            match(input,OIVAR,FOLLOW_OIVAR_in_function21538); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21540); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:190:16: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt50=2;
             int LA50_0 = input.LA(1);
@@ -9251,7 +9261,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:190:17: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function21543);
+                    pushFollow(FOLLOW_expression_in_function21545);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -9276,7 +9286,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:190:50: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:190:51: ','
                     	    {
-                    	    match(input,42,FOLLOW_42_in_function21548); if (failed) return value;
+                    	    match(input,42,FOLLOW_42_in_function21550); if (failed) return value;
 
                     	    }
 
@@ -9291,7 +9301,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:190:57: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function21554);
+                    	            pushFollow(FOLLOW_expression_in_function21556);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -9319,7 +9329,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21563); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21565); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
             }
@@ -9364,10 +9374,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1583);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1585);    throw mse;
             }
 
-            match(input,89,FOLLOW_89_in_array1591); if (failed) return value;
+            match(input,90,FOLLOW_90_in_array1593); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:39: (e= expression )?
             int alt51=2;
             int LA51_0 = input.LA(1);
@@ -9379,7 +9389,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:40: e= expression
                     {
-                    pushFollow(FOLLOW_expression_in_array1596);
+                    pushFollow(FOLLOW_expression_in_array1598);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -9403,8 +9413,8 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:74: ',' e1= expression
                     {
-                    match(input,42,FOLLOW_42_in_array1602); if (failed) return value;
-                    pushFollow(FOLLOW_expression_in_array1606);
+                    match(input,42,FOLLOW_42_in_array1604); if (failed) return value;
+                    pushFollow(FOLLOW_expression_in_array1608);
                     e1=expression();
                     _fsp--;
                     if (failed) return value;
@@ -9417,7 +9427,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,90,FOLLOW_90_in_array1611); if (failed) return value;
+            match(input,91,FOLLOW_91_in_array1613); if (failed) return value;
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),value);
             }
@@ -9724,23 +9734,12 @@ public class gscriptParser extends Parser {
     }
     // $ANTLR end synpred82
 
-    // $ANTLR start synpred92
-    public final void synpred92_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:510: ( HEXNUMBER )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:510: HEXNUMBER
-        {
-        match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred921110); if (failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred92
-
     // $ANTLR start synpred93
     public final void synpred93_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:536: ( STRING )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:536: STRING
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:515: ( HEXNUMBER )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:515: HEXNUMBER
         {
-        match(input,STRING,FOLLOW_STRING_in_synpred931115); if (failed) return ;
+        match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred931112); if (failed) return ;
 
         }
     }
@@ -9748,10 +9747,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred94
     public final void synpred94_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:606: ( NUMBER )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:606: NUMBER
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:541: ( STRING )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:541: STRING
         {
-        match(input,NUMBER,FOLLOW_NUMBER_in_synpred941120); if (failed) return ;
+        match(input,STRING,FOLLOW_STRING_in_synpred941117); if (failed) return ;
 
         }
     }
@@ -9759,13 +9758,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred95
     public final void synpred95_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:640: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:640: variable
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:611: ( NUMBER )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:611: NUMBER
         {
-        pushFollow(FOLLOW_variable_in_synpred951125);
-        variable();
-        _fsp--;
-        if (failed) return ;
+        match(input,NUMBER,FOLLOW_NUMBER_in_synpred951122); if (failed) return ;
 
         }
     }
@@ -9773,10 +9769,13 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred96
     public final void synpred96_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:666: ( DECIMAL )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:666: DECIMAL
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:645: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:645: variable
         {
-        match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred961130); if (failed) return ;
+        pushFollow(FOLLOW_variable_in_synpred961127);
+        variable();
+        _fsp--;
+        if (failed) return ;
 
         }
     }
@@ -9784,10 +9783,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred97
     public final void synpred97_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:710: ( STUPIDDECIMAL )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:710: STUPIDDECIMAL
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:671: ( DECIMAL )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:671: DECIMAL
         {
-        match(input,STUPIDDECIMAL,FOLLOW_STUPIDDECIMAL_in_synpred971135); if (failed) return ;
+        match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred971132); if (failed) return ;
 
         }
     }
@@ -9795,10 +9794,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred98
     public final void synpred98_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:761: ( WORD )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:761: WORD
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:715: ( STUPIDDECIMAL )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:715: STUPIDDECIMAL
         {
-        match(input,WORD,FOLLOW_WORD_in_synpred981140); if (failed) return ;
+        match(input,STUPIDDECIMAL,FOLLOW_STUPIDDECIMAL_in_synpred981137); if (failed) return ;
 
         }
     }
@@ -9806,10 +9805,21 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred99
     public final void synpred99_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:429: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression ) )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:429: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:766: ( WORD )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:766: WORD
         {
-        if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==53||input.LA(1)==68 ) {
+        match(input,WORD,FOLLOW_WORD_in_synpred991142); if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred99
+
+    // $ANTLR start synpred100
+    public final void synpred100_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:429: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression ) )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:429: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | '<>' | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )
+        {
+        if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==53||(input.LA(1)>=68 && input.LA(1)<=69) ) {
             input.consume();
             errorRecovery=false;failed=false;
         }
@@ -9817,10 +9827,10 @@ public class gscriptParser extends Parser {
             if (backtracking>0) {failed=true; return ;}
             MismatchedSetException mse =
                 new MismatchedSetException(null,input);
-            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred991082);    throw mse;
+            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred1001082);    throw mse;
         }
 
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )
         int alt60=9;
         switch ( input.LA(1) ) {
         case WORD:
@@ -9830,10 +9840,10 @@ public class gscriptParser extends Parser {
             if ( (LA60_1==LPAREN) ) {
                 alt60=1;
             }
-            else if ( (synpred95()) ) {
+            else if ( (synpred96()) ) {
                 alt60=5;
             }
-            else if ( (synpred98()) ) {
+            else if ( (synpred99()) ) {
                 alt60=8;
             }
             else if ( (true) ) {
@@ -9842,7 +9852,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 1, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 1, input);
 
                 throw nvae;
             }
@@ -9852,7 +9862,7 @@ public class gscriptParser extends Parser {
             {
             int LA60_2 = input.LA(2);
 
-            if ( (synpred92()) ) {
+            if ( (synpred93()) ) {
                 alt60=2;
             }
             else if ( (true) ) {
@@ -9861,7 +9871,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 2, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 2, input);
 
                 throw nvae;
             }
@@ -9871,7 +9881,7 @@ public class gscriptParser extends Parser {
             {
             int LA60_3 = input.LA(2);
 
-            if ( (synpred93()) ) {
+            if ( (synpred94()) ) {
                 alt60=3;
             }
             else if ( (true) ) {
@@ -9880,7 +9890,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 3, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 3, input);
 
                 throw nvae;
             }
@@ -9890,7 +9900,7 @@ public class gscriptParser extends Parser {
             {
             int LA60_4 = input.LA(2);
 
-            if ( (synpred94()) ) {
+            if ( (synpred95()) ) {
                 alt60=4;
             }
             else if ( (true) ) {
@@ -9899,7 +9909,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 4, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 4, input);
 
                 throw nvae;
             }
@@ -9910,7 +9920,7 @@ public class gscriptParser extends Parser {
             {
             int LA60_5 = input.LA(2);
 
-            if ( (synpred95()) ) {
+            if ( (synpred96()) ) {
                 alt60=5;
             }
             else if ( (true) ) {
@@ -9919,7 +9929,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 5, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 5, input);
 
                 throw nvae;
             }
@@ -9929,7 +9939,7 @@ public class gscriptParser extends Parser {
             {
             int LA60_6 = input.LA(2);
 
-            if ( (synpred96()) ) {
+            if ( (synpred97()) ) {
                 alt60=6;
             }
             else if ( (true) ) {
@@ -9938,7 +9948,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 6, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 6, input);
 
                 throw nvae;
             }
@@ -9948,7 +9958,7 @@ public class gscriptParser extends Parser {
             {
             int LA60_7 = input.LA(2);
 
-            if ( (synpred97()) ) {
+            if ( (synpred98()) ) {
                 alt60=7;
             }
             else if ( (true) ) {
@@ -9957,7 +9967,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 7, input);
+                    new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 7, input);
 
                 throw nvae;
             }
@@ -9975,16 +9985,16 @@ public class gscriptParser extends Parser {
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("143:483: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 0, input);
+                new NoViableAltException("143:488: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | STUPIDDECIMAL | WORD | expression )", 60, 0, input);
 
             throw nvae;
         }
 
         switch (alt60) {
             case 1 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:484: function
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:489: function
                 {
-                pushFollow(FOLLOW_function_in_synpred991105);
+                pushFollow(FOLLOW_function_in_synpred1001107);
                 function();
                 _fsp--;
                 if (failed) return ;
@@ -9992,30 +10002,30 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:510: HEXNUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:515: HEXNUMBER
                 {
-                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred991110); if (failed) return ;
+                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred1001112); if (failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:536: STRING
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:541: STRING
                 {
-                match(input,STRING,FOLLOW_STRING_in_synpred991115); if (failed) return ;
+                match(input,STRING,FOLLOW_STRING_in_synpred1001117); if (failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:606: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:611: NUMBER
                 {
-                match(input,NUMBER,FOLLOW_NUMBER_in_synpred991120); if (failed) return ;
+                match(input,NUMBER,FOLLOW_NUMBER_in_synpred1001122); if (failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:640: variable
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:645: variable
                 {
-                pushFollow(FOLLOW_variable_in_synpred991125);
+                pushFollow(FOLLOW_variable_in_synpred1001127);
                 variable();
                 _fsp--;
                 if (failed) return ;
@@ -10023,30 +10033,30 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:666: DECIMAL
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:671: DECIMAL
                 {
-                match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred991130); if (failed) return ;
+                match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred1001132); if (failed) return ;
 
                 }
                 break;
             case 7 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:710: STUPIDDECIMAL
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:715: STUPIDDECIMAL
                 {
-                match(input,STUPIDDECIMAL,FOLLOW_STUPIDDECIMAL_in_synpred991135); if (failed) return ;
+                match(input,STUPIDDECIMAL,FOLLOW_STUPIDDECIMAL_in_synpred1001137); if (failed) return ;
 
                 }
                 break;
             case 8 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:761: WORD
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:766: WORD
                 {
-                match(input,WORD,FOLLOW_WORD_in_synpred991140); if (failed) return ;
+                match(input,WORD,FOLLOW_WORD_in_synpred1001142); if (failed) return ;
 
                 }
                 break;
             case 9 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:782: expression
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:143:787: expression
                 {
-                pushFollow(FOLLOW_expression_in_synpred991145);
+                pushFollow(FOLLOW_expression_in_synpred1001147);
                 expression();
                 _fsp--;
                 if (failed) return ;
@@ -10059,28 +10069,17 @@ public class gscriptParser extends Parser {
 
         }
     }
-    // $ANTLR end synpred99
-
-    // $ANTLR start synpred100
-    public final void synpred100_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:13: ( expression )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:13: expression
-        {
-        pushFollow(FOLLOW_expression_in_synpred1001173);
-        expression();
-        _fsp--;
-        if (failed) return ;
-
-        }
-    }
     // $ANTLR end synpred100
 
     // $ANTLR start synpred101
     public final void synpred101_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:43: ( ';' )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:43: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:13: ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:13: expression
         {
-        match(input,36,FOLLOW_36_in_synpred1011184); if (failed) return ;
+        pushFollow(FOLLOW_expression_in_synpred1011175);
+        expression();
+        _fsp--;
+        if (failed) return ;
 
         }
     }
@@ -10088,14 +10087,25 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred102
     public final void synpred102_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:40: ( ';' )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:40: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:43: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:147:43: ';'
         {
-        match(input,36,FOLLOW_36_in_synpred1021295); if (failed) return ;
+        match(input,36,FOLLOW_36_in_synpred1021186); if (failed) return ;
 
         }
     }
     // $ANTLR end synpred102
+
+    // $ANTLR start synpred103
+    public final void synpred103_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:40: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:166:40: ';'
+        {
+        match(input,36,FOLLOW_36_in_synpred1031297); if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred103
 
     public final boolean synpred43() {
         backtracking++;
@@ -10186,6 +10196,20 @@ public class gscriptParser extends Parser {
         int start = input.mark();
         try {
             synpred100_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred103() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred103_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -10312,20 +10336,6 @@ public class gscriptParser extends Parser {
         int start = input.mark();
         try {
             synpred95_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred92() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred92_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -10482,7 +10492,7 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_method_in_classes196 = new BitSet(new long[]{0x000023F000200002L});
     public static final BitSet FOLLOW_field_in_classes201 = new BitSet(new long[]{0x000023F000200002L});
     public static final BitSet FOLLOW_36_in_classes206 = new BitSet(new long[]{0x000023F000200002L});
-    public static final BitSet FOLLOW_statement_in_code227 = new BitSet(new long[]{0x0001E89018300402L,0x0000000000011DE0L});
+    public static final BitSet FOLLOW_statement_in_code227 = new BitSet(new long[]{0x0001E89018300402L,0x0000000000023BC0L});
     public static final BitSet FOLLOW_javacode_in_statement252 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_bstatement_in_statement257 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_varstatement_in_statement262 = new BitSet(new long[]{0x0000001000000002L});
@@ -10521,8 +10531,8 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_WORD_in_method481 = new BitSet(new long[]{0x0000040000000200L});
     public static final BitSet FOLLOW_RPAREN_in_method490 = new BitSet(new long[]{0x0000080000000400L});
     public static final BitSet FOLLOW_bstatement_in_method494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_bstatement512 = new BitSet(new long[]{0x0001F89018300C00L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_bstatement521 = new BitSet(new long[]{0x0001F89018300C00L,0x0000000000011DE0L});
+    public static final BitSet FOLLOW_set_in_bstatement512 = new BitSet(new long[]{0x0001F89018300C00L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_bstatement521 = new BitSet(new long[]{0x0001F89018300C00L,0x0000000000023BC0L});
     public static final BitSet FOLLOW_set_in_bstatement526 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_39_in_varstatement553 = new BitSet(new long[]{0x0000000018200000L});
     public static final BitSet FOLLOW_WORD_in_varstatement557 = new BitSet(new long[]{0x0000000018200000L});
@@ -10536,13 +10546,13 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_expression_in_returnstatement618 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_47_in_exitstatement635 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_48_in_ifstatement653 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_ifstatement657 = new BitSet(new long[]{0x0003E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_49_in_ifstatement660 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
+    public static final BitSet FOLLOW_expression_in_ifstatement657 = new BitSet(new long[]{0x0003E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_49_in_ifstatement660 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
     public static final BitSet FOLLOW_statement_in_ifstatement667 = new BitSet(new long[]{0x000C000000000002L});
     public static final BitSet FOLLOW_elsestatement_in_ifstatement673 = new BitSet(new long[]{0x000C000000000002L});
-    public static final BitSet FOLLOW_50_in_elsestatement695 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
+    public static final BitSet FOLLOW_50_in_elsestatement695 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
     public static final BitSet FOLLOW_51_in_elsestatement698 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_elsestatement702 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
+    public static final BitSet FOLLOW_expression_in_elsestatement702 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
     public static final BitSet FOLLOW_statement_in_elsestatement711 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_negate_in_expression739 = new BitSet(new long[]{0xDFC00000000000F2L,0x000000000000000FL});
     public static final BitSet FOLLOW_relationalExpression_in_expression744 = new BitSet(new long[]{0xDFC00000000000F2L,0x000000000000000FL});
@@ -10570,86 +10580,86 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_set_in_andexpression952 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_orexpression973 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_xorexpression994 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_function_in_relationalExpression1025 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1030 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression1036 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_function_in_relationalExpression1025 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1030 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression1036 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
     public static final BitSet FOLLOW_MINUS_in_relationalExpression1039 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1043 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1049 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression1054 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1059 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_STUPIDDECIMAL_in_relationalExpression1064 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression1069 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_pexpression_in_relationalExpression1074 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000010L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1043 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1049 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression1054 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1059 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_STUPIDDECIMAL_in_relationalExpression1064 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1069 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
+    public static final BitSet FOLLOW_pexpression_in_relationalExpression1074 = new BitSet(new long[]{0x002000000007F002L,0x0000000000000030L});
     public static final BitSet FOLLOW_set_in_relationalExpression1082 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_function_in_relationalExpression1105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression1115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression1125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STUPIDDECIMAL_in_relationalExpression1135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression1140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_relationalExpression1145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_repeatstatement1168 = new BitSet(new long[]{0x2031E8901FF00520L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_expression_in_repeatstatement1173 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_repeatstatement1180 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_36_in_repeatstatement1184 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_70_in_breakstatement1202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_continuestatement1217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_dostatement1232 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_dostatement1236 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_dostatement1238 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_dostatement1242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_whilestatement1257 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_whilestatement1261 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_whilestatement1266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_forstatement1282 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_forstatement1284 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_forstatement1288 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_forstatement1292 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_36_in_forstatement1295 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_forstatement1301 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_forstatement1303 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_forstatement1307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_switchstatement1322 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1325 = new BitSet(new long[]{0x0000080000000400L});
-    public static final BitSet FOLLOW_set_in_switchstatement1328 = new BitSet(new long[]{0x0000100000000800L,0x0000000000006000L});
-    public static final BitSet FOLLOW_77_in_switchstatement1336 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1338 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_78_in_switchstatement1340 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_switchstatement1344 = new BitSet(new long[]{0x0001F89018300C00L,0x0000000000017DE0L});
-    public static final BitSet FOLLOW_statement_in_switchstatement1347 = new BitSet(new long[]{0x0001F89018300C00L,0x0000000000017DE0L});
-    public static final BitSet FOLLOW_set_in_switchstatement1353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_withstatement1373 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_withstatement1378 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000011DE0L});
-    public static final BitSet FOLLOW_statement_in_withstatement1383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_assignment1401 = new BitSet(new long[]{0x0000000000001000L,0x0000000000FE0010L});
-    public static final BitSet FOLLOW_set_in_assignment1405 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_assignment1428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_in_variable1447 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-    public static final BitSet FOLLOW_set_in_variable1452 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-    public static final BitSet FOLLOW_88_in_variable1464 = new BitSet(new long[]{0x0000000018200000L});
-    public static final BitSet FOLLOW_array_in_variable1467 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-    public static final BitSet FOLLOW_WORD_in_variable1470 = new BitSet(new long[]{0x0000000000000002L,0x0000000001000000L});
-    public static final BitSet FOLLOW_WORD_in_function1490 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function1492 = new BitSet(new long[]{0x203000001FE00320L});
-    public static final BitSet FOLLOW_expression_in_function1497 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_42_in_function1503 = new BitSet(new long[]{0x203004001FE00320L});
-    public static final BitSet FOLLOW_expression_in_function1509 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function1518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OIVAR_in_function21536 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21538 = new BitSet(new long[]{0x203000001FE00320L});
-    public static final BitSet FOLLOW_expression_in_function21543 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_42_in_function21548 = new BitSet(new long[]{0x203004001FE00320L});
-    public static final BitSet FOLLOW_expression_in_function21554 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21563 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1583 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_89_in_array1591 = new BitSet(new long[]{0x203004001FE00120L,0x0000000004000000L});
-    public static final BitSet FOLLOW_expression_in_array1596 = new BitSet(new long[]{0x0000040000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_42_in_array1602 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_expression_in_array1606 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_array1611 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_relationalExpression1107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression1117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression1127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STUPIDDECIMAL_in_relationalExpression1137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_relationalExpression1147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_repeatstatement1170 = new BitSet(new long[]{0x2031E8901FF00520L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_expression_in_repeatstatement1175 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_repeatstatement1182 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_36_in_repeatstatement1186 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_71_in_breakstatement1204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_continuestatement1219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_dostatement1234 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_dostatement1238 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_dostatement1240 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_dostatement1244 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_whilestatement1259 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_whilestatement1263 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_whilestatement1268 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_forstatement1284 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_forstatement1286 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_forstatement1290 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_forstatement1294 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_36_in_forstatement1297 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_forstatement1303 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_forstatement1305 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_forstatement1309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_switchstatement1324 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1327 = new BitSet(new long[]{0x0000080000000400L});
+    public static final BitSet FOLLOW_set_in_switchstatement1330 = new BitSet(new long[]{0x0000100000000800L,0x000000000000C000L});
+    public static final BitSet FOLLOW_78_in_switchstatement1338 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1340 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_79_in_switchstatement1342 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
+    public static final BitSet FOLLOW_80_in_switchstatement1346 = new BitSet(new long[]{0x0001F89018300C00L,0x000000000002FBC0L});
+    public static final BitSet FOLLOW_statement_in_switchstatement1349 = new BitSet(new long[]{0x0001F89018300C00L,0x000000000002FBC0L});
+    public static final BitSet FOLLOW_set_in_switchstatement1355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_withstatement1375 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_withstatement1380 = new BitSet(new long[]{0x0001E89018300400L,0x0000000000023BC0L});
+    public static final BitSet FOLLOW_statement_in_withstatement1385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_assignment1403 = new BitSet(new long[]{0x0000000000001000L,0x0000000001FC0010L});
+    public static final BitSet FOLLOW_set_in_assignment1407 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_assignment1430 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_in_variable1449 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_set_in_variable1454 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_89_in_variable1466 = new BitSet(new long[]{0x0000000018200000L});
+    public static final BitSet FOLLOW_array_in_variable1469 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_WORD_in_variable1472 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
+    public static final BitSet FOLLOW_WORD_in_function1492 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function1494 = new BitSet(new long[]{0x203000001FE00320L});
+    public static final BitSet FOLLOW_expression_in_function1499 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_42_in_function1505 = new BitSet(new long[]{0x203004001FE00320L});
+    public static final BitSet FOLLOW_expression_in_function1511 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function1520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OIVAR_in_function21538 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21540 = new BitSet(new long[]{0x203000001FE00320L});
+    public static final BitSet FOLLOW_expression_in_function21545 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_42_in_function21550 = new BitSet(new long[]{0x203004001FE00320L});
+    public static final BitSet FOLLOW_expression_in_function21556 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1585 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_array1593 = new BitSet(new long[]{0x203004001FE00120L,0x0000000008000000L});
+    public static final BitSet FOLLOW_expression_in_array1598 = new BitSet(new long[]{0x0000040000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_42_in_array1604 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_expression_in_array1608 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_array1613 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_method_in_synpred1196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_synpred22340 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_synpred25381 = new BitSet(new long[]{0x0000000000000002L});
@@ -10669,25 +10679,25 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_expression_in_synpred55788 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_variable_in_synpred791054 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_WORD_in_synpred821069 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_synpred921110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_synpred931115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_synpred941120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred951125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_in_synpred961130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STUPIDDECIMAL_in_synpred971135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_synpred981140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred991082 = new BitSet(new long[]{0x203000001FE00120L});
-    public static final BitSet FOLLOW_function_in_synpred991105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_synpred991110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_synpred991115 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_synpred991120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred991125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_in_synpred991130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STUPIDDECIMAL_in_synpred991135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_synpred991140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_synpred991145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_synpred1001173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_synpred1011184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_synpred1021295 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_synpred931112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_synpred941117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_synpred951122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred961127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_in_synpred971132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STUPIDDECIMAL_in_synpred981137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_synpred991142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred1001082 = new BitSet(new long[]{0x203000001FE00120L});
+    public static final BitSet FOLLOW_function_in_synpred1001107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_synpred1001112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_synpred1001117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_synpred1001122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred1001127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_in_synpred1001132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STUPIDDECIMAL_in_synpred1001137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_synpred1001142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_synpred1001147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_synpred1011175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_synpred1021186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_synpred1031297 = new BitSet(new long[]{0x0000000000000002L});
 
 }
