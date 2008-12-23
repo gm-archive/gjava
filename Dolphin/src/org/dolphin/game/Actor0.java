@@ -36,6 +36,8 @@ public class Actor0 extends Actor {
         //action_move((new String("000001000")), (new Integer(6)));
         hspeed = 1;
     //setTimeline_index(new timeline0());
+        for (self.setVariable("c",(new Integer(0)));self.getVariable("c").lt((new Integer(7))).getBoolean(); self.setVariable("c",self.getVariable("c") .add((new Integer(1))))) { 
+        	self.setVariable("ran",round(random((new Integer(3)))));}
 
     }
 

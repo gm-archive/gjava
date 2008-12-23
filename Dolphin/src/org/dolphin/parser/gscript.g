@@ -141,7 +141,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value] @init {String a = "";}
   :
-  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = pc.stringval($s.text);}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
+  (f=function{$value = $f.value;}|h=HEXNUMBER {$value = pc.stringval($h.text);}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|'-' n=NUMBER{$value = pc.intval($n.text);} |n=NUMBER{$value = pc.intval($n.text);}|v=variable{$value = $v.value;}|d=DECIMAL{$value = pc.doubleval($d.text);}|d=STUPIDDECIMAL{$value = pc.doubleval("0"+$d.text);}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{$value = pc.stringval($s.text.substring(1, $s.text.length()-1));}|n=NUMBER{a = pc.intval($n.text);}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|d=STUPIDDECIMAL{a = "(new Double(0"+$d.text+"))";}|w=WORD{a = $w.text;}|exp=expression{a = $exp.value;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
   ;
  
 repeatstatement returns [String value]
@@ -180,7 +180,7 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}|'(' (NUMBER|variable|function) ')' '.' WORD) ('.' (array|(WORD)) )*
+:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}) ('.' (array|(WORD)) )*
 ;
 
 function returns [String value]

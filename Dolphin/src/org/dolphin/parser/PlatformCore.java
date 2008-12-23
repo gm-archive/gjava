@@ -459,7 +459,7 @@ public class PlatformCore  {
         if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";")) {
             statement2 = statement2.substring(0, statement2.length() - 1);
         }
-        return "for (Object "+statement1+exp+".getBoolean(); "+statement2+") "+statements;
+        return "for ("+statement1+exp+".getBoolean(); "+statement2+") "+statements;
     }
     
     /**
@@ -501,7 +501,7 @@ public class PlatformCore  {
         //System.out.println("assignment:"+expression);
         
         String instance="",value="";
-        String tempvar=variable;
+        String tempvar="";
         
         if(variable.contains("all.")) {
             instance = "{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i)";
@@ -543,7 +543,11 @@ public class PlatformCore  {
             if (checkarray(variable)) {
                 
                 if (operator.equals("=") || operator.equals("=")){
-                return instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+","+expression+")";
+                String s= instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+","+expression+")";
+                if(tempvar.contains(".")){
+                	s+="}";//close instance.*/all.* statement
+                	}
+                return s;
                 } else {
                     
                 String s=instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+",";
@@ -564,7 +568,9 @@ public class PlatformCore  {
                 s += "setbxor(" + expression + ")";
             }
                 s+=")";
-                if(tempvar.contains("."))s+="}";
+                if(tempvar.contains(".")){
+                	s+="}";
+                	}
                 return s;
                 }
             }
@@ -624,7 +630,11 @@ public class PlatformCore  {
         else if (operator.equals("^=")) {
             value += instance + ".getVariable(\"" + variable + "\").setbxor(" + expression + ")";
         }
-        return value+")";
+        value+=")";
+        if(tempvar.contains(".")){
+        	value+=";}";
+        	}
+        return value;
     }
     
     /**
@@ -785,9 +795,9 @@ public class PlatformCore  {
         }
 
         if (variable.contains("[")){
-            System.out.println("array detected!");
+            //System.out.println("array detected!");
             if (checkarray(variable)) {
-                System.out.println("it is a built in array!");
+                //System.out.println("it is a built in array!");
                 return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+")";
             }
         }
