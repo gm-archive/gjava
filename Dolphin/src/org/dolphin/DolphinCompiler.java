@@ -125,7 +125,6 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
             bat.close();
 
         } catch (IOException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 
@@ -139,9 +138,6 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                     DolphinWriter.FileFolder + "Game.java"
                 };
 
-                for (String s : args) {
-                	System.out.println("S: "+s);
-                }
                 PrintWriter textBoxWriter = new PrintWriter(new Writer() {
 
                 	private StringBuffer buffer = new StringBuffer(80);
@@ -204,20 +200,6 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 bat.close();
                 }
 
-                FileInputStream fstream = new FileInputStream(file);
-
-                // Convert our input stream to a
-                // DataInputStream
-                BufferedReader in = new BufferedReader(new InputStreamReader(fstream));
-
-                // Continue to read lines while
-                // there are still some left to read
-                String thisline;
-                while ((thisline = in.readLine()) != null) {
-                    if (thisline.contains("Note:") != true) {
-                        textbox.setText(textbox.getText() + "\n" + thisline);
-                    }
-                }
 
                 if (status2 == 0)// && status3 == 0 && status4 == 0)
                 {
@@ -228,8 +210,6 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 } else {
                     textbox.setText(textbox.getText() + "\n\n" + "Finished compiling with errors! Please contact a member to the g-java development team. http://www.g-java.com/forums/");
                 }
-
-                in.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
