@@ -1,19 +1,22 @@
+if (action_if_number(point, 0, 0))
 {
-//Create the particle system. Assign it to a variable(Sname is used here).
-Sname = part_system_create()
-
-//Create the particle. The script was exported with Particle Designer, and
-//imported into Game Maker(click 'Scripts' -> 'Import Scripts')
-scr_particle_itempop();
-//Create the emitter. Use the system variable.
-Ename = part_emitter_create(Sname)
-part_emitter_region(Sname,Ename,x,x,y,y,ps_shape_ellipse,ps_distr_linear)
-part_emitter_burst(Sname,Ename,particle1,1)
-
+{
+action_sound("won", 0);
 }
 {
-//action_sound(, 0);
+action_sleep(2000, 1);
+}
+if (action_if_next_room())
+{
+action_next_room ;
+}
+ else 
+{
+{
+action_highscore_show(0, 1, "255", "8388608", "Times New Roman",12,0,1,0,0,0);
 }
 {
-action_set_alarm(30, 0);
+action_end_game();
+}
+}
 }

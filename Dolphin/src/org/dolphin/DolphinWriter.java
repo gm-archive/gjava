@@ -668,6 +668,10 @@ public class DolphinWriter {
                     } else if (arg.kind == arg.ARG_COLOR) {
                         code += "\"" + arg.getVal() + "\"";
                     } else {
+                    	if(arg.getVal().equals("")){
+                    		arg.setVal("0");
+                    		
+                    	}
                         code += arg.getVal();
                     }
                 }
