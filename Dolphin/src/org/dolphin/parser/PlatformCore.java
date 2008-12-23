@@ -239,7 +239,7 @@ public class PlatformCore  {
     public boolean checkarray(String name)
     {
         java.lang.String nm = name.substring(0,name.indexOf("["));
-        System.out.println("checkarray:"+nm+" "+"get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "");
+       // System.out.println("checkarray:"+nm+" "+"get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "");
         
         try {
 
@@ -327,6 +327,7 @@ public class PlatformCore  {
      * @return A String
      */
     public String ifstatement(String exp, String statement, String elses) {
+    	//System.out.println("if statement:"+exp);
         return "if ((" + exp + ").getBoolean()) \n" + statement + " \n " + elses;
     }
 
@@ -892,7 +893,7 @@ public class PlatformCore  {
      */
     public String relationalExpression(String name, String operator, String name2)
     {
-       // System.out.println("relationalExpression:"+name+" "+operator+" "+name2);
+        //System.out.println("relationalExpression:"+name+" ,"+operator+" ,"+name2);
         if (operator.equals("==")) {
             return name + ".equals(" + name2 + ")";
         }
