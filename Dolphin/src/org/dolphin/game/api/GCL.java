@@ -1898,9 +1898,27 @@ public static Variable color_get_value(Variable col)
 	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[2]);
 }
 
-public static Variable merge_color(Variable col1, Variable col2, Variable amount)
+public static Variable merge_color(Variable col1, Variable col2, Variable amnt)
 {
-return Boolean.FALSE;
+	double amount = amnt.getDouble();
+	java.awt.Color c1 = ((Color)col1).c, c2 = ((Color)col2).c;
+	int r1,g1,b1,a1;
+	r1 = c1.getRed();
+	g1 = c1.getGreen();
+	b1 = c1.getBlue();
+	a1 = c1.getAlpha();
+	int r2,g2,b2,a2;
+	r2 = c2.getRed();
+	g2 = c2.getGreen();
+	b2 = c2.getBlue();
+	a2 = c2.getAlpha();
+	int rf, gf, bf, af;
+	rf = (int)(r1+((r2-r1)*amount));
+	gf = (int)(g1+((g2-g1)*amount));
+	bf = (int)(b1+((b2-b1)*amount));
+	af = (int)(a1+((a2-a1)*amount));
+	Color merge = new Color(new java.awt.Color(rf, gf, bf, af));
+	return merge;
 }
 
 public static Variable screen_save(Variable fname)
