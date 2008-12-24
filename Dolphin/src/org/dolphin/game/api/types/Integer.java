@@ -5,6 +5,8 @@
 package org.dolphin.game.api.types;
 
 import java.io.Serializable;
+import java.util.Hashtable;
+import org.dolphin.game.Game;
 
 /**
  * The Integer class wraps a value of the primitive type int  in an object. 
@@ -22,13 +24,13 @@ private static final long serialVersionUID = 1L;
 
     @Override
     public Variable bnegate() {
-        return new Integer(~i);
+        return Game.getValueOf(~i);
         
     }
 
     @Override
     public Variable negate() {
-        return new Integer(-i);
+        return Game.getValueOf(-i);
     }
    
    
@@ -45,7 +47,7 @@ private static final long serialVersionUID = 1L;
     
     @Override
     public Variable sub(Variable o) {
-        return new Integer( (int)(i-o.getDouble()));
+        return Game.getValueOf( (int)(i-o.getDouble()));
         
     }
     
@@ -60,17 +62,24 @@ private static final long serialVersionUID = 1L;
          return this;
     }
 
+    
     @Override
     public Variable add(Variable o) {
-        return new Integer(i+ (int) (o.getDouble()));
+        return Game.getValueOf(i+ (int) (o.getDouble()));
+      // return Game.getValueOf(i+ (int) (o.getDouble()));//2321
+        
     }
+
     
+   
+
+        
      @Override
     public Variable div(Variable o) {
          if (o.getDouble() != 0)
-       return new Integer(i / (int) (o.getDouble()));
+       return Game.getValueOf(i / (int) (o.getDouble()));
          else 
-             return new Integer(0);
+             return Game.getValueOf(0);
     }
      
       @Override
@@ -81,7 +90,7 @@ private static final long serialVersionUID = 1L;
       
       @Override
     public Variable mult(Variable o) {
-        return new Integer(i *(int) (o.getDouble()));
+        return Game.getValueOf(i *(int) (o.getDouble()));
         
     }
 
@@ -99,7 +108,7 @@ private static final long serialVersionUID = 1L;
     
     @Override
     public Variable band(Variable o) {
-         return new Integer(i &(int) (o.getDouble()));
+         return Game.getValueOf(i &(int) (o.getDouble()));
     }
 
     @Override
@@ -110,7 +119,7 @@ private static final long serialVersionUID = 1L;
     
      @Override
     public Variable bor(Variable o) {
-        return new Integer(i |(int) (o.getDouble()));
+        return Game.getValueOf(i |(int) (o.getDouble()));
     }
 
     @Override
@@ -121,7 +130,7 @@ private static final long serialVersionUID = 1L;
     
     @Override
     public Variable bxor(Variable o) {
-        return new Integer(i ^(int) (o.getDouble()));
+        return Game.getValueOf(i ^(int) (o.getDouble()));
     }
 
     @Override

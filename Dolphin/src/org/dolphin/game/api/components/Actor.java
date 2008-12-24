@@ -230,7 +230,7 @@ private static final long serialVersionUID = 1L;
     /**
      * check collision and call the collision event
      */
-    public void checkCollision()throws RoomChangedException {
+    public void checkCollision()throws DestroyException,RoomChangedException {
        // double start = System.currentTimeMillis();
         Rectangle thisbounds = getBounds();
         
@@ -377,15 +377,15 @@ private static final long serialVersionUID = 1L;
         }
         return depth;
     }
-    Double directionr = new Double(0);
+   
 
     public Variable getDirection() {
         double dd = Math.radtodeg(Math.arctan2(-vspeed, hspeed));
         if (dd < 0) {
             dd += 360;
         }
-        directionr.setValue(dd);
-        return directionr;
+        return Game.getValueOf(dd);
+       
     }
 
     public Variable getFriction() {
@@ -560,11 +560,11 @@ private static final long serialVersionUID = 1L;
         else
             return Boolean.FALSE;
     }
-    public static Double returndouble = new Double(0);
+    
 
     public Variable getSpeed() {
-        returndouble.setValue(Math.sqrt((hspeed * hspeed) + (vspeed * vspeed)));
-        return returndouble;
+       return Game.getValueOf(Math.sqrt((hspeed * hspeed) + (vspeed * vspeed)));
+        
     //return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
     }
 
@@ -918,6 +918,14 @@ private static final long serialVersionUID = 1L;
     public void setVariable(java.lang.String name, Variable value) {
         variables.put(name, value);
     }
+    
+    /*
+     * Test function for ints
+     * 
+     */
+    public void setVariable(java.lang.String name, int value) {
+        variables.put(name, value);
+    }
 
     public Variable getVariable(String name) {
         try {
@@ -952,7 +960,9 @@ private static final long serialVersionUID = 1L;
     public Variable getVariable(java.lang.String name) {
         Variable o = (Variable) variables.get(name.toString());
         if (o == null) {
-            return new Integer(0);
+            o=new Integer(0);
+            variables.put(name.toString(),o );
+            return o;
         }
         return o;
     }

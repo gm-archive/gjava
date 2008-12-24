@@ -310,7 +310,7 @@ public class PlatformCore  {
     public String returnstatement(String exp) {
         String s;
         if (inscript)
-        	s= "return " + exp + ";";
+        	s= "if(true) return " + exp + ";";
         else
         	s="return;";
         return s;
@@ -527,8 +527,8 @@ public class PlatformCore  {
             instance = "self";
         } else if(variable.contains("global.")) {
             instance = "Global";
-        } else if(variable.contains("(")) {
-            instance = "";
+        } else if(variable.startsWith("("))  {
+            instance = "(self)";//actually instance variable
         } else if (countOccurrences(variable,".")>1){
             //mopre than one .
             System.out.println("more than one . variable!");
@@ -563,7 +563,11 @@ public class PlatformCore  {
                 } else {
                     
                 String s=instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+",";
+                if(tempvar.contains(".")){
+                	s+=variable(tempvar+".");//make sure other instance vars work
+                	} else {
                 s+=instance + ".get" + (""+variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+").";
+                }
                 if (operator.equals("+=")) {
                 s += "setadd(" + expression + ")";
             } else if (operator.equals("*=")) {
@@ -590,9 +594,14 @@ public class PlatformCore  {
 
         //check if it is a built in variable
         if (checkvariable(variable)){
-            String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
-       
+            String var="";
+            if(tempvar.contains(".")){
+            	var+=variable(tempvar);//make sure other instance vars work
+            	} else {
+            var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
             value=instance+".set"+var+"(";
+            	}
+            
 
             if (operator.equals("=")) {
                 value += expression;
@@ -803,28 +812,28 @@ public class PlatformCore  {
         /*
         
         */
-        if(variable.contains("self.")) {
+        if(variable.startsWith("self.")) {
             instance = "self";
         }
-        else if(variable.contains("other.")) {
+        else if(variable.startsWith("other.")) {
             instance = "other";
         }
-        else if(variable.contains("noone.")) {
+        else if(variable.startsWith("noone.")) {
             instance = "noone";
         }
-        else if(variable.contains("global.")) {
+        else if(variable.startsWith("global.")) {
             instance = "Global";
             System.out.println("it is a global variable!");
         }
-        else if(variable.contains("all.")) {
+        else if(variable.startsWith("all.")) {
             instance = "Game.currentRoom.getfirst()";
         }
         else if (countOccurrences(variable,".")>1){
-            //mopre than one .
+            instance = "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass())";
             System.out.println("more than one . variable!");
         }
         else if(variable.contains(".")) {
-            instance = "Game.currentRoom.getActorwithname("+variable.substring(0, variable.indexOf("."))+".class)";
+            instance = "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass())";
         }
         else if(variable.startsWith("(")) {
             instance = "(self)";
@@ -842,10 +851,15 @@ public class PlatformCore  {
                 return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+".getInt())";
             } else {
             	variable = variable.substring(variable.indexOf(".")+1,variable.length()); //get rid of . as in global. or other.
-            	System.out.println("variable for unbuilt in array:"+variable);
-            	System.out.println("variable name:"+variable.substring(0,variable.indexOf("[")));
-            	System.out.println("variable inside:"+variable.substring(variable.indexOf("[")+1,variable.indexOf("]")));
-            	return instance+".getVariable(\""+variable.substring(0,variable.indexOf("["))+"\"+" + variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+ "+\"]\")";
+            	System.out.println("variable for unbuilt in array:instance:"+instance);
+            	try{
+            	//System.out.println("variable name:"+variable.substring(0,variable.indexOf("[")));
+            	//System.out.println("variable inside:"+variable.substring(variable.indexOf("[")+1,variable.indexOf("]")));
+            	}catch(Exception e){
+            		e.printStackTrace();
+            		System.out.println("The error occured with:"+variable);
+            	}
+            		return instance+".getVariable(\""+variable.substring(0,variable.indexOf("[")+1)+"\"+" + variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+ "+\"]\")";
             }
         }
 
@@ -1092,15 +1106,15 @@ public class PlatformCore  {
     }
     
     public static String intval(String value){
-        return "(new Integer(" + value + "))";
+        return "(Game.getValueOf(" + value + "))";
     }
     
     public static String doubleval(String value){
-        return "(new Double(" + value + "))";
+        return "(Game.getValueOf(" + value + "))";
     }
     
     public static String stringval(String value){
-        return "(new String(\"" + value + "\"))";
+        return ("(new String(\"" + value + "\"))").replaceAll("\n", "");
     }
     
     public static void openbrowser(String location) {

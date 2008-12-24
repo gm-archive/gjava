@@ -12,6 +12,9 @@ import java.io.Writer;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import org.dolphin.game.api.types.Integer;
+import org.dolphin.game.api.types.Double;
+
 import javax.swing.JOptionPane;
 
 import org.dolphin.game.api.Clipboard;
@@ -28,12 +31,17 @@ import com.golden.gamedev.GameLoader;
 import java.awt.Frame;
 import org.dolphin.game.api.components.Sprite;
 import org.dolphin.game.api.exceptions.RoomChangedException;
+import org.dolphin.game.api.types.Variable;
 public class BasicGame extends Game {
     /*The main game Frame*/
     public static Frame frame;
 
     /*Hashtables used to store used resources*/
     public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable(),sounds= new Hashtable();
+
+    public static Variable NUMBER_VARIABLE;//used for getting number from hashtable
+    public static Hashtable<java.lang.Integer,Variable> integers = new Hashtable();
+    public static Hashtable<java.lang.Double,Variable> doubles = new Hashtable();
 
 	/*
 	 * Can't remember what this is for
@@ -242,6 +250,31 @@ public class BasicGame extends Game {
 		}
 
 	}
+
+         public static Variable getValueOf(int i){
+        NUMBER_VARIABLE=integers.get(i);
+        if (NUMBER_VARIABLE !=null){
+        return NUMBER_VARIABLE;
+        }
+        else {
+            NUMBER_VARIABLE=new Integer(i);
+        integers.put(i, NUMBER_VARIABLE);
+        return NUMBER_VARIABLE;
+        }
+
+    }
+         public static Variable getValueOf(double d) {
+             NUMBER_VARIABLE=doubles.get(d);
+        if (NUMBER_VARIABLE !=null){
+        return NUMBER_VARIABLE;
+        }
+        else {
+            NUMBER_VARIABLE=new Double(d);
+        doubles.put(d, NUMBER_VARIABLE);
+        return NUMBER_VARIABLE;
+        }
+
+        }
 
          }
     

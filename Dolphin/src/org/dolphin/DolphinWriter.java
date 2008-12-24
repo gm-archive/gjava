@@ -15,6 +15,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.dolphin.game.api.exceptions.DestroyException;
+import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.parser.PlatformCore;
 import org.dolphin.parser.gscriptLexer;
 import org.dolphin.parser.gscriptParser;
@@ -373,6 +375,7 @@ public class DolphinWriter {
                 BufferedWriter actor = new BufferedWriter(actorFW);
 
                 print(actor, "package org.dolphin.game;");
+                print(actor,"import java.awt.Graphics;");
                 print(actor, "import org.dolphin.game.api.components.Actor;");
                 print(actor, "import org.dolphin.game.api.exceptions.DestroyException;");
                 print(actor, "import org.dolphin.game.api.types.Integer;");
@@ -399,7 +402,7 @@ public class DolphinWriter {
                 print(actor, "        this.instance_id = instance_id;");
                 print(actor, "        self=this;");
                 print(actor, "    }");
-
+                String callevents="";
                 for (int j = 0; j < 11; j++) {
                 	try{
                     /*
@@ -432,12 +435,15 @@ public class DolphinWriter {
                             
                             if (ev.id == 1) {
                             	pc.event = "Begin Event";
+                            	callevents+="BeginStep();";
                                 print(actor, "   public void BeginStep() throws DestroyException,RoomChangedException {");
                             } else if (ev.id == 0) {
                             	pc.event = "Step Event";
+                            	callevents+="Step();";
                                 print(actor, "   public void Step() throws DestroyException,RoomChangedException {");
                             } else if (ev.id == 2) {
                             	pc.event = "End Event";
+                            	callevents+="EndStep();";
                                 print(actor, "   public void EndStep() throws DestroyException,RoomChangedException {");
                             }
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
@@ -448,6 +454,7 @@ public class DolphinWriter {
                      * Collision Event
                      */ else if (j == 4) {
                     	 pc.event = "Collision Event";
+                    	 callevents+="checkCollision();";
                         print(actor, "   public void Collision(java.lang.String name) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
@@ -461,6 +468,7 @@ public class DolphinWriter {
                      * Keyboard Event
                      */ else if (j == 5) {
                     	 pc.event = "Keyboard Event";
+                    	 callevents+="Keyboard();";
                         print(actor, "   public void Keyboard() throws RoomChangedException {");
 //
                         for (Event ev : a.mainEvents[j].events) {
@@ -493,7 +501,7 @@ public class DolphinWriter {
                      * Draw Event
                      */ else if (j == 8) {
                     	 pc.event = "Draw Event";
-                        print(actor, "    public void Draw_event(Graphics2D g) throws RoomChangedException{");
+                        print(actor, "    public void Draw_event(Graphics g) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
@@ -519,7 +527,7 @@ public class DolphinWriter {
                             i++;
                         }
                         if (!events.equals("")){
-                            print(actor, "   public void KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
+                            print(actor, "   public void KeyPressed(int keycode) throws DestroyException, RoomChangedException {");
                             print(actor,events);
                             print(actor, "   }");
                             }
@@ -550,12 +558,22 @@ public class DolphinWriter {
                             System.out.println("unknown event" + ev.id + " " + getActionsCode(ev));
                         }
                     }
+                    
+                    
+                    
                 	}catch(Exception e){
                 		e.printStackTrace();
                 		df.ta.append(e.getMessage()+"\n"+e.getStackTrace().toString());
                 	}
                 }
-
+                /*
+                 * Now write the call events method                  
+                 */
+                print(actor,"public void callEvents() throws RoomChangedException {");
+                print(actor,"try{");
+                print(actor,""+callevents);
+                print(actor,"} catch (DestroyException d) {}");
+                print(actor,"}");
                 print(actor, "");
                 print(actor, "}");//end the class
                 actor.close();

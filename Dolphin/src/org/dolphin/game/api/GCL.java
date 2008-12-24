@@ -78,7 +78,7 @@ public static Variable random(Variable x)
 return new Double(Math.random(x.getDouble()));
 }
 
-public static Variable randomize(Variable x)
+public static Variable randomize(Variable... x)
 {
 return Boolean.FALSE;
 }

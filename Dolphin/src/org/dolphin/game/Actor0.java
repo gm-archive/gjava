@@ -1,5 +1,6 @@
 package org.dolphin.game;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -31,16 +32,43 @@ public class Actor0 extends Actor {
         this.instance_id = instance_id;
         self = this;
     }
+    
+    Vector ints = new Vector(1);
+    
+  public int add(int i1,int i2){
+  return i1+i2;
+  }
+  public Variable add(Variable i1,int i2){
+  return new Integer(i1.getInt()+i2);
+  }
 
     public void Create() {
         //action_move((new String("000001000")), (new Integer(6)));
         hspeed = 1;
     //setTimeline_index(new timeline0());
-        for (self.setVariable("c",(new Integer(0)));self.getVariable("c").lt((new Integer(7))).getBoolean(); self.setVariable("c",self.getVariable("c") .add((new Integer(1))))) { 
-        	self.setVariable("ran",round(random((new Integer(3)))));}
-        { 
-        	{Actor[] ac =Game.currentRoom.setActorwithname(self.getVariable("i").getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i].setVariable("letter",self.getVariable("word"+self.getVariable("c")+"]"));};
-        	} 
+        {Actor[] ac =Game.currentRoom.setActorwithname(self.getVariable("i").getActor().getClass()); 
+       // for (int i = 0; i < ac.length; i++) 
+        	//ac[i].setGame.currentRoom.getActorwithname(self.getVariable("i").getActor().getClass()).getVariable("vspeed")((new Integer(0)));};
+       
+        int loc=1;
+        ints = new Vector(5);
+        ints.add(1);
+        ints.add(2);
+        Integer iii = new Integer(9);
+
+        long start = System.currentTimeMillis();
+        for(int i=0; i<99999;i++){
+        	//add(iii,2);//26 to 52
+               // iii.add(iii.getValueOf(2));//50 to 59 (23to78)
+
+            iii.add(iii);//269 to 331(hashtable),223 to 258
+        	//self.getVariable("i").add(new Integer(1));
+            //self.getVariable("i").add(1);//.);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("end:"+(end-start));
+        }
+        
     }
 
     @Override
@@ -116,6 +144,10 @@ public class Actor0 extends Actor {
     	//if(true)
     	return 1;
     	
+    	
+    }
+    
+    public void Draw_event(Graphics g){
     	
     }
 }
