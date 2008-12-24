@@ -166,11 +166,13 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                 	
                 }, true);
                 
+                
                 int status2 = Main.compile(args, textBoxWriter);
-
+                
                 // Delete files if standalone
                 deleteSourceFiles();
-
+                System.out.println("classpath:"+DolphinWriter.projectfolder);
+                try{
                 /*
                  *
                  * Create the Jar file
@@ -185,6 +187,8 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
 
                 sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream, printStream, "cfm " + DolphinWriter.filename + ".jar manifest.txt *.class org com");
                 jar.run(args);
+                }catch(Exception e){e.printStackTrace();
+                System.out.println("Error while creating jar");}
 
                 /*
                  *
@@ -279,6 +283,7 @@ public class DolphinCompiler extends JFrame implements Runnable, ActionListener 
                     System.out.println(textbox.getText() + "\n" + line); // Very uesful for testing
                 }
             } catch (Exception ee) {
+            	ee.printStackTrace();
             }
         }
 

@@ -788,6 +788,7 @@ public class PlatformCore  {
         }
         else if(variable.contains("global.")) {
             instance = "Global";
+            System.out.println("it is a global variable!");
         }
         else if(variable.contains("all.")) {
             instance = "Game.currentRoom.getfirst()";
@@ -799,8 +800,9 @@ public class PlatformCore  {
         else if(variable.contains(".")) {
             instance = "Game.currentRoom.getActorwithname("+variable.substring(0, variable.indexOf("."))+".class)";
         }
-        else if(variable.contains("(")) {
-            instance = "()";
+        else if(variable.startsWith("(")) {
+            instance = "(self)";
+            System.out.println("It thinks the variable is instance() but is it?"+variable);
         }
         else {
             instance = "self";
@@ -810,7 +812,14 @@ public class PlatformCore  {
             //System.out.println("array detected!");
             if (checkarray(variable)) {
                 //System.out.println("it is a built in array!");
-                return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+")";
+            	
+                return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+".getInt())";
+            } else {
+            	variable = variable.substring(variable.indexOf(".")+1,variable.length()); //get rid of . as in global. or other.
+            	System.out.println("variable for unbuilt in array:"+variable);
+            	System.out.println("variable name:"+variable.substring(0,variable.indexOf("[")));
+            	System.out.println("variable inside:"+variable.substring(variable.indexOf("[")+1,variable.indexOf("]")));
+            	return instance+".getVariable(\""+variable.substring(0,variable.indexOf("["))+"\"+" + variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+ "+\"]\")";
             }
         }
 

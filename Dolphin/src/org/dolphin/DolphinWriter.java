@@ -264,6 +264,7 @@ public class DolphinWriter {
             print(script, "import org.dolphin.game.api.types.Double;");
             print(script, "import org.dolphin.game.api.types.String;");
             print(script, "import org.dolphin.game.api.types.Boolean;");
+            print(script, "import org.dolphin.game.api.types.*;");
             print(script, "public class Scripts extends GCL_Actions {");
 
             for (Script s : gmFile.scripts) {
@@ -758,6 +759,7 @@ public class DolphinWriter {
                 print(scene, "import org.dolphin.game.api.types.Double;");
                 print(scene, "import org.dolphin.game.api.types.String;");
                 print(scene, "import org.dolphin.game.api.types.Boolean;");
+                print(scene, "import org.dolphin.game.api.types.*;");
 
                 print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");
                 print(scene, "");
