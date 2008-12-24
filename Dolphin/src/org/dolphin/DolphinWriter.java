@@ -46,6 +46,9 @@ public class DolphinWriter {
     PlatformCore pc = new PlatformCore();
 
     public DolphinWriter(DolphinFrame df, GmFile gmFile, File file) {
+    	System.out.println("gmFile"+gmFile);
+    	if (gmFile.filename == null){filename="unnamedgame";}
+    	else
         filename = gmFile.filename.substring(gmFile.filename.lastIndexOf(File.separator) + 1);
         df.progress(1, "Starting to parse files", "Starting Dolphin for " + filename);
         this.df = df;
@@ -273,6 +276,7 @@ public class DolphinWriter {
                 /*check for duplicate scripts*/
                 String name = s.getName();
                 name = PlatformCore.fixName(name);
+                s.setName(name);
                 pc.current = name;
                 if (names.contains(name)) {
                     throw new GmFormatException(gmFile, "Duplicate object name: " + name);
@@ -366,6 +370,7 @@ public class DolphinWriter {
             /*check for duplicate objects*/
             String name = a.getName();
             name = PlatformCore.fixName(name);
+            a.setName(name);
             pc.current = name;
             if (objectnames.contains(name)) {
                 throw new GmFormatException(gmFile, "Duplicate object name: " + name);
@@ -500,6 +505,7 @@ public class DolphinWriter {
                     } /*
                      * Draw Event
                      */ else if (j == 8) {
+                    	 if (a.mainEvents[j].events.size()>0){
                     	 pc.event = "Draw Event";
                         print(actor, "    public void Draw_event(Graphics g) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
@@ -508,6 +514,7 @@ public class DolphinWriter {
                         }
                         
                         print(actor, "     }");
+                    	 }
                     } /*
                      * Key press Event
                      */ else if (j == 9) {
@@ -754,6 +761,7 @@ public class DolphinWriter {
         	/*check for duplicate objects*/
             String name = r.getName();
             name = PlatformCore.fixName(name);
+            r.setName(name);
             pc.current = name;
             /*if (objectnames.contains(name)) {
                 throw new GmFormatException(gmFile, "Duplicate object name: " + name);
@@ -827,7 +835,7 @@ public class DolphinWriter {
                     View v = r.views[i];
                     if (v != null) {
                         if (v.visible) {
-                            print(scene, "views.add(new View(" + v.viewX + ", " + v.viewY + "," + v.viewW + ", " + v.viewH + ", " + v.portX + "," + v.portY + "" + v.portW + ", " + v.portH + "," + v.hspeed + "," + v.vspeed + "," + v.hbor + "," + v.vbor + "," + v.visible + ");");
+                            print(scene, "views.add(new View(" + v.viewX + ", " + v.viewY + "," + v.viewW + ", " + v.viewH + ", " + v.portX + "," + v.portY + "," + v.portW + ", " + v.portH + "," + v.hspeed + "," + v.vspeed + "," + v.hbor + "," + v.vbor + "," + v.visible + "));");
                         }
                     }
                 }
