@@ -794,7 +794,7 @@ public class PlatformCore  {
             return "(Boolean.FALSE)";
         }
         else if (variable.equals("pi")) {
-            return "(new Double(PI))";
+            return "(new Double(Math.PI))";
         }
         else if (variable.equals("self")) {
             return "(self)";

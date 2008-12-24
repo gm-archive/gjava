@@ -2,11 +2,9 @@
 package org.dolphin.game.api;
 
 import java.awt.AWTException;
-import java.awt.Button;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Polygon;
@@ -27,25 +25,24 @@ import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Sprite;
 import org.dolphin.game.api.resources.Display;
 import org.dolphin.game.api.types.BinaryFile;
+import org.dolphin.game.api.types.Boolean;
 import org.dolphin.game.api.types.Color;
 import org.dolphin.game.api.types.Cursor;
 import org.dolphin.game.api.types.Double;
 import org.dolphin.game.api.types.File;
+import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Integer;
+import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.Map;
+import org.dolphin.game.api.types.PriorityQueue;
+import org.dolphin.game.api.types.Queue;
+import org.dolphin.game.api.types.Stack;
 import org.dolphin.game.api.types.String;
 import org.dolphin.game.api.types.Surface;
 import org.dolphin.game.api.types.Variable;
-import org.dolphin.game.api.types.Boolean;
-import org.dolphin.game.api.types.Stack;
-import org.dolphin.game.api.types.Queue;
-import org.dolphin.game.api.types.List;
-import org.dolphin.game.api.types.PriorityQueue;
-import org.dolphin.game.api.Date;
 
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
-import org.dolphin.game.api.types.GMResource;
 
 /**
  * This class is valid GCL, don't use java code here
