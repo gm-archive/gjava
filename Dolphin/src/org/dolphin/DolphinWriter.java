@@ -578,7 +578,7 @@ public class DolphinWriter {
                  */
                 print(actor,"public void callEvents() throws RoomChangedException {");
                 print(actor,"try{");
-                print(actor,""+callevents);
+                print(actor,""+callevents+"Move();");
                 print(actor,"} catch (DestroyException d) {}");
                 print(actor,"}");
                 print(actor, "");

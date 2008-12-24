@@ -32,6 +32,7 @@ import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.dolphin.DolphinWriter;
+import org.dolphin.game.Game;
 import org.dolphin.game.api.Constants;
 import org.dolphin.game.api.Variables;
 import org.lateralgm.resources.GmObject;
@@ -419,7 +420,7 @@ public class PlatformCore  {
      * @return
      */
     public String repeatstatement(String ex, String st) {
-        return "for(G_CREATOR__repeat=new Double(0); G_CREATOR__repeat.lt("+ex+").getBoolean(); G_CREATOR__repeat.add(new Integer(1))){\n"+st+" }"; 
+        return "for(Variable G_CREATOR__repeat=Game.getValueOf(0); G_CREATOR__repeat.lt("+ex+").getBoolean(); G_CREATOR__repeat.add(new Integer(1))){\n"+st+" }"; 
     }
     
     /**

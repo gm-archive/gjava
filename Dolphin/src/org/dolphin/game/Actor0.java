@@ -13,6 +13,7 @@ import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Integer;
+import org.dolphin.game.api.types.Double;
 import org.dolphin.game.api.types.String;
 import org.dolphin.game.api.types.Boolean;
 import org.dolphin.game.api.exceptions.RoomChangedException;
@@ -86,6 +87,8 @@ public class Actor0 extends Actor {
     @Override
     public void EndStep() throws DestroyException {
         //System.out.println("alarm[0]"+alarm[0]);
+    	for(Variable G_CREATOR__repeat=Game.getValueOf(0); G_CREATOR__repeat.lt( ((Game.getValueOf(25)))).getBoolean(); G_CREATOR__repeat.add(new Integer(1))){
+    	}
     }
     ;
 
