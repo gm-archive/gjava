@@ -103,7 +103,7 @@ public class BaseLoader {
 		
 		if (image == null) {
 			URL url = this.base.getURL(imagefile);
-			                 System.out.println("just before load image in BaseLoader.java");
+			          //       System.out.println("just before load image in BaseLoader.java");
 			image = (useMask) ? ImageUtil.getImage(url, this.maskColor)
 			        : ImageUtil.getImage(url);
 			

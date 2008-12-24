@@ -908,7 +908,7 @@ return Boolean.FALSE;
 
 public /*static*/ Variable action_sprite_set(Variable... obj)
 {
-    System.out.println("action_sprite_set");
+   // System.out.println("action_sprite_set");
    self.sprite= Game.thegame.loadSprite(obj[0].toString());
    self.sprite_index=obj[1].getInt();
    self.sprite_speed=obj[2].getDouble();

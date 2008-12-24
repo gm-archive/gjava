@@ -9,6 +9,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
@@ -1724,7 +1725,7 @@ return Boolean.FALSE;
 public static Variable draw_circle(Variable x, Variable y, Variable rr, Variable outline)
 {
 	double r = rr.getDouble();
-	Shape s = new Ellipse2D.Double(x.getDouble()-r/2, y.getDouble()-r/2, x.getDouble()+r/2, y.getDouble()+2/r);
+	Shape s = new Ellipse2D.Double(x.getDouble()-r, y.getDouble()-r, r*2, r*2);
 	if (outline.getBoolean()) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
@@ -1742,6 +1743,15 @@ public static Variable draw_ellipse(Variable x1, Variable y1, Variable x2, Varia
 		Game.currentRoom.g2d.fill(s);
 	}
 return Boolean.FALSE;
+}
+
+public static Variable draw_set_antialiasing(Variable enable)
+{
+	Game.currentRoom.g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
+			enable.getBoolean() 
+			  ? RenderingHints.VALUE_ANTIALIAS_ON
+			  : RenderingHints.VALUE_ANTIALIAS_OFF);
+	return Boolean.FALSE;
 }
 
 public static Variable draw_arrow(Variable x1, Variable y1, Variable x2, Variable y2, Variable size)
