@@ -1814,7 +1814,7 @@ return new Color((int)red.getDouble(),(int)green.getDouble(),(int)blue.getDouble
 
 public static Variable make_color_hsv(Variable hue, Variable s, Variable value)
 {
-    return new Color(java.awt.Color.getHSBColor((int)hue.getDouble(), (int)s.getDouble(), (int)value.getDouble()));
+    return new Color(java.awt.Color.getHSBColor((float)(hue.getDouble()/255), (float)(s.getDouble()/255), (float)(value.getDouble())/255));
 }
 
 public static Variable color_get_red(Variable col)
@@ -1832,19 +1832,55 @@ public static Variable color_get_blue(Variable col)
 return new Integer(((Color)col).c.getBlue());
 }
 
+private static int[] rgb2hsv(int r, int g, int b) {
+	
+	int min;    //Min. value of RGB
+	int max;    //Max. value of RGB
+	int delMax; //Delta RGB value
+	
+	if (r > g) { min = g; max = r; }
+	else { min = r; max = g; }
+	if (b > max) max = b;
+	if (b < min) min = b;
+							
+	delMax = max - min;
+ 
+	float H = 0, S;
+	float V = max;
+	   
+	if ( delMax == 0 ) { H = 0; S = 0; }
+	else {                                   
+		S = delMax/255f;
+		if ( r == max ) 
+			H = (      (g - b)/(float)delMax)*60;
+		else if ( g == max ) 
+			H = ( 2 +  (b - r)/(float)delMax)*60;
+		else if ( b == max ) 
+			H = ( 4 +  (r - g)/(float)delMax)*60;   
+	}
+	
+	return new int[] {						 
+	 (int)(H),
+	 (int)(S*100),
+	 (int)(V*100),
+	};
+}
 public static Variable color_get_hue(Variable col)
 {
-return Boolean.FALSE;
+	java.awt.Color c = ((Color)col).c;
+	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[0]);
 }
 
 public static Variable color_get_saturation(Variable col)
 {
-return Boolean.FALSE;
+	java.awt.Color c = ((Color)col).c;
+	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[1]);
 }
 
 public static Variable color_get_value(Variable col)
 {
-return Boolean.FALSE;
+	java.awt.Color c = ((Color)col).c;
+	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[2]);
 }
 
 public static Variable merge_color(Variable col1, Variable col2, Variable amount)
