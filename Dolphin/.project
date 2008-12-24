@@ -19,7 +19,7 @@
 		<link>
 			<name>LateralGM</name>
 			<type>2</type>
-			<location>C:/home/bob/workspace/LateralGM</location>
+			<location>/home/bob/workspace/LateralGM</location>
 		</link>
 	</linkedResources>
 </projectDescription>

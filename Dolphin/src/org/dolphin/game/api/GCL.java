@@ -2,19 +2,25 @@
 package org.dolphin.game.api;
 
 import java.awt.AWTException;
+import java.awt.Button;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import javax.swing.border.BevelBorder;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
@@ -36,8 +42,6 @@ import org.dolphin.game.api.types.Queue;
 import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.PriorityQueue;
 import org.dolphin.game.api.Date;
-
-import sun.applet.Main;
 
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
@@ -1709,30 +1713,61 @@ return Boolean.FALSE;
 
 public static Variable draw_triangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable x3, Variable y3, Variable outline)
 {
-   // int[] xpoints = {(int)x1.getDouble(),(int)x2.getDouble(),(int)x3.getDouble()};
-   // Game.currentRoom.g2d.drawPolygon(xPoints, yPoints, nPoints);
+   int[] xPoints = {(int)x1.getDouble(),(int)x2.getDouble(),(int)x3.getDouble()};
+   int[] yPoints = {(int)y1.getDouble(),(int)y2.getDouble(),(int)y3.getDouble()};
+   Shape s = new Polygon(xPoints, yPoints, 3);
+   if (outline.getBoolean()) {
+	   Game.currentRoom.g2d.draw(s);
+   } else {
+	   Game.currentRoom.g2d.fill(s);
+   }
 return Boolean.FALSE;
 }
 
-public static Variable draw_circle(Variable x, Variable y, Variable r, Variable outline)
+public static Variable draw_circle(Variable x, Variable y, Variable rr, Variable outline)
 {
-    //Game.currentRoom.g2d.drawArc(x, y, width, height, startAngle, arcAngle);
+	double r = rr.getDouble();
+	Shape s = new Ellipse2D.Double(x.getDouble()-r/2, y.getDouble()-r/2, x.getDouble()+r/2, y.getDouble()+2/r);
+	if (outline.getBoolean()) {
+		Game.currentRoom.g2d.draw(s);
+	} else {
+		Game.currentRoom.bg2d.fill(s);
+	}
 return Boolean.FALSE;
 }
 
 public static Variable draw_ellipse(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
 {
-    //Draw.ellipse(x1.getDouble(), y1.getDouble(), x2.getDouble(), y2.getDouble(), outline.getBoolean());
+	Shape s = new Ellipse2D.Double(x1.getDouble(), y1.getDouble(), x2.getDouble(), y2.getDouble());
+	if (outline.getBoolean()) {
+		Game.currentRoom.g2d.draw(s);
+	} else {
+		Game.currentRoom.bg2d.fill(s);
+	}
 return Boolean.FALSE;
 }
 
 public static Variable draw_arrow(Variable x1, Variable y1, Variable x2, Variable y2, Variable size)
 {
+	
 return Boolean.FALSE;
 }
 
 public static Variable draw_button(Variable x1, Variable y1, Variable x2, Variable y2, Variable up)
 {
+	int 
+	x = x1.getInt(), 
+	y = y1.getInt(),
+	w = (int)(x2.getInt()-x1.getInt()),
+	h = (int)(y2.getInt()-y1.getInt());
+
+	Game.currentRoom.g2d.fillRect(x, y, w, h);
+	BevelBorder b = new BevelBorder(up.getBoolean() ? BevelBorder.RAISED : BevelBorder.LOWERED);
+	b.paintBorder(new Component() {
+		private static final long serialVersionUID = 1L;
+		public java.awt.Color getBackground() {
+			return Game.currentRoom.g2d.getColor();}}, Game.currentRoom.g2d, x, y, w, h);
+    
 return Boolean.FALSE;
 }
 
