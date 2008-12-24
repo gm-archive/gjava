@@ -58,7 +58,7 @@ public class Actor0 extends Actor {
         Integer iii = new Integer(9);
 
         long start = System.currentTimeMillis();
-        for(int i=0; i<99999;i++){
+        for(int i=0; i<9999;i++){
         	//add(iii,2);//26 to 52
                // iii.add(iii.getValueOf(2));//50 to 59 (23to78)
 
@@ -69,6 +69,9 @@ public class Actor0 extends Actor {
         long end = System.currentTimeMillis();
         System.out.println("end:"+(end-start));
         }
+        
+        do self.setX(self.getX() .add((Game.getValueOf(1))));while( (self.getX().gt((Game.getValueOf(100)))).not().getBoolean());
+        show_message(self.getX());
         
     }
 
@@ -87,10 +90,10 @@ public class Actor0 extends Actor {
     @Override
     public void EndStep() throws DestroyException {
         //System.out.println("alarm[0]"+alarm[0]);
-    	for(Variable G_CREATOR__repeat=Game.getValueOf(0); G_CREATOR__repeat.lt( ((Game.getValueOf(25)))).getBoolean(); G_CREATOR__repeat.add(new Integer(1))){
-    	}
+    	//{Actor[] ac =Game.currentRoom.setActorwithname(self.getVariable("targetHandle").getActor().getClass()); 
+    	
     }
-    ;
+    
 
     
     @Override

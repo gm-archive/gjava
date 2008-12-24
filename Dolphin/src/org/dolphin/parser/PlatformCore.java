@@ -292,7 +292,7 @@ public class PlatformCore  {
         } else if (type.equals("globalvar")) {
             type = "Object";
         }
-        return "/*var statement*/{"+vars+"}";//type + " "+vars;
+        return "/*var statement{"+vars+"}*/";//type + " "+vars;
     }
 
     /*
@@ -310,6 +310,7 @@ public class PlatformCore  {
      */
     public String returnstatement(String exp) {
         String s;
+        if (exp==null) exp="Boolean.FALSE";
         if (inscript)
         	s= "if(true) return " + exp + ";";
         else
@@ -325,7 +326,7 @@ public class PlatformCore  {
     public String exitstatement() {
     	String s;
         if (inscript)
-        	s= "return Boolean.FALSE;";
+        	s= "if (true) return Boolean.FALSE;";
         else
         	s="return;";
         return s;
@@ -446,7 +447,7 @@ public class PlatformCore  {
      * @return
      */
     public String dostatement(String statement, String expression) {
-        return "do "+statement+"while("+expression+".getBoolean());"; //todo
+        return "do "+statement+"while("+expression+".not().getBoolean());"; //todo
     }
     
     /**
@@ -598,6 +599,7 @@ public class PlatformCore  {
             String var="";
             if(tempvar.contains(".")){
             	var+=variable(tempvar);//make sure other instance vars work
+            	value=instance+".set"+variable(tempvar)+"(";
             	} else {
             var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
             value=instance+".set"+var+"(";

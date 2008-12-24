@@ -270,6 +270,7 @@ public class DolphinWriter {
             print(script, "import org.dolphin.game.api.types.String;");
             print(script, "import org.dolphin.game.api.types.Boolean;");
             print(script, "import org.dolphin.game.api.types.*;");
+            print(script, "import org.dolphin.game.api.components.*;");
             print(script, "public class Scripts extends GCL_Actions {");
 
             for (Script s : gmFile.scripts) {
@@ -283,7 +284,7 @@ public class DolphinWriter {
                 }
                 print(script, "public Variable " + name + "(Variable... parameters){");
                 print(script, "" + this.parseGCL(s.scriptStr));
-                print(script, "return new Variable();");
+                print(script, "return Boolean.FALSE;");
                 print(script, "}");
             }
             print(script, "}");//end scripts class

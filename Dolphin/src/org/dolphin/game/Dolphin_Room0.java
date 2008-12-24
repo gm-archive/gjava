@@ -25,6 +25,9 @@ public class Dolphin_Room0 extends Room2D {
             this.showviews=false;
             views.add(new View(20,10,200,200,0,10,200,200,1,1,1,1,false));
             views.add(new View(20,10,200,200,300,10,200,200,1,1,1,1,true));
+            views.add(new View(0, 0,320, 224, 0,0,320, 224,17,17,160,112,true));
+
+
 	}
 	
 	
