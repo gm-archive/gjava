@@ -2,6 +2,9 @@ package org.dolphin.game.api.types;
 
 import java.io.Serializable;
 
+import org.dolphin.game.api.GCL;
+import org.dolphin.game.api.components.Actor;
+
 /**
  * The Basic Object Class
  * 
@@ -375,6 +378,9 @@ private static final long serialVersionUID = 1L;
 		return toString().compareTo(o.toString());
 	}
 
+	public Actor getActor(){
+		return GCL.noone;
+	}
 
 
 }

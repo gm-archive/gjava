@@ -8,7 +8,8 @@ import org.dolphin.game.api.GCL_Actions;
 import org.dolphin.game.api.types.Variable;
 public class Scripts extends GCL_Actions {
 
-    public static Variable script0(Variable... parameters){
+    public Variable script0(Variable... parameters){
+    	
     return null;
     }
 

@@ -16,6 +16,7 @@ import org.dolphin.game.api.types.Double;
 import org.dolphin.game.api.types.Integer;
 import org.dolphin.game.api.types.Variable;
 import org.dolphin.game.api.types.Boolean;
+import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.Math;
 import org.dolphin.game.api.exceptions.RoomChangedException;
@@ -137,7 +138,7 @@ private static final long serialVersionUID = 1L;
     /**
      * Override with actor Begin Step event
      */
-    public void BeginStep() throws DestroyException {
+    public void BeginStep() throws DestroyException,RoomChangedException {
     	
     }
 
@@ -963,5 +964,9 @@ private static final long serialVersionUID = 1L;
     public void setAlarm(int id,Variable v){
     alarm[id]=v.getInt();
     }
+    
+    public Actor getActor(){
+		return self;
+	}
 
 }

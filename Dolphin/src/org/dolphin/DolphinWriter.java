@@ -755,6 +755,7 @@ public class DolphinWriter {
                 print(scene, "import org.dolphin.game.api.components.Room2D;");
                 print(scene, "import org.dolphin.game.api.components.Tile;");
                 print(scene, "import org.dolphin.game.api.components.View;");
+                print(scene,"import org.dolphin.game.api.components.*;");
                 print(scene, "import org.dolphin.game.api.types.Integer;");
                 print(scene, "import org.dolphin.game.api.types.Double;");
                 print(scene, "import org.dolphin.game.api.types.String;");

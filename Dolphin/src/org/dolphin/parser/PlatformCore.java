@@ -535,7 +535,7 @@ public class PlatformCore  {
         }
          else if(variable.contains(".")){
             //instance="for (int i = 0; i < Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class).length; i++) Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class)[i]";
-            instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class); for (int i = 0; i < ac.length; i++) ac[i]";
+            instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i]";
              tempvar=variable;
             variable = variable.substring(variable.indexOf(".")+1);
             
@@ -557,7 +557,7 @@ public class PlatformCore  {
                 if (operator.equals("=") || operator.equals("=")){
                 String s= instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+","+expression+")";
                 if(tempvar.contains(".")){
-                	s+="}";//close instance.*/all.* statement
+                	s+=";}";//close instance.*/all.* statement
                 	}
                 return s;
                 } else {
@@ -581,7 +581,7 @@ public class PlatformCore  {
             }
                 s+=")";
                 if(tempvar.contains(".")){
-                	s+="}";
+                	s+=";}";
                 	}
                 return s;
                 }
@@ -740,6 +740,32 @@ public class PlatformCore  {
 
      }
 
+     public String oivariable(String variable,String variable2){
+    	 
+    	 if (variable.equals("self")) {
+             return variable("self."+variable2);
+         }
+         else if (variable.equals("all")) {
+        	 return variable("all."+variable2);
+         }
+         else if (variable.equals("noone")) {
+        	 return variable("noone."+variable2);
+         }
+         else if (variable.equals("other")) {
+        	 return variable("other."+variable2);
+         }
+         else if (variable.equals("global")) {
+        	 return variable("global."+variable2);
+         }
+         else {
+        	 //instance variables
+        	 return "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".class)";
+
+         }
+    	 
+    	 //return variable;
+     }
+     
     /**
      * Variable, converts "" to (new String("")) etc
      * @param variable

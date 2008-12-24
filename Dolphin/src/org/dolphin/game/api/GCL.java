@@ -72,15 +72,15 @@ if (val instanceof String)
     else
         return new Boolean(false);
 }
-/**
- * 
- * @param x
- * @since 1.0
- * @return
- */
+
 public static Variable random(Variable x)
 {
 return new Double(Math.random(x.getDouble()));
+}
+
+public static Variable randomize(Variable x)
+{
+return Boolean.FALSE;
 }
 public static Variable choose(Variable... x)
 {
