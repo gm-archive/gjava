@@ -9,19 +9,18 @@ import org.dolphin.game.api.types.String;
  */
 public class Global  {
     
-     static Hashtable Variables = new Hashtable(10);
-    //Double G_CREATOR__repeat=new Double(0);
+     public static Hashtable<java.lang.String, Variable> Variables = new Hashtable<java.lang.String, Variable>(10);
     
     
     public static void setVariable(String name, Object value)
     {
-        Variables.put(name.toString(), value);
+        Variables.put(name.toString(), (Variable)value);
         
     }
     
     public static void setVariable(java.lang.String name, Object value)
     {
-        Variables.put(name, value);
+        Variables.put(name, (Variable)value);
         
     }
     

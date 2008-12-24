@@ -32,6 +32,7 @@ import org.dolphin.game.api.types.Cursor;
 import org.dolphin.game.api.types.Double;
 import org.dolphin.game.api.types.File;
 import org.dolphin.game.api.types.GMResource;
+import org.dolphin.game.api.types.Global;
 import org.dolphin.game.api.types.Integer;
 import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.Map;
@@ -1276,71 +1277,77 @@ public static Variable show_debug_message(Variable str)
 
 public static Variable variable_global_exists(Variable name)
 {
-return Boolean.FALSE;
+	return new Boolean(Global.Variables.contains(name.getString()));
 }
 
 public static Variable variable_global_get(Variable name)
 {
-return Boolean.FALSE;
+	return Global.Variables.get(name.toString());
 }
 
 public static Variable variable_global_array_get(Variable name, Variable ind)
 {
-return Boolean.FALSE;
+	return Global.Variables.get(name + "[" + ind + "]");
 }
 
 public static Variable variable_global_array2_get(Variable name, Variable ind1, Variable ind2)
 {
-return Boolean.FALSE;
+	return Global.Variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
 public static Variable variable_global_set(Variable name, Variable value)
 {
+	Global.Variables.put(name.toString(), value);
 return Boolean.FALSE;
 }
 
 public static Variable variable_global_array_set(Variable name, Variable ind, Variable value)
 {
+	Global.Variables.put(name + "[" + ind + "]", value);	
 return Boolean.FALSE;
 }
 
 public static Variable variable_global_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
 {
+	Global.Variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
 return Boolean.FALSE;
 }
 
-public static Variable variable_local_exists(Variable name)
+public Variable variable_local_exists(Variable name)
 {
+	return new Boolean(self.variables.contains(name.toString()));
+}
+
+public Variable variable_local_get(Variable name)
+{
+	return self.variables.get(name.toString());
+}
+
+public Variable variable_local_array_get(Variable name, Variable ind)
+{
+	return self.variables.get(name + "[" + ind + "]");
+}
+
+public Variable variable_local_array2_get(Variable name, Variable ind1, Variable ind2)
+{
+	return self.variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
+}
+
+public Variable variable_local_set(Variable name, Variable value)
+{
+	self.variables.put(name.toString(), value);
+	return Boolean.FALSE;
+}
+
+public Variable variable_local_array_set(Variable name, Variable ind, Variable value)
+{
+	self.variables.put(name + "[" + ind + "]", value);
 return Boolean.FALSE;
 }
 
-public static Variable variable_local_get(Variable name)
+public Variable variable_local_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
 {
-return Boolean.FALSE;
-}
-
-public static Variable variable_local_array_get(Variable name, Variable ind)
-{
-return Boolean.FALSE;
-}
-
-public static Variable variable_local_array2_get(Variable name, Variable ind1, Variable ind2)
-{
-return Boolean.FALSE;
-}
-
-public static Variable variable_local_set(Variable name, Variable value)
-{
-return Boolean.FALSE;
-}
-
-public static Variable variable_local_array_set(Variable name, Variable ind, Variable value)
-{
-return Boolean.FALSE;
-}
-
-public static Variable variable_local_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
-{
+	self.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
 return Boolean.FALSE;
 }
 

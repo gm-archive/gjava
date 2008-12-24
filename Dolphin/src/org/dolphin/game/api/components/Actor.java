@@ -30,7 +30,7 @@ import org.dolphin.game.api.exceptions.RoomChangedException;
 public class Actor extends Tile implements Serializable {
 private static final long serialVersionUID = 1L;
 
-   public Hashtable variables = new Hashtable();
+   public Hashtable<java.lang.String, Variable> variables = new Hashtable<java.lang.String, Variable>();
     public Sprite sprite;
 
     public org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
@@ -924,7 +924,7 @@ private static final long serialVersionUID = 1L;
      * 
      */
     public void setVariable(java.lang.String name, int value) {
-        variables.put(name, value);
+        variables.put(name, new Integer(value));
     }
 
     public Variable getVariable(String name) {
