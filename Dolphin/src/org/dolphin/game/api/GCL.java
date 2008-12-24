@@ -1728,7 +1728,7 @@ public static Variable draw_circle(Variable x, Variable y, Variable rr, Variable
 	if (outline.getBoolean()) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
-		Game.currentRoom.bg2d.fill(s);
+		Game.currentRoom.g2d.fill(s);
 	}
 return Boolean.FALSE;
 }
@@ -1739,7 +1739,7 @@ public static Variable draw_ellipse(Variable x1, Variable y1, Variable x2, Varia
 	if (outline.getBoolean()) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
-		Game.currentRoom.bg2d.fill(s);
+		Game.currentRoom.g2d.fill(s);
 	}
 return Boolean.FALSE;
 }
@@ -1780,6 +1780,7 @@ return Boolean.FALSE;
 
 public static Variable draw_getpixel(Variable x, Variable y)
 {
+	//return new Color();
 return Boolean.FALSE;
 }
 
