@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.dolphin.game.Game;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.parser.PlatformCore;
@@ -242,7 +243,13 @@ public class DolphinWriter {
                 ImageIO.write(img, "png", new File(FileFolder + File.separator + s.getName() + "[" + i + "].png"));
                 subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
             }
+            if (s.getDisplayImage() !=null){
             print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\"," + s.getDisplayImage().getHeight() + ", " + s.getDisplayImage().getWidth() + ", " + s.boundingBoxLeft + ", " + s.boundingBoxRight + ", " + s.boundingBoxBottom + ", " + s.boundingBoxTop + ", " + s.originX + ", " + s.originY + ", " + s.transparent + ", new BufferedImage[]{" + subimg.substring(1) + "});");
+            } else {
+            	//the sprite does not have an image
+            	print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\",0, 0, 0, 0, 0, 0, " + s.originX + ", " + s.originY + ", " + s.transparent + ", new BufferedImage[]{});");
+
+            }
             theelse = "   else";
 
         }
@@ -825,7 +832,7 @@ public class DolphinWriter {
                 for (int i = 0; i < r.tiles.size(); i++) {
                     Tile t = r.tiles.get(i);
                     if (t != null) {
-                        print(scene, "tiles.add(new Tile(" + t.getRoomPosition().x + ", " + t.getRoomPosition().y + "," + t.getBackgroundPosition().x + ", " + t.getBackgroundPosition().y + ", " + t.getSize().width + "," + t.getSize().height + "" + t.getDepth() + ", " + t.tileId + ",Game." + t.getBackground().get().getName() + ");");
+                        print(scene, "tiles.add(new Tile(" + t.getRoomPosition().x + ", " + t.getRoomPosition().y + "," + t.getBackgroundPosition().x + ", " + t.getBackgroundPosition().y + ", " + t.getSize().width + "," + t.getSize().height + "," + t.getDepth() + ", " + t.tileId + ",Game.thegame.loadBackground(\"" + t.getBackground().get().getName() + "\")));");
                     }
                 }
 

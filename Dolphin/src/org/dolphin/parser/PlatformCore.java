@@ -56,6 +56,7 @@ public class PlatformCore  {
     public String updateURL="";//,compilername="";
     public double version = 1.0;
     public boolean inscript = false; //only scripts use return a value
+    public int repeatstatements=0;//number of repeat statements
     
     public Vector<String> resources=new Vector(),stringResources=new Vector();
 
@@ -314,7 +315,7 @@ public class PlatformCore  {
         if (inscript)
         	s= "if(true) return " + exp + ";";
         else
-        	s="return;";
+        	s="if(true) return;";
         return s;
     }
 
@@ -328,7 +329,7 @@ public class PlatformCore  {
         if (inscript)
         	s= "if (true) return Boolean.FALSE;";
         else
-        	s="return;";
+        	s="if(true) return;";
         return s;
     }
 
@@ -421,7 +422,8 @@ public class PlatformCore  {
      * @return
      */
     public String repeatstatement(String ex, String st) {
-        return "for(Variable G_CREATOR__repeat=Game.getValueOf(0); G_CREATOR__repeat.lt("+ex+").getBoolean(); G_CREATOR__repeat.add(new Integer(1))){\n"+st+" }"; 
+    	repeatstatements++;
+        return "for(int G_CREATOR__repeat"+repeatstatements+"=0; G_CREATOR__repeat"+repeatstatements+"<("+ex+".getInt()); G_CREATOR__repeat"+repeatstatements+"++){\n"+st+" }"; 
     }
     
     /**
@@ -429,7 +431,7 @@ public class PlatformCore  {
      * @return
      */
     public String breakstatement() {
-        return "break;";
+        return "if (true) break;";
     }
     
     /**
@@ -437,7 +439,7 @@ public class PlatformCore  {
      * @return
      */
     public String continuestatement() {
-        return "continue;";
+        return "if(true) continue;";
     }
     
     /**
@@ -473,16 +475,32 @@ public class PlatformCore  {
         if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";")) {
             statement2 = statement2.substring(0, statement2.length() - 1);
         }
-        return "for ("+statement1+exp+".getBoolean(); "+statement2+") "+statements;
+        return "{"+statement1+" for (;"+exp+".getBoolean(); ) {"+statements+statement2+"}}";
     }
     
     /**
      * Not done yet so don't use
      * @return
      */
-    public String switchstatement() {
-        return ""; //TODO
+    public String switchstatement(String str) {
+    	str=str.replaceAll("break;", " ");
+    	String code="{ if ("+str+"false){}";
+    	
+        return code+"}"; //TODO
     }    
+    
+    public String caseStatement(String initialex,String expression, String statements){
+    	String st="";
+    	if (expression.equals("")){
+    		return "false){} else {"+statements+"} if (";
+    	}
+    	if (statements.equals("")){
+    		//goes on to next one
+    		return "("+initialex+".equals("+expression+").getBoolean()) || ";
+    	} else {
+    	return "("+initialex+".equals("+expression+").getBoolean())){"+statements+"} else if (";
+    	}
+    }
     
     /**
      * not finished yet
@@ -502,33 +520,173 @@ public class PlatformCore  {
         s+="\n}self = selfs.pop();}}\n";
 
         return s;
-    }    
+    }   
+    
+    public String arrayassigment(String variable, String operator, String expression,String instance){
+{
+	System.out.println("arrayassigment variable:"+variable+" operator:"+operator+" expression:"+expression+" instance:"+instance);
+    String name =  variable.substring(0,variable.indexOf("[")-1);                   
+	String index = variable.substring(variable.indexOf("[")+1,variable.indexOf("]"));
+            if (checkarray(variable)) {
+            	String var=("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1);
+
+                
+            	 if (operator.equals("=")) {
+                     return instance+"set"+var+"("+index+", "+ expression+");}";
+                 } else if (operator.equals(":=")) {
+                	 return instance+"set"+var+"("+index+", "+ expression+");}";
+                 } else if (operator.equals("+=")) {
+                     return instance+ "set"+var+"("+index+", "+variable(variable)+ ".add(" + expression+"));}";
+                 } else if (operator.equals("*=")) {
+                	 return instance+ "get"+var+"().setmult(" + expression + ");}";
+                 } else if (operator.equals("-=")) {
+                	 return instance+ "get"+var+"().setsub(" + expression + ");}";
+                 } else if (operator.equals("/=")) {
+                	 return instance+ "get"+var+"().setdiv(" + expression + ");}";
+                 } else if (operator.equals("&=")) {
+                	 return instance+ "get"+var+"().setband(" + expression + ");}";
+                 } else if (operator.equals("|=")) {
+                	 return instance+ "get"+var+"().setbor(" + expression + ");}";
+                 } else if (operator.equals("^=")) {
+                	 return instance+ "get"+var+"().setbxor(" + expression + ");}";
+                 }              	
+                            
+                }
+            else {
+            	/*
+            	 * Not built in array
+            	 */
+            	
+       		 if (operator.equals("=")|operator.equals(":=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("+=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("*=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("-=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("/=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("&=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("|=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                } else if (operator.equals("^=")) {
+                    return instance+"setVariable(\""+name+"[\"+"+index+"+\"]\","+ expression+");}";
+                }
+            	
+            }
+            }
+        return "";
+    }
+    
+    public String allassignmentstatement(String variable, String operator, String expression,String instance){
+    	 String value="";
+         String tempvar="",originalvariable=variable;
+        
+         System.out.println("allassigment");
+         
+         /*if (type==0)
+         instance = "{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i)";
+         else if(type==1)
+        	 instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i]";
+        */
+         variable = variable.substring(variable.indexOf(".")+1);
+         tempvar=variable;
+         String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length()); //with upercase
+         
+         
+       //check if it is an array
+         if (originalvariable.contains("[")) {
+        	 /*
+        	  * It is an array
+        	  */
+        	 return arrayassigment(originalvariable,operator,expression,instance);
+         }
+         else {
+        	 /*
+        	  * not an array
+        	  */
+        	 if (checkvariable(variable) && !(instance.equals("{Global."))){
+        		 /*
+        		  * Built in normal variable and not a global (globals don't have built in variables)
+        		  */
+        		 if (operator.equals("=")) {
+                     return instance+"set"+var+"("+ expression+");}";
+                 } else if (operator.equals(":=")) {
+                	 return instance+"set"+var+"("+ expression+");}";
+                 } else if (operator.equals("+=")) {
+                     return instance+ "get"+var+"().setadd(" + expression + ");}";
+                 } else if (operator.equals("*=")) {
+                	 return instance+ "get"+var+"().setmult(" + expression + ");}";
+                 } else if (operator.equals("-=")) {
+                	 return instance+ "get"+var+"().setsub(" + expression + ");}";
+                 } else if (operator.equals("/=")) {
+                	 return instance+ "get"+var+"().setdiv(" + expression + ");}";
+                 } else if (operator.equals("&=")) {
+                	 return instance+ "get"+var+"().setband(" + expression + ");}";
+                 } else if (operator.equals("|=")) {
+                	 return instance+ "get"+var+"().setbor(" + expression + ");}";
+                 } else if (operator.equals("^=")) {
+                	 return instance+ "get"+var+"().setbxor(" + expression + ");}";
+                 }
+        	 } else {
+        		 /*
+        		  * non built in variable
+        		  */
+        		 if (operator.equals("=")) {
+                     return instance+"setVariable(\""+variable+"\","+ expression+");}";
+                 } else if (operator.equals(":=")) {
+                	 return instance+"setVariable(\""+variable+"\","+ expression+");}";
+                 } else if (operator.equals("+=")) {
+                     return instance+ "getVariable(\"" + variable + "\").setadd(" + expression + ");}";
+                 } else if (operator.equals("*=")) {
+                	 return instance+ "getVariable(\"" + variable + "\").setmult(" + expression + ");}";
+                 } else if (operator.equals("-=")) {
+                	 return instance+ "getVariable(\"" + variable + "\").setsub(" + expression + ");}";
+                 } else if (operator.equals("/=")) {
+                	 return instance+ "getVariable(\"" + variable + "\").setdiv(" + expression + ");}";
+                 } else if (operator.equals("&=")) {
+                	 return instance+ "getVariable(\"" + variable + "\").setband(" + expression + ");}";
+                 } else if (operator.equals("|=")) {
+                	 return instance+ "getVariable(\"" + variable + "\").setbor(" + expression + ");}";
+                 } else if (operator.equals("^=")) {
+                	 return instance+ "getVariable(\"" + variable + "\").setbxor(" + expression + ");}";
+                 }
+        	 }
+         }
+         
+         
+    	return "";
+    }
     
     /**
      * Assignment statement
      * @param variable - variable to set value of
      * @param operator - operator (+,-)
      * @param expression - value to set variable
-     * @return
+     * @return the java code for the assignment
      */
     public String assignmentstatement(String variable, String operator, String expression) {
         //System.out.println("assignment:"+expression);
         
         String instance="",value="";
-        String tempvar="";
+        String tempvar="",originalvariable=variable;
         
-        if(variable.contains("all.")) {
-            instance = "{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i)";
-            tempvar=variable;
-            variable = variable.substring(variable.indexOf(".")+1);
-        } else if(variable.contains("other.")) {
-            instance = "other";
-        } else if(variable.contains("noone.")) {
-            instance = "noone";
-        } else if(variable.contains("self.")) {
-            instance = "self";
-        } else if(variable.contains("global.")) {
-            instance = "Global";
+        if (variable.contains("[")) {
+        	variable=("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1);
+        }
+        
+        if(variable.startsWith("all.")) {
+            return allassignmentstatement(originalvariable,operator,expression,"{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).");
+        } else if(variable.startsWith("other.")) {
+        	return allassignmentstatement(originalvariable,operator,expression,"{other.");
+        } else if(variable.startsWith("noone.")) {
+        	return allassignmentstatement(originalvariable,operator,expression,"{noone.");
+        } else if(variable.startsWith("self.")) {
+        	return allassignmentstatement(originalvariable,operator,expression,"{self.");
+        } else if(variable.startsWith("global.")) {
+        	return allassignmentstatement(originalvariable,operator,expression,"{Global.");
         } else if(variable.startsWith("("))  {
             instance = "(self)";//actually instance variable
         } else if (countOccurrences(variable,".")>1){
@@ -536,74 +694,80 @@ public class PlatformCore  {
             System.out.println("more than one . variable!");
         }
          else if(variable.contains(".")){
+        	 return allassignmentstatement(originalvariable,operator,expression,"{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i].");
             //instance="for (int i = 0; i < Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class).length; i++) Game.currentRoom.setActorwithname("+variable.substring(0, variable.indexOf("."))+".class)[i]";
-            instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i]";
-             tempvar=variable;
-            variable = variable.substring(variable.indexOf(".")+1);
+           // instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i]";
+           //  tempvar=variable;
+           // variable = variable.substring(variable.indexOf(".")+1);
             
         } else {
-            instance = "self";
+        	return allassignmentstatement(originalvariable,operator,expression,"{self.");
         }
 
-        //not needed as you can't set constants anyway
-//        if (images.contains(tempvar) || resources.contains(tempvar)){
-//        value="Game."+tempvar+" = "+expression;
-//        return value;
-//        }
-
+        /*
+         * 
+         * Old code now
+         * 
+         */
+        
         //check if it is an array
-        if (variable.contains("[")){
-            
-            if (checkarray(variable)) {
-                
-                if (operator.equals("=") || operator.equals("=")){
-                String s= instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+","+expression+")";
-                if(tempvar.contains(".")){
-                	s+=";}";//close instance.*/all.* statement
-                	}
-                return s;
-                } else {
-                    
-                String s=instance + ".set" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+",";
-                if(tempvar.contains(".")){
-                	s+=variable(tempvar+".");//make sure other instance vars work
-                	} else {
-                s+=instance + ".get" + (""+variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+").";
-                }
-                if (operator.equals("+=")) {
-                s += "setadd(" + expression + ")";
-            } else if (operator.equals("*=")) {
-                s += "setmult(" + expression + ")";
-            } else if (operator.equals("-=")) {
-                s += "setsub(" + expression + ")";
-            } else if (operator.equals("/=")) {
-                s += "setdiv(" + expression + ")";
-            } else if (operator.equals("&=")) {
-                s +=  "setband(" + expression + ")";
-            } else if (operator.equals("|=")) {
-                s +=  "setbor(" + expression + ")";
-            } else if (operator.equals("^=")) {
-                s += "setbxor(" + expression + ")";
-            }
-                s+=")";
-                if(tempvar.contains(".")){
-                	s+=";}";
-                	}
-                return s;
-                }
-            }
+        if (variable.contains("[")) {
+           
+        	return arrayassigment(originalvariable.replace("global.", ""),operator,expression,"{"+instance);
         }
+        
+        /* 
+         * 
+         * Back to normal variables 
+         * 
+         * 
+         */
 
         //check if it is a built in variable
         if (checkvariable(variable)){
             String var="";
             if(tempvar.contains(".")){
-            	var+=variable(tempvar);//make sure other instance vars work
-            	value=instance+".set"+variable(tempvar)+"(";
-            	} else {
+            	
+            	/*
+            	 * Other instance variable
+            	 */
+            	
+            	System.out.println("variable:"+variable+"tempvar"+tempvar);
+            	var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
+            	//var+=variable(tempvar);//make sure other instance vars work
+            	value=instance+".set"+var+"(";//variable(tempvar)+"(";
+            	
+            	if (operator.equals("=")) {
+                    value += expression;
+                } else if (operator.equals(":=")) {
+                    value += expression;
+                } else if (operator.equals("+=")) {
+                    value = /*variable(tempvar) +*/ ".setadd(" + expression + ")";
+                } else if (operator.equals("*=")) {
+                    value += instance + ".get" + var + "().setmult(" + expression + ")";
+                } else if (operator.equals("-=")) {
+                    value += instance + ".get" + var + "().setsub(" + expression + ")";
+                } else if (operator.equals("/=")) {
+                    value += instance + ".get" + var + "().setdiv(" + expression + ")";
+                } else if (operator.equals("&=")) {
+                    value += instance + ".get" + var + "().setband(" + expression + ")";
+                } else if (operator.equals("|=")) {
+                    value += instance + ".get" + var + "().setbor(" + expression + ")";
+                } else if (operator.equals("^=")) {
+                    value += instance + ".get" + var + "().setbxor(" + expression + ")";
+                }
+            	
+            	
+            } else 
+            {
+            	/*
+            	 * Normal variable
+            	 * 
+            	 */
+           
             var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
             value=instance+".set"+var+"(";
-            	}
+           
             
 
             if (operator.equals("=")) {
@@ -625,14 +789,21 @@ public class PlatformCore  {
             } else if (operator.equals("^=")) {
                 value += instance + ".get" + var + "().setbxor(" + expression + ")";
             }
+        }
         value+=")";
         if(tempvar.contains("."))value+=";}";
         return value;
         }
         
+        /*
+         * 
+         * Non built in variables
+         * 
+         */
+        
         variable = variable.substring(variable.indexOf(".")+1,variable.length());
            value = instance+".setVariable(\""+variable+"\"," ;
-        
+           if(tempvar.contains("."))value+=";}";
         if (operator.equals("=")) {
             value += expression;
         } else if (operator.equals(":=")) {
@@ -826,7 +997,7 @@ public class PlatformCore  {
         }
         else if(variable.startsWith("global.")) {
             instance = "Global";
-            System.out.println("it is a global variable!");
+            //System.out.println("it is a global variable!");
         }
         else if(variable.startsWith("all.")) {
             instance = "Game.currentRoom.getfirst()";
@@ -849,20 +1020,24 @@ public class PlatformCore  {
         if (variable.contains("[")){
             //System.out.println("array detected!");
             if (checkarray(variable)) {
-                //System.out.println("it is a built in array!");
+                System.out.println("it is a built in array!");
             	
                 return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+".getInt())";
             } else {
-            	variable = variable.substring(variable.indexOf(".")+1,variable.length()); //get rid of . as in global. or other.
-            	System.out.println("variable for unbuilt in array:instance:"+instance);
+            	//variable = variable.substring(variable.indexOf(".")+1,variable.length()); //get rid of . as in global. or other.
+            	System.out.println("variable for unbuilt in array:instance:"+instance+" variable"+variable);
             	try{
-            	//System.out.println("variable name:"+variable.substring(0,variable.indexOf("[")));
-            	//System.out.println("variable inside:"+variable.substring(variable.indexOf("[")+1,variable.indexOf("]")));
+            		String arrayname = variable.substring(0,variable.indexOf("[")+1);
+            		String insidearray = variable.substring(variable.indexOf("[")+1,variable.indexOf("]"));
+            		System.out.println("array name:"+arrayname);
+                	System.out.println("array inside:"+insidearray);
+                	
+            		return instance+".getVariable(\""+arrayname
+            		+"\"+" + insidearray + "+\"]\")";
             	}catch(Exception e){
             		e.printStackTrace();
             		System.out.println("The error occured with:"+variable);
             	}
-            		return instance+".getVariable(\""+variable.substring(0,variable.indexOf("[")+1)+"\"+" + variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+ "+\"]\")";
             }
         }
 
@@ -1117,6 +1292,7 @@ public class PlatformCore  {
     }
     
     public static String stringval(String value){
+    	value.replaceAll("\\\\", File.separator);
         return ("(new String(\"" + value + "\"))").replaceAll("\n", "");
     }
     
@@ -1179,13 +1355,18 @@ public class PlatformCore  {
     public static String fixName(String s)
 	{
     	String original = s;
-	s = s.replaceAll(" ","___");
-	s = s.replaceAll("-","___");
+	s = s.replaceAll(" ","_____");
+	s = s.replaceAll("-","____");
 	s = s.replaceAll("/","___");
-	s = s.replaceAll("!","___");
-	//s = s.replaceAll("/?","___");
-	// s = s.replaceAll("*","_");
-	// s = s.replaceAll("\\","_");
+	s = s.replaceAll("!","__");
+    s = s.replaceAll("<","_");
+    s = s.replaceAll(">","_______");
+    s = s.replaceAll("\"","_____");
+    s = s.replaceAll("\\?","______");
+    s = s.replaceAll("\\|","_______");
+    s = s.replaceAll("\\*","________");
+    s = s.replaceAll(":","____________");
+    s = s.replaceAll("\\%","____________");
 	if ((s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0)
 			|| (s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0) || (s.indexOf("0") == 0)
 			|| (s.indexOf("0") == 0) || (s.indexOf("0") == 0)) s = "DOLPHIN____" + s;

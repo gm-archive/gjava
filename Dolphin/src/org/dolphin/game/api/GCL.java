@@ -2054,6 +2054,10 @@ public static Variable draw_line_color(Variable x1, Variable y1, Variable x2, Va
 return Boolean.FALSE;
 }
 
+public static Variable draw_line_width_color(Variable... obj){
+	return Boolean.FALSE;	
+}
+
 public static Variable draw_rectangle_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable col3, Variable col4, Variable outline)
 {
 return Boolean.FALSE;
@@ -3986,7 +3990,7 @@ public static Variable execute_file(Variable fname)
 return Boolean.FALSE;
 }
 
-public static Variable script_execute(Variable ind, Variable arg0, Variable arg1)
+public static Variable script_execute(Variable... arg1)
 {
 return Boolean.FALSE;
 }
@@ -4851,6 +4855,10 @@ return Boolean.FALSE;
 public static Variable ds_list_sort(Variable id, Variable ascending)
 {
 return Boolean.FALSE;
+}
+
+public static Variable ds_list_shuffle(Variable id){
+	return Boolean.FALSE;
 }
 
 /*
@@ -5869,12 +5877,12 @@ return Boolean.FALSE;
  * Using DLL's
  * 
  */
-public static Variable external_call(Variable id, Variable arg1, Variable arg2)
+public static Variable external_call(Variable... obj)
 {
 return Boolean.FALSE;
 }
 
-public static Variable external_define(Variable dll, Variable name, Variable calltype, Variable restype, Variable argnumb, Variable arg1type, Variable arg2type)
+public static Variable external_define(Variable... obj)
 {
 return Boolean.FALSE;
 }

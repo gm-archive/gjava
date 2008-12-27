@@ -1,1 +1,10 @@
-dir = +(point_direction(x,y,mouse_x,mouse_y) )
+switch (keyboard_key)
+{
+  case vk_left:
+  case vk_numpad4:
+    x -= 4; x=x+1; break;
+  case vk_right:
+  case vk_numpad6:
+    x += 4; break;
+}
+

@@ -382,6 +382,13 @@ private static final long serialVersionUID = 1L;
 	public Actor getActor(){
 		return GCL.noone;
 	}
+	
+	/*
+	 * get the positive value of this
+	 */
+	public Variable positive(){
+		return Boolean.FALSE;
+	}
 
 
 }

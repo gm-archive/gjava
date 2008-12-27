@@ -1,6 +1,8 @@
 
 package org.dolphin.game.api;
 
+import java.util.LinkedList;
+
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.types.Color;
 import org.dolphin.game.api.types.Cursor;
@@ -14,124 +16,125 @@ import org.dolphin.game.api.types.Variable;
 public class Constants extends Variable {
 protected Actor self;
 public static Actor noone=new Actor(),other=noone,all=new Actor();
+public LinkedList<Actor> selfs = new LinkedList();
 
-    public Object getBm_add() {
+    public Variable getBm_add() {
         return new Variable(); //  new Variable(); //  bm_add;
     }
 
-    public void setBm_add(Object bm_add) {
+    public void setBm_add(Variable bm_add) {
        // Constants.bm_add = bm_add;
     }
 
-    public Object getBm_dest_alpha() {
+    public Variable getBm_dest_alpha() {
         return new Variable(); //  new Variable(); //  bm_dest_alpha;
     }
 
-    public void setBm_dest_alpha(Object bm_dest_alpha) {
+    public void setBm_dest_alpha(Variable bm_dest_alpha) {
         // Constant: this.bm_dest_alpha = bm_dest_alpha;
     }
 
-    public Object getBm_dest_color() {
+    public Variable getBm_dest_color() {
         return new Variable(); //  new Variable(); //  bm_dest_color;
     }
 
-    public void setBm_dest_color(Object bm_dest_color) {
+    public void setBm_dest_color(Variable bm_dest_color) {
         // Constant: this.bm_dest_color = bm_dest_color;
     }
 
-    public Object getBm_inv_dest_alpha() {
+    public Variable getBm_inv_dest_alpha() {
         return new Variable(); //  new Variable(); //  bm_inv_dest_alpha;
     }
 
-    public void setBm_inv_dest_alpha(Object bm_inv_dest_alpha) {
+    public void setBm_inv_dest_alpha(Variable bm_inv_dest_alpha) {
         // Constant: this.bm_inv_dest_alpha = bm_inv_dest_alpha;
     }
 
-    public Object getBm_inv_dest_color() {
+    public Variable getBm_inv_dest_color() {
         return new Variable(); //  new Variable(); //  bm_inv_dest_color;
     }
 
-    public void setBm_inv_dest_color(Object bm_inv_dest_color) {
+    public void setBm_inv_dest_color(Variable bm_inv_dest_color) {
         // Constant: this.bm_inv_dest_color = bm_inv_dest_color;
     }
 
-    public Object getBm_inv_src_alpha() {
+    public Variable getBm_inv_src_alpha() {
         return new Variable(); //  new Variable(); //  bm_inv_src_alpha;
     }
 
-    public void setBm_inv_src_alpha(Object bm_inv_src_alpha) {
+    public void setBm_inv_src_alpha(Variable bm_inv_src_alpha) {
         // Constant: this.bm_inv_src_alpha = bm_inv_src_alpha;
     }
 
-    public Object getBm_inv_src_color() {
+    public Variable getBm_inv_src_color() {
         return new Variable(); //  new Variable(); //  bm_inv_src_color;
     }
 
-    public void setBm_inv_src_color(Object bm_inv_src_color) {
+    public void setBm_inv_src_color(Variable bm_inv_src_color) {
         // Constant: this.bm_inv_src_color = bm_inv_src_color;
     }
 
-    public Object getBm_max() {
+    public Variable getBm_max() {
         return new Variable(); //  new Variable(); //  bm_max;
     }
 
-    public void setBm_max(Object bm_max) {
+    public void setBm_max(Variable bm_max) {
         // Constant: this.bm_max = bm_max;
     }
 
-    public Object getBm_normal() {
+    public Variable getBm_normal() {
         return new Variable(); //  new Variable(); //  bm_normal;
     }
 
-    public void setBm_normal(Object bm_normal) {
+    public void setBm_normal(Variable bm_normal) {
         // Constant: this.bm_normal = bm_normal;
     }
 
-    public Object getBm_one() {
+    public Variable getBm_one() {
         return new Variable(); //  bm_one;
     }
 
-    public void setBm_one(Object bm_one) {
+    public void setBm_one(Variable bm_one) {
         // Constant: this.bm_one = bm_one;
     }
 
-    public Object getBm_src_alpha() {
+    public Variable getBm_src_alpha() {
         return new Variable(); //  bm_src_alpha;
     }
 
-    public void setBm_src_alpha(Object bm_src_alpha) {
+    public void setBm_src_alpha(Variable bm_src_alpha) {
         // Constant: this.bm_src_alpha = bm_src_alpha;
     }
 
-    public Object getBm_src_alpha_sat() {
+    public Variable getBm_src_alpha_sat() {
         return new Variable(); //  bm_src_alpha_sat;
     }
 
-    public void setBm_src_alpha_sat(Object bm_src_alpha_sat) {
+    public void setBm_src_alpha_sat(Variable bm_src_alpha_sat) {
         // Constant: this.bm_src_alpha_sat = bm_src_alpha_sat;
     }
 
-    public Object getBm_src_color() {
+    public Variable getBm_src_color() {
         return new Variable(); //  bm_src_color;
     }
 
-    public void setBm_src_color(Object bm_src_color) {
+    public void setBm_src_color(Variable bm_src_color) {
         // Constant: this.bm_src_color = bm_src_color;
     }
 
-    public Object getBm_subtract() {
+    public Variable getBm_subtract() {
         return new Variable(); //  bm_subtract;
     }
 
-    public void setBm_subtract(Object bm_subtract) {
+    public void setBm_subtract(Variable bm_subtract) {
         // Constant: this.bm_subtract = bm_subtract;
     }
 
-    public Object getBm_zero() {
+    public Variable getBm_zero() {
         return new Variable(); //  bm_zero;
     }
 
-    public void setBm_zero(Object bm_zero) {
+    public void setBm_zero(Variable bm_zero) {
         // Constant: this.bm_zero = bm_zero;
     }
 Color c_aqua = new Color(new java.awt.Color(0,255,255));

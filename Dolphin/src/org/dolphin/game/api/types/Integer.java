@@ -57,10 +57,7 @@ private static final long serialVersionUID = 1L;
          return this;
     }
 
-    public Variable setadd(double o) {
-         i+= o;
-         return this;
-    }
+    
 
     
     @Override
@@ -207,4 +204,11 @@ private static final long serialVersionUID = 1L;
         else
             return super.compareTo(o);  //No order - go by toString
     }
+    
+    /*
+	 * get the positive value of this
+	 */
+	public Variable positive(){
+		return Game.getValueOf(+i);
+	}
 }
