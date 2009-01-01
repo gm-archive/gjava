@@ -14,6 +14,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Game_Information;
@@ -335,6 +339,9 @@ if (obj.length>3 && obj[3].getBoolean()){
 
 public /*static*/ Variable action_if_dice(Variable... obj)
 {
+	if ( (Math.random(obj[0].getInt())  ) <1){
+		return Boolean.TRUE;
+	}
 return Boolean.FALSE;
 }
 
@@ -438,8 +445,21 @@ public /*static*/ Variable action_if_previous_room(Variable... obj)
         return Boolean.FALSE;
 }
 
-public /*static*/ Variable action_if_question(Variable... obj)
+public /*static*/ Variable action_if_question(Variable... param)
 {
+	JOptionPane pane = new JOptionPane(
+    param[0].toString());
+Object[] options = new java.lang.String[] { "Yes", "No" };
+pane.setOptions(options);
+JDialog dialog = pane.createDialog(null, "");
+dialog.show();
+Object obj = pane.getValue(); 
+int result = -1;
+for (int k = 0; k < options.length; k++)
+  if (options[k].equals(obj))
+    result = k;
+
+if (result==0) return Boolean.TRUE;
 return Boolean.FALSE;
 }
 
