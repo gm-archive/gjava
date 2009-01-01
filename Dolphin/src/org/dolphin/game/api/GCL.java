@@ -741,7 +741,7 @@ public Variable place_meeting(Variable x, Variable y, Variable obj)
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
-               System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
+               //System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
                if (a.getClass().getName().equals(name)) {
                         System.out.println("correct name");
                     if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {

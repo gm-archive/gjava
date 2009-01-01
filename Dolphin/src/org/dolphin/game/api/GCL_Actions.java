@@ -380,7 +380,44 @@ if(Game.currentRoom.vectorid <Game.rooms.size()-1)
 
 public /*static*/ Variable action_if_number(Variable... obj)
 {
-return Boolean.FALSE;
+	java.lang.String name="";
+    if (obj[0] instanceof GMResource){
+    name=((GMResource)obj[0]).theclass.getName();
+    } else{
+    name=obj.getClass().getName();
+    }
+    int number=0;
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+		if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
+            if (a.getClass().getName().equals(name)) {
+                     number++;
+            }
+		}
+	}
+	
+	if (obj[2].getInt() == 0){
+		//equal to
+		if( obj[1].getInt() == number){
+			return Boolean.TRUE;
+		}
+		
+	}
+	else if (obj[2].getInt() == 1){
+		//less than
+		if( obj[1].getInt() > number){
+			return Boolean.TRUE;
+		}
+	}
+	else if (obj[2].getInt() == 2){
+		//greater than
+		if( obj[1].getInt() < number){
+			return Boolean.TRUE;
+		}
+	}
+	
+	return Boolean.FALSE;
 }
 
 public /*static*/ Variable action_if_object(Variable... obj)

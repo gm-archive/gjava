@@ -703,6 +703,7 @@ public static Variable   argument
 
     public static void setRoom_caption(Variable room_caption) {
         Variables.room_caption = room_caption;
+        Game.frame.setTitle(room_caption.toString());
     }
 
     public static Variable getRoom_first() {

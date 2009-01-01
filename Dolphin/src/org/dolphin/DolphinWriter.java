@@ -1,6 +1,15 @@
 package org.dolphin;
 
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -239,9 +248,12 @@ public class DolphinWriter {
             String subimg = "";
             for (int i = 0; i < s.subImages.size(); i++) {
                 BufferedImage img = s.subImages.get(i);
-                if(img!=null)
+                if(img!=null){
+                	int tpixel = img.getRGB(img.getMinX(),img.getHeight() - 1);
+                	img = Transparency.makeColorTransparent(img,new Color(tpixel));
                 ImageIO.write(img, "png", new File(FileFolder + File.separator + s.getName() + "[" + i + "].png"));
                 subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
+                }
             }
             if (s.getDisplayImage() !=null){
             print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\"," + s.getDisplayImage().getHeight() + ", " + s.getDisplayImage().getWidth() + ", " + s.boundingBoxLeft + ", " + s.boundingBoxRight + ", " + s.boundingBoxBottom + ", " + s.boundingBoxTop + ", " + s.originX + ", " + s.originY + ", " + s.transparent + ", new BufferedImage[]{" + subimg.substring(1) + "});");
@@ -893,5 +905,44 @@ class ExtensionFilter implements FilenameFilter {
   public boolean accept(File dir, String name) {
     return (name.endsWith(extension));
   }
+}
+
+class Transparency
+{
+public static BufferedImage makeColorTransparent(Image im,final Color color)
+	{
+	ImageFilter filter = new RGBImageFilter()
+		{
+			// the color we are looking for... Alpha bits are set to opaque
+			public int markerRGB = color.getRGB() | 0xFF000000;
+
+			public final int filterRGB(int x,int y,int rgb)
+				{
+				if ((rgb | 0xFF000000) == markerRGB)
+					{
+					// Mark the alpha bits as zero - transparent
+					return 0x00FFFFFF & rgb;
+					}
+				else
+					{
+					// nothing to do
+					return rgb;
+					}
+				}
+		};
+	ImageProducer ip = new FilteredImageSource(im.getSource(),filter);
+	return createBufferedImage(Toolkit.getDefaultToolkit().createImage(ip));
+	}
+
+private static BufferedImage createBufferedImage(Image image)
+	{
+	BufferedImage bi = new BufferedImage(image.getWidth(null),image.getHeight(null),
+			BufferedImage.TYPE_INT_ARGB);
+	Graphics2D g = bi.createGraphics();
+	g.drawImage(image,0,0,null);
+
+	return bi;
+	}
+
 }
 
