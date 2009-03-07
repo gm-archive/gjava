@@ -85,9 +85,7 @@ public static Variable   argument
 = new Boolean(false),  lives = new Integer(5)
 ,  mouse_button
 = new Boolean(false),  mouse_lastbutton
-= new Boolean(false),  mouse_x
-= new Boolean(false),  mouse_y
-= new Boolean(false),  program_directory
+= new Boolean(false),    program_directory
 = new String(""),  room
 = new Boolean(false),  room_caption
 = new Boolean(false),  room_first
@@ -662,7 +660,7 @@ public static Variable   argument
     }
 
     public static Variable getMouse_x() {
-        return new Integer(Game.game.getGame().getMouseX());
+        return new Integer(Game.thegame.getMouseX());
     }
 
     public static void setMouse_x(Variable mouse_x) {

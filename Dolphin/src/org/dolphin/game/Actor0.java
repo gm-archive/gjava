@@ -33,6 +33,17 @@ public class Actor0 extends Actor {
 		this.y = y;
 		this.instance_id = instance_id;
 		self = this;
+
+		/*{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).setX(self.getY());}
+		
+		{for (int i = 0; i < Game.currentRoom.instances.size(); i++)
+			Game.currentRoom.instances.get(i).setVariable("s",Game.currentRoom.instances.get(i).getVariable("s").mult(self.getX()));
+					//{
+				//for (int ii = 0; ii < Game.currentRoom.instances.size(); ii++)   Game.currentRoom.instances.get(i).getVariable("s").mult(self.getX()));}
+		}*/
+		this.setVariable("s",Game.getValueOf(2));
+		this.multVariable("s",Game.getValueOf(20));
+		System.out.println("Value:"+this.getVariable("s").getInt());
 	}
 
 	Vector ints = new Vector(1);
@@ -72,7 +83,7 @@ public class Actor0 extends Actor {
 				// self.getVariable("i").add(1);//.);
 			}
 			long end = System.currentTimeMillis();
-			System.out.println("end:" + (end - start));
+			System.out.println("end of loop:" + (end - start));
 		}
 		self.setX(Game.getValueOf(10));
 		self.setY(Game.getValueOf(10));
@@ -121,26 +132,11 @@ public class Actor0 extends Actor {
 
 	@Override
 	public void KeyPressed(int keycode) throws DestroyException {
+		System.out.println(""+Game.game.getGame().getMouseX());
+		
+		
 		
 		// self.setVariable("letter[3]",Game.currentRoom.getActorwithname(self.getVariable("letter[(Game").getActor().getClass()).getVariable(""+Game.getValueOf(2))+"]");};
-		ds_list_shuffle(self.getArgument0());
-
-		{
-			if (( ((Game.getValueOf(4))).equals(((Game.getValueOf(1)))).getBoolean()) || ( ((Game.getValueOf(4))).equals(((Game.getValueOf(2)))).getBoolean()))
-			{
-				show_message((new String("It seems to work")));if (true)  ;}
-			else if (( ((Game.getValueOf(4))).equals(((Game.getValueOf(3)))).getBoolean()))
-			{
-				show_message((new String("It seems to work")));if (true)  ;
-				} 
-			else if (( ((Game.getValueOf(4))).equals(((Game.getValueOf(4)))).getBoolean()))
-			{show_message((new String("It seems to work")));if (true)  ;show_message((new String("It does not seems to work:(")));
-			if (true)  ;} else if (false){}}
-
-			 
-			
-
-		
 		
 		// if(!action_if_sound(new String("sound0")).getBoolean())
 

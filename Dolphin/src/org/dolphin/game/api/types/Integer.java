@@ -39,11 +39,7 @@ private static final long serialVersionUID = 1L;
         return i;
     }
 
-    @Override
-    public Variable setsub(Variable o) {
-        i-= (int) (o.getDouble());
-        return this;
-    }
+    
     
     @Override
     public Variable sub(Variable o) {
@@ -51,15 +47,7 @@ private static final long serialVersionUID = 1L;
         
     }
     
-    @Override
-    public Variable setadd(Variable o) {
-         i+= (int) (o.getDouble());
-         return this;
-    }
-
-    
-
-    
+        
     @Override
     public Variable add(Variable o) {
         return Game.getValueOf(i+ (int) (o.getDouble()));
@@ -79,51 +67,29 @@ private static final long serialVersionUID = 1L;
              return Game.getValueOf(0);
     }
      
-      @Override
-    public Variable setdiv(Variable o) {
-       i /= (int) (o.getDouble());
-       return this;
-    }
-      
+          
       @Override
     public Variable mult(Variable o) {
         return Game.getValueOf(i *(int) (o.getDouble()));
         
     }
 
-    @Override
-    public Variable setmult(Variable o) {
-        i *= (int) (o.getDouble());
-        return this;
-    }
+    
 
-    @Override
-    public Variable setband(Variable o) {
-        i &= (int) (o.getDouble());
-        return this;
-    }
+   
     
     @Override
     public Variable band(Variable o) {
          return Game.getValueOf(i &(int) (o.getDouble()));
     }
 
-    @Override
-    public Variable setbor(Variable o) {
-        i |= (int) (o.getDouble());
-        return this;
-    }
-    
+        
      @Override
     public Variable bor(Variable o) {
         return Game.getValueOf(i |(int) (o.getDouble()));
     }
 
-    @Override
-    public Variable setbxor(Variable o) {
-        i ^= (int) (o.getDouble());
-        return this;
-    }
+   
     
     @Override
     public Variable bxor(Variable o) {
@@ -183,7 +149,7 @@ private static final long serialVersionUID = 1L;
     }
 
     public Variable setValue(int v){
-        this.i=v;
+        //this.i=v;
         return this;
     }
 

@@ -888,7 +888,7 @@ private static final long serialVersionUID = 1L;
         this.ystart = ystart.getFloat();
     }
     // </editor-fold>   
-    public void setVariable(String name, Variable value) {
+    /*public void setVariable(String name, Variable value) {
         try {
             java.lang.String nm = "" + name;
             Method m = Variables.class.getDeclaredMethod("set" + name.charAt(nm, 0).toUpperCase() + nm.substring(1) + "", new Class[]{Object.class});
@@ -910,13 +910,62 @@ private static final long serialVersionUID = 1L;
         }
 
 
-    }
+    }*/
 
     /*
      * This function is required, it sets the value of variable with string name.
      */
     public void setVariable(java.lang.String name, Variable value) {
         variables.put(name, value);
+    }
+    
+    /*
+     * This function is required, for using *= with custom variables
+     */
+    public void multVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).mult(multValue));
+    }
+    
+    /*
+     * This function is required, for using += with custom variables
+     */
+    public void addVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).add(multValue));
+    }
+    
+    /*
+     * This function is required, for using -= with custom variables
+     */
+    public void subVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).sub(multValue));
+    }
+    
+    /*
+     * This function is required, for using /= with custom variables
+     */
+    public void divVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).div(multValue));
+    }
+    
+    /*
+     * This function is required, for using &= with custom variables
+     */
+    public void bandVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).band(multValue));
+    }
+    
+    /*
+     * This function is required, for using *= with custom variables
+     */
+    public void borVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).bor(multValue));
+    }
+    
+    /*
+     * This function is required, for using *= with custom variables
+     */
+    public void bxorVariable(java.lang.String name, Variable multValue) {
+        variables.put(name, variables.get(name).bxor(multValue));
     }
     
     /*

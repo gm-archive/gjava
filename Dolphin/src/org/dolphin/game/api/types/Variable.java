@@ -192,45 +192,8 @@ private static final long serialVersionUID = 1L;
 		return o;
 	}
 
-	/**
-	 * Set Subtract (-=)
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setsub(Variable o) {
-		return o;
-	}
-
-	/**
-	 * Set Add (+=)
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setadd(Variable o) {
-		return o;
-	}
-
-	/**
-	 * Set Multiply (*=)
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setmult(Variable o) {
-		return o;
-	}
-
-	/**
-	 * Set Divide (/=)
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setdiv(Variable o) {
-		return o;
-	}
+	
+	
 
 	/**
 	 * Boolean and
@@ -292,35 +255,9 @@ private static final long serialVersionUID = 1L;
 		return o;
 	}
 
-	/**
-	 * Set Bitwise and
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setband(Variable o) {
-		return o;
-	}
+	
 
-	/**
-	 * Set Bitwise or
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setbor(Variable o) {
-		return o;
-	}
-
-	/**
-	 * Bitwise xor
-	 * 
-	 * @param o
-	 * @return
-	 */
-	public Variable setbxor(Variable o) {
-		return o;
-	}
+	
 
 	/**
 	 * Mod function

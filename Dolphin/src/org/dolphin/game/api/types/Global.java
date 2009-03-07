@@ -37,6 +37,55 @@ public class Global  {
          if (o == null) return new Integer(0);
         return o;
     }
+     
+     /*
+      * This function is required, for using *= with custom Variables
+      */
+     public static void multVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).mult(multValue));
+     }
+     
+     /*
+      * This function is required, for using += with custom Variables
+      */
+     public static void addVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).add(multValue));
+     }
+     
+     /*
+      * This function is required, for using -= with custom Variables
+      */
+     public static void subVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).sub(multValue));
+     }
+     
+     /*
+      * This function is required, for using /= with custom Variables
+      */
+     public static void divVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).div(multValue));
+     }
+     
+     /*
+      * This function is required, for using &= with custom Variables
+      */
+     public static void bandVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).band(multValue));
+     }
+     
+     /*
+      * This function is required, for using *= with custom Variables
+      */
+     public static void borVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).bor(multValue));
+     }
+     
+     /*
+      * This function is required, for using *= with custom Variables
+      */
+     public static void bxorVariable(java.lang.String name, Variable multValue) {
+         Variables.put(name, Variables.get(name).bxor(multValue));
+     }
 
 }
 

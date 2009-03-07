@@ -145,35 +145,6 @@ public class Double extends Variable {
             return super.compareTo(o);  //No order - go by toString
     }
     
-    @Override
-    public Variable setadd(Variable o) {
-         i+= o.getDouble();
-         return this;
-    }
-    
-    @Override
-    public Variable setsub(Variable o) {
-        i-= o.getDouble();
-        return this;
-    }
-    
-    @Override
-    public Variable setdiv(Variable o) {
-       i /= (o.getDouble());
-       return this;
-    }
-    
-    @Override
-    public Variable setmult(Variable o) {
-        i *= (o.getDouble());
-        return this;
-    }
-    
-    @Override
-    public Variable setband(Variable o) {
-        //((int)i) &=  (int)(o.getDouble());
-        return this;
-    }
     
     /*
 	 * get the positive value of this

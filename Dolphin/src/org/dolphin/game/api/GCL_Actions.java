@@ -324,8 +324,8 @@ public /*static*/ Variable action_if_collision(Variable... obj)
 {
 
 if (obj.length>3 && obj[3].getBoolean()){
-        obj[0].setadd(self.getX());
-        obj[1].setadd(self.getY());
+        obj[0]=obj[0].add(self.getX());
+        obj[1]=obj[1].add(self.getY());
     }
     if(obj[2].getInt() == 0){
 
@@ -348,8 +348,9 @@ return Boolean.FALSE;
 public /*static*/ Variable action_if_empty(Variable... obj)
 {
     if (obj.length>3 && obj[3].getBoolean()){
-        obj[0].setadd(self.getX());
-        obj[1].setadd(self.getY());
+    	obj[0]=obj[0].add(self.getX());
+    	obj[1]=obj[1].add(self.getX());
+        
     }
     if(obj[2].getInt() == 0){
         
@@ -397,7 +398,7 @@ public /*static*/ Variable action_if_number(Variable... obj)
 	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
 		if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
-            System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
+           // System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
             if (a.getClass().getName().equals(name)) {
                      number++;
             }
@@ -430,8 +431,8 @@ public /*static*/ Variable action_if_number(Variable... obj)
 public /*static*/ Variable action_if_object(Variable... obj)
 {
     if (obj.length>3 && obj[3].getBoolean()){
-        obj[1].setadd(self.getX());
-        obj[2].setadd(self.getY());
+    	obj[1]=obj[1].add(self.getX());
+    	obj[2]=obj[2].add(self.getX());
     }
     return place_meeting(obj[1],obj[2],obj[0]);
 //return Boolean.FALSE;
@@ -556,10 +557,14 @@ return Boolean.FALSE;
 
 public /*static*/ Variable action_move(Variable dirs, Variable speed)
 {
-    int no = round(random(string_count(new String("1"),dirs))).getInt()+1;
+	System.out.println("action_move speed:"+speed.getDouble()+ "game4:"+Game.getValueOf(4));
+    
+	int no = round(random(string_count(new String("1"),dirs))).getInt()+1;
     
     int cur=0;
+    
     self.setSpeed(speed);
+    System.out.println("action_move speed of self:"+self.getSpeed());
     for (int subi = 1; subi <= 9; subi++)
 				{
 				java.lang.String lcurchar = "" + dirs.toString().substring(subi - 1,subi);
@@ -601,6 +606,7 @@ public /*static*/ Variable action_move(Variable dirs, Variable speed)
                                     //action_move(new Variable[5]);
 
     }}
+    
 return Boolean.FALSE;
 }
 
@@ -967,8 +973,11 @@ public /*static*/ Variable action_sprite_set(Variable... obj)
 {
    // System.out.println("action_sprite_set");
    self.sprite= Game.thegame.loadSprite(obj[0].toString());
+   System.out.println("v2 action set sprite to:"+obj[0].toString());
+   /*if (obj[1].getInt() == -1) self.sprite_index=0;
+   else
    self.sprite_index=obj[1].getInt();
-   self.sprite_speed=obj[2].getDouble();
+   self.sprite_speed=obj[2].getDouble();*/
 return Boolean.FALSE;
 }
 
