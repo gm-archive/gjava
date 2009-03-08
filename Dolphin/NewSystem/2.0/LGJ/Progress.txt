@@ -1,8 +1,0 @@
-Parser/code output:
-Script.variable does not work (is it important?)
-Multiple '.' variables don't work
-Using all as a value of a variable and using it doesn't work
-Arrays don't work well
-Instance variables don't work (10001). etc
-built in arrays probably don't work
-parser error with "var;" statement
