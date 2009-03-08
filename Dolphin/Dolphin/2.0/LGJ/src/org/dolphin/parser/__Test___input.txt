@@ -1,0 +1,63 @@
+{
+{
+ draw_rectangle_color( view_xview[0] + 510, view_yview[0] + 10, view_xview[0] + 510 + pl.hp, view_yview[0] + 20, c_red, c_red, c_black, c_black, false );
+ draw_rectangle_color( view_xview[0] + 510, view_yview[0] + 10, view_xview[0] + 510 + pl.hp, view_yview[0] + 20, c_black, c_black, c_black, c_black, true );
+ draw_rectangle_color( view_xview[0] + 510, view_yview[0] + 10, view_xview[0] + 610, view_yview[0] + 20, c_black, c_black, c_black, c_black, true );
+ draw_rectangle_color( view_xview[0] + 510, view_yview[0] + 20, view_xview[0] + 510 + pl.mp, view_yview[0] + 30, c_blue, c_blue, c_black, c_black, false );
+ draw_rectangle_color( view_xview[0] + 510, view_yview[0] + 20, view_xview[0] + 510 + pl.mp, view_yview[0] + 30, c_black, c_black, c_black, c_black, true );
+ draw_rectangle_color( view_xview[0] + 510, view_yview[0] + 20, view_xview[0] + 610, view_yview[0] + 30, c_black, c_black, c_black, c_black, true );
+ draw_set_halign( fa_center );
+   draw_text( view_xview[0] + 560, view_yview[0] + 7, string( pl.hp ) + "/100 " );
+   draw_text( view_xview[0] + 560, view_yview[0] + 17, string( pl.mp ) + "/100 " );
+ draw_set_halign( fa_left );
+ draw_set_alpha( .66 );
+  draw_set_color( c_black );
+   draw_rectangle( view_xview[0] + 510, view_yview[0] + 30, view_xview[0] + 611, view_yview[0] + 114, false );
+  draw_set_color( c_white );
+ draw_set_alpha( 1 );
+ dmin = pl.Damage_Minimum;
+ dmax = pl.Damage_Maximum;
+ c_c1 = global.c_c1;
+ draw_text( view_xview[0] + 512, view_yview[0] + 28, " Attack = " + string( pl.att ) );
+ draw_text( view_xview[0] + 512, view_yview[0] + 38, " Defence = " + string( pl.def ) );
+ draw_text( view_xview[0] + 512, view_yview[0] + 48, " Agility = " + string( pl.agl ) );
+ draw_text( view_xview[0] + 512, view_yview[0] + 58, " Strength = " + string( pl.str ) );
+ draw_text_color( view_xview[0] + 512, view_yview[0] + 68, " " + string( dmin ) + "d" + string( dmax ), c_yellow, c_yellow, c_yellow, c_yellow, 1 );
+ draw_text( view_xview[0] + 512, view_yview[0] + 78, " Gold = " + string( pl.money ) );
+ draw_text_color( view_xview[0] + 512, view_yview[0] + 88, " " + string( pl.exp ) + "/" + string( pl.nxtlvl ), c_lime, c_lime, c_lime, c_lime, 1 );
+ draw_text_color( view_xview[0] + 512, view_yview[0] + 98, " Level = " + string( pl.lvl ), c_c1, c_c1, c_c1, c_c1, 1 );
+ if( global.inventory )
+ {
+  if( mouse_in_rectangle( view_xview[0] + 0 + Inventory.XX, view_yview[0] + Inventory.YY, view_xview[0] + 0 + Inventory.XX + 32, view_yview[0] + Inventory.YY + 32 ) )
+  {
+   draw_over_text();
+  }
+ }
+ draw_text( mouse_x, mouse_y - 12, fps );
+ if( !mouse_in_rectangle( view_xview[0], view_yview[0], view_xview[0] + 160, view_yview[0] + 480 ) && global.inventory ) draw_sprite_ext( sprite_index, image, mouse_x + 12, mouse_y + 12, 1, 1, 0, c_black, .55 );
+ else if( !global.inventory ) draw_sprite_ext( sprite_index, image, mouse_x + 12, mouse_y + 12, 1, 1, 0, c_black, .55 );
+ if( instance_exists( parEnemy ) )
+ {
+  if( ( instance_nearest( mouse_x, mouse_y, parEnemy ) ).over = true )
+  {
+   draw_enemy_text( parEnemy );
+  }
+ }
+ if( instance_exists( parItem ) )
+ {
+  if( ( instance_nearest( mouse_x, mouse_y, parItem ) ).over = true )
+  {
+   draw_text( mouse_x + 6, mouse_y + 6, ( instance_nearest( mouse_x, mouse_y, parItem ) ).overtext );
+  }
+ }
+ if( instance_exists( parRoom ) )
+ {
+  if( ( instance_nearest( mouse_x, mouse_y, parRoom ) ).over = true )
+  {
+   draw_room();
+  }
+ }
+ draw_sprite( sprite_index, image, mouse_x, mouse_y );
+}
+}
+
