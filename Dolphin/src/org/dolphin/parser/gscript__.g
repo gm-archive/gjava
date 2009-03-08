@@ -19,69 +19,69 @@ GTE : '>=' ;
 LT : '<' ;
 LTE : '<=' ;
 COMMENT1 : '//' ;
-T36 : ';' ;
-T37 : 'public' ;
-T38 : 'private' ;
-T39 : 'var' ;
-T40 : 'final' ;
-T41 : 'static' ;
-T42 : ',' ;
-T43 : 'begin' ;
-T44 : 'end' ;
-T45 : 'globalvar' ;
-T46 : 'return' ;
-T47 : 'exit' ;
-T48 : 'if' ;
-T49 : 'then' ;
-T50 : 'else' ;
-T51 : 'elsif' ;
-T52 : 'not' ;
-T53 : '!' ;
-T54 : '|' ;
-T55 : '&' ;
-T56 : '^' ;
-T57 : '<<' ;
-T58 : '>>' ;
-T59 : 'div' ;
-T60 : 'mod' ;
-T61 : '~' ;
-T62 : '&&' ;
-T63 : 'and' ;
-T64 : '||' ;
-T65 : 'or' ;
-T66 : '^^' ;
-T67 : 'xor' ;
-T68 : ':=' ;
-T69 : '<>' ;
-T70 : 'repeat' ;
-T71 : 'break' ;
-T72 : 'continue' ;
-T73 : 'do' ;
-T74 : 'until' ;
-T75 : 'while' ;
-T76 : 'for' ;
-T77 : 'switch' ;
-T78 : 'case' ;
-T79 : 'default' ;
-T80 : ':' ;
-T81 : 'with' ;
-T82 : '+=' ;
-T83 : '-=' ;
-T84 : '*=' ;
-T85 : '/=' ;
-T86 : '|=' ;
-T87 : '&=' ;
-T88 : '^=' ;
-T89 : '.' ;
-T90 : '[' ;
-T91 : ']' ;
+T35 : ';' ;
+T36 : 'public' ;
+T37 : 'private' ;
+T38 : 'var' ;
+T39 : 'final' ;
+T40 : 'static' ;
+T41 : ',' ;
+T42 : 'begin' ;
+T43 : 'end' ;
+T44 : 'globalvar' ;
+T45 : 'return' ;
+T46 : 'exit' ;
+T47 : 'if' ;
+T48 : 'then' ;
+T49 : 'else' ;
+T50 : 'elsif' ;
+T51 : 'not' ;
+T52 : '!' ;
+T53 : '|' ;
+T54 : '&' ;
+T55 : '^' ;
+T56 : '<<' ;
+T57 : '>>' ;
+T58 : 'div' ;
+T59 : 'mod' ;
+T60 : '~' ;
+T61 : '&&' ;
+T62 : 'and' ;
+T63 : '||' ;
+T64 : 'or' ;
+T65 : '^^' ;
+T66 : 'xor' ;
+T67 : ':=' ;
+T68 : '<>' ;
+T69 : 'repeat' ;
+T70 : 'break' ;
+T71 : 'continue' ;
+T72 : 'do' ;
+T73 : 'until' ;
+T74 : 'while' ;
+T75 : 'for' ;
+T76 : 'switch' ;
+T77 : 'case' ;
+T78 : 'default' ;
+T79 : ':' ;
+T80 : 'with' ;
+T81 : '+=' ;
+T82 : '-=' ;
+T83 : '*=' ;
+T84 : '/=' ;
+T85 : '|=' ;
+T86 : '&=' ;
+T87 : '^=' ;
+T88 : '.' ;
+T89 : '[' ;
+T90 : ']' ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 211
 NUMBER : (DIGIT)+ ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 213
 HEXNUMBER
-: '$' (DIGIT|LETTER)*
+: '$' (DIGIT||'a'..'z'|'A'..'Z')*
 ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 217
@@ -107,12 +107,11 @@ fragment DIGIT : '0'..'9' ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 232
 WORD
-: ('_'|LETTER) ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
+: ('_'|'a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
 ;
 
-// $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 236
-LETTER : ('a'..'z'|'A'..'Z')
-;
+//LETTER : 
+//;
 
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 240

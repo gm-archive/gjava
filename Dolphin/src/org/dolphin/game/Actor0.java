@@ -63,22 +63,26 @@ public class Actor0 extends Actor {
 		{
 			Actor[] ac = Game.currentRoom.setActorwithname(self
 					.getVariable("i").getActor().getClass());
-			// for (int i = 0; i < ac.length; i++)
-			// ac[i].setGame.currentRoom.getActorwithname(self.getVariable("i").getActor().getClass()).getVariable("vspeed")((new
-			// Integer(0)));};
+			
+			
+			
+			
 
 			int loc = 1;
 			ints = new Vector(5);
 			ints.add(1);
 			ints.add(2);
 			Integer iii = new Integer(9);
-
+			Variable[] vars = {new Variable()};
+			Variable v;
 			long start = System.currentTimeMillis();
-			for (int i = 0; i < 9999; i++) {
+			for (int i = 0; i < 999999; i++) {
+				v =  iii.add(Game.getValueOf(1));//550
 				// add(iii,2);//26 to 52
 				// iii.add(iii.getValueOf(2));//50 to 59 (23to78)
-
-				iii.add(iii);// 269 to 331(hashtable),223 to 258
+				//self.setVariable("s",iii); //448 to 188
+				//vars[0]=iii; //275
+				//iii.add(iii);// 269 to 331(hashtable),223 to 258
 				// self.getVariable("i").add(new Integer(1));
 				// self.getVariable("i").add(1);//.);
 			}

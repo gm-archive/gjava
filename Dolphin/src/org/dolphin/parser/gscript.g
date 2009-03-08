@@ -211,7 +211,7 @@ array returns [String value]
 NUMBER : (DIGIT)+ ;
 
 HEXNUMBER
-: '$' (DIGIT|LETTER)*
+: '$' (DIGIT||'a'..'z'|'A'..'Z')*
 ;
 
 GLOBALVAR
@@ -230,11 +230,11 @@ WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' WORD )+  { $channel
 fragment DIGIT : '0'..'9' ;
 
 WORD
-: ('_'|LETTER) ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
+: ('_'|'a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
 ;
 
-LETTER : ('a'..'z'|'A'..'Z')
-;
+//LETTER : 
+//;
 
 
 COMMENT
