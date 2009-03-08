@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry including="**" kind="src" path="LateralGM"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/LateralGM"/>
-	<classpathentry kind="lib" path="sun-javac.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
