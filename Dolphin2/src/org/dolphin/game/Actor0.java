@@ -78,6 +78,7 @@ public class Actor0 extends Actor {
 			long start = System.currentTimeMillis();
 			for (int i = 0; i < 999999; i++) {
 				v =  iii.add(Game.getValueOf(1));//550
+				//test to see if in new branch
 				// add(iii,2);//26 to 52
 				// iii.add(iii.getValueOf(2));//50 to 59 (23to78)
 				//self.setVariable("s",iii); //448 to 188
