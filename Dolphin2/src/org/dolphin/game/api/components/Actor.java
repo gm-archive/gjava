@@ -11,15 +11,11 @@ import java.util.*;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.exceptions.DestroyException;
-import org.dolphin.game.api.types.String;
-import org.dolphin.game.api.types.Double;
-import org.dolphin.game.api.types.Integer;
-import org.dolphin.game.api.types.Variable;
-import org.dolphin.game.api.types.Boolean;
 import org.dolphin.game.api.GCL;
-import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.Math;
+import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.exceptions.RoomChangedException;
+import org.dolphin.game.api.types.Variable;
 
 
 /**
@@ -30,10 +26,10 @@ import org.dolphin.game.api.exceptions.RoomChangedException;
 public class Actor extends Tile implements Serializable {
 private static final long serialVersionUID = 1L;
 
-   public Hashtable<java.lang.String, Variable> variables = new Hashtable<java.lang.String, Variable>();
+   public Hashtable<java.lang.String, Object> Objects = new Hashtable<java.lang.String, Object>();
     public Sprite sprite;
 
-    public org.dolphin.game.api.types.Variable  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
+    public Object  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
     public int[] alarm = new int[11];
    public double xprevious,  xstart,  yprevious,  ystart;
 	public double hspeed;
@@ -68,25 +64,25 @@ private static final long serialVersionUID = 1L;
     }
 
     /**
-     * Create a new Actor using variable objects
+     * Create a new Actor using Object objects
      */
-    public Actor(Variable X, Variable Y, Variable instance_id) {
-        this.xstart = ((Variable) X).getFloat();
-        this.ystart = Y.getFloat();
-        this.id = instance_id.getDouble();
-        this.x = X.getFloat();
-        this.y = Y.getFloat();
+    public Actor(Object X, Object Y, Object instance_id) {
+        this.xstart = ((Double)X).floatValue();
+        this.ystart = ((Double)Y).floatValue();
+        this.id = ((Double)instance_id);
+        this.x = ((Double)X).floatValue();
+        this.y = ((Double)Y).floatValue();
         //posinvector=pos;
         self = this;
     }
 
-    static Variable DSolid,DVisible,DSprite,DDepth,Dpersistent;
+    static Object DSolid,DVisible,DSprite,DDepth,Dpersistent;
     /**
-     * Creates a new actor using variables
+     * Creates a new actor using Objects
      */
-    public Actor(Variable Object_name, Sprite spr, Variable Solid, Variable Visible, Variable Depth, Variable Persistent) {
-        solid = Solid.getBoolean();
-        visible = Visible.getBoolean();
+    public Actor(Object Object_name, Sprite spr, Object Solid, Object Visible, Object Depth, Object Persistent) {
+        solid = ((Boolean)Solid);
+        visible = ((Boolean)Visible);
         depth = Depth;
         persistent = Persistent;
         sprite = spr;
@@ -159,7 +155,7 @@ private static final long serialVersionUID = 1L;
     
     public void Alarm() throws RoomChangedException {
         for (int i = 0; i < alarm.length; i++) {
-            int variable = alarm[i];
+            int Object = alarm[i];
             if (alarm[i]>0){
             alarm[i]--;
             if (alarm[i]==0){
@@ -239,7 +235,7 @@ private static final long serialVersionUID = 1L;
         Actor G_Java_a = ((Actor)Game.currentRoom.instances.elementAt(i));
         if (G_Java_a == this) return;
         if (G_Java_a.getBounds().intersects(thisbounds)){
-            if (G_Java_a.getSolid().getBoolean()){x=xprevious;y=yprevious;}
+            if ((Boolean)G_Java_a.getSolid()){x=xprevious;y=yprevious;}
                 //System.out.println("Collided");
             other=G_Java_a;
             Collision(G_Java_a.name);
@@ -293,23 +289,23 @@ private static final long serialVersionUID = 1L;
         yprevious = y;
 
         //use gravity
-        if(getGravity().getDouble() !=0){
-        int gd = getGravity_direction().getInt();
+        if(((Double)getGravity()) !=0){
+        int gd = ((Double)getGravity_direction()).intValue();
         gd %= 360;
         if (gd != 90 && gd != 270) {
-            hspeed += Math.cos((getGravity_direction().getDouble() / 180) * Math.PI) * getGravity().getDouble();
+            hspeed += Math.cos((((Double)getGravity_direction()) / 180) * Math.PI) * ((Double)getGravity());
         }
         if (gd != 0 && gd != 180) {
-            vspeed -= Math.sin((getGravity_direction().getDouble() / 180) * Math.PI) * getGravity().getDouble();
+            vspeed -= Math.sin((((Double)getGravity_direction()) / 180) * Math.PI) * ((Double)getGravity());
         }
         }
         //use friction
 
-        if (getFriction().getDouble() != 0) {
-            if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() > 0) {
-                setSpeed(getSpeed().sub(getFriction()));
-            } else if (getSpeed().getDouble() < getFriction().getDouble() && getSpeed().getDouble() < 0) {
-                setSpeed(getSpeed().add(getFriction()));
+        if (((Double)getFriction()) != 0) {
+            if (((Double)getSpeed()) > ((Double)getFriction()) && ((Double)getSpeed()) > 0) {
+                setSpeed(Variable.sub(getSpeed(),getFriction()));
+            } else if (((Double)getSpeed()) < ((Double)getFriction()) && ((Double)getSpeed()) < 0) {
+                setSpeed(Variable.add(getSpeed(),getFriction()));
             } else {
                 setSpeed(new Integer(0));
             }
@@ -343,35 +339,35 @@ private static final long serialVersionUID = 1L;
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     
-    public Variable getBbox_bottom() {
+    public Object getBbox_bottom() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.BBBottom);
     }
 
-    public Variable getBbox_left() {
+    public Object getBbox_left() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.BBLeft);
     }
 
-    public Variable getBbox_right() {
+    public Object getBbox_right() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.BBRight);
     }
 
-    public Variable getBbox_top() {
+    public Object getBbox_top() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.BBTop);
     }
 
-    public Variable getDepth() {
+    public Object getDepth() {
         if (depth == null) {
             depth = _0;
         }
@@ -379,7 +375,7 @@ private static final long serialVersionUID = 1L;
     }
    
 
-    public Variable getDirection() {
+    public Object getDirection() {
         double dd = Math.radtodeg(Math.arctan2(-vspeed, hspeed));
         if (dd < 0) {
             dd += 360;
@@ -388,173 +384,173 @@ private static final long serialVersionUID = 1L;
        
     }
 
-    public Variable getFriction() {
+    public Object getFriction() {
         if (friction == null) {
             friction = _0;
         }
         return friction;
     }
 
-    public Variable getGravity() {
+    public Object getGravity() {
         if (gravity == null) {
             gravity = _0;
         }
         return gravity;
     }
     
-    public Variable getGravity_direction() {
+    public Object getGravity_direction() {
         if (gravity_direction == null) {
             gravity_direction = _0;
         }
         return gravity_direction;
     }
 
-    public Variable getHspeed() {
+    public Object getHspeed() {
 
         return new Double(hspeed);
     }
 
-    public Variable getId() {
+    public Object getId() {
 //        if (id == null) {
 //            id = _0;
 //        }
         return new Double(id);
     }
 
-    public Variable getImage_alpha() {
+    public Object getImage_alpha() {
         if (image_alpha == null) {
             image_alpha = _0;
         }
         return image_alpha;
     }
 
-    public Variable getImage_angle() {
+    public Object getImage_angle() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Double(sprite.image_angle);
     }
 
-    public Variable getImage_blend() {
+    public Object getImage_blend() {
         if (image_blend == null) {
             image_blend = _0;
         }
         return image_blend;
     }
 
-    public Variable getImage_index() {
+    public Object getImage_index() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Double(sprite_index);
     }
 
-    public Variable getImage_number() {
+    public Object getImage_number() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.subimages);
     }
 
-    public Variable getImage_single() {
+    public Object getImage_single() {
         if (image_single == null) {
             image_single = _0;
         }
         return image_single;
     }
 
-    public Variable getImage_speed() {
+    public Object getImage_speed() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Double(sprite_speed);
     }
 
-    public Variable getImage_xscale() {
+    public Object getImage_xscale() {
         if (sprite == null) {
             return new Integer(1);
         }
         return new Double(image_xscale);
     }
 
-    public Variable getImage_yscale() {
+    public Object getImage_yscale() {
         if (sprite == null) {
             return new Integer(1);
         }
         return new Double(image_yscale);
     }
 
-    public Variable getMask_index() {
+    public Object getMask_index() {
         if (mask_index == null) {
             mask_index = _0;
         }
         return mask_index;
     }
 
-    public Variable getObject_index() {
+    public Object getObject_index() {
         if (object_index == null) {
             object_index = _0;
         }
         return object_index;
     }
 
-    public Variable getPath_endaction() {
+    public Object getPath_endaction() {
         if (path_endaction == null) {
             path_endaction = _0;
         }
         return path_endaction;
     }
 
-    public Variable getPath_index() {
+    public Object getPath_index() {
         if (path_index == null) {
             path_index = _0;
         }
         return path_index;
     }
 
-    public Variable getPath_orientation() {
+    public Object getPath_orientation() {
         if (path_orientation == null) {
             path_orientation = _0;
         }
         return path_orientation;
     }
 
-    public Variable getPath_position() {
+    public Object getPath_position() {
         if (path_position == null) {
             path_position = _0;
         }
         return path_position;
     }
 
-    public Variable getPath_positionprevious() {
+    public Object getPath_positionprevious() {
         if (path_positionprevious == null) {
             path_positionprevious = _0;
         }
         return path_positionprevious;
     }
 
-    public Variable getPath_scale() {
+    public Object getPath_scale() {
         if (path_scale == null) {
             path_scale = _0;
         }
         return path_scale;
     }
 
-    public Variable getPath_speed() {
+    public Object getPath_speed() {
         if (path_speed == null) {
             path_speed = _0;
         }
         return path_speed;
     }
 
-    public Variable getPersistent() {
+    public Object getPersistent() {
         if (persistent == null) {
             persistent = _0;
         }
         return persistent;
     }
 
-    public Variable getSolid() {
+    public Object getSolid() {
         if (solid)
         return Boolean.TRUE;
         else
@@ -562,257 +558,257 @@ private static final long serialVersionUID = 1L;
     }
     
 
-    public Variable getSpeed() {
+    public Object getSpeed() {
        return Game.getValueOf(Math.sqrt((hspeed * hspeed) + (vspeed * vspeed)));
         
     //return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
     }
 
-    public Variable getSprite_height() {
+    public Object getSprite_height() {
         if (sprite == null) {
             return new Integer(-1);
         }
         return new Integer(sprite.sprite_height*image_yscale);
     }
 
-    public Variable getSprite_index() {
+    public Object getSprite_index() {
         if (sprite == null) {
             return new Integer(0);
         }
         return sprite;
     }
 
-    public Variable getSprite_width() {
+    public Object getSprite_width() {
         if (sprite == null) {
             return new Integer(-1);
         }
         return new Integer(sprite.sprite_width*image_xscale);
     }
 
-    public Variable getSprite_xoffset() {
+    public Object getSprite_xoffset() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.sprite_xoffset);
     }
 
-    public Variable getSprite_yoffset() {
+    public Object getSprite_yoffset() {
         if (sprite == null) {
             return new Integer(0);
         }
         return new Integer(sprite.sprite_yoffset);
     }
 
-    public Variable getTimeline_index() {
+    public Object getTimeline_index() {
         if (timeline_index == null) {
             timeline_index = _0;
         }
         return timeline_index;
     }
 
-    public Variable getTimeline_position() {
+    public Object getTimeline_position() {
         
         return new Double(timeline_position);
     }
 
-    public Variable getTimeline_speed() {
+    public Object getTimeline_speed() {
         
         return new Double(timeline_speed);
     }
 
-    public Variable getVisible() {
+    public Object getVisible() {
 
         return new Boolean(visible);
     }
 
-    public Variable getVspeed() {
+    public Object getVspeed() {
 
         return new Double(vspeed);
     }
 
-    public Variable getX() {
+    public Object getX() {
 
         return new Double(x);
     }
 
-    public Variable getXprevious() {
+    public Object getXprevious() {
         return new Double(xprevious);
     }
 
-    public Variable getXstart() {
+    public Object getXstart() {
         return new Double(xstart);
     }
 
-    public Variable getY() {
+    public Object getY() {
         return new Double(y);
     }
 
-    public Variable getYprevious() {
+    public Object getYprevious() {
         return new Double(yprevious);
     }
 
-    public Variable getYstart() {
+    public Object getYstart() {
         return new Double(ystart);
     }
     // </editor-fold>   
 // <editor-fold defaultstate="collapsed" desc="Setters"> 
    
-    public void setBbox_bottom(Variable bbox_bottom) {
+    public void setBbox_bottom(Object bbox_bottom) {
         if (sprite == null) {
             return;
         }
-        sprite.BBBottom = (int) bbox_bottom.getDouble();
+        sprite.BBBottom = ((Double)bbox_bottom).intValue();
     }
 
-    public void setBbox_left(Variable bbox_left) {
+    public void setBbox_left(Object bbox_left) {
         if (sprite == null) {
             return;
         }
-        sprite.BBLeft = (int) bbox_left.getDouble();
+        sprite.BBLeft = ((Double)bbox_left).intValue();
     }
 
-    public void setBbox_right(Variable bbox_right) {
+    public void setBbox_right(Object bbox_right) {
         if (sprite == null) {
             return;
         }
-        sprite.BBRight = (int) bbox_right.getDouble();
+        sprite.BBRight = ((Double)bbox_right).intValue();
     }
 
-    public void setBbox_top(Variable bbox_top) {
+    public void setBbox_top(Object bbox_top) {
         if (sprite == null) {
             return;
         }
-        sprite.BBTop = (int) bbox_top.getDouble();
+        sprite.BBTop = ((Double)bbox_top).intValue();
     }
 
-    public void setDepth(Variable depth) {
+    public void setDepth(Object depth) {
         this.depth = depth;
         Game.currentRoom.SortDepth();
     }
 
-    public void setDirection(Variable direction) {
-        double sp = getSpeed().getDouble();
+    public void setDirection(Object direction) {
+        double sp = ((Double)getSpeed());
         System.out.println("speed:" + sp);
         if (sp == 0) {
             sp = 1;
         }
-        hspeed = sp * cos(degtorad(direction)).getDouble();
-        vspeed = -sp * sin(degtorad(direction)).getDouble();
+        hspeed = sp * (Double)cos(degtorad(direction));
+        vspeed = -sp * (Double)sin(degtorad(direction));
     }
 
-    public void setFriction(Variable friction) {
+    public void setFriction(Object friction) {
         this.friction = friction;
     }
 
-    public void setGravity(Variable gravity) {
+    public void setGravity(Object gravity) {
         this.gravity = gravity;
     }
 
-    public void setGravity_direction(Variable gravity_direction) {
+    public void setGravity_direction(Object gravity_direction) {
         this.gravity_direction = gravity_direction;
     }
 
-    public void setHspeed(Variable hspeed) {
-        this.hspeed = hspeed.getDouble();
+    public void setHspeed(Object hspeed) {
+        this.hspeed = ((Double)hspeed);
     }
 
-    public void setId(Variable id) {
+    public void setId(Object id) {
        // id is contstant
     }
 
-    public void setImage_alpha(Variable image_alpha) {
+    public void setImage_alpha(Object image_alpha) {
         this.image_alpha = image_alpha;
     }
 
-    public void setImage_angle(Variable image_angle) {
+    public void setImage_angle(Object image_angle) {
         if (sprite != null) {
-            sprite.angle((int) image_angle.getDouble());
+            sprite.angle(((Double)image_angle).intValue());
         }
     }
 
-    public void setImage_blend(Variable image_blend) {
+    public void setImage_blend(Object image_blend) {
         this.image_blend = image_blend;
     }
 
-    public void setImage_index(Variable image_index) {
+    public void setImage_index(Object image_index) {
         if (sprite != null) {
-            sprite_index = (int) image_index.getDouble();
+            sprite_index = ((Double)image_index).intValue();
         }
     }
 
-    public void setImage_number(Variable image_number) {
+    public void setImage_number(Object image_number) {
         //constant
     }
 
-    public void setImage_single(Variable image_single) {
+    public void setImage_single(Object image_single) {
         this.image_single = image_single;
     }
 
-    public void setImage_speed(Variable image_speed) {
-        sprite_speed = image_speed.getDouble();
+    public void setImage_speed(Object image_speed) {
+        sprite_speed = ((Double)image_speed);
     }
 
-    public void setImage_xscale(Variable image_xscale) {
-        this.image_xscale= image_xscale.getInt();
+    public void setImage_xscale(Object image_xscale) {
+        this.image_xscale= ((Double)image_xscale).intValue();
         
     }
 
-    public void setImage_yscale(Variable image_yscale) {
-        this.image_yscale= image_yscale.getInt();
+    public void setImage_yscale(Object image_yscale) {
+        this.image_yscale= ((Double)image_yscale).intValue();
         
     }
 
-    public void setObject_index(Variable object_index) {
+    public void setObject_index(Object object_index) {
         this.object_index = object_index;
     }
 
-    public void setPath_endaction(Variable path_endaction) {
+    public void setPath_endaction(Object path_endaction) {
         this.path_endaction = path_endaction;
     }
 
-    public void setPath_index(Variable path_index) {
+    public void setPath_index(Object path_index) {
         this.path_index = path_index;
     }
 
-    public void setPath_orientation(Variable path_orientation) {
+    public void setPath_orientation(Object path_orientation) {
         this.path_orientation = path_orientation;
     }
 
-    public void setPath_position(Variable path_position) {
+    public void setPath_position(Object path_position) {
         this.path_position = path_position;
     }
 
-    public void setPath_positionprevious(Variable path_positionprevious) {
+    public void setPath_positionprevious(Object path_positionprevious) {
         this.path_positionprevious = path_positionprevious;
     }
 
-    public void setPath_scale(Variable path_scale) {
+    public void setPath_scale(Object path_scale) {
         this.path_scale = path_scale;
     }
 
-    public void setPath_speed(Variable path_speed) {
+    public void setPath_speed(Object path_speed) {
         this.path_speed = path_speed;
     }
 
-    public void setPersistent(Variable persistent) {
+    public void setPersistent(Object persistent) {
         this.persistent = persistent;
     }
 
-    public void setSolid(Variable solid) {
-        this.solid = solid.getBoolean();
+    public void setSolid(Object solid) {
+        this.solid = ((Boolean)solid);
     }
 
-    public void setSpeed(Variable speed) {
+    public void setSpeed(Object speed) {
 
-        hspeed = speed.getDouble() * Math.cos(Math.degtorad(getDirection().getDouble()));
-        vspeed = -speed.getDouble() * Math.sin(Math.degtorad(getDirection().getDouble()));
+        hspeed = ((Double)speed) * Math.cos(Math.degtorad((Double)getDirection()));
+        vspeed = -((Double)speed) * Math.sin(Math.degtorad(((Double)getDirection())));
     }
 
-    public void setSprite_height(Variable sprite_height) {
+    public void setSprite_height(Object sprite_height) {
         //constant
     }
 
-    public void setSprite_index(Variable sprite_index) {
+    public void setSprite_index(Object sprite_index) {
         if (sprite_index != null) {
             if (sprite_index instanceof Sprite) {
                 sprite = (Sprite) sprite_index;
@@ -820,182 +816,182 @@ private static final long serialVersionUID = 1L;
         }
     }
 
-    public void setSprite_width(Variable sprite_width) {
+    public void setSprite_width(Object sprite_width) {
         //constant
     }
 
-    public void setSprite_xoffset(Variable sprite_xoffset) {
-        sprite.sprite_xoffset = (int) sprite_xoffset.getDouble();
+    public void setSprite_xoffset(Object sprite_xoffset) {
+        sprite.sprite_xoffset = ((Double)sprite_xoffset).intValue();
     }
 
-    public void setSprite_yoffset(Variable sprite_yoffset) {
-        sprite.sprite_yoffset = (int) sprite_yoffset.getDouble();
+    public void setSprite_yoffset(Object sprite_yoffset) {
+        sprite.sprite_yoffset = ((Double)sprite_yoffset).intValue();
     }
 
-    public void setTimeline_index(Variable timeline_index) {
+    public void setTimeline_index(Object timeline_index) {
         this.timeline_index = timeline_index;
     }
 
-    public void setTimeline_position(Variable timeline_position) {
-        this.timeline_position = timeline_position.getDouble();
+    public void setTimeline_position(Object timeline_position) {
+        this.timeline_position = ((Double)timeline_position);
     }
 
-    public void setTimeline_speed(Variable timeline_speed) {
-        this.timeline_speed = timeline_speed.getDouble();
+    public void setTimeline_speed(Object timeline_speed) {
+        this.timeline_speed = ((Double)timeline_speed);
     }
 
-    public void setVisible(Variable visible) {
-        this.visible = visible.getBoolean();
+    public void setVisible(Object visible) {
+        this.visible = ((Boolean)visible);
     }
 
-    public void setVspeed(Variable vspeed) {
-        this.vspeed = vspeed.getDouble();
+    public void setVspeed(Object vspeed) {
+        this.vspeed = ((Double)vspeed);
     }
 
-    public void setX(Variable x) {
-        this.x = x.getDouble();
+    public void setX(Object x) {
+        this.x = ((Double)x);
     }
 
     public void setX(double x) {
         setX(new Double(x));
     }
 
-    public void setXprevious(Variable xprevious) {
-        this.xprevious = xprevious.getDouble();
+    public void setXprevious(Object xprevious) {
+        this.xprevious = ((Double)xprevious);
     }
 
-    public void setXstart(Variable xstart) {
-        this.xstart = xstart.getDouble();
+    public void setXstart(Object xstart) {
+        this.xstart = ((Double)xstart);
     }
 
-    public void setYprevious(Variable yprevious) {
-        this.yprevious = yprevious.getDouble();
+    public void setYprevious(Object yprevious) {
+        this.yprevious = ((Double)yprevious);
     }
 
-    public void setMask_index(Variable mask_index) {
+    public void setMask_index(Object mask_index) {
         this.mask_index = mask_index;
     }
 
-    public void setY(Variable y) {
-        this.y = y.getDouble();
+    public void setY(Object y) {
+        this.y = ((Double)y);
     }
 
     public void setY(double y) {
         setY(new Double(y));
     }
 
-    public void setYstart(Variable ystart) {
-        this.ystart = ystart.getFloat();
+    public void setYstart(Object ystart) {
+        this.ystart = ((Double)ystart).floatValue();
     }
     // </editor-fold>   
-    /*public void setVariable(String name, Variable value) {
+    /*public void setObject(String name, Object value) {
         try {
             java.lang.String nm = "" + name;
-            Method m = Variables.class.getDeclaredMethod("set" + name.charAt(nm, 0).toUpperCase() + nm.substring(1) + "", new Class[]{Object.class});
+            Method m = Objects.class.getDeclaredMethod("set" + name.charAt(nm, 0).toUpperCase() + nm.substring(1) + "", new Class[]{Object.class});
             try {
 
-                m.invoke(Variables.class.newInstance(), value);
+                m.invoke(Objects.class.newInstance(), value);
 
                 System.out.println("method invoked!");
             } catch (Exception ex) {
                 System.out.println("no method" + ex);
-                variables.put(name.toString(), value);
+                Objects.put(name.toString(), value);
             }
         } catch (NoSuchMethodException ex) {
             System.out.println("no method" + ex);
-            variables.put(name.toString(), value);
+            Objects.put(name.toString(), value);
         } catch (SecurityException ex) {
             System.out.println("security:" + ex);
-            variables.put(name.toString(), value);
+            Objects.put(name.toString(), value);
         }
 
 
     }*/
 
     /*
-     * This function is required, it sets the value of variable with string name.
+     * This function is required, it sets the value of Object with string name.
      */
-    public void setVariable(java.lang.String name, Variable value) {
-        variables.put(name, value);
+    public void setObject(java.lang.String name, Object value) {
+        Objects.put(name, value);
     }
     
     /*
-     * This function is required, for using *= with custom variables
+     * This function is required, for using *= with custom Objects
      */
-    public void multVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).mult(multValue));
+    public void multObject(java.lang.String name, Object multValue) {
+        Objects.put(name, Variable.mult(Objects.get(name),multValue));
     }
     
     /*
-     * This function is required, for using += with custom variables
+     * This function is required, for using += with custom Objects
      */
-    public void addVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).add(multValue));
+    public void addObject(java.lang.String name, Object multValue) {
+        Objects.put(name,Variable.add( Objects.get(name),multValue));
     }
     
     /*
-     * This function is required, for using -= with custom variables
+     * This function is required, for using -= with custom Objects
      */
-    public void subVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).sub(multValue));
+    public void subObject(java.lang.String name, Object multValue) {
+        Objects.put(name, Variable.sub(Objects.get(name),multValue));
     }
     
     /*
-     * This function is required, for using /= with custom variables
+     * This function is required, for using /= with custom Objects
      */
-    public void divVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).div(multValue));
+    public void divObject(java.lang.String name, Object multValue) {
+        Objects.put(name, Variable.div(Objects.get(name),multValue));
     }
     
     /*
-     * This function is required, for using &= with custom variables
+     * This function is required, for using &= with custom Objects
      */
-    public void bandVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).band(multValue));
+    public void bandObject(java.lang.String name, Object multValue) {
+        Objects.put(name, Variable.band(Objects.get(name),multValue));
     }
     
     /*
-     * This function is required, for using *= with custom variables
+     * This function is required, for using *= with custom Objects
      */
-    public void borVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).bor(multValue));
+    public void borObject(java.lang.String name, Object multValue) {
+        Objects.put(name, Variable.bor(Objects.get(name),multValue));
     }
     
     /*
-     * This function is required, for using *= with custom variables
+     * This function is required, for using *= with custom Objects
      */
-    public void bxorVariable(java.lang.String name, Variable multValue) {
-        variables.put(name, variables.get(name).bxor(multValue));
+    public void bxorVariable(java.lang.String name, Object multValue) {
+        Objects.put(name, Variable.bxor(Objects.get(name),multValue));
     }
     
     /*
      * Test function for ints
      * 
      */
-    public void setVariable(java.lang.String name, int value) {
-        variables.put(name, new Integer(value));
+    public void setObject(java.lang.String name, int value) {
+        Objects.put(name, new Integer(value));
     }
 
-    public Variable getVariable(String name) {
+    public Object getObject(String name) {
         try {
             java.lang.String nm = "" + name;
             Method m = Variables.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
             try {
-                return (Variable) m.invoke(Variables.class.newInstance(), null);
+                return (Object) m.invoke(Variables.class.newInstance(), null);
 
             } catch (Exception ex) {
                 System.out.println("no method" + ex);
-                variables.get(name.toString());
+                Objects.get(name.toString());
             }
         } catch (NoSuchMethodException ex) {
             System.out.println("no method" + ex);
-            variables.get(name.toString());
+            Objects.get(name.toString());
         } catch (SecurityException ex) {
             System.out.println("security:" + ex);
-            variables.get(name.toString());
+            Objects.get(name.toString());
         }
 
-        Variable o = (Variable) variables.get(name.toString());
+        Object o = (Object) Objects.get(name.toString());
         if (o == null) {
             return new Integer(0);
         }
@@ -1003,25 +999,25 @@ private static final long serialVersionUID = 1L;
     }
 
     /*
-     * Gets the value of the variable with string name.
+     * Gets the value of the Object with string name.
      * 
      */
-    public Variable getVariable(java.lang.String name) {
-        Variable o = (Variable) variables.get(name.toString());
+    public Object getVariable(java.lang.String name) {
+        Object o = (Object) Objects.get(name.toString());
         if (o == null) {
             o=new Integer(0);
-            variables.put(name.toString(),o );
+            Objects.put(name.toString(),o );
             return o;
         }
         return o;
     }
 
-    public Variable getAlarm(int id) {
+    public Object getAlarm(int id) {
     return new Integer(alarm[id]);
     }
 
-    public void setAlarm(int id,Variable v){
-    alarm[id]=v.getInt();
+    public void setAlarm(int id,Object v){
+    alarm[id]=((Double)v).intValue();
     }
     
     public Actor getActor(){

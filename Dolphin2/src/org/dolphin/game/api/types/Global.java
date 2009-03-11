@@ -1,7 +1,5 @@
 package org.dolphin.game.api.types;
 import java.util.Hashtable;
-import org.dolphin.game.api.types.Integer;
-import org.dolphin.game.api.types.String;
 
 /**
  * This is used to store global Variables
@@ -9,82 +7,72 @@ import org.dolphin.game.api.types.String;
  */
 public class Global  {
     
-     public static Hashtable<java.lang.String, Variable> Variables = new Hashtable<java.lang.String, Variable>(10);
+     public static Hashtable<java.lang.String, Object> Variables = new Hashtable<java.lang.String, Object>(10);
     
     
     public static void setVariable(String name, Object value)
     {
-        Variables.put(name.toString(), (Variable)value);
+        Variables.put(name.toString(), (Object)value);
         
     }
     
-    public static void setVariable(java.lang.String name, Object value)
-    {
-        Variables.put(name, (Variable)value);
-        
-    }
     
-    public static Variable getVariable(String name)
+    
+    public static Object getVariable(String name)
     {
-    	Variable o = (Variable)Variables.get(name.toString());
-         if (o == null) return new Integer(0);
+    	Object o = (Object)Variables.get(name.toString());
+         if (o == null) return 0.0d;
         return o;
     }
     
-     public static Variable getVariable(java.lang.String name)
-    {
-         Variable o = (Variable)Variables.get(name.toString());
-         if (o == null) return new Integer(0);
-        return o;
-    }
-     
+         
      /*
       * This function is required, for using *= with custom Variables
       */
-     public static void multVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).mult(multValue));
+     public static void multVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.mult(Variables.get(name),multValue));
      }
      
      /*
       * This function is required, for using += with custom Variables
       */
-     public static void addVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).add(multValue));
+     public static void addVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.add(Variables.get(name),multValue));
      }
      
      /*
       * This function is required, for using -= with custom Variables
       */
-     public static void subVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).sub(multValue));
+     public static void subVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.sub(Variables.get(name),multValue));
      }
      
      /*
       * This function is required, for using /= with custom Variables
       */
-     public static void divVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).div(multValue));
+     public static void divVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.div(Variables.get(name),multValue));
      }
      
      /*
       * This function is required, for using &= with custom Variables
       */
-     public static void bandVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).band(multValue));
+     public static void bandVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.band(Variables.get(name),multValue));
      }
      
      /*
       * This function is required, for using *= with custom Variables
       */
-     public static void borVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).bor(multValue));
+     public static void borVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.bor(Variables.get(name),multValue));
      }
      
      /*
       * This function is required, for using *= with custom Variables
       */
-     public static void bxorVariable(java.lang.String name, Variable multValue) {
-         Variables.put(name, Variables.get(name).bxor(multValue));
+     public static void bxorVariable(java.lang.String name, Object multValue) {
+         Variables.put(name, Variable.bxor(Variables.get(name),(multValue)));
      }
 
 }

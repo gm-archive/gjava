@@ -168,12 +168,12 @@ depth=new Vector<Tile>();
 public void updateCaption()
 {
     String cap = "";
-    if (Variables.show_score.getBoolean() && Variables.score.getDouble()!=0)
-        cap += Variables.caption_score.getString().add (Variables.score.getString());
-    if (Variables.show_lives.getBoolean())
-        cap += Variables.caption_lives.getString().add (Variables.lives.getString());
-    if (Variables.show_health.getBoolean())
-        cap += Variables.caption_health.getString().add (Variables.health.getString());
+    if (((Boolean)Variables.show_score) && ((Double)Variables.score)!=0)
+        cap += ""+Variables.caption_score+ (Variables.score);
+    if (((Boolean)Variables.show_lives))
+        cap += ""+Variables.caption_lives+ (Variables.lives);
+    if (((Boolean)Variables.show_health))
+        cap += ""+Variables.caption_health+ (Variables.health);
     Game.frame.setTitle(Caption+" "+ cap);
 }
 
@@ -389,7 +389,7 @@ public void render(Graphics2D g2d2)  {
     /*
      * Used to get the list for with statement
      */
-    public Actor[] with(Variable v) {
+    public Actor[] with(Object v) {
         Vector<Actor> ac = new Vector();
         if (v == other) {
             ac.add(other);

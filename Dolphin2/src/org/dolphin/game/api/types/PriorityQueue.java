@@ -3,12 +3,12 @@ package org.dolphin.game.api.types;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
-public class PriorityQueue extends Variable {
+public class PriorityQueue extends Object {
 	/* Stored as a TreeMap with the key representing the priority in the queue.
      * TreeMap stores in ascending order of key, so to get head of queue, get
      * the first key in the TreeMap.
      */
-    private TreeMap<Variable, Variable> m;
+    private TreeMap<Object, Object> m;
     
     public PriorityQueue()
     {
@@ -35,7 +35,7 @@ public class PriorityQueue extends Variable {
         return m.isEmpty();
     }
     
-    public void add(Variable value, Variable priority)
+    public void add(Object value, Object priority)
     {
         m.put(priority, value);
     }
@@ -44,85 +44,85 @@ public class PriorityQueue extends Variable {
     //find priority
     //delete value
     
-    public Variable deleteMin()
+    public Object deleteMin()
     {
         try
         {
-            Variable minKey = m.firstKey();
-            Variable minValue = m.get(minKey);
+            Object minKey = m.firstKey();
+            Object minValue = m.get(minKey);
             m.remove(minKey);
             return minValue;
         } catch (NoSuchElementException e)  //If the queue was empty
         {
-            return new Variable();
+            return 0.0d;
         }
     }
     
-    public Variable findMin()
+    public Object findMin()
     {
         try
         {
             return m.get(m.firstKey());
         } catch (NoSuchElementException e)  //If the queue was empty
         {
-            return new Variable();
+            return 0.0d;
         }
     }
     
-    public Variable deleteMax()
+    public Object deleteMax()
     {
         try
         {
-            Variable maxKey = m.lastKey();
-            Variable maxValue = m.get(maxKey);
+            Object maxKey = m.lastKey();
+            Object maxValue = m.get(maxKey);
             m.remove(maxKey);
             return maxValue;
         } catch (NoSuchElementException e) //If the queue was empty
         {
-            return new Variable();
+            return 0.0d;
         }
     }
     
-    public Variable findMax()
+    public Object findMax()
     {
         try
         {
             return m.get(m.lastKey());
         } catch (NoSuchElementException e)  //If the queue was empty
         {
-            return new Variable();
+            return 0.0d;
         }
     }
     
-    /** Returns the key for the given value, or new Variable()
+    /** Returns the key for the given value, or new Object()
      *  if the given value is not present
      */
-    private Variable getKey(Variable value)
+    private Object getKey(Object value)
     {
-        Variable currentKey = m.firstKey();
+        Object currentKey = m.firstKey();
         for (int i = 0; i < m.size(); i++)
         {
-            if (m.get(currentKey).compareTo(value) == 0)
+            if (Variable.compare(m.get(currentKey),value) == 0)
                 return currentKey;
             currentKey = m.higherKey(currentKey);
         }
-        return new Variable();
+        return 0.0d;
     }
     
-    public void changePriority(Variable value, Variable newPriority)
+    public void changePriority(Object value, Object newPriority)
     {
         //Keys are priorities...
-        Variable oldKey = getKey(value);
+        Object oldKey = getKey(value);
         m.remove(oldKey);
         m.put(newPriority, value);
     }
     
-    public Variable findPriority(Variable value)
+    public Object findPriority(Object value)
     {
         return getKey(value);
     }
     
-    public void deleteValue(Variable value)
+    public void deleteValue(Object value)
     {
         m.remove(getKey(value));
     }

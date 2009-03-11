@@ -6,7 +6,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import org.dolphin.game.api.types.String;
 
 public class Clipboard {
 
@@ -37,7 +36,7 @@ public class Clipboard {
 	public static String getText() {
 		Transferable clipboardContents = systemClipboard.getContents(null);
 		if (clipboardContents == null) {
-			return new String("");
+			return "";
 		} else {
 			try {
 				if (clipboardContents
@@ -51,7 +50,7 @@ public class Clipboard {
 			} catch (IOException ioe) {
 			}
 		}
-		return new String("");
+		return "";
 	}
 
 	/**

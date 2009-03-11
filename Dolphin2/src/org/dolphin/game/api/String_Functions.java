@@ -1,61 +1,10 @@
-package org.dolphin.game.api.types;
+package org.dolphin.game.api;
 
 import java.text.DecimalFormat;
 import java.text.FieldPosition;
 
-public class String extends Variable {
-
-	java.lang.String s = "";
-
-    public String(java.lang.String ss) {
-        s = ss;
-    }
-    
-    public String(byte[] b) {
-        s = new java.lang.String(b);
-    }
-    
-    public String(char[] c) {
-        s = new java.lang.String(c);
-    }
-
-    @Override
-    public String getString() {
-        return this;
-    }
-
-    @Override
-    public boolean getBoolean() {
-        return super.getBoolean();
-    }
-
-    @Override
-    public double getDouble() {
-        return java.lang.Double.parseDouble(s);
-    }
-    
-
-    @Override
-    public Variable add(Variable o) {
-        return new String(this.toString()+o.toString());
-    }
-    
-    
-
-    /**
-     * Returns the value of this String Variable as a string primitive.
-     * @return
-     */
-//    public java.lang.String getString() {
-//        return s;
-//    }
-
-    
-    public java.lang.String toString() {
-        return s;
-    }
-
-    /**
+public class String_Functions {
+	/**
      * Returns a string containing the character with asci code val.
      * @param v
      * @return
@@ -285,4 +234,5 @@ public class String extends Variable {
             }
             return s;
         }
+
 }

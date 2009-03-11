@@ -3,8 +3,8 @@ package org.dolphin.game.api.types;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
-public class Map extends Variable {
-	TreeMap<Variable, Variable> h;
+public class Map {
+	TreeMap<Object, Object> h;
 
 	public Map()
 	{
@@ -31,84 +31,84 @@ public class Map extends Variable {
 	      return  h.isEmpty();
 	    } 
 	     
-	     public void add(Variable key, Variable value)
+	     public void add(Object key, Object value)
 	    {
 	         h.put(key, value);
 	    } 
 	     
-	     public void delete(Variable key)
+	     public void delete(Object key)
 	    {
 	         h.remove(key);
 	    } 
 	     
-	     public boolean exists(Variable key)
+	     public boolean exists(Object key)
 	    {
 	         if (h.get(key) !=null ) return true;
 	         else return false;
 	    } 
 	     
-	     public Variable find(Variable key)
+	     public Object find(Object key)
 	    {
-	         return (Variable)h.get(key);
+	         return h.get(key);
 	    } 
 	     
-	     /** Returns the first (smallest) key, or new Variable() if the map is empty */
-	     public Variable findFirst()
+	     /** Returns the first (smallest) key, or new Object() if the map is empty */
+	     public Object findFirst()
 	     {
 	         try
 	         {
 	            return h.firstKey();
 	         } catch (NoSuchElementException e)
 	         {
-	             return new Variable();
+	             return 0.0d;
 	         }
 	     }
 	     
-	     /** Returns the last (largest) key, or new Variable() if the map is empty */
-	     public Variable findLast()
+	     /** Returns the last (largest) key, or new Object() if the map is empty */
+	     public Object findLast()
 	     {
 	         try
 	         {
 	            return h.lastKey();
 	         } catch (NoSuchElementException e)
 	         {
-	             return new Variable();
+	             return 0.0d;
 	         }
 	     }
 	     
-	     /** Returns previous key, or new Variable() if the order can't be determined
+	     /** Returns previous key, or new Object() if the order can't be determined
 	      *  or the key given is null or not in the map
 	      */
-	     public Variable findPrevious(Variable key)
+	     public Object findPrevious(Object key)
 	     {
 	         try
 	         {
-	             Variable o = h.lowerKey(key);
+	             Object o = h.lowerKey(key);
 	             if (o != null)
 	                 return o;
 	             else
-	                 return new Variable();
+	                 return 0.0d;
 	         } catch (Exception e)
 	         {
-	             return new Variable();
+	             return 0.0d;
 	         }
 	     }
 	     
-	     /** Returns next key, or new Variable() if the order can't be determined
+	     /** Returns next key, or new Object() if the order can't be determined
 	      *  or the key given is null or not in the map
 	      */
-	     public Variable findNext(Variable key)
+	     public Object findNext(Object key)
 	     {
 	         try
 	         {
-	             Variable o = h.higherKey(key);
+	             Object o = h.higherKey(key);
 	             if (o != null)
 	                 return o;
 	             else
-	                 return new Variable();
+	                 return 0.0d;
 	         } catch (Exception e)
 	         {
-	             return new Variable();
+	             return 0.0d;
 	         }
 	     }
 }

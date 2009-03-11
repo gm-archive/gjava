@@ -6,3 +6,4 @@ Arrays don't work well
 Instance variables don't work (10001). etc
 built in arrays probably don't work
 parser error with "var;" statement
+Parser: auto do +,/,-,*,== for doubles to other doubles

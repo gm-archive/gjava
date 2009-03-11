@@ -12,9 +12,6 @@ import java.io.Writer;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import org.dolphin.game.api.types.Integer;
-import org.dolphin.game.api.types.Double;
-
 import javax.swing.JOptionPane;
 
 import org.dolphin.game.api.Clipboard;
@@ -31,7 +28,7 @@ import com.golden.gamedev.GameLoader;
 import java.awt.Frame;
 import org.dolphin.game.api.components.Sprite;
 import org.dolphin.game.api.exceptions.RoomChangedException;
-import org.dolphin.game.api.types.Variable;
+
 public class BasicGame extends Game {
     /*The main game Frame*/
     public static Frame frame;
@@ -39,9 +36,9 @@ public class BasicGame extends Game {
     /*Hashtables used to store used resources*/
     public Hashtable backgrounds = new Hashtable(),sprites = new Hashtable(),sounds= new Hashtable();
 
-    public static Variable NUMBER_VARIABLE;//used for getting number from hashtable
-    public static Hashtable<java.lang.Integer,Variable> integers = new Hashtable();
-    public static Hashtable<java.lang.Double,Variable> doubles = new Hashtable();
+    public static Object NUMBER_Object;//used for getting number from hashtable
+    public static Hashtable<java.lang.Integer,Object> integers = new Hashtable();
+    public static Hashtable<java.lang.Double,Object> doubles = new Hashtable();
 
 	/*
 	 * Can't remember what this is for
@@ -75,7 +72,7 @@ public class BasicGame extends Game {
 	public static boolean fullscreen=false;
 	
 	/*
-	 * parameter_count is a variable that can be called in gml to get the number
+	 * parameter_count is a Object that can be called in gml to get the number
 	 * of parameters
 	 */
 	public static int parameter_count = 0;
@@ -236,7 +233,7 @@ public class BasicGame extends Game {
 			final Writer result = new StringWriter();
 			final PrintWriter printWriter = new PrintWriter(result);
 			e.printStackTrace(printWriter);
-			Clipboard.setText(new org.dolphin.game.api.types.String(("" + result.toString() + Clipboard.getText())));
+			Clipboard.setText("" + result.toString() + Clipboard.getText());
 			JOptionPane
 					.showMessageDialog(null,"Error: "
 									+ e
@@ -251,27 +248,27 @@ public class BasicGame extends Game {
 
 	}
 
-         public static Variable getValueOf(int i){
-        NUMBER_VARIABLE=integers.get(i);
-        if (NUMBER_VARIABLE !=null){
-        return NUMBER_VARIABLE;
+         public static Object getValueOf(int i){
+        NUMBER_Object=integers.get(i);
+        if (NUMBER_Object !=null){
+        return NUMBER_Object;
         }
         else {
-            NUMBER_VARIABLE=new Integer(i);
-        integers.put(i, NUMBER_VARIABLE);
-        return NUMBER_VARIABLE;
+            NUMBER_Object=new Integer(i);
+        integers.put(i, NUMBER_Object);
+        return NUMBER_Object;
         }
 
     }
-         public static Variable getValueOf(double d) {
-             NUMBER_VARIABLE=doubles.get(d);
-        if (NUMBER_VARIABLE !=null){
-        return NUMBER_VARIABLE;
+         public static Object getValueOf(double d) {
+             NUMBER_Object=doubles.get(d);
+        if (NUMBER_Object !=null){
+        return NUMBER_Object;
         }
         else {
-            NUMBER_VARIABLE=new Double(d);
-        doubles.put(d, NUMBER_VARIABLE);
-        return NUMBER_VARIABLE;
+            NUMBER_Object=d;
+        doubles.put(d, NUMBER_Object);
+        return NUMBER_Object;
         }
 
         }

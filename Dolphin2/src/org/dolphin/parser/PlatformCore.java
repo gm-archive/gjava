@@ -35,7 +35,6 @@ import org.dolphin.DolphinWriter;
 import org.dolphin.game.Game;
 import org.dolphin.game.api.Constants;
 import org.dolphin.game.api.Variables;
-import org.dolphin.game.api.types.Boolean;
 import org.lateralgm.resources.GmObject;
 
 

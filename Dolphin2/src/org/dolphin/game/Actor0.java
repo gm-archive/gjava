@@ -13,10 +13,7 @@ import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Global;
-import org.dolphin.game.api.types.Integer;
-import org.dolphin.game.api.types.Double;
-import org.dolphin.game.api.types.String;
-import org.dolphin.game.api.types.Boolean;
+
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.Variable;
 
@@ -41,28 +38,19 @@ public class Actor0 extends Actor {
 					//{
 				//for (int ii = 0; ii < Game.currentRoom.instances.size(); ii++)   Game.currentRoom.instances.get(i).getVariable("s").mult(self.getX()));}
 		}*/
-		this.setVariable("s",Game.getValueOf(2));
-		this.multVariable("s",Game.getValueOf(20));
-		System.out.println("Value:"+this.getVariable("s").getInt());
+		
+		
 	}
 
 	Vector ints = new Vector(1);
 
-	public int add(int i1, int i2) {
-		return i1 + i2;
-	}
-
-	public Variable add(Variable i1, int i2) {
-		return new Integer(i1.getInt() + i2);
-	}
-
+	
 	public void Create() {
 		// action_move((new String("000001000")), (new Integer(6)));
 		hspeed = 1;
 		// setTimeline_index(new timeline0());
 		{
-			Actor[] ac = Game.currentRoom.setActorwithname(self
-					.getVariable("i").getActor().getClass());
+			
 			
 			
 			
@@ -77,7 +65,7 @@ public class Actor0 extends Actor {
 			Variable v;
 			long start = System.currentTimeMillis();
 			for (int i = 0; i < 999999; i++) {
-				v =  iii.add(Game.getValueOf(1));//550
+				//v =  iii.add(Game.getValueOf(1));//550
 				//test to see if in new branch
 				// add(iii,2);//26 to 52
 				// iii.add(iii.getValueOf(2));//50 to 59 (23to78)
@@ -90,28 +78,6 @@ public class Actor0 extends Actor {
 			long end = System.currentTimeMillis();
 			System.out.println("end of loop:" + (end - start));
 		}
-		self.setX(Game.getValueOf(10));
-		self.setY(Game.getValueOf(10));
-		while ((self.getX().gt((Game.getValueOf(0)))).getBoolean()) {
-			self.setX(self.getX().sub((Game.getValueOf(1))));
-			if ((((Boolean.TRUE))).getBoolean())
-				break;
-			;
-
-			self.setY(self.getY().sub((Game.getValueOf(1))));
-		}
-
-		//show_message(self.getX());
-		//show_message(self.getY());
-
-		for (self.setVariable("i", (Game.getValueOf(1))); self.getVariable("i")
-				.lt((Game.getValueOf(100))).getBoolean(); self.setVariable("i",
-				self.getVariable("i").add((Game.getValueOf(1))))) {
-			self.setY(self.getY().add((Game.getValueOf(1))));
-		}
-		//show_message(self.getY());
-		
-		//{Actor[] ac =Game.currentRoom.setActorwithname(new GMResource(Actor0.class).getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i].setVariable("uuu",(Game.getValueOf(200)));};
 		
 	}
 

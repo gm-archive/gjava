@@ -26,22 +26,21 @@ import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Sprite;
 import org.dolphin.game.api.resources.Display;
 import org.dolphin.game.api.types.BinaryFile;
-import org.dolphin.game.api.types.Boolean;
 import org.dolphin.game.api.types.Color;
 import org.dolphin.game.api.types.Cursor;
-import org.dolphin.game.api.types.Double;
+
 import org.dolphin.game.api.types.File;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Global;
-import org.dolphin.game.api.types.Integer;
 import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.Map;
 import org.dolphin.game.api.types.PriorityQueue;
 import org.dolphin.game.api.types.Queue;
 import org.dolphin.game.api.types.Stack;
-import org.dolphin.game.api.types.String;
-import org.dolphin.game.api.types.Surface;
 import org.dolphin.game.api.types.Variable;
+
+import org.dolphin.game.api.types.Surface;
+
 
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
@@ -61,14 +60,14 @@ public class GCL extends Variables {
      * 
      */ 
     
-public static Variable is_real(Variable val)
+public static Object is_real(Object val)
 {
     if (val instanceof String)
         return new Boolean(false);
     else
         return new Boolean(true);
 }
-public static Variable is_string(Variable val)
+public static Object is_string(Object val)
 {
 if (val instanceof String)
         return new Boolean(true);
@@ -76,223 +75,223 @@ if (val instanceof String)
         return new Boolean(false);
 }
 
-public static Variable random(Variable x)
+public static Object random(Object x)
 {
-return new Double(Math.random(x.getDouble()));
+return (Math.random(((Double)x)));
 }
 
-public static Variable randomize(Variable... x)
+public static Object randomize(Object... x)
 {
-return Boolean.FALSE;
+return false;
 }
-public static Variable choose(Variable... x)
+public static Object choose(Object... x)
 {
     int ran = (int)Math.random(x.length);
     int i=0;
-    for (Variable n : x) {
+    for (Object n : x) {
               if (i == ran)
                   return n;
               i++;
           }
-return Boolean.FALSE;
+return false;
 }
-public static Variable abs(Variable x)
+public static Object abs(Object x)
 {
-return new Double(Math.abs(x.getDouble()));
+return (Math.abs(((Double)x)));
 }
-public static Variable round(Variable x)
+public static Object round(Object x)
 {
-return new Double(Math.round(x.getDouble()));
+return (Math.round(((Double)x)));
 }
-public static Variable floor(Variable x)
+public static Object floor(Object x)
 {
-return new Double(Math.floor(x.getDouble()));
+return (Math.floor(((Double)x)));
 }
 
-public static Variable ceil(Variable x)
+public static Object ceil(Object x)
 {
-return new Double(Math.ceil(x.getDouble()));
+return (Math.ceil(((Double)x)));
 }
 
-public static Variable sign(Variable x)
+public static Object sign(Object x)
 {
-return new Double(Math.sign(x.getDouble()));
+return (Math.sign(((Double)x)));
 }
 
-public static Variable frac(Variable x)
+public static Object frac(Object x)
 {
-return new Double(Math.frac(x.getDouble()));
+return (Math.frac(((Double)x)));
 }
 
-public static Variable sqrt(Variable x)
+public static Object sqrt(Object x)
 {
-return new Double(Math.sqrt(x.getDouble()));
+return (Math.sqrt(((Double)x)));
 }
 
-public static Variable sqr(Variable x)
+public static Object sqr(Object x)
 {
-return new Double(Math.sqr(x.getDouble()));
+return (Math.sqr(((Double)x)));
 }
 
-public static Variable exp(Variable x)
+public static Object exp(Object x)
 {
-return new Double(Math.exp(x.getDouble()));
+return (Math.exp(((Double)x)));
 }
 
-public static Variable ln(Variable x)
+public static Object ln(Object x)
 {
-return new Double(Math.ln(x.getDouble()));
+return (Math.ln(((Double)x)));
 }
 
-public static Variable log2(Variable x)
+public static Object log2(Object x)
 {
-return new Double(Math.log2(x.getDouble()));
+return (Math.log2(((Double)x)));
 }
 
-public static Variable log10(Variable x)
+public static Object log10(Object x)
 {
-return new Double(Math.log10(x.getDouble()));
+return (Math.log10(((Double)x)));
 }
 
-public static Variable sin(Variable x)
+public static Object sin(Object x)
 {
-return new Double(Math.sin(x.getDouble()));
+return (Math.sin(((Double)x)));
 }
 
-public static Variable cos(Variable x)
+public static Object cos(Object x)
 {
-return new Double(Math.cos(x.getDouble()));
+return (Math.cos(((Double)x)));
 }
 
-public static Variable tan(Variable x)
+public static Object tan(Object x)
 {
-return new Double(Math.tan(x.getDouble()));
+return (Math.tan(((Double)x)));
 }
 
-public static Variable arcsin(Variable x)
+public static Object arcsin(Object x)
 {
-return new Double(Math.arcsin(x.getDouble()));
+return (Math.arcsin(((Double)x)));
 }
 
-public static Variable arccos(Variable x)
+public static Object arccos(Object x)
 {
-return new Double(Math.arccos(x.getDouble()));
+return (Math.arccos(((Double)x)));
 }
 
-public static Variable arctan(Variable x)
+public static Object arctan(Object x)
 {
-return new Double(Math.arctan(x.getDouble()));
+return (Math.arctan(((Double)x)));
 }
 
-public static Variable arctan2(Variable y, Variable x)
+public static Object arctan2(Object y, Object x)
 {
-return new Double(Math.arctan2(y.getDouble(),x.getDouble()));
+return (Math.arctan2(((Double)y),((Double)x)));
 }
 
-public static Variable degtorad(Variable x)
+public static Object degtorad(Object x)
 {
-return new Double(Math.degtorad(x.getDouble()));
+return (Math.degtorad(((Double)x)));
 }
 
-public static Variable radtodeg(Variable x)
+public static Object radtodeg(Object x)
 {
-return new Double(Math.radtodeg(x.getDouble()));
+return (Math.radtodeg(((Double)x)));
 }
 
-public static Variable power(Variable x, Variable n)
+public static Object power(Object x, Object n)
 {
-return new Double(Math.power(x.getDouble(),n.getDouble()));
+return (Math.power(((Double)x),((Double)n)));
 }
 
-public static Variable logn(Variable n, Variable x)
+public static Object logn(Object n, Object x)
 {
-return new Double(Math.power(n.getDouble(),x.getDouble()));
+return (Math.power(((Double)n),((Double)x)));
 }
 
-public static Variable min(Variable... x)
+public static Object min(Object... x)
 {
     try{
-    double min=x[0].getDouble();
-    for (Variable n : x) {
-              if (n.getDouble() <min)
-                  min=n.getDouble();
+    double min=(Double)x[0];
+    for (Object n : x) {
+              if (((Double)n) <min)
+                  min=((Double)n);
               min();
           }
-return new Double(min);
+return (min);
 }catch(Exception e){
-    return new Integer(-1);}
+    return (-1);}
 }
 
-public static Variable max(Variable... x)
+public static Object max(Object... x)
 {
     try{
-double max=x[0].getDouble();
-    for (Variable n : x) {
-              if (n.getDouble() >max)
-                  max=n.getDouble();
+double max=((Double)x[0]);
+    for (Object n : x) {
+              if (((Double)n) >max)
+                  max=((Double)n);
           }
-return new Double(max);
+return (max);
     }catch(Exception e){
-    return new Integer(-1);}
+    return (-1);}
 }
 
-public static Variable mean(Variable... x)
+public static Object mean(Object... x)
 {
      if (x.length == 0)
-                return new Double(0);
+                return (0);
             double total = 0;
-            for (Variable n:x)
-                total += n.getDouble();
-            return new Double(total / x.length);
+            for (Object n:x)
+                total += ((Double)n);
+            return (total / x.length);
 }
 
-public static Variable median(Variable... x)
+public static Object median(Object... x)
 {
     if (x.length == 0)
-                return new Double(0);
+                return (0);
             if (x.length % 2 == 1)
                 return x[x.length / 2];
             return mean(x[x.length / 2], x[(x.length / 2) - 1]);
 }
 
-public static Variable point_distance(Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object point_distance(Object x1, Object y1, Object x2, Object y2)
 {
-return new Double(Math.pointDistance(x1.getDouble(),y1.getDouble(),x2.getDouble(),y2.getDouble()));
+return (Math.pointDistance(((Double)x1),((Double)y1),((Double)x2),((Double)y2)));
 }
 
-public static Variable point_direction(Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object point_direction(Object x1, Object y1, Object x2, Object y2)
 {
-return new Double(Math.pointDirection(x1.getDouble(),y1.getDouble(),x2.getDouble(),y2.getDouble()));
+return (Math.pointDirection(((Double)x1),((Double)y1),((Double)x2),((Double)y2)));
 }
 
-public static Variable lengthdir_x(Variable len, Variable dir)
+public static Object lengthdir_x(Object len, Object dir)
 {
-return new Double(Math.lengthDirX(len.getDouble(),dir.getDouble()));
+return (Math.lengthDirX(((Double)len),((Double)dir)));
 }
 
-public static Variable lengthdir_y(Variable len, Variable dir)
+public static Object lengthdir_y(Object len, Object dir)
 {
-return new Double(Math.lengthDirY(len.getDouble(),dir.getDouble()));
+return (Math.lengthDirY(((Double)len),((Double)dir)));
 }
 
-public static Variable cbrt(Variable x) {
-return new Double(Math.cbrt(x.getDouble()));
+public static Object cbrt(Object x) {
+return (Math.cbrt(((Double)x)));
 }
 
-public static Variable sinh(Variable x) {
-return new Double(Math.sinh(x.getDouble()));
+public static Object sinh(Object x) {
+return (Math.sinh(((Double)x)));
 }
 
-public static Variable cosh(Variable x) {
-return new Double(Math.cosh(x.getDouble()));
+public static Object cosh(Object x) {
+return (Math.cosh(((Double)x)));
 }
 
-public static Variable tanh(Variable x) {
-return new Double(Math.tanh(x.getDouble()));
+public static Object tanh(Object x) {
+return (Math.tanh(((Double)x)));
 }
 
-public static Variable expm1(Variable x) {
-return new Double(Math.expm1(x.getDouble()));
+public static Object expm1(Object x) {
+return (Math.expm1(((Double)x)));
 }
 
 /*
@@ -300,123 +299,123 @@ return new Double(Math.expm1(x.getDouble()));
  * String functions
  * 
  */
-public static Variable real(Variable str)
+public static Object real(Object str)
 {
-return new Double(str.getDouble());
+return (((Double)str));
 }
 
-public static Variable string(Variable val)
+public static Object string(Object val)
 {
-return val.getString();
+return val.toString();
 }
 
-public static Variable tostring(Variable val)
+public static Object tostring(Object val)
 {
-return val.getString();
+return val.toString();
 }
 
-public static Variable string_format(Variable val, Variable total, Variable dec)
+public static Object string_format(Object val, Object total, Object dec)
 {
-return new String(String.stringFormat(val.getDouble(), total.getDouble(), dec.getDouble()));
+return (String_Functions.stringFormat(((Double)val), ((Double)total), ((Double)dec)));
 }
 
-public static Variable chr(Variable val)
+public static Object chr(Object val)
 {
-return new String(String.chr(val.getDouble()));
+return (String_Functions.chr(((Double)val)));
 }
 
-public static Variable ord(Variable character)
+public static Object ord(Object character)
 {
-return new Double(String.ord(character+""));
+return (String_Functions.ord(character+""));
 }
 
-public static Variable string_length(Variable str)
+public static Object string_length(Object str)
 {
-return new Double(String.length(str+""));
+return (String_Functions.length(str+""));
 }
 
-public static Variable string_pos(Variable substr, Variable str)
+public static Object string_pos(Object substr, Object str)
 {
-return new Double(String.pos(substr+"",str+""));
+return (String_Functions.pos(substr+"",str+""));
 }
 
-public static Variable string_copy(Variable str, Variable index, Variable count)
+public static Object string_copy(Object str, Object index, Object count)
 {
-return new String(String.substring(str+"",index.getDouble(),count.getDouble()));
+return (String_Functions.substring(str+"",((Double)index),((Double)count)));
 }
 
-public static Variable string_char_at(Variable str, Variable index)
+public static Object string_char_at(Object str, Object index)
 {
-return new String(String.charAt(str+"", index.getDouble()));
+return (String_Functions.charAt(str+"", ((Double)index)));
 }
 
-public static Variable string_delete(Variable str, Variable index, Variable count)
+public static Object string_delete(Object str, Object index, Object count)
 {
-return new String(String.delete(str+"", index.getDouble(), count.getDouble()));
+return (String_Functions.delete(str+"", ((Double)index), ((Double)count)));
 }
 
-public static Variable string_insert(Variable substr, Variable str, Variable index)
+public static Object string_insert(Object substr, Object str, Object index)
 {
-return new String(String.insert(substr+"", str+"", index.getDouble()));
+return (String_Functions.insert(substr+"", str+"", ((Double)index)));
 }
 
-public static Variable string_lower(Variable str)
+public static Object string_lower(Object str)
 {
-return new String(String.lower(""+str));
+return (String_Functions.lower(""+str));
 }
 
-public static Variable string_upper(Variable str)
+public static Object string_upper(Object str)
 {
-return new String(String.upper(""+str));
+return (String_Functions.upper(""+str));
 }
 
-public static Variable string_repeat(Variable str, Variable count)
+public static Object string_repeat(Object str, Object count)
 {
-return new String(String.repeat(str+"", count.getDouble()));
+return (String_Functions.repeat(str+"", ((Double)count)));
 }
 
-public static Variable string_letters(Variable str)
+public static Object string_letters(Object str)
 {
-return new String(String.letters(str+""));
+return (String_Functions.letters(str+""));
 }
 
-public static Variable string_digits(Variable str)
+public static Object string_digits(Object str)
 {
-return new String(String.digits(str+""));
+return (String_Functions.digits(str+""));
 }
 
-public static Variable string_lettersdigits(Variable str)
+public static Object string_lettersdigits(Object str)
 {
-return new String(String.lettersDigits(str+""));
+return (String_Functions.lettersDigits(str+""));
 }
 
-public static Variable string_replace(Variable str, Variable substr, Variable newstr)
+public static Object string_replace(Object str, Object substr, Object newstr)
 {
-return new String(String.replace(str+"", substr+"", newstr+""));
+return (String_Functions.replace(str+"", substr+"", newstr+""));
 }
 
-public static Variable string_replace_all(Variable str, Variable substr, Variable newstr)
+public static Object string_replace_all(Object str, Object substr, Object newstr)
 {
-return new String(String.replaceAll(str+"", substr+"", newstr+""));
+return (String_Functions.replaceAll(str+"", substr+"", newstr+""));
 }
 
-public static Variable string_count(Variable substr, Variable str)
+public static Object string_count(Object substr, Object str)
 {
-return new Double(String.count(substr+"", str+""));
+return (String_Functions.count(substr+"", str+""));
 }
 
-public static Variable clipboard_has_text()
+public static Object clipboard_has_text()
 {
 return new Boolean(Clipboard.hasText());
 }
 
-public static Variable clipboard_set_text(Variable str)
+public static Object clipboard_set_text(Object str)
 {
-    Clipboard.setText(str.getString());
-return Boolean.FALSE;
+    Clipboard.setText(str.toString());
+return false;
 }
 
-public static Variable clipboard_get_text()
+public static Object clipboard_get_text()
 {
 return Clipboard.getText();
 }
@@ -427,240 +426,240 @@ return Clipboard.getText();
  * Date functions
  * 
  */ 
-public static Variable date_current_datetime()
+public static Object date_current_datetime()
 {
-return new Double(Date.currentDatetime());
+return (Date.currentDatetime());
 }
 
-public static Variable date_current_date()
+public static Object date_current_date()
 {
     
-return round(new Double(Date.currentDate()));
+return round((Date.currentDate()));
 }
 
-public static Variable date_current_time()
+public static Object date_current_time()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_create_datetime(Variable year, Variable month, Variable day, Variable hour, Variable minute, Variable second)
+public static Object date_create_datetime(Object year, Object month, Object day, Object hour, Object minute, Object second)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_create_date(Variable year, Variable month, Variable day)
+public static Object date_create_date(Object year, Object month, Object day)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_create_time(Variable hour, Variable minute, Variable second)
+public static Object date_create_time(Object hour, Object minute, Object second)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_valid_datetime(Variable year, Variable month, Variable day, Variable hour, Variable minute, Variable second)
+public static Object date_valid_datetime(Object year, Object month, Object day, Object hour, Object minute, Object second)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_valid_date(Variable year, Variable month, Variable day)
+public static Object date_valid_date(Object year, Object month, Object day)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_valid_time(Variable hour, Variable minute, Variable second)
+public static Object date_valid_time(Object hour, Object minute, Object second)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_year(Variable date, Variable amount)
+public static Object date_inc_year(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_month(Variable date, Variable amount)
+public static Object date_inc_month(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_week(Variable date, Variable amount)
+public static Object date_inc_week(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_day(Variable date, Variable amount)
+public static Object date_inc_day(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_hour(Variable date, Variable amount)
+public static Object date_inc_hour(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_minute(Variable date, Variable amount)
+public static Object date_inc_minute(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_inc_second(Variable date, Variable amount)
+public static Object date_inc_second(Object date, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_year(Variable date)
+public static Object date_get_year(Object date)
 {
-return new Double(Date.getYear(date.getDouble()));
+return (Date.getYear(((Double)date)));
 }
 
-public static Variable date_get_month(Variable date)
+public static Object date_get_month(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_week(Variable date)
+public static Object date_get_week(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_day(Variable date)
+public static Object date_get_day(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_hour(Variable date)
+public static Object date_get_hour(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_minute(Variable date)
+public static Object date_get_minute(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_second(Variable date)
+public static Object date_get_second(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_weekday(Variable date)
+public static Object date_get_weekday(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_day_of_year(Variable date)
+public static Object date_get_day_of_year(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_hour_of_year(Variable date)
+public static Object date_get_hour_of_year(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_minute_of_year(Variable date)
+public static Object date_get_minute_of_year(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_get_second_of_year(Variable date)
+public static Object date_get_second_of_year(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_year_span(Variable date1, Variable date2)
+public static Object date_year_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_month_span(Variable date1, Variable date2)
+public static Object date_month_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_week_span(Variable date1, Variable date2)
+public static Object date_week_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_day_span(Variable date1, Variable date2)
+public static Object date_day_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_hour_span(Variable date1, Variable date2)
+public static Object date_hour_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_minute_span(Variable date1, Variable date2)
+public static Object date_minute_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_second_span(Variable date1, Variable date2)
+public static Object date_second_span(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_compare_datetime(Variable date1, Variable date2)
+public static Object date_compare_datetime(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_compare_date(Variable date1, Variable date2)
+public static Object date_compare_date(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_compare_time(Variable date1, Variable date2)
+public static Object date_compare_time(Object date1, Object date2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_date_of(Variable date)
+public static Object date_date_of(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_time_of(Variable date)
+public static Object date_time_of(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_datetime_string(Variable date)
+public static Object date_datetime_string(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_date_string(Variable date)
+public static Object date_date_string(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_time_string(Variable date)
+public static Object date_time_string(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_days_in_month(Variable date)
+public static Object date_days_in_month(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_days_in_year(Variable date)
+public static Object date_days_in_year(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_leap_year(Variable date)
+public static Object date_leap_year(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable date_is_today(Variable date)
+public static Object date_is_today(Object date)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -669,68 +668,68 @@ return Boolean.FALSE;
  * 
  */
 
-public /*static*/ Variable motion_set(Variable dir, Variable speed)
+public /*static*/ Object motion_set(Object dir, Object speed)
 {
     self.setDirection(dir);
     self.setSpeed(speed);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable motion_add(Variable dir, Variable speed)
+public /*static*/ Object motion_add(Object dir, Object speed)
 {
-   // self.hspeed += -(speed.getDouble());
-   // self.vspeed += speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
-    //self.speed += speed.getDouble();
-    self.setDirection(new Double(self.getDirection().getDouble() + dir.getDouble()));
-    self.setSpeed(speed.add(self.getSpeed()));
-return Boolean.FALSE;
+   // self.hspeed += -(((Double)speed));
+   // self.vspeed += ((Double)speed) * Math.sin(((Double)dir) * (Math.PI/180));
+    //self.speed += ((Double)speed);
+    self.setDirection((((Double)self.getDirection()) + ((Double)dir)));
+    self.setSpeed(Variable.add(speed,self.getSpeed()));
+return false;
 }
 
-public /*static*/ Variable place_free(Variable x, Variable y)
+public /*static*/ Object place_free(Object x, Object y)
 {
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
-               if (a.getSolid().getBoolean()) {
+               if ((Boolean)a.getSolid()) {
                    
-                    if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
                         //if not instance id
                         if (a.instance_id == self.instance_id) {
                            // System.out.println("collided with self");
                         } else {
                             
-                            return Boolean.FALSE;
+                            return false;
                         }
                     }
                 }
            }
         }
-return Boolean.TRUE;
+return true;
 }
 
-public /*static*/ Variable place_empty(Variable x, Variable y)
+public /*static*/ Object place_empty(Object x, Object y)
 {
    for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
                {
                    
-                    if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
                         //if not instance id
                         if (a.instance_id == self.instance_id) {
                             //System.out.println("collided with self");
                         } else {
                             //place is not free
-                            return Boolean.FALSE;
+                            return false;
                         }
                     }
                 }
            }
         }
-return Boolean.TRUE;
+return true;
 }
 
-public Variable place_meeting(Variable x, Variable y, Variable obj)
+public Object place_meeting(Object x, Object y, Object obj)
 {
     java.lang.String name="";
     if (obj instanceof GMResource){
@@ -744,124 +743,124 @@ public Variable place_meeting(Variable x, Variable y, Variable obj)
                //System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
                if (a.getClass().getName().equals(name)) {
                         System.out.println("correct name");
-                    if (new Rectangle(x.getInt(), y.getInt(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
 
                         if (a.instance_id == self.instance_id) {
                            // System.out.println("collided with self");
                         } else {
 
-                            return Boolean.TRUE;
+                            return true;
                         }
                     }
                 }
            }
         }
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable place_snapped(Variable hsnap, Variable vsnap)
+public /*static*/ Object place_snapped(Object hsnap, Object vsnap)
 {
-    if ((self.x % hsnap.getDouble() ==0) && (self.y % vsnap.getDouble()==0) )
+    if ((self.x % ((Double)hsnap) ==0) && (self.y % ((Double)vsnap)==0) )
         return new Boolean(true);
 
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable move_random(Variable hsnap, Variable vsnap)
+public /*static*/ Object move_random(Object hsnap, Object vsnap)
 {
-    if (hsnap.equals(new Integer(0)).getBoolean())
-        self.x=round(random(getRoom_width())).getDouble();
+    if ((Boolean)hsnap.equals((0)))
+        self.x=((Double)round((Double)random((Double)getRoom_width()))).floatValue();
     else
-    self.x=round(random(getRoom_width()).div(hsnap)).mult(hsnap).getDouble();
-    if (vsnap.equals(new Integer(0)).getBoolean())
-        self.y=round(random(getRoom_height())).getDouble();
+    self.x=(Double)Variable.mult(round(Variable.div(random(getRoom_width()),hsnap)),hsnap);
+    if ((Boolean)vsnap.equals((0)))
+        self.y=(Double)round(random((Double)getRoom_height()));
     else
-    self.y=round(random(getRoom_height()).div(vsnap)).mult(vsnap).getDouble();
-return Boolean.FALSE;
+    self.y=(Double)Variable.mult(round(Variable.div(random(getRoom_height()),vsnap)),vsnap);
+return false;
 }
 
 /*
  * 
  * @author hanson
  */
-public /*static*/ Variable move_snap(Variable hsnap, Variable vsnap)
+public /*static*/ Object move_snap(Object hsnap, Object vsnap)
 {
-    self.x = round(new Double(self.x/hsnap.getDouble())).getDouble()  * hsnap.getDouble();
-self.y = round(new Double(self.y/vsnap.getDouble())).getDouble() * vsnap.getDouble();		
-return Boolean.FALSE;
+    self.x = (Double)round((self.x/((Double)hsnap)))  * ((Double)hsnap);
+self.y = (Double) round((self.y/((Double)vsnap))) * ((Double)vsnap);		
+return false;
 }
 
 /*
  * TODO: Fix this function
  */
-public /*static*/ Variable move_towards_point(Variable xto, Variable yto, Variable sp)
+public /*static*/ Object move_towards_point(Object xto, Object yto, Object sp)
 {
-   double dist=sqrt(new Double((xto.getDouble()-self.x)*(xto.getDouble()-self.x)+(yto.getDouble()-self.y)*(yto.getDouble()-self.y))).getDouble();
-   self.hspeed=((xto.getDouble()-self.x)/dist)*sp.getDouble();
-   self.vspeed=((yto.getDouble()-self.y)/dist)*sp.getDouble();
-return Boolean.FALSE;
+   double dist=(Double)sqrt(((((Double)xto)-self.x)*(((Double)xto)-self.x)+(((Double)yto)-self.y)*(((Double)yto)-self.y)));
+   self.hspeed=((((Double)xto)-self.x)/dist)*((Double)sp);
+   self.vspeed=((((Double)yto)-self.y)/dist)*((Double)sp);
+return false;
 }
 
-public static Variable move_contact_solid(Variable dir, Variable maxdist)
+public static Object move_contact_solid(Object dir, Object maxdist)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable move_contact_all(Variable dir, Variable maxdist)
+public static Object move_contact_all(Object dir, Object maxdist)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable move_outside_solid(Variable dir, Variable maxdist)
+public static Object move_outside_solid(Object dir, Object maxdist)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable move_outside_all(Variable dir, Variable maxdist)
+public static Object move_outside_all(Object dir, Object maxdist)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable move_bounce_solid(Variable advanced)
+public static Object move_bounce_solid(Object advanced)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable move_bounce_all(Variable advanced)
+public static Object move_bounce_all(Object advanced)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable move_wrap(Variable hor, Variable vert, Variable margin)
+public /*static*/ Object move_wrap(Object hor, Object vert, Object margin)
 {
-    if(hor.getBoolean()==true){
-      if((self.x<-margin.getDouble()) || (self.x>getRoom_width().getDouble()+margin.getDouble())){
-         self.x=getRoom_width().getDouble()-self.x;
+    if(((Boolean)hor)==true){
+      if((self.x<-((Double)margin)) || (self.x>((Double)getRoom_width()+((Double)margin)))){
+         self.x=(Double)getRoom_width()-self.x;
       }
    }
-   if(vert.getBoolean()==true){
-      if((self.y<-margin.getDouble())||(self.y>getRoom_height().getDouble()+margin.getDouble())){
-         self.y=getRoom_height().getDouble()-self.y;
+   if(((Boolean)vert)==true){
+      if((self.y<-((Double)margin))||(self.y>((Double)getRoom_height()+((Double)margin)))){
+         self.y=(Double)getRoom_height()-self.y;
       }
    }
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable distance_to_point(Variable x, Variable y)
+public /*static*/ Object distance_to_point(Object x, Object y)
 {
-    double xd = x.getDouble()-self.x;
-    double yd = y.getDouble()-self.y;
-    return sqrt(new Double((xd)*(xd)+(yd)*(yd)));
+    double xd = ((Double)x)-self.x;
+    double yd = ((Double)y)-self.y;
+    return sqrt(((xd)*(xd)+(yd)*(yd)));
 }
 
-public /*static*/ Variable distance_to_object(Variable obj)
+public /*static*/ Object distance_to_object(Object obj)
 {
    // Game.currentRoom.instances
     /*double smalldist =-1 ;//= (Actor) Game.currentRoom.instances.elementAt(0);
        for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
-        Actor Variable = (Actor) Game.currentRoom.instances.elementAt(i);
-        if (Variable.equals(obj.getClass())) {
-        double dist = (sqrt(new Double((Variable.x-self.x)*(Variable.x-self.x)+(Variable.y-self.y)*(Variable.y-self.y)))).getDouble();
+        Actor Object = (Actor) Game.currentRoom.instances.elementAt(i);
+        if (Object.equals(obj.getClass())) {
+        double dist = (sqrt(((Object.x-self.x)*(Object.x-self.x)+(Object.y-self.y)*(Object.y-self.y))))((Double));
     if (i==0) 
         smalldist = dist;
     else if (dist < smalldist)
@@ -872,17 +871,17 @@ public /*static*/ Variable distance_to_object(Variable obj)
             ((Actor) obj).getY());
        }
      
-/*return new Double(smalldist);
+/*return (smalldist);
 }*/
 
-public static Variable position_empty(Variable x, Variable y)
+public static Object position_empty(Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable position_meeting(Variable x, Variable y, Variable obj)
+public static Object position_meeting(Object x, Object y, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -890,14 +889,14 @@ return Boolean.FALSE;
  * Paths functions
  * 
  */
-public static Variable path_start(Variable path, Variable speed, Variable endaction, Variable absolute)
+public static Object path_start(Object path, Object speed, Object endaction, Object absolute)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_end()
+public static Object path_end()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -906,99 +905,99 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable mp_linear_step(Variable x, Variable y, Variable speed, Variable checkall)
+public static Object mp_linear_step(Object x, Object y, Object speed, Object checkall)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_potential_step(Variable x, Variable y, Variable speed, Variable checkall)
+public static Object mp_potential_step(Object x, Object y, Object speed, Object checkall)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_linear_step_Variable(Variable x, Variable y, Variable speed, Variable obj)
+public static Object mp_linear_step_Object(Object x, Object y, Object speed, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_potential_step_Variable(Variable x, Variable y, Variable speed, Variable obj)
+public static Object mp_potential_step_Object(Object x, Object y, Object speed, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_potential_settings(Variable maxrot, Variable rotstep, Variable ahead, Variable onspot)
+public static Object mp_potential_settings(Object maxrot, Object rotstep, Object ahead, Object onspot)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_linear_path(Variable path, Variable xg, Variable yg, Variable stepsize, Variable checkall)
+public static Object mp_linear_path(Object path, Object xg, Object yg, Object stepsize, Object checkall)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_potential_path(Variable path, Variable xg, Variable yg, Variable stepsize, Variable factor, Variable checkall)
+public static Object mp_potential_path(Object path, Object xg, Object yg, Object stepsize, Object factor, Object checkall)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_linear_path_Variable(Variable path, Variable xg, Variable yg, Variable stepsize, Variable obj)
+public static Object mp_linear_path_Object(Object path, Object xg, Object yg, Object stepsize, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_potential_path_Variable(Variable path, Variable xg, Variable yg, Variable stepsize, Variable factor, Variable obj)
+public static Object mp_potential_path_Object(Object path, Object xg, Object yg, Object stepsize, Object factor, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_create(Variable left, Variable top, Variable hcells, Variable vcells, Variable cellwidth, Variable cellheight)
+public static Object mp_grid_create(Object left, Object top, Object hcells, Object vcells, Object cellwidth, Object cellheight)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_destroy(Variable id)
+public static Object mp_grid_destroy(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_clear_all(Variable id)
+public static Object mp_grid_clear_all(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_clear_cell(Variable id, Variable h, Variable v)
+public static Object mp_grid_clear_cell(Object id, Object h, Object v)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_clear_rectangle(Variable id, Variable left, Variable top, Variable right, Variable bottom)
+public static Object mp_grid_clear_rectangle(Object id, Object left, Object top, Object right, Object bottom)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_add_cell(Variable id, Variable h, Variable v)
+public static Object mp_grid_add_cell(Object id, Object h, Object v)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_add_rectangle(Variable id, Variable left, Variable top, Variable right, Variable bottom)
+public static Object mp_grid_add_rectangle(Object id, Object left, Object top, Object right, Object bottom)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_add_instances(Variable id, Variable obj, Variable prec)
+public static Object mp_grid_add_instances(Object id, Object obj, Object prec)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_path(Variable id, Variable path, Variable xstart, Variable ystart, Variable xgoal, Variable ygoal, Variable allowdiag)
+public static Object mp_grid_path(Object id, Object path, Object xstart, Object ystart, Object xgoal, Object ygoal, Object allowdiag)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mp_grid_draw(Variable id)
+public static Object mp_grid_draw(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1006,29 +1005,29 @@ return Boolean.FALSE;
  * Collision checking
  * 
  */
-public static Variable collision_point(Variable x, Variable y, Variable obj, Variable prec, Variable notme)
+public static Object collision_point(Object x, Object y, Object obj, Object prec, Object notme)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable collision_rectangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable obj, Variable prec, Variable notme)
+public static Object collision_rectangle(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable collision_circle(Variable x1, Variable y1, Variable radius, Variable obj, Variable prec, Variable notme)
+public static Object collision_circle(Object x1, Object y1, Object radius, Object obj, Object prec, Object notme)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable collision_ellipse(Variable x1, Variable y1, Variable x2, Variable y2, Variable obj, Variable prec, Variable notme)
+public static Object collision_ellipse(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable collision_line(Variable x1, Variable y1, Variable x2, Variable y2, Variable obj, Variable prec, Variable notme)
+public static Object collision_line(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1037,47 +1036,47 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable instance_find(Variable obj, Variable n)
+public static Object instance_find(Object obj, Object n)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_exists(Variable obj)
+public static Object instance_exists(Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_number(Variable obj)
+public static Object instance_number(Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_position(Variable x, Variable y, Variable obj)
+public static Object instance_position(Object x, Object y, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_nearest(Variable x, Variable y, Variable obj)
+public static Object instance_nearest(Object x, Object y, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_furthest(Variable x, Variable y, Variable obj)
+public static Object instance_furthest(Object x, Object y, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_place(Variable x, Variable y, Variable obj)
+public static Object instance_place(Object x, Object y, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_create(Variable x, Variable y, Variable obj)
+public static Object instance_create(Object x, Object y, Object obj)
 {
         try {
             Class ins = Class.forName("org.gcreator.compilers.gjava."+obj.toString());
             Game.maxInstanceId++;
-            Actor o = (Actor) ins.getDeclaredConstructor(Variable.class,Variable.class,Variable.class).newInstance(x,y,new Double(Game.maxInstanceId));
+            Actor o = (Actor) ins.getDeclaredConstructor(Object.class,Object.class,Object.class).newInstance(x,y,(Game.maxInstanceId));
             
             Game.currentRoom.instances.add(o);
             Game.allinstances.put(Game.maxInstanceId, o);
@@ -1085,10 +1084,10 @@ public static Variable instance_create(Variable x, Variable y, Variable obj)
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-return new Double(Game.maxInstanceId);
+return (Game.maxInstanceId);
 }
 
-public Variable instance_copy(Variable performevent)
+public Object instance_copy(Object performevent)
 {
     Game.maxInstanceId++;
         try {
@@ -1099,29 +1098,29 @@ public Variable instance_copy(Variable performevent)
         } catch (CloneNotSupportedException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Double(Game.maxInstanceId);
+        return (Game.maxInstanceId);
 }
 
-public static Variable instance_change(Variable obj, Variable performevents)
+public static Object instance_change(Object obj, Object performevents)
 {
     System.out.println("instance change");
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_destroy()
+public static Object instance_destroy()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable position_destroy(Variable x, Variable y)
+public static Object position_destroy(Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable position_change(Variable x, Variable y, Variable obj, Variable performevents)
+public static Object position_change(Object x, Object y, Object obj, Object performevents)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1129,41 +1128,41 @@ return Boolean.FALSE;
  * Deactivating instances
  * 
  */
-public /*static*/ Variable instance_deactivate_all(Variable notme)
+public /*static*/ Object instance_deactivate_all(Object notme)
 {
     //Game.currentRoom.instances
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
         Actor act = (Actor)Game.currentRoom.instances.elementAt(i);
         act.active=false;
     }
-     if (notme.getBoolean())
+     if (((Boolean)notme))
        self.active=true;
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_deactivate_Variable(Variable obj)
+public static Object instance_deactivate_Object(Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_deactivate_region(Variable left, Variable top, Variable width, Variable height, Variable inside, Variable notme)
+public static Object instance_deactivate_region(Object left, Object top, Object width, Object height, Object inside, Object notme)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_activate_all()
+public static Object instance_activate_all()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_activate_Variable(Variable obj)
+public static Object instance_activate_Object(Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable instance_activate_region(Variable left, Variable top, Variable width, Variable height, Variable inside)
+public static Object instance_activate_region(Object left, Object top, Object width, Object height, Object inside)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1171,15 +1170,15 @@ return Boolean.FALSE;
  * Timing
  * 
  */
-public static Variable sleep(Variable millisec)
+public static Object sleep(Object millisec)
 {
         try {
-            Thread.sleep((int) millisec.getDouble());
+            Thread.sleep(((Double)millisec).intValue());
             
         } catch (InterruptedException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Boolean.FALSE;
+        return false;
 }
 
 /*
@@ -1187,55 +1186,55 @@ public static Variable sleep(Variable millisec)
  * Rooms
  * 
  */
-public static Variable room_goto(Variable numb)
+public static Object room_goto(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_goto_previous()
+public static Object room_goto_previous()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_goto_next()
+public static Object room_goto_next()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_previous(Variable numb)
+public static Object room_previous(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_next(Variable numb)
+public static Object room_next(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_restart()
+public static Object room_restart()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable game_end()
+public static Object game_end()
 {
     System.exit(0);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable game_restart()
+public static Object game_restart()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable game_load(Variable filename)
+public static Object game_load(Object filename)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable game_save(Variable filename)
+public static Object game_save(Object filename)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1243,24 +1242,24 @@ return Boolean.FALSE;
  * Event
  * 
  */
-public static Variable event_perform(Variable type, Variable numb)
+public static Object event_perform(Object type, Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable event_user(Variable numb)
+public static Object event_user(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable event_perform_Variable(Variable obj, Variable type, Variable numb)
+public static Object event_perform_Object(Object obj, Object type, Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable event_inherited()
+public static Object event_inherited()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1268,92 +1267,92 @@ return Boolean.FALSE;
  * Miscellaneous 
  * 
  */
-public static Variable show_debug_message(Variable str)
+public static Object show_debug_message(Object str)
 {
     //Game.debug.println(str);
 	System.out.println(str);
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable variable_global_exists(Variable name)
+public static Object Object_global_exists(Object name)
 {
-	return new Boolean(Global.Variables.contains(name.getString()));
+	return new Boolean(Global.Variables.contains(name.toString()));
 }
 
-public static Variable variable_global_get(Variable name)
+public static Object Object_global_get(Object name)
 {
 	return Global.Variables.get(name.toString());
 }
 
-public static Variable variable_global_array_get(Variable name, Variable ind)
+public static Object Object_global_array_get(Object name, Object ind)
 {
 	return Global.Variables.get(name + "[" + ind + "]");
 }
 
-public static Variable variable_global_array2_get(Variable name, Variable ind1, Variable ind2)
+public static Object Object_global_array2_get(Object name, Object ind1, Object ind2)
 {
 	return Global.Variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
-public static Variable variable_global_set(Variable name, Variable value)
+public static Object Object_global_set(Object name, Object value)
 {
 	Global.Variables.put(name.toString(), value);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable variable_global_array_set(Variable name, Variable ind, Variable value)
+public static Object Object_global_array_set(Object name, Object ind, Object value)
 {
 	Global.Variables.put(name + "[" + ind + "]", value);	
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable variable_global_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
+public static Object Object_global_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
 	Global.Variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
-return Boolean.FALSE;
+return false;
 }
 
-public Variable variable_local_exists(Variable name)
+public Object Object_local_exists(Object name)
 {
-	return new Boolean(self.variables.contains(name.toString()));
+	return new Boolean(self.Objects.contains(name.toString()));
 }
 
-public Variable variable_local_get(Variable name)
+public Object Object_local_get(Object name)
 {
-	return self.variables.get(name.toString());
+	return self.Objects.get(name.toString());
 }
 
-public Variable variable_local_array_get(Variable name, Variable ind)
+public Object Object_local_array_get(Object name, Object ind)
 {
-	return self.variables.get(name + "[" + ind + "]");
+	return self.Objects.get(name + "[" + ind + "]");
 }
 
-public Variable variable_local_array2_get(Variable name, Variable ind1, Variable ind2)
+public Object Object_local_array2_get(Object name, Object ind1, Object ind2)
 {
-	return self.variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
+	return self.Objects.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
-public Variable variable_local_set(Variable name, Variable value)
+public Object Object_local_set(Object name, Object value)
 {
-	self.variables.put(name.toString(), value);
-	return Boolean.FALSE;
+	self.Objects.put(name.toString(), value);
+	return false;
 }
 
-public Variable variable_local_array_set(Variable name, Variable ind, Variable value)
+public Object Object_local_array_set(Object name, Object ind, Object value)
 {
-	self.variables.put(name + "[" + ind + "]", value);
-return Boolean.FALSE;
+	self.Objects.put(name + "[" + ind + "]", value);
+return false;
 }
 
-public Variable variable_local_array2_set(Variable name, Variable ind1, Variable ind2, Variable value)
+public Object Object_local_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
-	self.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
-return Boolean.FALSE;
+	self.Objects.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
+return false;
 }
 
-public static Variable set_program_priority(Variable priority)
+public static Object set_program_priority(Object priority)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1361,85 +1360,85 @@ return Boolean.FALSE;
  * Keyboard
  * 
  */
-public static Variable keyboard_set_map(Variable key1, Variable key2)
+public static Object keyboard_set_map(Object key1, Object key2)
 {
    /* keymaps currently don't work
 	if (Game.keymap == null)
         Game.keymap = new Hashtable();
-    Game.keymap.put(key1.getInt(), key2.getInt());*/
-return Boolean.FALSE;
+    Game.keymap.put(((Double)key1), ((Double)key2));*/
+return false;
 }
 
-public static Variable keyboard_get_map(Variable key)
+public static Object keyboard_get_map(Object key)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_unset_map()
+public static Object keyboard_unset_map()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_check(Variable key)
+public static Object keyboard_check(Object key)
 {
-return new Boolean( Game.game.getGame().bsInput.isKeyDown(key.getInt()));
+return new Boolean( Game.game.getGame().bsInput.isKeyDown(((Double)key).intValue()));
 }
 
-public static Variable keyboard_check_pressed(Variable key)
+public static Object keyboard_check_pressed(Object key)
 {
-   return new Boolean( Game.game.getGame().bsInput.isKeyPressed(key.getInt()));
-//return Boolean.FALSE;
+   return new Boolean( Game.game.getGame().bsInput.isKeyPressed(((Double)key).intValue()));
+//return false;
 }
 
-public static Variable keyboard_check_released(Variable key)
+public static Object keyboard_check_released(Object key)
 {
-    return new Boolean( Game.game.getGame().bsInput.isKeyReleased(key.getInt()));
-//return Boolean.FALSE;
+    return new Boolean( Game.game.getGame().bsInput.isKeyReleased(((Double)key).intValue()));
+//return false;
 }
 
-public static Variable keyboard_check_direct(Variable key)
+public static Object keyboard_check_direct(Object key)
 {
 return keyboard_check(key);
 }
 
-public static Variable keyboard_get_numlock()
+public static Object keyboard_get_numlock()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_set_numlock(Variable on)
+public static Object keyboard_set_numlock(Object on)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_key_press(Variable key)
+public static Object keyboard_key_press(Object key)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_key_release(Variable key)
+public static Object keyboard_key_release(Object key)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_clear(Variable key)
+public static Object keyboard_clear(Object key)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable io_clear()
+public static Object io_clear()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable io_handle()
+public static Object io_handle()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable keyboard_wait()
+public static Object keyboard_wait()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1447,29 +1446,29 @@ return Boolean.FALSE;
  * The mouse
  * 
  */
-public static Variable mouse_check_button(Variable button)
+public static Object mouse_check_button(Object button)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mouse_check_button_pressed(Variable button)
+public static Object mouse_check_button_pressed(Object button)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mouse_check_button_released(Variable button)
+public static Object mouse_check_button_released(Object button)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mouse_clear(Variable button)
+public static Object mouse_clear(Object button)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mouse_wait()
+public static Object mouse_wait()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1477,74 +1476,74 @@ return Boolean.FALSE;
  * Joystick
  * 
  */
-public static Variable joystick_exists(Variable id)
+public static Object joystick_exists(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_direction(Variable id)
+public static Object joystick_direction(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_name(Variable id)
+public static Object joystick_name(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_axes(Variable id)
+public static Object joystick_axes(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_buttons(Variable id)
+public static Object joystick_buttons(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_has_pov(Variable id)
+public static Object joystick_has_pov(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_check_button(Variable id, Variable button)
+public static Object joystick_check_button(Object id, Object button)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_xpos(Variable id)
+public static Object joystick_xpos(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_ypos(Variable id)
+public static Object joystick_ypos(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_zpos(Variable id)
+public static Object joystick_zpos(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_rpos(Variable id)
+public static Object joystick_rpos(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_upos(Variable id)
+public static Object joystick_upos(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_vpos(Variable id)
+public static Object joystick_vpos(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable joystick_pov(Variable id)
+public static Object joystick_pov(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1553,97 +1552,97 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable draw_sprite(Variable sprite, Variable subimg, Variable x, Variable y)
+public static Object draw_sprite(Object sprite, Object subimg, Object x, Object y)
 {
     
-    Game.currentRoom.g2d.drawImage(((Sprite)sprite).imshow((int)subimg.getDouble()), null, (int)x.getDouble(), (int)y.getDouble());
-return Boolean.FALSE;
+    Game.currentRoom.g2d.drawImage(((Sprite)sprite).imshow(((Double)subimg).intValue()), null, ((Double)x).intValue(), ((Double)y).intValue());
+return false;
 }
 
-public static Variable draw_sprite_ext(Variable sprite, Variable subimg, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable color, Variable alpha)
+public static Object draw_sprite_ext(Object sprite, Object subimg, Object x, Object y, Object xscale, Object yscale, Object rot, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_sprite_stretched(Variable sprite, Variable subimg, Variable x, Variable y, Variable w, Variable h)
+public static Object draw_sprite_stretched(Object sprite, Object subimg, Object x, Object y, Object w, Object h)
 {
-    Game.currentRoom.g2d.drawImage(ImageUtil.resize(((Sprite)sprite).imshow((int)subimg.getDouble()),(int)w.getDouble(),(int)y.getDouble()), null, (int)x.getDouble(), (int)y.getDouble());
-return Boolean.FALSE;
+    Game.currentRoom.g2d.drawImage(ImageUtil.resize(((Sprite)sprite).imshow(((Double)subimg).intValue()),((Double)w).intValue(),((Double)y).intValue()), null, ((Double)x).intValue(), ((Double)y).intValue());
+return false;
 }
 
-public static Variable draw_sprite_stretched_ext(Variable sprite, Variable subimg, Variable x, Variable y, Variable w, Variable h, Variable color, Variable alpha)
+public static Object draw_sprite_stretched_ext(Object sprite, Object subimg, Object x, Object y, Object w, Object h, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_sprite_tiled(Variable sprite, Variable subimg, Variable x, Variable y)
+public static Object draw_sprite_tiled(Object sprite, Object subimg, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_sprite_tiled_ext(Variable sprite, Variable subimg, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
+public static Object draw_sprite_tiled_ext(Object sprite, Object subimg, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_sprite_part(Variable sprite, Variable subimg, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y)
+public static Object draw_sprite_part(Object sprite, Object subimg, Object left, Object top, Object width, Object height, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_sprite_part_ext(Variable sprite, Variable subimg, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
+public static Object draw_sprite_part_ext(Object sprite, Object subimg, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_sprite_general(Variable sprite, Variable subimg, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_sprite_general(Object sprite, Object subimg, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object rot, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background(Variable back, Variable x, Variable y)
+public static Object draw_background(Object back, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_ext(Variable back, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable color, Variable alpha)
+public static Object draw_background_ext(Object back, Object x, Object y, Object xscale, Object yscale, Object rot, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_stretched(Variable back, Variable x, Variable y, Variable w, Variable h)
+public static Object draw_background_stretched(Object back, Object x, Object y, Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_stretched_ext(Variable back, Variable x, Variable y, Variable w, Variable h, Variable color, Variable alpha)
+public static Object draw_background_stretched_ext(Object back, Object x, Object y, Object w, Object h, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_tiled(Variable back, Variable x, Variable y)
+public static Object draw_background_tiled(Object back, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_tiled_ext(Variable back, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
+public static Object draw_background_tiled_ext(Object back, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_part(Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y)
+public static Object draw_background_part(Object back, Object left, Object top, Object width, Object height, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_part_ext(Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
+public static Object draw_background_part_ext(Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_background_general(Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_background_general(Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object rot, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -1651,200 +1650,200 @@ return Boolean.FALSE;
  * Drawing shapes
  * 
  */
-public static Variable draw_clear(Variable col)
+public static Object draw_clear(Object col)
 {
     Game.currentRoom.g2d.setColor( ((Color)col).c );
         Game.currentRoom.g2d.fillRect( 0, 0, Game.currentRoom.width, Game.currentRoom.height );
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_clear_alpha(Variable col, Variable alpha)
+public static Object draw_clear_alpha(Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_point(Variable x, Variable y)
+public static Object draw_point(Object x, Object y)
 {
-    Game.currentRoom.g2d.fillRect((int)x.getDouble(), (int)y.getDouble(), 1, 1);
-return Boolean.FALSE;
+    Game.currentRoom.g2d.fillRect(((Double)x).intValue(), ((Double)y).intValue(), 1, 1);
+return false;
 }
 
-public static Variable draw_line(Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object draw_line(Object x1, Object y1, Object x2, Object y2)
 {
-    Game.currentRoom.g2d.drawLine(x1.getInt(), (int)y1.getDouble(), (int)x2.getDouble(), (int)y2.getDouble());
-return Boolean.FALSE;
+    Game.currentRoom.g2d.drawLine(((Double)x1).intValue(), ((Double)y1).intValue(), ((Double)x2).intValue(), ((Double)y2).intValue());
+return false;
 }
 
-public static Variable draw_rectangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
+public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
-   // System.out.println(""+x1.getDouble());
-    if (x1.getDouble() > x2.getDouble()) {
+   // System.out.println(""+((Double)x1));
+    if (((Double)x1) > ((Double)x2)) {
     temp = x1;
     x1 = x2;
     x2=temp;
     }
-    if (y1.getDouble() > y2.getDouble()) {
+    if (((Double)y1) > ((Double)y2)) {
     temp = y1;
     y1 = y2;
     y2=temp;
     }
-    if (outline.getBoolean())
-    Game.currentRoom.g2d.drawRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()));
+    if (((Boolean)outline))
+    Game.currentRoom.g2d.drawRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)));
     else
-        Game.currentRoom.g2d.fillRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()));
+        Game.currentRoom.g2d.fillRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)));
     
-    return Boolean.FALSE;
+    return false;
 }
-static Variable temp= new Variable();
-public static Variable draw_roundrect(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
+static Object temp= new Object();
+public static Object draw_roundrect(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
-     if (x1.getDouble() > x2.getDouble()) {
+     if (((Double)x1) > ((Double)x2)) {
     temp = x1;
     x1 = x2;
     x2=temp;
     }
-    if (y1.getDouble() > y2.getDouble()) {
+    if (((Double)y1) > ((Double)y2)) {
     temp = y1;
     y1 = y2;
     y2=temp;
     }
-    if (outline.getBoolean())
-    Game.currentRoom.g2d.drawRoundRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()),10,10);
+    if (((Boolean)outline))
+    Game.currentRoom.g2d.drawRoundRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)),10,10);
     else
-        Game.currentRoom.g2d.fillRoundRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()),10,10);
+        Game.currentRoom.g2d.fillRoundRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int) (((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)),10,10);
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_triangle(Variable x1, Variable y1, Variable x2, Variable y2, Variable x3, Variable y3, Variable outline)
+public static Object draw_triangle(Object x1, Object y1, Object x2, Object y2, Object x3, Object y3, Object outline)
 {
-   int[] xPoints = {(int)x1.getDouble(),(int)x2.getDouble(),(int)x3.getDouble()};
-   int[] yPoints = {(int)y1.getDouble(),(int)y2.getDouble(),(int)y3.getDouble()};
+   int[] xPoints = {((Double)x1).intValue(),((Double)x2).intValue(),((Double)x3).intValue()};
+   int[] yPoints = {((Double)y1).intValue(),((Double)y2).intValue(),((Double)y3).intValue()};
    Shape s = new Polygon(xPoints, yPoints, 3);
-   if (outline.getBoolean()) {
+   if (((Boolean)outline)) {
 	   Game.currentRoom.g2d.draw(s);
    } else {
 	   Game.currentRoom.g2d.fill(s);
    }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_circle(Variable x, Variable y, Variable rr, Variable outline)
+public static Object draw_circle(Object x, Object y, Object rr, Object outline)
 {
-	double r = rr.getDouble();
-	Shape s = new Ellipse2D.Double(x.getDouble()-r, y.getDouble()-r, r*2, r*2);
-	if (outline.getBoolean()) {
+	double r = ((Double)rr);
+	Shape s = new Ellipse2D.Double(((Double)x)-r, ((Double)y)-r, r*2, r*2);
+	if (((Boolean)outline)) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
 		Game.currentRoom.g2d.fill(s);
 	}
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_ellipse(Variable x1, Variable y1, Variable x2, Variable y2, Variable outline)
+public static Object draw_ellipse(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
-	Shape s = new Ellipse2D.Double(x1.getDouble(), y1.getDouble(), x2.getDouble(), y2.getDouble());
-	if (outline.getBoolean()) {
+	Shape s = new Ellipse2D.Double(((Double)x1), ((Double)y1), ((Double)x2), ((Double)y2));
+	if (((Boolean)outline)) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
 		Game.currentRoom.g2d.fill(s);
 	}
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_antialiasing(Variable enable)
+public static Object draw_set_antialiasing(Object enable)
 {
 	Game.currentRoom.g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
-			enable.getBoolean() 
+			((Boolean)enable) 
 			  ? RenderingHints.VALUE_ANTIALIAS_ON
 			  : RenderingHints.VALUE_ANTIALIAS_OFF);
-	return Boolean.FALSE;
+	return false;
 }
 
-public static Variable draw_arrow(Variable x1, Variable y1, Variable x2, Variable y2, Variable size)
+public static Object draw_arrow(Object x1, Object y1, Object x2, Object y2, Object size)
 {
 	
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_button(Variable x1, Variable y1, Variable x2, Variable y2, Variable up)
+public static Object draw_button(Object x1, Object y1, Object x2, Object y2, Object up)
 {
 	int 
-	x = x1.getInt(), 
-	y = y1.getInt(),
-	w = (int)(x2.getInt()-x1.getInt()),
-	h = (int)(y2.getInt()-y1.getInt());
+	x = ((Double)x1).intValue(), 
+	y = ((Double)y1).intValue(),
+	w = (int)(((Double)x2)-((Double)x1)),
+	h = (int)(((Double)y2)-((Double)y1));
 
 	Game.currentRoom.g2d.fillRect(x, y, w, h);
-	BevelBorder b = new BevelBorder(up.getBoolean() ? BevelBorder.RAISED : BevelBorder.LOWERED);
+	BevelBorder b = new BevelBorder(((Boolean)up) ? BevelBorder.RAISED : BevelBorder.LOWERED);
 	b.paintBorder(new Component() {
 		private static final long serialVersionUID = 1L;
 		public java.awt.Color getBackground() {
 			return Game.currentRoom.g2d.getColor();}}, Game.currentRoom.g2d, x, y, w, h);
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_path(Variable path, Variable x, Variable y, Variable absolute)
+public static Object draw_path(Object path, Object x, Object y, Object absolute)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_healthbar(Variable x1, Variable y1, Variable x2, Variable y2, Variable amount, Variable backcol, Variable mincol, Variable maxcol, Variable direction, Variable showback, Variable showborder)
+public static Object draw_healthbar(Object x1, Object y1, Object x2, Object y2, Object amount, Object backcol, Object mincol, Object maxcol, Object direction, Object showback, Object showborder)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_getpixel(Variable x, Variable y)
+public static Object draw_getpixel(Object x, Object y)
 {
 	//return new Color();
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_color(Variable col)
+public static Object draw_set_color(Object col)
 {
    Game.currentRoom.g2d.setColor(((Color)col).c); 
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_alpha(Variable alpha)
+public static Object draw_set_alpha(Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_get_color()
+public static Object draw_get_color()
 {
   return  new Color(Game.currentRoom.g2d.getColor()); 
 }
 
-public static Variable draw_get_alpha()
+public static Object draw_get_alpha()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable make_color_rgb(Variable red, Variable green, Variable blue)
+public static Object make_color_rgb(Object red, Object green, Object blue)
 {
-return new Color((int)red.getDouble(),(int)green.getDouble(),(int)blue.getDouble());
+return new Color(((Double)red).intValue(),((Double)green).intValue(),((Double)blue).intValue());
 }
 
-public static Variable make_color_hsv(Variable hue, Variable s, Variable value)
+public static Object make_color_hsv(Object hue, Object s, Object value)
 {
-    return new Color(java.awt.Color.getHSBColor((float)(hue.getDouble()/255), (float)(s.getDouble()/255), (float)(value.getDouble())/255));
+    return new Color(java.awt.Color.getHSBColor((float)(((Double)hue)/255), (float)(((Double)s)/255), ((Double)value).floatValue()/255));
 }
 
-public static Variable color_get_red(Variable col)
+public static Object color_get_red(Object col)
 {
-return new Integer(((Color)col).c.getRed());
+return (((Color)col).c.getRed());
 }
 
-public static Variable color_get_green(Variable col)
+public static Object color_get_green(Object col)
 {
-return new Integer(((Color)col).c.getGreen());
+return (((Color)col).c.getGreen());
 }
 
-public static Variable color_get_blue(Variable col)
+public static Object color_get_blue(Object col)
 {
-return new Integer(((Color)col).c.getBlue());
+return (((Color)col).c.getBlue());
 }
 
 private static int[] rgb2hsv(int r, int g, int b) {
@@ -1880,27 +1879,27 @@ private static int[] rgb2hsv(int r, int g, int b) {
 	 (int)(V*100),
 	};
 }
-public static Variable color_get_hue(Variable col)
+public static Object color_get_hue(Object col)
 {
 	java.awt.Color c = ((Color)col).c;
-	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[0]);
+	return (rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[0]);
 }
 
-public static Variable color_get_saturation(Variable col)
+public static Object color_get_saturation(Object col)
 {
 	java.awt.Color c = ((Color)col).c;
-	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[1]);
+	return (rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[1]);
 }
 
-public static Variable color_get_value(Variable col)
+public static Object color_get_value(Object col)
 {
 	java.awt.Color c = ((Color)col).c;
-	return new Integer(rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[2]);
+	return (rgb2hsv(c.getRed(), c.getGreen(), c.getBlue())[2]);
 }
 
-public static Variable merge_color(Variable col1, Variable col2, Variable amnt)
+public static Object merge_color(Object col1, Object col2, Object amnt)
 {
-	double amount = amnt.getDouble();
+	double amount = ((Double)amnt);
 	java.awt.Color c1 = ((Color)col1).c, c2 = ((Color)col2).c;
 	int r1,g1,b1,a1;
 	r1 = c1.getRed();
@@ -1921,14 +1920,14 @@ public static Variable merge_color(Variable col1, Variable col2, Variable amnt)
 	return merge;
 }
 
-public static Variable screen_save(Variable fname)
+public static Object screen_save(Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable screen_save_part(Variable fname, Variable x, Variable y, Variable w, Variable h)
+public static Object screen_save_part(Object fname, Object x, Object y, Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
 
@@ -1937,106 +1936,106 @@ return Boolean.FALSE;
  * Fonts and text
  * 
  */
-public static Variable draw_set_font(Variable font)
+public static Object draw_set_font(Object font)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_halign(Variable halign)
+public static Object draw_set_halign(Object halign)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_valign(Variable valign)
+public static Object draw_set_valign(Object valign)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text(Variable x, Variable y, Variable string)
+public static Object draw_text(Object x, Object y, Object string)
 {
-    Game.currentRoom.g2d.drawString(""+string, x.getInt(), y.getInt());
-return Boolean.FALSE;
+    Game.currentRoom.g2d.drawString(""+string, ((Double)x).intValue(), ((Double)y).intValue());
+return false;
 }
 
-public static Variable draw_text_ext(Variable x, Variable y, Variable string, Variable sep, Variable w)
+public static Object draw_text_ext(Object x, Object y, Object string, Object sep, Object w)
 {
     draw_text(x,y,string);
-return Boolean.FALSE;
+return false;
 }
 
 
-public static Variable string_width(Variable string)
+public static Object string_width(Object string)
 {
     if (Game.currentRoom.g2d !=null)
-    return new Integer( Game.currentRoom.g2d.getFontMetrics().stringWidth(""+string));
-return Boolean.FALSE;
+    return ( Game.currentRoom.g2d.getFontMetrics().stringWidth(""+string));
+return false;
 }
 
-public static Variable string_height(Variable string)
+public static Object string_height(Object string)
 {
     if (Game.currentRoom.g2d !=null)
-    return new Integer( Game.currentRoom.g2d.getFontMetrics().getHeight());
-return Boolean.FALSE;
+    return ( Game.currentRoom.g2d.getFontMetrics().getHeight());
+return false;
 }
 
-public static Variable string_width_ext(Variable string, Variable sep, Variable w)
+public static Object string_width_ext(Object string, Object sep, Object w)
 {
 return string_width(string);
 }
 
-public static Variable string_height_ext(Variable string, Variable sep, Variable w)
+public static Object string_height_ext(Object string, Object sep, Object w)
 {
 return string_height(string);
 }
 
-public static Variable draw_text_rotated(Variable x, Variable y, Variable string, Variable angle)
+public static Object draw_text_rotated(Object x, Object y, Object string, Object angle)
 {
-AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadians ( angle.getInt() ) );
+AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadians ( ((Double)angle) ) );
     Font f =  Game.currentRoom.g2d.getFont();
     Game.currentRoom.g2d.setFont ( Game.currentRoom.g2d.getFont().deriveFont ( at ) );
-    Game.currentRoom.g2d.drawString(""+string, x.getInt(), y.getInt());
+    Game.currentRoom.g2d.drawString(""+string, ((Double)x).intValue(), ((Double)y).intValue());
 Game.currentRoom.g2d.setFont(f);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text_transformed(Variable x, Variable y, Variable string, Variable xscale, Variable yscale, Variable angle)
+public static Object draw_text_transformed(Object x, Object y, Object string, Object xscale, Object yscale, Object angle)
 {
-AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadians ( angle.getInt() ) );
+AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadians ( ((Double)angle) ) );
     Font f =  Game.currentRoom.g2d.getFont();
     Game.currentRoom.g2d.setFont ( Game.currentRoom.g2d.getFont().deriveFont ( at ) );
-    Game.currentRoom.g2d.drawString(""+string, x.getInt(), y.getInt());
+    Game.currentRoom.g2d.drawString(""+string, ((Double)x).intValue(), ((Double)y).intValue());
 Game.currentRoom.g2d.setFont(f);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text_ext_transformed(Variable x, Variable y, Variable string, Variable sep, Variable w, Variable xscale, Variable yscale, Variable angle)
+public static Object draw_text_ext_transformed(Object x, Object y, Object string, Object sep, Object w, Object xscale, Object yscale, Object angle)
 {
     draw_text_transformed(x, y, string, xscale, yscale, angle);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text_color(Variable x, Variable y, Variable string, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_text_color(Object x, Object y, Object string, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text_ext_color(Variable x, Variable y, Variable string, Variable sep, Variable w, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_text_ext_color(Object x, Object y, Object string, Object sep, Object w, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text_transformed_color(Variable x, Variable y, Variable string, Variable xscale, Variable yscale, Variable angle, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_text_transformed_color(Object x, Object y, Object string, Object xscale, Object yscale, Object angle, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_text_ext_transformed_color(Variable x, Variable y, Variable string, Variable sep, Variable w, Variable xscale, Variable yscale, Variable angle, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_text_ext_transformed_color(Object x, Object y, Object string, Object sep, Object w, Object xscale, Object yscale, Object angle, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2044,133 +2043,133 @@ return Boolean.FALSE;
  * Advanced drawing functions
  * 
  */
-public static Variable draw_point_color(Variable x, Variable y, Variable col1)
+public static Object draw_point_color(Object x, Object y, Object col1)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_line_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2)
+public static Object draw_line_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_line_width_color(Variable... obj){
-	return Boolean.FALSE;	
+public static Object draw_line_width_color(Object... obj){
+	return false;	
 }
 
-public static Variable draw_rectangle_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable col3, Variable col4, Variable outline)
+public static Object draw_rectangle_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2, Object col3, Object col4, Object outline)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_roundrect_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable outline)
+public static Object draw_roundrect_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2, Object outline)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_triangle_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable x3, Variable y3, Variable col1, Variable col2, Variable col3, Variable outline)
+public static Object draw_triangle_color(Object x1, Object y1, Object x2, Object y2, Object x3, Object y3, Object col1, Object col2, Object col3, Object outline)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_circle_color(Variable x, Variable y, Variable r, Variable col1, Variable col2, Variable outline)
+public static Object draw_circle_color(Object x, Object y, Object r, Object col1, Object col2, Object outline)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_ellipse_color(Variable x1, Variable y1, Variable x2, Variable y2, Variable col1, Variable col2, Variable outline)
+public static Object draw_ellipse_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2, Object outline)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_primitive_begin(Variable kind)
+public static Object draw_primitive_begin(Object kind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_vertex(Variable x, Variable y)
+public static Object draw_vertex(Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_vertex_color(Variable x, Variable y, Variable col, Variable alpha)
+public static Object draw_vertex_color(Object x, Object y, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_primitive_end()
+public static Object draw_primitive_end()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_texture(Variable spr, Variable subimg)
+public static Object sprite_get_texture(Object spr, Object subimg)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_texture(Variable back)
+public static Object background_get_texture(Object back)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_preload(Variable texid)
+public static Object texture_preload(Object texid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_set_priority(Variable texid, Variable prio)
+public static Object texture_set_priority(Object texid, Object prio)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_get_width(Variable texid)
+public static Object texture_get_width(Object texid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_get_height(Variable texid)
+public static Object texture_get_height(Object texid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_primitive_begin_texture(Variable kind, Variable texid)
+public static Object draw_primitive_begin_texture(Object kind, Object texid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_vertex_texture(Variable x, Variable y, Variable xtex, Variable ytex)
+public static Object draw_vertex_texture(Object x, Object y, Object xtex, Object ytex)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_vertex_texture_color(Variable x, Variable y, Variable xtex, Variable ytex, Variable col, Variable alpha)
+public static Object draw_vertex_texture_color(Object x, Object y, Object xtex, Object ytex, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_set_interpolation(Variable linear)
+public static Object texture_set_interpolation(Object linear)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_set_blending(Variable blend)
+public static Object texture_set_blending(Object blend)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable texture_set_repeat(Variable repeat)
+public static Object texture_set_repeat(Object repeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_blend_mode(Variable mode)
+public static Object draw_set_blend_mode(Object mode)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_set_blend_mode_ext(Variable src, Variable dest)
+public static Object draw_set_blend_mode_ext(Object src, Object dest)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2178,139 +2177,139 @@ return Boolean.FALSE;
  * Drawing Surfaces
  * 
  */
-public static Variable surface_create(Variable w, Variable h)
+public static Object surface_create(Object w, Object h)
 {
-return new Surface(w.getInt(),h.getInt());
+return new Surface(((Double)w).intValue(),((Double)h).intValue());
 }
 
-public static Variable surface_free(Variable id)
-{
-    //not needed
-return Boolean.FALSE;
-}
-
-public static Variable surface_exists(Variable id)
+public static Object surface_free(Object id)
 {
     //not needed
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable surface_get_width(Variable id)
-{
-return new Integer(((Surface)id).width);
-}
-
-public static Variable surface_get_height(Variable id)
-{
-return new Integer(((Surface)id).height);
-}
-
-public static Variable surface_get_texture(Variable id)
+public static Object surface_exists(Object id)
 {
     //not needed
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable surface_set_target(Variable id)
+public static Object surface_get_width(Object id)
+{
+return (((Surface)id).width);
+}
+
+public static Object surface_get_height(Object id)
+{
+return (((Surface)id).height);
+}
+
+public static Object surface_get_texture(Object id)
+{
+    //not needed
+return false;
+}
+
+public static Object surface_set_target(Object id)
 {
     Game.graphics = Game.currentRoom.g2d;
     Game.currentRoom.g2d = ((Surface)id).b.createGraphics();
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable surface_reset_target()
+public static Object surface_reset_target()
 {
     Game.graphics =null;
     System.out.println("surface");
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface(Variable id, Variable x, Variable y)
+public static Object draw_surface(Object id, Object x, Object y)
 {
-    Game.currentRoom.g2d.drawImage(((Surface)id).b, null, x.getInt(), y.getInt());
+    Game.currentRoom.g2d.drawImage(((Surface)id).b, null, ((Double)x).intValue(), ((Double)y).intValue());
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_stretched(Variable id, Variable x, Variable y, Variable w, Variable h)
+public static Object draw_surface_stretched(Object id, Object x, Object y, Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_tiled(Variable id, Variable x, Variable y)
+public static Object draw_surface_tiled(Object id, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_part(Variable id, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y)
+public static Object draw_surface_part(Object id, Object left, Object top, Object width, Object height, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_ext(Variable id, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable color, Variable alpha)
+public static Object draw_surface_ext(Object id, Object x, Object y, Object xscale, Object yscale, Object rot, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_stretched_ext(Variable id, Variable x, Variable y, Variable w, Variable h, Variable color, Variable alpha)
+public static Object draw_surface_stretched_ext(Object id, Object x, Object y, Object w, Object h, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_tiled_ext(Variable id, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
+public static Object draw_surface_tiled_ext(Object id, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_part_ext(Variable id, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable color, Variable alpha)
+public static Object draw_surface_part_ext(Object id, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_surface_general(Variable id, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable xscale, Variable yscale, Variable rot, Variable c1, Variable c2, Variable c3, Variable c4, Variable alpha)
+public static Object draw_surface_general(Object id, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object rot, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable surface_getpixel(Variable id, Variable x, Variable y)
+public static Object surface_getpixel(Object id, Object x, Object y)
 {
-    new Color(new java.awt.Color(((Surface) id).b.getRGB(x.getInt(), y.getInt())));
-return Boolean.FALSE;
+    new Color(new java.awt.Color(((Surface) id).b.getRGB(((Double)x).intValue(), ((Double)y).intValue())));
+return false;
 }
 
-public static Variable surface_save(Variable id, Variable fname)
+public static Object surface_save(Object id, Object fname)
 {
         try {
 
             ImageIO.write(((Surface) id).b, "png", new java.io.File("" + fname+".png"));
-            return Boolean.FALSE;
+            return false;
         } catch (IOException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Boolean.FALSE;
+        return false;
 }
 
-public static Variable surface_save_part(Variable id, Variable fname, Variable x, Variable y, Variable w, Variable h)
+public static Object surface_save_part(Object id, Object fname, Object x, Object y, Object w, Object h)
 {
  try {
 
-            ImageIO.write(((Surface) id).b.getSubimage(x.getInt(), y.getInt(), w.getInt(), h.getInt()), "png", new java.io.File("" + fname+".png"));
-            return Boolean.FALSE;
+            ImageIO.write(((Surface) id).b.getSubimage(((Double)x).intValue(), ((Double)y).intValue(), ((Double)w).intValue(), ((Double)h).intValue()), "png", new java.io.File("" + fname+".png"));
+            return false;
         } catch (IOException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Boolean.FALSE;
+        return false;
 }
 
-public static Variable surface_copy(Variable destination, Variable x, Variable y, Variable source)
+public static Object surface_copy(Object destination, Object x, Object y, Object source)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable surface_copy_part(Variable destination, Variable x, Variable y, Variable source, Variable xs, Variable ys, Variable ws, Variable hs)
+public static Object surface_copy_part(Object destination, Object x, Object y, Object source, Object xs, Object ys, Object ws, Object hs)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2318,159 +2317,159 @@ return Boolean.FALSE;
  * Tiles
  * 
  */
-public static Variable tile_add(Variable background, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable depth)
+public static Object tile_add(Object background, Object left, Object top, Object width, Object height, Object x, Object y, Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_delete(Variable id)
+public static Object tile_delete(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_exists(Variable id)
+public static Object tile_exists(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_x(Variable id)
+public static Object tile_get_x(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_y(Variable id)
+public static Object tile_get_y(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_left(Variable id)
+public static Object tile_get_left(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_top(Variable id)
+public static Object tile_get_top(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_width(Variable id)
+public static Object tile_get_width(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_height(Variable id)
+public static Object tile_get_height(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_depth(Variable id)
+public static Object tile_get_depth(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_visible(Variable id)
+public static Object tile_get_visible(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_xscale(Variable id)
+public static Object tile_get_xscale(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_yscale(Variable id)
+public static Object tile_get_yscale(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_background(Variable id)
+public static Object tile_get_background(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_blend(Variable id)
+public static Object tile_get_blend(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_get_alpha(Variable id)
+public static Object tile_get_alpha(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_position(Variable id, Variable x, Variable y)
+public static Object tile_set_position(Object id, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_region(Variable id, Variable left, Variable right, Variable width, Variable height)
+public static Object tile_set_region(Object id, Object left, Object right, Object width, Object height)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_background(Variable id, Variable background)
+public static Object tile_set_background(Object id, Object background)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_visible(Variable id, Variable visible)
+public static Object tile_set_visible(Object id, Object visible)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_depth(Variable id, Variable depth)
+public static Object tile_set_depth(Object id, Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_scale(Variable id, Variable xscale, Variable yscale)
+public static Object tile_set_scale(Object id, Object xscale, Object yscale)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_blend(Variable id, Variable color)
+public static Object tile_set_blend(Object id, Object color)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_set_alpha(Variable id, Variable alpha)
+public static Object tile_set_alpha(Object id, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_hide(Variable depth)
+public static Object tile_layer_hide(Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_show(Variable depth)
+public static Object tile_layer_show(Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_delete(Variable depth)
+public static Object tile_layer_delete(Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_shift(Variable depth, Variable x, Variable y)
+public static Object tile_layer_shift(Object depth, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_find(Variable depth, Variable x, Variable y)
+public static Object tile_layer_find(Object depth, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_delete_at(Variable depth, Variable x, Variable y)
+public static Object tile_layer_delete_at(Object depth, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable tile_layer_depth(Variable depth, Variable newdepth)
+public static Object tile_layer_depth(Object depth, Object newdepth)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2478,69 +2477,69 @@ return Boolean.FALSE;
  * The display
  * 
  */
-public static Variable display_get_width()
+public static Object display_get_width()
 {
-return new Double(Display.getWidth());
+return (Display.getWidth());
 }
 
-public static Variable display_get_height()
+public static Object display_get_height()
 {
-return new Double(Display.getHeight());
+return (Display.getHeight());
 }
 
-public static Variable display_get_colordepth()
+public static Object display_get_colordepth()
 {
-return new Double(Display.getColordepth());
+return (Display.getColordepth());
 }
 
-public static Variable display_get_frequency()
+public static Object display_get_frequency()
 {
-return new Double(Display.getFrequency());
+return (Display.getFrequency());
 }
 
-public static Variable display_set_size(Variable w, Variable h)
+public static Object display_set_size(Object w, Object h)
 {
-return new Boolean(Display.setSize((int)w.getDouble(),(int) h.getDouble()));
+return new Boolean(Display.setSize(((Double)w).intValue(),((Double)h).intValue()));
 }
 
-public static Variable display_set_colordepth(Variable coldepth)
+public static Object display_set_colordepth(Object coldepth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_set_frequency(Variable frequency)
+public static Object display_set_frequency(Object frequency)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_set_all(Variable w, Variable h, Variable frequency, Variable coldepth)
+public static Object display_set_all(Object w, Object h, Object frequency, Object coldepth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_test_all(Variable w, Variable h, Variable frequency, Variable coldepth)
+public static Object display_test_all(Object w, Object h, Object frequency, Object coldepth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_reset()
+public static Object display_reset()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_mouse_get_x()
+public static Object display_mouse_get_x()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_mouse_get_y()
+public static Object display_mouse_get_y()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable display_mouse_set(Variable x, Variable y)
+public static Object display_mouse_set(Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2548,28 +2547,28 @@ return Boolean.FALSE;
  * The window
  * 
  */
-public static Variable window_set_visible(Variable visible)
+public static Object window_set_visible(Object visible)
 {
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
-        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(visible.getBoolean());
+        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(((Boolean)visible));
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_visible()
+public static Object window_get_visible()
 {
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
         return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isVisible());
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_set_fullscreen(Variable full)
+public static Object window_set_fullscreen(Object full)
 {
-    Game.fullscreen = full.getBoolean();
+    Game.fullscreen = ((Boolean)full);
     GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] devices = env.getScreenDevices();
     GraphicsDevice device = devices[0];
-    if (full.getBoolean()) {
+    if (((Boolean)full)) {
 		// Full-screen mode
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(true);
@@ -2584,186 +2583,186 @@ public static Variable window_set_fullscreen(Variable full)
 			device.setFullScreenWindow(null); // comment this line if you want only undecorated frame
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
 		}
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_fullscreen()
+public static Object window_get_fullscreen()
 {
 return new Boolean(Game.fullscreen);
 }
 
-public static Variable window_set_showborder(Variable show)
+public static Object window_set_showborder(Object show)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
-			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(show.getBoolean()? false:true);
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(((Boolean)show)? false:true);
                         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_showborder()
+public static Object window_get_showborder()
 {
     
 return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isUndecorated() ? false:true );
 }
 
-public static Variable window_set_showicons(Variable show)
+public static Object window_set_showicons(Object show)
 {
     //((JFrame)((WindowedMode)Game.game.getGame().bsGraphics).getFrame()).getc.setWindowDecorationStyle(JRootPane.NONE);
-            return Boolean.FALSE;
+            return false;
 }
 
-public static Variable window_get_showicons()
+public static Object window_get_showicons()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_set_stayontop(Variable stay)
+public static Object window_set_stayontop(Object stay)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_stayontop()
+public static Object window_get_stayontop()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_set_sizeable(Variable sizeable)
+public static Object window_set_sizeable(Object sizeable)
 {
-    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(sizeable.getBoolean());
-return Boolean.FALSE;
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(((Boolean)sizeable));
+return false;
 }
 
-public static Variable window_get_sizeable()
+public static Object window_get_sizeable()
 {
 return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isResizable());
 }
 
-public static Variable window_set_caption(Variable caption)
+public static Object window_set_caption(Object caption)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setTitle(""+caption);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_caption()
+public static Object window_get_caption()
 {
 return new String(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getTitle());
 }
 
-public static Variable window_set_cursor(Variable curs)
+public static Object window_set_cursor(Object curs)
 {
     if(curs instanceof Cursor)
         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setCursor(((Cursor)curs).c);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_cursor()
+public static Object window_get_cursor()
 {
 return new Cursor(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getCursor());
 }
 
-public static Variable window_set_color(Variable color)
+public static Object window_set_color(Object color)
 {
   ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setBackground(((Color)color).c);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_color()
+public static Object window_get_color()
 {
 return new Color(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBackground());
 }
 
-public static Variable window_set_region_scale(Variable scale, Variable adaptwindow)
+public static Object window_set_region_scale(Object scale, Object adaptwindow)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_region_scale()
+public static Object window_get_region_scale()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_set_position(Variable x, Variable y)
+public static Object window_set_position(Object x, Object y)
 {
-    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(x.getInt(), y.getInt());
-return Boolean.FALSE;
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(((Double)x).intValue(), ((Double)y).intValue());
+return false;
 }
 
-public static Variable window_set_size(Variable w, Variable h)
+public static Object window_set_size(Object w, Object h)
 {
-    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(w.getInt(), h.getInt());
-return Boolean.FALSE;
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(((Double)w).intValue(), ((Double)h).intValue());
+return false;
 }
 
-public static Variable window_set_rectangle(Variable x, Variable y, Variable w, Variable h)
+public static Object window_set_rectangle(Object x, Object y, Object w, Object h)
 {
-    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(w.getInt(), h.getInt());
-((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(x.getInt(), y.getInt());
-return Boolean.FALSE;
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(((Double)w).intValue(), ((Double)h).intValue());
+((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(((Double)x).intValue(), ((Double)y).intValue());
+return false;
 }
 
-public static Variable window_center()
+public static Object window_center()
 {
     Dimension dim = ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getToolkit().getScreenSize();
   Rectangle abounds = ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBounds();
   ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation((dim.width - abounds.width) / 2,
       (dim.height - abounds.height) / 2);
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_default()
+public static Object window_default()
 {
     //sets to room hight/width
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(Game.currentRoom.width, Game.currentRoom.height);
     window_center();
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_x()
+public static Object window_get_x()
 {
-return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getX());
+return (((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getX());
 }
 
-public static Variable window_get_y()
+public static Object window_get_y()
 {
-return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getY());
+return (((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getY());
 }
 
-public static Variable window_get_width()
+public static Object window_get_width()
 {
-return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getWidth());
+return (((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getWidth());
 }
 
-public static Variable window_get_height()
+public static Object window_get_height()
 {
-return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getHeight());
+return (((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getHeight());
 }
 
-public static Variable window_mouse_get_x()
+public static Object window_mouse_get_x()
 {
     try{
-    return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getMousePosition().getX());
+    return (((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getMousePosition().getX());
 
     }catch(Exception e){}
-    return new Integer(0);
+    return (0);
 }
 
-public static Variable window_mouse_get_y()
+public static Object window_mouse_get_y()
 {
  try{
-    return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getMousePosition().getY());
+    return (((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getMousePosition().getY());
 
     }catch(Exception e){}
-    return new Integer(0);
+    return (0);
 }
 
-public static Variable window_mouse_set(Variable x, Variable y)
+public static Object window_mouse_set(Object x, Object y)
 {
     try {
         java.awt.Robot r = new java.awt.Robot();
-        r.mouseMove(x.getInt(), y.getInt());
+        r.mouseMove(((Double)x).intValue(), ((Double)y).intValue());
     } catch (AWTException aWTException) {
     }
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2771,49 +2770,49 @@ return Boolean.FALSE;
  * Views
  * 
  */
-public static Variable window_set_region_size(Variable w, Variable h, Variable adaptwindow)
+public static Object window_set_region_size(Object w, Object h, Object adaptwindow)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_region_width()
+public static Object window_get_region_width()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_get_region_height()
+public static Object window_get_region_height()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_view_mouse_get_x(Variable id)
+public static Object window_view_mouse_get_x(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_view_mouse_get_y(Variable id)
+public static Object window_view_mouse_get_y(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_view_mouse_set(Variable id, Variable x, Variable y)
+public static Object window_view_mouse_set(Object id, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_views_mouse_get_x()
+public static Object window_views_mouse_get_x()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_views_mouse_get_y()
+public static Object window_views_mouse_get_y()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_views_mouse_set(Variable x, Variable y)
+public static Object window_views_mouse_set(Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2821,34 +2820,34 @@ return Boolean.FALSE;
  * Repainting the screen
  * 
  */
-public static Variable screen_redraw()
+public static Object screen_redraw()
 {
         Game.currentRoom.render(Game.game.getGame().bsGraphics.getBackBuffer());
         Game.game.getGame().bsGraphics.flip();
        // Game.game.getGame().bsGraphics.getBackBuffer()
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable screen_refresh()
+public static Object screen_refresh()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable screen_wait_vsync()
+public static Object screen_wait_vsync()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable set_automatic_draw(Variable value)
+public static Object set_automatic_draw(Object value)
 {
-    Game.auto_redraw = value.getBoolean();
-return Boolean.FALSE;
+    Game.auto_redraw = (Boolean)value;
+return false;
 }
 
-public static Variable set_synchronization(Variable value)
+public static Object set_synchronization(Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2856,59 +2855,59 @@ return Boolean.FALSE;
  * Basic sound functions
  * 
  */
-public static Variable sound_play(Variable index)
+public static Object sound_play(Object index)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_loop(Variable index)
+public static Object sound_loop(Object index)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_stop(Variable index)
+public static Object sound_stop(Object index)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_stop_all()
+public static Object sound_stop_all()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_isplaying(Variable index)
+public static Object sound_isplaying(Object index)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_volume(Variable index, Variable value)
+public static Object sound_volume(Object index, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_global_volume(Variable value)
+public static Object sound_global_volume(Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_fade(Variable index, Variable value, Variable time)
+public static Object sound_fade(Object index, Object value, Object time)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_pan(Variable index, Variable value)
+public static Object sound_pan(Object index, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_background_tempo(Variable factor)
+public static Object sound_background_tempo(Object factor)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_set_search_directory(Variable dir)
+public static Object sound_set_search_directory(Object dir)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2916,44 +2915,44 @@ return Boolean.FALSE;
  * Sound effects
  * 
  */
-public static Variable sound_effect_set(Variable snd, Variable effect)
+public static Object sound_effect_set(Object snd, Object effect)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_chorus(Variable snd, Variable wetdry, Variable depth, Variable feedback, Variable frequency, Variable wave, Variable delay, Variable phase)
+public static Object sound_effect_chorus(Object snd, Object wetdry, Object depth, Object feedback, Object frequency, Object wave, Object delay, Object phase)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_echo(Variable snd, Variable wetdry, Variable feedback, Variable leftdelay, Variable rightdelay, Variable pandelay)
+public static Object sound_effect_echo(Object snd, Object wetdry, Object feedback, Object leftdelay, Object rightdelay, Object pandelay)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_flanger(Variable snd, Variable wetdry, Variable depth, Variable feedback, Variable frequency, Variable wave, Variable delay, Variable phase)
+public static Object sound_effect_flanger(Object snd, Object wetdry, Object depth, Object feedback, Object frequency, Object wave, Object delay, Object phase)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_gargle(Variable snd, Variable rate, Variable wave)
+public static Object sound_effect_gargle(Object snd, Object rate, Object wave)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_reverb(Variable snd, Variable gain, Variable mix, Variable time, Variable ratio)
+public static Object sound_effect_reverb(Object snd, Object gain, Object mix, Object time, Object ratio)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_compressor(Variable snd, Variable gain, Variable attack, Variable release, Variable threshold, Variable ratio, Variable delay)
+public static Object sound_effect_compressor(Object snd, Object gain, Object attack, Object release, Object threshold, Object ratio, Object delay)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_effect_equalizer(Variable snd, Variable center, Variable bandwidth, Variable gain)
+public static Object sound_effect_equalizer(Object snd, Object center, Object bandwidth, Object gain)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2961,24 +2960,24 @@ return Boolean.FALSE;
  * 3D sound
  * 
  */
-public static Variable sound_3d_set_sound_position(Variable snd, Variable x, Variable y, Variable z)
+public static Object sound_3d_set_sound_position(Object snd, Object x, Object y, Object z)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_3d_set_sound_velocity(Variable snd, Variable x, Variable y, Variable z)
+public static Object sound_3d_set_sound_velocity(Object snd, Object x, Object y, Object z)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_3d_set_sound_distance(Variable snd, Variable mindist, Variable maxdist)
+public static Object sound_3d_set_sound_distance(Object snd, Object mindist, Object maxdist)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_3d_set_sound_cone(Variable snd, Variable x, Variable y, Variable z, Variable anglein, Variable angleout, Variable voloutside)
+public static Object sound_3d_set_sound_cone(Object snd, Object x, Object y, Object z, Object anglein, Object angleout, Object voloutside)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -2986,99 +2985,99 @@ return Boolean.FALSE;
  * CD music
  * 
  */
-public static Variable cd_init()
+public static Object cd_init()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_present()
+public static Object cd_present()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_number()
+public static Object cd_number()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_playing()
+public static Object cd_playing()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_paused()
+public static Object cd_paused()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_track()
+public static Object cd_track()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_length()
+public static Object cd_length()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_track_length(Variable n)
+public static Object cd_track_length(Object n)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_position()
+public static Object cd_position()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_track_position()
+public static Object cd_track_position()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_play(Variable first, Variable last)
+public static Object cd_play(Object first, Object last)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_stop()
+public static Object cd_stop()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_pause()
+public static Object cd_pause()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_resume()
+public static Object cd_resume()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_set_position(Variable pos)
+public static Object cd_set_position(Object pos)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_set_track_position(Variable pos)
+public static Object cd_set_track_position(Object pos)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_open_door()
+public static Object cd_open_door()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable cd_close_door()
+public static Object cd_close_door()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable MCI_command(Variable str)
+public static Object MCI_command(Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3086,29 +3085,29 @@ return Boolean.FALSE;
  * Splash screens
  * 
  */
-public static Variable show_image(Variable fname, Variable full, Variable delay)
+public static Object show_image(Object fname, Object full, Object delay)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_video(Variable fname, Variable full, Variable loop)
+public static Object show_video(Object fname, Object full, Object loop)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_text(Variable fname, Variable full, Variable backcol, Variable delay)
+public static Object show_text(Object fname, Object full, Object backcol, Object delay)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_info()
+public static Object show_info()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable load_info(Variable fname)
+public static Object load_info(Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3116,130 +3115,130 @@ return Boolean.FALSE;
  * Pop-up messages and questions
  * 
  */
-public static Variable show_message(Variable str)
+public static Object show_message(Object str)
 {
     JOptionPane.showMessageDialog(Game.frame, str.toString());
     Game.thegame.bsInput.refresh();
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_message_ext(Variable str, Variable but1, Variable but2, Variable but3)
+public static Object show_message_ext(Object str, Object but1, Object but2, Object but3)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_question(Variable str)
+public static Object show_question(Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_integer(Variable str, Variable def)
+public static Object get_integer(Object str, Object def)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_string(Variable str, Variable def)
+public static Object get_string(Object str, Object def)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_background(Variable back)
+public static Object message_background(Object back)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_button(Variable sprite)
+public static Object message_button(Object sprite)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_alpha(Variable alpha)
+public static Object message_alpha(Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_text_font(Variable name, Variable size, Variable color, Variable style)
+public static Object message_text_font(Object name, Object size, Object color, Object style)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_button_font(Variable name, Variable size, Variable color, Variable style)
+public static Object message_button_font(Object name, Object size, Object color, Object style)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_input_font(Variable name, Variable size, Variable color, Variable style)
+public static Object message_input_font(Object name, Object size, Object color, Object style)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_mouse_color(Variable col)
+public static Object message_mouse_color(Object col)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_input_color(Variable col)
+public static Object message_input_color(Object col)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_position(Variable x, Variable y)
+public static Object message_position(Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_size(Variable w, Variable h)
+public static Object message_size(Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable message_caption(Variable show, Variable str)
+public static Object message_caption(Object show, Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_menu(Variable str, Variable def)
+public static Object show_menu(Object str, Object def)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_menu_pos(Variable x, Variable y, Variable str, Variable def)
+public static Object show_menu_pos(Object x, Object y, Object str, Object def)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_color(Variable defcol)
+public static Object get_color(Object defcol)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_open_filename(Variable filter, Variable fname)
+public static Object get_open_filename(Object filter, Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_save_filename(Variable filter, Variable fname)
+public static Object get_save_filename(Object filter, Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_directory(Variable dname)
+public static Object get_directory(Object dname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable get_directory_alt(Variable capt, Variable root)
+public static Object get_directory_alt(Object capt, Object root)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable show_error(Variable str, Variable abort)
+public static Object show_error(Object str, Object abort)
 {
     JOptionPane.showMessageDialog(null, str.toString(),"Error!",JOptionPane.ERROR_MESSAGE );
-    if (abort.getBoolean())
+    if ((Boolean)abort)
         System.exit(1);
     
-    return Boolean.FALSE;
+    return false;
 }
 
 /*
@@ -3247,69 +3246,69 @@ public static Variable show_error(Variable str, Variable abort)
  * Highscore list
  * 
  */
-public static Variable highscore_show_ext(Variable numb, Variable back, Variable border, Variable col1, Variable col2, Variable name, Variable size)
+public static Object highscore_show_ext(Object numb, Object back, Object border, Object col1, Object col2, Object name, Object size)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_show(Variable numb)
+public static Object highscore_show(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_set_background(Variable back)
+public static Object highscore_set_background(Object back)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_set_border(Variable show)
+public static Object highscore_set_border(Object show)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_set_font(Variable name, Variable size, Variable style)
+public static Object highscore_set_font(Object name, Object size, Object style)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_set_strings(Variable caption, Variable nobody, Variable escape)
+public static Object highscore_set_strings(Object caption, Object nobody, Object escape)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_set_colors(Variable back, Variable newc, Variable other)
+public static Object highscore_set_colors(Object back, Object newc, Object other)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_clear()
+public static Object highscore_clear()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_add(Variable str, Variable numb)
+public static Object highscore_add(Object str, Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_add_current()
+public static Object highscore_add_current()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_value(Variable place)
+public static Object highscore_value(Object place)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable highscore_name(Variable place)
+public static Object highscore_name(Object place)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable draw_highscore(Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object draw_highscore(Object x1, Object y1, Object x2, Object y2)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3317,84 +3316,84 @@ return Boolean.FALSE;
  * Sprites
  * 
  */
-public static Variable sprite_exists(Variable ind)
+public static Object sprite_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_name(Variable ind)
+public static Object sprite_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_number(Variable ind)
+public static Object sprite_get_number(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_width(Variable ind)
+public static Object sprite_get_width(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_height(Variable ind)
+public static Object sprite_get_height(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_transparent(Variable ind)
+public static Object sprite_get_transparent(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_smooth(Variable ind)
+public static Object sprite_get_smooth(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_preload(Variable ind)
+public static Object sprite_get_preload(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_xoffset(Variable ind)
+public static Object sprite_get_xoffset(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_yoffset(Variable ind)
+public static Object sprite_get_yoffset(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_bbox_mode(Variable ind)
+public static Object sprite_get_bbox_mode(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_bbox_left(Variable ind)
+public static Object sprite_get_bbox_left(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_bbox_right(Variable ind)
+public static Object sprite_get_bbox_right(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_bbox_top(Variable ind)
+public static Object sprite_get_bbox_top(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_bbox_bottom(Variable ind)
+public static Object sprite_get_bbox_bottom(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_get_precise(Variable ind)
+public static Object sprite_get_precise(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3402,34 +3401,34 @@ return Boolean.FALSE;
  * Sounds
  * 
  */
-public static Variable sound_exists(Variable ind)
+public static Object sound_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_get_name(Variable ind)
+public static Object sound_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_get_kind(Variable ind)
+public static Object sound_get_kind(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_get_preload(Variable ind)
+public static Object sound_get_preload(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_discard(Variable ind)
+public static Object sound_discard(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_restore(Variable ind)
+public static Object sound_restore(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3437,39 +3436,39 @@ return Boolean.FALSE;
  * Backgrounds
  * 
  */
-public static Variable background_exists(Variable ind)
+public static Object background_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_name(Variable ind)
+public static Object background_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_width(Variable ind)
+public static Object background_get_width(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_height(Variable ind)
+public static Object background_get_height(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_transparent(Variable ind)
+public static Object background_get_transparent(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_smooth(Variable ind)
+public static Object background_get_smooth(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_get_preload(Variable ind)
+public static Object background_get_preload(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3477,39 +3476,39 @@ return Boolean.FALSE;
  * Fonts
  * 
  */
-public static Variable font_exists(Variable ind)
+public static Object font_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_get_name(Variable ind)
+public static Object font_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_get_fontname(Variable ind)
+public static Object font_get_fontname(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_get_bold(Variable ind)
+public static Object font_get_bold(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_get_italic(Variable ind)
+public static Object font_get_italic(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_get_first(Variable ind)
+public static Object font_get_first(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_get_last(Variable ind)
+public static Object font_get_last(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3517,69 +3516,69 @@ return Boolean.FALSE;
  * Paths
  * 
  */
-public static Variable path_exists(Variable ind)
+public static Object path_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_name(Variable ind)
+public static Object path_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_length(Variable ind)
+public static Object path_get_length(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_kind(Variable ind)
+public static Object path_get_kind(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_closed(Variable ind)
+public static Object path_get_closed(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_precision(Variable ind)
+public static Object path_get_precision(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_number(Variable ind)
+public static Object path_get_number(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_point_x(Variable ind, Variable n)
+public static Object path_get_point_x(Object ind, Object n)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_point_y(Variable ind, Variable n)
+public static Object path_get_point_y(Object ind, Object n)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_point_speed(Variable ind, Variable n)
+public static Object path_get_point_speed(Object ind, Object n)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_x(Variable ind, Variable pos)
+public static Object path_get_x(Object ind, Object pos)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_y(Variable ind, Variable pos)
+public static Object path_get_y(Object ind, Object pos)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_get_speed(Variable ind, Variable pos)
+public static Object path_get_speed(Object ind, Object pos)
 {
-return Boolean.FALSE;
+return false;
 }
 
 
@@ -3588,19 +3587,19 @@ return Boolean.FALSE;
  * Scripts
  * 
  */
-public static Variable script_exists(Variable ind)
+public static Object script_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable script_get_name(Variable ind)
+public static Object script_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable script_get_text(Variable ind)
+public static Object script_get_text(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3608,69 +3607,69 @@ return Boolean.FALSE;
  * Time lines
  * 
  */
-public static Variable timeline_exists(Variable ind)
+public static Object timeline_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable timeline_get_name(Variable ind)
+public static Object timeline_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
  * 
- * Variables
+ * Objects
  * 
  */
-public static Variable actor_exists(Variable ind)
+public static Object actor_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable actor_get_name(Variable ind)
+public static Object actor_get_name(Object ind)
 {
 return ind;
 }
 
-public static Variable object_get_sprite(Variable ind)
+public static Object object_get_sprite(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_get_solid(Variable ind)
+public static Object object_get_solid(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_get_visible(Variable ind)
+public static Object object_get_visible(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_get_depth(Variable ind)
+public static Object object_get_depth(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_get_persistent(Variable ind)
+public static Object object_get_persistent(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_get_mask(Variable ind)
+public static Object object_get_mask(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_get_parent(Variable ind)
+public static Object object_get_parent(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_is_ancestor(Variable ind1, Variable ind2)
+public static Object object_is_ancestor(Object ind1, Object ind2)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3679,14 +3678,14 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable room_exists(Variable ind)
+public static Object room_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_get_name(Variable ind)
+public static Object room_get_name(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3694,79 +3693,79 @@ return Boolean.FALSE;
  * Changing Sprites
  * 
  */
-public static Variable sprite_set_offset(Variable ind, Variable xoff, Variable yoff)
+public static Object sprite_set_offset(Object ind, Object xoff, Object yoff)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_set_bbox_mode(Variable ind, Variable mode)
+public static Object sprite_set_bbox_mode(Object ind, Object mode)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_set_bbox(Variable ind, Variable left, Variable top, Variable right, Variable bottom)
+public static Object sprite_set_bbox(Object ind, Object left, Object top, Object right, Object bottom)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_set_precise(Variable ind, Variable mode)
+public static Object sprite_set_precise(Object ind, Object mode)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_duplicate(Variable ind)
+public static Object sprite_duplicate(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_assign(Variable ind, Variable source)
+public static Object sprite_assign(Object ind, Object source)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_merge(Variable ind1, Variable ind2)
+public static Object sprite_merge(Object ind1, Object ind2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_add(Variable fname, Variable imgnumb, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
+public static Object sprite_add(Object fname, Object imgnumb, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_replace(Variable ind, Variable fname, Variable imgnumb, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
+public static Object sprite_replace(Object ind, Object fname, Object imgnumb, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_create_from_screen(Variable x, Variable y, Variable w, Variable h, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
+public static Object sprite_create_from_screen(Object x, Object y, Object w, Object h, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_add_from_screen(Variable ind, Variable x, Variable y, Variable w, Variable h)
+public static Object sprite_add_from_screen(Object ind, Object x, Object y, Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_create_from_surface(Variable id, Variable x, Variable y, Variable w, Variable h, Variable precise, Variable transparent, Variable smooth, Variable preload, Variable xorig, Variable yorig)
+public static Object sprite_create_from_surface(Object id, Object x, Object y, Object w, Object h, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_add_from_surface(Variable ind, Variable id, Variable x, Variable y, Variable w, Variable h)
+public static Object sprite_add_from_surface(Object ind, Object id, Object x, Object y, Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_delete(Variable ind)
+public static Object sprite_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sprite_set_alpha_from_sprite(Variable ind, Variable spr)
+public static Object sprite_set_alpha_from_sprite(Object ind, Object spr)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3774,19 +3773,19 @@ return Boolean.FALSE;
  * Changing Sounds
  * 
  */
-public static Variable sound_add(Variable fname, Variable kind, Variable preload)
+public static Object sound_add(Object fname, Object kind, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_replace(Variable ind, Variable fname, Variable kind, Variable preload)
+public static Object sound_replace(Object ind, Object fname, Object kind, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable sound_delete(Variable ind)
+public static Object sound_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3794,54 +3793,54 @@ return Boolean.FALSE;
  * Changing Backgrounds
  * 
  */
-public static Variable background_duplicate(Variable ind)
+public static Object background_duplicate(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_assign(Variable ind, Variable source)
+public static Object background_assign(Object ind, Object source)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_add(Variable fname, Variable transparent, Variable smooth, Variable preload)
+public static Object background_add(Object fname, Object transparent, Object smooth, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_replace(Variable ind, Variable fname, Variable transparent, Variable smooth, Variable preload)
+public static Object background_replace(Object ind, Object fname, Object transparent, Object smooth, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_create_color(Variable w, Variable h, Variable col, Variable preload)
+public static Object background_create_color(Object w, Object h, Object col, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_create_gradient(Variable w, Variable h, Variable col1, Variable col2, Variable kind, Variable preload)
+public static Object background_create_gradient(Object w, Object h, Object col1, Object col2, Object kind, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_create_from_screen(Variable x, Variable y, Variable w, Variable h, Variable transparent, Variable smooth, Variable preload)
+public static Object background_create_from_screen(Object x, Object y, Object w, Object h, Object transparent, Object smooth, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_create_from_surface(Variable id, Variable x, Variable y, Variable w, Variable h, Variable transparent, Variable smooth, Variable preload)
+public static Object background_create_from_surface(Object id, Object x, Object y, Object w, Object h, Object transparent, Object smooth, Object preload)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_delete(Variable ind)
+public static Object background_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable background_set_alpha_from_background(Variable ind, Variable back)
+public static Object background_set_alpha_from_background(Object ind, Object back)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3849,29 +3848,29 @@ return Boolean.FALSE;
  * Changing Fonts
  * 
  */
-public static Variable font_add(Variable name, Variable size, Variable bold, Variable italic, Variable first, Variable last)
+public static Object font_add(Object name, Object size, Object bold, Object italic, Object first, Object last)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_add_sprite(Variable spr, Variable first, Variable prop, Variable sep)
+public static Object font_add_sprite(Object spr, Object first, Object prop, Object sep)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_replace(Variable ind, Variable name, Variable size, Variable bold, Variable italic, Variable first, Variable last)
+public static Object font_replace(Object ind, Object name, Object size, Object bold, Object italic, Object first, Object last)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_replace_sprite(Variable ind, Variable spr, Variable first, Variable prop, Variable sep)
+public static Object font_replace_sprite(Object ind, Object spr, Object first, Object prop, Object sep)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable font_delete(Variable ind)
+public static Object font_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3879,99 +3878,99 @@ return Boolean.FALSE;
  * Changing Paths
  * 
  */
-public static Variable path_set_kind(Variable ind, Variable kind)
+public static Object path_set_kind(Object ind, Object kind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_set_closed(Variable ind, Variable closed)
+public static Object path_set_closed(Object ind, Object closed)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_set_precision(Variable ind, Variable prec)
+public static Object path_set_precision(Object ind, Object prec)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_add()
+public static Object path_add()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_assign(Variable ind, Variable path)
+public static Object path_assign(Object ind, Object path)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_duplicate(Variable ind)
+public static Object path_duplicate(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_append(Variable ind, Variable path)
+public static Object path_append(Object ind, Object path)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_delete(Variable ind)
+public static Object path_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_add_point(Variable ind, Variable x, Variable y, Variable speed)
+public static Object path_add_point(Object ind, Object x, Object y, Object speed)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_insert_point(Variable ind, Variable n, Variable x, Variable y, Variable speed)
+public static Object path_insert_point(Object ind, Object n, Object x, Object y, Object speed)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_change_point(Variable ind, Variable n, Variable x, Variable y, Variable speed)
+public static Object path_change_point(Object ind, Object n, Object x, Object y, Object speed)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_delete_point(Variable ind, Variable n)
+public static Object path_delete_point(Object ind, Object n)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_clear_points(Variable ind)
+public static Object path_clear_points(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_reverse(Variable ind)
+public static Object path_reverse(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_mirror(Variable ind)
+public static Object path_mirror(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_flip(Variable ind)
+public static Object path_flip(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_rotate(Variable ind, Variable angle)
+public static Object path_rotate(Object ind, Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_scale(Variable ind, Variable xscale, Variable yscale)
+public static Object path_scale(Object ind, Object xscale, Object yscale)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable path_shift(Variable ind, Variable xshift, Variable yshift)
+public static Object path_shift(Object ind, Object xshift, Object yshift)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -3980,19 +3979,19 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable execute_string(Variable str)
+public static Object execute_string(Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable execute_file(Variable fname)
+public static Object execute_file(Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable script_execute(Variable... arg1)
+public static Object script_execute(Object... arg1)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4001,84 +4000,84 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable timeline_add()
+public static Object timeline_add()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable timeline_delete(Variable ind)
+public static Object timeline_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable timeline_moment_clear(Variable ind, Variable step)
+public static Object timeline_moment_clear(Object ind, Object step)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable timeline_moment_add(Variable ind, Variable step, Variable codestr)
+public static Object timeline_moment_add(Object ind, Object step, Object codestr)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
  * 
- * Changing Variables
+ * Changing Objects
  * 
  */
-public static Variable Variable_set_sprite(Variable ind, Variable spr)
+public static Object Object_set_sprite(Object ind, Object spr)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable Variable_set_solid(Variable ind, Variable solid)
+public static Object Object_set_solid(Object ind, Object solid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable Variable_set_visible(Variable ind, Variable vis)
+public static Object Object_set_visible(Object ind, Object vis)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable Variable_set_depth(Variable ind, Variable depth)
+public static Object Object_set_depth(Object ind, Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable Variable_set_persistent(Variable ind, Variable pers)
+public static Object Object_set_persistent(Object ind, Object pers)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable Variable_set_mask(Variable ind, Variable spr)
+public static Object Object_set_mask(Object ind, Object spr)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable Variable_set_parent(Variable ind, Variable obj)
+public static Object Object_set_parent(Object ind, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_add()
+public static Object object_add()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_delete(Variable ind)
+public static Object object_delete(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_event_clear(Variable ind, Variable evtype, Variable evnumb)
+public static Object object_event_clear(Object ind, Object evtype, Object evnumb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable object_event_add(Variable ind, Variable evtype, Variable evnumb, Variable codestr)
+public static Object object_event_add(Object ind, Object evtype, Object evnumb, Object codestr)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4086,89 +4085,89 @@ return Boolean.FALSE;
  * Changing rooms
  * 
  */
-public static Variable room_set_width(Variable ind, Variable w)
+public static Object room_set_width(Object ind, Object w)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_height(Variable ind, Variable h)
+public static Object room_set_height(Object ind, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_caption(Variable ind, Variable str)
+public static Object room_set_caption(Object ind, Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_persistent(Variable ind, Variable pers)
+public static Object room_set_persistent(Object ind, Object pers)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_code(Variable ind, Variable codestr)
+public static Object room_set_code(Object ind, Object codestr)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_background_color(Variable ind, Variable col, Variable show)
+public static Object room_set_background_color(Object ind, Object col, Object show)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_background(Variable ind, Variable bind, Variable vis, Variable fore, Variable back, Variable x, Variable y, Variable htiled, Variable vtiled, Variable hspeed, Variable vspeed, Variable alpha)
+public static Object room_set_background(Object ind, Object bind, Object vis, Object fore, Object back, Object x, Object y, Object htiled, Object vtiled, Object hspeed, Object vspeed, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_view(Variable ind, Variable vind, Variable vis, Variable xview, Variable yview, Variable wview, Variable hview, Variable xport, Variable yport, Variable wport, Variable hport, Variable hborder, Variable vborder, Variable hspeed, Variable vspeed, Variable obj)
+public static Object room_set_view(Object ind, Object vind, Object vis, Object xview, Object yview, Object wview, Object hview, Object xport, Object yport, Object wport, Object hport, Object hborder, Object vborder, Object hspeed, Object vspeed, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_set_view_enabled(Variable ind, Variable val)
+public static Object room_set_view_enabled(Object ind, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_add()
+public static Object room_add()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_duplicate(Variable ind)
+public static Object room_duplicate(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_assign(Variable ind, Variable source)
+public static Object room_assign(Object ind, Object source)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_instance_add(Variable ind, Variable x, Variable y, Variable obj)
+public static Object room_instance_add(Object ind, Object x, Object y, Object obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_instance_clear(Variable ind)
+public static Object room_instance_clear(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_tile_add(Variable ind, Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable depth)
+public static Object room_tile_add(Object ind, Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_tile_add_ext(Variable ind, Variable back, Variable left, Variable top, Variable width, Variable height, Variable x, Variable y, Variable depth, Variable xscale, Variable yscale, Variable alpha)
+public static Object room_tile_add_ext(Object ind, Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object depth, Object xscale, Object yscale, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable room_tile_clear(Variable ind)
+public static Object room_tile_clear(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4176,64 +4175,64 @@ return Boolean.FALSE;
  * Files
  * 
  */
-public static Variable file_text_open_read(Variable fname)
+public static Object file_text_open_read(Object fname)
 {
 File f = new File();
-    f.open(fname.getString(), 1);
+    f.open(fname.toString(), 1);
     return f;
 }
 
-public static Variable file_text_open_write(Variable fname)
+public static Object file_text_open_write(Object fname)
 {
     File f = new File();
-    f.open(fname.getString(), 0);
+    f.open(fname.toString(), 0);
     return f;
 }
 
-public static Variable file_text_open_append(Variable fname)
+public static Object file_text_open_append(Object fname)
 {
 File f = new File();
-    f.openAppend(fname.getString());
+    f.openAppend(fname.toString());
     return f;
 }
 
-public static Variable file_text_close(Variable file)
+public static Object file_text_close(Object file)
 {
     if (file instanceof File)
     {
         ((File)file).close();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_text_write_string(Variable file, Variable str)
+public static Object file_text_write_string(Object file, Object str)
 {
     if (file instanceof File)
     {
-        ((File)file).writeString(str.getString());
+        ((File)file).writeString(str.toString());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_text_write_real(Variable file, Variable val)
+public static Object file_text_write_real(Object file, Object val)
 {
     if (file instanceof File)
     {
-        ((File)file).writeDouble(val.getDouble());
+        ((File)file).writeDouble(((Double)val));
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_text_writeln(Variable file)
+public static Object file_text_writeln(Object file)
 {
     if (file instanceof File)
     {
         ((File)file).newLine();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_text_read_string(Variable file)
+public static Object file_text_read_string(Object file)
 {
     String str = new String("");
     if (file instanceof File)
@@ -4243,206 +4242,207 @@ public static Variable file_text_read_string(Variable file)
 return str;
 }
 
-public static Variable file_text_read_real(Variable file)
+public static Object file_text_read_real(Object file)
 {
     //String str = new String("");
     try{
     if (file instanceof File)
     {
-     return new Double( java.lang.Double.parseDouble(""+((File)file).readString()));
+     return ( java.lang.Double.parseDouble(""+((File)file).readString()));
     }
     }catch(Exception e){}
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_text_readln(Variable file)
+public static Object file_text_readln(Object file)
 {
     if (file instanceof File)
     {
       ((File)file).readln();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_text_eof(Variable file)
+public static Object file_text_eof(Object file)
 {
     if (file instanceof File)
     {
      return new Boolean( ((File)file).endOfFile());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_exists(Variable fname)
+public static Object file_exists(Object fname)
 {
-return new Boolean(File.exists(fname.getString()));
+return new Boolean(File.exists(fname.toString()));
 }
 
-public static Variable file_delete(Variable fname)
+public static Object file_delete(Object fname)
 {
     File.delete(fname.toString());
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_rename(Variable oldname, Variable newname)
+public static Object file_rename(Object oldname, Object newname)
 {
     File.rename(oldname.toString(), newname.toString());
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_copy(Variable fname, Variable newname)
+public static Object file_copy(Object fname, Object newname)
 {
     File.copy(fname.toString(), newname.toString());
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable directory_exists(Variable dname)
+public static Object directory_exists(Object dname)
 {
-return new Boolean(File.exists(dname.getString()));
+return new Boolean(File.exists(dname.toString()));
 }
 
-public static Variable directory_create(Variable dname)
+public static Object directory_create(Object dname)
 {
     (new java.io.File(dname.toString())).mkdirs();
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_find_first(Variable mask, Variable attr)
+public static Object file_find_first(Object mask, Object attr)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_find_next()
+public static Object file_find_next()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_find_close()
+public static Object file_find_close()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_attributes(Variable fname, Variable attr)
+public static Object file_attributes(Object fname, Object attr)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable filename_path(Variable fname)
+public static Object filename_path(Object fname)
 {
 return new String(""+fname.toString().substring(0, fname.toString().lastIndexOf(java.io.File.separator)+1));
 }
 
-public static Variable filename_name(Variable fname)
+public static Object filename_name(Object fname)
 {
 return new String(""+fname.toString().substring(fname.toString().lastIndexOf(java.io.File.separator)+1,fname.toString().length()));
 }
 
-public static Variable filename_dir(Variable fname)
+public static Object filename_dir(Object fname)
 {
 return new String(""+fname.toString().substring(0, fname.toString().lastIndexOf(java.io.File.separator)));
 }
 
-public static Variable filename_drive(Variable fname)
+public static Object filename_drive(Object fname)
 {
 return new String(""+fname.toString().substring(0, fname.toString().indexOf(java.io.File.separator)));
 }
 
-public static Variable filename_ext(Variable fname)
+public static Object filename_ext(Object fname)
 {
 return new String(""+fname.toString().substring(fname.toString().length()-4,fname.toString().length()));
 
 }
 
-public static Variable filename_change_ext(Variable fname, Variable newext)
+public static Object filename_change_ext(Object fname, Object newext)
 {
 return new String(""+fname.toString().substring(0, fname.toString().length()-4)+newext.toString());
 }
 
-public static Variable file_bin_open(Variable fname, Variable mode)
+public static Object file_bin_open(Object fname, Object mode)
 {
     BinaryFile bf = new BinaryFile();
     bf.open(""+fname);
 return bf;
 }
 
-public static Variable file_bin_rewrite(Variable file)
+public static Object file_bin_rewrite(Object file)
 {
     if (file instanceof BinaryFile)
     {
     ((BinaryFile)file).rewrite();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_bin_close(Variable file)
+public static Object file_bin_close(Object file)
 {
     if (file instanceof BinaryFile)
     {
     ((BinaryFile)file).close();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_bin_position(Variable file)
+public static Object file_bin_position(Object file)
 {
     if (file instanceof BinaryFile)
     {
-    return new Double(((BinaryFile)file).getPosition());
+    return (((BinaryFile)file).getPosition());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_bin_size(Variable file)
+public static Object file_bin_size(Object file)
 {
     if (file instanceof BinaryFile)
     {
-    return new Double(((BinaryFile)file).getSize());
+    return (((BinaryFile)file).getSize());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_bin_seek(Variable file, Variable pos)
+public static Object file_bin_seek(Object file, Object pos)
 {
     if (file instanceof BinaryFile)
     {
-    ((BinaryFile)file).seek(pos.getInt());
+    ((BinaryFile)file).seek(((Double)pos).intValue());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_bin_write_byte(Variable file, Variable BYTE)
+public static Object file_bin_write_byte(Object file, Object BYTE)
 {
     if (file instanceof BinaryFile)
     {
-    ((BinaryFile)file).writeByte((byte)BYTE.getInt());
+    ((BinaryFile)file).writeByte(((Double)BYTE).byteValue());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable file_bin_read_byte(Variable file)
+public static Object file_bin_read_byte(Object file)
 {
     if (file instanceof BinaryFile)
     {
-    return new Integer(((BinaryFile)file).readByte());
+    return (((BinaryFile)file).readByte());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable parameter_count()
+public static Object parameter_count()
 {
-return new Integer(Game.parameter_count);
+return (Game.parameter_count);
 }
 
-public static Variable parameter_string(Variable n)
+public static Object parameter_string(Object n)
 {
     try{
-return new String(Game.parameters[n.getInt()]);
+return new String(Game.parameters[((Double)n).intValue()]);
     }catch(Exception e){
-   return Boolean.FALSE;
+    	e.printStackTrace();
+   return false;
     }
 }
 
-public static Variable environment_get_variable(Variable name)
+public static Object environment_get_Object(Object name)
 {
 return new String(System.getenv(""+name));
 }
@@ -4452,59 +4452,59 @@ return new String(System.getenv(""+name));
  * Registry
  * 
  */
-public static Variable registry_write_string(Variable name, Variable str)
+public static Object registry_write_string(Object name, Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_write_real(Variable name, Variable value)
+public static Object registry_write_real(Object name, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_read_string(Variable name)
+public static Object registry_read_string(Object name)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_read_real(Variable name)
+public static Object registry_read_real(Object name)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_exists(Variable name)
+public static Object registry_exists(Object name)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_write_string_ext(Variable key, Variable name, Variable str)
+public static Object registry_write_string_ext(Object key, Object name, Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_write_real_ext(Variable key, Variable name, Variable value)
+public static Object registry_write_real_ext(Object key, Object name, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_read_string_ext(Variable key, Variable name)
+public static Object registry_read_string_ext(Object key, Object name)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_read_real_ext(Variable key, Variable name)
+public static Object registry_read_real_ext(Object key, Object name)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_exists_ext(Variable key, Variable name)
+public static Object registry_exists_ext(Object key, Object name)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable registry_set_root(Variable root)
+public static Object registry_set_root(Object root)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4512,54 +4512,54 @@ return Boolean.FALSE;
  * Ini files
  * 
  */
-public static Variable ini_open(Variable fname)
+public static Object ini_open(Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_close()
+public static Object ini_close()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_read_string(Variable section, Variable key, Variable DEFAULT)
+public static Object ini_read_string(Object section, Object key, Object DEFAULT)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_read_real(Variable section, Variable key, Variable DEFAULT)
+public static Object ini_read_real(Object section, Object key, Object DEFAULT)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_write_string(Variable section, Variable key, Variable str)
+public static Object ini_write_string(Object section, Object key, Object str)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_write_real(Variable section, Variable key, Variable value)
+public static Object ini_write_real(Object section, Object key, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_key_exists(Variable section, Variable key)
+public static Object ini_key_exists(Object section, Object key)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_section_exists(Variable section)
+public static Object ini_section_exists(Object section)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_key_delete(Variable section, Variable key)
+public static Object ini_key_delete(Object section, Object key)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ini_section_delete(Variable section)
+public static Object ini_section_delete(Object section)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4567,12 +4567,12 @@ return Boolean.FALSE;
  * Executing programs
  * 
  */
-public static Variable execute_program(Variable prog, Variable arg, Variable wait)
+public static Object execute_program(Object prog, Object arg, Object wait)
 {
 	try {
         java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog +" "+ arg);
         
-        if (wait.getBoolean()) {
+        if ((Boolean)wait) {
             try {
                 proc.waitFor();
             } catch (InterruptedException e) {
@@ -4583,21 +4583,21 @@ public static Variable execute_program(Variable prog, Variable arg, Variable wai
         ex.printStackTrace();
         System.err.println("Execute program exception!");
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable execute_shell(Variable prog, Variable arg)
+public static Object execute_shell(Object prog, Object arg)
 {
 	execute_program(new String("bash -i " + prog), arg, new Boolean(false));
-return Boolean.FALSE;
+return false;
 }
 
 /*
  * Data Structures
  */
-public static Variable ds_set_precision(Variable prec)
+public static Object ds_set_precision(Object prec)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4605,72 +4605,72 @@ return Boolean.FALSE;
  * Stacks
  * 
  */
-public static Variable ds_stack_create()
+public static Object ds_stack_create()
 {
 return new Stack();
 }
 
-public static Variable ds_stack_destroy(Variable id)
+public static Object ds_stack_destroy(Object id)
 {
     if (id instanceof Stack)
     {
       ((Stack)id).destroy();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_stack_clear(Variable id)
+public static Object ds_stack_clear(Object id)
 {
     if (id instanceof Stack)
     {
       ((Stack)id).clear();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_stack_size(Variable id)
+public static Object ds_stack_size(Object id)
 {
      if (id instanceof Stack)
     {
-     return new Integer(((Stack)id).size());
+     return (((Stack)id).size());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_stack_empty(Variable id)
+public static Object ds_stack_empty(Object id)
 {
     if (id instanceof Stack)
     {
      return new Boolean(((Stack)id).empty());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_stack_push(Variable id, Variable value)
+public static Object ds_stack_push(Object id, Object value)
 {
     if (id instanceof Stack)
     {
      ((Stack)id).push(value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_stack_pop(Variable id)
+public static Object ds_stack_pop(Object id)
 {
     if (id instanceof Stack)
     {
      return ((Stack)id).pop();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_stack_top(Variable id)
+public static Object ds_stack_top(Object id)
 {
      if (id instanceof Stack)
     {
      return ((Stack)id).top();
     }
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4678,82 +4678,82 @@ return Boolean.FALSE;
  * Queues
  * 
  */
-public static Variable ds_queue_create()
+public static Object ds_queue_create()
 {
     
 return new Queue();
 }
 
-public static Variable ds_queue_destroy(Variable id)
+public static Object ds_queue_destroy(Object id)
 {
      if (id instanceof Queue)
     {
      ((Queue)id).destroy();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_clear(Variable id)
+public static Object ds_queue_clear(Object id)
 {
     if (id instanceof Queue)
     {
      ((Queue)id).clear();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_size(Variable id)
+public static Object ds_queue_size(Object id)
 {
     if (id instanceof Queue)
     {
-    return new Integer(((Queue)id).size());
+    return (((Queue)id).size());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_empty(Variable id)
+public static Object ds_queue_empty(Object id)
 {
     if (id instanceof Queue)
     {
     return new Boolean(((Queue)id).empty());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_enqueue(Variable id, Variable value)
+public static Object ds_queue_enqueue(Object id, Object value)
 {
     if (id instanceof Queue)
     {
     ((Queue)id).enqueue(value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_dequeue(Variable id)
+public static Object ds_queue_dequeue(Object id)
 {
     if (id instanceof Queue)
     {
     return ((Queue)id).dequeue();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_head(Variable id)
+public static Object ds_queue_head(Object id)
 {
     if (id instanceof Queue)
     {
     return ((Queue)id).head();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_queue_tail(Variable id)
+public static Object ds_queue_tail(Object id)
 {
     if (id instanceof Queue)
     {
     return ((Queue)id).tail();
     }
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -4761,104 +4761,104 @@ return Boolean.FALSE;
  * Lists
  * 
  */
-public static Variable ds_list_create()
+public static Object ds_list_create()
 {
 return new List();
 }
 
-public static Variable ds_list_destroy(Variable id)
+public static Object ds_list_destroy(Object id)
 {
     if (id instanceof List)
     {
      ((List)id).destroy();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_clear(Variable id)
+public static Object ds_list_clear(Object id)
 {
     if (id instanceof List)
     {
      ((List)id).clear();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_size(Variable id)
+public static Object ds_list_size(Object id)
 {
      if (id instanceof List)
     {
-    return new Integer(((List)id).size());
+    return (((List)id).size());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_empty(Variable id)
+public static Object ds_list_empty(Object id)
 {
     if (id instanceof List)
     {
     return new Boolean(((List)id).empty());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_add(Variable id, Variable value)
+public static Object ds_list_add(Object id, Object value)
 {
     if (id instanceof List)
     {
     ((List)id).addel(value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_insert(Variable id, Variable pos, Variable value)
+public static Object ds_list_insert(Object id, Object pos, Object value)
 {
     if (id instanceof List)
     {
     ((List)id).insert(pos,value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_replace(Variable id, Variable pos, Variable value)
+public static Object ds_list_replace(Object id, Object pos, Object value)
 {
     if (id instanceof List)
     {
     ((List)id).replace(pos,value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_delete(Variable id, Variable pos)
+public static Object ds_list_delete(Object id, Object pos)
 {
     if (id instanceof List)
     {
     ((List)id).delete(pos);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_find_index(Variable id, Variable value)
+public static Object ds_list_find_index(Object id, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_find_value(Variable id, Variable pos)
+public static Object ds_list_find_value(Object id, Object pos)
 {
     if (id instanceof List)
     {
     return ((List)id).find_value(pos);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_sort(Variable id, Variable ascending)
+public static Object ds_list_sort(Object id, Object ascending)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_list_shuffle(Variable id){
-	return Boolean.FALSE;
+public static Object ds_list_shuffle(Object id){
+	return false;
 }
 
 /*
@@ -4866,118 +4866,118 @@ public static Variable ds_list_shuffle(Variable id){
  * Maps
  * 
  */
-public static Variable ds_map_create()
+public static Object ds_map_create()
 {
 return new Map();
 }
 
-public static Variable ds_map_destroy(Variable id)
+public static Object ds_map_destroy(Object id)
 {
      if (id instanceof Map)
     {
      ((Map)id).destroy();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_clear(Variable id)
+public static Object ds_map_clear(Object id)
 {
     if (id instanceof Map)
     {
      ((Map)id).clear();
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_size(Variable id)
+public static Object ds_map_size(Object id)
 {
     if (id instanceof Map)
     {
-    return new Integer(((Map)id).size());
+    return (((Map)id).size());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_empty(Variable id)
+public static Object ds_map_empty(Object id)
 {
     if (id instanceof Map)
     {
     return new Boolean(((Map)id).empty());
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_add(Variable id, Variable key, Variable value)
+public static Object ds_map_add(Object id, Object key, Object value)
 {
     if (id instanceof Map)
     {
     ((Map)id).add(key,value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_replace(Variable id, Variable key, Variable value)
+public static Object ds_map_replace(Object id, Object key, Object value)
 {
     if (id instanceof Map)
     {
     ((Map)id).add(key,value);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_delete(Variable id, Variable key)
+public static Object ds_map_delete(Object id, Object key)
 {
     if (id instanceof Map)
     {
     ((Map)id).delete(key);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_exists(Variable id, Variable key)
+public static Object ds_map_exists(Object id, Object key)
 {
     if (id instanceof Map)
     {
     return new Boolean(((Map)id).exists(key));
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_find_value(Variable id, Variable key)
+public static Object ds_map_find_value(Object id, Object key)
 {
     if (id instanceof Map)
     {
     return (((Map)id).find(key));
     }
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_map_find_previous(Variable id, Variable key)
+public static Object ds_map_find_previous(Object id, Object key)
 {
     if (id instanceof Map)
         return ((Map)id).findPrevious(key);
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_map_find_next(Variable id, Variable key)
+public static Object ds_map_find_next(Object id, Object key)
 {
     if (id instanceof Map)
         return ((Map)id).findNext(key);
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_map_find_first(Variable id)
+public static Object ds_map_find_first(Object id)
 {
     if (id instanceof Map)
         return ((Map)id).findFirst();
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_map_find_last(Variable id)
+public static Object ds_map_find_last(Object id)
 {
     if (id instanceof Map)
         return ((Map)id).findLast();
-    return Boolean.FALSE;
+    return false;
 }
 
 /*
@@ -4985,117 +4985,117 @@ public static Variable ds_map_find_last(Variable id)
  * Priority queues
  * 
  */
-public static Variable ds_priority_create()
+public static Object ds_priority_create()
 {
     return new PriorityQueue();
 }
 
-public static Variable ds_priority_destroy(Variable id)
+public static Object ds_priority_destroy(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         ((PriorityQueue)id).destroy();
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_clear(Variable id)
+public static Object ds_priority_clear(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         ((PriorityQueue)id).clear();
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_size(Variable id)
+public static Object ds_priority_size(Object id)
 {
     if (id instanceof PriorityQueue)
     {
-        return new Integer(((PriorityQueue)id).size());
+        return (((PriorityQueue)id).size());
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_empty(Variable id)
+public static Object ds_priority_empty(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         return new Boolean(((PriorityQueue)id).isEmpty());
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_add(Variable id, Variable value, Variable priority)
+public static Object ds_priority_add(Object id, Object value, Object priority)
 {
     if (id instanceof PriorityQueue)
     {
         ((PriorityQueue)id).add(value, priority);
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_change_priority(Variable id, Variable value, Variable priority)
+public static Object ds_priority_change_priority(Object id, Object value, Object priority)
 {
     if (id instanceof PriorityQueue)
     {
         ((PriorityQueue)id).changePriority(value, priority);
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_find_priority(Variable id, Variable value)
+public static Object ds_priority_find_priority(Object id, Object value)
 {
     if (id instanceof PriorityQueue)
     {
         return ((PriorityQueue)id).findPriority(value);
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_delete_value(Variable id, Variable value)
+public static Object ds_priority_delete_value(Object id, Object value)
 {
     if (id instanceof PriorityQueue)
     {
         ((PriorityQueue)id).deleteValue(value);
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_delete_min(Variable id)
+public static Object ds_priority_delete_min(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         return ((PriorityQueue)id).deleteMin();
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_find_min(Variable id)
+public static Object ds_priority_find_min(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         return ((PriorityQueue)id).findMin();
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_delete_max(Variable id)
+public static Object ds_priority_delete_max(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         return ((PriorityQueue)id).deleteMax();
     }
-    return Boolean.FALSE;
+    return false;
 }
 
-public static Variable ds_priority_find_max(Variable id)
+public static Object ds_priority_find_max(Object id)
 {
     if (id instanceof PriorityQueue)
     {
         return ((PriorityQueue)id).findMax();
     }
-    return Boolean.FALSE;
+    return false;
 }
 
 /*
@@ -5103,154 +5103,154 @@ public static Variable ds_priority_find_max(Variable id)
  * Grids
  * 
  */
-public static Variable ds_grid_create(Variable w, Variable h)
+public static Object ds_grid_create(Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_destroy(Variable id)
+public static Object ds_grid_destroy(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_resize(Variable id, Variable w, Variable h)
+public static Object ds_grid_resize(Object id, Object w, Object h)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_width(Variable id)
+public static Object ds_grid_width(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_height(Variable id)
+public static Object ds_grid_height(Object id)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_clear(Variable id, Variable val)
+public static Object ds_grid_clear(Object id, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_set(Variable id, Variable x, Variable y, Variable val)
+public static Object ds_grid_set(Object id, Object x, Object y, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_add(Variable id, Variable x, Variable y, Variable val)
+public static Object ds_grid_add(Object id, Object x, Object y, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_multiply(Variable id, Variable x, Variable y, Variable val)
+public static Object ds_grid_multiply(Object id, Object x, Object y, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_set_region(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
+public static Object ds_grid_set_region(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_add_region(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
+public static Object ds_grid_add_region(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_multiply_region(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
+public static Object ds_grid_multiply_region(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_set_disk(Variable id, Variable xm, Variable ym, Variable r, Variable val)
+public static Object ds_grid_set_disk(Object id, Object xm, Object ym, Object r, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_add_disk(Variable id, Variable xm, Variable ym, Variable r, Variable val)
+public static Object ds_grid_add_disk(Object id, Object xm, Object ym, Object r, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_multiply_disk(Variable id, Variable xm, Variable ym, Variable r, Variable val)
+public static Object ds_grid_multiply_disk(Object id, Object xm, Object ym, Object r, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get(Variable id, Variable x, Variable y)
+public static Object ds_grid_get(Object id, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_sum(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object ds_grid_get_sum(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_max(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object ds_grid_get_max(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_min(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object ds_grid_get_min(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_mean(Variable id, Variable x1, Variable y1, Variable x2, Variable y2)
+public static Object ds_grid_get_mean(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_disk_sum(Variable id, Variable xm, Variable ym, Variable r)
+public static Object ds_grid_get_disk_sum(Object id, Object xm, Object ym, Object r)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_disk_min(Variable id, Variable xm, Variable ym, Variable r)
+public static Object ds_grid_get_disk_min(Object id, Object xm, Object ym, Object r)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_disk_max(Variable id, Variable xm, Variable ym, Variable r)
+public static Object ds_grid_get_disk_max(Object id, Object xm, Object ym, Object r)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_get_disk_mean(Variable id, Variable xm, Variable ym, Variable r)
+public static Object ds_grid_get_disk_mean(Object id, Object xm, Object ym, Object r)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_value_exists(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
+public static Object ds_grid_value_exists(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_value_x(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
+public static Object ds_grid_value_x(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_value_y(Variable id, Variable x1, Variable y1, Variable x2, Variable y2, Variable val)
+public static Object ds_grid_value_y(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_value_disk_exists(Variable id, Variable xm, Variable ym, Variable r, Variable val)
+public static Object ds_grid_value_disk_exists(Object id, Object xm, Object ym, Object r, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_value_disk_x(Variable id, Variable xm, Variable ym, Variable r, Variable val)
+public static Object ds_grid_value_disk_x(Object id, Object xm, Object ym, Object r, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable ds_grid_value_disk_y(Variable id, Variable xm, Variable ym, Variable r, Variable val)
+public static Object ds_grid_value_disk_y(Object id, Object xm, Object ym, Object r, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5258,19 +5258,19 @@ return Boolean.FALSE;
  * Simple Effects
  * 
  */
-public static Variable effect_create_below(Variable kind, Variable x, Variable y, Variable size, Variable color)
+public static Object effect_create_below(Object kind, Object x, Object y, Object size, Object color)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable effect_create_above(Variable kind, Variable x, Variable y, Variable size, Variable color)
+public static Object effect_create_above(Object kind, Object x, Object y, Object size, Object color)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable effect_clear()
+public static Object effect_clear()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5278,129 +5278,129 @@ return Boolean.FALSE;
  * Particle types
  * 
  */
-public static Variable part_type_create()
+public static Object part_type_create()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_destroy(Variable ind)
+public static Object part_type_destroy(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_exists(Variable ind)
+public static Object part_type_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_clear(Variable ind)
+public static Object part_type_clear(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_shape(Variable ind, Variable shape)
+public static Object part_type_shape(Object ind, Object shape)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_sprite(Variable ind, Variable sprite, Variable animat, Variable stretch, Variable random)
+public static Object part_type_sprite(Object ind, Object sprite, Object animat, Object stretch, Object random)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_size(Variable ind, Variable size_min, Variable size_max, Variable size_incr, Variable size_wiggle)
+public static Object part_type_size(Object ind, Object size_min, Object size_max, Object size_incr, Object size_wiggle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_scale(Variable ind, Variable xscale, Variable yscale)
+public static Object part_type_scale(Object ind, Object xscale, Object yscale)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_orientation(Variable ind, Variable ang_min, Variable ang_max, Variable ang_incr, Variable ang_wiggle, Variable ang_relative)
+public static Object part_type_orientation(Object ind, Object ang_min, Object ang_max, Object ang_incr, Object ang_wiggle, Object ang_relative)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_life(Variable ind, Variable life_min, Variable life_max)
+public static Object part_type_life(Object ind, Object life_min, Object life_max)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_step(Variable ind, Variable step_number, Variable step_type)
+public static Object part_type_step(Object ind, Object step_number, Object step_type)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_death(Variable ind, Variable death_number, Variable death_type)
+public static Object part_type_death(Object ind, Object death_number, Object death_type)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_speed(Variable ind, Variable speed_min, Variable speed_max, Variable speed_incr, Variable speed_wiggle)
+public static Object part_type_speed(Object ind, Object speed_min, Object speed_max, Object speed_incr, Object speed_wiggle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_direction(Variable ind, Variable dir_min, Variable dir_max, Variable dir_incr, Variable dir_wiggle)
+public static Object part_type_direction(Object ind, Object dir_min, Object dir_max, Object dir_incr, Object dir_wiggle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_gravity(Variable ind, Variable grav_amount, Variable grav_dir)
+public static Object part_type_gravity(Object ind, Object grav_amount, Object grav_dir)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_color1(Variable ind, Variable color1)
+public static Object part_type_color1(Object ind, Object color1)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_color2(Variable ind, Variable color1, Variable color2)
+public static Object part_type_color2(Object ind, Object color1, Object color2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_color3(Variable ind, Variable color1, Variable color2, Variable color3)
+public static Object part_type_color3(Object ind, Object color1, Object color2, Object color3)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_color_mix(Variable ind, Variable color1, Variable color2)
+public static Object part_type_color_mix(Object ind, Object color1, Object color2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_color_rgb(Variable ind, Variable rmin, Variable rmax, Variable gmin, Variable gmax, Variable bmin, Variable bmax)
+public static Object part_type_color_rgb(Object ind, Object rmin, Object rmax, Object gmin, Object gmax, Object bmin, Object bmax)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_color_hsv(Variable ind, Variable hmin, Variable hmax, Variable smin, Variable smax, Variable vmin, Variable vmax)
+public static Object part_type_color_hsv(Object ind, Object hmin, Object hmax, Object smin, Object smax, Object vmin, Object vmax)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_alpha1(Variable ind, Variable alpha1)
+public static Object part_type_alpha1(Object ind, Object alpha1)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_alpha2(Variable ind, Variable alpha1, Variable alpha2)
+public static Object part_type_alpha2(Object ind, Object alpha1, Object alpha2)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_alpha3(Variable ind, Variable alpha1, Variable alpha2, Variable alpha3)
+public static Object part_type_alpha3(Object ind, Object alpha1, Object alpha2, Object alpha3)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_type_blend(Variable ind, Variable additive)
+public static Object part_type_blend(Object ind, Object additive)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5409,79 +5409,79 @@ return Boolean.FALSE;
  * 
  */
 
-public static Variable part_system_create()
+public static Object part_system_create()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_destroy(Variable ind)
+public static Object part_system_destroy(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_exists(Variable ind)
+public static Object part_system_exists(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_clear(Variable ind)
+public static Object part_system_clear(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_draw_order(Variable ind, Variable oldtonew)
+public static Object part_system_draw_order(Object ind, Object oldtonew)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_depth(Variable ind, Variable depth)
+public static Object part_system_depth(Object ind, Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_position(Variable ind, Variable x, Variable y)
+public static Object part_system_position(Object ind, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_automatic_update(Variable ind, Variable automatic)
+public static Object part_system_automatic_update(Object ind, Object automatic)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_automatic_draw(Variable ind, Variable draw)
+public static Object part_system_automatic_draw(Object ind, Object draw)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_update(Variable ind)
+public static Object part_system_update(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_system_drawit(Variable ind)
+public static Object part_system_drawit(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_particles_create(Variable ind, Variable x, Variable y, Variable parttype, Variable number)
+public static Object part_particles_create(Object ind, Object x, Object y, Object parttype, Object number)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_particles_create_color(Variable ind, Variable x, Variable y, Variable parttype, Variable color, Variable number)
+public static Object part_particles_create_color(Object ind, Object x, Object y, Object parttype, Object color, Object number)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_particles_clear(Variable ind)
+public static Object part_particles_clear(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_particles_count(Variable ind)
+public static Object part_particles_count(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
 
@@ -5491,44 +5491,44 @@ return Boolean.FALSE;
  * Emitters
  * 
  */
-public static Variable part_emitter_create(Variable ps)
+public static Object part_emitter_create(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_destroy(Variable ps, Variable ind)
+public static Object part_emitter_destroy(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_destroy_all(Variable ps)
+public static Object part_emitter_destroy_all(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_exists(Variable ps, Variable ind)
+public static Object part_emitter_exists(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_clear(Variable ps, Variable ind)
+public static Object part_emitter_clear(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax, Variable shape, Variable distribution)
+public static Object part_emitter_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax, Object shape, Object distribution)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_burst(Variable ps, Variable ind, Variable parttype, Variable number)
+public static Object part_emitter_burst(Object ps, Object ind, Object parttype, Object number)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_emitter_stream(Variable ps, Variable ind, Variable parttype, Variable number)
+public static Object part_emitter_stream(Object ps, Object ind, Object parttype, Object number)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5536,39 +5536,39 @@ return Boolean.FALSE;
  * Attractors
  * 
  */
-public static Variable part_attractor_create(Variable ps)
+public static Object part_attractor_create(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_attractor_destroy(Variable ps, Variable ind)
+public static Object part_attractor_destroy(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_attractor_destroy_all(Variable ps)
+public static Object part_attractor_destroy_all(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_attractor_exists(Variable ps, Variable ind)
+public static Object part_attractor_exists(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_attractor_clear(Variable ps, Variable ind)
+public static Object part_attractor_clear(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_attractor_position(Variable ps, Variable ind, Variable x, Variable y)
+public static Object part_attractor_position(Object ps, Object ind, Object x, Object y)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_attractor_force(Variable ps, Variable ind, Variable force, Variable dist, Variable kind, Variable additive)
+public static Object part_attractor_force(Object ps, Object ind, Object force, Object dist, Object kind, Object additive)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5576,34 +5576,34 @@ return Boolean.FALSE;
  * Destroyers
  * 
  */
-public static Variable part_destroyer_create(Variable ps)
+public static Object part_destroyer_create(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_destroyer_destroy(Variable ps, Variable ind)
+public static Object part_destroyer_destroy(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_destroyer_destroy_all(Variable ps)
+public static Object part_destroyer_destroy_all(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_destroyer_exists(Variable ps, Variable ind)
+public static Object part_destroyer_exists(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_destroyer_clear(Variable ps, Variable ind)
+public static Object part_destroyer_clear(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_destroyer_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax, Variable shape)
+public static Object part_destroyer_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax, Object shape)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5611,44 +5611,44 @@ return Boolean.FALSE;
  * Deflectors
  * 
  */
-public static Variable part_deflector_create(Variable ps)
+public static Object part_deflector_create(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_destroy(Variable ps, Variable ind)
+public static Object part_deflector_destroy(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_destroy_all(Variable ps)
+public static Object part_deflector_destroy_all(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_exists(Variable ps, Variable ind)
+public static Object part_deflector_exists(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_clear(Variable ps, Variable ind)
+public static Object part_deflector_clear(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax)
+public static Object part_deflector_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_kind(Variable ps, Variable ind, Variable kind)
+public static Object part_deflector_kind(Object ps, Object ind, Object kind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_deflector_friction(Variable ps, Variable ind, Variable amount)
+public static Object part_deflector_friction(Object ps, Object ind, Object amount)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5656,44 +5656,44 @@ return Boolean.FALSE;
  * Changers
  * 
  */
-public static Variable part_changer_create(Variable ps)
+public static Object part_changer_create(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_destroy(Variable ps, Variable ind)
+public static Object part_changer_destroy(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_destroy_all(Variable ps)
+public static Object part_changer_destroy_all(Object ps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_exists(Variable ps, Variable ind)
+public static Object part_changer_exists(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_clear(Variable ps, Variable ind)
+public static Object part_changer_clear(Object ps, Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_region(Variable ps, Variable ind, Variable xmin, Variable xmax, Variable ymin, Variable ymax, Variable shape)
+public static Object part_changer_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax, Object shape)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_kind(Variable ps, Variable ind, Variable kind)
+public static Object part_changer_kind(Object ps, Object ind, Object kind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable part_changer_types(Variable ps, Variable ind, Variable parttype1, Variable parttype2)
+public static Object part_changer_types(Object ps, Object ind, Object parttype1, Object parttype2)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5701,37 +5701,37 @@ return Boolean.FALSE;
  * Setting up a connection
  * 
  */
-public static Variable mplay_init_ipx()
+public static Object mplay_init_ipx()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_init_tcpip(Variable addrstring)
+public static Object mplay_init_tcpip(Object addrstring)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_init_modem(Variable initstr, Variable phonenr)
+public static Object mplay_init_modem(Object initstr, Object phonenr)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_init_serial(Variable portno, Variable baudrate, Variable stopbits, Variable parity, Variable flow)
+public static Object mplay_init_serial(Object portno, Object baudrate, Object stopbits, Object parity, Object flow)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_connect_status()
+public static Object mplay_connect_status()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_end()
+public static Object mplay_end()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_ipaddress()
+public static Object mplay_ipaddress()
 {
     try{
         java.net.InetAddress i = java.net.InetAddress.getLocalHost();
@@ -5739,7 +5739,7 @@ public static Variable mplay_ipaddress()
    return new String(i.getHostAddress()); // IP address only
         } catch(Exception e){
         System.out.println(""+e.getMessage());}
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5747,39 +5747,39 @@ return Boolean.FALSE;
  * Creating and joining sessions
  * 
  */
-public static Variable mplay_session_mode(Variable move)
+public static Object mplay_session_mode(Object move)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_session_create(Variable sesname, Variable playnumb, Variable playername)
+public static Object mplay_session_create(Object sesname, Object playnumb, Object playername)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_session_find()
+public static Object mplay_session_find()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_session_name(Variable numb)
+public static Object mplay_session_name(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_session_join(Variable numb, Variable playername)
+public static Object mplay_session_join(Object numb, Object playername)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_session_status()
+public static Object mplay_session_status()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_session_end()
+public static Object mplay_session_end()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5787,19 +5787,19 @@ return Boolean.FALSE;
  * Players
  * 
  */
-public static Variable mplay_player_find()
+public static Object mplay_player_find()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_player_name(Variable numb)
+public static Object mplay_player_name(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_player_id(Variable numb)
+public static Object mplay_player_id(Object numb)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5807,19 +5807,19 @@ return Boolean.FALSE;
  * Shared data
  * 
  */
-public static Variable mplay_data_write(Variable ind, Variable value)
+public static Object mplay_data_write(Object ind, Object value)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_data_read(Variable ind)
+public static Object mplay_data_read(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_data_mode(Variable guaranteed)
+public static Object mplay_data_mode(Object guaranteed)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5827,49 +5827,49 @@ return Boolean.FALSE;
  * Messages
  * 
  */
-public static Variable mplay_message_send(Variable player, Variable id, Variable val)
+public static Object mplay_message_send(Object player, Object id, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_send_guaranteed(Variable player, Variable id, Variable val)
+public static Object mplay_message_send_guaranteed(Object player, Object id, Object val)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_receive(Variable player)
+public static Object mplay_message_receive(Object player)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_id()
+public static Object mplay_message_id()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_value()
+public static Object mplay_message_value()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_player()
+public static Object mplay_message_player()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_name()
+public static Object mplay_message_name()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_count(Variable player)
+public static Object mplay_message_count(Object player)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable mplay_message_clear(Variable player)
+public static Object mplay_message_clear(Object player)
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5877,24 +5877,24 @@ return Boolean.FALSE;
  * Using DLL's
  * 
  */
-public static Variable external_call(Variable... obj)
+public static Object external_call(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable external_define(Variable... obj)
+public static Object external_define(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable external_free(Variable dllname)
+public static Object external_free(Object dllname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable window_handle()
+public static Object window_handle()
 {
-return Boolean.FALSE;
+return false;
 }
 
 /*
@@ -5902,375 +5902,375 @@ return Boolean.FALSE;
  * Going to 3D mode
  * 
  */
-public static Variable d3d_start()
+public static Object d3d_start()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_end()
+public static Object d3d_end()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_hidden(Variable enable)
+public static Object d3d_set_hidden(Object enable)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_perspective(Variable enable)
+public static Object d3d_set_perspective(Object enable)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_depth(Variable depth)
+public static Object d3d_set_depth(Object depth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_primitive_begin(Variable kind)
+public static Object d3d_primitive_begin(Object kind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex(Variable x, Variable y, Variable z)
+public static Object d3d_vertex(Object x, Object y, Object z)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_color(Variable x, Variable y, Variable z, Variable col, Variable alpha)
+public static Object d3d_vertex_color(Object x, Object y, Object z, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_primitive_end()
+public static Object d3d_primitive_end()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_primitive_begin_texture(Variable kind, Variable texid)
+public static Object d3d_primitive_begin_texture(Object kind, Object texid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_texture(Variable x, Variable y, Variable z, Variable xtex, Variable ytex)
+public static Object d3d_vertex_texture(Object x, Object y, Object z, Object xtex, Object ytex)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_texture_color(Variable x, Variable y, Variable z, Variable xtex, Variable ytex, Variable col, Variable alpha)
+public static Object d3d_vertex_texture_color(Object x, Object y, Object z, Object xtex, Object ytex, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_draw_block(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat)
+public static Object d3d_draw_block(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_draw_cylinder(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
+public static Object d3d_draw_cylinder(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_draw_cone(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
+public static Object d3d_draw_cone(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_draw_ellipsoid(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat, Variable steps)
+public static Object d3d_draw_ellipsoid(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat, Object steps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_draw_wall(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat)
+public static Object d3d_draw_wall(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_draw_floor(Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable texid, Variable hrepeat, Variable vrepeat)
+public static Object d3d_draw_floor(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_projection(Variable xfrom, Variable yfrom, Variable zfrom, Variable xto, Variable yto, Variable zto, Variable xup, Variable yup, Variable zup)
+public static Object d3d_set_projection(Object xfrom, Object yfrom, Object zfrom, Object xto, Object yto, Object zto, Object xup, Object yup, Object zup)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_projection_ext(Variable xfrom, Variable yfrom, Variable zfrom, Variable xto, Variable yto, Variable zto, Variable xup, Variable yup, Variable zup, Variable angle, Variable aspect, Variable znear, Variable zfar)
+public static Object d3d_set_projection_ext(Object xfrom, Object yfrom, Object zfrom, Object xto, Object yto, Object zto, Object xup, Object yup, Object zup, Object angle, Object aspect, Object znear, Object zfar)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_projection_ortho(Variable x, Variable y, Variable w, Variable h, Variable angle)
+public static Object d3d_set_projection_ortho(Object x, Object y, Object w, Object h, Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_projection_perspective(Variable x, Variable y, Variable w, Variable h, Variable angle)
+public static Object d3d_set_projection_perspective(Object x, Object y, Object w, Object h, Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_identity()
+public static Object d3d_transform_set_identity()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_translation(Variable xt, Variable yt, Variable zt)
+public static Object d3d_transform_set_translation(Object xt, Object yt, Object zt)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_scaling(Variable xs, Variable ys, Variable zs)
+public static Object d3d_transform_set_scaling(Object xs, Object ys, Object zs)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_rotation_x(Variable angle)
+public static Object d3d_transform_set_rotation_x(Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_rotation_y(Variable angle)
+public static Object d3d_transform_set_rotation_y(Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_rotation_z(Variable angle)
+public static Object d3d_transform_set_rotation_z(Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_set_rotation_axis(Variable xa, Variable ya, Variable za, Variable angle)
+public static Object d3d_transform_set_rotation_axis(Object xa, Object ya, Object za, Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_add_translation(Variable xt, Variable yt, Variable zt)
+public static Object d3d_transform_add_translation(Object xt, Object yt, Object zt)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_add_scaling(Variable xs, Variable ys, Variable zs)
+public static Object d3d_transform_add_scaling(Object xs, Object ys, Object zs)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_add_rotation_x(Variable angle)
+public static Object d3d_transform_add_rotation_x(Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_add_rotation_y(Variable angle)
+public static Object d3d_transform_add_rotation_y(Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_add_rotation_z(Variable angle)
+public static Object d3d_transform_add_rotation_z(Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_add_rotation_axis(Variable xa, Variable ya, Variable za, Variable angle)
+public static Object d3d_transform_add_rotation_axis(Object xa, Object ya, Object za, Object angle)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_stack_clear()
+public static Object d3d_transform_stack_clear()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_stack_empty()
+public static Object d3d_transform_stack_empty()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_stack_push()
+public static Object d3d_transform_stack_push()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_stack_pop()
+public static Object d3d_transform_stack_pop()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_stack_top()
+public static Object d3d_transform_stack_top()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_transform_stack_discard()
+public static Object d3d_transform_stack_discard()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_fog(Variable enable, Variable color, Variable start, Variable end)
+public static Object d3d_set_fog(Object enable, Object color, Object start, Object end)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_lighting(Variable enable)
+public static Object d3d_set_lighting(Object enable)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_shading(Variable smooth)
+public static Object d3d_set_shading(Object smooth)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_set_culling(Variable cull)
+public static Object d3d_set_culling(Object cull)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_light_define_direction(Variable ind, Variable dx, Variable dy, Variable dz, Variable col)
+public static Object d3d_light_define_direction(Object ind, Object dx, Object dy, Object dz, Object col)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_light_define_point(Variable ind, Variable x, Variable y, Variable z, Variable range, Variable col)
+public static Object d3d_light_define_point(Object ind, Object x, Object y, Object z, Object range, Object col)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_light_enable(Variable ind, Variable enable)
+public static Object d3d_light_enable(Object ind, Object enable)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_normal(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz)
+public static Object d3d_vertex_normal(Object x, Object y, Object z, Object nx, Object ny, Object nz)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_normal_color(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable col, Variable alpha)
+public static Object d3d_vertex_normal_color(Object x, Object y, Object z, Object nx, Object ny, Object nz, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_normal_texture(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex)
+public static Object d3d_vertex_normal_texture(Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_vertex_normal_texture_color(Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex, Variable col, Variable alpha)
+public static Object d3d_vertex_normal_texture_color(Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_create()
+public static Object d3d_model_create()
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_destroy(Variable ind)
+public static Object d3d_model_destroy(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_clear(Variable ind)
+public static Object d3d_model_clear(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_save(Variable ind, Variable fname)
+public static Object d3d_model_save(Object ind, Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_load(Variable ind, Variable fname)
+public static Object d3d_model_load(Object ind, Object fname)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_draw(Variable ind, Variable x, Variable y, Variable z, Variable texid)
+public static Object d3d_model_draw(Object ind, Object x, Object y, Object z, Object texid)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_primitive_begin(Variable ind, Variable kind)
+public static Object d3d_model_primitive_begin(Object ind, Object kind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex(Variable ind, Variable x, Variable y, Variable z)
+public static Object d3d_model_vertex(Object ind, Object x, Object y, Object z)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_color(Variable ind, Variable x, Variable y, Variable z, Variable col, Variable alpha)
+public static Object d3d_model_vertex_color(Object ind, Object x, Object y, Object z, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_texture(Variable ind, Variable x, Variable y, Variable z, Variable xtex, Variable ytex)
+public static Object d3d_model_vertex_texture(Object ind, Object x, Object y, Object z, Object xtex, Object ytex)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_texture_color(Variable ind, Variable x, Variable y, Variable z, Variable xtex, Variable ytex, Variable col, Variable alpha)
+public static Object d3d_model_vertex_texture_color(Object ind, Object x, Object y, Object z, Object xtex, Object ytex, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_normal(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz)
+public static Object d3d_model_vertex_normal(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_normal_color(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable col, Variable alpha)
+public static Object d3d_model_vertex_normal_color(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_normal_texture(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex)
+public static Object d3d_model_vertex_normal_texture(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_vertex_normal_texture_color(Variable ind, Variable x, Variable y, Variable z, Variable nx, Variable ny, Variable nz, Variable xtex, Variable ytex, Variable col, Variable alpha)
+public static Object d3d_model_vertex_normal_texture_color(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex, Object col, Object alpha)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_primitive_end(Variable ind)
+public static Object d3d_model_primitive_end(Object ind)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_block(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat)
+public static Object d3d_model_block(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_cylinder(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
+public static Object d3d_model_cylinder(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
     
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_cone(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat, Variable closed, Variable steps)
+public static Object d3d_model_cone(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_ellipsoid(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat, Variable steps)
+public static Object d3d_model_ellipsoid(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object steps)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_wall(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat)
+public static Object d3d_model_wall(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public static Variable d3d_model_floor(Variable ind, Variable x1, Variable y1, Variable z1, Variable x2, Variable y2, Variable z2, Variable hrepeat, Variable vrepeat)
+public static Object d3d_model_floor(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat)
 {
-return Boolean.FALSE;
+return false;
 }
 
 

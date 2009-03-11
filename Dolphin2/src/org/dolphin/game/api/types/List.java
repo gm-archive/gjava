@@ -2,12 +2,12 @@ package org.dolphin.game.api.types;
 
 import java.util.ArrayList;
 
-public class List extends Variable {
-	ArrayList al;
+public class List extends Object {
+	ArrayList<Object> al;
 
 	public List()
 	{
-	    al = new ArrayList();
+	    al = new ArrayList<Object>();
 	}
 
 	public void destroy()
@@ -30,36 +30,36 @@ public class List extends Variable {
 	      return  al.isEmpty();
 	    } 
 	     
-	     public boolean addel(Variable o)
+	     public boolean addel(Object o)
 	    {
 	      return  al.add(o);
 	    } 
 	     
-	     public boolean insert(Variable pos,Variable o)
+	     public boolean insert(Object pos,Object o)
 	    {
-	         if (pos.getInt() == -1)
+	         if (((Double)pos) == -1)
 	             al.add(o);
 	         else
-	             al.add(pos.getInt(), o);
+	             al.add(((Double)pos).intValue(), o);
 	      return true;
 	    } 
 
 	     
-	      public boolean replace(Variable pos,Variable o)
+	      public boolean replace(Object pos,Object o)
 	    {
-	             al.set(pos.getInt(), o);
+	             al.set(((Double)pos).intValue(), o);
 	      return true;
 	    } 
 	      
-	       public boolean delete(Variable pos)
+	       public boolean delete(Object pos)
 	    {
-	             al.remove(pos.getInt());
+	             al.remove(((Double)pos));
 	      return true;
 	    } 
 	       
-	       public Variable find_value(Variable pos)
+	       public Object find_value(Object pos)
 	    {
-	          return  (Variable) al.get(pos.getInt());
+	          return  (Object) al.get(((Double)pos).intValue());
 	      //return true;
 	    } 
 }

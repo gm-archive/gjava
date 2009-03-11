@@ -111,7 +111,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externa
 			final Writer result = new StringWriter();
 			final PrintWriter printWriter = new PrintWriter(result);
 			e.printStackTrace(printWriter);
-			Clipboard.setText(new org.dolphin.game.api.types.String(("" + result.toString() + Clipboard.getText())));
+			Clipboard.setText("" + result.toString() + Clipboard.getText());
 			JOptionPane
 					.showMessageDialog(null,"Error: "
 									+ e

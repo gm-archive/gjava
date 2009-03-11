@@ -25,67 +25,65 @@ import org.dolphin.game.api.components.SaveFile;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
-import org.dolphin.game.api.types.String;
-import org.dolphin.game.api.types.Integer;
-import org.dolphin.game.api.types.Boolean;
+
 
 /**
  * This class is used for all the gcl action functions.
  * All Objects should extend this class
  * To use reative use :
- * argument_relative.getBoolean()
+ * argument_relative
  * Only set it to false after it has been true
  *
  * @author TGMG
  */
 public class GCL_Actions extends GCL {
 
-public /*static*/ Variable action_another_room(Variable... obj) throws RoomChangedException
+public Object action_another_room(Object... obj) throws RoomChangedException
 {
-    Game.certainRoom(obj[0].getInt());
-return Boolean.FALSE;
+    Game.certainRoom(((Double)obj[0]));
+return false;
 }
 
-public /*static*/ Variable action_bounce(Variable... obj)
+public Object action_bounce(Object... obj)
 {
    // System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
 self.hspeed=-self.hspeed;
 self.vspeed=-self.vspeed;
     System.out.println("bounce");
-    return Boolean.FALSE;
+    return false;
 }
 
-public /*static*/ Variable action_cd_pause(Variable... obj)
+public Object action_cd_pause(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_cd_play(Variable... obj)
+public Object action_cd_play(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_cd_playing(Variable... obj)
+public Object action_cd_playing(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_cd_present(Variable... obj)
+public Object action_cd_present(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_cd_resume(Variable... obj)
+public Object action_cd_resume(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_cd_stop(Variable... obj)
+public Object action_cd_stop(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_change_object(Variable... obj)
+public Object action_change_object(Object... obj)
 {
     
     int thesize=Game.currentRoom.instances.size();
@@ -121,23 +119,23 @@ public /*static*/ Variable action_change_object(Variable... obj)
         //a.setVspeed(2);
         }
     }
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_color(Variable... obj)
+public Object action_color(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_create_object(Variable... obj)
+public Object action_create_object(Object... obj)
 {
     try{
     if (obj[0] instanceof GMResource){
         Actor a;
-        if (argument_relative.getBoolean())
-        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+obj[1].getDouble(),self.y+obj[2].getDouble(),Game.maxInstanceId);
+        if (argument_relative)
+        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
         else
-            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(obj[1].getDouble(),obj[2].getDouble(),Game.maxInstanceId);
+            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
         Game.maxInstanceId++;
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
@@ -146,23 +144,23 @@ public /*static*/ Variable action_create_object(Variable... obj)
     }
     }catch(Exception e){e.printStackTrace();}
 
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_create_object_motion(Variable... obj)
+public Object action_create_object_motion(Object... obj)
 {
  try{
     if (obj[0] instanceof GMResource){
         Actor a;
-        if (argument_relative.getBoolean())
-        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+obj[1].getDouble(),self.y+obj[2].getDouble(),Game.maxInstanceId);
+        if (argument_relative)
+        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
         else
-            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(obj[1].getDouble(),obj[2].getDouble(),Game.maxInstanceId);
+            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
         Game.maxInstanceId++;
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
     Game.currentRoom.SortDepth();
-    if (argument_relative.getBoolean()){
+    if (argument_relative){
     a.setSpeed(a.getSpeed().add(obj[3]));
     a.setDirection(a.getDirection().add(obj[4]));
     } else {
@@ -171,165 +169,165 @@ public /*static*/ Variable action_create_object_motion(Variable... obj)
     }
     }
     }catch(Exception e){e.printStackTrace();}
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_create_object_random(Variable... obj)
+public Object action_create_object_random(Object... obj)
 {
 
     action_create_object(obj[(int)Math.random(4)],obj[4],obj[5]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_current_room(Variable... obj) throws RoomChangedException
+public Object action_current_room(Object... obj) throws RoomChangedException
 {
     Game.currentRoom();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_arrow(Variable... obj)
+public Object action_draw_arrow(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_background(Variable... obj)
+public Object action_draw_background(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_ellipse(Variable... obj)
+public Object action_draw_ellipse(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_ellipse_gradient(Variable... obj)
+public Object action_draw_ellipse_gradient(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_gradient_hor(Variable... obj)
+public Object action_draw_gradient_hor(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_gradient_vert(Variable... obj)
+public Object action_draw_gradient_vert(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_health(Variable... obj)
+public Object action_draw_health(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_life(Variable... obj)
+public Object action_draw_life(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_life_images(Variable... obj)
+public Object action_draw_life_images(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_line(Variable... obj)
+public Object action_draw_line(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_rectangle(Variable... obj)
+public Object action_draw_rectangle(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_score(Variable... obj)
+public Object action_draw_score(Object... obj)
 {
 
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_sprite(Variable... obj)
+public Object action_draw_sprite(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_text(Variable... obj)
+public Object action_draw_text(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_text_transformed(Variable... obj)
+public Object action_draw_text_transformed(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_draw_variable(Variable... obj)
+public Object action_draw_variable(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_effect(Variable... obj)
+public Object action_effect(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_end_game(Variable... obj)
+public Object action_end_game(Object... obj)
 {
     game_end();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_end_sound(Variable... obj)
+public Object action_end_sound(Object... obj)
 {
     Game.thegame.loadSound(obj[0].toString()).stop();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_execute_script(Variable... obj)
+public Object action_execute_script(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_font(Variable... obj)
+public Object action_font(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_fullscreen(Variable... obj)
+public Object action_fullscreen(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_highscore_clear(Variable... obj)
+public Object action_highscore_clear(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_highscore_show(Variable... obj)
+public Object action_highscore_show(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if(Variable... obj)
+public Object action_if(Object... obj)
 {
 return obj[0];
 }
 
-public /*static*/ Variable action_if_aligned(Variable... obj)
+public Object action_if_aligned(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if_collision(Variable... obj)
+public Object action_if_collision(Object... obj)
 {
 
-if (obj.length>3 && obj[3].getBoolean()){
+if (obj.length>3 && obj[3]){
         obj[0]=obj[0].add(self.getX());
         obj[1]=obj[1].add(self.getY());
     }
-    if(obj[2].getInt() == 0){
+    if(((Double)obj[2]) == 0){
 
-    return place_free(obj[0],obj[1]).not();
+    return !(place_free(obj[0],obj[1]));
     }
     else{
 
@@ -337,22 +335,22 @@ if (obj.length>3 && obj[3].getBoolean()){
     }
 }
 
-public /*static*/ Variable action_if_dice(Variable... obj)
+public Object action_if_dice(Object... obj)
 {
-	if ( (Math.random(obj[0].getInt())  ) <1){
-		return Boolean.TRUE;
+	if ( (Math.random(((Double)obj[0]))  ) <1){
+		return false;
 	}
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if_empty(Variable... obj)
+public Object action_if_empty(Object... obj)
 {
-    if (obj.length>3 && obj[3].getBoolean()){
+    if (obj.length>3 && obj[3]){
     	obj[0]=obj[0].add(self.getX());
     	obj[1]=obj[1].add(self.getX());
         
     }
-    if(obj[2].getInt() == 0){
+    if(((Double)obj[2]) == 0){
         
     return place_free(obj[0],obj[1]);
     }
@@ -363,30 +361,30 @@ public /*static*/ Variable action_if_empty(Variable... obj)
 
 }
 
-public /*static*/ Variable action_if_health(Variable... obj)
+public Object action_if_health(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if_life(Variable... obj)
+public Object action_if_life(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if_mouse(Variable... obj)
+public Object action_if_mouse(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if_next_room(Variable... obj)
+public Object action_if_next_room(Object... obj)
 {
 if(Game.currentRoom.vectorid <Game.rooms.size()-1)
-        return Boolean.TRUE;
+        return false;
     else
-        return Boolean.FALSE;
+        return false;
 }
 
-public /*static*/ Variable action_if_number(Variable... obj)
+public Object action_if_number(Object... obj)
 {
 	java.lang.String name="";
     if (obj[0] instanceof GMResource){
@@ -405,48 +403,48 @@ public /*static*/ Variable action_if_number(Variable... obj)
 		}
 	}
 	
-	if (obj[2].getInt() == 0){
+	if (((Double)obj[2]) == 0){
 		//equal to
-		if( obj[1].getInt() == number){
-			return Boolean.TRUE;
+		if( ((Double)obj[1]) == number){
+			return false;
 		}
 		
 	}
-	else if (obj[2].getInt() == 1){
+	else if (((Double)obj[2]) == 1){
 		//less than
-		if( obj[1].getInt() > number){
-			return Boolean.TRUE;
+		if( ((Double)obj[1]) > number){
+			return false;
 		}
 	}
-	else if (obj[2].getInt() == 2){
+	else if (((Double)obj[2]) == 2){
 		//greater than
-		if( obj[1].getInt() < number){
-			return Boolean.TRUE;
+		if( ((Double)obj[1]) < number){
+			return false;
 		}
 	}
 	
-	return Boolean.FALSE;
+	return false;
 }
 
-public /*static*/ Variable action_if_object(Variable... obj)
+public Object action_if_object(Object... obj)
 {
-    if (obj.length>3 && obj[3].getBoolean()){
+    if (obj.length>3 && obj[3]){
     	obj[1]=obj[1].add(self.getX());
     	obj[2]=obj[2].add(self.getX());
     }
     return place_meeting(obj[1],obj[2],obj[0]);
-//return Boolean.FALSE;
+//return false;
 }
 /*if previous room exists*/
-public /*static*/ Variable action_if_previous_room(Variable... obj)
+public Object action_if_previous_room(Object... obj)
 {
     if(Game.currentRoom.vectorid !=0)
-        return Boolean.TRUE;
+        return false;
     else
-        return Boolean.FALSE;
+        return false;
 }
 
-public /*static*/ Variable action_if_question(Variable... param)
+public Object action_if_question(Object... param)
 {
 	JOptionPane pane = new JOptionPane(
     param[0].toString());
@@ -460,68 +458,68 @@ for (int k = 0; k < options.length; k++)
   if (options[k].equals(obj))
     result = k;
 
-if (result==0) return Boolean.TRUE;
-return Boolean.FALSE;
+if (result==0) return false;
+return false;
 }
 
-public /*static*/ Variable action_if_score(Variable... obj)
+public Object action_if_score(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_if_sound(Variable... obj)
+public Object action_if_sound(Object... obj)
 {
-    if (Game.thegame.loadSound(obj[0].toString()).isPlaying())return Boolean.TRUE;
-return Boolean.FALSE;
+    if (Game.thegame.loadSound(obj[0].toString()).isPlaying())return false;
+return false;
 }
 
-public /*static*/ Variable action_if_variable(Variable... obj)
+public Object action_if_variable(Object... obj)
 {
-    if (obj[2].getInt() ==0) {
+    if (((Double)obj[2]) ==0) {
         //System.out.println("action_if_variable, equals:"+obj[0].equals(obj[1]));
     return obj[0].equals(obj[1]);
     }//==
-			if (obj[2].getInt() ==1) {//<
+			if (((Double)obj[2]) ==1) {//<
                            // System.out.println("action_if_variable, <:"+obj[0].lt(obj[1]));
                             return obj[0].lt(obj[1]);
                         }
-			if (obj[2].getInt() ==2) {//">(";
+			if (((Double)obj[2]) ==2) {//">(";
                             //System.out.println("action_if_variable, >:"+obj[0].gt(obj[1]));
                             return obj[0].gt(obj[1]);
                         }
     //System.out.println("action_if_variable, error:"+obj[2]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_inherited(Variable... obj)
+public Object action_inherited(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_kill_object(Variable... obj)
+public Object action_kill_object(Object... obj)
 {
     Game.currentRoom.depth.remove(Game.currentRoom.depth.indexOf(self));
     Game.currentRoom.instances.remove(Game.currentRoom.instances.indexOf(self));
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_kill_position(Variable... obj)
+public Object action_kill_position(Object... obj)
 {
-    if(argument_relative.getBoolean()){
-        if(self.getBounds().contains(self.x+obj[0].getInt(), self.y+obj[1].getInt())){
+    if(argument_relative){
+        if(self.getBounds().contains(self.x+((Double)obj[0]), self.y+((Double)obj[1]))){
         self.action_kill_object();}
     } else{
-    if(self.getBounds().contains(obj[0].getInt(), obj[1].getInt())){
+    if(self.getBounds().contains(((Double)obj[0]), ((Double)obj[1]))){
         self.action_kill_object();}}
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_linear_step(Variable... obj)
+public Object action_linear_step(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_load_game(Variable... obj)
+public Object action_load_game(Object... obj)
 {
         //"C:\\\\Dolphin_save.sav"
         FileInputStream istream = null;
@@ -536,7 +534,7 @@ public /*static*/ Variable action_load_game(Variable... obj)
 
             istream.close();
 
-            return Boolean.FALSE;
+            return false;
         } catch (Exception ex) {
             Logger.getLogger(GCL_Actions.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -546,16 +544,16 @@ public /*static*/ Variable action_load_game(Variable... obj)
                 Logger.getLogger(GCL_Actions.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return Boolean.FALSE;
+        return false;
 }
 
-public /*static*/ Variable action_message(Variable obj)
+public Object action_message(Variable obj)
 {
     show_message(obj);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_move(Variable dirs, Variable speed)
+public Object action_move(Variable dirs, Variable speed)
 {
 	System.out.println("action_move speed:"+speed.getDouble()+ "game4:"+Game.getValueOf(4));
     
@@ -572,221 +570,221 @@ public /*static*/ Variable action_move(Variable dirs, Variable speed)
                                     cur++;
                                     if (cur == no){
                                     if (subi==1){
-                                    self.setDirection(new Integer(225));
+                                    self.setDirection(225d);
                                     }
                                     if (subi==2){
-                                    self.setDirection(new Integer(270));
+                                    self.setDirection(270d);
                                     }
 
                                     if (subi==3){
-                                    self.setDirection(new Integer(315));
+                                    self.setDirection(315d);
                                     }
 
                                     if (subi==4){
-                                    self.setDirection(new Integer(180));
+                                    self.setDirection(180d);
                                     }
 
                                     if (subi==5){
-                                    self.setSpeed(new Integer(0));//stop
+                                    self.setSpeed(0d);//stop
                                     }
 
                                     if (subi==6){
-                                    self.setDirection(new Integer(0));
+                                    self.setDirection(0d);
                                     }
                                     if (subi==7){
-                                    self.setDirection(new Integer(135));
+                                    self.setDirection(135d);
                                     }
                                     if (subi==8){
-                                    self.setDirection(new Integer(90));
+                                    self.setDirection(90d);
                                     }
                                     if (subi==9){
-                                    self.setDirection(new Integer(45));
+                                    self.setDirection(45d);
                                     }
                                     }
                                     //action_move(new Variable[5]);
 
     }}
     
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_move_contact(Variable... obj)
+public Object action_move_contact(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_move_point(Variable... obj)
+public Object action_move_point(Object... obj)
 {
-    if (argument_relative.getBoolean())
+    if (argument_relative)
  return   move_towards_point(obj[0],obj[1],self.getSpeed().add(obj[2]));
     else
         return   move_towards_point(obj[0],obj[1],obj[2]);
 }
 
-public /*static*/ Variable action_move_random(Variable... obj)
+public Object action_move_random(Object... obj)
 {
     move_random(obj[0], obj[1]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_move_start(Variable... obj)
+public Object action_move_start(Object... obj)
 {
     self.x=self.getXstart().getDouble();
     self.y=self.getYstart().getDouble();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_move_to(Variable... obj)
+public Object action_move_to(Object... obj)
 {
-    if (argument_relative.getBoolean()){
-    self.x=self.x+obj[0].getDouble();
-    self.y=self.y+obj[1].getDouble();
+    if (argument_relative){
+    self.x=self.x+((Double)obj[0]);
+    self.y=self.y+((Double)obj[1]);
     }
     else
     {
-       self.x=obj[0].getDouble();
-    self.y=obj[1].getDouble();
+       self.x=((Double)obj[0]);
+    self.y=((Double)obj[1]);
     }
     
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_next_room(Variable... obj) throws RoomChangedException
+public Object action_next_room(Object... obj) throws RoomChangedException
 {
     Game.nextRoom();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partemit_burst(Variable... obj)
+public Object action_partemit_burst(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partemit_create(Variable... obj)
+public Object action_partemit_create(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partemit_destroy(Variable... obj)
+public Object action_partemit_destroy(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partemit_stream(Variable... obj)
+public Object action_partemit_stream(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partsyst_clear(Variable... obj)
+public Object action_partsyst_clear(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partsyst_create(Variable... obj)
+public Object action_partsyst_create(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_partsyst_destroy(Variable... obj)
+public Object action_partsyst_destroy(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_parttype_color(Variable... obj)
+public Object action_parttype_color(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_parttype_create(Variable... obj)
+public Object action_parttype_create(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_parttype_gravity(Variable... obj)
+public Object action_parttype_gravity(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_parttype_life(Variable... obj)
+public Object action_parttype_life(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_parttype_secondary(Variable... obj)
+public Object action_parttype_secondary(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_parttype_speed(Variable... obj)
+public Object action_parttype_speed(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_path(Variable... obj)
+public Object action_path(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_path_end(Variable... obj)
+public Object action_path_end(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_path_position(Variable... obj)
+public Object action_path_position(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_path_speed(Variable... obj)
+public Object action_path_speed(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_potential_step(Variable... obj)
+public Object action_potential_step(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_previous_room(Variable... obj) throws RoomChangedException
+public Object action_previous_room(Object... obj) throws RoomChangedException
 {
         Game.previousRoom();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_replace_background(Variable... obj)
+public Object action_replace_background(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_replace_sound(Variable... obj)
+public Object action_replace_sound(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_replace_sprite(Variable... obj)
+public Object action_replace_sprite(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_restart_game(Variable... obj)
+public Object action_restart_game(Object... obj)
 {
     Game.initRooms();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_reverse_xdir(Variable... obj)
+public Object action_reverse_xdir(Object... obj)
 {
     self.hspeed=-self.hspeed;
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_reverse_ydir(Variable... obj)
+public Object action_reverse_ydir(Object... obj)
 {
     self.vspeed=-self.vspeed;
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_save_game(Variable... obj)
+public Object action_save_game(Object... obj)
 {
     try
       {
@@ -809,80 +807,80 @@ public /*static*/ Variable action_save_game(Variable... obj)
          e.printStackTrace();
       }
 
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_alarm(Variable... obj)
+public Object action_set_alarm(Object... obj)
 {
-    self.alarm[obj[1].getInt()]=obj[0].getInt();
-return Boolean.FALSE;
+    self.alarm[((Double)obj[1])]=((Double)obj[0]);
+return false;
 }
 
-public /*static*/ Variable action_set_caption(Variable... obj)
+public Object action_set_caption(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_cursor(Variable... obj)
+public Object action_set_cursor(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_friction(Variable... obj)
+public Object action_set_friction(Object... obj)
 {
-    if (getArgument_relative().getBoolean())
+    if (getArgument_relative())
       self.setFriction(self.getFriction().add(obj[0]));
     else
     self.setFriction(obj[0]);
-return Boolean.FALSE;
+return false;
 }
 
 /*
  * TODO: Doesn't add direction when relative
  */
-public /*static*/ Variable action_set_gravity(Variable... obj)
+public Object action_set_gravity(Object... obj)
 {
-    if (argument_relative.getBoolean()){
+    if (argument_relative){
         self.setGravity(self.getGravity().add(obj[1]));
         self.setGravity_direction(obj[0]);}
  else{
     self.setGravity(obj[1]);
     self.setGravity_direction(obj[0]);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_health(Variable... obj)
+public Object action_set_health(Object... obj)
 {
-    if (argument_relative.getBoolean())
+    if (argument_relative)
         setHealth(getHealth().add(obj[0]));
     else
        setHealth(obj[0]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_hspeed(Variable... obj)
+public Object action_set_hspeed(Object... obj)
 {
     
-    if (getArgument_relative().getBoolean())
-      self.hspeed=self.hspeed+obj[0].getDouble();
+    if (getArgument_relative())
+      self.hspeed=self.hspeed+((Double)obj[0]);
     else
-    self.hspeed=obj[0].getDouble();
-return Boolean.FALSE;
+    self.hspeed=((Double)obj[0]);
+return false;
 }
 
-public /*static*/ Variable action_set_life(Variable... obj)
+public Object action_set_life(Object... obj)
 {
-//    if (argument_relative.getBoolean())
+//    if (argument_relative)
 //        setLife(obj[0]);
 //    else
 //        setLife(obj[0]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_motion(Variable... obj)
+public Object action_set_motion(Object... obj)
 {
-    if (argument_relative.getBoolean())
+    if (argument_relative)
     {
     motion_add(obj[0],obj[1]);
     }
@@ -890,120 +888,120 @@ public /*static*/ Variable action_set_motion(Variable... obj)
     self.setDirection(obj[0]);
     self.setSpeed(obj[1]);
     }
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_score(Variable score)
+public Object action_set_score(Variable score)
 {
-    if (argument_relative.getBoolean())
+    if (argument_relative)
         setScore(getScore().add(score));
     else
     setScore(score);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_set_timeline(Variable... obj)
+public Object action_set_timeline(Object... obj)
 {
     self.timeline_index=obj[0];
-    self.timeline_position=obj[1].getDouble();
-return Boolean.FALSE;
+    self.timeline_position=((Double)obj[1]);
+return false;
 }
 
-public /*static*/ Variable action_set_timeline_position(Variable... obj)
+public Object action_set_timeline_position(Object... obj)
 {
-    if (argument_relative.getBoolean())
-    self.timeline_position+=obj[0].getDouble();
+    if (argument_relative)
+    self.timeline_position+=((Double)obj[0]);
     else
-        self.timeline_position=obj[0].getDouble();
-return Boolean.FALSE;
+        self.timeline_position=((Double)obj[0]);
+return false;
 }
 
-public /*static*/ Variable action_set_vspeed(Variable... obj)
+public Object action_set_vspeed(Object... obj)
 {
-    if (getArgument_relative().getBoolean())
-      self.vspeed=self.vspeed+obj[0].getDouble();
+    if (getArgument_relative())
+      self.vspeed=self.vspeed+((Double)obj[0]);
     else
-    self.vspeed=obj[0].getDouble();
-return Boolean.FALSE;
+    self.vspeed=((Double)obj[0]);
+return false;
 }
 
-public /*static*/ Variable action_show_info(Variable... obj)
+public Object action_show_info(Object... obj)
 {
    Game_Information.mainFrame.setVisible(true);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_show_video(Variable... obj)
+public Object action_show_video(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_sleep(Variable... obj)
+public Object action_sleep(Object... obj)
 {
     sleep(obj[0]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_snap(Variable... obj)
+public Object action_snap(Object... obj)
 {
    move_snap(obj[0], obj[1]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_snapshot(Variable... obj)
+public Object action_snapshot(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_sound(Variable... obj)
+public Object action_sound(Object... obj)
 {
-    if (obj[1].getBoolean())
+    if (obj[1])
         Game.thegame.loadSound(obj[0].toString()).loop();
     else
     Game.thegame.loadSound(obj[0].toString()).play();
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_sprite_color(Variable... obj)
+public Object action_sprite_color(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_sprite_set(Variable... obj)
+public Object action_sprite_set(Object... obj)
 {
    // System.out.println("action_sprite_set");
    self.sprite= Game.thegame.loadSprite(obj[0].toString());
    System.out.println("v2 action set sprite to:"+obj[0].toString());
-   /*if (obj[1].getInt() == -1) self.sprite_index=0;
+   /*if (((Double)obj[1]) == -1) self.sprite_index=0;
    else
-   self.sprite_index=obj[1].getInt();
-   self.sprite_speed=obj[2].getDouble();*/
-return Boolean.FALSE;
+   self.sprite_index=((Double)obj[1]);
+   self.sprite_speed=((Double)obj[2]);*/
+return false;
 }
 
-public /*static*/ Variable action_sprite_transform(Variable... obj)
+public Object action_sprite_transform(Object... obj)
 {
     System.out.println("action_sprite_transform"+self.instance_id);
     self.setImage_xscale(obj[0]);
     self.setImage_yscale(obj[1]);
     self.setImage_angle(obj[2]);
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_webpage(Variable... obj)
+public Object action_webpage(Object... obj)
 {
-return Boolean.FALSE;
+return false;
 }
 
-public /*static*/ Variable action_wrap(Variable... obj)
+public Object action_wrap(Object... obj)
 {
     System.out.println("action_wrap:"+obj[0]);
-    if (obj[0].equals(new Integer(0)).getBoolean())
-    move_wrap(Boolean.TRUE, Boolean.FALSE, new Integer(0));
-    else if (obj[0].equals(new Integer(0)).getBoolean())
-    move_wrap(Boolean.FALSE, Boolean.TRUE, new Integer(0));
+    if (obj[0].equals(0d))
+    move_wrap(false, false, 0d);
+    else if (obj[0].equals(0d))
+    move_wrap(false, false, 0d);
     else
-        move_wrap(Boolean.TRUE, Boolean.TRUE, new Integer(0));
-return Boolean.FALSE;
+        move_wrap(false, false, 0d);
+return false;
 }
 }

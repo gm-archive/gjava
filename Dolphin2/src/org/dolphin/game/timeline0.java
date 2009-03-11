@@ -6,7 +6,6 @@
 package org.dolphin.game;
 
 import org.dolphin.game.api.components.Timeline;
-import org.dolphin.game.api.types.String;
 
 /**
  *
