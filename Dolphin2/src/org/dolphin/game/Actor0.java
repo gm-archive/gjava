@@ -101,8 +101,10 @@ public class Actor0 extends Actor {
 		// System.out.println("alarm[0]"+alarm[0]);
 		// {Actor[] ac
 		// =Game.currentRoom.setActorwithname(self.getVariable("targetHandle").getActor().getClass());
-		System.out.println("mouse X:"+this.getMouse_x()+" ::"+Game.thegame.bsInput.getMouseX());
+		//System.out.println("mouse X:"+this.getMouse_x()+" ::"+Game.thegame.bsInput.getMouseX());
 		
+		if ((Boolean)action_if_mouse(2d))
+			System.out.println("That was the right button");
 	}
 
 	@Override

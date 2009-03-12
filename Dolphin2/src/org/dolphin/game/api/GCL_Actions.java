@@ -373,7 +373,24 @@ return false;
 
 public Object action_if_mouse(Object... obj)
 {
-return false;
+	//no=0,left=1,right=2,middle=3
+	if ((Double)obj[0] == 0) //nokey
+	{
+		if (Game.thegame.bsInput.getMousePressed() == Game.thegame.bsInput.NO_BUTTON)
+			return true;
+		else
+			return false;
+	}
+	else if ((Double)obj[0] == 1) //left
+		return (Game.thegame.bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON1));
+	else if ((Double)obj[0] == 2) //middle
+		return (Game.thegame.bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON3));
+	else if ((Double)obj[0] == 3) //middle
+		return (Game.thegame.bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON2));
+	
+	
+	return Game.thegame.bsInput.isMousePressed(1);
+//return false;
 }
 
 public Object action_if_next_room(Object... obj)

@@ -70,14 +70,14 @@ public static Object   argument
 = new Boolean(false),  event_type
 = new Boolean(false),  fps
 = new Boolean(false),  game_id
-= new Integer((int)Math.ceil(Math.random(9000))),  health = new Integer(100)
+= (double)((int)Math.ceil(Math.random(9000))),  health = (double)(100)
 ,  instance_count
 = new Boolean(false),  instance_id
 = new Boolean(false),  keyboard_key
 = new Boolean(false),  keyboard_lastchar
 = new Boolean(false),  keyboard_lastkey
 = new Boolean(false),  keyboard_string
-= new Boolean(false),  lives = new Integer(5)
+= new Boolean(false),  lives = (double)(5)
 ,  mouse_button
 = new Boolean(false),  mouse_lastbutton
 = new Boolean(false),    program_directory
@@ -426,7 +426,7 @@ public static Object   argument
 
     public static Object getCurrent_day() {
         Calendar toDay = Calendar.getInstance();
-        return new Integer(toDay.get(Calendar.DAY_OF_MONTH));
+        return (double)(toDay.get(Calendar.DAY_OF_MONTH));
     }
 
     public static void setCurrent_day(Object current_day) {
@@ -435,7 +435,7 @@ public static Object   argument
 
     public static Object getCurrent_hour() {
         Calendar toDay = Calendar.getInstance();
-        return new Integer(toDay.get(Calendar.HOUR_OF_DAY));
+        return (double)(toDay.get(Calendar.HOUR_OF_DAY));
     }
 
     public static void setCurrent_hour(Object current_hour) {
@@ -444,7 +444,7 @@ public static Object   argument
 
     public static Object getCurrent_minute() {
         Calendar toDay = Calendar.getInstance();
-        return new Integer(toDay.get(Calendar.MINUTE));
+        return (double)(toDay.get(Calendar.MINUTE));
     }
 
     public static void setCurrent_minute(Object current_minute) {
@@ -453,7 +453,7 @@ public static Object   argument
 
     public static Object getCurrent_month() {
          Calendar toDay = Calendar.getInstance();
-        return new Integer(toDay.get(Calendar.MONTH)+1);
+        return (double)(toDay.get(Calendar.MONTH)+1);
         //return current_month;
     }
 
@@ -463,7 +463,7 @@ public static Object   argument
 
     public static Object getCurrent_second() {
         Calendar toDay = Calendar.getInstance();
-        return new Integer(toDay.get(Calendar.SECOND));
+        return (double)(toDay.get(Calendar.SECOND));
         //return current_second;
     }
 
@@ -483,7 +483,7 @@ public static Object   argument
 
     public static Object getCurrent_weekday() {
         Calendar toDay = Calendar.getInstance();
-        return new Integer(toDay.get(Calendar.DAY_OF_WEEK));
+        return (double)(toDay.get(Calendar.DAY_OF_WEEK));
     }
 
     public static void setCurrent_weekday(Object current_weekday) {
@@ -557,7 +557,7 @@ public static Object   argument
     }
 
     public static Object getFps() {
-        return new Integer(Game.game.getGame().getCurrentFPS());
+        return (double)(Game.game.getGame().getCurrentFPS());
     }
 
     public static void setFps(Object fps) {
@@ -582,7 +582,7 @@ public static Object   argument
     }
 
     public static Object getInstance_count() {
-        return new Integer(Game.currentRoom.instances.size());
+        return (double)(Game.currentRoom.instances.size());
     }
 
     public static void setInstance_count(Object instance_count) {
@@ -663,7 +663,7 @@ public static Object   argument
     }
 
     public static Object getMouse_y() {
-        return new Integer(Game.game.getGame().getMouseY());
+        return (double)(Game.game.getGame().getMouseY());
     }
 
     public static void setMouse_y(Object mouse_y) {
