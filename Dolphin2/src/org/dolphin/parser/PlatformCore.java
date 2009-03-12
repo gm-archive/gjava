@@ -311,7 +311,7 @@ public class PlatformCore  {
      */
     public String returnstatement(String exp) {
         String s;
-        if (exp==null) exp="Boolean.FALSE";
+        if (exp==null) exp="false";
         if (inscript)
         	s= "if(true) return " + exp + ";";
         else
@@ -327,7 +327,7 @@ public class PlatformCore  {
     public String exitstatement() {
     	String s;
         if (inscript)
-        	s= "if (true) return Boolean.FALSE;";
+        	s= "if (true) return false;";
         else
         	s="if(true) return;";
         return s;
@@ -342,7 +342,7 @@ public class PlatformCore  {
      */
     public String ifstatement(String exp, String statement, String elses) {
     	//System.out.println("if statement:"+exp);
-        return "if ((" + exp + ").getBoolean()) \n" + statement + " \n " + elses;
+        return "if ((Boolean)(" + exp + ")) \n" + statement + " \n " + elses;
     }
 
     /**
@@ -379,7 +379,7 @@ public class PlatformCore  {
      * @return
      */
     public String notexpression(String exp) {
-        return " ("+exp+").not()";
+        return " !((Boolean)"+exp+")";
     }
     
     /**
@@ -396,7 +396,7 @@ public class PlatformCore  {
      * @return
      */
     public String andexpression() {
-        return " .and ";
+        return " && ";
     }
     
     /**
@@ -404,7 +404,7 @@ public class PlatformCore  {
      * @return
      */
     public String orexpression() {
-        return " .or ";
+        return " || ";
     }
     
     /**
@@ -412,7 +412,7 @@ public class PlatformCore  {
      * @return
      */
     public String xorexpression() {
-        return " .xor ";
+        return " ^^ ";
     }
     
     /**
@@ -422,8 +422,8 @@ public class PlatformCore  {
      * @return
      */
     public String repeatstatement(String ex, String st) {
-    	repeatstatements++;
-        return "for(int G_CREATOR__repeat"+repeatstatements+"=0; G_CREATOR__repeat"+repeatstatements+"<("+ex+".getInt()); G_CREATOR__repeat"+repeatstatements+"++){\n"+st+" }"; 
+    	repeatstatements++; //the unique number of this repeat statement
+        return "for(int G_CREATOR__repeat"+repeatstatements+"=0; G_CREATOR__repeat"+repeatstatements+"<((Double)"+ex+"); G_CREATOR__repeat"+repeatstatements+"++){\n"+st+" }"; 
     }
     
     /**
@@ -449,7 +449,7 @@ public class PlatformCore  {
      * @return
      */
     public String dostatement(String statement, String expression) {
-        return "do "+statement+"while("+expression+".not().getBoolean());"; //todo
+        return "do "+statement+"while(!((Boolean)"+expression+"));";
     }
     
     /**
@@ -459,7 +459,7 @@ public class PlatformCore  {
      * @return
      */
     public String whilestatement(String exp, String st) {
-        return "while ("+exp + ".getBoolean()) "+ st;
+        return "while ((Boolean)"+exp + ") "+ st;
     }
     
     /**
@@ -475,7 +475,7 @@ public class PlatformCore  {
         if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";")) {
             statement2 = statement2.substring(0, statement2.length() - 1);
         }
-        return "{"+statement1+" for (;"+exp+".getBoolean(); ) {"+statements+statement2+"}}";
+        return "{"+statement1+" for (;(Boolean)"+exp+"; ) {"+statements+statement2+"}}";
     }
     
     /**
@@ -496,9 +496,9 @@ public class PlatformCore  {
     	}
     	if (statements.equals("")){
     		//goes on to next one
-    		return "("+initialex+".equals("+expression+").getBoolean()) || ";
+    		return "Variable.equals("+initialex+","+expression+") || ";
     	} else {
-    	return "("+initialex+".equals("+expression+").getBoolean())){"+statements+"} else if (";
+    	return "Variable.equals("+initialex+","+expression+")){"+statements+"}\n else if (";
     	}
     }
     
@@ -539,19 +539,19 @@ public class PlatformCore  {
                  } else if (operator.equals(":=")) {
                 	 return instance+"set"+var+"("+index+", "+ expression+");}";
                  } else if (operator.equals("+=")) {
-                     return instance+ "set"+var+"("+index+", "+variable(variable)+ ".add(" + expression+"));}";
+                     return instance+ "set"+var+"("+index+", (Double)"+variable(variable)+ "+((Double)" + expression+"));}";
                  } else if (operator.equals("*=")) {
-                	 return instance+ "set"+var+"("+index+", "+variable(variable)+ ".mult(" + expression+"));}";
+                	 return instance+ "set"+var+"("+index+", (Double)"+variable(variable)+ "*((Double)" + expression+"));}";
                  } else if (operator.equals("-=")) {
-                	 return instance+ "set"+var+"("+index+", "+variable(variable)+ ".sub(" + expression+"));}";
+                	 return instance+ "set"+var+"("+index+", (Double)"+variable(variable)+ "-((Double)" + expression+"));}";
                  } else if (operator.equals("/=")) {
-                	 return instance+ "set"+var+"("+index+", "+variable(variable)+ ".div(" + expression+"));}";
+                	 return instance+ "set"+var+"("+index+", (Double)"+variable(variable)+ "//((Double)" + expression+"));}";
                  } else if (operator.equals("&=")) {
-                	 return instance+ "set"+var+"("+index+", "+variable(variable)+ ".band(" + expression+"));}";
+                	 return instance+ "set"+var+"("+index+", (Double)(((Integer)"+variable(variable)+ ") & (Integer)" + expression+"));}";
                  } else if (operator.equals("|=")) {
-                	 return instance+ "set"+var+"("+index+", "+variable(variable)+ ".bor(" + expression+"));}";
+                	 return instance+ "set"+var+"("+index+", (Double)(((Integer)"+variable(variable)+ ") | (Integer)" + expression+"));}";
                  } else if (operator.equals("^=")) {
-                	 return instance+ "set"+var+"("+index+", "+variable(variable)+ ".bxor(" + expression+"));}";
+                	 return instance+ "set"+var+"("+index+", (Double)(((Integer)"+variable(variable)+ ") ^ (Integer)" + expression+"));}";
                  }              	
                             
                 }
@@ -627,19 +627,19 @@ public class PlatformCore  {
                  } else if (operator.equals(":=")) {
                 	 return instance+"set"+var+"("+ expression+");}";
                  } else if (operator.equals("+=")) {
-                     return instance+ "set"+var+"("+instanceType+"get"+var+"().add(" + expression + "));}";
+                     return instance+ "set"+var+"((Double)"+instanceType+"get"+var+"()+((Double)" + expression + "));}";
                  } else if (operator.equals("*=")) {
-                	 return instance+ "set"+var+"("+instanceType+"get"+var+"().mult(" + expression + "));}";
+                	 return instance+ "set"+var+"((Double)"+instanceType+"get"+var+"()*((Double)" + expression + "));}";
                  } else if (operator.equals("-=")) {
-                	 return instance+ "set"+var+"("+instanceType+"get"+var+"().sub(" + expression + "));}";
+                	 return instance+ "set"+var+"((Double)"+instanceType+"get"+var+"()-((Double)" + expression + "));}";
                  } else if (operator.equals("/=")) {
-                	 return instance+ "set"+var+"("+instanceType+"get"+var+"().div(" + expression + "));}";
+                	 return instance+ "set"+var+"((Double)"+instanceType+"get"+var+"()/((Double)" + expression + "));}";
                  } else if (operator.equals("&=")) {
-                	 return instance+ "set"+var+"("+instanceType+"get"+var+"().band(" + expression + "));}";
+                	 return instance+ "set"+var+"((Double)((Integer)"+instanceType+"get"+var+"()&((Integer)" + expression + ")));}";
                  } else if (operator.equals("|=")) {
-                	 return instance+ "set"+var+"("+instanceType+"get"+var+"().bor(" + expression + "));}";
+                	 return instance+ "set"+var+"((Double)((Integer)"+instanceType+"get"+var+"()|((Integer)" + expression + ")));}";
                  } else if (operator.equals("^=")) {
-                	 return instance+ "set"+var+"("+instanceType+"get"+var+"().bxor(" + expression + "));}";
+                	 return instance+ "set"+var+"((Double)((Integer)"+instanceType+"get"+var+"()^((Integer)" + expression + ")));}";
                  }
         	 } else {
         		 /*
@@ -710,141 +710,18 @@ public class PlatformCore  {
         } else if (countOccurrences(originalvariable,".")>1){
             //more than one . used in the variable name TODO fix this!
             System.out.println("WARNING: more than one . variable!:"+variable);
+            return allassignmentstatement(variable,operator,expression,"{self.","self.");
         }
          else if(originalvariable.contains(".")){
-        	 return allassignmentstatement(variable,operator,expression,"{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i].","ac[i].");
+        	 return allassignmentstatement(variable,operator,expression,"{Actor[] ac =Game.currentRoom.setActorwithname(Variable.getActor("+variable(variable.substring(0, variable.indexOf(".")))+").getClass()); for (int i = 0; i < ac.length; i++) ac[i].","ac[i].");
             
         } else {
         	//by default since the variable doesn't have something '.' before it it applies to self
         	return allassignmentstatement(variable,operator,expression,"{self.","self.");
         }
 
-        /*
-         * 
-         * Old code now
-         * 
-         */
-        
-        //check if it is an array
-        if (variable.contains("[")) {
-           // is this code even used?
-        	return arrayassigment(originalvariable.replace("global.", ""),operator,expression,"{"+instance,"self");
-        }
-        
-        /* 
-         * 
-         * Back to normal variables 
-         * 
-         * 
-         */
-
-        //check if it is a built in variable
-        if (checkvariable(variable)){
-            String var="";
-            if(tempvar.contains(".")){
-            	
-            	/*
-            	 * Other instance variable
-            	 */
-            	
-            	System.out.println("variable:"+variable+"tempvar"+tempvar);
-            	var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
-            	//var+=variable(tempvar);//make sure other instance vars work
-            	value=instance+".set"+var+"(";//variable(tempvar)+"(";
-            	
-            	if (operator.equals("=")) {
-                    value += expression;
-                } else if (operator.equals(":=")) {
-                    value += expression;
-                } else if (operator.equals("+=")) {
-                    value = /*variable(tempvar) +*/ ".setadd(" + expression + ")";
-                } else if (operator.equals("*=")) {
-                    value += instance + ".get" + var + "().setmult(" + expression + ")";
-                } else if (operator.equals("-=")) {
-                    value += instance + ".get" + var + "().setsub(" + expression + ")";
-                } else if (operator.equals("/=")) {
-                    value += instance + ".get" + var + "().setdiv(" + expression + ")";
-                } else if (operator.equals("&=")) {
-                    value += instance + ".get" + var + "().setband(" + expression + ")";
-                } else if (operator.equals("|=")) {
-                    value += instance + ".get" + var + "().setbor(" + expression + ")";
-                } else if (operator.equals("^=")) {
-                    value += instance + ".get" + var + "().setbxor(" + expression + ")";
-                }
-            	
-            	
-            } else 
-            {
-            	/*
-            	 * Normal variable
-            	 * 
-            	 */
-           
-            var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
-            value=instance+".set"+var+"(";
-           
             
-
-            if (operator.equals("=")) {
-                value += expression;
-            } else if (operator.equals(":=")) {
-                value += expression;
-            } else if (operator.equals("+=")) {
-                value += instance + ".get" + var + "().setadd(" + expression + ")";
-            } else if (operator.equals("*=")) {
-                value += instance + ".get" + var + "().setmult(" + expression + ")";
-            } else if (operator.equals("-=")) {
-                value += instance + ".get" + var + "().setsub(" + expression + ")";
-            } else if (operator.equals("/=")) {
-                value += instance + ".get" + var + "().setdiv(" + expression + ")";
-            } else if (operator.equals("&=")) {
-                value += instance + ".get" + var + "().setband(" + expression + ")";
-            } else if (operator.equals("|=")) {
-                value += instance + ".get" + var + "().setbor(" + expression + ")";
-            } else if (operator.equals("^=")) {
-                value += instance + ".get" + var + "().setbxor(" + expression + ")";
-            }
-        }
-        value+=")";
-        if(tempvar.contains("."))value+=";}";
-        return value;
-        }
         
-        /*
-         * 
-         * Non built in variables
-         * 
-         */
-        
-        variable = variable.substring(variable.indexOf(".")+1,variable.length());
-           value = instance+".setVariable(\""+variable+"\"," ;
-           if(tempvar.contains("."))value+=";}";
-        if (operator.equals("=")) {
-            value += expression;
-        } else if (operator.equals(":=")) {
-            value += expression;
-        } else if (operator.equals("+=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setadd(" + expression + ")";
-        } else if (operator.equals("*=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setmult(" + expression + ")";
-        } else if (operator.equals("-=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setsub(" + expression + ")";
-        } else if (operator.equals("/=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setdiv(" + expression + ")";
-        }
-        else if (operator.equals("&=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setband(" + expression + ")";
-        } else if (operator.equals("|=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setbor(" + expression + ")";
-        }
-        else if (operator.equals("^=")) {
-            value += instance + ".getVariable(\"" + variable + "\").setbxor(" + expression + ")";
-        }
-        value+=")";
-        if(tempvar.contains(".")){
-        	value+=";}";
-        	}
-        return value;
     }
     
     /**
@@ -977,13 +854,13 @@ public class PlatformCore  {
         /// Constants
         ///////////////////////////////////////////
         if (variable.equals("true")) {
-            return "(Boolean.TRUE)";
+            return "true";
         }
         else if (variable.equals("false")) {
-            return "(Boolean.FALSE)";
+            return "false";
         }
         else if (variable.equals("pi")) {
-            return "(new Double(Math.PI))";
+            return "(Math.PI)";
         }
         else if (variable.equals("self")) {
             return "(self)";
@@ -1080,7 +957,7 @@ public class PlatformCore  {
 
         if (stringResources.contains(variable))
         {
-        return "new String(\""+variable+"\")";
+        return "\""+variable+"\"";
         }
         if (checkvariable(variable)) {
             return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()) + "()";
@@ -1102,37 +979,40 @@ public class PlatformCore  {
     {
         //System.out.println("aexpression: "+operator+" "+expression);
         if (operator.equals("+")) {
-            return ".add(" + expression + ")";
+            return "Variable.add(GJAVA_VALUE," + expression + ")";
         }
         else if (operator.equals("-")) {
-            return ".sub(" + expression + ")";
+        	return "Variable.sub(GJAVA_VALUE," + expression + ")";
         }
         else if (operator.equals("*")) {
-            return ".mult(" + expression + ")";
+        	return "Variable.mult(GJAVA_VALUE," + expression + ")";
         }
         else if (operator.equals("/")) {
-            return ".div(" + expression + ")";
+        	return "Variable.div(GJAVA_VALUE," + expression + ")";
         }
         else if (operator.equals("|")) {
-            return ".bor(" + expression + ")";
+            return "|((Integer)" + expression + ")";
         }
         else if (operator.equals("&")) {
-            return ".band(" + expression + ")";
+            return "&((Integer)" + expression + ")";
         }
         else if (operator.equals("^")) {
-            return ".bxor(" + expression + ")";
+            return "^((Integer)" + expression + ")";
         }
         else if (operator.equals(">>")) {
-            return ".bright(" + expression + ")";
+            return ">>((Integer)" + expression + ")";
         }
         else if (operator.equals("<<")) {
-            return ".bleft(" + expression + ")";
+            return "<<((Integer)" + expression + ")";
         }
         else if (operator.equals("div")) {
-            return ".div(" + expression + ")";
+            return "/((Integer)" + expression + ")";
         }
         else if (operator.equals("mod")) {
-            return ".mod(" + expression + ")";
+            return "%((Integer)" + expression + ")";
+        }
+        else if (operator.equals("%")) {
+            return "%((Integer)" + expression + ")";
         }
         return "aexpression";
     }
@@ -1148,28 +1028,28 @@ public class PlatformCore  {
     {
         //System.out.println("relationalExpression:"+name+" ,"+operator+" ,"+name2);
         if (operator.equals("==")) {
-            return name + ".equals(" + name2 + ")";
+        	return "Variable.equals("+name + "," + name2 + ")";
         }
         else if (operator.equals("=")) {
-            return name + ".equals(" + name2 + ")";
+        	return "Variable.equals("+name + "," + name2 + ")";
         }
         else if (operator.equals(":=")) {
-            return name + ".equals(" + name2 + ")";
+        	return "Variable.equals("+name + "," + name2 + ")";
         }
         else if (operator.equals("!=") || operator.equals("<>")) {
-            return name + ".notequals(" + name2 + ")";
+            return "!(Variable.equals(" +name + "," + name2 + "))";
         }
         else if (operator.equals(">")) {
-            return name + ".gt(" + name2 + ")";
+            return "Variable.gt("+name + "," + name2 + ")";
         }
         else if (operator.equals(">=")) {
-            return name + ".gte(" + name2 + ")";
+            return "Variable.gte("+name + "," + name2 + ")";
         }
         else if (operator.equals("<")) {
-            return name + ".lt(" + name2 + ")";
+            return "Variable.lt("+name + "," + name2 + ")";
         }
         else if (operator.equals("<=")) {
-            return name + ".lte(" + name2 + ")";
+            return "Variable.lte("+name + "," + name2 + ")";
         }
         else {
             return name;
@@ -1299,16 +1179,16 @@ public class PlatformCore  {
     }
     
     public static String intval(String value){
-        return "(Game.getValueOf(" + value + "))";
+        return "" + value + "d";
     }
     
     public static String doubleval(String value){
-        return "(Game.getValueOf(" + value + "))";
+        return "" + value + "d";
     }
     
     public static String stringval(String value){
     	value.replaceAll("\\\\", File.separator);
-        return ("(new String(\"" + value + "\"))").replaceAll("\n", "");
+        return ("\"" + value + "\"").replaceAll("\n", "");
     }
     
     public static void openbrowser(String location) {

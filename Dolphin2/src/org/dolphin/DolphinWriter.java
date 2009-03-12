@@ -195,7 +195,7 @@ public class DolphinWriter {
         print(game, "			final Writer result = new StringWriter();");
         print(game, "			final PrintWriter printWriter = new PrintWriter(result);");
         print(game, "			e.printStackTrace(printWriter);");
-        print(game, "			Clipboard.setText(new org.dolphin.game.api.types.String((\"\" + result.toString() + Clipboard.getText())));");
+        print(game, "			Clipboard.setText((\"\" + result.toString() + Clipboard.getText()));");
         print(game, "			JOptionPane");
         print(game, "					.showMessageDialog(null,\"Error: \"");
         print(game, "									+ e");
@@ -284,10 +284,6 @@ public class DolphinWriter {
 
             print(script, "import org.dolphin.game.api.GCL_Actions;");
             print(script, "import org.dolphin.game.api.types.Variable;");
-            print(script, "import org.dolphin.game.api.types.Integer;");
-            print(script, "import org.dolphin.game.api.types.Double;");
-            print(script, "import org.dolphin.game.api.types.String;");
-            print(script, "import org.dolphin.game.api.types.Boolean;");
             print(script, "import org.dolphin.game.api.types.*;");
             print(script, "import org.dolphin.game.api.components.*;");
             print(script, "public class Scripts extends GCL_Actions {");
@@ -351,11 +347,7 @@ public class DolphinWriter {
                 print(tl, "package org.dolphin.game;");
 
                 print(tl, "import org.dolphin.game.api.components.Timeline;");
-                print(tl, "import org.dolphin.game.api.types.String;");
-                print(tl, "import org.dolphin.game.api.types.Integer;");
-                print(tl, "import org.dolphin.game.api.types.Double;");
-                print(tl, "import org.dolphin.game.api.types.String;");
-                print(tl, "import org.dolphin.game.api.types.Boolean;");
+                
                 print(tl, "import org.dolphin.game.api.types.*;");
                 print(tl, "public class "+name+" extends Timeline {");
                 print(tl, "public void checksteps(double step){");
@@ -403,10 +395,6 @@ public class DolphinWriter {
                 print(actor,"import java.awt.Graphics;");
                 print(actor, "import org.dolphin.game.api.components.Actor;");
                 print(actor, "import org.dolphin.game.api.exceptions.DestroyException;");
-                print(actor, "import org.dolphin.game.api.types.Integer;");
-                print(actor, "import org.dolphin.game.api.types.Double;");
-                print(actor, "import org.dolphin.game.api.types.String;");
-                print(actor, "import org.dolphin.game.api.types.Boolean;");
                 print(actor, "import org.dolphin.game.api.types.*;");
                 print(actor, "import org.dolphin.game.api.exceptions.RoomChangedException;");
                 print(actor, "import java.awt.Graphics2D;");
@@ -802,10 +790,7 @@ public class DolphinWriter {
                 print(scene, "import org.dolphin.game.api.components.Tile;");
                 print(scene, "import org.dolphin.game.api.components.View;");
                 print(scene,"import org.dolphin.game.api.components.*;");
-                print(scene, "import org.dolphin.game.api.types.Integer;");
-                print(scene, "import org.dolphin.game.api.types.Double;");
-                print(scene, "import org.dolphin.game.api.types.String;");
-                print(scene, "import org.dolphin.game.api.types.Boolean;");
+                
                 print(scene, "import org.dolphin.game.api.types.*;");
 
                 print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");

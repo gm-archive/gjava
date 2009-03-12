@@ -1276,39 +1276,39 @@ public static Object show_debug_message(Object str)
 
 public static Object Object_global_exists(Object name)
 {
-	return new Boolean(Global.Variables.contains(name.toString()));
+	return new Boolean(Global.variables.contains(name.toString()));
 }
 
 public static Object Object_global_get(Object name)
 {
-	return Global.Variables.get(name.toString());
+	return Global.variables.get(name.toString());
 }
 
 public static Object Object_global_array_get(Object name, Object ind)
 {
-	return Global.Variables.get(name + "[" + ind + "]");
+	return Global.variables.get(name + "[" + ind + "]");
 }
 
 public static Object Object_global_array2_get(Object name, Object ind1, Object ind2)
 {
-	return Global.Variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
+	return Global.variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
 public static Object Object_global_set(Object name, Object value)
 {
-	Global.Variables.put(name.toString(), value);
+	Global.variables.put(name.toString(), value);
 return false;
 }
 
 public static Object Object_global_array_set(Object name, Object ind, Object value)
 {
-	Global.Variables.put(name + "[" + ind + "]", value);	
+	Global.variables.put(name + "[" + ind + "]", value);	
 return false;
 }
 
 public static Object Object_global_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
-	Global.Variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
+	Global.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
 return false;
 }
 

@@ -48,6 +48,10 @@ private static final long serialVersionUID = 1L;
 		return ((Double)o)+d;
 	}
 	
+	public static Object add(double d1,double d2){
+		return d1+d2;
+	}
+	
 	/*
 	 * Used to check if 2 objects equal each other
 	 */
@@ -62,34 +66,74 @@ private static final long serialVersionUID = 1L;
 		return o1.toString().compareTo(o2.toString());
 	}
 
-	public static Object bxor(Object object, Object object2) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Object bxor(Object object, Object multValue) {
+		if (object instanceof Double && multValue instanceof Double)
+			return (double)(((Double)object).intValue() ^ ((Double)multValue).intValue());
+		return object;
 	}
 
 	public static Object bor(Object object, Object multValue) {
-		// TODO Auto-generated method stub
-		return null;
+		if (object instanceof Double && multValue instanceof Double)
+			return (double)(((Double)object).intValue() | ((Double)multValue).intValue());
+		return object;
 	}
 
 	public static Object band(Object object, Object multValue) {
-		// TODO Auto-generated method stub
-		return null;
+		if (object instanceof Double && multValue instanceof Double)
+			return (double)(((Double)object).intValue() & ((Double)multValue).intValue());
+		return object;
 	}
 
 	public static Object div(Object object, Object multValue) {
-		// TODO Auto-generated method stub
-		return null;
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object / (Double)multValue;
+		return object;
 	}
 
 	public static Object sub(Object object, Object multValue) {
-		// TODO Auto-generated method stub
-		return null;
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object - (Double)multValue;
+		return object;
 	}
 
 	public static Object mult(Object object, Object multValue) {
-		// TODO Auto-generated method stub
-		return null;
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object * (Double)multValue;
+		return object;
 	}
+	
+	public static boolean gt(Object object, Object multValue){
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object > (Double)multValue;
+		return false;
+	}
+	
+	public static boolean gte(Object object, Object multValue){
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object >= (Double)multValue;
+		return false;
+	}
+	
+	public static boolean lt(Object object, Object multValue){
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object < (Double)multValue;
+		return false;
+	}
+	
+	public static boolean lte(Object object, Object multValue){
+		if (object instanceof Double && multValue instanceof Double)
+			return (Double)object <= (Double)multValue;
+		return false;
+	}
+	
+	public static Actor getActor(Object object){
+		if (object instanceof Actor){
+			return (Actor)object;
+		}
+		return Actor.noone;
+		
+	}
+
+
 
 }

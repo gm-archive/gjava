@@ -44,7 +44,7 @@ private static final long serialVersionUID = 1L;
     
 
 
-    final Integer _0 = new Integer(0);
+    
     
     public Actor() {
         
@@ -369,7 +369,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getDepth() {
         if (depth == null) {
-            depth = _0;
+            depth = 0d;
         }
         return depth;
     }
@@ -386,21 +386,21 @@ private static final long serialVersionUID = 1L;
 
     public Object getFriction() {
         if (friction == null) {
-            friction = _0;
+            friction = 0d;
         }
         return friction;
     }
 
     public Object getGravity() {
         if (gravity == null) {
-            gravity = _0;
+            gravity = 0d;
         }
         return gravity;
     }
     
     public Object getGravity_direction() {
         if (gravity_direction == null) {
-            gravity_direction = _0;
+            gravity_direction = 0d;
         }
         return gravity_direction;
     }
@@ -412,14 +412,14 @@ private static final long serialVersionUID = 1L;
 
     public Object getId() {
 //        if (id == null) {
-//            id = _0;
+//            id = 0d;
 //        }
         return new Double(id);
     }
 
     public Object getImage_alpha() {
         if (image_alpha == null) {
-            image_alpha = _0;
+            image_alpha = 0d;
         }
         return image_alpha;
     }
@@ -433,7 +433,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getImage_blend() {
         if (image_blend == null) {
-            image_blend = _0;
+            image_blend = 0d;
         }
         return image_blend;
     }
@@ -454,7 +454,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getImage_single() {
         if (image_single == null) {
-            image_single = _0;
+            image_single = 0d;
         }
         return image_single;
     }
@@ -482,70 +482,70 @@ private static final long serialVersionUID = 1L;
 
     public Object getMask_index() {
         if (mask_index == null) {
-            mask_index = _0;
+            mask_index = 0d;
         }
         return mask_index;
     }
 
     public Object getObject_index() {
         if (object_index == null) {
-            object_index = _0;
+            object_index = 0d;
         }
         return object_index;
     }
 
     public Object getPath_endaction() {
         if (path_endaction == null) {
-            path_endaction = _0;
+            path_endaction = 0d;
         }
         return path_endaction;
     }
 
     public Object getPath_index() {
         if (path_index == null) {
-            path_index = _0;
+            path_index = 0d;
         }
         return path_index;
     }
 
     public Object getPath_orientation() {
         if (path_orientation == null) {
-            path_orientation = _0;
+            path_orientation = 0d;
         }
         return path_orientation;
     }
 
     public Object getPath_position() {
         if (path_position == null) {
-            path_position = _0;
+            path_position = 0d;
         }
         return path_position;
     }
 
     public Object getPath_positionprevious() {
         if (path_positionprevious == null) {
-            path_positionprevious = _0;
+            path_positionprevious = 0d;
         }
         return path_positionprevious;
     }
 
     public Object getPath_scale() {
         if (path_scale == null) {
-            path_scale = _0;
+            path_scale = 0d;
         }
         return path_scale;
     }
 
     public Object getPath_speed() {
         if (path_speed == null) {
-            path_speed = _0;
+            path_speed = 0d;
         }
         return path_speed;
     }
 
     public Object getPersistent() {
         if (persistent == null) {
-            persistent = _0;
+            persistent = 0d;
         }
         return persistent;
     }
@@ -601,7 +601,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getTimeline_index() {
         if (timeline_index == null) {
-            timeline_index = _0;
+            timeline_index = 0d;
         }
         return timeline_index;
     }
@@ -911,68 +911,68 @@ private static final long serialVersionUID = 1L;
     /*
      * This function is required, it sets the value of Object with string name.
      */
-    public void setObject(java.lang.String name, Object value) {
+    public void setVariable(java.lang.String name, Object value) {
         variables.put(name, value);
     }
     
     /*
      * This function is required, for using *= with custom variables
      */
-    public void multObject(java.lang.String name, Object multValue) {
-        variables.put(name, Variable.mult(variables.get(name),multValue));
+    public void multVariable(java.lang.String name, Object multValue) {
+        variables.put(name, Variable.mult(getVariable(name),multValue));
     }
     
     /*
      * This function is required, for using += with custom variables
      */
-    public void addObject(java.lang.String name, Object multValue) {
-        variables.put(name,Variable.add( variables.get(name),multValue));
+    public void addVariable(java.lang.String name, Object multValue) {
+        variables.put(name,Variable.add( getVariable(name),multValue));
     }
     
     /*
      * This function is required, for using -= with custom variables
      */
-    public void subObject(java.lang.String name, Object multValue) {
-        variables.put(name, Variable.sub(variables.get(name),multValue));
+    public void subVariable(java.lang.String name, Object multValue) {
+        variables.put(name, Variable.sub(getVariable(name),multValue));
     }
     
     /*
      * This function is required, for using /= with custom variables
      */
-    public void divObject(java.lang.String name, Object multValue) {
-        variables.put(name, Variable.div(variables.get(name),multValue));
+    public void divVariable(java.lang.String name, Object multValue) {
+        variables.put(name, Variable.div(getVariable(name),multValue));
     }
     
     /*
      * This function is required, for using &= with custom variables
      */
-    public void bandObject(java.lang.String name, Object multValue) {
-        variables.put(name, Variable.band(variables.get(name),multValue));
+    public void bandVariable(java.lang.String name, Object multValue) {
+        variables.put(name, Variable.band(getVariable(name),multValue));
     }
     
     /*
      * This function is required, for using *= with custom variables
      */
-    public void borObject(java.lang.String name, Object multValue) {
-        variables.put(name, Variable.bor(variables.get(name),multValue));
+    public void borVariable(java.lang.String name, Object multValue) {
+        variables.put(name, Variable.bor(getVariable(name),multValue));
     }
     
     /*
      * This function is required, for using *= with custom variables
      */
     public void bxorVariable(java.lang.String name, Object multValue) {
-        variables.put(name, Variable.bxor(variables.get(name),multValue));
+        variables.put(name, Variable.bxor(getVariable(name),multValue));
     }
     
     /*
      * Test function for ints
      * 
      */
-    public void setObject(java.lang.String name, int value) {
+    public void setVariable(java.lang.String name, int value) {
         variables.put(name, new Integer(value));
     }
 
-    public Object getObject(String name) {
+    public Object getVariableOLD(String name) {
         try {
             java.lang.String nm = "" + name;
             Method m = Variables.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
@@ -1005,7 +1005,7 @@ private static final long serialVersionUID = 1L;
     public Object getVariable(java.lang.String name) {
         Object o = (Object) variables.get(name.toString());
         if (o == null) {
-            o=new Integer(0);
+            o=0d;
             variables.put(name.toString(),o );
             return o;
         }

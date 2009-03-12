@@ -102,7 +102,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (neg=negate{$value = $neg.value;}|r=relationalExpression{$value =$r.value;}|p=pexpression{$value =$p.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ("+$e.value+")";}))* {$value =pc.expression($value);}
+:  (neg=negate{$value = $neg.value;}|r=relationalExpression{$value =$r.value;}|p=pexpression{$value =$p.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value= $aa.value.replaceAll("GJAVA_VALUE",$value);}|aa=bexpression{$value= "(((Integer)"+ $value+")"+ $aa.value+").doubleValue()";})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ((Boolean)"+$e.value+")";}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -111,8 +111,12 @@ notexpression returns [String value]
 
 // this ia an experssion that deals with operators such as +
 aexpression returns [String value]
-: a=('+'|'-'|'*'|'/'|'|'|'&'|'^'|'<<'|'>>'|'div'|'mod') (e=expression) {$value =pc.aexpression($a.text,$e.value);}
+: a=('+'|'-'|'*'|'/'|'div'|'%'|'mod') (e=expression) {$value =pc.aexpression($a.text,$e.value);}
 ; //(NUMBER|HEXNUMBER|STRING|variable)
+
+bexpression returns [String value]
+: a=('|'|'&'|'^'|'<<'|'>>') (e=expression) {$value =pc.aexpression($a.text,$e.value);}
+	;
 
 value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.text;}
 ;
@@ -211,7 +215,7 @@ array returns [String value]
 NUMBER : (DIGIT)+ ;
 
 HEXNUMBER
-: '$' (DIGIT||'a'..'z'|'A'..'Z')*
+: '$' (DIGIT|'a'..'z'|'A'..'Z')*
 ;
 
 GLOBALVAR
@@ -246,11 +250,11 @@ ML_COMMENT
     :   '/*' (options {greedy=false;} : .)* '*/' {$channel=HIDDEN;}
     ;
    
-STRING : STRING_DOUBLE|STRING_SINGLE
+STRING : (STRING_DOUBLE|STRING_SINGLE)
 ;
 
 JAVACODE 
-	:  '@@java_Begin' (options {greedy=false;} : .)* '@@java_End'	
+	:  '#javaBegin' (options {greedy=false;} : .)* '#javaEnd'	
 	;
   
 STRING_DOUBLE

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-03-08 16:04:02
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-03-12 17:31:59
 
 package org.dolphin.parser;
 
@@ -79,7 +79,8 @@ public class gscriptLexer extends Lexer {
     public static final int EQUALS2=13;
     public static final int STUPIDDECIMAL=26;
     public static final int MINUS=5;
-    public static final int Tokens=91;
+    public static final int Tokens=92;
+    public static final int T91=91;
     public static final int LBRAC=10;
     public static final int T90=90;
     public static final int T88=88;
@@ -740,10 +741,11 @@ public class gscriptLexer extends Lexer {
     public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:40:5: ( '|' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:40:7: '|'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:40:5: ( 'div' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:40:7: 'div'
             {
-            match('|'); 
+            match("div"); 
+
 
             }
 
@@ -758,10 +760,10 @@ public class gscriptLexer extends Lexer {
     public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:41:5: ( '&' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:41:7: '&'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:41:5: ( '%' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:41:7: '%'
             {
-            match('&'); 
+            match('%'); 
 
             }
 
@@ -776,10 +778,11 @@ public class gscriptLexer extends Lexer {
     public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:42:5: ( '^' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:42:7: '^'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:42:5: ( 'mod' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:42:7: 'mod'
             {
-            match('^'); 
+            match("mod"); 
+
 
             }
 
@@ -794,11 +797,10 @@ public class gscriptLexer extends Lexer {
     public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:43:5: ( '<<' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:43:7: '<<'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:43:5: ( '|' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:43:7: '|'
             {
-            match("<<"); 
-
+            match('|'); 
 
             }
 
@@ -813,11 +815,10 @@ public class gscriptLexer extends Lexer {
     public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:44:5: ( '>>' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:44:7: '>>'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:44:5: ( '&' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:44:7: '&'
             {
-            match(">>"); 
-
+            match('&'); 
 
             }
 
@@ -832,11 +833,10 @@ public class gscriptLexer extends Lexer {
     public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:45:5: ( 'div' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:45:7: 'div'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:45:5: ( '^' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:45:7: '^'
             {
-            match("div"); 
-
+            match('^'); 
 
             }
 
@@ -851,10 +851,10 @@ public class gscriptLexer extends Lexer {
     public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:46:5: ( 'mod' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:46:7: 'mod'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:46:5: ( '<<' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:46:7: '<<'
             {
-            match("mod"); 
+            match("<<"); 
 
 
             }
@@ -870,10 +870,11 @@ public class gscriptLexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:47:5: ( '~' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:47:7: '~'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:47:5: ( '>>' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:47:7: '>>'
             {
-            match('~'); 
+            match(">>"); 
+
 
             }
 
@@ -888,11 +889,10 @@ public class gscriptLexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:48:5: ( '&&' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:48:7: '&&'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:48:5: ( '~' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:48:7: '~'
             {
-            match("&&"); 
-
+            match('~'); 
 
             }
 
@@ -907,10 +907,10 @@ public class gscriptLexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:49:5: ( 'and' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:49:7: 'and'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:49:5: ( '&&' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:49:7: '&&'
             {
-            match("and"); 
+            match("&&"); 
 
 
             }
@@ -926,10 +926,10 @@ public class gscriptLexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:50:5: ( '||' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:50:7: '||'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:50:5: ( 'and' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:50:7: 'and'
             {
-            match("||"); 
+            match("and"); 
 
 
             }
@@ -945,10 +945,10 @@ public class gscriptLexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:51:5: ( 'or' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:51:7: 'or'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:51:5: ( '||' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:51:7: '||'
             {
-            match("or"); 
+            match("||"); 
 
 
             }
@@ -964,10 +964,10 @@ public class gscriptLexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:52:5: ( '^^' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:52:7: '^^'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:52:5: ( 'or' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:52:7: 'or'
             {
-            match("^^"); 
+            match("or"); 
 
 
             }
@@ -983,10 +983,10 @@ public class gscriptLexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:53:5: ( 'xor' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:53:7: 'xor'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:53:5: ( '^^' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:53:7: '^^'
             {
-            match("xor"); 
+            match("^^"); 
 
 
             }
@@ -1002,10 +1002,10 @@ public class gscriptLexer extends Lexer {
     public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:54:5: ( ':=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:54:7: ':='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:54:5: ( 'xor' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:54:7: 'xor'
             {
-            match(":="); 
+            match("xor"); 
 
 
             }
@@ -1021,10 +1021,10 @@ public class gscriptLexer extends Lexer {
     public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:55:5: ( '<>' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:55:7: '<>'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:55:5: ( ':=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:55:7: ':='
             {
-            match("<>"); 
+            match(":="); 
 
 
             }
@@ -1040,10 +1040,10 @@ public class gscriptLexer extends Lexer {
     public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:56:5: ( 'repeat' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:56:7: 'repeat'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:56:5: ( '<>' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:56:7: '<>'
             {
-            match("repeat"); 
+            match("<>"); 
 
 
             }
@@ -1059,10 +1059,10 @@ public class gscriptLexer extends Lexer {
     public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:57:5: ( 'break' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:57:7: 'break'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:57:5: ( 'repeat' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:57:7: 'repeat'
             {
-            match("break"); 
+            match("repeat"); 
 
 
             }
@@ -1078,10 +1078,10 @@ public class gscriptLexer extends Lexer {
     public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:58:5: ( 'continue' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:58:7: 'continue'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:58:5: ( 'break' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:58:7: 'break'
             {
-            match("continue"); 
+            match("break"); 
 
 
             }
@@ -1097,10 +1097,10 @@ public class gscriptLexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:59:5: ( 'do' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:59:7: 'do'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:59:5: ( 'continue' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:59:7: 'continue'
             {
-            match("do"); 
+            match("continue"); 
 
 
             }
@@ -1116,10 +1116,10 @@ public class gscriptLexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:60:5: ( 'until' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:60:7: 'until'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:60:5: ( 'do' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:60:7: 'do'
             {
-            match("until"); 
+            match("do"); 
 
 
             }
@@ -1135,10 +1135,10 @@ public class gscriptLexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:61:5: ( 'while' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:61:7: 'while'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:61:5: ( 'until' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:61:7: 'until'
             {
-            match("while"); 
+            match("until"); 
 
 
             }
@@ -1154,10 +1154,10 @@ public class gscriptLexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:62:5: ( 'for' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:62:7: 'for'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:62:5: ( 'while' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:62:7: 'while'
             {
-            match("for"); 
+            match("while"); 
 
 
             }
@@ -1173,10 +1173,10 @@ public class gscriptLexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:63:5: ( 'switch' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:63:7: 'switch'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:63:5: ( 'for' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:63:7: 'for'
             {
-            match("switch"); 
+            match("for"); 
 
 
             }
@@ -1192,10 +1192,10 @@ public class gscriptLexer extends Lexer {
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:64:5: ( 'case' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:64:7: 'case'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:64:5: ( 'switch' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:64:7: 'switch'
             {
-            match("case"); 
+            match("switch"); 
 
 
             }
@@ -1211,10 +1211,10 @@ public class gscriptLexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:65:5: ( 'default' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:65:7: 'default'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:65:5: ( 'case' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:65:7: 'case'
             {
-            match("default"); 
+            match("case"); 
 
 
             }
@@ -1230,10 +1230,11 @@ public class gscriptLexer extends Lexer {
     public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:66:5: ( ':' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:66:7: ':'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:66:5: ( 'default' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:66:7: 'default'
             {
-            match(':'); 
+            match("default"); 
+
 
             }
 
@@ -1248,11 +1249,10 @@ public class gscriptLexer extends Lexer {
     public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:67:5: ( 'with' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:67:7: 'with'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:67:5: ( ':' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:67:7: ':'
             {
-            match("with"); 
-
+            match(':'); 
 
             }
 
@@ -1267,10 +1267,10 @@ public class gscriptLexer extends Lexer {
     public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:68:5: ( '+=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:68:7: '+='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:68:5: ( 'with' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:68:7: 'with'
             {
-            match("+="); 
+            match("with"); 
 
 
             }
@@ -1286,10 +1286,10 @@ public class gscriptLexer extends Lexer {
     public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:69:5: ( '-=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:69:7: '-='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:69:5: ( '+=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:69:7: '+='
             {
-            match("-="); 
+            match("+="); 
 
 
             }
@@ -1305,10 +1305,10 @@ public class gscriptLexer extends Lexer {
     public final void mT83() throws RecognitionException {
         try {
             int _type = T83;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:70:5: ( '*=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:70:7: '*='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:70:5: ( '-=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:70:7: '-='
             {
-            match("*="); 
+            match("-="); 
 
 
             }
@@ -1324,10 +1324,10 @@ public class gscriptLexer extends Lexer {
     public final void mT84() throws RecognitionException {
         try {
             int _type = T84;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:71:5: ( '/=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:71:7: '/='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:71:5: ( '*=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:71:7: '*='
             {
-            match("/="); 
+            match("*="); 
 
 
             }
@@ -1343,10 +1343,10 @@ public class gscriptLexer extends Lexer {
     public final void mT85() throws RecognitionException {
         try {
             int _type = T85;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:72:5: ( '|=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:72:7: '|='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:72:5: ( '/=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:72:7: '/='
             {
-            match("|="); 
+            match("/="); 
 
 
             }
@@ -1362,10 +1362,10 @@ public class gscriptLexer extends Lexer {
     public final void mT86() throws RecognitionException {
         try {
             int _type = T86;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:73:5: ( '&=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:73:7: '&='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:73:5: ( '|=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:73:7: '|='
             {
-            match("&="); 
+            match("|="); 
 
 
             }
@@ -1381,10 +1381,10 @@ public class gscriptLexer extends Lexer {
     public final void mT87() throws RecognitionException {
         try {
             int _type = T87;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:74:5: ( '^=' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:74:7: '^='
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:74:5: ( '&=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:74:7: '&='
             {
-            match("^="); 
+            match("&="); 
 
 
             }
@@ -1400,10 +1400,11 @@ public class gscriptLexer extends Lexer {
     public final void mT88() throws RecognitionException {
         try {
             int _type = T88;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:75:5: ( '.' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:75:7: '.'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:75:5: ( '^=' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:75:7: '^='
             {
-            match('.'); 
+            match("^="); 
+
 
             }
 
@@ -1418,10 +1419,10 @@ public class gscriptLexer extends Lexer {
     public final void mT89() throws RecognitionException {
         try {
             int _type = T89;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:76:5: ( '[' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:76:7: '['
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:76:5: ( '.' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:76:7: '.'
             {
-            match('['); 
+            match('.'); 
 
             }
 
@@ -1436,10 +1437,10 @@ public class gscriptLexer extends Lexer {
     public final void mT90() throws RecognitionException {
         try {
             int _type = T90;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:77:5: ( ']' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:77:7: ']'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:77:5: ( '[' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:77:7: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -1450,14 +1451,32 @@ public class gscriptLexer extends Lexer {
     }
     // $ANTLR end T90
 
+    // $ANTLR start T91
+    public final void mT91() throws RecognitionException {
+        try {
+            int _type = T91;
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:78:5: ( ']' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:78:7: ']'
+            {
+            match(']'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T91
+
     // $ANTLR start NUMBER
     public final void mNUMBER() throws RecognitionException {
         try {
             int _type = NUMBER;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:211:8: ( ( DIGIT )+ )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:211:10: ( DIGIT )+
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:215:8: ( ( DIGIT )+ )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:215:10: ( DIGIT )+
             {
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:211:10: ( DIGIT )+
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:215:10: ( DIGIT )+
             int cnt1=0;
             loop1:
             do {
@@ -1471,7 +1490,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:211:11: DIGIT
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:215:11: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1501,119 +1520,35 @@ public class gscriptLexer extends Lexer {
     public final void mHEXNUMBER() throws RecognitionException {
         try {
             int _type = HEXNUMBER;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:1: ( '$' ( DIGIT | | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:3: '$' ( DIGIT | | 'a' .. 'z' | 'A' .. 'Z' )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:218:1: ( '$' ( DIGIT | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:218:3: '$' ( DIGIT | 'a' .. 'z' | 'A' .. 'Z' )*
             {
             match('$'); 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:7: ( DIGIT | | 'a' .. 'z' | 'A' .. 'Z' )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:218:7: ( DIGIT | 'a' .. 'z' | 'A' .. 'Z' )*
             loop2:
             do {
-                int alt2=5;
-                switch ( input.LA(1) ) {
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    {
-                    alt2=1;
-                    }
-                    break;
-                case 'a':
-                case 'b':
-                case 'c':
-                case 'd':
-                case 'e':
-                case 'f':
-                case 'g':
-                case 'h':
-                case 'i':
-                case 'j':
-                case 'k':
-                case 'l':
-                case 'm':
-                case 'n':
-                case 'o':
-                case 'p':
-                case 'q':
-                case 'r':
-                case 's':
-                case 't':
-                case 'u':
-                case 'v':
-                case 'w':
-                case 'x':
-                case 'y':
-                case 'z':
-                    {
-                    alt2=2;
-                    }
-                    break;
-                case 'A':
-                case 'B':
-                case 'C':
-                case 'D':
-                case 'E':
-                case 'F':
-                case 'G':
-                case 'H':
-                case 'I':
-                case 'J':
-                case 'K':
-                case 'L':
-                case 'M':
-                case 'N':
-                case 'O':
-                case 'P':
-                case 'Q':
-                case 'R':
-                case 'S':
-                case 'T':
-                case 'U':
-                case 'V':
-                case 'W':
-                case 'X':
-                case 'Y':
-                case 'Z':
-                    {
-                    alt2=2;
-                    }
-                    break;
+                int alt2=2;
+                int LA2_0 = input.LA(1);
 
-                default:
-                    alt2=2;
-                    break;
+                if ( ((LA2_0>='0' && LA2_0<='9')||(LA2_0>='A' && LA2_0<='Z')||(LA2_0>='a' && LA2_0<='z')) ) {
+                    alt2=1;
                 }
+
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:8: DIGIT
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:
             	    {
-            	    mDIGIT(); 
+            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	        input.consume();
 
             	    }
-            	    break;
-            	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:14: 
-            	    {
+            	    else {
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recover(mse);    throw mse;
             	    }
-            	    break;
-            	case 3 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:15: 'a' .. 'z'
-            	    {
-            	    matchRange('a','z'); 
 
-            	    }
-            	    break;
-            	case 4 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:214:24: 'A' .. 'Z'
-            	    {
-            	    matchRange('A','Z'); 
 
             	    }
             	    break;
@@ -1637,8 +1572,8 @@ public class gscriptLexer extends Lexer {
     public final void mGLOBALVAR() throws RecognitionException {
         try {
             int _type = GLOBALVAR;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:218:1: ( 'global' '.' WORD )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:218:3: 'global' '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:222:1: ( 'global' '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:222:3: 'global' '.' WORD
             {
             match("global"); 
 
@@ -1658,8 +1593,8 @@ public class gscriptLexer extends Lexer {
     public final void mOIVAR() throws RecognitionException {
         try {
             int _type = OIVAR;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:220:7: ( WORD '.' WORD )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:220:9: WORD '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:224:7: ( WORD '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:224:9: WORD '.' WORD
             {
             mWORD(); 
             match('.'); 
@@ -1678,8 +1613,8 @@ public class gscriptLexer extends Lexer {
     public final void mDECIMAL() throws RecognitionException {
         try {
             int _type = DECIMAL;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:222:9: ( NUMBER '.' NUMBER )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:222:11: NUMBER '.' NUMBER
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:226:9: ( NUMBER '.' NUMBER )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:226:11: NUMBER '.' NUMBER
             {
             mNUMBER(); 
             match('.'); 
@@ -1698,8 +1633,8 @@ public class gscriptLexer extends Lexer {
     public final void mSTUPIDDECIMAL() throws RecognitionException {
         try {
             int _type = STUPIDDECIMAL;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:225:2: ( '.' NUMBER )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:225:4: '.' NUMBER
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:229:2: ( '.' NUMBER )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:229:4: '.' NUMBER
             {
             match('.'); 
             mNUMBER(); 
@@ -1717,10 +1652,10 @@ public class gscriptLexer extends Lexer {
     public final void mWHITESPACE() throws RecognitionException {
         try {
             int _type = WHITESPACE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+ )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+ )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
             {
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
             int cnt3=0;
             loop3:
             do {
@@ -1761,42 +1696,42 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:16: '\\t'
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:16: '\\t'
             	    {
             	    match('\t'); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:23: ' '
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:23: ' '
             	    {
             	    match(' '); 
 
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:29: '\\r'
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:29: '\\r'
             	    {
             	    match('\r'); 
 
             	    }
             	    break;
             	case 4 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:36: '\\n'
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:36: '\\n'
             	    {
             	    match('\n'); 
 
             	    }
             	    break;
             	case 5 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:42: '\\u000C'
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:42: '\\u000C'
             	    {
             	    match('\f'); 
 
             	    }
             	    break;
             	case 6 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:228:52: '#define' WORD
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:232:52: '#define' WORD
             	    {
             	    match("#define"); 
 
@@ -1828,8 +1763,8 @@ public class gscriptLexer extends Lexer {
     // $ANTLR start DIGIT
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:230:16: ( '0' .. '9' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:230:18: '0' .. '9'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:234:16: ( '0' .. '9' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:234:18: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1845,8 +1780,8 @@ public class gscriptLexer extends Lexer {
     public final void mWORD() throws RecognitionException {
         try {
             int _type = WORD;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:233:1: ( ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:233:3: ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:237:1: ( ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:237:3: ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1858,7 +1793,7 @@ public class gscriptLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:233:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:237:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop4:
             do {
                 int alt4=2;
@@ -1906,12 +1841,12 @@ public class gscriptLexer extends Lexer {
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:241:3: ( '//' ( options {greedy=false; } : . )* ( '\\n' | '\\r' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:241:5: '//' ( options {greedy=false; } : . )* ( '\\n' | '\\r' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:245:3: ( '//' ( options {greedy=false; } : . )* ( '\\n' | '\\r' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:245:5: '//' ( options {greedy=false; } : . )* ( '\\n' | '\\r' )
             {
             match("//"); 
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:241:10: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:245:10: ( options {greedy=false; } : . )*
             loop5:
             do {
                 int alt5=2;
@@ -1927,7 +1862,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:241:37: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:245:37: .
             	    {
             	    matchAny(); 
 
@@ -1964,12 +1899,12 @@ public class gscriptLexer extends Lexer {
     public final void mML_COMMENT() throws RecognitionException {
         try {
             int _type = ML_COMMENT;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:246:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:246:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:246:14: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:14: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -1994,7 +1929,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:246:41: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:250:41: .
             	    {
             	    matchAny(); 
 
@@ -2023,7 +1958,10 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING() throws RecognitionException {
         try {
             int _type = STRING;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:249:8: ( STRING_DOUBLE | STRING_SINGLE )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:8: ( ( STRING_DOUBLE | STRING_SINGLE ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:10: ( STRING_DOUBLE | STRING_SINGLE )
+            {
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:10: ( STRING_DOUBLE | STRING_SINGLE )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2035,20 +1973,20 @@ public class gscriptLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("249:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 7, 0, input);
+                    new NoViableAltException("253:10: ( STRING_DOUBLE | STRING_SINGLE )", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:249:10: STRING_DOUBLE
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:11: STRING_DOUBLE
                     {
                     mSTRING_DOUBLE(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:249:24: STRING_SINGLE
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:25: STRING_SINGLE
                     {
                     mSTRING_SINGLE(); 
 
@@ -2056,6 +1994,10 @@ public class gscriptLexer extends Lexer {
                     break;
 
             }
+
+
+            }
+
             this.type = _type;
         }
         finally {
@@ -2067,109 +2009,91 @@ public class gscriptLexer extends Lexer {
     public final void mJAVACODE() throws RecognitionException {
         try {
             int _type = JAVACODE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:2: ( '@@java_Begin' ( options {greedy=false; } : . )* '@@java_End' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:5: '@@java_Begin' ( options {greedy=false; } : . )* '@@java_End'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:257:2: ( '#javaBegin' ( options {greedy=false; } : . )* '#javaEnd' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:257:5: '#javaBegin' ( options {greedy=false; } : . )* '#javaEnd'
             {
-            match("@@java_Begin"); 
+            match("#javaBegin"); 
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:20: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:257:18: ( options {greedy=false; } : . )*
             loop8:
             do {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( (LA8_0=='@') ) {
+                if ( (LA8_0=='#') ) {
                     int LA8_1 = input.LA(2);
 
-                    if ( (LA8_1=='@') ) {
+                    if ( (LA8_1=='j') ) {
                         int LA8_3 = input.LA(3);
 
-                        if ( ((LA8_3>='\u0000' && LA8_3<='i')||(LA8_3>='k' && LA8_3<='\uFFFE')) ) {
-                            alt8=1;
-                        }
-                        else if ( (LA8_3=='j') ) {
+                        if ( (LA8_3=='a') ) {
                             int LA8_4 = input.LA(4);
 
-                            if ( (LA8_4=='a') ) {
+                            if ( (LA8_4=='v') ) {
                                 int LA8_5 = input.LA(5);
 
-                                if ( (LA8_5=='v') ) {
+                                if ( (LA8_5=='a') ) {
                                     int LA8_6 = input.LA(6);
 
-                                    if ( (LA8_6=='a') ) {
+                                    if ( (LA8_6=='E') ) {
                                         int LA8_7 = input.LA(7);
 
-                                        if ( (LA8_7=='_') ) {
+                                        if ( (LA8_7=='n') ) {
                                             int LA8_8 = input.LA(8);
 
-                                            if ( (LA8_8=='E') ) {
-                                                int LA8_9 = input.LA(9);
-
-                                                if ( (LA8_9=='n') ) {
-                                                    int LA8_10 = input.LA(10);
-
-                                                    if ( (LA8_10=='d') ) {
-                                                        alt8=2;
-                                                    }
-                                                    else if ( ((LA8_10>='\u0000' && LA8_10<='c')||(LA8_10>='e' && LA8_10<='\uFFFE')) ) {
-                                                        alt8=1;
-                                                    }
-
-
-                                                }
-                                                else if ( ((LA8_9>='\u0000' && LA8_9<='m')||(LA8_9>='o' && LA8_9<='\uFFFE')) ) {
-                                                    alt8=1;
-                                                }
-
-
+                                            if ( (LA8_8=='d') ) {
+                                                alt8=2;
                                             }
-                                            else if ( ((LA8_8>='\u0000' && LA8_8<='D')||(LA8_8>='F' && LA8_8<='\uFFFE')) ) {
+                                            else if ( ((LA8_8>='\u0000' && LA8_8<='c')||(LA8_8>='e' && LA8_8<='\uFFFE')) ) {
                                                 alt8=1;
                                             }
 
 
                                         }
-                                        else if ( ((LA8_7>='\u0000' && LA8_7<='^')||(LA8_7>='`' && LA8_7<='\uFFFE')) ) {
+                                        else if ( ((LA8_7>='\u0000' && LA8_7<='m')||(LA8_7>='o' && LA8_7<='\uFFFE')) ) {
                                             alt8=1;
                                         }
 
 
                                     }
-                                    else if ( ((LA8_6>='\u0000' && LA8_6<='`')||(LA8_6>='b' && LA8_6<='\uFFFE')) ) {
+                                    else if ( ((LA8_6>='\u0000' && LA8_6<='D')||(LA8_6>='F' && LA8_6<='\uFFFE')) ) {
                                         alt8=1;
                                     }
 
 
                                 }
-                                else if ( ((LA8_5>='\u0000' && LA8_5<='u')||(LA8_5>='w' && LA8_5<='\uFFFE')) ) {
+                                else if ( ((LA8_5>='\u0000' && LA8_5<='`')||(LA8_5>='b' && LA8_5<='\uFFFE')) ) {
                                     alt8=1;
                                 }
 
 
                             }
-                            else if ( ((LA8_4>='\u0000' && LA8_4<='`')||(LA8_4>='b' && LA8_4<='\uFFFE')) ) {
+                            else if ( ((LA8_4>='\u0000' && LA8_4<='u')||(LA8_4>='w' && LA8_4<='\uFFFE')) ) {
                                 alt8=1;
                             }
 
 
                         }
+                        else if ( ((LA8_3>='\u0000' && LA8_3<='`')||(LA8_3>='b' && LA8_3<='\uFFFE')) ) {
+                            alt8=1;
+                        }
 
 
                     }
-                    else if ( ((LA8_1>='\u0000' && LA8_1<='?')||(LA8_1>='A' && LA8_1<='\uFFFE')) ) {
+                    else if ( ((LA8_1>='\u0000' && LA8_1<='i')||(LA8_1>='k' && LA8_1<='\uFFFE')) ) {
                         alt8=1;
                     }
 
 
                 }
-                else if ( ((LA8_0>='\u0000' && LA8_0<='?')||(LA8_0>='A' && LA8_0<='\uFFFE')) ) {
+                else if ( ((LA8_0>='\u0000' && LA8_0<='\"')||(LA8_0>='$' && LA8_0<='\uFFFE')) ) {
                     alt8=1;
                 }
 
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:253:47: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:257:45: .
             	    {
             	    matchAny(); 
 
@@ -2181,7 +2105,7 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            match("@@java_End"); 
+            match("#javaEnd"); 
 
 
             }
@@ -2197,11 +2121,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_DOUBLE() throws RecognitionException {
         try {
             int _type = STRING_DOUBLE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:257:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:257:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:261:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:261:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
             {
             match('\"'); 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:258:5: ( '\"' '\"' | ~ ( '\"' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:262:5: ( '\"' '\"' | ~ ( '\"' ) )*
             loop9:
             do {
                 int alt9=3;
@@ -2223,7 +2147,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:258:7: '\"' '\"'
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:262:7: '\"' '\"'
             	    {
             	    match('\"'); 
             	    match('\"'); 
@@ -2231,7 +2155,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:259:7: ~ ( '\"' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:263:7: ~ ( '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2252,8 +2176,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:261:5: ( '\"' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:261:7: '\"'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:265:5: ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:265:7: '\"'
             {
             match('\"'); 
 
@@ -2273,11 +2197,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_SINGLE() throws RecognitionException {
         try {
             int _type = STRING_SINGLE;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:265:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:265:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
             {
             match('\''); 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:266:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:270:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -2299,7 +2223,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:266:7: '\\'' '\\''
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:270:7: '\\'' '\\''
             	    {
             	    match('\''); 
             	    match('\''); 
@@ -2307,7 +2231,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:267:7: ~ ( '\\'' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:271:7: ~ ( '\\'' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2328,8 +2252,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:5: ( '\\'' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:269:7: '\\''
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:273:5: ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:273:7: '\\''
             {
             match('\''); 
 
@@ -2346,8 +2270,8 @@ public class gscriptLexer extends Lexer {
     // $ANTLR end STRING_SINGLE
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:8: ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | STUPIDDECIMAL | WHITESPACE | WORD | COMMENT | ML_COMMENT | STRING | JAVACODE | STRING_DOUBLE | STRING_SINGLE )
-        int alt11=86;
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:8: ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | STUPIDDECIMAL | WHITESPACE | WORD | COMMENT | ML_COMMENT | STRING | JAVACODE | STRING_DOUBLE | STRING_SINGLE )
+        int alt11=87;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
@@ -2855,98 +2779,105 @@ public class gscriptLexer extends Lexer {
                 }
                 break;
             case 73 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:329: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:329: T91
+                {
+                mT91(); 
+
+                }
+                break;
+            case 74 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:333: NUMBER
                 {
                 mNUMBER(); 
 
                 }
                 break;
-            case 74 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:336: HEXNUMBER
+            case 75 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:340: HEXNUMBER
                 {
                 mHEXNUMBER(); 
 
                 }
                 break;
-            case 75 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:346: GLOBALVAR
+            case 76 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:350: GLOBALVAR
                 {
                 mGLOBALVAR(); 
 
                 }
                 break;
-            case 76 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:356: OIVAR
+            case 77 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:360: OIVAR
                 {
                 mOIVAR(); 
 
                 }
                 break;
-            case 77 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:362: DECIMAL
+            case 78 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:366: DECIMAL
                 {
                 mDECIMAL(); 
 
                 }
                 break;
-            case 78 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:370: STUPIDDECIMAL
+            case 79 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:374: STUPIDDECIMAL
                 {
                 mSTUPIDDECIMAL(); 
 
                 }
                 break;
-            case 79 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:384: WHITESPACE
+            case 80 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:388: WHITESPACE
                 {
                 mWHITESPACE(); 
 
                 }
                 break;
-            case 80 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:395: WORD
+            case 81 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:399: WORD
                 {
                 mWORD(); 
 
                 }
                 break;
-            case 81 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:400: COMMENT
+            case 82 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:404: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
-            case 82 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:408: ML_COMMENT
+            case 83 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:412: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
                 }
                 break;
-            case 83 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:419: STRING
+            case 84 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:423: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
-            case 84 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:426: JAVACODE
+            case 85 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:430: JAVACODE
                 {
                 mJAVACODE(); 
 
                 }
                 break;
-            case 85 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:435: STRING_DOUBLE
+            case 86 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:439: STRING_DOUBLE
                 {
                 mSTRING_DOUBLE(); 
 
                 }
                 break;
-            case 86 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:449: STRING_SINGLE
+            case 87 :
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:1:453: STRING_SINGLE
                 {
                 mSTRING_SINGLE(); 
 
@@ -2960,140 +2891,134 @@ public class gscriptLexer extends Lexer {
 
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
-        "\1\uffff\1\62\1\64\1\66\1\72\4\uffff\1\74\1\76\1\101\1\105\1\uffff"+
-        "\4\111\1\uffff\7\111\1\134\1\137\1\142\2\111\1\uffff\3\111\1\153"+
-        "\3\111\1\161\2\uffff\1\163\1\uffff\1\111\12\uffff\1\171\16\uffff"+
-        "\3\111\2\uffff\14\111\1\u008a\2\111\11\uffff\2\111\1\u008f\2\111"+
-        "\1\u0092\1\111\2\uffff\5\111\4\uffff\1\u009a\1\uffff\1\u009a\3\uffff"+
-        "\2\111\1\u009e\1\111\1\u00a0\6\111\1\u00a8\3\111\1\uffff\1\111\1"+
-        "\u00ad\1\u00ae\1\111\1\uffff\1\u00b0\1\u00b1\1\uffff\1\u00b2\5\111"+
-        "\3\uffff\2\111\1\uffff\1\111\1\uffff\4\111\1\u00bf\1\u00c0\1\111"+
-        "\1\uffff\3\111\1\u00c5\2\uffff\1\111\3\uffff\1\u00c7\2\111\1\u00ca"+
-        "\3\111\1\u00ce\2\111\1\u00d1\1\u00d2\2\uffff\1\u00d3\3\111\1\uffff"+
-        "\1\111\1\uffff\1\111\1\u00d9\1\uffff\1\u00da\1\111\1\u00dc\1\uffff"+
-        "\1\u00dd\1\u00de\3\uffff\1\111\1\u00e1\1\u00e2\2\111\2\uffff\1\u00e5"+
-        "\4\uffff\1\111\2\uffff\1\u00e8\1\111\1\uffff\1\u00eb\1\111\1\uffff"+
-        "\1\u00ed\1\u00eb\1\uffff\1\u00ee\2\uffff";
+        "\1\uffff\1\63\1\65\1\67\1\73\4\uffff\1\75\1\77\1\102\1\106\1\uffff"+
+        "\4\112\1\uffff\10\112\1\uffff\1\112\1\141\1\144\1\147\1\uffff\3"+
+        "\112\1\154\3\112\1\162\2\uffff\1\164\1\uffff\1\112\13\uffff\1\173"+
+        "\15\uffff\3\112\2\uffff\14\112\1\u008c\4\112\1\u0091\1\112\11\uffff"+
+        "\1\112\1\u0094\1\112\2\uffff\5\112\5\uffff\1\u009c\1\uffff\1\u009c"+
+        "\3\uffff\2\112\1\u00a0\1\112\1\u00a2\6\112\1\u00aa\3\112\1\uffff"+
+        "\1\112\1\u00af\1\u00b0\1\112\1\uffff\1\u00b2\1\u00b3\1\uffff\1\u00b4"+
+        "\5\112\3\uffff\2\112\1\uffff\1\112\1\uffff\4\112\1\u00c1\1\u00c2"+
+        "\1\112\1\uffff\3\112\1\u00c7\2\uffff\1\112\3\uffff\1\u00c9\2\112"+
+        "\1\u00cc\3\112\1\u00d0\2\112\1\u00d3\1\u00d4\2\uffff\1\u00d5\3\112"+
+        "\1\uffff\1\112\1\uffff\1\112\1\u00db\1\uffff\1\u00dc\1\112\1\u00de"+
+        "\1\uffff\1\u00df\1\u00e0\3\uffff\1\112\1\u00e3\1\u00e4\2\112\2\uffff"+
+        "\1\u00e7\3\uffff\1\112\3\uffff\1\u00ea\1\112\1\uffff\1\112\1\u00ee"+
+        "\1\uffff\1\u00ef\1\u00f0\1\u00ee\3\uffff";
     static final String DFA11_eofS =
-        "\u00ef\uffff";
+        "\u00f1\uffff";
     static final String DFA11_minS =
-        "\1\11\3\75\1\52\4\uffff\3\75\1\74\1\uffff\4\56\1\uffff\7\56\1\75"+
-        "\1\46\1\75\2\56\1\uffff\3\56\1\75\3\56\1\60\2\uffff\1\56\1\uffff"+
-        "\1\56\1\uffff\2\0\7\uffff\1\0\16\uffff\3\56\2\uffff\17\56\11\uffff"+
-        "\7\56\2\uffff\5\56\4\uffff\1\42\1\0\1\47\1\0\2\uffff\17\56\1\uffff"+
-        "\4\56\1\uffff\2\56\1\uffff\6\56\1\0\1\uffff\1\0\2\56\1\uffff\1\56"+
-        "\1\uffff\7\56\1\uffff\4\56\2\uffff\1\56\3\uffff\14\56\2\uffff\4"+
-        "\56\1\uffff\1\56\1\uffff\2\56\1\uffff\3\56\1\uffff\2\56\3\uffff"+
-        "\5\56\2\uffff\1\56\3\uffff\1\101\1\56\2\uffff\2\56\1\uffff\1\60"+
-        "\1\56\1\uffff\1\56\1\60\1\uffff\1\56\2\uffff";
+        "\1\11\3\75\1\52\4\uffff\3\75\1\74\1\uffff\4\56\1\uffff\10\56\1\uffff"+
+        "\1\56\1\75\1\46\1\75\1\uffff\3\56\1\75\3\56\1\60\2\uffff\1\56\1"+
+        "\uffff\1\56\1\uffff\1\144\2\0\7\uffff\1\0\15\uffff\3\56\2\uffff"+
+        "\23\56\11\uffff\3\56\2\uffff\5\56\5\uffff\1\42\1\0\1\47\1\0\2\uffff"+
+        "\17\56\1\uffff\4\56\1\uffff\2\56\1\uffff\6\56\1\0\1\uffff\1\0\2"+
+        "\56\1\uffff\1\56\1\uffff\7\56\1\uffff\4\56\2\uffff\1\56\3\uffff"+
+        "\14\56\2\uffff\4\56\1\uffff\1\56\1\uffff\2\56\1\uffff\3\56\1\uffff"+
+        "\2\56\3\uffff\5\56\2\uffff\1\56\3\uffff\1\56\1\101\2\uffff\2\56"+
+        "\1\uffff\1\56\1\60\1\uffff\2\56\1\60\3\uffff";
     static final String DFA11_maxS =
-        "\1\176\4\75\4\uffff\2\75\2\76\1\uffff\4\172\1\uffff\7\172\1\174"+
-        "\1\75\1\136\2\172\1\uffff\3\172\1\75\3\172\1\71\2\uffff\1\71\1\uffff"+
-        "\1\172\1\uffff\2\ufffe\7\uffff\1\ufffe\16\uffff\3\172\2\uffff\17"+
-        "\172\11\uffff\7\172\2\uffff\5\172\4\uffff\1\42\1\ufffe\1\47\1\ufffe"+
-        "\2\uffff\17\172\1\uffff\4\172\1\uffff\2\172\1\uffff\6\172\1\ufffe"+
-        "\1\uffff\1\ufffe\2\172\1\uffff\1\172\1\uffff\7\172\1\uffff\4\172"+
-        "\2\uffff\1\172\3\uffff\14\172\2\uffff\4\172\1\uffff\1\172\1\uffff"+
-        "\2\172\1\uffff\3\172\1\uffff\2\172\3\uffff\5\172\2\uffff\1\172\3"+
-        "\uffff\2\172\2\uffff\2\172\1\uffff\2\172\1\uffff\2\172\1\uffff\1"+
-        "\172\2\uffff";
+        "\1\176\4\75\4\uffff\2\75\2\76\1\uffff\4\172\1\uffff\10\172\1\uffff"+
+        "\1\172\1\174\1\75\1\136\1\uffff\3\172\1\75\3\172\1\71\2\uffff\1"+
+        "\71\1\uffff\1\172\1\uffff\1\152\2\ufffe\7\uffff\1\ufffe\15\uffff"+
+        "\3\172\2\uffff\23\172\11\uffff\3\172\2\uffff\5\172\5\uffff\1\42"+
+        "\1\ufffe\1\47\1\ufffe\2\uffff\17\172\1\uffff\4\172\1\uffff\2\172"+
+        "\1\uffff\6\172\1\ufffe\1\uffff\1\ufffe\2\172\1\uffff\1\172\1\uffff"+
+        "\7\172\1\uffff\4\172\2\uffff\1\172\3\uffff\14\172\2\uffff\4\172"+
+        "\1\uffff\1\172\1\uffff\2\172\1\uffff\3\172\1\uffff\2\172\3\uffff"+
+        "\5\172\2\uffff\1\172\3\uffff\2\172\2\uffff\2\172\1\uffff\2\172\1"+
+        "\uffff\3\172\3\uffff";
     static final String DFA11_acceptS =
-        "\5\uffff\1\5\1\6\1\7\1\10\4\uffff\1\21\4\uffff\1\27\14\uffff\1\52"+
-        "\10\uffff\1\107\1\110\1\uffff\1\112\1\uffff\1\117\2\uffff\1\124"+
-        "\1\77\1\1\1\100\1\2\1\101\1\3\1\uffff\1\122\1\102\1\4\1\12\1\11"+
-        "\1\13\1\42\1\47\1\15\1\14\1\62\1\46\1\17\1\16\3\uffff\1\120\1\114"+
-        "\17\uffff\1\55\1\103\1\43\1\53\1\104\1\44\1\57\1\105\1\45\7\uffff"+
-        "\1\61\1\75\5\uffff\1\106\1\116\1\111\1\115\4\uffff\1\20\1\121\17"+
-        "\uffff\1\35\4\uffff\1\66\2\uffff\1\56\7\uffff\1\123\3\uffff\1\24"+
-        "\1\uffff\1\71\7\uffff\1\31\4\uffff\1\41\1\50\1\uffff\1\51\1\54\1"+
-        "\60\14\uffff\1\34\1\37\4\uffff\1\36\1\uffff\1\73\2\uffff\1\76\3"+
-        "\uffff\1\25\2\uffff\1\30\1\64\1\40\5\uffff\1\67\1\70\1\uffff\1\22"+
-        "\1\26\1\72\2\uffff\1\33\1\63\2\uffff\1\23\2\uffff\1\74\2\uffff\1"+
-        "\113\1\uffff\1\65\1\32";
+        "\5\uffff\1\5\1\6\1\7\1\10\4\uffff\1\21\4\uffff\1\27\10\uffff\1\44"+
+        "\4\uffff\1\53\10\uffff\1\110\1\111\1\uffff\1\113\1\uffff\1\120\3"+
+        "\uffff\1\100\1\1\1\101\1\2\1\102\1\3\1\103\1\uffff\1\123\1\4\1\12"+
+        "\1\11\1\13\1\42\1\52\1\15\1\14\1\63\1\51\1\17\1\16\3\uffff\1\121"+
+        "\1\115\23\uffff\1\56\1\104\1\46\1\54\1\105\1\47\1\60\1\106\1\50"+
+        "\3\uffff\1\62\1\76\5\uffff\1\107\1\117\1\112\1\116\1\125\4\uffff"+
+        "\1\20\1\122\17\uffff\1\35\4\uffff\1\67\2\uffff\1\57\7\uffff\1\124"+
+        "\3\uffff\1\24\1\uffff\1\72\7\uffff\1\31\4\uffff\1\41\1\43\1\uffff"+
+        "\1\45\1\55\1\61\14\uffff\1\34\1\37\4\uffff\1\36\1\uffff\1\74\2\uffff"+
+        "\1\77\3\uffff\1\25\2\uffff\1\30\1\65\1\40\5\uffff\1\70\1\71\1\uffff"+
+        "\1\22\1\26\1\73\2\uffff\1\33\1\64\2\uffff\1\23\2\uffff\1\75\3\uffff"+
+        "\1\114\1\66\1\32";
     static final String DFA11_specialS =
-        "\u00ef\uffff}>";
+        "\u00f1\uffff}>";
     static final String[] DFA11_transitionS = {
-            "\2\55\1\uffff\2\55\22\uffff\1\55\1\12\1\56\1\55\1\53\1\uffff"+
-            "\1\33\1\57\1\5\1\6\1\3\1\1\1\22\1\2\1\47\1\4\12\52\1\43\1\15"+
-            "\1\14\1\11\1\13\1\uffff\1\60\32\54\1\50\1\uffff\1\51\1\34\1"+
-            "\54\1\uffff\1\40\1\23\1\44\1\35\1\24\1\20\1\25\1\54\1\27\3\54"+
-            "\1\36\1\31\1\41\1\16\1\54\1\26\1\21\1\30\1\45\1\17\1\46\1\42"+
-            "\2\54\1\7\1\32\1\10\1\37",
-            "\1\61",
-            "\1\63",
-            "\1\65",
-            "\1\70\4\uffff\1\67\15\uffff\1\71",
+            "\2\56\1\uffff\2\56\22\uffff\1\56\1\12\1\60\1\57\1\54\1\33\1"+
+            "\36\1\61\1\5\1\6\1\3\1\1\1\22\1\2\1\50\1\4\12\53\1\44\1\15\1"+
+            "\14\1\11\1\13\2\uffff\32\55\1\51\1\uffff\1\52\1\37\1\55\1\uffff"+
+            "\1\41\1\23\1\45\1\32\1\24\1\20\1\25\1\55\1\27\3\55\1\34\1\31"+
+            "\1\42\1\16\1\55\1\26\1\21\1\30\1\46\1\17\1\47\1\43\2\55\1\7"+
+            "\1\35\1\10\1\40",
+            "\1\62",
+            "\1\64",
+            "\1\66",
+            "\1\72\4\uffff\1\71\15\uffff\1\70",
             "",
             "",
             "",
             "",
-            "\1\73",
-            "\1\75",
-            "\1\100\1\77",
-            "\1\103\1\104\1\102",
+            "\1\74",
+            "\1\76",
+            "\1\101\1\100",
+            "\1\104\1\105\1\103",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\106\2\110\1\107\5\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\113\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\114\5\110\1\115\13\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\116\2\110\1\117\3\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\107\2\111\1\110\5\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\114\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\115\5\111\1\116\13\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\117\2\111\1\120\3\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\120\14\110\1\121\10\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\123\1\110\1\124\11\110\1\122\2\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\125\16\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\126\25\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\5"+
-            "\110\1\127\24\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\7"+
-            "\110\1\130\22\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\16"+
-            "\110\1\131\13\110",
-            "\1\133\76\uffff\1\132",
-            "\1\135\26\uffff\1\136",
-            "\1\141\40\uffff\1\140",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\144\3\110\1\143\5\110\1\145\13\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\16"+
-            "\110\1\146\13\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\121\14\111\1\122\10\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\124\1\111\1\125\11\111\1\123\2\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\126\16\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\127\25\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\5"+
+            "\111\1\130\24\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\7"+
+            "\111\1\131\22\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\16"+
+            "\111\1\132\13\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\134\3\111\1\133\5\111\1\135\13\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\147\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\150\10\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\16"+
-            "\110\1\151\13\110",
-            "\1\152",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\154\15\110\1\155\13\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\156\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\7"+
-            "\110\1\160\1\157\21\110",
-            "\12\162",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\16"+
+            "\111\1\136\13\111",
+            "\1\140\76\uffff\1\137",
+            "\1\142\26\uffff\1\143",
+            "\1\146\40\uffff\1\145",
             "",
-            "",
-            "\1\164\1\uffff\12\52",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "",
-            "\42\166\1\165\uffdc\166",
-            "\47\170\1\167\uffd7\170",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\150\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\151\10\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\16"+
+            "\111\1\152\13\111",
+            "\1\153",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\155\15\111\1\156\13\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\157\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\7"+
+            "\111\1\161\1\160\21\111",
+            "\12\163",
             "",
             "",
+            "\1\165\1\uffff\12\53",
             "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
             "",
-            "",
-            "",
-            "",
-            "\uffff\172",
+            "\1\56\5\uffff\1\166",
+            "\42\170\1\167\uffdc\170",
+            "\47\172\1\171\uffd7\172",
             "",
             "",
             "",
@@ -3101,51 +3026,7 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\173\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\110\1\174\30\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\175\10\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\176\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\177\10\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u0080\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u0081\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\6"+
-            "\110\1\u0082\23\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u0083\25\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u0084\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\22"+
-            "\110\1\u0085\7\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\3"+
-            "\110\1\u0086\26\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\16"+
-            "\110\1\u0087\13\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\17"+
-            "\110\1\u0089\3\110\1\u0088\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u008b\25\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u008c\6\110",
+            "\uffff\174",
             "",
             "",
             "",
@@ -3155,234 +3036,286 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\25"+
-            "\110\1\u008d\4\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\5"+
-            "\110\1\u008e\24\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\3"+
-            "\110\1\u0090\26\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\3"+
-            "\110\1\u0091\26\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\u0093\10\110",
-            "",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\22"+
-            "\110\1\u0094\7\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\u0095\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u0096\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u0097\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u0098\21\110",
             "",
             "",
             "",
             "",
-            "\1\u0099",
-            "\42\166\1\165\uffdc\166",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\175\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\111\1\176\30\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\177\10\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\u0080\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\u0081\10\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u0082\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u0083\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\6"+
+            "\111\1\u0084\23\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u0085\25\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u0086\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\22"+
+            "\111\1\u0087\7\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\3"+
+            "\111\1\u0088\26\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\16"+
+            "\111\1\u0089\13\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\17"+
+            "\111\1\u008b\3\111\1\u008a\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u008d\25\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u008e\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\25"+
+            "\111\1\u008f\4\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\5"+
+            "\111\1\u0090\24\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\3"+
+            "\111\1\u0092\26\111",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\3"+
+            "\111\1\u0093\26\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\u0095\10\111",
+            "",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\22"+
+            "\111\1\u0096\7\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\u0097\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u0098\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u0099\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u009a\21\111",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u009b",
-            "\47\170\1\167\uffd7\170",
+            "\42\170\1\167\uffdc\170",
+            "\1\u009d",
+            "\47\172\1\171\uffd7\172",
             "",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\25"+
-            "\110\1\u009c\4\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\u009d\16\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u009f\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00a1\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00a2\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u00a3\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00a4\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00a5\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00a6\3\110\1\u00a7\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\110\1\u00a9\30\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\24"+
-            "\110\1\u00aa\5\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00ab\25\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\25"+
+            "\111\1\u009e\4\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\u009f\16\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00a1\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00a3\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00a4\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u00a5\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00a6\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00a7\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u00a8\3\111\1\u00a9\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\111\1\u00ab\30\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\24"+
+            "\111\1\u00ac\5\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u00ad\25\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\u00ac\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00af\31\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\u00ae\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00b1\31\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00b3\25\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00b4\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u00b5\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\7"+
-            "\110\1\u00b6\22\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\u00b7\16\110",
-            "\42\166\1\165\uffdc\166",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u00b5\25\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00b6\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u00b7\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\7"+
+            "\111\1\u00b8\22\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\u00b9\16\111",
+            "\42\170\1\167\uffdc\170",
             "",
-            "\47\170\1\167\uffd7\170",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00b8\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u00b9\21\110",
+            "\47\172\1\171\uffd7\172",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00ba\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u00bb\21\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\u00ba\16\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\u00bc\16\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u00bb\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\2"+
-            "\110\1\u00bc\27\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\u00bd\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\12"+
-            "\110\1\u00be\17\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\5"+
-            "\110\1\u00c1\24\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u00bd\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\2"+
+            "\111\1\u00be\27\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\u00bf\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\12"+
+            "\111\1\u00c0\17\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\5"+
+            "\111\1\u00c3\24\111",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00c2\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\u00c3\10\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00c4\31\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\24"+
-            "\110\1\u00c6\5\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00c4\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\u00c5\10\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00c6\31\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
             "",
             "",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\10"+
-            "\110\1\u00c8\21\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\u00c9\16\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00cb\25\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00cc\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\2"+
-            "\110\1\u00cd\27\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\2"+
-            "\110\1\u00cf\27\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\7"+
-            "\110\1\u00d0\22\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\u00d4\16\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\u00d5\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00d6\6\110",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\13"+
-            "\110\1\u00d7\16\110",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\15"+
-            "\110\1\u00d8\14\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00db\25\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\24"+
+            "\111\1\u00c8\5\111",
             "",
             "",
             "",
-            "\1\u00df\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff"+
-            "\25\110\1\u00e0\4\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\23"+
-            "\110\1\u00e3\6\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\24"+
-            "\110\1\u00e4\5\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\10"+
+            "\111\1\u00ca\21\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\u00cb\16\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u00cd\25\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00ce\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\2"+
+            "\111\1\u00cf\27\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\2"+
+            "\111\1\u00d1\27\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\7"+
+            "\111\1\u00d2\22\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
             "",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\u00d6\16\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\u00d7\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00d8\6\111",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\13"+
+            "\111\1\u00d9\16\111",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\15"+
+            "\111\1\u00da\14\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u00dd\25\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
             "",
             "",
             "",
-            "\32\u00e6\4\uffff\1\u00e6\1\uffff\32\u00e6",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\1"+
-            "\u00e7\31\110",
+            "\1\u00e2\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff"+
+            "\25\111\1\u00e1\4\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\23"+
+            "\111\1\u00e5\6\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\24"+
+            "\111\1\u00e6\5\111",
             "",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\4"+
-            "\110\1\u00e9\25\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
             "",
-            "\12\u00ea\7\uffff\32\u00ea\4\uffff\1\u00ea\1\uffff\32\u00ea",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\21"+
-            "\110\1\u00ec\10\110",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
-            "\12\u00ea\7\uffff\32\u00ea\4\uffff\1\u00ea\1\uffff\32\u00ea",
             "",
-            "\1\112\1\uffff\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32"+
-            "\110",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
+            "\u00e8\31\111",
+            "\32\u00e9\4\uffff\1\u00e9\1\uffff\32\u00e9",
+            "",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
+            "\111\1\u00eb\25\111",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
+            "\111\1\u00ec\10\111",
+            "\12\u00ed\7\uffff\32\u00ed\4\uffff\1\u00ed\1\uffff\32\u00ed",
+            "",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
+            "\111",
+            "\12\u00ed\7\uffff\32\u00ed\4\uffff\1\u00ed\1\uffff\32\u00ed",
+            "",
             "",
             ""
     };
@@ -3417,7 +3350,7 @@ public class gscriptLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | STUPIDDECIMAL | WHITESPACE | WORD | COMMENT | ML_COMMENT | STRING | JAVACODE | STRING_DOUBLE | STRING_SINGLE );";
+            return "1:1: Tokens : ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | STUPIDDECIMAL | WHITESPACE | WORD | COMMENT | ML_COMMENT | STRING | JAVACODE | STRING_DOUBLE | STRING_SINGLE );";
         }
     }
  

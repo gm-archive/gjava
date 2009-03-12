@@ -49,7 +49,7 @@ public Object action_bounce(Object... obj)
    // System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
 self.hspeed=-self.hspeed;
 self.vspeed=-self.vspeed;
-    System.out.println("bounce");
+    //System.out.println("bounce");
     return false;
 }
 
