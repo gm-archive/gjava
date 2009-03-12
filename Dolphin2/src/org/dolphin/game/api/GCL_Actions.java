@@ -29,7 +29,7 @@ import org.dolphin.game.api.types.Variable;
 
 /**
  * This class is used for all the gcl action functions.
- * All Objects should extend this class
+ * All variables should extend this class
  * To use reative use :
  * argument_relative
  * Only set it to false after it has been true
@@ -40,7 +40,7 @@ public class GCL_Actions extends GCL {
 
 public Object action_another_room(Object... obj) throws RoomChangedException
 {
-    Game.certainRoom(((Double)obj[0]));
+    Game.certainRoom(((Double)obj[0]).intValue());
 return false;
 }
 
@@ -103,7 +103,7 @@ public Object action_change_object(Object... obj)
         a.instance_id=s.instance_id;
         a.variables=s.variables;
             
-        a.hspeed=s.getHspeed().getDouble();
+        a.hspeed=(Double)s.getHspeed();
         a.vspeed=s.vspeed;
         a.xstart=s.xstart;
         a.ystart=s.ystart;
@@ -132,7 +132,7 @@ public Object action_create_object(Object... obj)
     try{
     if (obj[0] instanceof GMResource){
         Actor a;
-        if (argument_relative)
+        if ((Boolean)argument_relative)
         a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
         else
             a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
@@ -152,7 +152,7 @@ public Object action_create_object_motion(Object... obj)
  try{
     if (obj[0] instanceof GMResource){
         Actor a;
-        if (argument_relative)
+        if ((Boolean)argument_relative)
         a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
         else
             a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
@@ -160,9 +160,9 @@ public Object action_create_object_motion(Object... obj)
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
     Game.currentRoom.SortDepth();
-    if (argument_relative){
-    a.setSpeed(a.getSpeed().add(obj[3]));
-    a.setDirection(a.getDirection().add(obj[4]));
+    if ((Boolean)argument_relative){
+    a.setSpeed(Variable.add(a.getSpeed(),obj[3]));
+    a.setDirection(Variable.add(a.getDirection(),obj[4]));
     } else {
     a.setSpeed(obj[3]);
     a.setDirection(obj[4]);
@@ -261,7 +261,7 @@ public Object action_draw_text_transformed(Object... obj)
 return false;
 }
 
-public Object action_draw_variable(Object... obj)
+public Object action_draw_Object(Object... obj)
 {
 return false;
 }
@@ -321,33 +321,33 @@ return false;
 public Object action_if_collision(Object... obj)
 {
 
-if (obj.length>3 && obj[3]){
-        obj[0]=obj[0].add(self.getX());
-        obj[1]=obj[1].add(self.getY());
+if (obj.length>3 && (Boolean)obj[3]){
+        obj[0]=Variable.add(obj[0],self.getX());
+        obj[1]=Variable.add(obj[1],self.getY());
     }
     if(((Double)obj[2]) == 0){
 
-    return !(place_free(obj[0],obj[1]));
+    return !(Boolean)(place_free(obj[0],obj[1]));
     }
     else{
 
-    return place_empty(obj[0],obj[1]).not();
+    return !(Boolean)place_empty(obj[0],obj[1]);
     }
 }
 
 public Object action_if_dice(Object... obj)
 {
 	if ( (Math.random(((Double)obj[0]))  ) <1){
-		return false;
+		return true;
 	}
 return false;
 }
 
 public Object action_if_empty(Object... obj)
 {
-    if (obj.length>3 && obj[3]){
-    	obj[0]=obj[0].add(self.getX());
-    	obj[1]=obj[1].add(self.getX());
+    if (obj.length>3 && (Boolean)obj[3]){
+    	obj[0]=Variable.add(obj[0],self.getX());
+    	obj[1]=Variable.add(obj[1],self.getX());
         
     }
     if(((Double)obj[2]) == 0){
@@ -379,7 +379,7 @@ return false;
 public Object action_if_next_room(Object... obj)
 {
 if(Game.currentRoom.vectorid <Game.rooms.size()-1)
-        return false;
+        return true;
     else
         return false;
 }
@@ -406,20 +406,20 @@ public Object action_if_number(Object... obj)
 	if (((Double)obj[2]) == 0){
 		//equal to
 		if( ((Double)obj[1]) == number){
-			return false;
+			return true;
 		}
 		
 	}
 	else if (((Double)obj[2]) == 1){
 		//less than
 		if( ((Double)obj[1]) > number){
-			return false;
+			return true;
 		}
 	}
 	else if (((Double)obj[2]) == 2){
 		//greater than
 		if( ((Double)obj[1]) < number){
-			return false;
+			return true;
 		}
 	}
 	
@@ -428,9 +428,9 @@ public Object action_if_number(Object... obj)
 
 public Object action_if_object(Object... obj)
 {
-    if (obj.length>3 && obj[3]){
-    	obj[1]=obj[1].add(self.getX());
-    	obj[2]=obj[2].add(self.getX());
+    if (obj.length>3 && (Boolean)obj[3]){
+    	obj[1]=Variable.add(obj[1],self.getX());
+    	obj[2]=Variable.add(obj[2],self.getX());
     }
     return place_meeting(obj[1],obj[2],obj[0]);
 //return false;
@@ -439,7 +439,7 @@ public Object action_if_object(Object... obj)
 public Object action_if_previous_room(Object... obj)
 {
     if(Game.currentRoom.vectorid !=0)
-        return false;
+        return true;
     else
         return false;
 }
@@ -458,7 +458,7 @@ for (int k = 0; k < options.length; k++)
   if (options[k].equals(obj))
     result = k;
 
-if (result==0) return false;
+if (result==0) return true;
 return false;
 }
 
@@ -469,25 +469,25 @@ return false;
 
 public Object action_if_sound(Object... obj)
 {
-    if (Game.thegame.loadSound(obj[0].toString()).isPlaying())return false;
+    if (Game.thegame.loadSound(obj[0].toString()).isPlaying())return true;
 return false;
 }
 
-public Object action_if_variable(Object... obj)
+public Object action_if_Object(Object... obj)
 {
     if (((Double)obj[2]) ==0) {
-        //System.out.println("action_if_variable, equals:"+obj[0].equals(obj[1]));
+        //System.out.println("action_if_Object, equals:"+obj[0].equals(obj[1]));
     return obj[0].equals(obj[1]);
     }//==
 			if (((Double)obj[2]) ==1) {//<
-                           // System.out.println("action_if_variable, <:"+obj[0].lt(obj[1]));
-                            return obj[0].lt(obj[1]);
+                           // System.out.println("action_if_Object, <:"+obj[0].lt(obj[1]));
+                            return (Double)obj[0]<((Double)obj[1]);
                         }
 			if (((Double)obj[2]) ==2) {//">(";
-                            //System.out.println("action_if_variable, >:"+obj[0].gt(obj[1]));
-                            return obj[0].gt(obj[1]);
+                            //System.out.println("action_if_Object, >:"+obj[0].gt(obj[1]));
+                            return (Double)obj[0]>((Double)obj[1]);
                         }
-    //System.out.println("action_if_variable, error:"+obj[2]);
+    //System.out.println("action_if_Object, error:"+obj[2]);
 return false;
 }
 
@@ -505,10 +505,10 @@ return false;
 
 public Object action_kill_position(Object... obj)
 {
-    if(argument_relative){
+    if((Boolean)argument_relative){
         if(self.getBounds().contains(self.x+((Double)obj[0]), self.y+((Double)obj[1]))){
         self.action_kill_object();}
-    } else{
+    } else {
     if(self.getBounds().contains(((Double)obj[0]), ((Double)obj[1]))){
         self.action_kill_object();}}
 return false;
@@ -547,17 +547,17 @@ public Object action_load_game(Object... obj)
         return false;
 }
 
-public Object action_message(Variable obj)
+public Object action_message(Object obj)
 {
     show_message(obj);
 return false;
 }
 
-public Object action_move(Variable dirs, Variable speed)
+public Object action_move(Object dirs, Object speed)
 {
-	System.out.println("action_move speed:"+speed.getDouble()+ "game4:"+Game.getValueOf(4));
+	System.out.println("action_move speed:"+(Double)speed+ "game4:"+Game.getValueOf(4));
     
-	int no = round(random(string_count(new String("1"),dirs))).getInt()+1;
+	int no = ((Double)round(random(string_count("1",dirs)))).intValue()+1;
     
     int cur=0;
     
@@ -601,7 +601,7 @@ public Object action_move(Variable dirs, Variable speed)
                                     self.setDirection(45d);
                                     }
                                     }
-                                    //action_move(new Variable[5]);
+                                    //action_move(new Object[5]);
 
     }}
     
@@ -615,8 +615,8 @@ return false;
 
 public Object action_move_point(Object... obj)
 {
-    if (argument_relative)
- return   move_towards_point(obj[0],obj[1],self.getSpeed().add(obj[2]));
+    if ((Boolean)argument_relative)
+ return   move_towards_point(obj[0],obj[1],Variable.add(self.getSpeed(),obj[2]));
     else
         return   move_towards_point(obj[0],obj[1],obj[2]);
 }
@@ -629,14 +629,14 @@ return false;
 
 public Object action_move_start(Object... obj)
 {
-    self.x=self.getXstart().getDouble();
-    self.y=self.getYstart().getDouble();
+    self.x=(Double)self.getXstart();
+    self.y=(Double)self.getYstart();
 return false;
 }
 
 public Object action_move_to(Object... obj)
 {
-    if (argument_relative){
+    if ((Boolean)argument_relative){
     self.x=self.x+((Double)obj[0]);
     self.y=self.y+((Double)obj[1]);
     }
@@ -812,7 +812,7 @@ return false;
 
 public Object action_set_alarm(Object... obj)
 {
-    self.alarm[((Double)obj[1])]=((Double)obj[0]);
+    self.alarm[(((Double)obj[1]).intValue())]=((Double)obj[0]).intValue();
 return false;
 }
 
@@ -828,8 +828,8 @@ return false;
 
 public Object action_set_friction(Object... obj)
 {
-    if (getArgument_relative())
-      self.setFriction(self.getFriction().add(obj[0]));
+    if ((Boolean)getArgument_relative())
+      self.setFriction(Variable.add(self.getFriction(),obj[0]));
     else
     self.setFriction(obj[0]);
 return false;
@@ -840,8 +840,8 @@ return false;
  */
 public Object action_set_gravity(Object... obj)
 {
-    if (argument_relative){
-        self.setGravity(self.getGravity().add(obj[1]));
+    if ((Boolean)argument_relative){
+        self.setGravity(Variable.add(self.getGravity(),obj[1]));
         self.setGravity_direction(obj[0]);}
  else{
     self.setGravity(obj[1]);
@@ -852,8 +852,8 @@ return false;
 
 public Object action_set_health(Object... obj)
 {
-    if (argument_relative)
-        setHealth(getHealth().add(obj[0]));
+    if ((Boolean)argument_relative)
+        setHealth(Variable.add(getHealth(),obj[0]));
     else
        setHealth(obj[0]);
 return false;
@@ -861,8 +861,8 @@ return false;
 
 public Object action_set_hspeed(Object... obj)
 {
-    
-    if (getArgument_relative())
+	if ((Boolean)argument_relative)
+   
       self.hspeed=self.hspeed+((Double)obj[0]);
     else
     self.hspeed=((Double)obj[0]);
@@ -871,7 +871,7 @@ return false;
 
 public Object action_set_life(Object... obj)
 {
-//    if (argument_relative)
+//    if ((Boolean)argument_relative)
 //        setLife(obj[0]);
 //    else
 //        setLife(obj[0]);
@@ -880,7 +880,7 @@ return false;
 
 public Object action_set_motion(Object... obj)
 {
-    if (argument_relative)
+    if ((Boolean)argument_relative)
     {
     motion_add(obj[0],obj[1]);
     }
@@ -891,10 +891,10 @@ public Object action_set_motion(Object... obj)
 return false;
 }
 
-public Object action_set_score(Variable score)
+public Object action_set_score(Object score)
 {
-    if (argument_relative)
-        setScore(getScore().add(score));
+    if ((Boolean)argument_relative)
+        setScore(Variable.add(getScore(),score));
     else
     setScore(score);
 return false;
@@ -909,7 +909,7 @@ return false;
 
 public Object action_set_timeline_position(Object... obj)
 {
-    if (argument_relative)
+    if ((Boolean)argument_relative)
     self.timeline_position+=((Double)obj[0]);
     else
         self.timeline_position=((Double)obj[0]);
@@ -918,7 +918,7 @@ return false;
 
 public Object action_set_vspeed(Object... obj)
 {
-    if (getArgument_relative())
+    if ((Boolean) getArgument_relative())
       self.vspeed=self.vspeed+((Double)obj[0]);
     else
     self.vspeed=((Double)obj[0]);
@@ -955,7 +955,7 @@ return false;
 
 public Object action_sound(Object... obj)
 {
-    if (obj[1])
+    if ((Boolean)obj[1])
         Game.thegame.loadSound(obj[0].toString()).loop();
     else
     Game.thegame.loadSound(obj[0].toString()).play();

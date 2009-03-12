@@ -63,16 +63,16 @@ public class GCL extends Variables {
 public static Object is_real(Object val)
 {
     if (val instanceof String)
-        return new Boolean(false);
+        return false;
     else
-        return new Boolean(true);
+        return true;
 }
 public static Object is_string(Object val)
 {
 if (val instanceof String)
-        return new Boolean(true);
+        return true;
     else
-        return new Boolean(false);
+        return false;
 }
 
 public static Object random(Object x)
@@ -761,7 +761,7 @@ return false;
 public /*static*/ Object place_snapped(Object hsnap, Object vsnap)
 {
     if ((self.x % ((Double)hsnap) ==0) && (self.y % ((Double)vsnap)==0) )
-        return new Boolean(true);
+        return true;
 
 return false;
 }
@@ -1314,39 +1314,39 @@ return false;
 
 public Object Object_local_exists(Object name)
 {
-	return new Boolean(self.Objects.contains(name.toString()));
+	return new Boolean(self.variables.contains(name.toString()));
 }
 
 public Object Object_local_get(Object name)
 {
-	return self.Objects.get(name.toString());
+	return self.variables.get(name.toString());
 }
 
 public Object Object_local_array_get(Object name, Object ind)
 {
-	return self.Objects.get(name + "[" + ind + "]");
+	return self.variables.get(name + "[" + ind + "]");
 }
 
 public Object Object_local_array2_get(Object name, Object ind1, Object ind2)
 {
-	return self.Objects.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
+	return self.variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
 public Object Object_local_set(Object name, Object value)
 {
-	self.Objects.put(name.toString(), value);
+	self.variables.put(name.toString(), value);
 	return false;
 }
 
 public Object Object_local_array_set(Object name, Object ind, Object value)
 {
-	self.Objects.put(name + "[" + ind + "]", value);
+	self.variables.put(name + "[" + ind + "]", value);
 return false;
 }
 
 public Object Object_local_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
-	self.Objects.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
+	self.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
 return false;
 }
 
@@ -4588,7 +4588,7 @@ public static Object execute_program(Object prog, Object arg, Object wait)
 
 public static Object execute_shell(Object prog, Object arg)
 {
-	execute_program(new String("bash -i " + prog), arg, new Boolean(false));
+	execute_program(new String("bash -i " + prog), arg, false);
 return false;
 }
 

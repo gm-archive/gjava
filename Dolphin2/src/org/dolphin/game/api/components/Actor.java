@@ -26,7 +26,7 @@ import org.dolphin.game.api.types.Variable;
 public class Actor extends Tile implements Serializable {
 private static final long serialVersionUID = 1L;
 
-   public Hashtable<java.lang.String, Object> Objects = new Hashtable<java.lang.String, Object>();
+   public Hashtable<java.lang.String, Object> variables = new Hashtable<java.lang.String, Object>();
     public Sprite sprite;
 
     public Object  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
@@ -64,7 +64,7 @@ private static final long serialVersionUID = 1L;
     }
 
     /**
-     * Create a new Actor using Object objects
+     * Create a new Actor using Object variables
      */
     public Actor(Object X, Object Y, Object instance_id) {
         this.xstart = ((Double)X).floatValue();
@@ -78,7 +78,7 @@ private static final long serialVersionUID = 1L;
 
     static Object DSolid,DVisible,DSprite,DDepth,Dpersistent;
     /**
-     * Creates a new actor using Objects
+     * Creates a new actor using variables
      */
     public Actor(Object Object_name, Sprite spr, Object Solid, Object Visible, Object Depth, Object Persistent) {
         solid = ((Boolean)Solid);
@@ -887,22 +887,22 @@ private static final long serialVersionUID = 1L;
     /*public void setObject(String name, Object value) {
         try {
             java.lang.String nm = "" + name;
-            Method m = Objects.class.getDeclaredMethod("set" + name.charAt(nm, 0).toUpperCase() + nm.substring(1) + "", new Class[]{Object.class});
+            Method m = variables.class.getDeclaredMethod("set" + name.charAt(nm, 0).toUpperCase() + nm.substring(1) + "", new Class[]{Object.class});
             try {
 
-                m.invoke(Objects.class.newInstance(), value);
+                m.invoke(variables.class.newInstance(), value);
 
                 System.out.println("method invoked!");
             } catch (Exception ex) {
                 System.out.println("no method" + ex);
-                Objects.put(name.toString(), value);
+                variables.put(name.toString(), value);
             }
         } catch (NoSuchMethodException ex) {
             System.out.println("no method" + ex);
-            Objects.put(name.toString(), value);
+            variables.put(name.toString(), value);
         } catch (SecurityException ex) {
             System.out.println("security:" + ex);
-            Objects.put(name.toString(), value);
+            variables.put(name.toString(), value);
         }
 
 
@@ -912,56 +912,56 @@ private static final long serialVersionUID = 1L;
      * This function is required, it sets the value of Object with string name.
      */
     public void setObject(java.lang.String name, Object value) {
-        Objects.put(name, value);
+        variables.put(name, value);
     }
     
     /*
-     * This function is required, for using *= with custom Objects
+     * This function is required, for using *= with custom variables
      */
     public void multObject(java.lang.String name, Object multValue) {
-        Objects.put(name, Variable.mult(Objects.get(name),multValue));
+        variables.put(name, Variable.mult(variables.get(name),multValue));
     }
     
     /*
-     * This function is required, for using += with custom Objects
+     * This function is required, for using += with custom variables
      */
     public void addObject(java.lang.String name, Object multValue) {
-        Objects.put(name,Variable.add( Objects.get(name),multValue));
+        variables.put(name,Variable.add( variables.get(name),multValue));
     }
     
     /*
-     * This function is required, for using -= with custom Objects
+     * This function is required, for using -= with custom variables
      */
     public void subObject(java.lang.String name, Object multValue) {
-        Objects.put(name, Variable.sub(Objects.get(name),multValue));
+        variables.put(name, Variable.sub(variables.get(name),multValue));
     }
     
     /*
-     * This function is required, for using /= with custom Objects
+     * This function is required, for using /= with custom variables
      */
     public void divObject(java.lang.String name, Object multValue) {
-        Objects.put(name, Variable.div(Objects.get(name),multValue));
+        variables.put(name, Variable.div(variables.get(name),multValue));
     }
     
     /*
-     * This function is required, for using &= with custom Objects
+     * This function is required, for using &= with custom variables
      */
     public void bandObject(java.lang.String name, Object multValue) {
-        Objects.put(name, Variable.band(Objects.get(name),multValue));
+        variables.put(name, Variable.band(variables.get(name),multValue));
     }
     
     /*
-     * This function is required, for using *= with custom Objects
+     * This function is required, for using *= with custom variables
      */
     public void borObject(java.lang.String name, Object multValue) {
-        Objects.put(name, Variable.bor(Objects.get(name),multValue));
+        variables.put(name, Variable.bor(variables.get(name),multValue));
     }
     
     /*
-     * This function is required, for using *= with custom Objects
+     * This function is required, for using *= with custom variables
      */
     public void bxorVariable(java.lang.String name, Object multValue) {
-        Objects.put(name, Variable.bxor(Objects.get(name),multValue));
+        variables.put(name, Variable.bxor(variables.get(name),multValue));
     }
     
     /*
@@ -969,7 +969,7 @@ private static final long serialVersionUID = 1L;
      * 
      */
     public void setObject(java.lang.String name, int value) {
-        Objects.put(name, new Integer(value));
+        variables.put(name, new Integer(value));
     }
 
     public Object getObject(String name) {
@@ -981,17 +981,17 @@ private static final long serialVersionUID = 1L;
 
             } catch (Exception ex) {
                 System.out.println("no method" + ex);
-                Objects.get(name.toString());
+                variables.get(name.toString());
             }
         } catch (NoSuchMethodException ex) {
             System.out.println("no method" + ex);
-            Objects.get(name.toString());
+            variables.get(name.toString());
         } catch (SecurityException ex) {
             System.out.println("security:" + ex);
-            Objects.get(name.toString());
+            variables.get(name.toString());
         }
 
-        Object o = (Object) Objects.get(name.toString());
+        Object o = (Object) variables.get(name.toString());
         if (o == null) {
             return new Integer(0);
         }
@@ -1003,10 +1003,10 @@ private static final long serialVersionUID = 1L;
      * 
      */
     public Object getVariable(java.lang.String name) {
-        Object o = (Object) Objects.get(name.toString());
+        Object o = (Object) variables.get(name.toString());
         if (o == null) {
             o=new Integer(0);
-            Objects.put(name.toString(),o );
+            variables.put(name.toString(),o );
             return o;
         }
         return o;
