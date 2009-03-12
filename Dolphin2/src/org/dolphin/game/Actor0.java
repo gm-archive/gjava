@@ -33,7 +33,7 @@ public class Actor0 extends Actor {
 		//self.setVariable("t",1d);
 		self.addVariable("t", 1d);
 		{self.addVariable("xx["+1+"]",9d);}
-
+		
 		/*{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).setX(self.getY());}
 		
 		{for (int i = 0; i < Game.currentRoom.instances.size(); i++)
@@ -101,7 +101,8 @@ public class Actor0 extends Actor {
 		// System.out.println("alarm[0]"+alarm[0]);
 		// {Actor[] ac
 		// =Game.currentRoom.setActorwithname(self.getVariable("targetHandle").getActor().getClass());
-
+		System.out.println("mouse X:"+this.getMouse_x()+" ::"+Game.thegame.bsInput.getMouseX());
+		
 	}
 
 	@Override

@@ -655,7 +655,7 @@ public static Object   argument
     }
 
     public static Object getMouse_x() {
-        return new Integer(Game.thegame.getMouseX());
+        return (double)(Game.thegame.getMouseX());
     }
 
     public static void setMouse_x(Object mouse_x) {

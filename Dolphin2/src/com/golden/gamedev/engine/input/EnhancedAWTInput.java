@@ -19,6 +19,7 @@ package com.golden.gamedev.engine.input;
 // JFC
 import java.awt.Component;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.BitSet;
 //import org.gcreator.compilers.gjava.Game;
 import org.dolphin.game.Game;
@@ -107,5 +108,9 @@ public class EnhancedAWTInput extends AWTInput {
             e.consume();
             }catch(RoomChangedException re){}
         }
+
+		        
+        
+        
     }
 }

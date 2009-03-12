@@ -446,42 +446,40 @@ public class AWTInput implements BaseInput {
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			AWTInput.this.mouseClicked(arg0);
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			AWTInput.this.mouseEntered(arg0);
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			AWTInput.this.mouseExited(arg0);
 		}
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			AWTInput.this.mousePressed(arg0);
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			AWTInput.this.mouseReleased(arg0);
 			
 		}
 
 		@Override
 		public void mouseDragged(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			AWTInput.this.mouseDragged(arg0);
 			
 		}
 
 		@Override
 		public void mouseMoved(MouseEvent arg0) {
-			// TODO Auto-generated method stub
+			AWTInput.this.mouseMoved(arg0);
 			
 		}
 
