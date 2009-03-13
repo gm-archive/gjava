@@ -121,7 +121,7 @@ bexpression returns [String value]
 value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.text;}
 ;
 
-negate returns [String value]	:	('-'{$value=".negate()";}|'~'{$value=".bnegate()";}|'+'{$value=".positive()";}) e=expression {$value = $e.value+$value;}
+negate returns [String value]	:	('-'{$value="-";}|'~'{$value="~";}|'+'{$value="+";}) e=expression {$value = $value+"((Double)"+$e.value+")";}
 	;
 
 //expression surrounded with parenthesis

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-03-12 17:31:58
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-03-13 14:12:46
 
 package org.dolphin.parser;
 
@@ -5622,27 +5622,27 @@ public class gscriptParser extends Parser {
                     {
                     match(input,MINUS,FOLLOW_MINUS_in_negate921); if (failed) return value;
                     if ( backtracking==0 ) {
-                      value =".negate()";
+                      value ="-";
                     }
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:124:59: '~'
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:124:51: '~'
                     {
                     match(input,61,FOLLOW_61_in_negate924); if (failed) return value;
                     if ( backtracking==0 ) {
-                      value =".bnegate()";
+                      value ="~";
                     }
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:124:85: '+'
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:124:68: '+'
                     {
                     match(input,PLUS,FOLLOW_PLUS_in_negate927); if (failed) return value;
                     if ( backtracking==0 ) {
-                      value =".positive()";
+                      value ="+";
                     }
 
                     }
@@ -5655,7 +5655,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value = e.value+value;
+              value = value+"((Double)"+e.value+")";
             }
 
             }

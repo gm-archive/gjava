@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Game_Information;
+import org.dolphin.game.api.components.Highscore;
 import org.dolphin.game.api.components.SaveFile;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.GMResource;
@@ -308,6 +309,7 @@ return false;
 
 public Object action_highscore_show(Object... obj)
 {
+	new Highscore(Game.frame,((Double)getScore()).intValue());
 return false;
 }
 

@@ -1,2 +1,8 @@
 new\sInteger\(([\d]+)\)    
 $1
+
+obj\[([0-9]*)\]\.getInt\(\)
+\(\(Double\)obj\[$1\]\)
+
+([A-Za-z_0-9]*)\.getInt\(\)
+\(\(Double\)$1\)

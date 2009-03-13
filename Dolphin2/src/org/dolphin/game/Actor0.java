@@ -30,9 +30,8 @@ public class Actor0 extends Actor {
 		this.y = y;
 		this.instance_id = instance_id;
 		self = this;
-		//self.setVariable("t",1d);
-		self.addVariable("t", 1d);
-		{self.addVariable("xx["+1+"]",9d);}
+		setScore(1d);
+		action_highscore_show();
 		
 		/*{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).setX(self.getY());}
 		
