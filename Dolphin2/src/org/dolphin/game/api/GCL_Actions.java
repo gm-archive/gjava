@@ -304,6 +304,7 @@ return false;
 
 public Object action_highscore_clear(Object... obj)
 {
+	Highscore.clear();
 return false;
 }
 

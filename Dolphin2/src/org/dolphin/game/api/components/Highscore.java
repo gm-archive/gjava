@@ -41,8 +41,8 @@ public class Highscore extends StandardDialog {
 	public static final String SECRET = "(SECRET)";
 	Properties file = new Properties();
 	
-	String[] fields={"<noname>","noname","noname","noname","noname","noname","noname","noname","noname","noname"};
-	String[] score={"0","0","0","0","0","0","0","0","0","0"};
+	static String[] fields={"<noname>","<noname>","<noname>","<noname>","<noname>","<noname>","<noname>","<noname>","<noname>","<noname>"};
+	static String[] score={"0","0","0","0","0","0","0","0","0","0"}; //used for resetting
 	String[] names,scores;
 	HashMap<String, JTextField> mValues = new HashMap<String, JTextField>();
 	
@@ -144,6 +144,19 @@ public class Highscore extends StandardDialog {
 			p.put(fields[i], mValues.get(fields[i]).getText());
 		}
 		return p;
+	}
+	
+	public static void clear(){
+		try {
+		FileWriter fs = new FileWriter("highscores.store");
+		BufferedWriter bs = new BufferedWriter(fs);
+		for (int i = 0; i < fields.length; i++) {
+		bs.write(fields[i]+"\n");
+		
+		bs.write(score[i]+"\n");
+		}
+		bs.close();
+		} catch (Exception e){e.printStackTrace();}
 	}
 	
 		
