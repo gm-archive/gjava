@@ -109,10 +109,7 @@ public class Actor0 extends Actor {
 	@Override
 	public void KeyPressed(int keycode) throws DestroyException {
 		//System.out.println(""+Game.game.getGame().getMouseX());
-		if ((Boolean)action_if_aligned(100d,100d)){
-			System.out.println("it is aligned"+self.x+"y:"+self.y);
-		} //else
-			//System.out.println("not aligned");
+		
 		
 		
 		// self.setVariable("letter[3]",Game.currentRoom.getActorwithname(self.getVariable("letter[(Game").getActor().getClass()).getVariable(""+Game.getValueOf(2))+"]");};

@@ -297,9 +297,9 @@ public class DolphinWriter {
                 if (names.contains(name)) {
                     throw new GmFormatException(gmFile, "Duplicate object name: " + name);
                 }
-                print(script, "public Variable " + name + "(Variable... parameters){");
+                print(script, "public Object " + name + "(Object... parameters){");
                 print(script, "" + this.parseGCL(s.scriptStr));
-                print(script, "return Boolean.FALSE;");
+                print(script, "return false;");
                 print(script, "}");
             }
             print(script, "}");//end scripts class
@@ -678,10 +678,11 @@ public class DolphinWriter {
             
             } else if (act.getLibAction().actionKind == Action.ACT_EXIT) {
                 code += "return;";
-            } else if (act.getLibAction().actionKind == Action.ACT_REPEAT) {
+            }
+            else if (act.getLibAction().actionKind == Action.ACT_REPEAT) {
                 code += "repeat(" + act.getArguments().get(0).getVal() + ")";
             } else if  (act.getLibAction().execType == Action.EXEC_NONE){
-            	System.out.println("comment:" );
+            	//System.out.println("comment:" );
             	code="//action_comment";
             } else {
             	

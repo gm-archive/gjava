@@ -734,6 +734,17 @@ public class PlatformCore  {
         if (parameters == null) {
             parameters = "";
         }
+        if (name.equals("action_execute_script")){
+        	System.out.println("action_execute_script:"+parameters);
+        	name= parameters.substring(1,parameters.substring(1).indexOf("\"")+1);
+        	System.out.println("action_execute_script:name"+name);
+        	parameters = parameters.substring(parameters.indexOf(",")+1);
+        	System.out.println("action_execute_script:"+parameters);
+        	
+        	
+        	return name+"("+parameters+")";
+        }
+        
         if (!checkfunction(name)){
             this.showError("No function named: "+name+"("+parameters+")");
             return name+ "("+parameters+")";
