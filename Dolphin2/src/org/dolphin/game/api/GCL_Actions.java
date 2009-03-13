@@ -315,7 +315,7 @@ return obj[0];
 
 public Object action_if_aligned(Object... obj)
 {
-return false;
+	return place_snapped(obj[0],obj[1]);
 }
 
 public Object action_if_collision(Object... obj)
@@ -490,7 +490,7 @@ public Object action_if_sound(Object... obj)
 return false;
 }
 
-public Object action_if_Object(Object... obj)
+public Object action_if_variable(Object... obj)
 {
     if (((Double)obj[2]) ==0) {
         //System.out.println("action_if_Object, equals:"+obj[0].equals(obj[1]));
