@@ -105,6 +105,12 @@ public class Actor0 extends Actor {
 		
 		
 	}
+	
+	public Object scr_0(Object... argument){
+		boolean b = (true? true:false);
+		 show_message(Variable.add("the script worked!",argument[0]));
+		return false;
+		}
 
 	@Override
 	public void KeyPressed(int keycode) throws DestroyException {

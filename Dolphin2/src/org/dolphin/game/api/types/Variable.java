@@ -126,6 +126,9 @@ private static final long serialVersionUID = 1L;
 		return false;
 	}
 	
+	/*
+	 * This is used for instance variables to get the actor out of a java Object
+	 */
 	public static Actor getActor(Object object){
 		if (object instanceof Actor){
 			return (Actor)object;
@@ -134,6 +137,15 @@ private static final long serialVersionUID = 1L;
 		
 	}
 
+	/*
+	 * This is used in scripts to get the argument from the list without throwing a outofbounds exception
+	 */
+	public static Object getArgument(Object[] list,int id){
+		if (list.length >= id)
+		return list[id];
+		else
+			return 0d;
+	}
 
 
 }

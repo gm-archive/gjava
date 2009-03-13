@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.swing.ImageIcon;
@@ -864,6 +865,9 @@ public class PlatformCore  {
         ///////////////////////////////////////////
         /// Constants
         ///////////////////////////////////////////
+        if (Pattern.matches("argument\\d+",variable)){
+        	return "Variable.getArgument(arguments,"+variable.replace("argument", "")+")";
+        }
         if (variable.equals("true")) {
             return "true";
         }
