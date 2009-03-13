@@ -217,11 +217,13 @@ return false;
 
 public Object action_draw_health(Object... obj)
 {
+	draw_text(obj[0], obj[1], ""+obj[2]+getHealth());
 return false;
 }
 
 public Object action_draw_life(Object... obj)
 {
+	draw_text(obj[0], obj[1], ""+obj[2]+getLives());
 return false;
 }
 
@@ -242,7 +244,7 @@ return false;
 
 public Object action_draw_score(Object... obj)
 {
-
+	draw_text(obj[0], obj[1], ""+obj[2]+getScore());
 return false;
 }
 
@@ -261,8 +263,9 @@ public Object action_draw_text_transformed(Object... obj)
 return false;
 }
 
-public Object action_draw_Object(Object... obj)
+public Object action_draw_variable(Object... obj)
 {
+	draw_text(obj[1], obj[2], obj[0]);
 return false;
 }
 
@@ -363,12 +366,36 @@ public Object action_if_empty(Object... obj)
 
 public Object action_if_health(Object... obj)
 {
+	if (((Double)obj[1]) ==0)// ==
+    {
+    return obj[0].equals(getHealth());
+    }
+			if (((Double)obj[1]) ==1) //>
+				{
+                            return (Double)obj[0]>((Double)getHealth());
+                        }
+			if (((Double)obj[1]) ==2) //<
+			{
+                            return (Double)obj[0]<((Double)getHealth());
+                        }
 return false;
 }
 
 public Object action_if_life(Object... obj)
 {
-return false;
+	if (((Double)obj[1]) ==0)// ==
+    {
+    return obj[0].equals(getLives());
+    }
+			if (((Double)obj[1]) ==1) //>
+				{
+                            return (Double)obj[0]>((Double)getLives());
+                        }
+			if (((Double)obj[1]) ==2) //<
+			{
+                            return (Double)obj[0]<((Double)getLives());
+                        }
+    return false;
 }
 
 public Object action_if_mouse(Object... obj)
@@ -481,6 +508,20 @@ return false;
 
 public Object action_if_score(Object... obj)
 {
+	
+	if (((Double)obj[1]) ==0)// ==
+    {
+    return obj[0].equals(getScore());
+    }
+			if (((Double)obj[1]) ==1) //>
+				{
+                            return (Double)obj[0]>((Double)getScore());
+                        }
+			if (((Double)obj[1]) ==2) //<
+			{
+                            return (Double)obj[0]<((Double)getScore());
+                        }
+    
 return false;
 }
 
@@ -492,19 +533,19 @@ return false;
 
 public Object action_if_variable(Object... obj)
 {
-    if (((Double)obj[2]) ==0) {
-        //System.out.println("action_if_Object, equals:"+obj[0].equals(obj[1]));
+    if (((Double)obj[2]) ==0)// ==
+    {
     return obj[0].equals(obj[1]);
-    }//==
-			if (((Double)obj[2]) ==1) {//<
-                           // System.out.println("action_if_Object, <:"+obj[0].lt(obj[1]));
+    }
+			if (((Double)obj[2]) ==1) //<
+				{
                             return (Double)obj[0]<((Double)obj[1]);
                         }
-			if (((Double)obj[2]) ==2) {//">(";
-                            //System.out.println("action_if_Object, >:"+obj[0].gt(obj[1]));
+			if (((Double)obj[2]) ==2) //>
+			{
                             return (Double)obj[0]>((Double)obj[1]);
                         }
-    //System.out.println("action_if_Object, error:"+obj[2]);
+    
 return false;
 }
 
@@ -888,10 +929,10 @@ return false;
 
 public Object action_set_life(Object... obj)
 {
-//    if ((Boolean)argument_relative)
-//        setLife(obj[0]);
-//    else
-//        setLife(obj[0]);
+	if ((Boolean)argument_relative)
+        setLives(Variable.add(getLives(),obj[0]));
+    else
+    setLives(obj[0]);
 return false;
 }
 
