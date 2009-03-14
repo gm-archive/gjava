@@ -1,32 +1,21 @@
 package org.dolphin.game.api.components;
 
-import java.awt.Dialog;
+import java.awt.Color;
 import java.awt.Frame;
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
- 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
- 
-import java.awt.*;
+import java.awt.GridLayout;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.InputStream;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Properties;
+
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
  
 /** Usage:
  * [code]
@@ -45,7 +34,8 @@ public class Highscore extends StandardDialog {
 	static String[] score={"0","0","0","0","0","0","0","0","0","0"}; //used for resetting
 	String[] names,scores;
 	HashMap<String, JTextField> mValues = new HashMap<String, JTextField>();
-	
+	static Color oldcolor=Color.black,newcolor=Color.red;
+	String newname="";
 		
 	public Highscore(Frame owner,int playerScore) {
 		super(owner);
@@ -75,18 +65,22 @@ public class Highscore extends StandardDialog {
 			{
 				scores[i] = ""+playerScore;
 				names[i]=JOptionPane.showInputDialog("You got a highscore! What is your name?");
+				if (names[i] == null) {names[i]="noname :(";}
+				newname=names[i];
 			break;
 			}
 		}
 		
 		for (int i = 0; i < names.length; i++) {
 				
-			JLabel scorelabel;
+			JLabel scorelabel,namelabel;
+			namelabel = new JLabel(names[i]);
+			namelabel.setForeground(((names[i].equals(newname))? newcolor:oldcolor));
 				main.add(new JLabel("   "+(i+1)));
-				main.add(new JLabel(names[i]));
+				main.add(namelabel);
 				
 				scorelabel = new JLabel("    "+scores[i]);
-				
+				scorelabel.setForeground(((names[i].equals(newname))? newcolor:oldcolor));
 				main.add(scorelabel);
 			
 			

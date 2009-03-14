@@ -353,7 +353,7 @@ public Object action_if_empty(Object... obj)
 {
     if (obj.length>3 && (Boolean)obj[3]){
     	obj[0]=Variable.add(obj[0],self.getX());
-    	obj[1]=Variable.add(obj[1],self.getX());
+    	obj[1]=Variable.add(obj[1],self.getY());
         
     }
     if(((Double)obj[2]) == 0){
@@ -1016,7 +1016,12 @@ return false;
 
 public Object action_sound(Object... obj)
 {
-    if ((Boolean)obj[1])
+	if (obj[1] instanceof Double){
+		if ((Double)obj[1] == 1)
+			Game.thegame.loadSound(obj[0].toString()).loop();
+		else
+		    Game.thegame.loadSound(obj[0].toString()).play();
+	} else if ((Boolean)obj[1])
         Game.thegame.loadSound(obj[0].toString()).loop();
     else
     Game.thegame.loadSound(obj[0].toString()).play();
