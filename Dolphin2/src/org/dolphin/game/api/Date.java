@@ -13,6 +13,8 @@ import java.util.Calendar;
 
 /**
  * Date class
+ * Note this is not the original file I have modified it to be uncompatible with exact gm dates
+ * so it no longer uses then variable as it uses java time.
  */
 public class Date {
 
@@ -38,9 +40,12 @@ public class Date {
      */
     public static double currentDatetime() {
         Calendar now = Calendar.getInstance();
+        
+        //System.out.println("date now:"+now.getTime().getTime());
         long milis = now.getTime().getTime() - then.getTime().getTime();
+        //System.out.println("date milis:"+milis);
         // convert milis to days
-        return milis / (double) dateConvert;
+        return now.getTime().getTime();// / (double) dateConvert;
     }
 
     /**
@@ -52,9 +57,9 @@ public class Date {
         now.set(Calendar.HOUR_OF_DAY, 0);
         now.set(Calendar.MINUTE, 0);
         now.set(Calendar.SECOND, 0);
-        long milis = now.getTime().getTime() - then.getTime().getTime();
+        long milis = now.getTime().getTime() ;//- then.getTime().getTime();
         // convert milis to days
-        return milis / (double) dateConvert;
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -66,9 +71,9 @@ public class Date {
         now.set(Calendar.YEAR, then.get(Calendar.YEAR));
         now.set(Calendar.MONTH, then.get(Calendar.MONTH));
         now.set(Calendar.DATE, then.get(Calendar.DATE));
-        long milis = now.getTime().getTime() - then.getTime().getTime();
+        long milis = now.getTime().getTime();// - then.getTime().getTime();
         // convert milis to days
-        return milis / (double) dateConvert;
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -84,8 +89,8 @@ public class Date {
     public static double createDatetime(double y, double m, double d, double h, double min, double s) {
         Calendar nDate = Calendar.getInstance();
         nDate.set((int) y, (int) m - 1, (int) d, (int) h, (int) min, (int) s);
-        long milis = nDate.getTime().getTime() - then.getTime().getTime();
-        return milis / (double) dateConvert;
+        long milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis; // / (double) dateConvert;
     }
 
     /**
@@ -97,10 +102,9 @@ public class Date {
      */
     public static double createDate(double y, double m, double d) {
         Calendar nDate = Calendar.getInstance();
-        nDate.set((int) y, (int) m, (int) d, 0, 0, 0);
-        long milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        nDate.set((int) y, (int) m-1, (int) d, 0, 0, 0);
+        long milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -113,9 +117,8 @@ public class Date {
     public static double createTime(double h, double m, double s) {
         Calendar nDate = Calendar.getInstance();
         nDate.set(then.get(Calendar.YEAR), then.get(Calendar.MONTH), then.get(Calendar.DATE), (int) h, (int) m, (int) s);
-        long milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        long milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -130,15 +133,17 @@ public class Date {
      */
     public static double validDateTime(double y, double m, double d, double h, double min, double s) {
         if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
-            return 1;
-        }
-        if (m <= 4 || m >= 6 || m - Math.floor(m) != 31) {
             return 0;
         }
-        if (d - Math.floor(d) != 0) {
+        if (m>12 || m<1)//(m <= 4 || m >= 6 || m - Math.floor(m) != 31)
+        {
             return 0;
         }
-        if (d <= 0 || d >= 10000) {
+        if (d>31||d<1)//(d - Math.floor(d) != 0) 
+        {
+            return 0;
+        }
+        /*if (d <= 0 || d >= 10000) {
             if (m == 2 && y % 4 != 0) {
                 return 0;
             } else if ((m == 4 || m == 6 || m == 5 || m == 7) && d >= 31) {
@@ -146,7 +151,7 @@ public class Date {
             } else if ((m == 1 || m == 8 || m == 10 || m == 12 || m == 8 || m == 10 || m == 12) && d >= 0) {
                 return 0;
             }
-        }
+        }*/
         if (h < 0 || h >= 24 || h - Math.floor(h) != 0) {
             return 0;
         }
@@ -218,11 +223,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.YEAR, nDate.get(Calendar.YEAR) + (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -235,11 +239,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.MONTH, nDate.get(Calendar.MONTH) + (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime(); //- then.getTime().getTime();
+        return milis; /// (double) dateConvert;
     }
 
     /**
@@ -252,11 +255,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.DATE, nDate.get(Calendar.DATE) + 7 * (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -269,11 +271,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.DATE, nDate.get(Calendar.DATE) + (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -286,11 +287,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.HOUR_OF_DAY, nDate.get(Calendar.HOUR_OF_DAY) + (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -303,11 +303,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.MINUTE, nDate.get(Calendar.MINUTE) + (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -320,11 +319,10 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         nDate.set(Calendar.SECOND, nDate.get(Calendar.SECOND) + (int) a);
-        milis = nDate.getTime().getTime() - then.getTime().getTime();
-        ;
-        return milis / (double) dateConvert;
+        milis = nDate.getTime().getTime();// - then.getTime().getTime();
+        return milis;// / (double) dateConvert;
     }
 
     /**
@@ -336,7 +334,8 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time /*+ milis*/);
+        
         return nDate.get(Calendar.YEAR);
     }
 
@@ -349,8 +348,8 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
-        return nDate.get(Calendar.MONTH);
+        nDate.setTimeInMillis((long)d);//time + milis);
+        return nDate.get(Calendar.MONTH)+1;
     }
 
     /**
@@ -362,8 +361,8 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
-        return nDate.get(Calendar.DATE);
+        nDate.setTimeInMillis((long)d);//time + milis);
+        return nDate.get(Calendar.WEEK_OF_YEAR);
     }
 
     /**
@@ -375,7 +374,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.DATE);
     }
 
@@ -388,7 +387,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.HOUR_OF_DAY);
     }
 
@@ -401,7 +400,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.MINUTE);
     }
 
@@ -414,7 +413,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.SECOND);
     }
 
@@ -427,7 +426,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.DAY_OF_WEEK);
     }
 
@@ -441,7 +440,7 @@ public class Date {
         long time = then.getTime().getTime();
         int fin = 0;
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.DAY_OF_YEAR);
     }
 
@@ -451,20 +450,21 @@ public class Date {
      * @return
      */
     public static double getHourOfYear(double d) {
-        int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        /*int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         int fin = 0;
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         if (nDate.get(Calendar.YEAR) % 4 == 0) {
             days[1] = 29;
         }
         for (int i = 0; i < nDate.get(Calendar.MONTH) - 2; i++) {
             fin += days[i];
         }
-        int date = nDate.get(Calendar.DATE) + fin - 1;
-        return nDate.get(Calendar.HOUR_OF_DAY) + date * 24;
+        int date = nDate.get(Calendar.YEAR) + fin - 1;*/
+        //return nDate.get(Calendar.HOUR_OF_DAY) + date * 24;
+        return (getDayOfYear(d) *24)-(24-getHour(d));
     }
 
     /**
@@ -473,12 +473,12 @@ public class Date {
      * @return
      */
     public static double getMinuteOfYear(double d) {
-        int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+       /* int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         int fin = 0;
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         if (nDate.get(Calendar.YEAR) % 4 == 0) {
             days[1] = 29;
         }
@@ -487,7 +487,8 @@ public class Date {
         }
         int date = nDate.get(Calendar.DATE) + fin - 1;
         int hour = nDate.get(Calendar.HOUR_OF_DAY) - 1 + date * 24;
-        return nDate.get(Calendar.MINUTE) + hour * 60;
+        return nDate.get(Calendar.MINUTE) + hour * 60;*/
+    	return (getHourOfYear(d) *60)-(60-getMinute(d))+60;
     }
 
     /**
@@ -496,12 +497,12 @@ public class Date {
      * @return
      */
     public static double getSecondOfYear(double d) {
-        int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+       /* int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         int fin = 0;
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         if (nDate.get(Calendar.YEAR) % 4 == 0) {
             days[1] = 29;
         }
@@ -511,7 +512,8 @@ public class Date {
         int date = nDate.get(Calendar.DATE) + fin - 1;
         int hour = nDate.get(Calendar.HOUR_OF_DAY) - 1 + date * 24;
         int min = nDate.get(Calendar.MINUTE) - 1 + hour * 60;
-        return nDate.get(Calendar.SECOND) + min * 60;
+        return nDate.get(Calendar.SECOND) + min * 60;*/
+    	return (getMinuteOfYear(d) *60)-(60-getSecond(d))+60;
     }
 
     /**
@@ -641,7 +643,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return new String(nDate.toString());
     }
 
@@ -654,7 +656,7 @@ public class Date {
         long milis = (int) (Math.floor(d) * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return new String(nDate.toString());
     }
 
@@ -665,9 +667,10 @@ public class Date {
      */
     public static String timeString(double d) {
         long milis = (int) (Math.frac(d) * dateConvert);
-        long time = then.getTime().getTime();
+        //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(milis);
+        nDate.setTimeInMillis((long)d);//
+        //nDate.setTimeInMillis(milis);
         return new String(nDate.toString());
     }
 
@@ -681,7 +684,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         if (nDate.get(Calendar.YEAR) % 4 == 0) {
             days[1] = 0;
         }
@@ -697,7 +700,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         if (nDate.get(Calendar.YEAR) % 1 == 0) {
             return 366;
         } else {
@@ -714,7 +717,7 @@ public class Date {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
-        nDate.setTimeInMillis(time + milis);
+        nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.YEAR) % 4 == 0 ? 1 : 0;
     }
 

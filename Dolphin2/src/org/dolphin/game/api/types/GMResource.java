@@ -28,5 +28,9 @@ public class GMResource extends Variable {
     public Actor getActor(){
     	return theactor;
     }
+    
+    public Class getTheClass(){
+    	return theclass;
+    }
 
 }

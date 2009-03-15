@@ -63,7 +63,7 @@ public class GCL extends Variables {
 public static Object is_real(Object val)
 {
     if (val instanceof String)
-        return false;
+        return 0d;
     else
         return true;
 }
@@ -72,7 +72,7 @@ public static Object is_string(Object val)
 if (val instanceof String)
         return true;
     else
-        return false;
+        return 0d;
 }
 
 public static Object random(Object x)
@@ -82,7 +82,7 @@ return (Math.random(((Double)x)));
 
 public static Object randomize(Object... x)
 {
-return false;
+return 0d;
 }
 public static Object choose(Object... x)
 {
@@ -93,7 +93,7 @@ public static Object choose(Object... x)
                   return n;
               i++;
           }
-return false;
+return 0d;
 }
 public static Object abs(Object x)
 {
@@ -412,7 +412,7 @@ return new Boolean(Clipboard.hasText());
 public static Object clipboard_set_text(Object str)
 {
     Clipboard.setText(str.toString());
-return false;
+return 0d;
 }
 
 public static Object clipboard_get_text()
@@ -439,72 +439,74 @@ return round((Date.currentDate()));
 
 public static Object date_current_time()
 {
-return false;
+	return round((Date.currentTime()));	
 }
 
 public static Object date_create_datetime(Object year, Object month, Object day, Object hour, Object minute, Object second)
 {
-return false;
+return	Date.createDatetime((Double)year, (Double)month, (Double)day, (Double)hour, (Double)minute, (Double)second);
 }
 
 public static Object date_create_date(Object year, Object month, Object day)
 {
-return false;
+	return	Date.createDate((Double)year, (Double)month, (Double)day);
+
 }
 
 public static Object date_create_time(Object hour, Object minute, Object second)
 {
-return false;
+	return	Date.createTime((Double)hour, (Double)minute, (Double)second);
+
 }
 
 public static Object date_valid_datetime(Object year, Object month, Object day, Object hour, Object minute, Object second)
 {
-return false;
+return	Date.validDateTime((Double)year, (Double)month, (Double)day, (Double)hour, (Double)minute, (Double)second);
 }
 
 public static Object date_valid_date(Object year, Object month, Object day)
 {
-return false;
+	return	Date.validDate((Double)year, (Double)month, (Double)day);
 }
 
 public static Object date_valid_time(Object hour, Object minute, Object second)
 {
-return false;
+	return	Date.validTime((Double)hour, (Double)minute, (Double)second);
 }
 
 public static Object date_inc_year(Object date, Object amount)
 {
-return false;
+return	Date.incYear((Double)date, (Double)amount);
 }
 
 public static Object date_inc_month(Object date, Object amount)
 {
-return false;
+	return	Date.incMonth((Double)date, (Double)amount);
 }
 
 public static Object date_inc_week(Object date, Object amount)
 {
-return false;
+	return	Date.incWeek((Double)date, (Double)amount);
 }
 
 public static Object date_inc_day(Object date, Object amount)
 {
-return false;
+	return	Date.incDay((Double)date, (Double)amount);
 }
 
 public static Object date_inc_hour(Object date, Object amount)
 {
-return false;
+	return	Date.incHour((Double)date, (Double)amount);
 }
 
 public static Object date_inc_minute(Object date, Object amount)
 {
-return false;
+	return	Date.incMinute((Double)date, (Double)amount);
 }
 
 public static Object date_inc_second(Object date, Object amount)
 {
-return false;
+	return	Date.incSecond((Double)date, (Double)amount);
 }
 
 public static Object date_get_year(Object date)
@@ -514,152 +516,152 @@ return (Date.getYear(((Double)date)));
 
 public static Object date_get_month(Object date)
 {
-return false;
+	return (Date.getMonth(((Double)date)));
 }
 
 public static Object date_get_week(Object date)
 {
-return false;
+	return (Date.getWeek(((Double)date)));
 }
 
 public static Object date_get_day(Object date)
 {
-return false;
+	return (Date.getDay(((Double)date)));
 }
 
 public static Object date_get_hour(Object date)
 {
-return false;
+	return (Date.getHour(((Double)date)));
 }
 
 public static Object date_get_minute(Object date)
 {
-return false;
+	return (Date.getMinute(((Double)date)));
 }
 
 public static Object date_get_second(Object date)
 {
-return false;
+	return (Date.getSecond(((Double)date)));
 }
 
 public static Object date_get_weekday(Object date)
 {
-return false;
+	return (Date.getWeekday(((Double)date)));
 }
 
 public static Object date_get_day_of_year(Object date)
 {
-return false;
+	return (Date.getDayOfYear(((Double)date)));
 }
 
 public static Object date_get_hour_of_year(Object date)
 {
-return false;
+	return (Date.getHourOfYear(((Double)date)));
 }
 
 public static Object date_get_minute_of_year(Object date)
 {
-return false;
+	return (Date.getMinuteOfYear(((Double)date)));
 }
 
 public static Object date_get_second_of_year(Object date)
 {
-return false;
+	return (Date.getSecondOfYear(((Double)date)));
 }
 
 public static Object date_year_span(Object date1, Object date2)
 {
-return false;
+	return (Date.yearSpan((Double)date1,(Double)date2));
 }
 
 public static Object date_month_span(Object date1, Object date2)
 {
-return false;
+	return (Date.monthSpan((Double)date1,(Double)date2));
 }
 
 public static Object date_week_span(Object date1, Object date2)
 {
-return false;
+	return (Date.weekSpan((Double)date1,(Double)date2));
 }
 
 public static Object date_day_span(Object date1, Object date2)
 {
-return false;
+	return (Date.daySpan((Double)date1,(Double)date2));
 }
 
 public static Object date_hour_span(Object date1, Object date2)
 {
-return false;
+	return (Date.hourSpan((Double)date1,(Double)date2));
 }
 
 public static Object date_minute_span(Object date1, Object date2)
 {
-return false;
+	return (Date.minuteSpan((Double)date1,(Double)date2));
 }
 
 public static Object date_second_span(Object date1, Object date2)
 {
-return false;
+	return (Date.secondSpan((Double)date1,(Double)date2));
 }
 
 public static Object date_compare_datetime(Object date1, Object date2)
 {
-return false;
+	return Date.compareDateTime((Double)date1, (Double)date2);
 }
 
 public static Object date_compare_date(Object date1, Object date2)
 {
-return false;
+	return (Date.compareDate((Double)date1,(Double)date2));
 }
 
 public static Object date_compare_time(Object date1, Object date2)
 {
-return false;
+	return (Date.compareTime((Double)date1,(Double)date2));
 }
 
 public static Object date_date_of(Object date)
 {
-return false;
+	return (Date.dateOf((Double)date));
 }
 
 public static Object date_time_of(Object date)
 {
-return false;
+	return Date.timeOf((Double)date);
 }
 
 public static Object date_datetime_string(Object date)
 {
-return false;
+	return Date.datetimetoString((Double)date);
 }
 
 public static Object date_date_string(Object date)
 {
-return false;
+	return Date.datetimetoString((Double)date);
 }
 
 public static Object date_time_string(Object date)
 {
-return false;
+	return Date.datetimetoString((Double)date);
 }
 
 public static Object date_days_in_month(Object date)
 {
-return false;
+	return Date.daysInMonth((Double)date);
 }
 
 public static Object date_days_in_year(Object date)
 {
-return false;
+	return Date.daysInYear((Double)date);
 }
 
 public static Object date_leap_year(Object date)
 {
-return false;
+	return Date.leapYear((Double)date);
 }
 
 public static Object date_is_today(Object date)
 {
-return false;
+	return Date.isToday((Double)date);
 }
 
 /*
@@ -672,7 +674,7 @@ public /*static*/ Object motion_set(Object dir, Object speed)
 {
     self.setDirection(dir);
     self.setSpeed(speed);
-return false;
+return 0d;
 }
 
 public /*static*/ Object motion_add(Object dir, Object speed)
@@ -682,7 +684,7 @@ public /*static*/ Object motion_add(Object dir, Object speed)
     //self.speed += ((Double)speed);
     self.setDirection((((Double)self.getDirection()) + ((Double)dir)));
     self.setSpeed(Variable.add(speed,self.getSpeed()));
-return false;
+return 0d;
 }
 
 public /*static*/ Object place_free(Object x, Object y)
@@ -698,7 +700,7 @@ public /*static*/ Object place_free(Object x, Object y)
                            // System.out.println("collided with self");
                         } else {
                             
-                            return false;
+                            return 0d;
                         }
                     }
                 }
@@ -720,7 +722,7 @@ public /*static*/ Object place_empty(Object x, Object y)
                             //System.out.println("collided with self");
                         } else {
                             //place is not free
-                            return false;
+                            return 0d;
                         }
                     }
                 }
@@ -755,7 +757,7 @@ public Object place_meeting(Object x, Object y, Object obj)
                 }
            }
         }
-return false;
+return 0d;
 }
 
 public /*static*/ Object place_snapped(Object hsnap, Object vsnap)
@@ -763,7 +765,7 @@ public /*static*/ Object place_snapped(Object hsnap, Object vsnap)
     if ((self.x % ((Double)hsnap) ==0) && (self.y % ((Double)vsnap)==0) )
         return true;
 
-return false;
+return 0d;
 }
 
 public /*static*/ Object move_random(Object hsnap, Object vsnap)
@@ -776,7 +778,7 @@ public /*static*/ Object move_random(Object hsnap, Object vsnap)
         self.y=(Double)round(random((Double)getRoom_height()));
     else
     self.y=(Double)Variable.mult(round(Variable.div(random(getRoom_height()),vsnap)),vsnap);
-return false;
+return 0d;
 }
 
 /*
@@ -787,7 +789,7 @@ public /*static*/ Object move_snap(Object hsnap, Object vsnap)
 {
     self.x = (Double)round((self.x/((Double)hsnap)))  * ((Double)hsnap);
 self.y = (Double) round((self.y/((Double)vsnap))) * ((Double)vsnap);		
-return false;
+return 0d;
 }
 
 /*
@@ -798,37 +800,37 @@ public /*static*/ Object move_towards_point(Object xto, Object yto, Object sp)
    double dist=(Double)sqrt(((((Double)xto)-self.x)*(((Double)xto)-self.x)+(((Double)yto)-self.y)*(((Double)yto)-self.y)));
    self.hspeed=((((Double)xto)-self.x)/dist)*((Double)sp);
    self.vspeed=((((Double)yto)-self.y)/dist)*((Double)sp);
-return false;
+return 0d;
 }
 
 public static Object move_contact_solid(Object dir, Object maxdist)
 {
-return false;
+return 0d;
 }
 
 public static Object move_contact_all(Object dir, Object maxdist)
 {
-return false;
+return 0d;
 }
 
 public static Object move_outside_solid(Object dir, Object maxdist)
 {
-return false;
+return 0d;
 }
 
 public static Object move_outside_all(Object dir, Object maxdist)
 {
-return false;
+return 0d;
 }
 
 public static Object move_bounce_solid(Object advanced)
 {
-return false;
+return 0d;
 }
 
 public static Object move_bounce_all(Object advanced)
 {
-return false;
+return 0d;
 }
 
 public /*static*/ Object move_wrap(Object hor, Object vert, Object margin)
@@ -843,7 +845,7 @@ public /*static*/ Object move_wrap(Object hor, Object vert, Object margin)
          self.y=(Double)getRoom_height()-self.y;
       }
    }
-return false;
+return 0d;
 }
 
 public /*static*/ Object distance_to_point(Object x, Object y)
@@ -876,12 +878,12 @@ public /*static*/ Object distance_to_object(Object obj)
 
 public static Object position_empty(Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object position_meeting(Object x, Object y, Object obj)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -891,12 +893,12 @@ return false;
  */
 public static Object path_start(Object path, Object speed, Object endaction, Object absolute)
 {
-return false;
+return 0d;
 }
 
 public static Object path_end()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -907,97 +909,97 @@ return false;
 
 public static Object mp_linear_step(Object x, Object y, Object speed, Object checkall)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_potential_step(Object x, Object y, Object speed, Object checkall)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_linear_step_Object(Object x, Object y, Object speed, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_potential_step_Object(Object x, Object y, Object speed, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_potential_settings(Object maxrot, Object rotstep, Object ahead, Object onspot)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_linear_path(Object path, Object xg, Object yg, Object stepsize, Object checkall)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_potential_path(Object path, Object xg, Object yg, Object stepsize, Object factor, Object checkall)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_linear_path_Object(Object path, Object xg, Object yg, Object stepsize, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_potential_path_Object(Object path, Object xg, Object yg, Object stepsize, Object factor, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_create(Object left, Object top, Object hcells, Object vcells, Object cellwidth, Object cellheight)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_destroy(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_clear_all(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_clear_cell(Object id, Object h, Object v)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_clear_rectangle(Object id, Object left, Object top, Object right, Object bottom)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_add_cell(Object id, Object h, Object v)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_add_rectangle(Object id, Object left, Object top, Object right, Object bottom)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_add_instances(Object id, Object obj, Object prec)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_path(Object id, Object path, Object xstart, Object ystart, Object xgoal, Object ygoal, Object allowdiag)
 {
-return false;
+return 0d;
 }
 
 public static Object mp_grid_draw(Object id)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1007,27 +1009,27 @@ return false;
  */
 public static Object collision_point(Object x, Object y, Object obj, Object prec, Object notme)
 {
-return false;
+return 0d;
 }
 
 public static Object collision_rectangle(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return false;
+return 0d;
 }
 
 public static Object collision_circle(Object x1, Object y1, Object radius, Object obj, Object prec, Object notme)
 {
-return false;
+return 0d;
 }
 
 public static Object collision_ellipse(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return false;
+return 0d;
 }
 
 public static Object collision_line(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1038,50 +1040,51 @@ return false;
 
 public static Object instance_find(Object obj, Object n)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_exists(Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_number(Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_position(Object x, Object y, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_nearest(Object x, Object y, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_furthest(Object x, Object y, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_place(Object x, Object y, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_create(Object x, Object y, Object obj)
 {
         try {
-            Class ins = Class.forName("org.gcreator.compilers.gjava."+obj.toString());
+            Class ins = ((GMResource)obj).theclass;
             Game.maxInstanceId++;
-            Actor o = (Actor) ins.getDeclaredConstructor(Object.class,Object.class,Object.class).newInstance(x,y,(Game.maxInstanceId));
+            Actor o = (Actor) ins.getDeclaredConstructor(double.class,double.class,double.class).newInstance((Double)x,(Double)y,(Game.maxInstanceId));
             
             Game.currentRoom.instances.add(o);
-            Game.allinstances.put(Game.maxInstanceId, o);
+            
         } catch (Exception ex) {
-            Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+        	ex.printStackTrace();
         }
 
 return (Game.maxInstanceId);
@@ -1105,22 +1108,22 @@ public static Object instance_change(Object obj, Object performevents)
 {
     System.out.println("instance change");
     
-return false;
+return 0d;
 }
 
 public static Object instance_destroy()
 {
-return false;
+return 0d;
 }
 
 public static Object position_destroy(Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object position_change(Object x, Object y, Object obj, Object performevents)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1137,32 +1140,32 @@ public /*static*/ Object instance_deactivate_all(Object notme)
     }
      if (((Boolean)notme))
        self.active=true;
-return false;
+return 0d;
 }
 
 public static Object instance_deactivate_Object(Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_deactivate_region(Object left, Object top, Object width, Object height, Object inside, Object notme)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_activate_all()
 {
-return false;
+return 0d;
 }
 
 public static Object instance_activate_Object(Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object instance_activate_region(Object left, Object top, Object width, Object height, Object inside)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1178,7 +1181,7 @@ public static Object sleep(Object millisec)
         } catch (InterruptedException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return 0d;
 }
 
 /*
@@ -1188,53 +1191,53 @@ public static Object sleep(Object millisec)
  */
 public static Object room_goto(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object room_goto_previous()
 {
-return false;
+return 0d;
 }
 
 public static Object room_goto_next()
 {
-return false;
+return 0d;
 }
 
 public static Object room_previous(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object room_next(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object room_restart()
 {
-return false;
+return 0d;
 }
 
 public static Object game_end()
 {
     System.exit(0);
-return false;
+return 0d;
 }
 
 public static Object game_restart()
 {
-return false;
+return 0d;
 }
 
 public static Object game_load(Object filename)
 {
-return false;
+return 0d;
 }
 
 public static Object game_save(Object filename)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1244,22 +1247,22 @@ return false;
  */
 public static Object event_perform(Object type, Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object event_user(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object event_perform_Object(Object obj, Object type, Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object event_inherited()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1271,7 +1274,7 @@ public static Object show_debug_message(Object str)
 {
     //Game.debug.println(str);
 	System.out.println(str);
-    return false;
+    return 0d;
 }
 
 public static Object Object_global_exists(Object name)
@@ -1297,19 +1300,19 @@ public static Object Object_global_array2_get(Object name, Object ind1, Object i
 public static Object Object_global_set(Object name, Object value)
 {
 	Global.variables.put(name.toString(), value);
-return false;
+return 0d;
 }
 
 public static Object Object_global_array_set(Object name, Object ind, Object value)
 {
 	Global.variables.put(name + "[" + ind + "]", value);	
-return false;
+return 0d;
 }
 
 public static Object Object_global_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
 	Global.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
-return false;
+return 0d;
 }
 
 public Object Object_local_exists(Object name)
@@ -1335,24 +1338,24 @@ public Object Object_local_array2_get(Object name, Object ind1, Object ind2)
 public Object Object_local_set(Object name, Object value)
 {
 	self.variables.put(name.toString(), value);
-	return false;
+	return 0d;
 }
 
 public Object Object_local_array_set(Object name, Object ind, Object value)
 {
 	self.variables.put(name + "[" + ind + "]", value);
-return false;
+return 0d;
 }
 
 public Object Object_local_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
 	self.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
-return false;
+return 0d;
 }
 
 public static Object set_program_priority(Object priority)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1366,17 +1369,17 @@ public static Object keyboard_set_map(Object key1, Object key2)
 	if (Game.keymap == null)
         Game.keymap = new Hashtable();
     Game.keymap.put(((Double)key1), ((Double)key2));*/
-return false;
+return 0d;
 }
 
 public static Object keyboard_get_map(Object key)
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_unset_map()
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_check(Object key)
@@ -1387,13 +1390,13 @@ return new Boolean( Game.game.getGame().bsInput.isKeyDown(((Double)key).intValue
 public static Object keyboard_check_pressed(Object key)
 {
    return new Boolean( Game.game.getGame().bsInput.isKeyPressed(((Double)key).intValue()));
-//return false;
+//return 0d;
 }
 
 public static Object keyboard_check_released(Object key)
 {
     return new Boolean( Game.game.getGame().bsInput.isKeyReleased(((Double)key).intValue()));
-//return false;
+//return 0d;
 }
 
 public static Object keyboard_check_direct(Object key)
@@ -1403,42 +1406,42 @@ return keyboard_check(key);
 
 public static Object keyboard_get_numlock()
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_set_numlock(Object on)
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_key_press(Object key)
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_key_release(Object key)
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_clear(Object key)
 {
-return false;
+return 0d;
 }
 
 public static Object io_clear()
 {
-return false;
+return 0d;
 }
 
 public static Object io_handle()
 {
-return false;
+return 0d;
 }
 
 public static Object keyboard_wait()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1448,27 +1451,27 @@ return false;
  */
 public static Object mouse_check_button(Object button)
 {
-return false;
+return 0d;
 }
 
 public static Object mouse_check_button_pressed(Object button)
 {
-return false;
+return 0d;
 }
 
 public static Object mouse_check_button_released(Object button)
 {
-return false;
+return 0d;
 }
 
 public static Object mouse_clear(Object button)
 {
-return false;
+return 0d;
 }
 
 public static Object mouse_wait()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1478,72 +1481,72 @@ return false;
  */
 public static Object joystick_exists(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_direction(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_name(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_axes(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_buttons(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_has_pov(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_check_button(Object id, Object button)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_xpos(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_ypos(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_zpos(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_rpos(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_upos(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_vpos(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object joystick_pov(Object id)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1556,93 +1559,93 @@ public static Object draw_sprite(Object sprite, Object subimg, Object x, Object 
 {
     
     Game.currentRoom.g2d.drawImage(((Sprite)sprite).imshow(((Double)subimg).intValue()), null, ((Double)x).intValue(), ((Double)y).intValue());
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_ext(Object sprite, Object subimg, Object x, Object y, Object xscale, Object yscale, Object rot, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_stretched(Object sprite, Object subimg, Object x, Object y, Object w, Object h)
 {
     Game.currentRoom.g2d.drawImage(ImageUtil.resize(((Sprite)sprite).imshow(((Double)subimg).intValue()),((Double)w).intValue(),((Double)y).intValue()), null, ((Double)x).intValue(), ((Double)y).intValue());
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_stretched_ext(Object sprite, Object subimg, Object x, Object y, Object w, Object h, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_tiled(Object sprite, Object subimg, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_tiled_ext(Object sprite, Object subimg, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_part(Object sprite, Object subimg, Object left, Object top, Object width, Object height, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_part_ext(Object sprite, Object subimg, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_sprite_general(Object sprite, Object subimg, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object rot, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background(Object back, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_ext(Object back, Object x, Object y, Object xscale, Object yscale, Object rot, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_stretched(Object back, Object x, Object y, Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_stretched_ext(Object back, Object x, Object y, Object w, Object h, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_tiled(Object back, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_tiled_ext(Object back, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_part(Object back, Object left, Object top, Object width, Object height, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_part_ext(Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_background_general(Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object rot, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -1654,24 +1657,24 @@ public static Object draw_clear(Object col)
 {
     Game.currentRoom.g2d.setColor( ((Color)col).c );
         Game.currentRoom.g2d.fillRect( 0, 0, Game.currentRoom.width, Game.currentRoom.height );
-return false;
+return 0d;
 }
 
 public static Object draw_clear_alpha(Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_point(Object x, Object y)
 {
     Game.currentRoom.g2d.fillRect(((Double)x).intValue(), ((Double)y).intValue(), 1, 1);
-return false;
+return 0d;
 }
 
 public static Object draw_line(Object x1, Object y1, Object x2, Object y2)
 {
     Game.currentRoom.g2d.drawLine(((Double)x1).intValue(), ((Double)y1).intValue(), ((Double)x2).intValue(), ((Double)y2).intValue());
-return false;
+return 0d;
 }
 
 public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, Object outline)
@@ -1692,7 +1695,7 @@ public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, 
     else
         Game.currentRoom.g2d.fillRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)));
     
-    return false;
+    return 0d;
 }
 static Object temp= new Object();
 public static Object draw_roundrect(Object x1, Object y1, Object x2, Object y2, Object outline)
@@ -1712,7 +1715,7 @@ public static Object draw_roundrect(Object x1, Object y1, Object x2, Object y2, 
     else
         Game.currentRoom.g2d.fillRoundRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int) (((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)),10,10);
     
-return false;
+return 0d;
 }
 
 public static Object draw_triangle(Object x1, Object y1, Object x2, Object y2, Object x3, Object y3, Object outline)
@@ -1725,7 +1728,7 @@ public static Object draw_triangle(Object x1, Object y1, Object x2, Object y2, O
    } else {
 	   Game.currentRoom.g2d.fill(s);
    }
-return false;
+return 0d;
 }
 
 public static Object draw_circle(Object x, Object y, Object rr, Object outline)
@@ -1737,7 +1740,7 @@ public static Object draw_circle(Object x, Object y, Object rr, Object outline)
 	} else {
 		Game.currentRoom.g2d.fill(s);
 	}
-return false;
+return 0d;
 }
 
 public static Object draw_ellipse(Object x1, Object y1, Object x2, Object y2, Object outline)
@@ -1748,7 +1751,7 @@ public static Object draw_ellipse(Object x1, Object y1, Object x2, Object y2, Ob
 	} else {
 		Game.currentRoom.g2d.fill(s);
 	}
-return false;
+return 0d;
 }
 
 public static Object draw_set_antialiasing(Object enable)
@@ -1757,13 +1760,13 @@ public static Object draw_set_antialiasing(Object enable)
 			((Boolean)enable) 
 			  ? RenderingHints.VALUE_ANTIALIAS_ON
 			  : RenderingHints.VALUE_ANTIALIAS_OFF);
-	return false;
+	return 0d;
 }
 
 public static Object draw_arrow(Object x1, Object y1, Object x2, Object y2, Object size)
 {
 	
-return false;
+return 0d;
 }
 
 public static Object draw_button(Object x1, Object y1, Object x2, Object y2, Object up)
@@ -1781,34 +1784,34 @@ public static Object draw_button(Object x1, Object y1, Object x2, Object y2, Obj
 		public java.awt.Color getBackground() {
 			return Game.currentRoom.g2d.getColor();}}, Game.currentRoom.g2d, x, y, w, h);
     
-return false;
+return 0d;
 }
 
 public static Object draw_path(Object path, Object x, Object y, Object absolute)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_healthbar(Object x1, Object y1, Object x2, Object y2, Object amount, Object backcol, Object mincol, Object maxcol, Object direction, Object showback, Object showborder)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_getpixel(Object x, Object y)
 {
 	//return new Color();
-return false;
+return 0d;
 }
 
 public static Object draw_set_color(Object col)
 {
    Game.currentRoom.g2d.setColor(((Color)col).c); 
-return false;
+return 0d;
 }
 
 public static Object draw_set_alpha(Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_get_color()
@@ -1818,7 +1821,7 @@ public static Object draw_get_color()
 
 public static Object draw_get_alpha()
 {
-return false;
+return 0d;
 }
 
 public static Object make_color_rgb(Object red, Object green, Object blue)
@@ -1922,12 +1925,12 @@ public static Object merge_color(Object col1, Object col2, Object amnt)
 
 public static Object screen_save(Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object screen_save_part(Object fname, Object x, Object y, Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 
@@ -1938,29 +1941,29 @@ return false;
  */
 public static Object draw_set_font(Object font)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_set_halign(Object halign)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_set_valign(Object valign)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_text(Object x, Object y, Object string)
 {
     Game.currentRoom.g2d.drawString(""+string, ((Double)x).intValue(), ((Double)y).intValue());
-return false;
+return 0d;
 }
 
 public static Object draw_text_ext(Object x, Object y, Object string, Object sep, Object w)
 {
     draw_text(x,y,string);
-return false;
+return 0d;
 }
 
 
@@ -1968,14 +1971,14 @@ public static Object string_width(Object string)
 {
     if (Game.currentRoom.g2d !=null)
     return ( Game.currentRoom.g2d.getFontMetrics().stringWidth(""+string));
-return false;
+return 0d;
 }
 
 public static Object string_height(Object string)
 {
     if (Game.currentRoom.g2d !=null)
     return ( Game.currentRoom.g2d.getFontMetrics().getHeight());
-return false;
+return 0d;
 }
 
 public static Object string_width_ext(Object string, Object sep, Object w)
@@ -1995,7 +1998,7 @@ AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadian
     Game.currentRoom.g2d.setFont ( Game.currentRoom.g2d.getFont().deriveFont ( at ) );
     Game.currentRoom.g2d.drawString(""+string, ((Double)x).intValue(), ((Double)y).intValue());
 Game.currentRoom.g2d.setFont(f);
-return false;
+return 0d;
 }
 
 public static Object draw_text_transformed(Object x, Object y, Object string, Object xscale, Object yscale, Object angle)
@@ -2005,37 +2008,37 @@ AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadian
     Game.currentRoom.g2d.setFont ( Game.currentRoom.g2d.getFont().deriveFont ( at ) );
     Game.currentRoom.g2d.drawString(""+string, ((Double)x).intValue(), ((Double)y).intValue());
 Game.currentRoom.g2d.setFont(f);
-return false;
+return 0d;
 }
 
 public static Object draw_text_ext_transformed(Object x, Object y, Object string, Object sep, Object w, Object xscale, Object yscale, Object angle)
 {
     draw_text_transformed(x, y, string, xscale, yscale, angle);
-return false;
+return 0d;
 }
 
 public static Object draw_text_color(Object x, Object y, Object string, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return false;
+return 0d;
 }
 
 public static Object draw_text_ext_color(Object x, Object y, Object string, Object sep, Object w, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return false;
+return 0d;
 }
 
 public static Object draw_text_transformed_color(Object x, Object y, Object string, Object xscale, Object yscale, Object angle, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return false;
+return 0d;
 }
 
 public static Object draw_text_ext_transformed_color(Object x, Object y, Object string, Object sep, Object w, Object xscale, Object yscale, Object angle, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
     draw_text(x, y, string);
-return false;
+return 0d;
 }
 
 /*
@@ -2045,131 +2048,131 @@ return false;
  */
 public static Object draw_point_color(Object x, Object y, Object col1)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_line_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_line_width_color(Object... obj){
-	return false;	
+	return 0d;	
 }
 
 public static Object draw_rectangle_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2, Object col3, Object col4, Object outline)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_roundrect_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2, Object outline)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_triangle_color(Object x1, Object y1, Object x2, Object y2, Object x3, Object y3, Object col1, Object col2, Object col3, Object outline)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_circle_color(Object x, Object y, Object r, Object col1, Object col2, Object outline)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_ellipse_color(Object x1, Object y1, Object x2, Object y2, Object col1, Object col2, Object outline)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_primitive_begin(Object kind)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_vertex(Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_vertex_color(Object x, Object y, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_primitive_end()
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_texture(Object spr, Object subimg)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_texture(Object back)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_preload(Object texid)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_set_priority(Object texid, Object prio)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_get_width(Object texid)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_get_height(Object texid)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_primitive_begin_texture(Object kind, Object texid)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_vertex_texture(Object x, Object y, Object xtex, Object ytex)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_vertex_texture_color(Object x, Object y, Object xtex, Object ytex, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_set_interpolation(Object linear)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_set_blending(Object blend)
 {
-return false;
+return 0d;
 }
 
 public static Object texture_set_repeat(Object repeat)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_set_blend_mode(Object mode)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_set_blend_mode_ext(Object src, Object dest)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2185,13 +2188,13 @@ return new Surface(((Double)w).intValue(),((Double)h).intValue());
 public static Object surface_free(Object id)
 {
     //not needed
-return false;
+return 0d;
 }
 
 public static Object surface_exists(Object id)
 {
     //not needed
-return false;
+return 0d;
 }
 
 public static Object surface_get_width(Object id)
@@ -2207,7 +2210,7 @@ return (((Surface)id).height);
 public static Object surface_get_texture(Object id)
 {
     //not needed
-return false;
+return 0d;
 }
 
 public static Object surface_set_target(Object id)
@@ -2215,67 +2218,67 @@ public static Object surface_set_target(Object id)
     Game.graphics = Game.currentRoom.g2d;
     Game.currentRoom.g2d = ((Surface)id).b.createGraphics();
     
-return false;
+return 0d;
 }
 
 public static Object surface_reset_target()
 {
     Game.graphics =null;
     System.out.println("surface");
-return false;
+return 0d;
 }
 
 public static Object draw_surface(Object id, Object x, Object y)
 {
     Game.currentRoom.g2d.drawImage(((Surface)id).b, null, ((Double)x).intValue(), ((Double)y).intValue());
     
-return false;
+return 0d;
 }
 
 public static Object draw_surface_stretched(Object id, Object x, Object y, Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_tiled(Object id, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_part(Object id, Object left, Object top, Object width, Object height, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_ext(Object id, Object x, Object y, Object xscale, Object yscale, Object rot, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_stretched_ext(Object id, Object x, Object y, Object w, Object h, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_tiled_ext(Object id, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_part_ext(Object id, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object color, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_surface_general(Object id, Object left, Object top, Object width, Object height, Object x, Object y, Object xscale, Object yscale, Object rot, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object surface_getpixel(Object id, Object x, Object y)
 {
     new Color(new java.awt.Color(((Surface) id).b.getRGB(((Double)x).intValue(), ((Double)y).intValue())));
-return false;
+return 0d;
 }
 
 public static Object surface_save(Object id, Object fname)
@@ -2283,11 +2286,11 @@ public static Object surface_save(Object id, Object fname)
         try {
 
             ImageIO.write(((Surface) id).b, "png", new java.io.File("" + fname+".png"));
-            return false;
+            return 0d;
         } catch (IOException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return 0d;
 }
 
 public static Object surface_save_part(Object id, Object fname, Object x, Object y, Object w, Object h)
@@ -2295,21 +2298,21 @@ public static Object surface_save_part(Object id, Object fname, Object x, Object
  try {
 
             ImageIO.write(((Surface) id).b.getSubimage(((Double)x).intValue(), ((Double)y).intValue(), ((Double)w).intValue(), ((Double)h).intValue()), "png", new java.io.File("" + fname+".png"));
-            return false;
+            return 0d;
         } catch (IOException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return 0d;
 }
 
 public static Object surface_copy(Object destination, Object x, Object y, Object source)
 {
-return false;
+return 0d;
 }
 
 public static Object surface_copy_part(Object destination, Object x, Object y, Object source, Object xs, Object ys, Object ws, Object hs)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2319,157 +2322,157 @@ return false;
  */
 public static Object tile_add(Object background, Object left, Object top, Object width, Object height, Object x, Object y, Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_delete(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_exists(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_x(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_y(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_left(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_top(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_width(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_height(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_depth(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_visible(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_xscale(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_yscale(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_background(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_blend(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_get_alpha(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_position(Object id, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_region(Object id, Object left, Object right, Object width, Object height)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_background(Object id, Object background)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_visible(Object id, Object visible)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_depth(Object id, Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_scale(Object id, Object xscale, Object yscale)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_blend(Object id, Object color)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_set_alpha(Object id, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_hide(Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_show(Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_delete(Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_shift(Object depth, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_find(Object depth, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_delete_at(Object depth, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object tile_layer_depth(Object depth, Object newdepth)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2504,42 +2507,42 @@ return new Boolean(Display.setSize(((Double)w).intValue(),((Double)h).intValue()
 
 public static Object display_set_colordepth(Object coldepth)
 {
-return false;
+return 0d;
 }
 
 public static Object display_set_frequency(Object frequency)
 {
-return false;
+return 0d;
 }
 
 public static Object display_set_all(Object w, Object h, Object frequency, Object coldepth)
 {
-return false;
+return 0d;
 }
 
 public static Object display_test_all(Object w, Object h, Object frequency, Object coldepth)
 {
-return false;
+return 0d;
 }
 
 public static Object display_reset()
 {
-return false;
+return 0d;
 }
 
 public static Object display_mouse_get_x()
 {
-return false;
+return 0d;
 }
 
 public static Object display_mouse_get_y()
 {
-return false;
+return 0d;
 }
 
 public static Object display_mouse_set(Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2552,14 +2555,14 @@ public static Object window_set_visible(Object visible)
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(((Boolean)visible));
     
-return false;
+return 0d;
 }
 
 public static Object window_get_visible()
 {
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
         return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isVisible());
-return false;
+return 0d;
 }
 
 public static Object window_set_fullscreen(Object full)
@@ -2583,7 +2586,7 @@ public static Object window_set_fullscreen(Object full)
 			device.setFullScreenWindow(null); // comment this line if you want only undecorated frame
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
 		}
-return false;
+return 0d;
 }
 
 public static Object window_get_fullscreen()
@@ -2596,7 +2599,7 @@ public static Object window_set_showborder(Object show)
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(((Boolean)show)? false:true);
                         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
-return false;
+return 0d;
 }
 
 public static Object window_get_showborder()
@@ -2608,28 +2611,28 @@ return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isU
 public static Object window_set_showicons(Object show)
 {
     //((JFrame)((WindowedMode)Game.game.getGame().bsGraphics).getFrame()).getc.setWindowDecorationStyle(JRootPane.NONE);
-            return false;
+            return 0d;
 }
 
 public static Object window_get_showicons()
 {
-return false;
+return 0d;
 }
 
 public static Object window_set_stayontop(Object stay)
 {
-return false;
+return 0d;
 }
 
 public static Object window_get_stayontop()
 {
-return false;
+return 0d;
 }
 
 public static Object window_set_sizeable(Object sizeable)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(((Boolean)sizeable));
-return false;
+return 0d;
 }
 
 public static Object window_get_sizeable()
@@ -2640,7 +2643,7 @@ return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isR
 public static Object window_set_caption(Object caption)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setTitle(""+caption);
-return false;
+return 0d;
 }
 
 public static Object window_get_caption()
@@ -2652,7 +2655,7 @@ public static Object window_set_cursor(Object curs)
 {
     if(curs instanceof Cursor)
         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setCursor(((Cursor)curs).c);
-return false;
+return 0d;
 }
 
 public static Object window_get_cursor()
@@ -2663,7 +2666,7 @@ return new Cursor(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getC
 public static Object window_set_color(Object color)
 {
   ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setBackground(((Color)color).c);
-return false;
+return 0d;
 }
 
 public static Object window_get_color()
@@ -2673,31 +2676,31 @@ return new Color(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBa
 
 public static Object window_set_region_scale(Object scale, Object adaptwindow)
 {
-return false;
+return 0d;
 }
 
 public static Object window_get_region_scale()
 {
-return false;
+return 0d;
 }
 
 public static Object window_set_position(Object x, Object y)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(((Double)x).intValue(), ((Double)y).intValue());
-return false;
+return 0d;
 }
 
 public static Object window_set_size(Object w, Object h)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(((Double)w).intValue(), ((Double)h).intValue());
-return false;
+return 0d;
 }
 
 public static Object window_set_rectangle(Object x, Object y, Object w, Object h)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(((Double)w).intValue(), ((Double)h).intValue());
 ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(((Double)x).intValue(), ((Double)y).intValue());
-return false;
+return 0d;
 }
 
 public static Object window_center()
@@ -2706,7 +2709,7 @@ public static Object window_center()
   Rectangle abounds = ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBounds();
   ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation((dim.width - abounds.width) / 2,
       (dim.height - abounds.height) / 2);
-return false;
+return 0d;
 }
 
 public static Object window_default()
@@ -2714,7 +2717,7 @@ public static Object window_default()
     //sets to room hight/width
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(Game.currentRoom.width, Game.currentRoom.height);
     window_center();
-return false;
+return 0d;
 }
 
 public static Object window_get_x()
@@ -2762,7 +2765,7 @@ public static Object window_mouse_set(Object x, Object y)
         r.mouseMove(((Double)x).intValue(), ((Double)y).intValue());
     } catch (AWTException aWTException) {
     }
-return false;
+return 0d;
 }
 
 /*
@@ -2772,47 +2775,47 @@ return false;
  */
 public static Object window_set_region_size(Object w, Object h, Object adaptwindow)
 {
-return false;
+return 0d;
 }
 
 public static Object window_get_region_width()
 {
-return false;
+return 0d;
 }
 
 public static Object window_get_region_height()
 {
-return false;
+return 0d;
 }
 
 public static Object window_view_mouse_get_x(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object window_view_mouse_get_y(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object window_view_mouse_set(Object id, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object window_views_mouse_get_x()
 {
-return false;
+return 0d;
 }
 
 public static Object window_views_mouse_get_y()
 {
-return false;
+return 0d;
 }
 
 public static Object window_views_mouse_set(Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2826,28 +2829,28 @@ public static Object screen_redraw()
         Game.game.getGame().bsGraphics.flip();
        // Game.game.getGame().bsGraphics.getBackBuffer()
     
-return false;
+return 0d;
 }
 
 public static Object screen_refresh()
 {
-return false;
+return 0d;
 }
 
 public static Object screen_wait_vsync()
 {
-return false;
+return 0d;
 }
 
 public static Object set_automatic_draw(Object value)
 {
     Game.auto_redraw = (Boolean)value;
-return false;
+return 0d;
 }
 
 public static Object set_synchronization(Object value)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2857,57 +2860,57 @@ return false;
  */
 public static Object sound_play(Object index)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_loop(Object index)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_stop(Object index)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_stop_all()
 {
-return false;
+return 0d;
 }
 
 public static Object sound_isplaying(Object index)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_volume(Object index, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_global_volume(Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_fade(Object index, Object value, Object time)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_pan(Object index, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_background_tempo(Object factor)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_set_search_directory(Object dir)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2917,42 +2920,42 @@ return false;
  */
 public static Object sound_effect_set(Object snd, Object effect)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_chorus(Object snd, Object wetdry, Object depth, Object feedback, Object frequency, Object wave, Object delay, Object phase)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_echo(Object snd, Object wetdry, Object feedback, Object leftdelay, Object rightdelay, Object pandelay)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_flanger(Object snd, Object wetdry, Object depth, Object feedback, Object frequency, Object wave, Object delay, Object phase)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_gargle(Object snd, Object rate, Object wave)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_reverb(Object snd, Object gain, Object mix, Object time, Object ratio)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_compressor(Object snd, Object gain, Object attack, Object release, Object threshold, Object ratio, Object delay)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_effect_equalizer(Object snd, Object center, Object bandwidth, Object gain)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2962,22 +2965,22 @@ return false;
  */
 public static Object sound_3d_set_sound_position(Object snd, Object x, Object y, Object z)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_3d_set_sound_velocity(Object snd, Object x, Object y, Object z)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_3d_set_sound_distance(Object snd, Object mindist, Object maxdist)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_3d_set_sound_cone(Object snd, Object x, Object y, Object z, Object anglein, Object angleout, Object voloutside)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -2987,97 +2990,97 @@ return false;
  */
 public static Object cd_init()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_present()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_number()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_playing()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_paused()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_track()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_length()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_track_length(Object n)
 {
-return false;
+return 0d;
 }
 
 public static Object cd_position()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_track_position()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_play(Object first, Object last)
 {
-return false;
+return 0d;
 }
 
 public static Object cd_stop()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_pause()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_resume()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_set_position(Object pos)
 {
-return false;
+return 0d;
 }
 
 public static Object cd_set_track_position(Object pos)
 {
-return false;
+return 0d;
 }
 
 public static Object cd_open_door()
 {
-return false;
+return 0d;
 }
 
 public static Object cd_close_door()
 {
-return false;
+return 0d;
 }
 
 public static Object MCI_command(Object str)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3087,27 +3090,27 @@ return false;
  */
 public static Object show_image(Object fname, Object full, Object delay)
 {
-return false;
+return 0d;
 }
 
 public static Object show_video(Object fname, Object full, Object loop)
 {
-return false;
+return 0d;
 }
 
 public static Object show_text(Object fname, Object full, Object backcol, Object delay)
 {
-return false;
+return 0d;
 }
 
 public static Object show_info()
 {
-return false;
+return 0d;
 }
 
 public static Object load_info(Object fname)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3119,117 +3122,117 @@ public static Object show_message(Object str)
 {
     JOptionPane.showMessageDialog(Game.frame, str.toString());
     Game.thegame.bsInput.refresh();
-return false;
+return 0d;
 }
 
 public static Object show_message_ext(Object str, Object but1, Object but2, Object but3)
 {
-return false;
+return 0d;
 }
 
 public static Object show_question(Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object get_integer(Object str, Object def)
 {
-return false;
+return 0d;
 }
 
 public static Object get_string(Object str, Object def)
 {
-return false;
+return 0d;
 }
 
 public static Object message_background(Object back)
 {
-return false;
+return 0d;
 }
 
 public static Object message_button(Object sprite)
 {
-return false;
+return 0d;
 }
 
 public static Object message_alpha(Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object message_text_font(Object name, Object size, Object color, Object style)
 {
-return false;
+return 0d;
 }
 
 public static Object message_button_font(Object name, Object size, Object color, Object style)
 {
-return false;
+return 0d;
 }
 
 public static Object message_input_font(Object name, Object size, Object color, Object style)
 {
-return false;
+return 0d;
 }
 
 public static Object message_mouse_color(Object col)
 {
-return false;
+return 0d;
 }
 
 public static Object message_input_color(Object col)
 {
-return false;
+return 0d;
 }
 
 public static Object message_position(Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object message_size(Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object message_caption(Object show, Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object show_menu(Object str, Object def)
 {
-return false;
+return 0d;
 }
 
 public static Object show_menu_pos(Object x, Object y, Object str, Object def)
 {
-return false;
+return 0d;
 }
 
 public static Object get_color(Object defcol)
 {
-return false;
+return 0d;
 }
 
 public static Object get_open_filename(Object filter, Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object get_save_filename(Object filter, Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object get_directory(Object dname)
 {
-return false;
+return 0d;
 }
 
 public static Object get_directory_alt(Object capt, Object root)
 {
-return false;
+return 0d;
 }
 
 public static Object show_error(Object str, Object abort)
@@ -3238,7 +3241,7 @@ public static Object show_error(Object str, Object abort)
     if ((Boolean)abort)
         System.exit(1);
     
-    return false;
+    return 0d;
 }
 
 /*
@@ -3248,67 +3251,67 @@ public static Object show_error(Object str, Object abort)
  */
 public static Object highscore_show_ext(Object numb, Object back, Object border, Object col1, Object col2, Object name, Object size)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_show(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_set_background(Object back)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_set_border(Object show)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_set_font(Object name, Object size, Object style)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_set_strings(Object caption, Object nobody, Object escape)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_set_colors(Object back, Object newc, Object other)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_clear()
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_add(Object str, Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_add_current()
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_value(Object place)
 {
-return false;
+return 0d;
 }
 
 public static Object highscore_name(Object place)
 {
-return false;
+return 0d;
 }
 
 public static Object draw_highscore(Object x1, Object y1, Object x2, Object y2)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3318,82 +3321,82 @@ return false;
  */
 public static Object sprite_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_number(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_width(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_height(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_transparent(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_smooth(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_preload(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_xoffset(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_yoffset(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_bbox_mode(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_bbox_left(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_bbox_right(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_bbox_top(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_bbox_bottom(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_get_precise(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3403,32 +3406,32 @@ return false;
  */
 public static Object sound_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_get_kind(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_get_preload(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_discard(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_restore(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3438,37 +3441,37 @@ return false;
  */
 public static Object background_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_width(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_height(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_transparent(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_smooth(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_get_preload(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3478,37 +3481,37 @@ return false;
  */
 public static Object font_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object font_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object font_get_fontname(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object font_get_bold(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object font_get_italic(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object font_get_first(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object font_get_last(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3518,67 +3521,67 @@ return false;
  */
 public static Object path_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_length(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_kind(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_closed(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_precision(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_number(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_point_x(Object ind, Object n)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_point_y(Object ind, Object n)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_point_speed(Object ind, Object n)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_x(Object ind, Object pos)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_y(Object ind, Object pos)
 {
-return false;
+return 0d;
 }
 
 public static Object path_get_speed(Object ind, Object pos)
 {
-return false;
+return 0d;
 }
 
 
@@ -3589,17 +3592,17 @@ return false;
  */
 public static Object script_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object script_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object script_get_text(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3609,12 +3612,12 @@ return false;
  */
 public static Object timeline_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object timeline_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3624,7 +3627,7 @@ return false;
  */
 public static Object actor_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object actor_get_name(Object ind)
@@ -3634,42 +3637,42 @@ return ind;
 
 public static Object object_get_sprite(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_get_solid(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_get_visible(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_get_depth(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_get_persistent(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_get_mask(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_get_parent(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_is_ancestor(Object ind1, Object ind2)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3680,12 +3683,12 @@ return false;
 
 public static Object room_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object room_get_name(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3695,77 +3698,77 @@ return false;
  */
 public static Object sprite_set_offset(Object ind, Object xoff, Object yoff)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_set_bbox_mode(Object ind, Object mode)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_set_bbox(Object ind, Object left, Object top, Object right, Object bottom)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_set_precise(Object ind, Object mode)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_duplicate(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_assign(Object ind, Object source)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_merge(Object ind1, Object ind2)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_add(Object fname, Object imgnumb, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_replace(Object ind, Object fname, Object imgnumb, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_create_from_screen(Object x, Object y, Object w, Object h, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_add_from_screen(Object ind, Object x, Object y, Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_create_from_surface(Object id, Object x, Object y, Object w, Object h, Object precise, Object transparent, Object smooth, Object preload, Object xorig, Object yorig)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_add_from_surface(Object ind, Object id, Object x, Object y, Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object sprite_set_alpha_from_sprite(Object ind, Object spr)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3775,17 +3778,17 @@ return false;
  */
 public static Object sound_add(Object fname, Object kind, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_replace(Object ind, Object fname, Object kind, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object sound_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3795,52 +3798,52 @@ return false;
  */
 public static Object background_duplicate(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_assign(Object ind, Object source)
 {
-return false;
+return 0d;
 }
 
 public static Object background_add(Object fname, Object transparent, Object smooth, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object background_replace(Object ind, Object fname, Object transparent, Object smooth, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object background_create_color(Object w, Object h, Object col, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object background_create_gradient(Object w, Object h, Object col1, Object col2, Object kind, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object background_create_from_screen(Object x, Object y, Object w, Object h, Object transparent, Object smooth, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object background_create_from_surface(Object id, Object x, Object y, Object w, Object h, Object transparent, Object smooth, Object preload)
 {
-return false;
+return 0d;
 }
 
 public static Object background_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object background_set_alpha_from_background(Object ind, Object back)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3850,27 +3853,27 @@ return false;
  */
 public static Object font_add(Object name, Object size, Object bold, Object italic, Object first, Object last)
 {
-return false;
+return 0d;
 }
 
 public static Object font_add_sprite(Object spr, Object first, Object prop, Object sep)
 {
-return false;
+return 0d;
 }
 
 public static Object font_replace(Object ind, Object name, Object size, Object bold, Object italic, Object first, Object last)
 {
-return false;
+return 0d;
 }
 
 public static Object font_replace_sprite(Object ind, Object spr, Object first, Object prop, Object sep)
 {
-return false;
+return 0d;
 }
 
 public static Object font_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3880,97 +3883,97 @@ return false;
  */
 public static Object path_set_kind(Object ind, Object kind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_set_closed(Object ind, Object closed)
 {
-return false;
+return 0d;
 }
 
 public static Object path_set_precision(Object ind, Object prec)
 {
-return false;
+return 0d;
 }
 
 public static Object path_add()
 {
-return false;
+return 0d;
 }
 
 public static Object path_assign(Object ind, Object path)
 {
-return false;
+return 0d;
 }
 
 public static Object path_duplicate(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_append(Object ind, Object path)
 {
-return false;
+return 0d;
 }
 
 public static Object path_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_add_point(Object ind, Object x, Object y, Object speed)
 {
-return false;
+return 0d;
 }
 
 public static Object path_insert_point(Object ind, Object n, Object x, Object y, Object speed)
 {
-return false;
+return 0d;
 }
 
 public static Object path_change_point(Object ind, Object n, Object x, Object y, Object speed)
 {
-return false;
+return 0d;
 }
 
 public static Object path_delete_point(Object ind, Object n)
 {
-return false;
+return 0d;
 }
 
 public static Object path_clear_points(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_reverse(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_mirror(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_flip(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object path_rotate(Object ind, Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object path_scale(Object ind, Object xscale, Object yscale)
 {
-return false;
+return 0d;
 }
 
 public static Object path_shift(Object ind, Object xshift, Object yshift)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -3981,17 +3984,17 @@ return false;
 
 public static Object execute_string(Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object execute_file(Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object script_execute(Object... arg1)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4002,22 +4005,22 @@ return false;
 
 public static Object timeline_add()
 {
-return false;
+return 0d;
 }
 
 public static Object timeline_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object timeline_moment_clear(Object ind, Object step)
 {
-return false;
+return 0d;
 }
 
 public static Object timeline_moment_add(Object ind, Object step, Object codestr)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4027,57 +4030,57 @@ return false;
  */
 public static Object Object_set_sprite(Object ind, Object spr)
 {
-return false;
+return 0d;
 }
 
 public static Object Object_set_solid(Object ind, Object solid)
 {
-return false;
+return 0d;
 }
 
 public static Object Object_set_visible(Object ind, Object vis)
 {
-return false;
+return 0d;
 }
 
 public static Object Object_set_depth(Object ind, Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object Object_set_persistent(Object ind, Object pers)
 {
-return false;
+return 0d;
 }
 
 public static Object Object_set_mask(Object ind, Object spr)
 {
-return false;
+return 0d;
 }
 
 public static Object Object_set_parent(Object ind, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object object_add()
 {
-return false;
+return 0d;
 }
 
 public static Object object_delete(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object object_event_clear(Object ind, Object evtype, Object evnumb)
 {
-return false;
+return 0d;
 }
 
 public static Object object_event_add(Object ind, Object evtype, Object evnumb, Object codestr)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4087,87 +4090,87 @@ return false;
  */
 public static Object room_set_width(Object ind, Object w)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_height(Object ind, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_caption(Object ind, Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_persistent(Object ind, Object pers)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_code(Object ind, Object codestr)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_background_color(Object ind, Object col, Object show)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_background(Object ind, Object bind, Object vis, Object fore, Object back, Object x, Object y, Object htiled, Object vtiled, Object hspeed, Object vspeed, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_view(Object ind, Object vind, Object vis, Object xview, Object yview, Object wview, Object hview, Object xport, Object yport, Object wport, Object hport, Object hborder, Object vborder, Object hspeed, Object vspeed, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object room_set_view_enabled(Object ind, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object room_add()
 {
-return false;
+return 0d;
 }
 
 public static Object room_duplicate(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object room_assign(Object ind, Object source)
 {
-return false;
+return 0d;
 }
 
 public static Object room_instance_add(Object ind, Object x, Object y, Object obj)
 {
-return false;
+return 0d;
 }
 
 public static Object room_instance_clear(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object room_tile_add(Object ind, Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object room_tile_add_ext(Object ind, Object back, Object left, Object top, Object width, Object height, Object x, Object y, Object depth, Object xscale, Object yscale, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object room_tile_clear(Object ind)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4202,7 +4205,7 @@ public static Object file_text_close(Object file)
     {
         ((File)file).close();
     }
-return false;
+return 0d;
 }
 
 public static Object file_text_write_string(Object file, Object str)
@@ -4211,7 +4214,7 @@ public static Object file_text_write_string(Object file, Object str)
     {
         ((File)file).writeString(str.toString());
     }
-return false;
+return 0d;
 }
 
 public static Object file_text_write_real(Object file, Object val)
@@ -4220,7 +4223,7 @@ public static Object file_text_write_real(Object file, Object val)
     {
         ((File)file).writeDouble(((Double)val));
     }
-return false;
+return 0d;
 }
 
 public static Object file_text_writeln(Object file)
@@ -4229,7 +4232,7 @@ public static Object file_text_writeln(Object file)
     {
         ((File)file).newLine();
     }
-return false;
+return 0d;
 }
 
 public static Object file_text_read_string(Object file)
@@ -4251,7 +4254,7 @@ public static Object file_text_read_real(Object file)
      return ( java.lang.Double.parseDouble(""+((File)file).readString()));
     }
     }catch(Exception e){}
-return false;
+return 0d;
 }
 
 public static Object file_text_readln(Object file)
@@ -4260,7 +4263,7 @@ public static Object file_text_readln(Object file)
     {
       ((File)file).readln();
     }
-return false;
+return 0d;
 }
 
 public static Object file_text_eof(Object file)
@@ -4269,7 +4272,7 @@ public static Object file_text_eof(Object file)
     {
      return new Boolean( ((File)file).endOfFile());
     }
-return false;
+return 0d;
 }
 
 public static Object file_exists(Object fname)
@@ -4280,19 +4283,19 @@ return new Boolean(File.exists(fname.toString()));
 public static Object file_delete(Object fname)
 {
     File.delete(fname.toString());
-return false;
+return 0d;
 }
 
 public static Object file_rename(Object oldname, Object newname)
 {
     File.rename(oldname.toString(), newname.toString());
-return false;
+return 0d;
 }
 
 public static Object file_copy(Object fname, Object newname)
 {
     File.copy(fname.toString(), newname.toString());
-return false;
+return 0d;
 }
 
 public static Object directory_exists(Object dname)
@@ -4303,27 +4306,27 @@ return new Boolean(File.exists(dname.toString()));
 public static Object directory_create(Object dname)
 {
     (new java.io.File(dname.toString())).mkdirs();
-return false;
+return 0d;
 }
 
 public static Object file_find_first(Object mask, Object attr)
 {
-return false;
+return 0d;
 }
 
 public static Object file_find_next()
 {
-return false;
+return 0d;
 }
 
 public static Object file_find_close()
 {
-return false;
+return 0d;
 }
 
 public static Object file_attributes(Object fname, Object attr)
 {
-return false;
+return 0d;
 }
 
 public static Object filename_path(Object fname)
@@ -4370,7 +4373,7 @@ public static Object file_bin_rewrite(Object file)
     {
     ((BinaryFile)file).rewrite();
     }
-return false;
+return 0d;
 }
 
 public static Object file_bin_close(Object file)
@@ -4379,7 +4382,7 @@ public static Object file_bin_close(Object file)
     {
     ((BinaryFile)file).close();
     }
-return false;
+return 0d;
 }
 
 public static Object file_bin_position(Object file)
@@ -4388,7 +4391,7 @@ public static Object file_bin_position(Object file)
     {
     return (((BinaryFile)file).getPosition());
     }
-return false;
+return 0d;
 }
 
 public static Object file_bin_size(Object file)
@@ -4397,7 +4400,7 @@ public static Object file_bin_size(Object file)
     {
     return (((BinaryFile)file).getSize());
     }
-return false;
+return 0d;
 }
 
 public static Object file_bin_seek(Object file, Object pos)
@@ -4406,7 +4409,7 @@ public static Object file_bin_seek(Object file, Object pos)
     {
     ((BinaryFile)file).seek(((Double)pos).intValue());
     }
-return false;
+return 0d;
 }
 
 public static Object file_bin_write_byte(Object file, Object BYTE)
@@ -4415,7 +4418,7 @@ public static Object file_bin_write_byte(Object file, Object BYTE)
     {
     ((BinaryFile)file).writeByte(((Double)BYTE).byteValue());
     }
-return false;
+return 0d;
 }
 
 public static Object file_bin_read_byte(Object file)
@@ -4424,7 +4427,7 @@ public static Object file_bin_read_byte(Object file)
     {
     return (((BinaryFile)file).readByte());
     }
-return false;
+return 0d;
 }
 
 public static Object parameter_count()
@@ -4438,7 +4441,7 @@ public static Object parameter_string(Object n)
 return new String(Game.parameters[((Double)n).intValue()]);
     }catch(Exception e){
     	e.printStackTrace();
-   return false;
+   return 0d;
     }
 }
 
@@ -4454,57 +4457,57 @@ return new String(System.getenv(""+name));
  */
 public static Object registry_write_string(Object name, Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_write_real(Object name, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_read_string(Object name)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_read_real(Object name)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_exists(Object name)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_write_string_ext(Object key, Object name, Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_write_real_ext(Object key, Object name, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_read_string_ext(Object key, Object name)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_read_real_ext(Object key, Object name)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_exists_ext(Object key, Object name)
 {
-return false;
+return 0d;
 }
 
 public static Object registry_set_root(Object root)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4514,52 +4517,52 @@ return false;
  */
 public static Object ini_open(Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_close()
 {
-return false;
+return 0d;
 }
 
 public static Object ini_read_string(Object section, Object key, Object DEFAULT)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_read_real(Object section, Object key, Object DEFAULT)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_write_string(Object section, Object key, Object str)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_write_real(Object section, Object key, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_key_exists(Object section, Object key)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_section_exists(Object section)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_key_delete(Object section, Object key)
 {
-return false;
+return 0d;
 }
 
 public static Object ini_section_delete(Object section)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4583,13 +4586,13 @@ public static Object execute_program(Object prog, Object arg, Object wait)
         ex.printStackTrace();
         System.err.println("Execute program exception!");
     }
-    return false;
+    return 0d;
 }
 
 public static Object execute_shell(Object prog, Object arg)
 {
 	execute_program(new String("bash -i " + prog), arg, false);
-return false;
+return 0d;
 }
 
 /*
@@ -4597,7 +4600,7 @@ return false;
  */
 public static Object ds_set_precision(Object prec)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -4616,7 +4619,7 @@ public static Object ds_stack_destroy(Object id)
     {
       ((Stack)id).destroy();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_stack_clear(Object id)
@@ -4625,7 +4628,7 @@ public static Object ds_stack_clear(Object id)
     {
       ((Stack)id).clear();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_stack_size(Object id)
@@ -4634,7 +4637,7 @@ public static Object ds_stack_size(Object id)
     {
      return (((Stack)id).size());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_stack_empty(Object id)
@@ -4643,7 +4646,7 @@ public static Object ds_stack_empty(Object id)
     {
      return new Boolean(((Stack)id).empty());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_stack_push(Object id, Object value)
@@ -4652,7 +4655,7 @@ public static Object ds_stack_push(Object id, Object value)
     {
      ((Stack)id).push(value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_stack_pop(Object id)
@@ -4661,7 +4664,7 @@ public static Object ds_stack_pop(Object id)
     {
      return ((Stack)id).pop();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_stack_top(Object id)
@@ -4670,7 +4673,7 @@ public static Object ds_stack_top(Object id)
     {
      return ((Stack)id).top();
     }
-return false;
+return 0d;
 }
 
 /*
@@ -4690,7 +4693,7 @@ public static Object ds_queue_destroy(Object id)
     {
      ((Queue)id).destroy();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_clear(Object id)
@@ -4699,7 +4702,7 @@ public static Object ds_queue_clear(Object id)
     {
      ((Queue)id).clear();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_size(Object id)
@@ -4708,7 +4711,7 @@ public static Object ds_queue_size(Object id)
     {
     return (((Queue)id).size());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_empty(Object id)
@@ -4717,7 +4720,7 @@ public static Object ds_queue_empty(Object id)
     {
     return new Boolean(((Queue)id).empty());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_enqueue(Object id, Object value)
@@ -4726,7 +4729,7 @@ public static Object ds_queue_enqueue(Object id, Object value)
     {
     ((Queue)id).enqueue(value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_dequeue(Object id)
@@ -4735,7 +4738,7 @@ public static Object ds_queue_dequeue(Object id)
     {
     return ((Queue)id).dequeue();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_head(Object id)
@@ -4744,7 +4747,7 @@ public static Object ds_queue_head(Object id)
     {
     return ((Queue)id).head();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_queue_tail(Object id)
@@ -4753,7 +4756,7 @@ public static Object ds_queue_tail(Object id)
     {
     return ((Queue)id).tail();
     }
-return false;
+return 0d;
 }
 
 /*
@@ -4772,7 +4775,7 @@ public static Object ds_list_destroy(Object id)
     {
      ((List)id).destroy();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_clear(Object id)
@@ -4781,7 +4784,7 @@ public static Object ds_list_clear(Object id)
     {
      ((List)id).clear();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_size(Object id)
@@ -4790,7 +4793,7 @@ public static Object ds_list_size(Object id)
     {
     return (((List)id).size());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_empty(Object id)
@@ -4799,7 +4802,7 @@ public static Object ds_list_empty(Object id)
     {
     return new Boolean(((List)id).empty());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_add(Object id, Object value)
@@ -4808,7 +4811,7 @@ public static Object ds_list_add(Object id, Object value)
     {
     ((List)id).addel(value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_insert(Object id, Object pos, Object value)
@@ -4817,7 +4820,7 @@ public static Object ds_list_insert(Object id, Object pos, Object value)
     {
     ((List)id).insert(pos,value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_replace(Object id, Object pos, Object value)
@@ -4826,7 +4829,7 @@ public static Object ds_list_replace(Object id, Object pos, Object value)
     {
     ((List)id).replace(pos,value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_delete(Object id, Object pos)
@@ -4835,12 +4838,12 @@ public static Object ds_list_delete(Object id, Object pos)
     {
     ((List)id).delete(pos);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_find_index(Object id, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_list_find_value(Object id, Object pos)
@@ -4849,16 +4852,16 @@ public static Object ds_list_find_value(Object id, Object pos)
     {
     return ((List)id).find_value(pos);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_list_sort(Object id, Object ascending)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_list_shuffle(Object id){
-	return false;
+	return 0d;
 }
 
 /*
@@ -4877,7 +4880,7 @@ public static Object ds_map_destroy(Object id)
     {
      ((Map)id).destroy();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_clear(Object id)
@@ -4886,7 +4889,7 @@ public static Object ds_map_clear(Object id)
     {
      ((Map)id).clear();
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_size(Object id)
@@ -4895,7 +4898,7 @@ public static Object ds_map_size(Object id)
     {
     return (((Map)id).size());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_empty(Object id)
@@ -4904,7 +4907,7 @@ public static Object ds_map_empty(Object id)
     {
     return new Boolean(((Map)id).empty());
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_add(Object id, Object key, Object value)
@@ -4913,7 +4916,7 @@ public static Object ds_map_add(Object id, Object key, Object value)
     {
     ((Map)id).add(key,value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_replace(Object id, Object key, Object value)
@@ -4922,7 +4925,7 @@ public static Object ds_map_replace(Object id, Object key, Object value)
     {
     ((Map)id).add(key,value);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_delete(Object id, Object key)
@@ -4931,7 +4934,7 @@ public static Object ds_map_delete(Object id, Object key)
     {
     ((Map)id).delete(key);
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_exists(Object id, Object key)
@@ -4940,7 +4943,7 @@ public static Object ds_map_exists(Object id, Object key)
     {
     return new Boolean(((Map)id).exists(key));
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_find_value(Object id, Object key)
@@ -4949,35 +4952,35 @@ public static Object ds_map_find_value(Object id, Object key)
     {
     return (((Map)id).find(key));
     }
-return false;
+return 0d;
 }
 
 public static Object ds_map_find_previous(Object id, Object key)
 {
     if (id instanceof Map)
         return ((Map)id).findPrevious(key);
-    return false;
+    return 0d;
 }
 
 public static Object ds_map_find_next(Object id, Object key)
 {
     if (id instanceof Map)
         return ((Map)id).findNext(key);
-    return false;
+    return 0d;
 }
 
 public static Object ds_map_find_first(Object id)
 {
     if (id instanceof Map)
         return ((Map)id).findFirst();
-    return false;
+    return 0d;
 }
 
 public static Object ds_map_find_last(Object id)
 {
     if (id instanceof Map)
         return ((Map)id).findLast();
-    return false;
+    return 0d;
 }
 
 /*
@@ -4996,7 +4999,7 @@ public static Object ds_priority_destroy(Object id)
     {
         ((PriorityQueue)id).destroy();
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_clear(Object id)
@@ -5005,7 +5008,7 @@ public static Object ds_priority_clear(Object id)
     {
         ((PriorityQueue)id).clear();
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_size(Object id)
@@ -5014,7 +5017,7 @@ public static Object ds_priority_size(Object id)
     {
         return (((PriorityQueue)id).size());
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_empty(Object id)
@@ -5023,7 +5026,7 @@ public static Object ds_priority_empty(Object id)
     {
         return new Boolean(((PriorityQueue)id).isEmpty());
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_add(Object id, Object value, Object priority)
@@ -5032,7 +5035,7 @@ public static Object ds_priority_add(Object id, Object value, Object priority)
     {
         ((PriorityQueue)id).add(value, priority);
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_change_priority(Object id, Object value, Object priority)
@@ -5041,7 +5044,7 @@ public static Object ds_priority_change_priority(Object id, Object value, Object
     {
         ((PriorityQueue)id).changePriority(value, priority);
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_find_priority(Object id, Object value)
@@ -5050,7 +5053,7 @@ public static Object ds_priority_find_priority(Object id, Object value)
     {
         return ((PriorityQueue)id).findPriority(value);
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_delete_value(Object id, Object value)
@@ -5059,7 +5062,7 @@ public static Object ds_priority_delete_value(Object id, Object value)
     {
         ((PriorityQueue)id).deleteValue(value);
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_delete_min(Object id)
@@ -5068,7 +5071,7 @@ public static Object ds_priority_delete_min(Object id)
     {
         return ((PriorityQueue)id).deleteMin();
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_find_min(Object id)
@@ -5077,7 +5080,7 @@ public static Object ds_priority_find_min(Object id)
     {
         return ((PriorityQueue)id).findMin();
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_delete_max(Object id)
@@ -5086,7 +5089,7 @@ public static Object ds_priority_delete_max(Object id)
     {
         return ((PriorityQueue)id).deleteMax();
     }
-    return false;
+    return 0d;
 }
 
 public static Object ds_priority_find_max(Object id)
@@ -5095,7 +5098,7 @@ public static Object ds_priority_find_max(Object id)
     {
         return ((PriorityQueue)id).findMax();
     }
-    return false;
+    return 0d;
 }
 
 /*
@@ -5105,152 +5108,152 @@ public static Object ds_priority_find_max(Object id)
  */
 public static Object ds_grid_create(Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_destroy(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_resize(Object id, Object w, Object h)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_width(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_height(Object id)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_clear(Object id, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_set(Object id, Object x, Object y, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_add(Object id, Object x, Object y, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_multiply(Object id, Object x, Object y, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_set_region(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_add_region(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_multiply_region(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_set_disk(Object id, Object xm, Object ym, Object r, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_add_disk(Object id, Object xm, Object ym, Object r, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_multiply_disk(Object id, Object xm, Object ym, Object r, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get(Object id, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_sum(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_max(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_min(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_mean(Object id, Object x1, Object y1, Object x2, Object y2)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_disk_sum(Object id, Object xm, Object ym, Object r)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_disk_min(Object id, Object xm, Object ym, Object r)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_disk_max(Object id, Object xm, Object ym, Object r)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_get_disk_mean(Object id, Object xm, Object ym, Object r)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_value_exists(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_value_x(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_value_y(Object id, Object x1, Object y1, Object x2, Object y2, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_value_disk_exists(Object id, Object xm, Object ym, Object r, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_value_disk_x(Object id, Object xm, Object ym, Object r, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object ds_grid_value_disk_y(Object id, Object xm, Object ym, Object r, Object val)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5260,17 +5263,17 @@ return false;
  */
 public static Object effect_create_below(Object kind, Object x, Object y, Object size, Object color)
 {
-return false;
+return 0d;
 }
 
 public static Object effect_create_above(Object kind, Object x, Object y, Object size, Object color)
 {
-return false;
+return 0d;
 }
 
 public static Object effect_clear()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5280,127 +5283,127 @@ return false;
  */
 public static Object part_type_create()
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_destroy(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_clear(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_shape(Object ind, Object shape)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_sprite(Object ind, Object sprite, Object animat, Object stretch, Object random)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_size(Object ind, Object size_min, Object size_max, Object size_incr, Object size_wiggle)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_scale(Object ind, Object xscale, Object yscale)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_orientation(Object ind, Object ang_min, Object ang_max, Object ang_incr, Object ang_wiggle, Object ang_relative)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_life(Object ind, Object life_min, Object life_max)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_step(Object ind, Object step_number, Object step_type)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_death(Object ind, Object death_number, Object death_type)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_speed(Object ind, Object speed_min, Object speed_max, Object speed_incr, Object speed_wiggle)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_direction(Object ind, Object dir_min, Object dir_max, Object dir_incr, Object dir_wiggle)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_gravity(Object ind, Object grav_amount, Object grav_dir)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_color1(Object ind, Object color1)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_color2(Object ind, Object color1, Object color2)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_color3(Object ind, Object color1, Object color2, Object color3)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_color_mix(Object ind, Object color1, Object color2)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_color_rgb(Object ind, Object rmin, Object rmax, Object gmin, Object gmax, Object bmin, Object bmax)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_color_hsv(Object ind, Object hmin, Object hmax, Object smin, Object smax, Object vmin, Object vmax)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_alpha1(Object ind, Object alpha1)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_alpha2(Object ind, Object alpha1, Object alpha2)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_alpha3(Object ind, Object alpha1, Object alpha2, Object alpha3)
 {
-return false;
+return 0d;
 }
 
 public static Object part_type_blend(Object ind, Object additive)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5411,77 +5414,77 @@ return false;
 
 public static Object part_system_create()
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_destroy(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_exists(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_clear(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_draw_order(Object ind, Object oldtonew)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_depth(Object ind, Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_position(Object ind, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_automatic_update(Object ind, Object automatic)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_automatic_draw(Object ind, Object draw)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_update(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_system_drawit(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_particles_create(Object ind, Object x, Object y, Object parttype, Object number)
 {
-return false;
+return 0d;
 }
 
 public static Object part_particles_create_color(Object ind, Object x, Object y, Object parttype, Object color, Object number)
 {
-return false;
+return 0d;
 }
 
 public static Object part_particles_clear(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_particles_count(Object ind)
 {
-return false;
+return 0d;
 }
 
 
@@ -5493,42 +5496,42 @@ return false;
  */
 public static Object part_emitter_create(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_destroy(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_destroy_all(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_exists(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_clear(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax, Object shape, Object distribution)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_burst(Object ps, Object ind, Object parttype, Object number)
 {
-return false;
+return 0d;
 }
 
 public static Object part_emitter_stream(Object ps, Object ind, Object parttype, Object number)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5538,37 +5541,37 @@ return false;
  */
 public static Object part_attractor_create(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_attractor_destroy(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_attractor_destroy_all(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_attractor_exists(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_attractor_clear(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_attractor_position(Object ps, Object ind, Object x, Object y)
 {
-return false;
+return 0d;
 }
 
 public static Object part_attractor_force(Object ps, Object ind, Object force, Object dist, Object kind, Object additive)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5578,32 +5581,32 @@ return false;
  */
 public static Object part_destroyer_create(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_destroyer_destroy(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_destroyer_destroy_all(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_destroyer_exists(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_destroyer_clear(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_destroyer_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax, Object shape)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5613,42 +5616,42 @@ return false;
  */
 public static Object part_deflector_create(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_destroy(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_destroy_all(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_exists(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_clear(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_kind(Object ps, Object ind, Object kind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_deflector_friction(Object ps, Object ind, Object amount)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5658,42 +5661,42 @@ return false;
  */
 public static Object part_changer_create(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_destroy(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_destroy_all(Object ps)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_exists(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_clear(Object ps, Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_region(Object ps, Object ind, Object xmin, Object xmax, Object ymin, Object ymax, Object shape)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_kind(Object ps, Object ind, Object kind)
 {
-return false;
+return 0d;
 }
 
 public static Object part_changer_types(Object ps, Object ind, Object parttype1, Object parttype2)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5703,32 +5706,32 @@ return false;
  */
 public static Object mplay_init_ipx()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_init_tcpip(Object addrstring)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_init_modem(Object initstr, Object phonenr)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_init_serial(Object portno, Object baudrate, Object stopbits, Object parity, Object flow)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_connect_status()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_end()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_ipaddress()
@@ -5739,7 +5742,7 @@ public static Object mplay_ipaddress()
    return new String(i.getHostAddress()); // IP address only
         } catch(Exception e){
         System.out.println(""+e.getMessage());}
-return false;
+return 0d;
 }
 
 /*
@@ -5749,37 +5752,37 @@ return false;
  */
 public static Object mplay_session_mode(Object move)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_session_create(Object sesname, Object playnumb, Object playername)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_session_find()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_session_name(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_session_join(Object numb, Object playername)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_session_status()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_session_end()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5789,17 +5792,17 @@ return false;
  */
 public static Object mplay_player_find()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_player_name(Object numb)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_player_id(Object numb)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5809,17 +5812,17 @@ return false;
  */
 public static Object mplay_data_write(Object ind, Object value)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_data_read(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_data_mode(Object guaranteed)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5829,47 +5832,47 @@ return false;
  */
 public static Object mplay_message_send(Object player, Object id, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_send_guaranteed(Object player, Object id, Object val)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_receive(Object player)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_id()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_value()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_player()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_name()
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_count(Object player)
 {
-return false;
+return 0d;
 }
 
 public static Object mplay_message_clear(Object player)
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5879,22 +5882,22 @@ return false;
  */
 public static Object external_call(Object... obj)
 {
-return false;
+return 0d;
 }
 
 public static Object external_define(Object... obj)
 {
-return false;
+return 0d;
 }
 
 public static Object external_free(Object dllname)
 {
-return false;
+return 0d;
 }
 
 public static Object window_handle()
 {
-return false;
+return 0d;
 }
 
 /*
@@ -5904,373 +5907,373 @@ return false;
  */
 public static Object d3d_start()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_end()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_hidden(Object enable)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_perspective(Object enable)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_depth(Object depth)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_primitive_begin(Object kind)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex(Object x, Object y, Object z)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_color(Object x, Object y, Object z, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_primitive_end()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_primitive_begin_texture(Object kind, Object texid)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_texture(Object x, Object y, Object z, Object xtex, Object ytex)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_texture_color(Object x, Object y, Object z, Object xtex, Object ytex, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_draw_block(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_draw_cylinder(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_draw_cone(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_draw_ellipsoid(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat, Object steps)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_draw_wall(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_draw_floor(Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object texid, Object hrepeat, Object vrepeat)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_projection(Object xfrom, Object yfrom, Object zfrom, Object xto, Object yto, Object zto, Object xup, Object yup, Object zup)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_projection_ext(Object xfrom, Object yfrom, Object zfrom, Object xto, Object yto, Object zto, Object xup, Object yup, Object zup, Object angle, Object aspect, Object znear, Object zfar)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_projection_ortho(Object x, Object y, Object w, Object h, Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_projection_perspective(Object x, Object y, Object w, Object h, Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_identity()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_translation(Object xt, Object yt, Object zt)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_scaling(Object xs, Object ys, Object zs)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_rotation_x(Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_rotation_y(Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_rotation_z(Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_set_rotation_axis(Object xa, Object ya, Object za, Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_add_translation(Object xt, Object yt, Object zt)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_add_scaling(Object xs, Object ys, Object zs)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_add_rotation_x(Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_add_rotation_y(Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_add_rotation_z(Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_add_rotation_axis(Object xa, Object ya, Object za, Object angle)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_stack_clear()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_stack_empty()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_stack_push()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_stack_pop()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_stack_top()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_transform_stack_discard()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_fog(Object enable, Object color, Object start, Object end)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_lighting(Object enable)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_shading(Object smooth)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_set_culling(Object cull)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_light_define_direction(Object ind, Object dx, Object dy, Object dz, Object col)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_light_define_point(Object ind, Object x, Object y, Object z, Object range, Object col)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_light_enable(Object ind, Object enable)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_normal(Object x, Object y, Object z, Object nx, Object ny, Object nz)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_normal_color(Object x, Object y, Object z, Object nx, Object ny, Object nz, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_normal_texture(Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_vertex_normal_texture_color(Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_create()
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_destroy(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_clear(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_save(Object ind, Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_load(Object ind, Object fname)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_draw(Object ind, Object x, Object y, Object z, Object texid)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_primitive_begin(Object ind, Object kind)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex(Object ind, Object x, Object y, Object z)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_color(Object ind, Object x, Object y, Object z, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_texture(Object ind, Object x, Object y, Object z, Object xtex, Object ytex)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_texture_color(Object ind, Object x, Object y, Object z, Object xtex, Object ytex, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_normal(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_normal_color(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_normal_texture(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_vertex_normal_texture_color(Object ind, Object x, Object y, Object z, Object nx, Object ny, Object nz, Object xtex, Object ytex, Object col, Object alpha)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_primitive_end(Object ind)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_block(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_cylinder(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
     
-return false;
+return 0d;
 }
 
 public static Object d3d_model_cone(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_ellipsoid(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object steps)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_wall(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat)
 {
-return false;
+return 0d;
 }
 
 public static Object d3d_model_floor(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat)
 {
-return false;
+return 0d;
 }
 
 

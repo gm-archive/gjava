@@ -52,9 +52,7 @@ public class BasicGame extends Game {
 	 */
 	public static Container canvas;
 	
-	/* All the instances used throuhout the whole game*/
-	public static Hashtable allinstances;
-	
+		
 	/* The current maximum instance id */
 	public static int maxInstanceId; 
 	
