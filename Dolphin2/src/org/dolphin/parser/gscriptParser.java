@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-03-13 14:12:46
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-03-14 19:46:51
 
 package org.dolphin.parser;
 
@@ -1988,7 +1988,7 @@ public class gscriptParser extends Parser {
     public final String returnstatement() throws RecognitionException {
         String value = null;
         int returnstatement_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -2129,7 +2129,7 @@ public class gscriptParser extends Parser {
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value =e.value;
+                      value =e;
                     }
 
                     }
@@ -2191,7 +2191,7 @@ public class gscriptParser extends Parser {
     public final String ifstatement() throws RecognitionException {
         String value = null;
         int ifstatement_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
         String s = null;
 
@@ -2286,7 +2286,7 @@ public class gscriptParser extends Parser {
             } while (true);
 
             if ( backtracking==0 ) {
-              value =pc.ifstatement(e.value,s,value);
+              value =pc.ifstatement(e,s,value);
             }
 
             }
@@ -2309,7 +2309,7 @@ public class gscriptParser extends Parser {
     public final String elsestatement() throws RecognitionException {
         String value = null;
         int elsestatement_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
         String s = null;
 
@@ -2359,7 +2359,7 @@ public class gscriptParser extends Parser {
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value =" else if "+e.value;
+                      value =" else if "+e;
                     }
 
                     }
@@ -2401,15 +2401,11 @@ public class gscriptParser extends Parser {
     }
     // $ANTLR end elsestatement
 
-    public static class expression_return extends ParserRuleReturnScope {
-        public String value;
-    };
 
     // $ANTLR start expression
     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:104:1: expression returns [String value] : (neg= negate | r= relationalExpression | p= pexpression | n= notexpression ) (aa= aexpression | aa= bexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
-    public final expression_return expression() throws RecognitionException {
-        expression_return retval = new expression_return();
-        retval.start = input.LT(1);
+    public final String expression() throws RecognitionException {
+        String value = null;
         int expression_StartIndex = input.index();
         String neg = null;
 
@@ -2427,12 +2423,12 @@ public class gscriptParser extends Parser {
 
         String x = null;
 
-        expression_return e = null;
+        String e = null;
 
 
         String a = "";
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
+            if ( backtracking>0 && alreadyParsedRule(input, 13) ) { return value; }
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:1: ( (neg= negate | r= relationalExpression | p= pexpression | n= notexpression ) (aa= aexpression | aa= bexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression ) (aa= aexpression | aa= bexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             {
@@ -2450,7 +2446,7 @@ public class gscriptParser extends Parser {
                     alt25=2;
                 }
                 else {
-                    if (backtracking>0) {failed=true; return retval;}
+                    if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
                         new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 1, input);
 
@@ -2474,7 +2470,7 @@ public class gscriptParser extends Parser {
                     alt25=2;
                 }
                 else {
-                    if (backtracking>0) {failed=true; return retval;}
+                    if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
                         new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 3, input);
 
@@ -2511,7 +2507,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 49, input);
 
@@ -2530,7 +2526,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 50, input);
 
@@ -2549,7 +2545,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 51, input);
 
@@ -2568,7 +2564,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 52, input);
 
@@ -2587,7 +2583,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 53, input);
 
@@ -2606,7 +2602,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 54, input);
 
@@ -2625,7 +2621,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 55, input);
 
@@ -2645,7 +2641,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 56, input);
 
@@ -2664,7 +2660,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 57, input);
 
@@ -2683,7 +2679,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 58, input);
 
@@ -2702,7 +2698,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 59, input);
 
@@ -2722,7 +2718,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 60, input);
 
@@ -2731,7 +2727,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 37, input);
 
@@ -2754,7 +2750,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 61, input);
 
@@ -2773,7 +2769,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 62, input);
 
@@ -2792,7 +2788,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 63, input);
 
@@ -2811,7 +2807,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 64, input);
 
@@ -2830,7 +2826,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 65, input);
 
@@ -2849,7 +2845,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 66, input);
 
@@ -2868,7 +2864,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 67, input);
 
@@ -2888,7 +2884,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 68, input);
 
@@ -2907,7 +2903,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 69, input);
 
@@ -2926,7 +2922,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 70, input);
 
@@ -2945,7 +2941,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 71, input);
 
@@ -2965,7 +2961,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 72, input);
 
@@ -2974,7 +2970,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 38, input);
 
@@ -2997,7 +2993,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 73, input);
 
@@ -3016,7 +3012,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 74, input);
 
@@ -3035,7 +3031,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 75, input);
 
@@ -3054,7 +3050,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 76, input);
 
@@ -3073,7 +3069,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 77, input);
 
@@ -3092,7 +3088,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 78, input);
 
@@ -3111,7 +3107,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 79, input);
 
@@ -3130,7 +3126,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 80, input);
 
@@ -3150,7 +3146,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 81, input);
 
@@ -3169,7 +3165,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 82, input);
 
@@ -3188,7 +3184,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 83, input);
 
@@ -3208,7 +3204,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 84, input);
 
@@ -3217,7 +3213,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 39, input);
 
@@ -3240,7 +3236,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 85, input);
 
@@ -3259,7 +3255,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 86, input);
 
@@ -3278,7 +3274,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 87, input);
 
@@ -3306,7 +3302,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 88, input);
 
@@ -3331,7 +3327,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 89, input);
 
@@ -3354,7 +3350,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 90, input);
 
@@ -3374,7 +3370,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 91, input);
 
@@ -3394,7 +3390,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 92, input);
 
@@ -3414,7 +3410,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 93, input);
 
@@ -3433,7 +3429,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 94, input);
 
@@ -3442,7 +3438,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 40, input);
 
@@ -3474,7 +3470,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 95, input);
 
@@ -3499,7 +3495,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 96, input);
 
@@ -3522,7 +3518,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 97, input);
 
@@ -3542,7 +3538,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 98, input);
 
@@ -3562,7 +3558,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 99, input);
 
@@ -3582,7 +3578,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 100, input);
 
@@ -3601,7 +3597,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 101, input);
 
@@ -3610,7 +3606,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 41, input);
 
@@ -3642,7 +3638,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 102, input);
 
@@ -3667,7 +3663,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 103, input);
 
@@ -3690,7 +3686,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 104, input);
 
@@ -3710,7 +3706,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 105, input);
 
@@ -3730,7 +3726,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 106, input);
 
@@ -3750,7 +3746,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 107, input);
 
@@ -3769,7 +3765,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 108, input);
 
@@ -3778,7 +3774,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 42, input);
 
@@ -3810,7 +3806,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 109, input);
 
@@ -3835,7 +3831,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 110, input);
 
@@ -3858,7 +3854,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 111, input);
 
@@ -3878,7 +3874,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 112, input);
 
@@ -3898,7 +3894,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 113, input);
 
@@ -3918,7 +3914,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 114, input);
 
@@ -3937,7 +3933,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 115, input);
 
@@ -3946,7 +3942,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 43, input);
 
@@ -3970,7 +3966,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 116, input);
 
@@ -3989,7 +3985,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 117, input);
 
@@ -4017,7 +4013,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 118, input);
 
@@ -4042,7 +4038,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 119, input);
 
@@ -4065,7 +4061,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 120, input);
 
@@ -4085,7 +4081,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 121, input);
 
@@ -4105,7 +4101,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 122, input);
 
@@ -4125,7 +4121,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 123, input);
 
@@ -4144,7 +4140,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 124, input);
 
@@ -4153,7 +4149,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 44, input);
 
@@ -4185,7 +4181,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 125, input);
 
@@ -4210,7 +4206,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 126, input);
 
@@ -4233,7 +4229,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 127, input);
 
@@ -4253,7 +4249,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 128, input);
 
@@ -4273,7 +4269,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 129, input);
 
@@ -4293,7 +4289,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 130, input);
 
@@ -4312,7 +4308,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 131, input);
 
@@ -4321,7 +4317,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 45, input);
 
@@ -4353,7 +4349,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 132, input);
 
@@ -4378,7 +4374,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 133, input);
 
@@ -4401,7 +4397,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 134, input);
 
@@ -4421,7 +4417,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 135, input);
 
@@ -4441,7 +4437,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 136, input);
 
@@ -4461,7 +4457,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 137, input);
 
@@ -4480,7 +4476,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 138, input);
 
@@ -4489,7 +4485,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 46, input);
 
@@ -4512,7 +4508,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 139, input);
 
@@ -4531,7 +4527,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 140, input);
 
@@ -4550,7 +4546,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 141, input);
 
@@ -4569,7 +4565,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 142, input);
 
@@ -4588,7 +4584,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 143, input);
 
@@ -4607,7 +4603,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 144, input);
 
@@ -4626,7 +4622,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 145, input);
 
@@ -4646,7 +4642,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 146, input);
 
@@ -4665,7 +4661,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 147, input);
 
@@ -4684,7 +4680,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 148, input);
 
@@ -4703,7 +4699,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 149, input);
 
@@ -4723,7 +4719,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 150, input);
 
@@ -4732,7 +4728,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 47, input);
 
@@ -4756,7 +4752,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 151, input);
 
@@ -4775,7 +4771,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 152, input);
 
@@ -4794,7 +4790,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 153, input);
 
@@ -4813,7 +4809,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 154, input);
 
@@ -4832,7 +4828,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 155, input);
 
@@ -4851,7 +4847,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 156, input);
 
@@ -4870,7 +4866,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 157, input);
 
@@ -4890,7 +4886,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 158, input);
 
@@ -4909,7 +4905,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 159, input);
 
@@ -4928,7 +4924,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 160, input);
 
@@ -4947,7 +4943,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 161, input);
 
@@ -4967,7 +4963,7 @@ public class gscriptParser extends Parser {
                             alt25=3;
                         }
                         else {
-                            if (backtracking>0) {failed=true; return retval;}
+                            if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
                                 new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 162, input);
 
@@ -4976,7 +4972,7 @@ public class gscriptParser extends Parser {
                         }
                         break;
                     default:
-                        if (backtracking>0) {failed=true; return retval;}
+                        if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
                             new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 48, input);
 
@@ -4986,7 +4982,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 default:
-                    if (backtracking>0) {failed=true; return retval;}
+                    if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
                         new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 11, input);
 
@@ -5002,7 +4998,7 @@ public class gscriptParser extends Parser {
                 }
                 break;
             default:
-                if (backtracking>0) {failed=true; return retval;}
+                if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
                     new NoViableAltException("105:4: (neg= negate | r= relationalExpression | p= pexpression | n= notexpression )", 25, 0, input);
 
@@ -5016,9 +5012,9 @@ public class gscriptParser extends Parser {
                     pushFollow(FOLLOW_negate_in_expression726);
                     neg=negate();
                     _fsp--;
-                    if (failed) return retval;
+                    if (failed) return value;
                     if ( backtracking==0 ) {
-                      retval.value = neg;
+                      value = neg;
                     }
 
                     }
@@ -5029,9 +5025,9 @@ public class gscriptParser extends Parser {
                     pushFollow(FOLLOW_relationalExpression_in_expression731);
                     r=relationalExpression();
                     _fsp--;
-                    if (failed) return retval;
+                    if (failed) return value;
                     if ( backtracking==0 ) {
-                      retval.value =r;
+                      value =r;
                     }
 
                     }
@@ -5042,9 +5038,9 @@ public class gscriptParser extends Parser {
                     pushFollow(FOLLOW_pexpression_in_expression736);
                     p=pexpression();
                     _fsp--;
-                    if (failed) return retval;
+                    if (failed) return value;
                     if ( backtracking==0 ) {
-                      retval.value =p;
+                      value =p;
                     }
 
                     }
@@ -5055,9 +5051,9 @@ public class gscriptParser extends Parser {
                     pushFollow(FOLLOW_notexpression_in_expression741);
                     n=notexpression();
                     _fsp--;
-                    if (failed) return retval;
+                    if (failed) return value;
                     if ( backtracking==0 ) {
-                      retval.value =n;
+                      value =n;
                     }
 
                     }
@@ -5132,9 +5128,9 @@ public class gscriptParser extends Parser {
             	    pushFollow(FOLLOW_aexpression_in_expression748);
             	    aa=aexpression();
             	    _fsp--;
-            	    if (failed) return retval;
+            	    if (failed) return value;
             	    if ( backtracking==0 ) {
-            	      retval.value = aa.replaceAll("GJAVA_VALUE",retval.value);
+            	      value = aa.replaceAll("GJAVA_VALUE",value);
             	    }
 
             	    }
@@ -5145,9 +5141,9 @@ public class gscriptParser extends Parser {
             	    pushFollow(FOLLOW_bexpression_in_expression754);
             	    aa=bexpression();
             	    _fsp--;
-            	    if (failed) return retval;
+            	    if (failed) return value;
             	    if ( backtracking==0 ) {
-            	      retval.value = "(((Integer)"+ retval.value+")"+ aa+").doubleValue()";
+            	      value = "(((Integer)"+ value+")"+ aa+").doubleValue()";
             	    }
 
             	    }
@@ -5228,7 +5224,7 @@ public class gscriptParser extends Parser {
             	        }
             	        break;
             	    default:
-            	        if (backtracking>0) {failed=true; return retval;}
+            	        if (backtracking>0) {failed=true; return value;}
             	        NoViableAltException nvae =
             	            new NoViableAltException("105:302: (an= andexpression | orr= orexpression | x= xorexpression )", 27, 0, input);
 
@@ -5242,9 +5238,9 @@ public class gscriptParser extends Parser {
             	            pushFollow(FOLLOW_andexpression_in_expression763);
             	            an=andexpression();
             	            _fsp--;
-            	            if (failed) return retval;
+            	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              retval.value +=" "+an;
+            	              value +=" "+an;
             	            }
 
             	            }
@@ -5255,9 +5251,9 @@ public class gscriptParser extends Parser {
             	            pushFollow(FOLLOW_orexpression_in_expression768);
             	            orr=orexpression();
             	            _fsp--;
-            	            if (failed) return retval;
+            	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              retval.value +=" "+orr;
+            	              value +=" "+orr;
             	            }
 
             	            }
@@ -5268,9 +5264,9 @@ public class gscriptParser extends Parser {
             	            pushFollow(FOLLOW_xorexpression_in_expression773);
             	            x=xorexpression();
             	            _fsp--;
-            	            if (failed) return retval;
+            	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              retval.value +=" "+x;
+            	              value +=" "+x;
             	            }
 
             	            }
@@ -5284,9 +5280,9 @@ public class gscriptParser extends Parser {
             	    pushFollow(FOLLOW_expression_in_expression780);
             	    e=expression();
             	    _fsp--;
-            	    if (failed) return retval;
+            	    if (failed) return value;
             	    if ( backtracking==0 ) {
-            	      retval.value +=" ((Boolean)"+e.value+")";
+            	      value +=" ((Boolean)"+e+")";
             	    }
 
             	    }
@@ -5301,12 +5297,10 @@ public class gscriptParser extends Parser {
             } while (true);
 
             if ( backtracking==0 ) {
-              retval.value =pc.expression(retval.value);
+              value =pc.expression(value);
             }
 
             }
-
-            retval.stop = input.LT(-1);
 
         }
         catch (RecognitionException re) {
@@ -5316,7 +5310,7 @@ public class gscriptParser extends Parser {
         finally {
             if ( backtracking>0 ) { memoize(input, 13, expression_StartIndex); }
         }
-        return retval;
+        return value;
     }
     // $ANTLR end expression
 
@@ -5326,7 +5320,7 @@ public class gscriptParser extends Parser {
     public final String notexpression() throws RecognitionException {
         String value = null;
         int notexpression_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -5350,7 +5344,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value =pc.notexpression(e.value);
+              value =pc.notexpression(e);
             }
 
             }
@@ -5374,7 +5368,7 @@ public class gscriptParser extends Parser {
         String value = null;
         int aexpression_StartIndex = input.index();
         Token a=null;
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -5405,7 +5399,7 @@ public class gscriptParser extends Parser {
             }
 
             if ( backtracking==0 ) {
-              value =pc.aexpression(a.getText(),e.value);
+              value =pc.aexpression(a.getText(),e);
             }
 
             }
@@ -5429,7 +5423,7 @@ public class gscriptParser extends Parser {
         String value = null;
         int bexpression_StartIndex = input.index();
         Token a=null;
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -5460,7 +5454,7 @@ public class gscriptParser extends Parser {
             }
 
             if ( backtracking==0 ) {
-              value =pc.aexpression(a.getText(),e.value);
+              value =pc.aexpression(a.getText(),e);
             }
 
             }
@@ -5582,7 +5576,7 @@ public class gscriptParser extends Parser {
     public final String negate() throws RecognitionException {
         String value = null;
         int negate_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -5655,7 +5649,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value = value+"((Double)"+e.value+")";
+              value = value+"((Double)"+e+")";
             }
 
             }
@@ -5678,7 +5672,7 @@ public class gscriptParser extends Parser {
     public final String pexpression() throws RecognitionException {
         String value = null;
         int pexpression_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -5693,7 +5687,7 @@ public class gscriptParser extends Parser {
             if (failed) return value;
             match(input,RPAREN,FOLLOW_RPAREN_in_pexpression956); if (failed) return value;
             if ( backtracking==0 ) {
-              value =pc.pexpression(e.value);
+              value =pc.pexpression(e);
             }
 
             }
@@ -5857,7 +5851,7 @@ public class gscriptParser extends Parser {
 
         String p = null;
 
-        expression_return exp = null;
+        String exp = null;
 
 
         String a = "";
@@ -7054,7 +7048,7 @@ public class gscriptParser extends Parser {
                             _fsp--;
                             if (failed) return value;
                             if ( backtracking==0 ) {
-                              a = exp.value;
+                              a = exp;
                             }
 
                             }
@@ -7092,7 +7086,7 @@ public class gscriptParser extends Parser {
     public final String repeatstatement() throws RecognitionException {
         String value = null;
         int repeatstatement_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
         String s = null;
 
@@ -8451,7 +8445,7 @@ public class gscriptParser extends Parser {
             } while (true);
 
             if ( backtracking==0 ) {
-              value =pc.repeatstatement(e.value,s);
+              value =pc.repeatstatement(e,s);
             }
 
             }
@@ -8536,7 +8530,7 @@ public class gscriptParser extends Parser {
         int dostatement_StartIndex = input.index();
         String s = null;
 
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -8555,7 +8549,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value =pc.dostatement(s,e.value);
+              value =pc.dostatement(s,e);
             }
 
             }
@@ -8578,7 +8572,7 @@ public class gscriptParser extends Parser {
     public final String whilestatement() throws RecognitionException {
         String value = null;
         int whilestatement_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
         String s = null;
 
@@ -8604,7 +8598,7 @@ public class gscriptParser extends Parser {
             }
 
             if ( backtracking==0 ) {
-              value =pc.whilestatement(e.value,s);
+              value =pc.whilestatement(e,s);
             }
 
             }
@@ -8629,7 +8623,7 @@ public class gscriptParser extends Parser {
         int forstatement_StartIndex = input.index();
         String s1 = null;
 
-        expression_return e = null;
+        String e = null;
 
         String s2 = null;
 
@@ -8690,7 +8684,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value =pc.forstatement(s1,e.value,s2,s);
+              value =pc.forstatement(s1,e,s2,s);
             }
 
             }
@@ -8713,9 +8707,9 @@ public class gscriptParser extends Parser {
     public final String switchstatement() throws RecognitionException {
         String value = null;
         int switchstatement_StartIndex = input.index();
-        expression_return ex = null;
+        String ex = null;
 
-        expression_return ex2 = null;
+        String ex2 = null;
 
         String st = null;
 
@@ -8790,13 +8784,13 @@ public class gscriptParser extends Parser {
             	            _fsp--;
             	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              value ="("+ex2.value+")";
+            	              value ="("+ex2+")";
             	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:173:93: 'default'
+            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:173:94: 'default'
             	            {
             	            match(input,79,FOLLOW_79_in_switchstatement1384); if (failed) return value;
             	            if ( backtracking==0 ) {
@@ -8809,7 +8803,7 @@ public class gscriptParser extends Parser {
             	    }
 
             	    match(input,80,FOLLOW_80_in_switchstatement1389); if (failed) return value;
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:173:121: (st= statement )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:173:122: (st= statement )*
             	    loop39:
             	    do {
             	        int alt39=2;
@@ -8822,7 +8816,7 @@ public class gscriptParser extends Parser {
 
             	        switch (alt39) {
             	    	case 1 :
-            	    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:173:122: st= statement
+            	    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:173:123: st= statement
             	    	    {
             	    	    pushFollow(FOLLOW_statement_in_switchstatement1394);
             	    	    st=statement();
@@ -8841,7 +8835,7 @@ public class gscriptParser extends Parser {
             	    } while (true);
 
             	    if ( backtracking==0 ) {
-            	      casestatements+=pc.caseStatement(ex.value,value,statements);statements="";
+            	      casestatements+=pc.caseStatement(ex,value,statements);statements="";
             	    }
 
             	    }
@@ -8887,7 +8881,7 @@ public class gscriptParser extends Parser {
     public final String withstatement() throws RecognitionException {
         String value = null;
         int withstatement_StartIndex = input.index();
-        expression_return e = null;
+        String e = null;
 
         String s = null;
 
@@ -8907,7 +8901,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value =pc.withstatement(e.value,s);
+              value =pc.withstatement(e,s);
             }
 
             }
@@ -8935,7 +8929,7 @@ public class gscriptParser extends Parser {
 
         variable_return valuee = null;
 
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -9294,7 +9288,7 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return value;
             if ( backtracking==0 ) {
-              value = pc.assignmentstatement(value,op.getText(),e.value);
+              value = pc.assignmentstatement(value,op.getText(),e);
             }
 
             }
@@ -9530,7 +9524,7 @@ public class gscriptParser extends Parser {
         String value = null;
         int function_StartIndex = input.index();
         Token n=null;
-        expression_return e = null;
+        String e = null;
 
 
         try {
@@ -9557,7 +9551,7 @@ public class gscriptParser extends Parser {
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value = e.value;
+                      value = e;
                     }
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:191:49: ( ( ',' ) (e= expression )? )*
                     loop46:
@@ -9597,7 +9591,7 @@ public class gscriptParser extends Parser {
                     	            _fsp--;
                     	            if (failed) return value;
                     	            if ( backtracking==0 ) {
-                    	              value += ", "+e.value;
+                    	              value += ", "+e;
                     	            }
 
                     	            }
@@ -9670,23 +9664,23 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start function2
-    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:1: function2 returns [String value] : n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
+    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:1: function2 returns [String value] : n= OIVAR '(' ( (e= expression ) ( ( ',' ) (e= expression )? )* )? ')' ;
     public final String function2() throws RecognitionException {
         String value = null;
         int function2_StartIndex = input.index();
         Token n=null;
-        expression_return e = null;
+        String e = null;
 
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 35) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:2: (n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:2: (n= OIVAR '(' ( (e= expression ) ( ( ',' ) (e= expression )? )* )? ')' )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:4: n= OIVAR '(' ( (e= expression ) ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,OIVAR,FOLLOW_OIVAR_in_function21604); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21606); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:16: (e= expression ( ( ',' ) (e= expression )? )* )?
+            match(input,OIVAR,FOLLOW_OIVAR_in_function21605); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21607); if (failed) return value;
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:16: ( (e= expression ) ( ( ',' ) (e= expression )? )* )?
             int alt51=2;
             int LA51_0 = input.LA(1);
 
@@ -9695,16 +9689,22 @@ public class gscriptParser extends Parser {
             }
             switch (alt51) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:17: e= expression ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:17: (e= expression ) ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function21611);
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:17: (e= expression )
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:18: e= expression
+                    {
+                    pushFollow(FOLLOW_expression_in_function21613);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value = input.toString(e.start,e.stop);
+                      value = e;
                     }
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:49: ( ( ',' ) (e= expression )? )*
+
+                    }
+
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:54: ( ( ',' ) (e= expression )? )*
                     loop50:
                     do {
                         int alt50=2;
@@ -9717,16 +9717,16 @@ public class gscriptParser extends Parser {
 
                         switch (alt50) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:50: ( ',' ) (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:55: ( ',' ) (e= expression )?
                     	    {
-                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:50: ( ',' )
-                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:51: ','
+                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:55: ( ',' )
+                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:56: ','
                     	    {
-                    	    match(input,41,FOLLOW_41_in_function21616); if (failed) return value;
+                    	    match(input,41,FOLLOW_41_in_function21621); if (failed) return value;
 
                     	    }
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:56: (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:61: (e= expression )?
                     	    int alt49=2;
                     	    int LA49_0 = input.LA(1);
 
@@ -9735,14 +9735,14 @@ public class gscriptParser extends Parser {
                     	    }
                     	    switch (alt49) {
                     	        case 1 :
-                    	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:57: e= expression
+                    	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:195:62: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function21622);
+                    	            pushFollow(FOLLOW_expression_in_function21627);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
                     	            if ( backtracking==0 ) {
-                    	              value += ", "+input.toString(e.start,e.stop);
+                    	              value += ", "+e;
                     	            }
 
                     	            }
@@ -9765,7 +9765,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21631); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21636); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
             }
@@ -9791,9 +9791,9 @@ public class gscriptParser extends Parser {
         String value = null;
         int array_StartIndex = input.index();
         Token valuee=null;
-        expression_return e = null;
+        String e = null;
 
-        expression_return e1 = null;
+        String e1 = null;
 
 
         try {
@@ -9810,10 +9810,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1650);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1655);    throw mse;
             }
 
-            match(input,90,FOLLOW_90_in_array1658); if (failed) return value;
+            match(input,90,FOLLOW_90_in_array1663); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:39: (e= expression )?
             int alt52=2;
             int LA52_0 = input.LA(1);
@@ -9825,12 +9825,12 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:40: e= expression
                     {
-                    pushFollow(FOLLOW_expression_in_array1663);
+                    pushFollow(FOLLOW_expression_in_array1668);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value =e.value;
+                      value =e;
                     }
 
                     }
@@ -9849,13 +9849,13 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:74: ',' e1= expression
                     {
-                    match(input,41,FOLLOW_41_in_array1669); if (failed) return value;
-                    pushFollow(FOLLOW_expression_in_array1673);
+                    match(input,41,FOLLOW_41_in_array1674); if (failed) return value;
+                    pushFollow(FOLLOW_expression_in_array1678);
                     e1=expression();
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value = e.value + ","+e1.value;
+                      value = e + ","+e1;
                     }
 
                     }
@@ -9863,7 +9863,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,91,FOLLOW_91_in_array1678); if (failed) return value;
+            match(input,91,FOLLOW_91_in_array1683); if (failed) return value;
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),value);
             }
@@ -11174,18 +11174,18 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_RPAREN_in_function1579 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
     public static final BitSet FOLLOW_89_in_function1582 = new BitSet(new long[]{0x0000000018200000L});
     public static final BitSet FOLLOW_variable_in_function1584 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
-    public static final BitSet FOLLOW_OIVAR_in_function21604 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21606 = new BitSet(new long[]{0x201800001FE00330L});
-    public static final BitSet FOLLOW_expression_in_function21611 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_41_in_function21616 = new BitSet(new long[]{0x201802001FE00330L});
-    public static final BitSet FOLLOW_expression_in_function21622 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21631 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1650 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_array1658 = new BitSet(new long[]{0x201802001FE00130L,0x0000000008000000L});
-    public static final BitSet FOLLOW_expression_in_array1663 = new BitSet(new long[]{0x0000020000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_41_in_array1669 = new BitSet(new long[]{0x201800001FE00130L});
-    public static final BitSet FOLLOW_expression_in_array1673 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_91_in_array1678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OIVAR_in_function21605 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21607 = new BitSet(new long[]{0x201800001FE00330L});
+    public static final BitSet FOLLOW_expression_in_function21613 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_41_in_function21621 = new BitSet(new long[]{0x201802001FE00330L});
+    public static final BitSet FOLLOW_expression_in_function21627 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1655 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_array1663 = new BitSet(new long[]{0x201802001FE00130L,0x0000000008000000L});
+    public static final BitSet FOLLOW_expression_in_array1668 = new BitSet(new long[]{0x0000020000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_41_in_array1674 = new BitSet(new long[]{0x201800001FE00130L});
+    public static final BitSet FOLLOW_expression_in_array1678 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_array1683 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_method_in_synpred1196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_35_in_synpred22340 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_synpred25380 = new BitSet(new long[]{0x0000000000000002L});

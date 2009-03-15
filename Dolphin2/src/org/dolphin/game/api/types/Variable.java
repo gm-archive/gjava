@@ -33,7 +33,10 @@ private static final long serialVersionUID = 1L;
 	public static Object add (Object o,Object d){
 		if (o instanceof String || d instanceof String)
 			return ""+o+d;
+		else if (o instanceof Double && d instanceof Double)
 		return ((Double)o)+((Double)d);
+		else
+			return 0d;
 	}
 	
 	public static Object add (Object o,double d){
@@ -133,6 +136,8 @@ private static final long serialVersionUID = 1L;
 		if (object instanceof Actor){
 			return (Actor)object;
 		}
+		if (object instanceof GMResource)
+			return (((GMResource)object).getActor()==null)?Actor.noone:((GMResource)object).getActor();
 		return Actor.noone;
 		
 	}
@@ -145,6 +150,14 @@ private static final long serialVersionUID = 1L;
 		return list[id];
 		else
 			return 0d;
+	}
+	
+	public static Boolean toBoolean(Object o){
+		if (o instanceof Boolean)
+			return (Boolean)o;
+		else if (o instanceof Double)
+			return ((Double)o == 0)? true:false;
+		return false;
 	}
 
 

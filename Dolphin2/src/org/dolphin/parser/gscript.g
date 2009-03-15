@@ -170,7 +170,7 @@ forstatement returns [String value]
 ;
 
 switchstatement returns [String value] @init {String statements="",casestatements="";}
-: 'switch' (ex=expression) ('{'|'begin') (('case' ex2=expression{$value="("+ex2.value+")";}|'default'{$value="";})  ':' (st=statement{statements+=$st.value;})* {casestatements+=pc.caseStatement($ex.value,$value,statements);statements="";})* ('}'|'end') {$value =pc.switchstatement(casestatements);} //BETA 
+: 'switch' (ex=expression) ('{'|'begin') (('case' ex2=expression{$value="("+$ex2.value+")";}|'default'{$value="";})  ':' (st=statement{statements+=$st.value;})* {casestatements+=pc.caseStatement($ex.value,$value,statements);statements="";})* ('}'|'end') {$value =pc.switchstatement(casestatements);} //BETA 
 ;
 
 withstatement returns [String value]
@@ -191,8 +191,8 @@ function returns [String value]
 : n=WORD '(' (e=expression {$value = $e.value;} ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' ('.' variable)* {$value =pc.functionstatement($n.text, $value);};
 
 
-function2 returns [String value]
-	:	n=OIVAR '(' (e=expression {$value = $e.text;}((',') (e=expression{$value += ", "+$e.text;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}	;
+function2 returns [String value] 
+	:	n=OIVAR '(' ((e=expression {$value = $e.value;})  ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}	;
 
 array returns [String value]
   : valuee=(WORD|OIVAR|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']' {$value = pc.array($valuee.text,$value);}

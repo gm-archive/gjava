@@ -343,7 +343,7 @@ public class PlatformCore  {
      */
     public String ifstatement(String exp, String statement, String elses) {
     	//System.out.println("if statement:"+exp);
-        return "if ((Boolean)(" + exp + ")) \n" + statement + " \n " + elses;
+        return "if (Variable.toBoolean(" + exp + ")) \n" + statement + " \n " + elses;
     }
 
     /**
@@ -380,7 +380,7 @@ public class PlatformCore  {
      * @return
      */
     public String notexpression(String exp) {
-        return " !((Boolean)"+exp+")";
+        return " !(Variable.toBoolean("+exp+"))";
     }
     
     /**
@@ -450,7 +450,7 @@ public class PlatformCore  {
      * @return
      */
     public String dostatement(String statement, String expression) {
-        return "do "+statement+"while(!((Boolean)"+expression+"));";
+        return "do "+statement+"while(!(Variable.toBoolean("+expression+")));";
     }
     
     /**
@@ -460,7 +460,7 @@ public class PlatformCore  {
      * @return
      */
     public String whilestatement(String exp, String st) {
-        return "while ((Boolean)"+exp + ") "+ st;
+        return "while (Variable.toBoolean("+exp + ")) "+ st;
     }
     
     /**
@@ -476,7 +476,7 @@ public class PlatformCore  {
         if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";")) {
             statement2 = statement2.substring(0, statement2.length() - 1);
         }
-        return "{"+statement1+" for (;(Boolean)"+exp+"; ) {"+statements+statement2+"}}";
+        return "{"+statement1+" for (;Variable.toBoolean("+exp+"); ) {"+statements+statement2+"}}";
     }
     
     /**
@@ -770,7 +770,16 @@ public class PlatformCore  {
      * @return
      */
     public String otherclassfunctionstatement(String name, String parameters) {
-        return name+ "("+parameters+")";
+    	String instance="";
+    	if (name.startsWith("other."))
+    		instance="other.";
+    	else if (name.startsWith("other."))
+    		instance="";
+    	else {
+    	instance="{Actor[] ac =Game.currentRoom.setActorwithname("+name.substring(0,name.indexOf("."))+".class); for (int i = 0; i < ac.length; i++) ac[i].";
+    	return instance+functionstatement(name.substring(name.indexOf(".")+1), parameters)+";}";
+    	}
+    	return instance+functionstatement(name.substring(name.indexOf(".")+1), parameters);
     }
 
     /**

@@ -99,7 +99,7 @@ private static final long serialVersionUID = 1L;
             boolean Visible, double Depth, boolean Persistent) {
         solid = Solid;
         visible = Visible;
-        depth = new Integer((int) Depth);
+        depth = new Double((int) Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
         self = this;
@@ -307,7 +307,7 @@ private static final long serialVersionUID = 1L;
             } else if (((Double)getSpeed()) < ((Double)getFriction()) && ((Double)getSpeed()) < 0) {
                 setSpeed(Variable.add(getSpeed(),getFriction()));
             } else {
-                setSpeed(new Integer(0));
+                setSpeed(0d);
             }
         }
         
@@ -341,30 +341,30 @@ private static final long serialVersionUID = 1L;
     
     public Object getBbox_bottom() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.BBBottom);
+        return new Double(sprite.BBBottom);
     }
 
     public Object getBbox_left() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.BBLeft);
+        return new Double(sprite.BBLeft);
     }
 
     public Object getBbox_right() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.BBRight);
+        return new Double(sprite.BBRight);
     }
 
     public Object getBbox_top() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.BBTop);
+        return new Double(sprite.BBTop);
     }
 
     public Object getDepth() {
@@ -426,7 +426,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getImage_angle() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
         return new Double(sprite.image_angle);
     }
@@ -440,16 +440,16 @@ private static final long serialVersionUID = 1L;
 
     public Object getImage_index() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
         return new Double(sprite_index);
     }
 
     public Object getImage_number() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.subimages);
+        return new Double(sprite.subimages);
     }
 
     public Object getImage_single() {
@@ -461,21 +461,21 @@ private static final long serialVersionUID = 1L;
 
     public Object getImage_speed() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
         return new Double(sprite_speed);
     }
 
     public Object getImage_xscale() {
         if (sprite == null) {
-            return new Integer(1);
+            return 1d;
         }
         return new Double(image_xscale);
     }
 
     public Object getImage_yscale() {
         if (sprite == null) {
-            return new Integer(1);
+            return 1d;
         }
         return new Double(image_yscale);
     }
@@ -566,37 +566,37 @@ private static final long serialVersionUID = 1L;
 
     public Object getSprite_height() {
         if (sprite == null) {
-            return new Integer(-1);
+            return new Double(-1);
         }
-        return new Integer(sprite.sprite_height*image_yscale);
+        return new Double(sprite.sprite_height*image_yscale);
     }
 
     public Object getSprite_index() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
         return sprite;
     }
 
     public Object getSprite_width() {
         if (sprite == null) {
-            return new Integer(-1);
+            return new Double(-1);
         }
-        return new Integer(sprite.sprite_width*image_xscale);
+        return new Double(sprite.sprite_width*image_xscale);
     }
 
     public Object getSprite_xoffset() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.sprite_xoffset);
+        return new Double(sprite.sprite_xoffset);
     }
 
     public Object getSprite_yoffset() {
         if (sprite == null) {
-            return new Integer(0);
+            return 0d;
         }
-        return new Integer(sprite.sprite_yoffset);
+        return new Double(sprite.sprite_yoffset);
     }
 
     public Object getTimeline_index() {
@@ -969,7 +969,7 @@ private static final long serialVersionUID = 1L;
      * 
      */
     public void setVariable(java.lang.String name, int value) {
-        variables.put(name, new Integer(value));
+        variables.put(name, new Double(value));
     }
 
     public Object getVariableOLD(String name) {
@@ -993,7 +993,7 @@ private static final long serialVersionUID = 1L;
 
         Object o = (Object) variables.get(name.toString());
         if (o == null) {
-            return new Integer(0);
+            return 0d;
         }
         return o;
     }
@@ -1013,7 +1013,7 @@ private static final long serialVersionUID = 1L;
     }
 
     public Object getAlarm(int id) {
-    return new Integer(alarm[id]);
+    return new Double(alarm[id]);
     }
 
     public void setAlarm(int id,Object v){

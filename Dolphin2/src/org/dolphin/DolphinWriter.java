@@ -34,6 +34,7 @@ import org.lateralgm.file.GmFile;
 import org.lateralgm.file.GmFormatException;
 import org.lateralgm.main.LGM;
 import org.lateralgm.resources.GmObject;
+import org.lateralgm.resources.ResourceReference;
 import org.lateralgm.resources.Room;
 import org.lateralgm.resources.Script;
 import org.lateralgm.resources.Timeline;
@@ -659,6 +660,7 @@ public class DolphinWriter {
         String code = "";
         for (Action act : ev.actions) {
             code += System.getProperty("line.separator");
+            
             if (act.getLibAction().actionKind == Action.ACT_CODE) {
                 code += "{\n" + act.getArguments().get(0).getVal() + "\n}";
             } else if (act.getLibAction().actionKind == Action.ACT_BEGIN) {
@@ -685,7 +687,7 @@ public class DolphinWriter {
             	//System.out.println("comment:" );
             	code="//action_comment";
             } else {
-            	
+            	String instance="";
                 if (act.getLibAction().question) {
                     //System.out.println("question:" + act.getLibAction().execInfo);
                     code += "if (";
@@ -696,11 +698,26 @@ public class DolphinWriter {
                 
                 else {
                     code += "{\n";
+                    //code += "with("+act.getAppliesTo().get().getName()+") {\n";
+                    ResourceReference<GmObject> at = act.getAppliesTo();
+        			if (at != null)
+        				{
+        				if (at == GmObject.OBJECT_OTHER){
+        					instance="other.";	
+        				}
+        				else if (at == GmObject.OBJECT_SELF){
+        					instance="";	
+        				}
+        				else
+        					//System.out.println("action with: dosomething else");
+        				instance=at.get().getName()+".";
+        				}
+                    
                     if (act.isRelative()) {
                         code += "argument_relative=" + act.isRelative() + "; ";
                     }
                 }
-                code += act.getLibAction().execInfo + "(";
+                code += instance+act.getLibAction().execInfo + "(";
 
                 for (int i = 0; i < act.getArguments().size(); i++) {
                     Argument arg = act.getArguments().get(i);
@@ -753,7 +770,7 @@ public class DolphinWriter {
                 }
 
             }
-
+            
         }
         //System.out.println("code:" + code);
         return code;

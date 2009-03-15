@@ -33,6 +33,9 @@ public class Actor0 extends Actor {
 		setScore(1d);
 		action_highscore_show();
 		
+		{Actor[] ac =Game.currentRoom.setActorwithname((new GMResource(Actor0.class).getActor()).getClass()); for (int i = 0; i < ac.length; i++) ac[i].action_set_alarm(160d, 0d);};
+
+		
 		/*{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).setX(self.getY());}
 		
 		{for (int i = 0; i < Game.currentRoom.instances.size(); i++)

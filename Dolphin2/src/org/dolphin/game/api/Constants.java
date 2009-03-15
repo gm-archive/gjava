@@ -1834,7 +1834,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_add() {
-        return new Integer(107);//  vk_add;
+        return 107d;//  vk_add;
     }
 
     public void setVk_add(Object vk_add) {
@@ -1842,7 +1842,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_alt() {
-        return new Integer(18);
+        return 18d;
     }
 
     public void setVk_alt(Object vk_alt) {
@@ -1850,7 +1850,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_anykey() {
-        return new Integer(1);
+        return 1d;
     }
 
     public void setVk_anykey(Object vk_anykey) {
@@ -1858,7 +1858,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_backspace() {
-        return new Integer(8);
+        return 8d;
     }
 
     public void setVk_backspace(Object vk_backspace) {
@@ -1866,7 +1866,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_control() {
-        return new Integer(17);
+        return 17d;
     }
 
     public void setVk_control(Object vk_control) {
@@ -1874,7 +1874,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_decimal() {
-        return new Integer(110); //  vk_decimal;
+        return 110d; //  vk_decimal;
     }
 
     public void setVk_decimal(Object vk_decimal) {
@@ -1882,7 +1882,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_delete() {
-        return new Integer(46);
+        return 46d;
     }
 
     public void setVk_delete(Object vk_delete) {
@@ -1890,7 +1890,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_divide() {
-        return new Integer(111); //  vk_divide;
+        return 111d; //  vk_divide;
     }
 
     public void setVk_divide(Object vk_divide) {
@@ -1898,7 +1898,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_down() {
-        return new Integer(40);
+        return 40d;
     }
 
     public void setVk_down(Object vk_down) {
@@ -1906,7 +1906,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_end() {
-        return new Integer(35);
+        return 35d;
     }
 
     public void setVk_end(Object vk_end) {
@@ -1914,7 +1914,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_enter() {
-        return new Integer(13);
+        return 13d;
     }
 
     public void setVk_enter(Object vk_enter) {
@@ -1922,7 +1922,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_escape() {
-        return new Integer(27);
+        return 27d;
     }
 
     public void setVk_escape(Object vk_escape) {
@@ -1930,7 +1930,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f1() {
-        return new Integer(112); //  vk_f1;
+        return 112d; //  vk_f1;
     }
 
     public void setVk_f1(Object vk_f1) {
@@ -1938,7 +1938,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f10() {
-        return new Integer(121); //  vk_f10;
+        return 121d; //  vk_f10;
     }
 
     public void setVk_f10(Object vk_f10) {
@@ -1946,7 +1946,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f11() {
-        return new Integer(122); //  vk_f11;
+        return 122d; //  vk_f11;
     }
 
     public void setVk_f11(Object vk_f11) {
@@ -1954,7 +1954,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f12() {
-        return new Integer(113); //  vk_f12;
+        return 113d; //  vk_f12;
     }
 
     public void setVk_f12(Object vk_f12) {
@@ -1962,7 +1962,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f2() {
-        return new Integer(113); //  vk_f2;
+        return 113d; //  vk_f2;
     }
 
     public void setVk_f2(Object vk_f2) {
@@ -1970,7 +1970,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f3() {
-        return new Integer(114); //  vk_f3;
+        return 114d; //  vk_f3;
     }
 
     public void setVk_f3(Object vk_f3) {
@@ -1978,7 +1978,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f4() {
-        return new Integer(115); //  vk_f4;
+        return 115d; //  vk_f4;
     }
 
     public void setVk_f4(Object vk_f4) {
@@ -1986,7 +1986,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f5() {
-       return new Integer(116); //  vk_f5;
+       return 116d; //  vk_f5;
     }
 
     public void setVk_f5(Object vk_f5) {
@@ -1994,7 +1994,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f6() {
-        return new Integer(117); //  vk_f6;
+        return 117d; //  vk_f6;
     }
 
     public void setVk_f6(Object vk_f6) {
@@ -2002,7 +2002,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f7() {
-        return new Integer(118); //  vk_f7;
+        return 118d; //  vk_f7;
     }
 
     public void setVk_f7(Object vk_f7) {
@@ -2010,7 +2010,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f8() {
-        return new Integer(119); //  vk_f8;
+        return 119d; //  vk_f8;
     }
 
     public void setVk_f8(Object vk_f8) {
@@ -2018,7 +2018,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_f9() {
-        return new Integer(120); //  vk_f9;
+        return 120d; //  vk_f9;
     }
 
     public void setVk_f9(Object vk_f9) {
@@ -2026,7 +2026,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_home() {
-        return new Integer(36);
+        return 36d;
     }
 
     public void setVk_home(Object vk_home) {
@@ -2034,7 +2034,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_insert() {
-        return new Integer(45);
+        return 45d;
     }
 
     public void setVk_insert(Object vk_insert) {
@@ -2042,7 +2042,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_lalt() {
-        return new Integer(164); //  vk_lalt;
+        return 164d; //  vk_lalt;
     }
 
     public void setVk_lalt(Object vk_lalt) {
@@ -2050,7 +2050,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_lcontrol() {
-        return new Integer(162); //  vk_lcontrol;
+        return 162d; //  vk_lcontrol;
     }
 
     public void setVk_lcontrol(Object vk_lcontrol) {
@@ -2058,7 +2058,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_left() {
-        return new Integer(37);
+        return 37d;
     }
 
     public void setVk_left(Object vk_left) {
@@ -2066,7 +2066,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_lshift() {
-        return new Integer(160); //  vk_lshift;
+        return 160d; //  vk_lshift;
     }
 
     public void setVk_lshift(Object vk_lshift) {
@@ -2074,7 +2074,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_multiply() {
-        return new Integer(106); //  vk_multiply;
+        return 106d; //  vk_multiply;
     }
 
     public void setVk_multiply(Object vk_multiply) {
@@ -2082,7 +2082,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_nokey() {
-        return new Integer(0); //  vk_nokey;
+        return 0d; //  vk_nokey;
     }
 
     public void setVk_nokey(Object vk_nokey) {
@@ -2090,7 +2090,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad0() {
-        return new Integer(96); //  vk_numpad0;
+        return 96d; //  vk_numpad0;
     }
 
     public void setVk_numpad0(Object vk_numpad0) {
@@ -2098,7 +2098,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad1() {
-        return new Integer(97); //  vk_numpad1;
+        return 97d; //  vk_numpad1;
     }
 
     public void setVk_numpad1(Object vk_numpad1) {
@@ -2106,7 +2106,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad2() {
-        return new Integer(98); //  vk_numpad2;
+        return 98d; //  vk_numpad2;
     }
 
     public void setVk_numpad2(Object vk_numpad2) {
@@ -2114,7 +2114,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad3() {
-        return new Integer(99); //  vk_numpad3;
+        return 99d; //  vk_numpad3;
     }
 
     public void setVk_numpad3(Object vk_numpad3) {
@@ -2122,7 +2122,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad4() {
-        return new Integer(100); //  vk_numpad4;
+        return 100d; //  vk_numpad4;
     }
 
     public void setVk_numpad4(Object vk_numpad4) {
@@ -2130,7 +2130,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad5() {
-        return new Integer(101); //  vk_numpad5;
+        return 101d; //  vk_numpad5;
     }
 
     public void setVk_numpad5(Object vk_numpad5) {
@@ -2138,7 +2138,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad6() {
-        return new Integer(102); //  vk_numpad6;
+        return 102d; //  vk_numpad6;
     }
 
     public void setVk_numpad6(Object vk_numpad6) {
@@ -2146,7 +2146,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad7() {
-        return new Integer(103); //  vk_numpad7;
+        return 103d; //  vk_numpad7;
     }
 
     public void setVk_numpad7(Object vk_numpad7) {
@@ -2154,7 +2154,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad8() {
-        return new Integer(104); //  vk_numpad8;
+        return 104d; //  vk_numpad8;
     }
 
     public void setVk_numpad8(Object vk_numpad8) {
@@ -2162,7 +2162,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_numpad9() {
-        return new Integer(105); //  vk_numpad9;
+        return 105d; //  vk_numpad9;
     }
 
     public void setVk_numpad9(Object vk_numpad9) {
@@ -2170,7 +2170,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_pagedown() {
-        return new Integer(34); //  vk_pagedown;
+        return 34d; //  vk_pagedown;
     }
 
     public void setVk_pagedown(Object vk_pagedown) {
@@ -2178,7 +2178,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_pageup() {
-        return new Integer(33); //  vk_pageup;
+        return 33d; //  vk_pageup;
     }
 
     public void setVk_pageup(Object vk_pageup) {
@@ -2186,7 +2186,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_pause() {
-        return new Integer(19); //  vk_pause;
+        return 19d; //  vk_pause;
     }
 
     public void setVk_pause(Object vk_pause) {
@@ -2194,7 +2194,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_printscreen() {
-        return new Integer(44); //  vk_printscreen;
+        return 44d; //  vk_printscreen;
     }
 
     public void setVk_printscreen(Object vk_printscreen) {
@@ -2202,7 +2202,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_ralt() {
-        return new Integer(165); //  vk_ralt;
+        return 165d; //  vk_ralt;
     }
 
     public void setVk_ralt(Object vk_ralt) {
@@ -2210,7 +2210,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_rcontrol() {
-        return new Integer(163); //  vk_rcontrol;
+        return 163d; //  vk_rcontrol;
     }
 
     public void setVk_rcontrol(Object vk_rcontrol) {
@@ -2226,7 +2226,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_right() {
-        return new Integer(39);
+        return 39d;
     }
 
     public void setVk_right(Object vk_right) {
@@ -2234,7 +2234,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_rshift() {
-        return new Integer(161); //  vk_rshift;
+        return 161d; //  vk_rshift;
     }
 
     public void setVk_rshift(Object vk_rshift) {
@@ -2242,7 +2242,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_shift() {
-        return new Integer(16);
+        return 16d;
     }
 
     public void setVk_shift(Object vk_shift) {
@@ -2250,7 +2250,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_space() {
-       return new Integer(32);
+       return 32d;
     }
 
     public void setVk_space(Object vk_space) {
@@ -2258,7 +2258,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_subtract() {
-        return new Integer(109); //  vk_subtract;
+        return 109d; //  vk_subtract;
     }
 
     public void setVk_subtract(Object vk_subtract) {
@@ -2266,7 +2266,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_tab() {
-        return new Integer(9);
+        return 9d;
     }
 
     public void setVk_tab(Object vk_tab) {
@@ -2274,7 +2274,7 @@ Color c_green = new Color(java.awt.Color.GREEN);
     }
 
     public Object getVk_up() {
-        return new Integer(38);
+        return 38d;
     }
 
     public void setVk_up(Object vk_up) {
