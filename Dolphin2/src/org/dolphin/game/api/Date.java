@@ -9,6 +9,7 @@
 
 package org.dolphin.game.api;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 /**
@@ -523,7 +524,8 @@ public class Date {
      * @return
      */
     public static double yearSpan(double d1, double d2) {
-        return d1 * 365.25 - d2 * 365.25;
+        return Math.abs(getYear(d1) - getYear(d2));//+(monthSpan(d1,d2)/100);
+    	//return d1 * 365.25 - d2 * 365.25;
     }
 
     /**
@@ -533,7 +535,11 @@ public class Date {
      * @return
      */
     public static double monthSpan(double d1, double d2) {
-        return getMonth(d1) - getMonth(d2);
+    	return Math.abs((getYear(d1)*12)+getMonth(d1)) - ((getYear(d2)*12)+getMonth(d2));
+    	//Calendar nDate = Calendar.getInstance();
+    	//nDate.;
+    	//d1=Math.abs(d1-d2);
+       // return getYear(d1)*12 + (getMonth(d1)-1);// - getMonth(d2);
     }
 
     /**
@@ -622,7 +628,12 @@ public class Date {
      * @return
      */
     public static double dateOf(double d) {
-        return Math.floor(d);
+    	Calendar nDate = Calendar.getInstance();
+        nDate.setTimeInMillis((long)d);
+        nDate.set(Calendar.HOUR, 1);
+        nDate.set(Calendar.MINUTE, 1);
+        nDate.set(Calendar.SECOND, 1);
+        return nDate.getTime().getTime();
     }
 
     /**
@@ -631,7 +642,12 @@ public class Date {
      * @return
      */
     public static double timeOf(double d) {
-        return Math.frac(d);
+    	Calendar nDate = Calendar.getInstance();
+        nDate.setTimeInMillis((long)d);
+        nDate.set(Calendar.YEAR, 1);
+        nDate.set(Calendar.MONTH, 1);
+        nDate.set(Calendar.DAY_OF_MONTH, 1);
+        return nDate.getTime().getTime();
     }
 
     /**
@@ -640,11 +656,11 @@ public class Date {
      * @return
      */
     public static String datetimetoString(double d) {
-        long milis = (int) (d * dateConvert);
-        long time = then.getTime().getTime();
+        //long milis = (int) (d * dateConvert);
+        //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//time + milis);
-        return new String(nDate.toString());
+        return DateFormat.getDateInstance(DateFormat.SHORT).format(nDate.getTime());
     }
 
     /**
@@ -657,7 +673,8 @@ public class Date {
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//time + milis);
-        return new String(nDate.toString());
+        
+        return DateFormat.getDateInstance(DateFormat.SHORT).format(nDate.getTime());
     }
 
     /**
@@ -666,12 +683,13 @@ public class Date {
      * @return
      */
     public static String timeString(double d) {
-        long milis = (int) (Math.frac(d) * dateConvert);
+        //long milis = (int) (Math.frac(d) * dateConvert);
         //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//
         //nDate.setTimeInMillis(milis);
-        return new String(nDate.toString());
+        
+        return DateFormat.getTimeInstance(DateFormat.SHORT).format(nDate.getTime());
     }
 
     /**

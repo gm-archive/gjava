@@ -641,7 +641,7 @@ public static Object date_date_string(Object date)
 
 public static Object date_time_string(Object date)
 {
-	return Date.datetimetoString((Double)date);
+	return Date.timeString((Double)date);
 }
 
 public static Object date_days_in_month(Object date)
