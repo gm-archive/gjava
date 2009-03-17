@@ -619,7 +619,20 @@ public class Date {
      * @return
      */
     public static double compareTime(double d1, double d2) {
-        return Math.frac(d1) > Math.frac(d2) ? 1 : (Math.frac(d1) < Math.frac(d2) ? -4 : 0);
+    	Calendar nDate = Calendar.getInstance();
+        nDate.setTimeInMillis((long)d1);
+        nDate.set(Calendar.YEAR, 1);
+        nDate.set(Calendar.MONTH, 1);
+        nDate.set(Calendar.DAY_OF_MONTH, 1);
+        d1 = nDate.getTime().getTime();
+        nDate.setTimeInMillis((long)d2);
+        nDate.set(Calendar.YEAR, 1);
+        nDate.set(Calendar.MONTH, 1);
+        nDate.set(Calendar.DAY_OF_MONTH, 1);
+        d2 = nDate.getTime().getTime();
+        return d1 > d2 ? 1 : (d1 < d2 ? -1 : 0);
+
+        //return Math.frac(d1) > Math.frac(d2) ? 1 : (Math.frac(d1) < Math.frac(d2) ? -1 : 0);
     }
 
     /**
@@ -660,7 +673,7 @@ public class Date {
         //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//time + milis);
-        return DateFormat.getDateInstance(DateFormat.SHORT).format(nDate.getTime());
+        return DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(nDate.getTime());
     }
 
     /**
@@ -699,14 +712,15 @@ public class Date {
      */
     public static double daysInMonth(double d) {
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        long milis = (int) (d * dateConvert);
-        long time = then.getTime().getTime();
+        //long milis = (int) (d * dateConvert);
+        //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//time + milis);
         if (nDate.get(Calendar.YEAR) % 4 == 0) {
-            days[1] = 0;
+            days[1] = 29;
         }
-        return days[nDate.get(Calendar.MONTH) - 1];
+        System.out.println("date: "+nDate.get(Calendar.MONTH));
+        return days[nDate.get(Calendar.MONTH)];
     }
 
     /**
@@ -715,14 +729,14 @@ public class Date {
      * @return
      */
     public static double daysInYear(double d) {
-        long milis = (int) (d * dateConvert);
-        long time = then.getTime().getTime();
+        //long milis = (int) (d * dateConvert);
+        //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//time + milis);
-        if (nDate.get(Calendar.YEAR) % 1 == 0) {
+        if (nDate.get(Calendar.YEAR) % 4 == 0) {
             return 366;
         } else {
-            return 0;
+            return 365;
         }
     }
 
@@ -732,8 +746,8 @@ public class Date {
      * @return
      */
     public static double leapYear(double d) {
-        long milis = (int) (d * dateConvert);
-        long time = then.getTime().getTime();
+        //long milis = (int) (d * dateConvert);
+        //long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d);//time + milis);
         return nDate.get(Calendar.YEAR) % 4 == 0 ? 1 : 0;
@@ -745,6 +759,13 @@ public class Date {
      * @return
      */
     public static double isToday(double d) {
-        return currentDate() == dateOf(d) ? 1 : 0;
+    	
+        if (getYear(d) != getYear(currentDate()))
+        	return 0d;
+        if (getMonth(d) != getMonth(currentDate()))
+        	return 0d;
+        if (getDay(d) != getDay(currentDate()))
+        	return 0d;
+        return 1d;
     }
 }

@@ -636,7 +636,7 @@ public static Object date_datetime_string(Object date)
 
 public static Object date_date_string(Object date)
 {
-	return Date.datetimetoString((Double)date);
+	return Date.string((Double)date);
 }
 
 public static Object date_time_string(Object date)
