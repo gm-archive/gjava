@@ -903,20 +903,67 @@ public /*static*/ Object distance_to_point(Object x, Object y)
 
 public /*static*/ Object distance_to_object(Object obj)
 {
-   // Game.currentRoom.instances
-    /*double smalldist =-1 ;//= (Actor) Game.currentRoom.instances.elementAt(0);
-       for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
-        Actor Object = (Actor) Game.currentRoom.instances.elementAt(i);
-        if (Object.equals(obj.getClass())) {
-        double dist = (sqrt(((Object.x-self.x)*(Object.x-self.x)+(Object.y-self.y)*(Object.y-self.y))))((Double));
-    if (i==0) 
-        smalldist = dist;
-    else if (dist < smalldist)
-        smalldist = dist;
-       }*/
-    return distance_to_point(
-            ((Actor) obj).getX(),
-            ((Actor) obj).getY());
+	double shortestdist=1000000,tempdist=0;
+	java.lang.String name="";
+    if (obj instanceof GMResource){
+    name=((GMResource)obj).theclass.getName();
+    for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (a.getClass().getName().equals(name)) {
+            	if (a.instance_id == self.instance_id) {
+                    //collided with self
+                } else {
+            	tempdist=(Double)distance_to_point(a.x,a.y);
+            	if (tempdist < shortestdist)
+            		shortestdist = tempdist;
+                }
+             }
+        }
+     }
+    } else if (obj.equals(other)){
+        
+        for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            if (Game.currentRoom.instances.elementAt(i) !=null){
+                Actor a = (Game.currentRoom.instances.elementAt(i));
+                if (a.equals(other)) {
+                	tempdist=(Double)distance_to_point(a.x,a.y);
+                	if (tempdist < shortestdist)
+                		shortestdist = tempdist;
+                 }
+            }
+         }
+        }
+else if (obj instanceof Double){
+        
+        for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            if (Game.currentRoom.instances.elementAt(i) !=null){
+                Actor a = (Game.currentRoom.instances.elementAt(i));
+                if (a.instance_id==((Double)obj)) {
+                	tempdist=(Double)distance_to_point(a.x,a.y);
+                	if (tempdist < shortestdist)
+                		shortestdist = tempdist;
+                 }
+            }
+         }
+        }
+else if (obj.equals(all)){
+        
+        for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            if (Game.currentRoom.instances.elementAt(i) !=null){
+                Actor a = (Game.currentRoom.instances.elementAt(i));
+                 
+                if (a.instance_id == self.instance_id) {
+                    //collided with self
+                } else {
+                	tempdist=(Double)distance_to_point(a.x,a.y);
+                	if (tempdist < shortestdist)
+                		shortestdist = tempdist;
+                 }
+            }
+         }
+        }
+    return shortestdist;
        }
      
 /*return (smalldist);
