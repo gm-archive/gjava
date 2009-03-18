@@ -9,6 +9,7 @@ Make to boolean function
 test action relatives
 
 enter key event does not work!
+distance_to_point(object1.x,object1.y) doesn't work
 
 
 ||||| Functions

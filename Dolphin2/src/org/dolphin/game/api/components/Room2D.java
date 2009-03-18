@@ -358,8 +358,9 @@ public void render(Graphics2D g2d2)  {
     for (int i = 0; i < instances.size(); i++) {
            if (instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
-
+               
                if (a.getClass().getName().equals(name.getName())) {
+            	   
                      return a;
                 }
            }

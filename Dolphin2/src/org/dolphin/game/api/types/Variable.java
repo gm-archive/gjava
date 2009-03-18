@@ -141,6 +141,12 @@ private static final long serialVersionUID = 1L;
 		return Actor.noone;
 		
 	}
+	
+	public static Class getTheClass(Object o){
+		if (o instanceof GMResource)
+			return ((GMResource)o).theclass;
+		return o.getClass();
+	}
 
 	/*
 	 * This is used in scripts to get the argument from the list without throwing a outofbounds exception

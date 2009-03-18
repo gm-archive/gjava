@@ -923,11 +923,19 @@ public class PlatformCore  {
             System.out.println("more than one . variable!");
         }
         else if(variable.contains(".")) {
-            instance = "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass())";
+            instance = "Game.currentRoom.getActorwithname(Variable.getTheClass("+variable(variable.substring(0, variable.indexOf(".")))+"))";
+           
+            variable = variable.substring(variable.indexOf(".")+1);//remove the instance part from variable
+            /*if (checkvariable(variable(variable.substring(variable.indexOf(".")+1)))) {
+                return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()) + "()";
+            } else {
+            	System.out.println("not built in:"+variable(variable.substring(variable.indexOf("."))));
+            }*/
         }
         else if(variable.startsWith("(")) {
             instance = "(self)";
             System.out.println("It thinks the variable is instance() but is it?"+variable);
+        
         }
         else {
             instance = "self";
@@ -983,10 +991,11 @@ public class PlatformCore  {
         {
         return "\""+variable+"\"";
         }
+        variable = variable.substring(variable.indexOf(".")+1,variable.length());
         if (checkvariable(variable)) {
             return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()) + "()";
         }
-        variable = variable.substring(variable.indexOf(".")+1,variable.length());
+        
         
         value=instance+".getVariable(\""+variable+"\")";
         return value;

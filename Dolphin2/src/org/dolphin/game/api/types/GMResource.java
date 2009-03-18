@@ -32,5 +32,7 @@ public class GMResource extends Variable {
     public Class getTheClass(){
     	return theclass;
     }
+    
+    
 
 }
