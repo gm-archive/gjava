@@ -849,32 +849,48 @@ public /*static*/ Object move_towards_point(Object xto, Object yto, Object sp)
 return 0d;
 }
 
-public static Object move_contact_solid(Object dir, Object maxdist)
+public Object move_contact_solid(Object dir, Object maxdist)
 {
 return 0d;
 }
 
-public static Object move_contact_all(Object dir, Object maxdist)
+public  Object move_contact_all(Object dir, Object maxdist)
 {
 return 0d;
 }
 
-public static Object move_outside_solid(Object dir, Object maxdist)
+public Object move_outside_solid(Object dir, Object maxdist)
+{
+	int distance=0;
+	while (!Variable.toBoolean(place_free(self.getX(),self.getY())) ){
+		self.x +=  Math.cos(Math.degtorad((Double)dir));
+        self.y += -(Math.sin(Math.degtorad((Double)dir)));	
+        if ((distance >= (Double)maxdist))
+        	break;
+	distance++;	
+	}
+	return 0d;
+}
+
+public Object move_outside_all(Object dir, Object maxdist)
+{
+	int distance=0;
+	while (!Variable.toBoolean(place_empty(self.getX(),self.getY())) ){
+		self.x +=  Math.cos(Math.degtorad((Double)dir));
+        self.y += -(Math.sin(Math.degtorad((Double)dir)));	
+        if ((distance >= (Double)maxdist))
+        	break;
+	distance++;	
+	}
+	return 0d;
+}
+
+public  Object move_bounce_solid(Object advanced)
 {
 return 0d;
 }
 
-public static Object move_outside_all(Object dir, Object maxdist)
-{
-return 0d;
-}
-
-public static Object move_bounce_solid(Object advanced)
-{
-return 0d;
-}
-
-public static Object move_bounce_all(Object advanced)
+public Object move_bounce_all(Object advanced)
 {
 return 0d;
 }
