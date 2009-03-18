@@ -8,7 +8,7 @@ Parser: auto do +,/,-,*,== for doubles to other doubles
 Make to boolean function
 test action relatives
 
-if (something == true) does not work!!!!!
+if (something == true) does not work!!!!! also id (function ==1) gives different result than if(function) !
 
 
 ||||| Functions

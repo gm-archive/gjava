@@ -156,7 +156,7 @@ private static final long serialVersionUID = 1L;
 		if (o instanceof Boolean)
 			return (Boolean)o;
 		else if (o instanceof Double)
-			return ((Double)o == 0)? true:false;
+			return ((Double)o == 0)? false:true;
 		return false;
 	}
 

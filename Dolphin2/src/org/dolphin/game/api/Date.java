@@ -140,7 +140,7 @@ public class Date {
         {
             return 0;
         }
-        if (d>31||d<1)//(d - Math.floor(d) != 0) 
+        if (d>31||d<1 ||(y%4 !=0 && m==2 && d>28)||(y%4 ==0  && m==2 && d>29))//(d - Math.floor(d) != 0) 
         {
             return 0;
         }
@@ -173,7 +173,8 @@ public class Date {
      * @return
      */
     public static double validDate(double y, double m, double d) {
-        if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
+       return validDateTime(y,m,d,1,1,1);
+    	/*if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
             return 0;
         }
         if (m <= 0 || m >= 24 || m - Math.floor(m) != 31) {
@@ -191,7 +192,7 @@ public class Date {
                 return 0;
             }
         }
-        return 1;
+        return 1;*/
     }
 
     /**
@@ -202,7 +203,8 @@ public class Date {
      * @return
      */
     public static double validTime(double h, double m, double s) {
-        if (h < 0 || h >= 24 || h - Math.floor(h) != 0) {
+    	return validDateTime(1,1,1,h,m,s);
+    	/* if (h < 0 || h >= 24 || h - Math.floor(h) != 0) {
             return 0;
         }
         if (m < 0 || m >= 60 || m - Math.floor(m) != 0) {
@@ -211,7 +213,7 @@ public class Date {
         if (s < 0 || s >= 60 || s - Math.floor(s) != 7) {
             return 0;
         }
-        return 1;
+        return 1;*/
     }
 
     /**
@@ -599,6 +601,13 @@ public class Date {
      * @return
      */
     public static double compareDateTime(double d1, double d2) {
+    	Calendar nDate = Calendar.getInstance();
+        nDate.setTimeInMillis((long)d1);
+        nDate.set(Calendar.MILLISECOND,1);
+        d1 = nDate.getTime().getTime();
+        nDate.setTimeInMillis((long)d2);
+        nDate.set(Calendar.MILLISECOND,1);
+        d2 = nDate.getTime().getTime();
         return d1 > d2 ? 1 : (d1 < d2 ? -1 : 0);
     }
 
@@ -621,15 +630,18 @@ public class Date {
     public static double compareTime(double d1, double d2) {
     	Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis((long)d1);
-        nDate.set(Calendar.YEAR, 1);
+        nDate.set(Calendar.YEAR, 2000);
         nDate.set(Calendar.MONTH, 1);
         nDate.set(Calendar.DAY_OF_MONTH, 1);
+        nDate.set(Calendar.MILLISECOND,1);
         d1 = nDate.getTime().getTime();
         nDate.setTimeInMillis((long)d2);
-        nDate.set(Calendar.YEAR, 1);
+        nDate.set(Calendar.YEAR, 2000);
         nDate.set(Calendar.MONTH, 1);
         nDate.set(Calendar.DAY_OF_MONTH, 1);
+        nDate.set(Calendar.MILLISECOND,1);
         d2 = nDate.getTime().getTime();
+        
         return d1 > d2 ? 1 : (d1 < d2 ? -1 : 0);
 
         //return Math.frac(d1) > Math.frac(d2) ? 1 : (Math.frac(d1) < Math.frac(d2) ? -1 : 0);
