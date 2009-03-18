@@ -736,27 +736,73 @@ public Object place_meeting(Object x, Object y, Object obj)
     java.lang.String name="";
     if (obj instanceof GMResource){
     name=((GMResource)obj).theclass.getName();
-    } else{
-    name=obj.getClass().getName();
-    }
-     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
-           if (Game.currentRoom.instances.elementAt(i) !=null){
-               Actor a = (Game.currentRoom.instances.elementAt(i));
-               //System.out.println("name:"+name+" a.getClass().getName():"+a.getClass().getName());
-               if (a.getClass().getName().equals(name)) {
-                        System.out.println("correct name");
-                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+    for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (a.getClass().getName().equals(name)) {
+                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
 
-                        if (a.instance_id == self.instance_id) {
-                           // System.out.println("collided with self");
-                        } else {
-
-                            return true;
-                        }
-                    }
-                }
-           }
+                     if (a.instance_id == self.instance_id) {
+                        // collided with self
+                     } else {
+                         return true;
+                     }
+                 }
+             }
         }
+     }
+    } else if (obj.equals(all)){
+    	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            if (Game.currentRoom.instances.elementAt(i) !=null){
+                Actor a = (Game.currentRoom.instances.elementAt(i));
+                {
+                     if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+
+                         if (a.instance_id == self.instance_id) {
+                            // collided with self
+                         } else {
+                             return true;
+                         }
+                     }
+                 }
+            }
+         }
+    }
+ else if (obj.equals(other)){
+	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+	        if (Game.currentRoom.instances.elementAt(i) !=null){
+	            Actor a = (Game.currentRoom.instances.elementAt(i));
+	            if (a.equals(other)) {
+	                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+
+	                     if (a.instance_id == self.instance_id) {
+	                        // collided with self
+	                     } else {
+	                         return true;
+	                     }
+	                 }
+	             }
+	        }
+	     }
+}
+    else{
+    	//instanceid
+    	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+    	        if (Game.currentRoom.instances.elementAt(i) !=null){
+    	            Actor a = (Game.currentRoom.instances.elementAt(i));
+    	             {
+    	                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+
+    	                     if (a.instance_id == (Double)obj) {
+    	                      
+    	                         return true;
+    	                     }
+    	                 }
+    	             }
+    	        }
+    	     }
+    }
+    
 return 0d;
 }
 
@@ -878,13 +924,85 @@ public /*static*/ Object distance_to_object(Object obj)
 
 public static Object position_empty(Object x, Object y)
 {
+	   for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+	           if (Game.currentRoom.instances.elementAt(i) !=null){
+	               Actor a = (Game.currentRoom.instances.elementAt(i));
+	               {
+	                   
+	            	   if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+	                        //if not instance id
+	                        return 0d;
+	                    }
+	                }
+	           }
+	        }
+	return true;
+	}
+
+public static Object position_meeting(Object x, Object y, Object obj)
+
+{
+    java.lang.String name="";
+    if (obj instanceof GMResource){
+    name=((GMResource)obj).theclass.getName();
+    for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (a.getClass().getName().equals(name)) {
+            	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+                         return true;
+                     
+                 }
+             }
+        }
+     }
+    } else if (obj.equals(all)){
+    	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            if (Game.currentRoom.instances.elementAt(i) !=null){
+                Actor a = (Game.currentRoom.instances.elementAt(i));
+                {
+                	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+
+                        return true;
+                     }
+                 }
+            }
+         }
+    }
+ else if (obj.equals(other)){
+	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+	        if (Game.currentRoom.instances.elementAt(i) !=null){
+	            Actor a = (Game.currentRoom.instances.elementAt(i));
+	            if (a.equals(other)) {
+	            	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+
+	                    return true;
+	                 }
+	             }
+	        }
+	     }
+}
+    else{
+    	//instanceid
+    	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+    	        if (Game.currentRoom.instances.elementAt(i) !=null){
+    	            Actor a = (Game.currentRoom.instances.elementAt(i));
+    	             {
+    	                 if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+
+    	                     if (a.instance_id == (Double)obj) {
+    	                      
+    	                         return true;
+    	                     }
+    	                 }
+    	             }
+    	        }
+    	     }
+    }
+    
 return 0d;
 }
 
-public static Object position_meeting(Object x, Object y, Object obj)
-{
-return 0d;
-}
 
 /*
  * 
@@ -1277,77 +1395,77 @@ public static Object show_debug_message(Object str)
     return 0d;
 }
 
-public static Object Object_global_exists(Object name)
+public static Object variable_global_exists(Object name)
 {
 	return new Boolean(Global.variables.contains(name.toString()));
 }
 
-public static Object Object_global_get(Object name)
+public static Object variable_global_get(Object name)
 {
 	return Global.variables.get(name.toString());
 }
 
-public static Object Object_global_array_get(Object name, Object ind)
+public static Object variable_global_array_get(Object name, Object ind)
 {
 	return Global.variables.get(name + "[" + ind + "]");
 }
 
-public static Object Object_global_array2_get(Object name, Object ind1, Object ind2)
+public static Object variable_global_array2_get(Object name, Object ind1, Object ind2)
 {
 	return Global.variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
-public static Object Object_global_set(Object name, Object value)
+public static Object variable_global_set(Object name, Object value)
 {
 	Global.variables.put(name.toString(), value);
 return 0d;
 }
 
-public static Object Object_global_array_set(Object name, Object ind, Object value)
+public static Object variable_global_array_set(Object name, Object ind, Object value)
 {
 	Global.variables.put(name + "[" + ind + "]", value);	
 return 0d;
 }
 
-public static Object Object_global_array2_set(Object name, Object ind1, Object ind2, Object value)
+public static Object variable_global_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
 	Global.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
 return 0d;
 }
 
-public Object Object_local_exists(Object name)
+public Object variable_local_exists(Object name)
 {
 	return new Boolean(self.variables.contains(name.toString()));
 }
 
-public Object Object_local_get(Object name)
+public Object variable_local_get(Object name)
 {
 	return self.variables.get(name.toString());
 }
 
-public Object Object_local_array_get(Object name, Object ind)
+public Object variable_local_array_get(Object name, Object ind)
 {
 	return self.variables.get(name + "[" + ind + "]");
 }
 
-public Object Object_local_array2_get(Object name, Object ind1, Object ind2)
+public Object variable_local_array2_get(Object name, Object ind1, Object ind2)
 {
 	return self.variables.get(name + "[" + ind1 + "]" + "[" + ind2 + "]");
 }
 
-public Object Object_local_set(Object name, Object value)
+public Object variable_local_set(Object name, Object value)
 {
 	self.variables.put(name.toString(), value);
 	return 0d;
 }
 
-public Object Object_local_array_set(Object name, Object ind, Object value)
+public Object variable_local_array_set(Object name, Object ind, Object value)
 {
 	self.variables.put(name + "[" + ind + "]", value);
 return 0d;
 }
 
-public Object Object_local_array2_set(Object name, Object ind1, Object ind2, Object value)
+public Object variable_local_array2_set(Object name, Object ind1, Object ind2, Object value)
 {
 	self.variables.put(name + "[" + ind1 + "]" + "[" + ind2 + "]", value);
 return 0d;

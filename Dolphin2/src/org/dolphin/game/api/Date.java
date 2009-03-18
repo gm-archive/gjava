@@ -526,7 +526,7 @@ public class Date {
      * @return
      */
     public static double yearSpan(double d1, double d2) {
-        return Math.abs(getYear(d1) - getYear(d2));//+(monthSpan(d1,d2)/100);
+        return Math.abs((getYear(d1)+getMonth(d1)/12 + getDay(d1)/(30*12)) - (getYear(d2)+getMonth(d2)/12 + getDay(d2)/(30*12)));//+(monthSpan(d1,d2)/100);
     	//return d1 * 365.25 - d2 * 365.25;
     }
 
@@ -537,7 +537,8 @@ public class Date {
      * @return
      */
     public static double monthSpan(double d1, double d2) {
-    	return Math.abs((getYear(d1)*12)+getMonth(d1)) - ((getYear(d2)*12)+getMonth(d2));
+    	return yearSpan(d1,d2)*12;
+    	//return Math.abs((getYear(d1)*12)+getMonth(d1)) - ((getYear(d2)*12)+getMonth(d2));
     	//Calendar nDate = Calendar.getInstance();
     	//nDate.;
     	//d1=Math.abs(d1-d2);
@@ -551,7 +552,8 @@ public class Date {
      * @return
      */
     public static double weekSpan(double d1, double d2) {
-        return getWeek(d1) - getWeek(d2);
+       return monthSpan(d1,d2)*4.33;
+    	// return getWeek(d1) - getWeek(d2);
     }
 
     /**
@@ -561,7 +563,8 @@ public class Date {
      * @return
      */
     public static double daySpan(double d1, double d2) {
-        return getDay(d1) - getDay(d2);
+    	return monthSpan(d1,d2)*30 + Math.abs(getDay(d1)-getDay(d2));
+    	//return getDay(d1) - getDay(d2);
     }
 
     /**
@@ -571,7 +574,8 @@ public class Date {
      * @return
      */
     public static double hourSpan(double d1, double d2) {
-        return getHour(d1) - getHour(d2);
+    	return daySpan(d1,d2)*24 + Math.abs(getHour(d1)-getHour(d2)) + Math.abs(getMinute(d1)-getMinute(d2))/60;
+    	//return getHour(d1) - getHour(d2);
     }
 
     /**
@@ -581,7 +585,8 @@ public class Date {
      * @return
      */
     public static double minuteSpan(double d1, double d2) {
-        return getMinute(d1) - getMinute(d2);
+    	return hourSpan(d1,d2)*60 + Math.abs(getMinute(d1)-getMinute(d2)) + Math.abs(getSecond(d1)-getSecond(d2))/60;
+    	//return getMinute(d1) - getMinute(d2);
     }
 
     /**
@@ -591,7 +596,8 @@ public class Date {
      * @return
      */
     public static double secondSpan(double d1, double d2) {
-        return getSecond(d1) - getSecond(d2);
+    	return minuteSpan(d1,d2)*60 + Math.abs(getSecond(d1)-getSecond(d2));
+    	// return getSecond(d1) - getSecond(d2);
     }
 
     /**

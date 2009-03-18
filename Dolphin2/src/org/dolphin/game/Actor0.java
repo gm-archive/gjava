@@ -56,7 +56,7 @@ public class Actor0 extends Actor {
 		// setTimeline_index(new timeline0());
 		{
 			
-			
+			//place_meeting(x, y, obj)
 			
 			
 			
