@@ -313,8 +313,10 @@ public class ImageUtil {
 		BufferedImage image = ImageUtil.createImage(w, h, transparency);
 		
 		Graphics2D g = image.createGraphics();
+		//g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 		        RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		//g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 		g.rotate(Math.toRadians(angle), w / 2, h / 2);
 		g.drawImage(src, 0, 0, null);
 		g.dispose();

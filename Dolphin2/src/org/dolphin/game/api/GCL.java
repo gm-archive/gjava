@@ -851,12 +851,28 @@ return 0d;
 
 public Object move_contact_solid(Object dir, Object maxdist)
 {
-return 0d;
+	int distance=0;
+	while (Variable.toBoolean(place_free(self.getX(),self.getY())) ){
+		self.x +=  Math.cos(Math.degtorad((Double)dir));
+        self.y += -(Math.sin(Math.degtorad((Double)dir)));	
+        if ((distance >= (Double)maxdist))
+        	break;
+	distance++;	
+	}
+	return 0d;
 }
 
 public  Object move_contact_all(Object dir, Object maxdist)
 {
-return 0d;
+	int distance=0;
+	while (Variable.toBoolean(place_empty(self.getX(),self.getY())) ){
+		self.x +=  Math.cos(Math.degtorad((Double)dir));
+        self.y += -(Math.sin(Math.degtorad((Double)dir)));	
+        if ((distance >= (Double)maxdist))
+        	break;
+	distance++;	
+	}
+	return 0d;
 }
 
 public Object move_outside_solid(Object dir, Object maxdist)

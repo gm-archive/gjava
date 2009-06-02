@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +31,7 @@ import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.parser.PlatformCore;
 import org.dolphin.parser.gscriptLexer;
 import org.dolphin.parser.gscriptParser;
+import org.lateralgm.components.impl.ResNode;
 import org.lateralgm.file.GmFile;
 import org.lateralgm.file.GmFormatException;
 import org.lateralgm.main.LGM;
@@ -108,11 +110,18 @@ public class DolphinWriter {
         print(game, "  public static void initRooms(){");
         print(game, "     rooms=new Vector<Room2D>();");
         int i = 0;
-
-        for (Room o : gmFile.rooms) {
+        
+        Enumeration e = LGM.root.getChildAt(8).children();
+			while (e.hasMoreElements()){
+				ResNode rn = (ResNode)e.nextElement();
+				print(game, "     rooms.add(new " + rn.getRes().get().getName() + "(" + i + "));");
+	            i++;
+			}
+		
+		/*for (Room o : gmFile.rooms) {
             print(game, "     rooms.add(new " + o.getName() + "(" + i + "));");
             i++;
-        }
+        }*/
         print(game, "    currentRoom=rooms.firstElement();");
         print(game, "    currentRoom.setvisible();");
         print(game, "  }");
@@ -128,7 +137,7 @@ public class DolphinWriter {
         print(game, "import java.io.StringWriter;");
         print(game, "import java.io.Writer;");
         print(game, "import java.util.Vector;");
-
+        
         print(game, "import javax.swing.JOptionPane;");
 
         print(game, "import org.dolphin.game.api.Clipboard;");
@@ -253,7 +262,7 @@ public class DolphinWriter {
                 	int tpixel = img.getRGB(img.getMinX(),img.getHeight() - 1);
                 	img = Transparency.makeColorTransparent(img,new Color(tpixel));
                 ImageIO.write(img, "png", new File(FileFolder + File.separator + s.getName() + "[" + i + "].png"));
-                subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
+                subimg += ",ImageUtil.getImage(bsIO.getURL(\"" + s.getName() + "[" + i + "].png" + "\"), Transparency.TRANSLUCENT)";
                 }
             }
             if (s.getDisplayImage() !=null){

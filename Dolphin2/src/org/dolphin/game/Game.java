@@ -1,6 +1,7 @@
 package org.dolphin.game;
 
 import java.awt.Dimension;
+
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -15,6 +16,8 @@ import org.dolphin.game.api.Clipboard;
 import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
+
+
 import java.awt.image.BufferedImage;
 import java.io.Externalizable;
 import java.io.Serializable;
@@ -57,6 +60,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externa
         }
 
         public Sprite getSprite(String name){
+            
             if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0,true, new BufferedImage[]{getImage("sprimg_wall_0.png"),getImage("image.png")});
             else if (name.equals("image")) return new Sprite("image",24, 24, 0, 23, 23, 0, 0, 0,true, new BufferedImage[]{getImage("image.png")});
 

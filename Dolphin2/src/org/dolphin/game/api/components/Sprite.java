@@ -19,7 +19,7 @@ public class Sprite extends Variable implements Serializable {
 private static final long serialVersionUID = 1L;
 
     String filename;
-    transient BufferedImage[] spritename;
+    transient BufferedImage[] spritename,spritenameoriginal;
    // public int Transparent;
     public int sprite_width;
     public int sprite_height;
@@ -80,7 +80,7 @@ private static final long serialVersionUID = 1L;
         
         filename = sprite_name;
         this.spritename = images;//new BufferedImage[subimages-1];
-        
+        this.spritenameoriginal = images;
 //        for (int i = 0; i < images.length; i++) {
 //            
 //            if (images[i].equals("")) subimages--;
@@ -196,7 +196,10 @@ private static final long serialVersionUID = 1L;
     /*To fix does all objects instead of just the one that calls it*/
     public void angle(int angle){
         for (int i=0; i<subimages; i++)
-        spritename[i] = ImageUtil.rotate(spritename[i], angle);
+        {
+        	BufferedImage tempimage = spritenameoriginal[i];
+        spritename[i] = ImageUtil.rotate(tempimage, (int)(angle-image_angle));
+        }
         image_angle = angle;
     }
     

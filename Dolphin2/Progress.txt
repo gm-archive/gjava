@@ -10,5 +10,8 @@ test action relatives
 
 enter key event does not work!
 
+||||| General
+the rotate function alters the image so it looks terrible
+the rooms don't seem to be put in order
 
 ||||| Functions
