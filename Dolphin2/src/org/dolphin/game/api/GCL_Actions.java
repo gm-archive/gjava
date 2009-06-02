@@ -24,6 +24,7 @@ import org.dolphin.game.api.components.Game_Information;
 import org.dolphin.game.api.components.Highscore;
 import org.dolphin.game.api.components.SaveFile;
 import org.dolphin.game.api.exceptions.RoomChangedException;
+import org.dolphin.game.api.types.Color;
 import org.dolphin.game.api.types.GMResource;
 import org.dolphin.game.api.types.Variable;
 
@@ -218,7 +219,90 @@ return false;
 
 public Object action_draw_health(Object... obj)
 {
-	draw_text(obj[0], obj[1], ""+obj[2]+getHealth());
+	//uses numbers to select the colour
+	Object prev = draw_get_color();
+	
+	
+	//background color
+	double num = (Double)obj[4];
+	if (num==1)
+	draw_set_color(getC_black());
+	else if (num==2)
+		draw_set_color(getC_dkgray());
+	else if (num==3)
+		draw_set_color(getC_silver());
+	else if (num==4)
+		draw_set_color(getC_white());
+	else if (num==5)
+		draw_set_color(getC_maroon());
+	else if (num==6)
+		draw_set_color(getC_green());
+	else if (num==7)
+		draw_set_color(getC_olive());
+	else if (num==8)
+		draw_set_color(getC_navy());
+	else if (num==9)
+		draw_set_color(getC_purple());
+	else if (num==10)
+		draw_set_color(getC_teal());
+	else if (num==11)
+		draw_set_color(getC_red());
+	else if (num==12)
+		draw_set_color(getC_lime());
+	else if (num==13)
+		draw_set_color(getC_yellow());
+	else if (num==14)
+		draw_set_color(getC_blue());
+	else if (num==15)
+		draw_set_color(getC_fuchsia());
+	else if (num==16)
+		draw_set_color(getC_aqua());
+	if (num!=0)
+		draw_rectangle(obj[0], obj[1],obj[2], obj[3], false);
+	
+	
+	//foreground color
+	System.out.println("action_draw_health color:"+obj[5]);
+	num = (Double)obj[5];
+	num--;
+	//num=0 and num=-1 are different
+	if (num==1)
+	draw_set_color(getC_black());
+	else if (num==2)
+		draw_set_color(getC_dkgray());
+	else if (num==3)
+		draw_set_color(getC_silver());
+	else if (num==4)
+		draw_set_color(getC_white());
+	else if (num==5)
+		draw_set_color(getC_maroon());
+	else if (num==6)
+		draw_set_color(getC_green());
+	else if (num==7)
+		draw_set_color(getC_olive());
+	else if (num==8)
+		draw_set_color(getC_navy());
+	else if (num==9)
+		draw_set_color(getC_purple());
+	else if (num==10)
+		draw_set_color(getC_teal());
+	else if (num==11)
+		draw_set_color(getC_red());
+	else if (num==12)
+		draw_set_color(getC_lime());
+	else if (num==13)
+		draw_set_color(getC_yellow());
+	else if (num==14)
+		draw_set_color(getC_blue());
+	else if (num==15)
+		draw_set_color(getC_fuchsia());
+	else if (num==16)
+		draw_set_color(getC_aqua());
+	if (num>0)
+		draw_rectangle(obj[0], obj[1],((Double)getHealth()/100)*(Double)obj[2], obj[3], false);
+	
+	
+	draw_set_color(prev);
 return false;
 }
 
@@ -256,6 +340,7 @@ return false;
 
 public Object action_draw_text(Object... obj)
 {
+	draw_text(obj[1], obj[2], obj[0]);
 return false;
 }
 
