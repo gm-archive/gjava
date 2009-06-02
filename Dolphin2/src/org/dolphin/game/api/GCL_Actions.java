@@ -964,6 +964,12 @@ return false;
 
 public Object action_set_caption(Object... obj)
 {
+	setShow_score((((Double)obj[0])==1)?true:false);
+	setCaption_score(obj[1]);
+	setShow_lives((((Double)obj[2])==1)?true:false);
+	setCaption_lives(obj[3]);
+	setShow_health((((Double)obj[4])==1)?true:false);
+	setCaption_health(obj[5]);
 return false;
 }
 
