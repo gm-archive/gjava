@@ -13,6 +13,18 @@ public class Path {
 		this.precision=precision;
 	}
 	
+	public void setClosed(boolean closed){
+		if (closed) {
+		al.add(al.get(0));
+		this.closed=true;
+		}
+		else{
+			if (this.closed)
+			al.remove(al.size());
+			this.closed=false;
+			}
+	}
+	
 	public void addPoint(double x,double y, double speed){
 		al.add(new PathPoint(x,y,speed));
 	}

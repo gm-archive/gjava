@@ -874,6 +874,7 @@ public Object action_path(Object... obj)
 	self.setPath_speed(obj[1]);
 	self.setPath_endaction(obj[2]);
 	if (((Double)obj[3])==0){
+		//relative
 	self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
 	self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
 	}
@@ -881,7 +882,6 @@ public Object action_path(Object... obj)
 		//absolute
 		self.x = ((Path)self.getPath_index()).getPointX(0);
 		self.y = ((Path)self.getPath_index()).getPointY(0);
-		System.out.println("x:"+self.x+" y:"+self.y);
 	}
 return false;
 }

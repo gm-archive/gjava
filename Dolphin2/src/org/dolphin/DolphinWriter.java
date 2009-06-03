@@ -121,7 +121,8 @@ public class DolphinWriter {
             for (int i = 0; i < p.points.size(); i++) {
             	print(game,"     "+p.getName()+".addPoint("+p.points.get(i).x+","+p.points.get(i).y+","+p.points.get(i).speed+");");
 			}
-				
+            if (p.closed)
+            print(game,"     "+p.getName()+".setClosed("+p.closed+");");
 
         }
     }
