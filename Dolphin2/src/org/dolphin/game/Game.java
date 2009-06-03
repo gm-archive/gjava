@@ -22,12 +22,15 @@ import java.awt.image.BufferedImage;
 import java.io.Externalizable;
 import java.io.Serializable;
 import javax.swing.UIManager;
+
+import org.dolphin.game.api.components.Path;
 import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.components.Sprite;
 
 public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externalizable {
 	private static final long serialVersionUID = 1L;
 
+	public static Path DOLPHIN_nullpath;
 	//test fields
         
 

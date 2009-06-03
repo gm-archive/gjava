@@ -966,6 +966,13 @@ public class PlatformCore  {
         }
 
         if(DolphinWriter.gmFile !=null){
+        	
+        	 /*check if it is a path*/
+            if (DolphinWriter.gmFile.paths.get(variable)!=null)
+            {
+            return "Game."+DolphinWriter.gmFile.paths.get(variable).getName()+"";
+            }
+            
         /*check if it is a timeline*/
         if (DolphinWriter.gmFile.timelines.get(variable)!=null)
         {

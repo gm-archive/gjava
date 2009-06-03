@@ -22,6 +22,7 @@ import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Game_Information;
 import org.dolphin.game.api.components.Highscore;
+import org.dolphin.game.api.components.Path;
 import org.dolphin.game.api.components.SaveFile;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.Color;
@@ -868,11 +869,24 @@ return false;
 
 public Object action_path(Object... obj)
 {
+	self.setPath_index(obj[0]);
+	self.setPath_speed(obj[1]);
+	self.setPath_endaction(obj[2]);
+	if (((Double)obj[3])==0){
+	self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
+	self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
+	}
+	else {
+		//absolute
+		self.x = ((Path)self.getPath_index()).getPointX(0);
+		self.y = ((Path)self.getPath_index()).getPointY(0);
+	}
 return false;
 }
 
 public Object action_path_end(Object... obj)
 {
+	self.setPath_index(Game.DOLPHIN_nullpath);
 return false;
 }
 
@@ -883,6 +897,10 @@ return false;
 
 public Object action_path_speed(Object... obj)
 {
+	if ((Boolean)argument_relative)
+		self.setPath_speed((Double)self.getPath_speed()+(Double)obj[0]);
+	else
+	self.setPath_speed(obj[0]);
 return false;
 }
 

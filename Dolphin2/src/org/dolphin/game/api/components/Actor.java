@@ -281,10 +281,71 @@ private static final long serialVersionUID = 1L;
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }
 
+    public int pathxoffset=0,pathyoffset=0;//used for when path is relative to current position
+    
     /**
      * This will Move the object, should be called every step
      */
     public void Move() {
+    	
+    	//check for path
+    	if (!(getPath_index()==null)){
+    		int position = ((Double)getPath_position()).intValue();
+    		int scale = ((Double)getPath_scale()).intValue();
+    		double xto = (((Path)getPath_index()).getPointX(position)+pathxoffset)*scale;
+    		double yto = (((Path)getPath_index()).getPointY(position)+pathyoffset)*scale;
+    		double sp = (((Path)getPath_index()).getPointSpeed(position)/100)*((Double)getPath_speed());
+
+    		//following a path
+    		double dist=(Double)sqrt(((((Double)xto)-self.x)*(((Double)xto)-self.x)+(((Double)yto)-self.y)*(((Double)yto)-self.y)));
+    		   x+=((((Double)xto)-self.x)/dist)*Math.abs((Double)sp);
+    		   y+=((((Double)yto)-self.y)/dist)*Math.abs((Double)sp);
+    		
+    		   if(Math.abs(x-xto)<Math.abs(sp) && Math.abs(y-yto)<Math.abs(sp)){
+    			   boolean endofpath=false;
+    			  if (position < ((Path)getPath_index()).al.size()-1 ){
+    				  if (sp<0){
+    					  if (position >0){
+    					  setPath_position((double)position-1);
+    					  System.out.println("set path position to:"+(position-1));
+    					  }
+    					  else {
+    						  endofpath=true;
+    					  }
+    				  } else {
+    			   setPath_position((double)position+1);
+    			  System.out.println("set path position to:"+(position+1)); 
+    			  }
+    			  }
+    			  else {endofpath=true;}
+    				  if (endofpath) {
+    				  int action = ((Double)getPath_endaction()).intValue();
+    				  System.out.println("End of path action:"+action);
+    				  if (action==0){
+    					  //end the path
+    					  setPath_index(Game.DOLPHIN_nullpath);
+    					  setPath_position((double)0);
+    					  System.out.println("end the path");
+    				  }
+    				  else if (action==1){
+    					  //continue from start position
+    					  setPath_position((double)0);
+    					  x = ((Path)getPath_index()).getPointX(position);//*scale;
+    			    		y = ((Path)getPath_index()).getPointY(position);
+    				  }
+    				  else if (action==2){
+    					  //continue from current position
+    				  }
+    				  else if (action==3){
+    					  //reverse the path
+    					  setPath_speed(-((Double)getPath_speed()));
+    				  }
+    			  }
+    		   }
+    		   
+    		return;
+    	}
+    	
         xprevious = x;
         yprevious = y;
 
@@ -503,7 +564,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getPath_index() {
         if (path_index == null) {
-            path_index = 0d;
+            path_index = Game.DOLPHIN_nullpath;
         }
         return path_index;
     }
@@ -531,7 +592,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getPath_scale() {
         if (path_scale == null) {
-            path_scale = 0d;
+            path_scale = 1d;
         }
         return path_scale;
     }
@@ -767,7 +828,10 @@ private static final long serialVersionUID = 1L;
     }
 
     public void setPath_index(Object path_index) {
+    	if (path_index instanceof Path)
         this.path_index = path_index;
+    	else
+    		this.path_index = Game.DOLPHIN_nullpath;
     }
 
     public void setPath_orientation(Object path_orientation) {
@@ -775,7 +839,11 @@ private static final long serialVersionUID = 1L;
     }
 
     public void setPath_position(Object path_position) {
+    	
+    	if (path_position instanceof Double)
         this.path_position = path_position;
+    	else
+    		this.path_position = ((Integer)path_position).doubleValue();
     }
 
     public void setPath_positionprevious(Object path_positionprevious) {
@@ -787,6 +855,23 @@ private static final long serialVersionUID = 1L;
     }
 
     public void setPath_speed(Object path_speed) {
+    	if (path_index!=null)
+    	if (Math.sign((Double)getPath_speed()) != Math.sign((Double)path_speed))
+    	{
+    		int max = ((Path)path_index).al.size();
+    		//change in direction
+    		
+    		if ((Double)path_speed >0){
+    			if ((Double)getPath_position()+1 < max-1)
+    			setPath_position((Double)getPath_position()+1);
+    		}else{
+    			System.out.println("change direction, speed is now negative pos:"+(Double)getPath_position());
+    			if ((Double)getPath_position()-1 >-1){
+    			setPath_position((Double)getPath_position()-1);
+    			System.out.println("set path position to:"+((Double)getPath_position()-1));
+    			}
+    		}
+    	}
         this.path_speed = path_speed;
     }
 

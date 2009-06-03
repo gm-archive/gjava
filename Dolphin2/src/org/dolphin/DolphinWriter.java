@@ -106,6 +106,29 @@ public class DolphinWriter {
         }
     }
 
+    void parsePaths(BufferedWriter game) throws IOException {
+    	String paths="";
+    	for (org.lateralgm.resources.Path p : gmFile.paths) {
+    		paths+=p.getName()+", ";
+    	}
+    	print(game,"public static Path "+paths+" DOLPHIN_nullpath;");
+    	print(game, "  public static void initPaths(){");
+    for (org.lateralgm.resources.Path p : gmFile.paths) {
+    	
+    	
+    	if (p!=null){
+            	print(game,"     "+ p.getName() + " = new Path(" + p.closed + ", " + p.smooth + ", " + p.precision + ");");
+            for (int i = 0; i < p.points.size(); i++) {
+            	print(game,"     "+p.getName()+".addPoint("+p.points.get(i).x+","+p.points.get(i).y+","+p.points.get(i).speed+");");
+			}
+				
+
+        }
+    }
+    
+    print(game, "  }");
+    }
+    
     public void writeinitRooms(BufferedWriter game) throws IOException {
         print(game, "  public static void initRooms(){");
         print(game, "     rooms=new Vector<Room2D>();");
@@ -156,6 +179,7 @@ public class DolphinWriter {
         print(game, "        thegame=new Game();");
         print(game, "	game.setup(thegame, new Dimension(640, 480), false);");
         print(game, "	frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();");
+        print(game, "   initPaths();");
         print(game, "}");
         print(game, "");
         print(game, "public BufferedImage loadBackground(String name){");
@@ -184,6 +208,7 @@ public class DolphinWriter {
 
         parseSprites(game);
         parseSounds(game);
+        parsePaths(game);
         writeinitRooms(game);
 
         print(game, "        public void initResources() {");
@@ -241,7 +266,8 @@ public class DolphinWriter {
         print(game, "  }");
 
     }
-
+    
+    
     void parseBackgrounds() throws IOException {
         for (org.lateralgm.resources.Background b : gmFile.backgrounds) {
         	if(b.getBackgroundImage()!=null)
@@ -262,7 +288,7 @@ public class DolphinWriter {
                 	int tpixel = img.getRGB(img.getMinX(),img.getHeight() - 1);
                 	img = Transparency.makeColorTransparent(img,new Color(tpixel));
                 ImageIO.write(img, "png", new File(FileFolder + File.separator + s.getName() + "[" + i + "].png"));
-                subimg += ",ImageUtil.getImage(bsIO.getURL(\"" + s.getName() + "[" + i + "].png" + "\"), Transparency.TRANSLUCENT)";
+                subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
                 }
             }
             if (s.getDisplayImage() !=null){
@@ -742,7 +768,7 @@ public class DolphinWriter {
                     } else if (arg.kind == arg.ARG_GMOBJECT && arg.getRes() != null) {
                         code += "" + arg.getRes().get().getName() + "";
                     } else if (arg.kind == arg.ARG_PATH && arg.getRes() != null) {
-                        code += "\"" + arg.getRes().get().getName() + "\"";
+                        code += "" + arg.getRes().get().getName() + "";
                     } else if (arg.kind == arg.ARG_ROOM && arg.getRes() != null) {
                         code += arg.getRes().get().getName();
                     } else if (arg.kind == arg.ARG_SCRIPT && arg.getRes() != null) {
