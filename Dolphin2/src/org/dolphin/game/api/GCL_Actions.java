@@ -883,6 +883,8 @@ public Object action_path(Object... obj)
 		self.x = ((Path)self.getPath_index()).getPointX(0);
 		self.y = ((Path)self.getPath_index()).getPointY(0);
 	}
+	self.pathstartX=(int)self.x;
+	self.pathstartY=(int)self.y;
 return false;
 }
 

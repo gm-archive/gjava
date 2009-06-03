@@ -278,7 +278,7 @@ private static final long serialVersionUID = 1L;
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }
 
-    public int pathxoffset=0,pathyoffset=0;//used for when path is relative to current position
+    public int pathxoffset=0,pathyoffset=0,pathstartX=100,pathstartY=100;//used for when path is relative to current position
     
     /**
      * This will Move the object, should be called every step
@@ -305,39 +305,45 @@ private static final long serialVersionUID = 1L;
     				  if (sp<0){
     					  if (position >0){
     					  setPath_position((double)position-1);
-    					  System.out.println("set path position to:"+(position-1));
+    					  
     					  }
     					  else {
     						  endofpath=true;
     					  }
     				  } else {
     			   setPath_position((double)position+1);
-    			  System.out.println("set path position to:"+(position+1)); 
+    			   
     			  }
     			  }
     			  else {endofpath=true;}
     				  if (endofpath) {
     				  int action = ((Double)getPath_endaction()).intValue();
-    				  System.out.println("End of path action:"+action);
+    				  
     				  if (action==0){
     					  //end the path
     					  setPath_index(Game.DOLPHIN_nullpath);
     					  setPath_position((double)0);
-    					  System.out.println("end the path");
+    					  
     				  }
     				  else if (action==1){
     					  //continue from start position
-    					  setPath_position((double)0);
-    					  x = ((Path)getPath_index()).getPointX(position);//*scale;
-    			    		y = ((Path)getPath_index()).getPointY(position);
+    					  
+    					  x = pathstartX-1;
+    			    		y = pathstartY-1;
+    			    		
+    			    		path_position=0d;
     				  }
     				  else if (action==2){
     					  //continue from current position
+    					  self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
+    						self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
+    						path_position=0d;
     				  }
     				  else if (action==3){
     					  //reverse the path
     					  setPath_speed(-((Double)getPath_speed()));
     				  }
+    				  endofpath=false;
     			  }
     		   }
     		   
