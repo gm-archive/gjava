@@ -450,6 +450,10 @@ public class DolphinWriter {
                 print(actor, "        y = Y;");
                 print(actor, "        this.instance_id = instance_id;");
                 print(actor, "        self=this;");
+                print(actor, "        try{");
+                		print(actor, "            Create(); //needs to be called after x and y are set up");
+                				print(actor, "            } catch(RoomChangedException e){");
+                						print(actor, "             }");
                 print(actor, "    }");
                 String callevents="";
                 for (int j = 0; j < 11; j++) {

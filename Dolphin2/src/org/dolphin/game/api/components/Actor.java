@@ -104,10 +104,7 @@ private static final long serialVersionUID = 1L;
         sprite = spr;
         self = this;
         name=Object_name;
-         try{
-        Create();
-        } catch(RoomChangedException e){
-        }
+         
     }
 
    /* public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
@@ -290,6 +287,7 @@ private static final long serialVersionUID = 1L;
     	
     	//check for path
     	if (!(getPath_index()==null)){
+    		
     		int position = ((Double)getPath_position()).intValue();
     		int scale = ((Double)getPath_scale()).intValue();
     		double xto = (((Path)getPath_index()).getPointX(position)+pathxoffset)*scale;
