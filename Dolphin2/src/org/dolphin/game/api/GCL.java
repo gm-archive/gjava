@@ -1101,7 +1101,7 @@ public Object path_start(Object path, Object speed, Object endaction, Object abs
 	self.setPath_position(0d);
 	self.setPath_speed(speed);
 	self.setPath_endaction(endaction);
-	if (((Double)absolute)==0){
+	if (!Variable.toBoolean(absolute)){
 		//relative
 	self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
 	self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
