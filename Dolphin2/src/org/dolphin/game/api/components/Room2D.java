@@ -218,6 +218,14 @@ public void init() {
     SortDepth();
 }
 
+public void createEvents(){
+	try{
+		   for (int i = 0; i < instances.size(); i++) {
+		       if (instances.elementAt(i) !=null)
+		        ((Actor)instances.elementAt(i)).Create();
+		    }
+		    }catch(RoomChangedException rce){}
+}
 
 /*
  * Update method. Called every step should not be overridden

@@ -279,7 +279,7 @@ private static final long serialVersionUID = 1L;
     }
 
     public int pathxoffset=0,pathyoffset=0,pathstartX=100,pathstartY=100,pathcurrentpoint=0;//used for when path is relative to current position
-    
+    public double pathcurrentdistance=0;
     /**
      * This will Move the object, should be called every step
      */
@@ -298,7 +298,9 @@ private static final long serialVersionUID = 1L;
     		double dist=(Double)sqrt(((((Double)xto)-self.x)*(((Double)xto)-self.x)+(((Double)yto)-self.y)*(((Double)yto)-self.y)));
     		   x+=((((Double)xto)-self.x)/dist)*Math.abs((Double)sp);
     		   y+=((((Double)yto)-self.y)/dist)*Math.abs((Double)sp);
-    		
+    		   path_positionprevious = getPath_position();
+    		   pathcurrentdistance=pathcurrentdistance+sp;
+    		   
     		   if(Math.abs(x-xto)<Math.abs(sp) && Math.abs(y-yto)<Math.abs(sp)){
     			   boolean endofpath=false;
     			  if (position < ((Path)getPath_index()).al.size()-1 ){
@@ -317,6 +319,8 @@ private static final long serialVersionUID = 1L;
     			  }
     			  else {endofpath=true;}
     				  if (endofpath) {
+    					  pathcurrentdistance=0d;
+    					  path_positionprevious=0d;
     				  int action = ((Double)getPath_endaction()).intValue();
     				  
     				  if (action==0){
@@ -581,10 +585,11 @@ private static final long serialVersionUID = 1L;
     }
 
     public Object getPath_position() {
-        if (path_position == null) {
-            path_position = 0d;
+        if (path_index == null) {
+            return 0d;
         }
-        return path_position;
+        
+        return (pathcurrentdistance/(double)((Path)path_index).distance);
     }
 
     public Object getPath_positionprevious() {

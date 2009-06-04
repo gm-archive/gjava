@@ -1230,6 +1230,64 @@ return 0d;
  */
 public static Object collision_point(Object x, Object y, Object obj, Object prec, Object notme)
 {
+	java.lang.String name="";
+    if (obj instanceof GMResource){
+    name=((GMResource)obj).theclass.getName();
+    for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (a.getClass().getName().equals(name)) {
+            	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+                         return true;
+                     
+                 }
+             }
+        }
+     }
+    } else if (obj.equals(all)){
+    	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+            if (Game.currentRoom.instances.elementAt(i) !=null){
+                Actor a = (Game.currentRoom.instances.elementAt(i));
+                {
+                	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+
+                        return true;
+                     }
+                 }
+            }
+         }
+    }
+ else if (obj.equals(other)){
+	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+	        if (Game.currentRoom.instances.elementAt(i) !=null){
+	            Actor a = (Game.currentRoom.instances.elementAt(i));
+	            if (a.equals(other)) {
+	            	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+
+	                    return true;
+	                 }
+	             }
+	        }
+	     }
+}
+    else{
+    	//instanceid
+    	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+    	        if (Game.currentRoom.instances.elementAt(i) !=null){
+    	            Actor a = (Game.currentRoom.instances.elementAt(i));
+    	             {
+    	                 if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
+
+    	                     if (a.instance_id == (Double)obj) {
+    	                      
+    	                         return true;
+    	                     }
+    	                 }
+    	             }
+    	        }
+    	     }
+    }
+    
 return 0d;
 }
 

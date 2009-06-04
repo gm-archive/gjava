@@ -5,12 +5,20 @@ import java.util.ArrayList;
 public class Path {
 	ArrayList<PathPoint> al = new ArrayList<PathPoint>();
 	boolean closed=true,smooth=false;
-	int precision=4;
+	int precision=4,distance=0;
 	
 	public Path(boolean closed,boolean smooth,int precision){
 		this.closed=closed;
 		this.smooth=smooth;
 		this.precision=precision;
+	}
+	
+	public void findDistance(){
+		for (int i = 0; i < al.size()-1; i++) {
+			
+			distance+=org.dolphin.game.api.Math.pointDistance(al.get(i).x, al.get(i).y, al.get(i+1).x, al.get(i+1).y);
+			
+		}
 	}
 	
 	public void setClosed(boolean closed){
