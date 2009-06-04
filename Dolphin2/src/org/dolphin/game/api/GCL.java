@@ -23,6 +23,7 @@ import javax.swing.border.BevelBorder;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.components.Path;
 import org.dolphin.game.api.components.Sprite;
 import org.dolphin.game.api.resources.Display;
 import org.dolphin.game.api.types.BinaryFile;
@@ -52,7 +53,13 @@ import com.golden.gamedev.util.ImageUtil;
  */
 public class GCL extends Variables {
   
-    
+ /*
+  * Notes:
+  *  If an argument is a boolean value, use Variable.toboolean(value) to make sure its not a double
+  * 
+  * 
+  * 
+  */   
     
     /*
      * 
@@ -692,7 +699,7 @@ public /*static*/ Object place_free(Object x, Object y)
      for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
            if (Game.currentRoom.instances.elementAt(i) !=null){
                Actor a = (Game.currentRoom.instances.elementAt(i));
-               if ((Boolean)a.getSolid()) {
+               if (Variable.toBoolean(a.getSolid())) {
                    
                     if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
                         //if not instance id
@@ -816,11 +823,11 @@ return 0d;
 
 public /*static*/ Object move_random(Object hsnap, Object vsnap)
 {
-    if ((Boolean)hsnap.equals((0)))
+    if (Variable.toBoolean(hsnap.equals((0))))
         self.x=((Double)round((Double)random((Double)getRoom_width()))).floatValue();
     else
     self.x=(Double)Variable.mult(round(Variable.div(random(getRoom_width()),hsnap)),hsnap);
-    if ((Boolean)vsnap.equals((0)))
+    if (Variable.toBoolean(vsnap.equals((0))))
         self.y=(Double)round(random((Double)getRoom_height()));
     else
     self.y=(Double)Variable.mult(round(Variable.div(random(getRoom_height()),vsnap)),vsnap);
@@ -913,12 +920,12 @@ return 0d;
 
 public /*static*/ Object move_wrap(Object hor, Object vert, Object margin)
 {
-    if(((Boolean)hor)==true){
+    if((Variable.toBoolean(hor))==true){
       if((self.x<-((Double)margin)) || (self.x>((Double)getRoom_width()+((Double)margin)))){
          self.x=(Double)getRoom_width()-self.x;
       }
    }
-   if(((Boolean)vert)==true){
+   if((Variable.toBoolean(vert))==true){
       if((self.y<-((Double)margin))||(self.y>((Double)getRoom_height()+((Double)margin)))){
          self.y=(Double)getRoom_height()-self.y;
       }
@@ -1088,13 +1095,30 @@ return 0d;
  * Paths functions
  * 
  */
-public static Object path_start(Object path, Object speed, Object endaction, Object absolute)
+public Object path_start(Object path, Object speed, Object endaction, Object absolute)
 {
+	self.setPath_index(path);
+	self.setPath_position(0d);
+	self.setPath_speed(speed);
+	self.setPath_endaction(endaction);
+	if (((Double)absolute)==0){
+		//relative
+	self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
+	self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
+	}
+	else {
+		//absolute
+		self.x = ((Path)self.getPath_index()).getPointX(0);
+		self.y = ((Path)self.getPath_index()).getPointY(0);
+	}
+	self.pathstartX=(int)self.x;
+	self.pathstartY=(int)self.y;
 return 0d;
 }
 
-public static Object path_end()
+public Object path_end()
 {
+	self.setPath_index(Game.DOLPHIN_nullpath);
 return 0d;
 }
 
@@ -1335,7 +1359,7 @@ public /*static*/ Object instance_deactivate_all(Object notme)
         Actor act = (Actor)Game.currentRoom.instances.elementAt(i);
         act.active=false;
     }
-     if (((Boolean)notme))
+     if (Variable.toBoolean(notme))
        self.active=true;
 return 0d;
 }
@@ -1887,7 +1911,7 @@ public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, 
     y1 = y2;
     y2=temp;
     }
-    if (((Boolean)outline))
+    if ((Variable.toBoolean(outline)))
     Game.currentRoom.g2d.drawRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)));
     else
         Game.currentRoom.g2d.fillRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)));
@@ -1907,7 +1931,7 @@ public static Object draw_roundrect(Object x1, Object y1, Object x2, Object y2, 
     y1 = y2;
     y2=temp;
     }
-    if (((Boolean)outline))
+    if ((Variable.toBoolean(outline)))
     Game.currentRoom.g2d.drawRoundRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int)(((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)),10,10);
     else
         Game.currentRoom.g2d.fillRoundRect(((Double)x1).intValue(), ((Double)y1).intValue(), (int) (((Double)x2)-((Double)x1)), (int)(((Double)y2)-((Double)y1)),10,10);
@@ -1920,7 +1944,7 @@ public static Object draw_triangle(Object x1, Object y1, Object x2, Object y2, O
    int[] xPoints = {((Double)x1).intValue(),((Double)x2).intValue(),((Double)x3).intValue()};
    int[] yPoints = {((Double)y1).intValue(),((Double)y2).intValue(),((Double)y3).intValue()};
    Shape s = new Polygon(xPoints, yPoints, 3);
-   if (((Boolean)outline)) {
+   if ((Variable.toBoolean(outline))) {
 	   Game.currentRoom.g2d.draw(s);
    } else {
 	   Game.currentRoom.g2d.fill(s);
@@ -1932,7 +1956,7 @@ public static Object draw_circle(Object x, Object y, Object rr, Object outline)
 {
 	double r = ((Double)rr);
 	Shape s = new Ellipse2D.Double(((Double)x)-r, ((Double)y)-r, r*2, r*2);
-	if (((Boolean)outline)) {
+	if ((Variable.toBoolean(outline))) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
 		Game.currentRoom.g2d.fill(s);
@@ -1943,7 +1967,7 @@ return 0d;
 public static Object draw_ellipse(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
 	Shape s = new Ellipse2D.Double(((Double)x1), ((Double)y1), ((Double)x2), ((Double)y2));
-	if (((Boolean)outline)) {
+	if ((Variable.toBoolean(outline))) {
 		Game.currentRoom.g2d.draw(s);
 	} else {
 		Game.currentRoom.g2d.fill(s);
@@ -1954,7 +1978,7 @@ return 0d;
 public static Object draw_set_antialiasing(Object enable)
 {
 	Game.currentRoom.g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
-			((Boolean)enable) 
+			(Variable.toBoolean(enable))
 			  ? RenderingHints.VALUE_ANTIALIAS_ON
 			  : RenderingHints.VALUE_ANTIALIAS_OFF);
 	return 0d;
@@ -1975,7 +1999,7 @@ public static Object draw_button(Object x1, Object y1, Object x2, Object y2, Obj
 	h = (int)(((Double)y2)-((Double)y1));
 
 	Game.currentRoom.g2d.fillRect(x, y, w, h);
-	BevelBorder b = new BevelBorder(((Boolean)up) ? BevelBorder.RAISED : BevelBorder.LOWERED);
+	BevelBorder b = new BevelBorder((Variable.toBoolean(up)) ? BevelBorder.RAISED : BevelBorder.LOWERED);
 	b.paintBorder(new Component() {
 		private static final long serialVersionUID = 1L;
 		public java.awt.Color getBackground() {
@@ -2750,7 +2774,7 @@ return 0d;
 public static Object window_set_visible(Object visible)
 {
     if (Game.game.getGame().bsGraphics instanceof WindowedMode)
-        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(((Boolean)visible));
+        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible((Variable.toBoolean(visible)));
     
 return 0d;
 }
@@ -2764,11 +2788,11 @@ return 0d;
 
 public static Object window_set_fullscreen(Object full)
 {
-    Game.fullscreen = ((Boolean)full);
+    Game.fullscreen = Variable.toBoolean(full);
     GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] devices = env.getScreenDevices();
     GraphicsDevice device = devices[0];
-    if (((Boolean)full)) {
+    if (Variable.toBoolean(full)) {
 		// Full-screen mode
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
 			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(true);
@@ -2794,7 +2818,7 @@ return new Boolean(Game.fullscreen);
 public static Object window_set_showborder(Object show)
 {
     ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
-			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(((Boolean)show)? false:true);
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated((Variable.toBoolean(show))? false:true);
                         ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
 return 0d;
 }
@@ -2828,7 +2852,7 @@ return 0d;
 
 public static Object window_set_sizeable(Object sizeable)
 {
-    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(((Boolean)sizeable));
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable((Variable.toBoolean(sizeable)));
 return 0d;
 }
 
@@ -3041,7 +3065,7 @@ return 0d;
 
 public static Object set_automatic_draw(Object value)
 {
-    Game.auto_redraw = (Boolean)value;
+    Game.auto_redraw = Variable.toBoolean(value);
 return 0d;
 }
 
@@ -3435,7 +3459,7 @@ return 0d;
 public static Object show_error(Object str, Object abort)
 {
     JOptionPane.showMessageDialog(null, str.toString(),"Error!",JOptionPane.ERROR_MESSAGE );
-    if ((Boolean)abort)
+    if (Variable.toBoolean(abort))
         System.exit(1);
     
     return 0d;
@@ -4772,7 +4796,7 @@ public static Object execute_program(Object prog, Object arg, Object wait)
 	try {
         java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog +" "+ arg);
         
-        if ((Boolean)wait) {
+        if (Variable.toBoolean(wait)) {
             try {
                 proc.waitFor();
             } catch (InterruptedException e) {

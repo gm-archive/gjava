@@ -878,10 +878,10 @@ public class PlatformCore  {
         	return "Variable.getArgument(arguments,"+variable.replace("argument", "")+")";
         }
         if (variable.equals("true")) {
-            return "true";
+            return "1d";
         }
         else if (variable.equals("false")) {
-            return "false";
+            return "0d";
         }
         else if (variable.equals("pi")) {
             return "(Math.PI)";

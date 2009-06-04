@@ -413,7 +413,7 @@ public Object action_if_aligned(Object... obj)
 public Object action_if_collision(Object... obj)
 {
 
-if (obj.length>3 && (Boolean)obj[3]){
+if (obj.length>3 && ((Boolean)obj[3])){
         obj[0]=Variable.add(obj[0],self.getX());
         obj[1]=Variable.add(obj[1],self.getY());
     }
@@ -869,28 +869,14 @@ return false;
 
 public Object action_path(Object... obj)
 {
-	self.setPath_index(obj[0]);
-	self.setPath_position(0d);
-	self.setPath_speed(obj[1]);
-	self.setPath_endaction(obj[2]);
-	if (((Double)obj[3])==0){
-		//relative
-	self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
-	self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
-	}
-	else {
-		//absolute
-		self.x = ((Path)self.getPath_index()).getPointX(0);
-		self.y = ((Path)self.getPath_index()).getPointY(0);
-	}
-	self.pathstartX=(int)self.x;
-	self.pathstartY=(int)self.y;
+	path_start(obj[0], obj[1], obj[2], obj[3]);
+	
 return false;
 }
 
 public Object action_path_end(Object... obj)
 {
-	self.setPath_index(Game.DOLPHIN_nullpath);
+	path_end();
 return false;
 }
 
@@ -1134,7 +1120,7 @@ public Object action_sound(Object... obj)
 			Game.thegame.loadSound(obj[0].toString()).loop();
 		else
 		    Game.thegame.loadSound(obj[0].toString()).play();
-	} else if ((Boolean)obj[1])
+	} else if ((Double)obj[1]==1)
         Game.thegame.loadSound(obj[0].toString()).loop();
     else
     Game.thegame.loadSound(obj[0].toString()).play();

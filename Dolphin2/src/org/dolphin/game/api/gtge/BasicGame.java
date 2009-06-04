@@ -271,5 +271,9 @@ public class BasicGame extends Game {
 
         }
 
+         public static boolean toboolean(){
+        	 return false;
+         }
+         
          }
     
