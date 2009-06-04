@@ -1098,7 +1098,7 @@ return 0d;
 public Object path_start(Object path, Object speed, Object endaction, Object absolute)
 {
 	self.setPath_index(path);
-	self.setPath_position(0d);
+	self.pathcurrentpoint=0;
 	self.setPath_speed(speed);
 	self.setPath_endaction(endaction);
 	if (!Variable.toBoolean(absolute)){

@@ -15,8 +15,10 @@ public class Path {
 	
 	public void setClosed(boolean closed){
 		if (closed) {
+			if(al.size()>0){
 		al.add(al.get(0));
 		this.closed=true;
+		}
 		}
 		else{
 			if (this.closed)

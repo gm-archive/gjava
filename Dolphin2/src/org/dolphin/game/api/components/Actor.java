@@ -278,7 +278,7 @@ private static final long serialVersionUID = 1L;
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }
 
-    public int pathxoffset=0,pathyoffset=0,pathstartX=100,pathstartY=100;//used for when path is relative to current position
+    public int pathxoffset=0,pathyoffset=0,pathstartX=100,pathstartY=100,pathcurrentpoint=0;//used for when path is relative to current position
     
     /**
      * This will Move the object, should be called every step
@@ -288,7 +288,7 @@ private static final long serialVersionUID = 1L;
     	//check for path
     	if (!(getPath_index()==null)){
     		
-    		int position = ((Double)getPath_position()).intValue();
+    		int position = pathcurrentpoint;
     		int scale = ((Double)getPath_scale()).intValue();
     		double xto = (((Path)getPath_index()).getPointX(position)+pathxoffset)*scale;
     		double yto = (((Path)getPath_index()).getPointY(position)+pathyoffset)*scale;
@@ -304,14 +304,14 @@ private static final long serialVersionUID = 1L;
     			  if (position < ((Path)getPath_index()).al.size()-1 ){
     				  if (sp<0){
     					  if (position >0){
-    					  setPath_position((double)position-1);
+    						  pathcurrentpoint--;
     					  
     					  }
     					  else {
     						  endofpath=true;
     					  }
     				  } else {
-    			   setPath_position((double)position+1);
+    					  pathcurrentpoint++;
     			   
     			  }
     			  }
@@ -322,7 +322,7 @@ private static final long serialVersionUID = 1L;
     				  if (action==0){
     					  //end the path
     					  setPath_index(Game.DOLPHIN_nullpath);
-    					  setPath_position((double)0);
+    					  pathcurrentpoint=0;
     					  
     				  }
     				  else if (action==1){
@@ -331,13 +331,13 @@ private static final long serialVersionUID = 1L;
     					  x = pathstartX-1;
     			    		y = pathstartY-1;
     			    		
-    			    		path_position=0d;
+    			    		pathcurrentpoint=0;
     				  }
     				  else if (action==2){
     					  //continue from current position
     					  self.pathxoffset = (int)((self.x)-(((Path)self.getPath_index()).getPointX(0)));
     						self.pathyoffset = (int)((self.y)-(((Path)self.getPath_index()).getPointY(0)));
-    						path_position=0d;
+    						pathcurrentpoint=0;
     				  }
     				  else if (action==3){
     					  //reverse the path
@@ -866,13 +866,13 @@ private static final long serialVersionUID = 1L;
     		//change in direction
     		
     		if ((Double)path_speed >0){
-    			if ((Double)getPath_position()+1 < max-1)
-    			setPath_position((Double)getPath_position()+1);
+    			if (pathcurrentpoint+1 < max-1)
+    				pathcurrentpoint++;
     		}else{
-    			System.out.println("change direction, speed is now negative pos:"+(Double)getPath_position());
-    			if ((Double)getPath_position()-1 >-1){
-    			setPath_position((Double)getPath_position()-1);
-    			System.out.println("set path position to:"+((Double)getPath_position()-1));
+    			System.out.println("change direction, speed is now negative pos:"+pathcurrentpoint);
+    			if (pathcurrentpoint-1 >-1){
+    				pathcurrentpoint--;
+    			System.out.println("set path position to:"+(pathcurrentpoint-1));
     			}
     		}
     	}
