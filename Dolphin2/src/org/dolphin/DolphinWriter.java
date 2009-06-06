@@ -172,6 +172,7 @@ public class DolphinWriter {
         print(game, "import com.golden.gamedev.engine.graphics.WindowedMode;");
         print(game, "import java.awt.image.BufferedImage;");
         print(game, "import org.dolphin.game.api.components.*;");
+        print(game,"import org.dolphin.game.api.types.AllOfObject;");
 
         print(game, "public class Game extends org.dolphin.game.api.gtge.BasicGame {");
 
@@ -179,7 +180,7 @@ public class DolphinWriter {
         String actor_names="";
         for (GmObject a : gmFile.gmObjects) {
             /*check for duplicate objects*/
-        	actor_names += a.getName()+"= new AllOfObject(new "+a.getName()+"+()), ";
+        	actor_names += a.getName()+"= new AllOfObject(new "+a.getName()+"()), ";
         }
         
         print(game,"public static AllOfObject "+actor_names+" nullallofobject;");
@@ -448,6 +449,8 @@ public class DolphinWriter {
                 print(actor, "import java.awt.Graphics2D;");
                 print(actor, "");
                 print(actor, "public class " + name + " extends Actor {");
+                print(actor, "");
+                print(actor, " public "+name+"(){}");
                 print(actor, "");
                 print(actor, " public   " + name + "(double X,double Y,double instance_id) {");
 

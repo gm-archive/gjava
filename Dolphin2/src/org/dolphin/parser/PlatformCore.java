@@ -706,15 +706,17 @@ public class PlatformCore  {
         } else if(originalvariable.startsWith("("))  {
             instance = "(self)";//actually instance variable
             System.out.println("WARNING: instance variable!:"+variable);
-            return allassignmentstatement(variable,operator,expression,"{self.","self.");
+            return allassignmentstatement(variable,operator,expression,"{Game.currentRoom.getInstance("+variable.substring(0,variable.indexOf("."))+").","self.");
 
         } else if (countOccurrences(originalvariable,".")>1){
             //more than one . used in the variable name TODO fix this!
+        	//obj[1].id.x = 12;
             System.out.println("WARNING: more than one . variable!:"+variable);
+            
             return allassignmentstatement(variable,operator,expression,"{self.","self.");
         }
          else if(originalvariable.contains(".")){
-        	 return allassignmentstatement(variable,operator,expression,"{Game."+variable(variable.substring(0, variable.indexOf(".")))+".","Game."+variable(variable.substring(0, variable.indexOf(".")))+".");
+        	 return allassignmentstatement(variable,operator,expression,"{((Actor)"+variable(variable.substring(0, variable.indexOf(".")))+").","Game."+variable(variable.substring(0, variable.indexOf(".")))+".");
             
         } else {
         	//by default since the variable doesn't have something '.' before it it applies to self

@@ -182,7 +182,7 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}) ('.' (array|(WORD)) )*
+:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}) //('.' (array|(WORD)) )*
 ;
 
 
@@ -221,7 +221,7 @@ HEXNUMBER
 GLOBALVAR
 : 'global' '.' WORD;
 
-OIVAR : WORD '.' WORD ; /* Other instance variable */
+OIVAR : (WORD|'(' NUMBER ')') '.' WORD ; /* Other instance variable */
 
 DECIMAL : NUMBER '.' NUMBER;
 

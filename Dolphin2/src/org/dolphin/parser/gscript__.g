@@ -90,7 +90,7 @@ GLOBALVAR
 : 'global' '.' WORD;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 224
-OIVAR : WORD '.' WORD ; /* Other instance variable */
+OIVAR : (WORD|'(' NUMBER ')') '.' WORD ; /* Other instance variable */
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\workspace\LGJ\src\org\dolphin\parser\gscript.g" 226
 DECIMAL : NUMBER '.' NUMBER;

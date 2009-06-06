@@ -394,6 +394,17 @@ public void render(Graphics2D g2d2)  {
         Actor[] a = new Actor[ac.size()];
         return ac.toArray(a);
     }
+    
+    public Actor getInstance(double id){
+    	 for (int i = 0; i < instances.size(); i++) {
+             if (instances.elementAt(i) !=null){
+                 Actor a = (Game.currentRoom.instances.elementAt(i));
+
+                if (a.instance_id == id) return a;
+             }
+          }
+    	 return noone;
+    }
 
     /*
      * Used to get the list for with statement
