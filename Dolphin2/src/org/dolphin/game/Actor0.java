@@ -11,7 +11,7 @@ import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Game_Information;
 import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.exceptions.DestroyException;
-import org.dolphin.game.api.types.GMResource;
+import org.dolphin.game.api.types.AllOfObject;
 import org.dolphin.game.api.types.Global;
 
 import org.dolphin.game.api.exceptions.RoomChangedException;
@@ -30,10 +30,10 @@ public class Actor0 extends Actor {
 		this.y = y;
 		this.instance_id = instance_id;
 		self = this;
-		setScore(1d);
-		action_highscore_show();
+		//setScore(1d);
+		//action_highscore_show();
 		
-		{Actor[] ac =Game.currentRoom.setActorwithname((new GMResource(Actor0.class).getActor()).getClass()); for (int i = 0; i < ac.length; i++) ac[i].action_set_alarm(160d, 0d);};
+		//{Actor[] ac =Game.currentRoom.setActorwithname((new AllOfObject(Actor0.class).getActor()).getClass()); for (int i = 0; i < ac.length; i++) ac[i].action_set_alarm(160d, 0d);};
 
 		
 		/*{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).setX(self.getY());}
@@ -52,7 +52,7 @@ public class Actor0 extends Actor {
 	
 	public void Create() {
 		// action_move((new String("000001000")), (new Integer(6)));
-		hspeed = 1;
+		//hspeed = 1;
 		// setTimeline_index(new timeline0());
 		{
 			
@@ -116,6 +116,10 @@ public class Actor0 extends Actor {
 
 	@Override
 	public void KeyPressed(int keycode) throws DestroyException {
+		System.out.println("all.x:"+all.getX());
+		all.setX(100);
+		System.out.println("all.x:"+all.getX());
+		
 		//System.out.println(""+Game.game.getGame().getMouseX());
 		
 		
@@ -143,7 +147,7 @@ public class Actor0 extends Actor {
 		// if (keycode==67){
 		// self=this;
 		// System.out.println("s.hspeed:"+self.hspeed+" hpseed"+hspeed);
-		// action_change_object(new GMResource(Actor1.class));
+		// action_change_object(new AllOfObject(Actor1.class));
 		// System.out.println("!!!!!after: s.hspeed:"+self.hspeed+"
 		// hpseed"+hspeed);
 		// }
@@ -157,6 +161,7 @@ public class Actor0 extends Actor {
 	}
 
 	public void Step() {
+		all.setX(100);
 		// if(Game.thegame.bsSound.getAudioRenderer("sound0..wav")!=null)
 	}
 
@@ -165,8 +170,11 @@ public class Actor0 extends Actor {
 		return 1;
 
 	}
-
-	public void Draw_event(Graphics g) {
-
+	
+	public Actor testmethod(){
+		return all;
 	}
+	
+
+	
 }

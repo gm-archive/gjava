@@ -136,15 +136,15 @@ private static final long serialVersionUID = 1L;
 		if (object instanceof Actor){
 			return (Actor)object;
 		}
-		if (object instanceof GMResource)
-			return (((GMResource)object).getActor()==null)?Actor.noone:((GMResource)object).getActor();
+		if (object instanceof AllOfObject)
+			return (((AllOfObject)object).getActor()==null)?Actor.noone:((AllOfObject)object).getActor();
 		return Actor.noone;
 		
 	}
 	
 	public static Class getTheClass(Object o){
-		if (o instanceof GMResource)
-			return ((GMResource)o).theclass;
+		if (o instanceof AllOfObject)
+			return ((AllOfObject)o).theclass;
 		return o.getClass();
 	}
 

@@ -26,6 +26,7 @@ import javax.swing.UIManager;
 import org.dolphin.game.api.components.Path;
 import org.dolphin.game.api.components.Sound;
 import org.dolphin.game.api.components.Sprite;
+import org.dolphin.game.api.types.AllOfObject;
 
 public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externalizable {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +37,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externa
 
         //proper fields
         public static org.dolphin.game.Game thegame;//used to get this game object
-
+        public static AllOfObject Actor0=new AllOfObject(new Actor0()),Actor1=new AllOfObject(new Actor1());
 	
 	public static void setupGame() {
 		game = new GameLoader();

@@ -25,9 +25,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.dolphin.game.Actor0;
 import org.dolphin.game.Game;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.exceptions.RoomChangedException;
+import org.dolphin.game.api.types.AllOfObject;
 import org.dolphin.parser.PlatformCore;
 import org.dolphin.parser.gscriptLexer;
 import org.dolphin.parser.gscriptParser;
@@ -174,6 +176,15 @@ public class DolphinWriter {
         print(game, "public class Game extends org.dolphin.game.api.gtge.BasicGame {");
 
         print(game, "public static org.dolphin.game.Game thegame;//used to get this game object");
+        String actor_names="";
+        for (GmObject a : gmFile.gmObjects) {
+            /*check for duplicate objects*/
+        	actor_names += a.getName()+"= new AllOfObject(new "+a.getName()+"+()), ";
+        }
+        
+        print(game,"public static AllOfObject "+actor_names+" nullallofobject;");
+        
+        
         print(game, "");
         print(game, "public static void setupGame() {");
         print(game, "	game = new GameLoader();");

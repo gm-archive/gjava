@@ -31,7 +31,7 @@ import org.dolphin.game.api.types.Color;
 import org.dolphin.game.api.types.Cursor;
 
 import org.dolphin.game.api.types.File;
-import org.dolphin.game.api.types.GMResource;
+import org.dolphin.game.api.types.AllOfObject;
 import org.dolphin.game.api.types.Global;
 import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.Map;
@@ -741,8 +741,8 @@ return true;
 public Object place_meeting(Object x, Object y, Object obj)
 {
     java.lang.String name="";
-    if (obj instanceof GMResource){
-    name=((GMResource)obj).theclass.getName();
+    if (obj instanceof AllOfObject){
+    name=((AllOfObject)obj).theclass.getName();
     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
         if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
@@ -944,8 +944,8 @@ public /*static*/ Object distance_to_object(Object obj)
 {
 	double shortestdist=1000000,tempdist=0;
 	java.lang.String name="";
-    if (obj instanceof GMResource){
-    name=((GMResource)obj).theclass.getName();
+    if (obj instanceof AllOfObject){
+    name=((AllOfObject)obj).theclass.getName();
     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
         if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
@@ -1029,8 +1029,8 @@ public static Object position_meeting(Object x, Object y, Object obj)
 
 {
     java.lang.String name="";
-    if (obj instanceof GMResource){
-    name=((GMResource)obj).theclass.getName();
+    if (obj instanceof AllOfObject){
+    name=((AllOfObject)obj).theclass.getName();
     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
         if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
@@ -1231,14 +1231,14 @@ return 0d;
 public static Object collision_point(Object x, Object y, Object obj, Object prec, Object notme)
 {
 	java.lang.String name="";
-    if (obj instanceof GMResource){
-    name=((GMResource)obj).theclass.getName();
+    if (obj instanceof AllOfObject){
+    name=((AllOfObject)obj).theclass.getName();
     for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
         if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
             if (a.getClass().getName().equals(name)) {
             	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
-                         return true;
+                         return a;
                      
                  }
              }
@@ -1251,7 +1251,7 @@ public static Object collision_point(Object x, Object y, Object obj, Object prec
                 {
                 	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
 
-                        return true;
+                        return a;
                      }
                  }
             }
@@ -1264,7 +1264,7 @@ public static Object collision_point(Object x, Object y, Object obj, Object prec
 	            if (a.equals(other)) {
 	            	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
 
-	                    return true;
+	                    return a;
 	                 }
 	             }
 	        }
@@ -1280,7 +1280,7 @@ public static Object collision_point(Object x, Object y, Object obj, Object prec
 
     	                     if (a.instance_id == (Double)obj) {
     	                      
-    	                         return true;
+    	                         return a;
     	                     }
     	                 }
     	             }
@@ -1355,7 +1355,7 @@ return 0d;
 public static Object instance_create(Object x, Object y, Object obj)
 {
         try {
-            Class ins = ((GMResource)obj).theclass;
+            Class ins = ((AllOfObject)obj).theclass;
             Game.maxInstanceId++;
             Actor o = (Actor) ins.getDeclaredConstructor(double.class,double.class,double.class).newInstance((Double)x,(Double)y,(Game.maxInstanceId));
             

@@ -2,7 +2,7 @@ package org.dolphin.game;
 
 import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.exceptions.DestroyException;
-import org.dolphin.game.api.types.GMResource;
+import org.dolphin.game.api.types.AllOfObject;
 
 public class Actor1 extends Actor {
 
@@ -16,7 +16,11 @@ public class Actor1 extends Actor {
         self=this;
 	}
 
-    @Override
+    public Actor1() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
     public void performAlarm(int alarmid) {
         if (alarmid==0)
         {

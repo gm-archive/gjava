@@ -4,6 +4,7 @@ package org.dolphin.game.api;
 import java.util.LinkedList;
 
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.types.All;
 import org.dolphin.game.api.types.Color;
 import org.dolphin.game.api.types.Cursor;
 
@@ -14,7 +15,7 @@ import org.dolphin.game.api.types.Cursor;
  */
 public class Constants extends Object {
 protected Actor self;
-public static Actor noone=new Actor(),other=noone,all=new Actor();
+public static Actor noone=new Actor(),other=noone,all=new All();
 public LinkedList<Actor> selfs = new LinkedList();
 
     public Object getBm_add() {

@@ -26,7 +26,7 @@ import org.dolphin.game.api.components.Path;
 import org.dolphin.game.api.components.SaveFile;
 import org.dolphin.game.api.exceptions.RoomChangedException;
 import org.dolphin.game.api.types.Color;
-import org.dolphin.game.api.types.GMResource;
+import org.dolphin.game.api.types.AllOfObject;
 import org.dolphin.game.api.types.Variable;
 
 
@@ -97,7 +97,7 @@ public Object action_change_object(Object... obj)
             Actor a=null,s=self;
             try{
                 
-        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x,self.y+20,self.instance_id);
+        a = (Actor)((AllOfObject)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x,self.y+20,self.instance_id);
            
             }catch(Exception e){
             e.printStackTrace();
@@ -133,12 +133,12 @@ return false;
 public Object action_create_object(Object... obj)
 {
     try{
-    if (obj[0] instanceof GMResource){
+    if (obj[0] instanceof AllOfObject){
         Actor a;
         if ((Boolean)argument_relative)
-        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
+        a = (Actor)((AllOfObject)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
         else
-            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
+            a = (Actor)((AllOfObject)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
         Game.maxInstanceId++;
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
@@ -153,12 +153,12 @@ return false;
 public Object action_create_object_motion(Object... obj)
 {
  try{
-    if (obj[0] instanceof GMResource){
+    if (obj[0] instanceof AllOfObject){
         Actor a;
         if ((Boolean)argument_relative)
-        a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
+        a = (Actor)((AllOfObject)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x+((Double)obj[1]),self.y+((Double)obj[2]),Game.maxInstanceId);
         else
-            a = (Actor)((GMResource)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
+            a = (Actor)((AllOfObject)obj[0]).theclass.getConstructor(double.class,double.class,double.class).newInstance(((Double)obj[1]),((Double)obj[2]),Game.maxInstanceId);
         Game.maxInstanceId++;
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
@@ -520,8 +520,8 @@ if(Game.currentRoom.vectorid <Game.rooms.size()-1)
 public Object action_if_number(Object... obj)
 {
 	java.lang.String name="";
-    if (obj[0] instanceof GMResource){
-    name=((GMResource)obj[0]).theclass.getName();
+    if (obj[0] instanceof AllOfObject){
+    name=((AllOfObject)obj[0]).theclass.getName();
     } else{
     name=obj.getClass().getName();
     }

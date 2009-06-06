@@ -694,7 +694,7 @@ public class PlatformCore  {
         }*/
         
         if(originalvariable.startsWith("all.")) {
-            return allassignmentstatement(variable,operator,expression,"{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i).","Game.currentRoom.instances.get(i).");
+            return allassignmentstatement(variable,operator,expression,"{all.","all.");
         } else if(originalvariable.startsWith("other.")) {
         	return allassignmentstatement(variable,operator,expression,"{other.","other.");
         } else if(originalvariable.startsWith("noone.")) {
@@ -714,7 +714,7 @@ public class PlatformCore  {
             return allassignmentstatement(variable,operator,expression,"{self.","self.");
         }
          else if(originalvariable.contains(".")){
-        	 return allassignmentstatement(variable,operator,expression,"{Actor[] ac =Game.currentRoom.setActorwithname(Variable.getActor("+variable(variable.substring(0, variable.indexOf(".")))+").getClass()); for (int i = 0; i < ac.length; i++) ac[i].","ac[i].");
+        	 return allassignmentstatement(variable,operator,expression,"{Game."+variable(variable.substring(0, variable.indexOf(".")))+".","Game."+variable(variable.substring(0, variable.indexOf(".")))+".");
             
         } else {
         	//by default since the variable doesn't have something '.' before it it applies to self
@@ -988,7 +988,7 @@ public class PlatformCore  {
         /*check if it is an object*/
         if (DolphinWriter.gmFile.gmObjects.get(variable)!=null)
         {
-        return "new GMResource("+variable+".class)";
+        return "(Game."+variable+")";
         }
         }
         

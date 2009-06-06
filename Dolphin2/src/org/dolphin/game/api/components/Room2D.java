@@ -21,7 +21,7 @@ import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.Variables;
 import org.dolphin.game.api.exceptions.DestroyException;
 import org.dolphin.game.api.exceptions.RoomChangedException;
-import org.dolphin.game.api.types.GMResource;
+import org.dolphin.game.api.types.AllOfObject;
 import org.dolphin.game.api.types.Variable;
 public class Room2D extends Scripts implements Serializable {
 private static final long serialVersionUID = 1L;

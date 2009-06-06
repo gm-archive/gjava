@@ -5,14 +5,15 @@ Using all as a value of a variable and using it doesn't work
 Instance variables don't work (10001). etc
 parser error with "var;" statement
 Parser: auto do +,/,-,*,== for doubles to other doubles
-Make to boolean function
-test action relatives
 
 enter key event does not work!
 
+==== variable issue
+setting a variable to an instance of an object and using .x doesn't work
+it need to be able to handle both gmresource and instance and setting built in variables
+Plan: create wrapper for all with support for objectname
+
 ||||| General
-the rotate function alters the image so it looks terrible
-the rooms don't seem to be put in order
-create events need to be called one after the other after all objects are created for that room
+the rotate function alters the image so it looks terrible (possible use afflinetransform)
 
 ||||| Functions
