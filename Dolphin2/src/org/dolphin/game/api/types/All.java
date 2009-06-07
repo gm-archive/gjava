@@ -21,6 +21,16 @@ public class All extends Actor {
 
 	Class objectname=null;//null when all
 	
+	/*
+     * isSameAs is used to check if one Actor is the same as another, very useful for all,allofobject
+     * For All it will always be true
+     * For an instance it will only be true if they are the same instance
+     * For AllOfObject it will only be true if the instance is part of that object
+     */
+    public boolean isSameAs(Object object){
+    	return true;
+    }
+	
 	@Override
 	public void addVariable(String name, Object multValue) {
 		for (int i = 0; i < Game.currentRoom.instances.size(); i++)

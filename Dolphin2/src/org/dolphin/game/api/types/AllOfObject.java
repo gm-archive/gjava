@@ -21,14 +21,28 @@ public class AllOfObject extends Actor {
 
     public Class theclass;
     public Actor theactor;
+    public String name="";
 
+    /*
+     * isSameAs is used to check if one Actor is the same as another, very useful for all,allofobject
+     * For All it will always be true
+     * For an instance it will only be true if they are the same instance
+     * For AllOfObject it will only be true if the instance is part of that object
+     */
+    public boolean isSameAs(Object object){
+    	return (Variable.getActor(object).getClass().getName().equals(name));
+    }
+    
+    
     public AllOfObject(Class c){
     theclass=c;
+    name = theclass.getName();
     }
     
     public AllOfObject(Actor a){
     	theactor=a;
         theclass=a.getClass();
+        name = theclass.getName();
         }
     
     public Actor getActor(){

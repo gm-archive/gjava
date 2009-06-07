@@ -738,6 +738,9 @@ public /*static*/ Object place_empty(Object x, Object y)
 return true;
 }
 
+/*
+ * TODO update this function to make use of Actor.isSameAs()
+ */
 public Object place_meeting(Object x, Object y, Object obj)
 {
     java.lang.String name="";
@@ -940,6 +943,9 @@ public /*static*/ Object distance_to_point(Object x, Object y)
     return sqrt(((xd)*(xd)+(yd)*(yd)));
 }
 
+/*
+ * TODO update this function to make use of Actor.isSameAs()
+ */
 public /*static*/ Object distance_to_object(Object obj)
 {
 	double shortestdist=1000000,tempdist=0;
@@ -1025,6 +1031,9 @@ public static Object position_empty(Object x, Object y)
 	return true;
 	}
 
+/*
+ * TODO update this function to make use of Actor.isSameAs()
+ */
 public static Object position_meeting(Object x, Object y, Object obj)
 
 {
@@ -1228,72 +1237,45 @@ return 0d;
  * Collision checking
  * 
  */
-public static Object collision_point(Object x, Object y, Object obj, Object prec, Object notme)
+public Object collision_point(Object x, Object y, Object obj, Object prec, Object notme)
 {
-	java.lang.String name="";
-    if (obj instanceof AllOfObject){
-    name=((AllOfObject)obj).theclass.getName();
-    for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
         if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
-            if (a.getClass().getName().equals(name)) {
+            if (Variable.getActor(obj).isSameAs(a)) {
             	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
-                         return a;
-                     
+            		if (Variable.toBoolean(notme) && (self.instance_id == a.instance_id))
+            		{
+            			//keep going as notme==true and this is the same instance
+            		}
+            		else
+                         return a;   
                  }
              }
         }
      }
-    } else if (obj.equals(all)){
-    	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
-            if (Game.currentRoom.instances.elementAt(i) !=null){
-                Actor a = (Game.currentRoom.instances.elementAt(i));
-                {
-                	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
-
-                        return a;
-                     }
-                 }
-            }
-         }
-    }
- else if (obj.equals(other)){
-	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
-	        if (Game.currentRoom.instances.elementAt(i) !=null){
-	            Actor a = (Game.currentRoom.instances.elementAt(i));
-	            if (a.equals(other)) {
-	            	if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
-
-	                    return a;
-	                 }
-	             }
-	        }
-	     }
-}
-    else{
-    	//instanceid
-    	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
-    	        if (Game.currentRoom.instances.elementAt(i) !=null){
-    	            Actor a = (Game.currentRoom.instances.elementAt(i));
-    	             {
-    	                 if (a.getBounds().contains(((Double)x).intValue(), ((Double)y).intValue())) {
-
-    	                     if (a.instance_id == (Double)obj) {
-    	                      
-    	                         return a;
-    	                     }
-    	                 }
-    	             }
-    	        }
-    	     }
-    }
-    
-return 0d;
+return Actor.noone;
 }
 
-public static Object collision_rectangle(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
+public Object collision_rectangle(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return 0d;
+	Rectangle rect = new Rectangle(((Double)x1).intValue(),((Double)y1).intValue(),((Double)x2).intValue(),((Double)y2).intValue());
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (Variable.getActor(obj).isSameAs(a)) {
+            	if (rect.contains(a.getBounds()) || rect.intersects(a.getBounds())){
+            		if (Variable.toBoolean(notme) && (self.instance_id == a.instance_id))
+            		{
+            			//keep going as notme==true and this is the same instance
+            		}
+            		else
+                         return a;   
+                 }
+             }
+        }
+     }
+return Actor.noone;
 }
 
 public static Object collision_circle(Object x1, Object y1, Object radius, Object obj, Object prec, Object notme)
@@ -1301,14 +1283,46 @@ public static Object collision_circle(Object x1, Object y1, Object radius, Objec
 return 0d;
 }
 
-public static Object collision_ellipse(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
+public Object collision_ellipse(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return 0d;
+	Ellipse2D e = new Ellipse2D.Double(((Double)x1),((Double)y1),((Double)x2),((Double)y2));
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (Variable.getActor(obj).isSameAs(a)) {
+            	if (e.contains(a.getBounds()) || e.intersects(a.getBounds())){
+            		if (Variable.toBoolean(notme) && (self.instance_id == a.instance_id))
+            		{
+            			//keep going as notme==true and this is the same instance
+            		}
+            		else
+                         return a;   
+                 }
+             }
+        }
+     }
+return Actor.noone;
 }
 
-public static Object collision_line(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
+public Object collision_line(Object x1, Object y1, Object x2, Object y2, Object obj, Object prec, Object notme)
 {
-return 0d;
+	Rectangle rect = new Rectangle(((Double)x1).intValue(),((Double)y1).intValue(),((Double)x2).intValue(),((Double)y2).intValue());
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (Variable.getActor(obj).isSameAs(a)) {
+            	if (a.getBounds().intersectsLine(((Double)x1).intValue(),((Double)y1).intValue(),((Double)x2).intValue(),((Double)y2).intValue())){
+            		if (Variable.toBoolean(notme) && (self.instance_id == a.instance_id))
+            		{
+            			//keep going as notme==true and this is the same instance
+            		}
+            		else
+                         return a;   
+                 }
+             }
+        }
+     }
+return Actor.noone;
 }
 
 /*

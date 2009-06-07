@@ -106,6 +106,16 @@ private static final long serialVersionUID = 1L;
         name=Object_name;
          
     }
+    
+    /*
+     * isSameAs is used to check if one Actor is the same as another, very useful for all,allofobject
+     * For All it will always be true
+     * For an instance it will only be true if they are the same instance
+     * For AllOfObject it will only be true if the instance is part of that object
+     */
+    public boolean isSameAs(Object object){
+    	return equals(Variable.getActor(object));
+    }
 
    /* public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, double Depth, boolean Persistent, int actorindex) {
