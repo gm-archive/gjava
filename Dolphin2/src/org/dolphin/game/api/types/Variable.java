@@ -2,6 +2,7 @@ package org.dolphin.game.api.types;
 
 import java.io.Serializable;
 
+import org.dolphin.game.Game;
 import org.dolphin.game.api.GCL;
 import org.dolphin.game.api.components.Actor;
 
@@ -136,8 +137,19 @@ private static final long serialVersionUID = 1L;
 		if (object instanceof Actor){
 			return (Actor)object;
 		}
+		if (object instanceof Double)
+		{
+			double number = (Double)object;
+			if (number > 100000)
+			{
+				return Game.currentRoom.getInstance(number);
+			}
+			else
+				return Actor.noone;
+		}
 		if (object instanceof AllOfObject)
 			return (((AllOfObject)object).getActor()==null)?Actor.noone:((AllOfObject)object).getActor();
+		
 		return Actor.noone;
 		
 	}

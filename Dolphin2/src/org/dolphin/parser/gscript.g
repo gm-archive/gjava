@@ -102,7 +102,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (neg=negate{$value = $neg.value;}|r=relationalExpression{$value =$r.value;}|p=pexpression{$value =$p.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value= $aa.value.replaceAll("GJAVA_VALUE",$value);}|aa=bexpression{$value= "(((Integer)"+ $value+")"+ $aa.value+").doubleValue()";})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ((Boolean)"+$e.value+")";}))* {$value =pc.expression($value);}
+:  (neg=negate{$value = $neg.value;}|p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value= $aa.value.replaceAll("GJAVA_VALUE",$value);}|aa=bexpression{$value= "(((Integer)"+ $value+")"+ $aa.value+").doubleValue()";})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ((Boolean)"+$e.value+")";}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -182,9 +182,12 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}) //('.' (array|(WORD)) )*
+:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}|ins=instancevar {$value = pc.variable($ins.value);}) //('.' (array|(WORD)) )*
 ;
 
+instancevar returns [String value]
+: '(' n=NUMBER ')' '.' w=WORD {$value = "("+$n.text+")."+$w.text;}
+	;
 
 
 function returns [String value]
@@ -221,7 +224,10 @@ HEXNUMBER
 GLOBALVAR
 : 'global' '.' WORD;
 
-OIVAR : (WORD|'(' NUMBER ')') '.' WORD ; /* Other instance variable */
+OIVAR : (WORD) '.' WORD ; /* Other instance variable */
+
+//INSVAR	:	'(' NUMBER ').'
+//	;
 
 DECIMAL : NUMBER '.' NUMBER;
 

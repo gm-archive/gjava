@@ -716,7 +716,7 @@ public class PlatformCore  {
             return allassignmentstatement(variable,operator,expression,"{self.","self.");
         }
          else if(originalvariable.contains(".")){
-        	 return allassignmentstatement(variable,operator,expression,"{((Actor)"+variable(variable.substring(0, variable.indexOf(".")))+").","Game."+variable(variable.substring(0, variable.indexOf(".")))+".");
+        	 return allassignmentstatement(variable,operator,expression,"{Variable.getActor("+variable(variable.substring(0, variable.indexOf(".")))+").","Game."+variable(variable.substring(0, variable.indexOf(".")))+".");
             
         } else {
         	//by default since the variable doesn't have something '.' before it it applies to self
