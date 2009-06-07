@@ -1336,9 +1336,17 @@ public static Object instance_find(Object obj, Object n)
 return 0d;
 }
 
-public static Object instance_exists(Object obj)
+public Object instance_exists(Object obj)
 {
-return 0d;
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (Variable.getActor(obj).isSameAs(a)) {
+            	return true;
+             }
+        }
+     }
+	return false;
 }
 
 public static Object instance_number(Object obj)
