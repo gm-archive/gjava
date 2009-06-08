@@ -463,6 +463,7 @@ public class DolphinWriter {
                 print(actor, "        ystart = Y;");
                 print(actor, "        x = X;");
                 print(actor, "        y = Y;");
+                print(actor, "        setObject_index(Game."+name+");");
                 print(actor, "        this.instance_id = instance_id;");
                 print(actor, "        self=this;");
                 /*print(actor, "        try{");

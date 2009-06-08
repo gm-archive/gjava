@@ -486,14 +486,14 @@ private static final long serialVersionUID = 1L;
 
     public Object getHspeed() {
 
-        return new Double(hspeed);
+        return hspeed;
     }
 
     public Object getId() {
 //        if (id == null) {
 //            id = 0d;
 //        }
-        return new Double(id);
+        return self.instance_id;
     }
 
     public Object getImage_alpha() {

@@ -395,6 +395,23 @@ public void render(Graphics2D g2d2)  {
         return ac.toArray(a);
     }
     
+    /*
+     * Used when moving room to get the persistent objects to move to next room
+     */
+    public Vector<Actor> getPersistent(){
+        Vector<Actor> ac = new Vector<Actor>();
+    for (int i = 0; i < instances.size(); i++) {
+           if (instances.elementAt(i) !=null){
+               Actor a = (Game.currentRoom.instances.elementAt(i));
+
+               if (Variable.toBoolean(a.persistent)) {
+                     ac.add(a);
+                }
+           }
+        }
+        return ac;
+    }
+    
     public Actor getInstance(double id){
     	 for (int i = 0; i < instances.size(); i++) {
              if (instances.elementAt(i) !=null){

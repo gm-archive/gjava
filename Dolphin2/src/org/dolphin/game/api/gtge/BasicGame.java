@@ -15,6 +15,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import org.dolphin.game.api.Clipboard;
+import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.components.Room2D;
 
 import com.golden.gamedev.Game;
@@ -156,9 +157,16 @@ public class BasicGame extends Game {
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid+1)){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
+                            Vector<Actor> per = currentRoom.getPersistent();
                             currentRoom.setinvisible();
+                            
 				currentRoom=rooms.get(i);
+				
                                 currentRoom.setvisible();
+                                
+                                currentRoom.instances.addAll(per);
+                				currentRoom.depth.addAll(per);
+                                currentRoom.SortDepth();
                                 throw new RoomChangedException();
                         }}
         } else {
@@ -175,9 +183,13 @@ public class BasicGame extends Game {
 		for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).vectorid==(currentRoom.vectorid-1)){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
+                            Vector<Actor> per = currentRoom.getPersistent();
                                 currentRoom.setinvisible();
 				currentRoom=rooms.get(i);
                                 currentRoom.setvisible();
+                                currentRoom.instances.addAll(per);
+                				currentRoom.depth.addAll(per);
+                                currentRoom.SortDepth();
 		throw new RoomChangedException();
                         }}
                 }else {
@@ -200,9 +212,14 @@ public class BasicGame extends Game {
             for (int i = 0; i < rooms.size(); i++) {
 			if (rooms.get(i).id==roomid){
                             org.dolphin.game.Game.thegame.bsInput.refresh();
+                            Vector<Actor> per = currentRoom.getPersistent();
                                 currentRoom.setinvisible();
+                                
 				currentRoom=rooms.get(i);
                                 currentRoom.setvisible();
+                                currentRoom.instances.addAll(per);
+                				currentRoom.depth.addAll(per);
+                                currentRoom.SortDepth();
 		throw new RoomChangedException();
                         }
         }
