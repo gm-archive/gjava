@@ -1,2 +1,5 @@
-veriable = (1009);
-(1009).y=0;
+{
+instance_id[0].x=0
+ins.x=0
+ins=alarm[0]
+}

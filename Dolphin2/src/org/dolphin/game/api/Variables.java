@@ -8,6 +8,7 @@ package org.dolphin.game.api;
 import java.util.Calendar;
 
 import org.dolphin.game.Game;
+import org.dolphin.game.api.gtge.BasicGame;
 import org.dolphin.game.api.types.Color;
 
 /**
@@ -589,12 +590,16 @@ public static Object   argument
         //constant
     }
 
-    public static Object getInstance_id() {
-        return instance_id;
+    public static Object getInstance_id(int num) {
+    	if (BasicGame.currentRoom.instances.size()>num && BasicGame.currentRoom.instances.get(num)!=null)
+    	return BasicGame.currentRoom.instances.get(num);
+    	else
+    		return noone;
+        //return instance_id;
     }
 
-    public static void setInstance_id(Object instance_id) {
-        Variables.instance_id = instance_id;
+    public static void setInstance_id(int num, Object instance_id) {
+        //its a constant array
     }
 
     public static Object getKeyboard_key() {

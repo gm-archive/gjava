@@ -1,3 +1,7 @@
 Developer Notes
 * If an argument is a boolean value, use Variable.toboolean(value) to make sure its not a double
 * Use Variable.getActor(obj).isSameAs(a) to check if obj is the same as a (works for all,other,self,object,instance etc)
+* If declaring a built in array make sure to have getName(int) and setName(int,Object) replace name with name of array
+*
+*
+*

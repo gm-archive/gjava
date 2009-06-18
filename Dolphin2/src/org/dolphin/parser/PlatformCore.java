@@ -948,7 +948,7 @@ public class PlatformCore  {
             if (checkarray(variable)) {
                 System.out.println("it is a built in array!");
             	
-                return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "("+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+".getInt())";
+                return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1) + "((int)"+variable.substring(variable.indexOf("[")+1,variable.indexOf("]"))+")";
             } else {
             	//variable = variable.substring(variable.indexOf(".")+1,variable.length()); //get rid of . as in global. or other.
             	System.out.println("variable for unbuilt in array:instance:"+instance+" variable"+variable);
