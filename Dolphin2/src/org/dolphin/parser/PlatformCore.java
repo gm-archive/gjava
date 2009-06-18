@@ -36,6 +36,7 @@ import org.dolphin.DolphinWriter;
 import org.dolphin.game.Game;
 import org.dolphin.game.api.Constants;
 import org.dolphin.game.api.Variables;
+import org.dolphin.game.api.components.Actor;
 import org.lateralgm.resources.GmObject;
 
 
@@ -683,12 +684,18 @@ public class PlatformCore  {
     	//next check if first '.' is instance (all/other/global etc)
     		System.out.println("seperatevars.length:"+seperatevars.length);
     	
-    	String middleparts="";
+    	String middleparts=instance;
+    	for (int i=positionInArray; i<seperatevars.length-1;i++){
+    		middleparts+="";
+    	}
+    	//
+//{Variable.getActor(((Actor)getInstance_id((int)0d).getId()).getId()).setX(0d);}
+    	
     	//change the middle parts to .get
     	for (int i=positionInArray; i<seperatevars.length-1;i++)
     	{
-    		middleparts+=variable(seperatevars[i])+".";
-    		System.out.println("Middlebits:"+middleparts);
+    		middleparts="(Variable.getActor("+middleparts+(variable(seperatevars[i])).replace("self.", "")+")).";
+    		System.out.println("Middlebits:"+middleparts+" i:"+i);
     	}
     	
     	//remove last '.'
@@ -697,7 +704,7 @@ public class PlatformCore  {
     	//last part of '.' is the variable that will actually be set
     	String lastbit = allassignmentstatement(seperatevars[seperatevars.length-1],operator,expression,"","");
     	
-    	return "{Variable.getActor("+instance+middleparts+")."+lastbit;
+    	return "{Variable.getActor("+middleparts+")."+lastbit;
     }
     
     /**
@@ -738,7 +745,7 @@ public class PlatformCore  {
         	//by default since the variable doesn't have something '.' before it it applies to self
         	instance="self.";
         	hasinstance=false;}
-        	else if (countOccurrences(originalvariable,".")==1){
+        	else if (countOccurrences(originalvariable,".")>0){
             	//by default since the variable doesn't have something '.' before it it applies to self
             	instance="{Variable.getActor("+variable(variable.substring(0, variable.indexOf(".")))+").";
             	return complexassignment(variable,operator,expression,"{","",false);           	

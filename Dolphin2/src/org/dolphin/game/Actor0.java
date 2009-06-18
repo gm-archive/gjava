@@ -119,7 +119,7 @@ public class Actor0 extends Actor {
 		System.out.println("all.x:"+all.getX());
 		all.setX(100);
 		System.out.println("all.x:"+all.getX());
-		((Actor)all.getId()).getId();
+		(((Actor)all.getId()).getId()).equals(1d);
 		
 		
 		//System.out.println(""+Game.game.getGame().getMouseX());

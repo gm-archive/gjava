@@ -1,5 +1,7 @@
 {
-instance_id[0].x=0
-ins.x=0
-ins=alarm[0]
+instance_id[0].id.id.id.x=0
+somevar=obj_2
+somevar.othervar=obj_2
+somevar.othervar.id.x=0;
+room_caption = string(instance_count)
 }

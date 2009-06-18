@@ -8,6 +8,7 @@ package org.dolphin.game.api;
 import java.util.Calendar;
 
 import org.dolphin.game.Game;
+import org.dolphin.game.api.components.Actor;
 import org.dolphin.game.api.gtge.BasicGame;
 import org.dolphin.game.api.types.Color;
 
@@ -590,7 +591,7 @@ public static Object   argument
         //constant
     }
 
-    public static Object getInstance_id(int num) {
+    public static Actor getInstance_id(int num) {
     	if (BasicGame.currentRoom.instances.size()>num && BasicGame.currentRoom.instances.get(num)!=null)
     	return BasicGame.currentRoom.instances.get(num);
     	else

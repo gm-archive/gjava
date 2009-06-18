@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-18 16:34:10
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-18 19:30:01
 
 package org.dolphin.parser;
 
@@ -1593,8 +1593,8 @@ public class gscriptLexer extends Lexer {
     public final void mOIVAR() throws RecognitionException {
         try {
             int _type = OIVAR;
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:7: ( ( WORD ) '.' WORD )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:9: ( WORD ) '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:7: ( ( WORD ) ( '.' WORD ) )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:9: ( WORD ) ( '.' WORD )
             {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:9: ( WORD )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:10: WORD
@@ -1603,8 +1603,14 @@ public class gscriptLexer extends Lexer {
 
             }
 
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:16: ( '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:227:17: '.' WORD
+            {
             match('.'); 
             mWORD(); 
+
+            }
+
 
             }
 
@@ -2899,7 +2905,7 @@ public class gscriptLexer extends Lexer {
     static final String DFA11_eotS =
         "\1\uffff\1\63\1\65\1\67\1\73\4\uffff\1\75\1\77\1\102\1\106\1\uffff"+
         "\4\112\1\uffff\10\112\1\uffff\1\112\1\141\1\144\1\147\1\uffff\3"+
-        "\112\1\154\3\112\1\162\2\uffff\1\164\1\uffff\1\112\13\uffff\1\173"+
+        "\112\1\154\3\112\1\162\2\uffff\1\164\1\uffff\1\112\13\uffff\1\174"+
         "\15\uffff\3\112\2\uffff\14\112\1\u008c\4\112\1\u0091\1\112\11\uffff"+
         "\1\112\1\u0094\1\112\2\uffff\5\112\5\uffff\1\u009c\1\uffff\1\u009c"+
         "\3\uffff\2\112\1\u00a0\1\112\1\u00a2\6\112\1\u00aa\3\112\1\uffff"+
@@ -2909,8 +2915,8 @@ public class gscriptLexer extends Lexer {
         "\1\u00cc\3\112\1\u00d0\2\112\1\u00d3\1\u00d4\2\uffff\1\u00d5\3\112"+
         "\1\uffff\1\112\1\uffff\1\112\1\u00db\1\uffff\1\u00dc\1\112\1\u00de"+
         "\1\uffff\1\u00df\1\u00e0\3\uffff\1\112\1\u00e3\1\u00e4\2\112\2\uffff"+
-        "\1\u00e7\3\uffff\1\112\3\uffff\1\u00ea\1\112\1\uffff\1\112\1\u00ee"+
-        "\1\uffff\1\u00ef\1\u00f0\1\u00ee\3\uffff";
+        "\1\u00e7\4\uffff\1\112\2\uffff\1\u00ea\1\112\1\uffff\1\u00ed\1\112"+
+        "\1\uffff\1\u00ef\1\u00ed\1\uffff\1\u00f0\2\uffff";
     static final String DFA11_eofS =
         "\u00f1\uffff";
     static final String DFA11_minS =
@@ -2921,8 +2927,8 @@ public class gscriptLexer extends Lexer {
         "\17\56\1\uffff\4\56\1\uffff\2\56\1\uffff\6\56\1\0\1\uffff\1\0\2"+
         "\56\1\uffff\1\56\1\uffff\7\56\1\uffff\4\56\2\uffff\1\56\3\uffff"+
         "\14\56\2\uffff\4\56\1\uffff\1\56\1\uffff\2\56\1\uffff\3\56\1\uffff"+
-        "\2\56\3\uffff\5\56\2\uffff\1\56\3\uffff\1\56\1\101\2\uffff\2\56"+
-        "\1\uffff\1\56\1\60\1\uffff\2\56\1\60\3\uffff";
+        "\2\56\3\uffff\5\56\2\uffff\1\56\3\uffff\1\101\1\56\2\uffff\2\56"+
+        "\1\uffff\1\60\1\56\1\uffff\1\56\1\60\1\uffff\1\56\2\uffff";
     static final String DFA11_maxS =
         "\1\176\4\75\4\uffff\2\75\2\76\1\uffff\4\172\1\uffff\10\172\1\uffff"+
         "\1\172\1\174\1\75\1\136\1\uffff\3\172\1\75\3\172\1\71\2\uffff\1"+
@@ -2933,7 +2939,7 @@ public class gscriptLexer extends Lexer {
         "\7\172\1\uffff\4\172\2\uffff\1\172\3\uffff\14\172\2\uffff\4\172"+
         "\1\uffff\1\172\1\uffff\2\172\1\uffff\3\172\1\uffff\2\172\3\uffff"+
         "\5\172\2\uffff\1\172\3\uffff\2\172\2\uffff\2\172\1\uffff\2\172\1"+
-        "\uffff\3\172\3\uffff";
+        "\uffff\2\172\1\uffff\1\172\2\uffff";
     static final String DFA11_acceptS =
         "\5\uffff\1\5\1\6\1\7\1\10\4\uffff\1\21\4\uffff\1\27\10\uffff\1\44"+
         "\4\uffff\1\53\10\uffff\1\110\1\111\1\uffff\1\113\1\uffff\1\120\3"+
@@ -2941,12 +2947,12 @@ public class gscriptLexer extends Lexer {
         "\1\11\1\13\1\42\1\52\1\15\1\14\1\63\1\51\1\17\1\16\3\uffff\1\121"+
         "\1\115\23\uffff\1\56\1\104\1\46\1\54\1\105\1\47\1\60\1\106\1\50"+
         "\3\uffff\1\62\1\76\5\uffff\1\107\1\117\1\112\1\116\1\125\4\uffff"+
-        "\1\20\1\122\17\uffff\1\35\4\uffff\1\67\2\uffff\1\57\7\uffff\1\124"+
+        "\1\122\1\20\17\uffff\1\35\4\uffff\1\67\2\uffff\1\57\7\uffff\1\124"+
         "\3\uffff\1\24\1\uffff\1\72\7\uffff\1\31\4\uffff\1\41\1\43\1\uffff"+
         "\1\45\1\55\1\61\14\uffff\1\34\1\37\4\uffff\1\36\1\uffff\1\74\2\uffff"+
         "\1\77\3\uffff\1\25\2\uffff\1\30\1\65\1\40\5\uffff\1\70\1\71\1\uffff"+
-        "\1\22\1\26\1\73\2\uffff\1\33\1\64\2\uffff\1\23\2\uffff\1\75\3\uffff"+
-        "\1\114\1\66\1\32";
+        "\1\22\1\26\1\73\2\uffff\1\33\1\64\2\uffff\1\23\2\uffff\1\75\2\uffff"+
+        "\1\114\1\uffff\1\66\1\32";
     static final String DFA11_specialS =
         "\u00f1\uffff}>";
     static final String[] DFA11_transitionS = {
@@ -3032,7 +3038,7 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
-            "\uffff\174",
+            "\uffff\173",
             "",
             "",
             "",
@@ -3285,8 +3291,8 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u00e2\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff"+
-            "\25\111\1\u00e1\4\111",
+            "\1\u00e1\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff"+
+            "\25\111\1\u00e2\4\111",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
             "\111",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
@@ -3302,9 +3308,9 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
+            "\32\u00e8\4\uffff\1\u00e8\1\uffff\32\u00e8",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\1"+
-            "\u00e8\31\111",
-            "\32\u00e9\4\uffff\1\u00e9\1\uffff\32\u00e9",
+            "\u00e9\31\111",
             "",
             "",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
@@ -3312,16 +3318,16 @@ public class gscriptLexer extends Lexer {
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\4"+
             "\111\1\u00eb\25\111",
             "",
+            "\12\u00ec\7\uffff\32\u00ec\4\uffff\1\u00ec\1\uffff\32\u00ec",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\21"+
-            "\111\1\u00ec\10\111",
-            "\12\u00ed\7\uffff\32\u00ed\4\uffff\1\u00ed\1\uffff\32\u00ed",
+            "\111\1\u00ee\10\111",
             "",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
             "\111",
+            "\12\u00ec\7\uffff\32\u00ec\4\uffff\1\u00ec\1\uffff\32\u00ec",
+            "",
             "\1\113\1\uffff\12\111\7\uffff\32\111\4\uffff\1\111\1\uffff\32"+
             "\111",
-            "\12\u00ed\7\uffff\32\u00ed\4\uffff\1\u00ed\1\uffff\32\u00ed",
-            "",
             "",
             ""
     };

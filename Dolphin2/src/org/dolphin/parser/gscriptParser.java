@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-18 16:34:09
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-18 19:30:00
 
 package org.dolphin.parser;
 
@@ -9821,7 +9821,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start array
-    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:200:1: array returns [String value] : valuee= ( WORD | OIVAR | GLOBALVAR ) '[' (e= expression )? ( ',' e1= expression )? ']' ( '.' vvv= variable )? ;
+    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:200:1: array returns [String value] : valuee= ( WORD | OIVAR | GLOBALVAR ) '[' (e= expression )? ( ',' e1= expression )? ']' ( '.' vvv= variable )* ;
     public final String array() throws RecognitionException {
         String value = null;
         int array_StartIndex = input.index();
@@ -9835,8 +9835,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 37) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:3: (valuee= ( WORD | OIVAR | GLOBALVAR ) '[' (e= expression )? ( ',' e1= expression )? ']' ( '.' vvv= variable )? )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:5: valuee= ( WORD | OIVAR | GLOBALVAR ) '[' (e= expression )? ( ',' e1= expression )? ']' ( '.' vvv= variable )?
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:3: (valuee= ( WORD | OIVAR | GLOBALVAR ) '[' (e= expression )? ( ',' e1= expression )? ']' ( '.' vvv= variable )* )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:5: valuee= ( WORD | OIVAR | GLOBALVAR ) '[' (e= expression )? ( ',' e1= expression )? ']' ( '.' vvv= variable )*
             {
             valuee=(Token)input.LT(1);
             if ( input.LA(1)==WORD||(input.LA(1)>=OIVAR && input.LA(1)<=GLOBALVAR) ) {
@@ -9904,49 +9904,43 @@ public class gscriptParser extends Parser {
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),value);
             }
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:177: ( '.' vvv= variable )?
-            int alt52=2;
-            int LA52_0 = input.LA(1);
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:177: ( '.' vvv= variable )*
+            loop52:
+            do {
+                int alt52=2;
+                int LA52_0 = input.LA(1);
 
-            if ( (LA52_0==89) ) {
-                int LA52_1 = input.LA(2);
-
-                if ( (LA52_1==WORD||(LA52_1>=OIVAR && LA52_1<=GLOBALVAR)) ) {
-                    int LA52_56 = input.LA(3);
+                if ( (LA52_0==89) ) {
+                    int LA52_55 = input.LA(2);
 
                     if ( (synpred136()) ) {
                         alt52=1;
                     }
+
+
                 }
-                else if ( (LA52_1==LPAREN) ) {
-                    int LA52_57 = input.LA(3);
 
-                    if ( (LA52_57==NUMBER) ) {
-                        int LA52_115 = input.LA(4);
 
-                        if ( (synpred136()) ) {
-                            alt52=1;
-                        }
-                    }
+                switch (alt52) {
+            	case 1 :
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:178: '.' vvv= variable
+            	    {
+            	    match(input,89,FOLLOW_89_in_array1708); if (failed) return value;
+            	    pushFollow(FOLLOW_variable_in_array1712);
+            	    vvv=variable();
+            	    _fsp--;
+            	    if (failed) return value;
+            	    if ( backtracking==0 ) {
+            	      value+="."+input.toString(vvv.start,vvv.stop);
+            	    }
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop52;
                 }
-            }
-            switch (alt52) {
-                case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:178: '.' vvv= variable
-                    {
-                    match(input,89,FOLLOW_89_in_array1708); if (failed) return value;
-                    pushFollow(FOLLOW_variable_in_array1712);
-                    vvv=variable();
-                    _fsp--;
-                    if (failed) return value;
-                    if ( backtracking==0 ) {
-                      value+="."+input.toString(vvv.start,vvv.stop);
-                    }
-
-                    }
-                    break;
-
-            }
+            } while (true);
 
 
             }
@@ -11319,7 +11313,7 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_expression_in_array1697 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
     public static final BitSet FOLLOW_91_in_array1702 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
     public static final BitSet FOLLOW_89_in_array1708 = new BitSet(new long[]{0x0000000018200100L});
-    public static final BitSet FOLLOW_variable_in_array1712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_array1712 = new BitSet(new long[]{0x0000000000000002L,0x0000000002000000L});
     public static final BitSet FOLLOW_method_in_synpred1196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_varstatement_in_synpred7262 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_function_in_synpred21332 = new BitSet(new long[]{0x0000000000000002L});

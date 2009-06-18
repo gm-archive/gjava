@@ -198,7 +198,7 @@ function2 returns [String value]
 	:	n=OIVAR '(' ((e=expression {$value = $e.value;})  ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}	;
 
 array returns [String value]
-  : valuee=(WORD|OIVAR|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']'  {$value = pc.array($valuee.text,$value);} ('.' vvv=variable {$value+="."+$vvv.text;})?
+  : valuee=(WORD|OIVAR|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']'  {$value = pc.array($valuee.text,$value);} ('.' vvv=variable {$value+="."+$vvv.text;})*
 ;
 
 //definestatement: '#define' WORD //used for testing scripts
@@ -224,7 +224,7 @@ HEXNUMBER
 GLOBALVAR
 : 'global' '.' WORD;
 
-OIVAR : (WORD) '.' WORD ; /* Other instance variable */
+OIVAR : (WORD) ('.' WORD) ; /* Other instance variable */
 
 //INSVAR	:	'(' NUMBER ').'
 //	;
