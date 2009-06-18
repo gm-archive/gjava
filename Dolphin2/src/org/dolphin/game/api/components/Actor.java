@@ -74,6 +74,7 @@ private static final long serialVersionUID = 1L;
         this.y = ((Double)Y).floatValue();
         //posinvector=pos;
         self = this;
+        
     }
 
     static Object DSolid,DVisible,DSprite,DDepth,Dpersistent;

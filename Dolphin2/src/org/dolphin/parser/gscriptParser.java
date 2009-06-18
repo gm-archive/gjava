@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-18 15:44:39
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-18 16:34:09
 
 package org.dolphin.parser;
 
@@ -9940,7 +9940,7 @@ public class gscriptParser extends Parser {
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
-                      value+="."+pc.variable(vvv.value);
+                      value+="."+input.toString(vvv.start,vvv.stop);
                     }
 
                     }

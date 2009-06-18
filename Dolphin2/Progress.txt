@@ -16,5 +16,6 @@ the rotate function alters the image so it looks terrible (possible use afflinet
 When doing masks check functions like place_free as they use sprite.sprite_width and should use a mask width
 The bounding box needs to be angled for sprite and mask when the sprite is at an angle
 Change code so that it doesn't modify the image when scaling, rotating etc (more efficient?)
+instance_id[0].x=0 does not compile
 
 ||||| Functions

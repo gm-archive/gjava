@@ -525,7 +525,8 @@ public class PlatformCore  {
     
     public String arrayassigment(String variable, String operator, String expression,String instance,String instanceType){
 {
-	if (variable.indexOf("[") > variable.indexOf("."))
+	// First of all remove any instance. before the brackets as all .'s before bracket are instance
+	if (variable.indexOf("[") > variable.indexOf(".")) 
     	variable=variable.substring(variable.indexOf(".")+1);
 	System.out.println("arrayassigment variable:"+variable+" operator:"+operator+" expression:"+expression+" instance:"+instance);
     String name =  variable.substring(0,variable.indexOf("["));                   
@@ -588,13 +589,6 @@ public class PlatformCore  {
     	 String value="";
          String tempvar="",originalvariable=variable;
         
-         //System.out.println("allassigment");
-         
-         /*if (type==0)
-         instance = "{for (int i = 0; i < Game.currentRoom.instances.size(); i++)   Game.currentRoom.instances.get(i)";
-         else if(type==1)
-        	 instance="{Actor[] ac =Game.currentRoom.setActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass()); for (int i = 0; i < ac.length; i++) ac[i]";
-        */
          variable = variable.substring(variable.indexOf(".")+1);
          tempvar=variable;
          String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length()); //with upercase
@@ -606,6 +600,7 @@ public class PlatformCore  {
         	  * It is an array
         	  */
         	 System.out.println("Array found:"+arrayassigment(originalvariable,operator,expression,instance,instanceType));
+        	 
         	 return arrayassigment(originalvariable,operator,expression,instance,instanceType);
          }
          else {
@@ -672,6 +667,39 @@ public class PlatformCore  {
     	return "";
     }
     
+    /*
+     * Complex assignments are assignments with more than one '.' in them
+     * 
+     */
+    public String complexassignment(String originalvariable, String operator, String expression,String instancewithbrac, String instance,boolean hasinstance)
+    {
+    	System.out.println("complexassignment: var:"+originalvariable);
+    	
+    	int positionInArray=0; //set to one because by default it has instance '.' at beggining
+    	if (hasinstance) positionInArray++;
+    	//first split variable by '.'s
+    	String [] seperatevars = null;
+    	seperatevars = originalvariable.split("[.]");
+    	//next check if first '.' is instance (all/other/global etc)
+    		System.out.println("seperatevars.length:"+seperatevars.length);
+    	
+    	String middleparts="";
+    	//change the middle parts to .get
+    	for (int i=positionInArray; i<seperatevars.length-1;i++)
+    	{
+    		middleparts+=variable(seperatevars[i])+".";
+    		System.out.println("Middlebits:"+middleparts);
+    	}
+    	
+    	//remove last '.'
+    	middleparts = middleparts.substring(0,middleparts.length()-1);
+    	
+    	//last part of '.' is the variable that will actually be set
+    	String lastbit = allassignmentstatement(seperatevars[seperatevars.length-1],operator,expression,"","");
+    	
+    	return "{Variable.getActor("+instance+middleparts+")."+lastbit;
+    }
+    
     /**
      * Assignment statement
      * @param variable - variable to set value of
@@ -684,46 +712,44 @@ public class PlatformCore  {
         
         String instance="",value="";
         String tempvar="",originalvariable=variable;
-        
-        /*if (variable.contains("[")) {
-        	
-        	if (variable.indexOf("[") > variable.indexOf("."))
-        	variable=variable.substring(variable.indexOf(".")+1);
-        	System.out.println("variable length:"+variable.length()+" variable:"+variable);
-        	variable=("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()).substring(0,variable.indexOf("[")-1);
-        }*/
-        
+        boolean hasinstance=true;
+              
         if(originalvariable.startsWith("all.")) {
-            return allassignmentstatement(variable,operator,expression,"{all.","all.");
+        	instance="all.";
         } else if(originalvariable.startsWith("other.")) {
-        	return allassignmentstatement(variable,operator,expression,"{other.","other.");
+        	instance="other.";
         } else if(originalvariable.startsWith("noone.")) {
-        	return allassignmentstatement(variable,operator,expression,"{noone.","noone.");
+        	instance="noone.";
         } else if(originalvariable.startsWith("self.")) {
-        	return allassignmentstatement(variable,operator,expression,"{self.","self.");
+        	instance="self.";
         } else if(originalvariable.startsWith("global.")) {
-        	return allassignmentstatement(variable,operator,expression,"{Global.","Global.");
+        	instance="Global.";
         } else if(originalvariable.startsWith("("))  {
             instance = "(self)";//actually instance variable
             System.out.println("WARNING: instance variable!:"+variable);
-            return allassignmentstatement(variable,operator,expression,"{Game.currentRoom.getInstance("+variable.substring(0,variable.indexOf("."))+").","self.");
-
-        } else if (countOccurrences(originalvariable,".")>1){
-            //more than one . used in the variable name TODO fix this!
-        	//obj[1].id.x = 12;
-            System.out.println("WARNING: more than one . variable!:"+variable);
-            
-            return allassignmentstatement(variable,operator,expression,"{self.","self.");
-        }
-         else if(originalvariable.contains(".")){
+            instance="{Game.currentRoom.getInstance("+variable.substring(0,variable.indexOf("."))+").";
+        } 
+        //need to handle actor. variables !!! TODO
+         /*else if(originalvariable.contains(".")){
         	 return allassignmentstatement(variable,operator,expression,"{Variable.getActor("+variable(variable.substring(0, variable.indexOf(".")))+").","Game."+variable(variable.substring(0, variable.indexOf(".")))+".");
             
-        } else {
+        }*/ else {
+        	if (countOccurrences(originalvariable,".")==0){
         	//by default since the variable doesn't have something '.' before it it applies to self
-        	return allassignmentstatement(variable,operator,expression,"{self.","self.");
+        	instance="self.";
+        	hasinstance=false;}
+        	else if (countOccurrences(originalvariable,".")==1){
+            	//by default since the variable doesn't have something '.' before it it applies to self
+            	instance="{Variable.getActor("+variable(variable.substring(0, variable.indexOf(".")))+").";
+            	return complexassignment(variable,operator,expression,"{","",false);           	
+        	}        
         }
-
-            
+        int numberrequired=2;
+        if (!hasinstance) numberrequired--;
+        if (countOccurrences(originalvariable,".")<numberrequired)
+        return allassignmentstatement(variable,operator,expression,"{"+instance,instance);
+        else
+        	return complexassignment(variable,operator,expression,"{"+instance,instance,hasinstance);
         
     }
     
