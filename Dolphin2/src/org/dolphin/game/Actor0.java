@@ -122,6 +122,7 @@ public class Actor0 extends Actor {
 		(((Actor)all.getId()).getId()).equals(1d);
 		
 		
+		
 		//System.out.println(""+Game.game.getGame().getMouseX());
 		
 		

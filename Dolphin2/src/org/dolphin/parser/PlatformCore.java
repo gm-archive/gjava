@@ -685,16 +685,14 @@ public class PlatformCore  {
     		System.out.println("seperatevars.length:"+seperatevars.length);
     	
     	String middleparts=instance;
-    	for (int i=positionInArray; i<seperatevars.length-1;i++){
-    		middleparts+="";
-    	}
+    	
     	//
 //{Variable.getActor(((Actor)getInstance_id((int)0d).getId()).getId()).setX(0d);}
     	
     	//change the middle parts to .get
     	for (int i=positionInArray; i<seperatevars.length-1;i++)
     	{
-    		middleparts="(Variable.getActor("+middleparts+(variable(seperatevars[i])).replace("self.", "")+")).";
+    		middleparts="Variable.getActor("+middleparts+(variable(seperatevars[i])).replace("self.", "")+").";
     		System.out.println("Middlebits:"+middleparts+" i:"+i);
     	}
     	
@@ -953,11 +951,8 @@ public class PlatformCore  {
         else if(variable.startsWith("all.")) {
             instance = "Game.currentRoom.getfirst()";
         }
-        else if (countOccurrences(variable,".")>1){
-            instance = "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass())";
-            System.out.println("more than one . variable!");
-        }
-        else if(variable.contains(".")) {
+        
+       /* else if(variable.contains(".")) {
             instance = "Game.currentRoom.getActorwithname(Variable.getTheClass("+variable(variable.substring(0, variable.indexOf(".")))+"))";
            
             variable = variable.substring(variable.indexOf(".")+1);//remove the instance part from variable
@@ -965,8 +960,8 @@ public class PlatformCore  {
                 return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()) + "()";
             } else {
             	System.out.println("not built in:"+variable(variable.substring(variable.indexOf("."))));
-            }*/
-        }
+            }
+        }*/
         else if(variable.startsWith("(")) {
             instance = "(self)";
             System.out.println("It thinks the variable is instance() but is it?"+variable);
@@ -975,6 +970,30 @@ public class PlatformCore  {
         else {
             instance = "self";
         }
+        
+        if (countOccurrences(variable,".")>1){
+        	String middleparts=instance+".";
+        	String [] seperatevars = null;
+        	seperatevars = variable.split("[.]");
+        	//change the middle parts to .get
+        	for (int i=0; i<seperatevars.length-1;i++)
+        	{
+        		middleparts="Variable.getActor("+middleparts+(variable(seperatevars[i])).replace("self.", "")+").";
+        		System.out.println("Middlebits:"+middleparts+" i:"+i);
+        	}
+        	
+        	middleparts+=variable(seperatevars[seperatevars.length-1]);
+        	middleparts = middleparts.replaceAll("self.", "");
+        	
+        	//remove last '.'
+        	//middleparts = middleparts.substring(0,middleparts.length()-1);
+        	
+        	
+            //instance = "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass())";
+            System.out.println("more than one . variable!TODO");
+            return middleparts;
+        }
+        
 
         if (variable.contains("[")){
             //System.out.println("array detected!");
