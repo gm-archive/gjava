@@ -4,4 +4,7 @@ somevar=obj_2
 somevar.othervar=obj_2
 somevar.othervar.id.x=0;
 room_caption = string(instance_count)
+((instance_find(object0,3))).x=0
+x=((instance_find(object0,3)))
+x=((instance_find(object0,1)).id).x
 }

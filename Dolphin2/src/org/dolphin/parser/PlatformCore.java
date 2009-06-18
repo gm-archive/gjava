@@ -674,7 +674,7 @@ public class PlatformCore  {
      */
     public String complexassignment(String originalvariable, String operator, String expression,String instancewithbrac, String instance,boolean hasinstance)
     {
-    	System.out.println("complexassignment: var:"+originalvariable);
+    	//System.out.println("complexassignment: var:"+originalvariable);
     	
     	int positionInArray=0; //set to one because by default it has instance '.' at beggining
     	if (hasinstance) positionInArray++;
@@ -682,7 +682,7 @@ public class PlatformCore  {
     	String [] seperatevars = null;
     	seperatevars = originalvariable.split("[.]");
     	//next check if first '.' is instance (all/other/global etc)
-    		System.out.println("seperatevars.length:"+seperatevars.length);
+    		//System.out.println("seperatevars.length:"+seperatevars.length);
     	
     	String middleparts=instance;
     	
@@ -693,7 +693,7 @@ public class PlatformCore  {
     	for (int i=positionInArray; i<seperatevars.length-1;i++)
     	{
     		middleparts="Variable.getActor("+middleparts+(variable(seperatevars[i])).replace("self.", "")+").";
-    		System.out.println("Middlebits:"+middleparts+" i:"+i);
+    		//System.out.println("Middlebits:"+middleparts+" i:"+i);
     	}
     	
     	//remove last '.'
@@ -979,7 +979,7 @@ public class PlatformCore  {
         	for (int i=0; i<seperatevars.length-1;i++)
         	{
         		middleparts="Variable.getActor("+middleparts+(variable(seperatevars[i])).replace("self.", "")+").";
-        		System.out.println("Middlebits:"+middleparts+" i:"+i);
+        		//System.out.println("Middlebits:"+middleparts+" i:"+i);
         	}
         	
         	middleparts+=variable(seperatevars[seperatevars.length-1]);
@@ -990,7 +990,7 @@ public class PlatformCore  {
         	
         	
             //instance = "Game.currentRoom.getActorwithname("+variable(variable.substring(0, variable.indexOf(".")))+".getActor().getClass())";
-            System.out.println("more than one . variable!TODO");
+            //System.out.println("more than one . variable!TODO");
             return middleparts;
         }
         

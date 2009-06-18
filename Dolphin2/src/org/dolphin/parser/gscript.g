@@ -126,7 +126,7 @@ negate returns [String value]	:	('-'{$value="-";}|'~'{$value="~";}|'+'{$value="+
 
 //expression surrounded with parenthesis
 pexpression returns [String value]
-: LPAREN e=expression RPAREN {$value =pc.pexpression($e.value);}
+: LPAREN e=expression RPAREN {$value =pc.pexpression($e.value);} ('.' variable)?
 ;
 
 andexpression returns [String value]
@@ -178,16 +178,16 @@ withstatement returns [String value]
 ;
 
 assignment returns [String value]
-:  (valueee=array{$value=$valueee.value;}|valuee=variable{$value=$valuee.text;})  op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&='| '^=') e=expression {$value = pc.assignmentstatement($value,$op.text,$e.value);}
+:  (valueee=array{$value=$valueee.value;}|valuee=variable{$value=$valuee.text;}|e1=pexpression{$value=$e1.value;})  op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&='| '^=') e=expression {$value = pc.assignmentstatement($value,$op.text,$e.value);}
 ;
 
 variable returns [String value]
-:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}|ins=instancevar {$value = pc.variable($ins.value);}) //('.' (array|(WORD)) )*
+:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}/*|ins=instancevar {$value = pc.variable($ins.value);}*/) //('.' (OIVAR|array|(WORD)) )*
 ;
 
-instancevar returns [String value]
-: '(' n=NUMBER ')' '.' w=WORD {$value = "("+$n.text+")."+$w.text;}
-;
+/*instancevar returns [String value]
+: '(' (n=NUMBER{$value = "("+$n.text+").";}|f=function{$value = "("+$f.value+").";}|f2=function2{$value = "("+$f.value+").";}) ')' '.' w=WORD {$value += $w.text;}
+;*/
 
 
 function returns [String value]

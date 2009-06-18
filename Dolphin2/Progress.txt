@@ -1,21 +1,17 @@
 |||||| Parser/code output:
 Script.variable does not work (is it important?)
-Multiple '.' variables don't work
+Multiple '.' variables don't work after normal variables (arrays work tho)
+Complex Instance (). variable don't work
 parser error with "var;" statement
 Parser: auto do +,/,-,*,== for doubles to other doubles
 
 enter key event does not work!
-
-==== variable issue
-setting a variable to an instance of an object and using .x doesn't work
-it need to be able to handle both gmresource and instance and setting built in variables
-Plan: create wrapper for all with support for objectname
 
 ||||| General
 the rotate function alters the image so it looks terrible (possible use afflinetransform)
 When doing masks check functions like place_free as they use sprite.sprite_width and should use a mask width
 The bounding box needs to be angled for sprite and mask when the sprite is at an angle
 Change code so that it doesn't modify the image when scaling, rotating etc (more efficient?)
-instance_id[0].x=0 does not compile
+
 
 ||||| Functions
