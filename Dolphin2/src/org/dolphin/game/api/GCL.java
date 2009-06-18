@@ -1364,14 +1364,31 @@ public static Object instance_nearest(Object x, Object y, Object obj)
 return 0d;
 }
 
-public static Object instance_furthest(Object x, Object y, Object obj)
+public Object instance_furthest(Object x, Object y, Object obj)
 {
 return 0d;
 }
 
-public static Object instance_place(Object x, Object y, Object obj)
+public Object instance_place(Object x, Object y, Object obj)
 {
-return 0d;
+	 for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+         if (Game.currentRoom.instances.elementAt(i) !=null){
+             Actor a = (Game.currentRoom.instances.elementAt(i));
+             if (Variable.getActor(obj).isSameAs(a)) {
+                 
+                  if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
+                      //if not instance id
+                      if (a.instance_id == self.instance_id) {
+                         // System.out.println("collided with self");
+                      } else {
+                          
+                          return a;
+                      }
+                  }
+              }
+         }
+      }
+return noone;
 }
 
 public static Object instance_create(Object x, Object y, Object obj)
@@ -1405,15 +1422,48 @@ public Object instance_copy(Object performevent)
         return (Game.maxInstanceId);
 }
 
-public static Object instance_change(Object obj, Object performevents)
+public Object instance_change(Object obj, Object performevents)
 {
-    System.out.println("instance change");
-    
-return 0d;
+	 int thesize=Game.currentRoom.instances.size();
+	    for (int i = 0; i < thesize; i++) {
+	        Actor object = Game.currentRoom.instances.elementAt(i);
+	        
+	        if (object.instance_id == self.instance_id){
+	            Actor a=null,s=self;
+	            try{
+	                
+	        a = (Actor)((AllOfObject)obj).theclass.getConstructor(double.class,double.class,double.class).newInstance(self.x,self.y+20,self.instance_id);
+	           
+	            }catch(Exception e){
+	            e.printStackTrace();
+	            }
+	            
+	        a.instance_id=s.instance_id;
+	        a.variables=s.variables;
+	            
+	        a.hspeed=(Double)s.getHspeed();
+	        a.vspeed=s.vspeed;
+	        a.xstart=s.xstart;
+	        a.ystart=s.ystart;
+	        a.gravity=s.gravity;
+	        a.gravity_direction=s.gravity_direction;
+	        a.alarm=s.alarm;
+	        a.friction=s.friction;
+	        Game.currentRoom.instances.set(i, a);
+	        Game.currentRoom.depth.set(Game.currentRoom.depth.indexOf(object),a);
+	        //a.self=self;
+	        //self=a;
+	        
+	        //a.setVspeed(2);
+	        }
+	    }
+	return false;
 }
 
-public static Object instance_destroy()
+public Object instance_destroy()
 {
+	Game.currentRoom.depth.remove(Game.currentRoom.depth.indexOf(self));
+    Game.currentRoom.instances.remove(Game.currentRoom.instances.indexOf(self));
 return 0d;
 }
 

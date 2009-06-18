@@ -187,7 +187,7 @@ variable returns [String value]
 
 instancevar returns [String value]
 : '(' n=NUMBER ')' '.' w=WORD {$value = "("+$n.text+")."+$w.text;}
-	;
+;
 
 
 function returns [String value]

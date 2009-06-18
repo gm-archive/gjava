@@ -174,7 +174,7 @@ private static final long serialVersionUID = 1L;
 		if (o instanceof Boolean)
 			return (Boolean)o;
 		else if (o instanceof Double)
-			return ((Double)o == 0)? false:true;
+			return ((Double)o <= 0.4)? false:true; //0.4 is false 0.5 is true
 		else if (o instanceof Actor)
 			return (((Actor)o).equals(Actor.noone))? false:true;
 		return false;
