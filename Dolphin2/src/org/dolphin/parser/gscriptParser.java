@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-19 00:44:11
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-19 00:53:01
 
 package org.dolphin.parser;
 
@@ -9924,9 +9924,12 @@ public class gscriptParser extends Parser {
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 33) ) { return retval; }
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:1: ( (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* ) )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:4: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:3: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )
             {
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:4: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )
+            if ( backtracking==0 ) {
+              retval.value ="";
+            }
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:16: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )
             int alt45=2;
             int LA45_0 = input.LA(1);
 
@@ -9942,7 +9945,7 @@ public class gscriptParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("185:4: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )", 45, 1, input);
+                        new NoViableAltException("185:16: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )", 45, 1, input);
 
                     throw nvae;
                 }
@@ -9950,19 +9953,19 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("185:4: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )", 45, 0, input);
+                    new NoViableAltException("185:16: (a= array ( '.' valueee= variable )* | valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )* )", 45, 0, input);
 
                 throw nvae;
             }
             switch (alt45) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:5: a= array ( '.' valueee= variable )*
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:17: a= array ( '.' valueee= variable )*
                     {
-                    pushFollow(FOLLOW_array_in_variable1514);
+                    pushFollow(FOLLOW_array_in_variable1515);
                     a=array();
                     _fsp--;
                     if (failed) return retval;
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:14: ( '.' valueee= variable )*
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:26: ( '.' valueee= variable )*
                     loop43:
                     do {
                         int alt43=2;
@@ -9981,10 +9984,10 @@ public class gscriptParser extends Parser {
 
                         switch (alt43) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:15: '.' valueee= variable
+                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:27: '.' valueee= variable
                     	    {
-                    	    match(input,61,FOLLOW_61_in_variable1518); if (failed) return retval;
-                    	    pushFollow(FOLLOW_variable_in_variable1522);
+                    	    match(input,61,FOLLOW_61_in_variable1519); if (failed) return retval;
+                    	    pushFollow(FOLLOW_variable_in_variable1523);
                     	    valueee=variable();
                     	    _fsp--;
                     	    if (failed) return retval;
@@ -10007,7 +10010,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:110: valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )*
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:122: valuee= ( WORD | GLOBALVAR ) ( '.' valueee= variable )*
                     {
                     valuee=(Token)input.LT(1);
                     if ( input.LA(1)==WORD||input.LA(1)==GLOBALVAR ) {
@@ -10018,10 +10021,10 @@ public class gscriptParser extends Parser {
                         if (backtracking>0) {failed=true; return retval;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1534);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1535);    throw mse;
                     }
 
-                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:134: ( '.' valueee= variable )*
+                    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:146: ( '.' valueee= variable )*
                     loop44:
                     do {
                         int alt44=2;
@@ -10040,10 +10043,10 @@ public class gscriptParser extends Parser {
 
                         switch (alt44) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:135: '.' valueee= variable
+                    	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:147: '.' valueee= variable
                     	    {
-                    	    match(input,61,FOLLOW_61_in_variable1541); if (failed) return retval;
-                    	    pushFollow(FOLLOW_variable_in_variable1545);
+                    	    match(input,61,FOLLOW_61_in_variable1542); if (failed) return retval;
+                    	    pushFollow(FOLLOW_variable_in_variable1546);
                     	    valueee=variable();
                     	    _fsp--;
                     	    if (failed) return retval;
@@ -10101,8 +10104,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ( '.' variable )*
             {
             n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function1573); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function1575); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function1574); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function1576); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt48=2;
             int LA48_0 = input.LA(1);
@@ -10114,7 +10117,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function1580);
+                    pushFollow(FOLLOW_expression_in_function1581);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -10139,7 +10142,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:50: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:51: ','
                     	    {
-                    	    match(input,40,FOLLOW_40_in_function1586); if (failed) return value;
+                    	    match(input,40,FOLLOW_40_in_function1587); if (failed) return value;
 
                     	    }
 
@@ -10154,7 +10157,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:57: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function1592);
+                    	            pushFollow(FOLLOW_expression_in_function1593);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -10182,7 +10185,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function1601); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function1602); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:106: ( '.' variable )*
             loop49:
             do {
@@ -10198,8 +10201,8 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:194:107: '.' variable
             	    {
-            	    match(input,61,FOLLOW_61_in_function1604); if (failed) return value;
-            	    pushFollow(FOLLOW_variable_in_function1606);
+            	    match(input,61,FOLLOW_61_in_function1605); if (failed) return value;
+            	    pushFollow(FOLLOW_variable_in_function1607);
             	    variable();
             	    _fsp--;
             	    if (failed) return value;
@@ -10246,10 +10249,10 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:4: n= WORD '.' WORD '(' ( (e= expression ) ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function21627); if (failed) return value;
-            match(input,61,FOLLOW_61_in_function21629); if (failed) return value;
-            match(input,WORD,FOLLOW_WORD_in_function21630); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21632); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function21628); if (failed) return value;
+            match(input,61,FOLLOW_61_in_function21630); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function21631); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21633); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:23: ( (e= expression ) ( ( ',' ) (e= expression )? )* )?
             int alt52=2;
             int LA52_0 = input.LA(1);
@@ -10264,7 +10267,7 @@ public class gscriptParser extends Parser {
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:24: (e= expression )
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:25: e= expression
                     {
-                    pushFollow(FOLLOW_expression_in_function21638);
+                    pushFollow(FOLLOW_expression_in_function21639);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -10292,7 +10295,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:62: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:63: ','
                     	    {
-                    	    match(input,40,FOLLOW_40_in_function21646); if (failed) return value;
+                    	    match(input,40,FOLLOW_40_in_function21647); if (failed) return value;
 
                     	    }
 
@@ -10307,7 +10310,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:198:69: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function21652);
+                    	            pushFollow(FOLLOW_expression_in_function21653);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -10335,7 +10338,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21661); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21662); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
             }
@@ -10380,10 +10383,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1680);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1681);    throw mse;
             }
 
-            match(input,89,FOLLOW_89_in_array1686); if (failed) return value;
+            match(input,89,FOLLOW_89_in_array1687); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:33: (e= expression )?
             int alt53=2;
             int LA53_0 = input.LA(1);
@@ -10395,7 +10398,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:34: e= expression
                     {
-                    pushFollow(FOLLOW_expression_in_array1691);
+                    pushFollow(FOLLOW_expression_in_array1692);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -10419,8 +10422,8 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:201:68: ',' e1= expression
                     {
-                    match(input,40,FOLLOW_40_in_array1697); if (failed) return value;
-                    pushFollow(FOLLOW_expression_in_array1701);
+                    match(input,40,FOLLOW_40_in_array1698); if (failed) return value;
+                    pushFollow(FOLLOW_expression_in_array1702);
                     e1=expression();
                     _fsp--;
                     if (failed) return value;
@@ -10433,7 +10436,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,90,FOLLOW_90_in_array1706); if (failed) return value;
+            match(input,90,FOLLOW_90_in_array1707); if (failed) return value;
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),value);
             }
@@ -11129,11 +11132,11 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred122
     public final void synpred122_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:15: ( '.' variable )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:15: '.' variable
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:27: ( '.' variable )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:27: '.' variable
         {
-        match(input,61,FOLLOW_61_in_synpred1221518); if (failed) return ;
-        pushFollow(FOLLOW_variable_in_synpred1221522);
+        match(input,61,FOLLOW_61_in_synpred1221519); if (failed) return ;
+        pushFollow(FOLLOW_variable_in_synpred1221523);
         variable();
         _fsp--;
         if (failed) return ;
@@ -11144,11 +11147,11 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred125
     public final void synpred125_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:135: ( '.' variable )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:135: '.' variable
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:147: ( '.' variable )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:185:147: '.' variable
         {
-        match(input,61,FOLLOW_61_in_synpred1251541); if (failed) return ;
-        pushFollow(FOLLOW_variable_in_synpred1251545);
+        match(input,61,FOLLOW_61_in_synpred1251542); if (failed) return ;
+        pushFollow(FOLLOW_variable_in_synpred1251546);
         variable();
         _fsp--;
         if (failed) return ;
@@ -11735,34 +11738,34 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_pexpression_in_assignment1465 = new BitSet(new long[]{0x0000000000001000L,0x0000000001FC0010L});
     public static final BitSet FOLLOW_set_in_assignment1472 = new BitSet(new long[]{0x100C00000FE00130L});
     public static final BitSet FOLLOW_expression_in_assignment1495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_in_variable1514 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_61_in_variable1518 = new BitSet(new long[]{0x0000000008200000L});
-    public static final BitSet FOLLOW_variable_in_variable1522 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_set_in_variable1534 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_61_in_variable1541 = new BitSet(new long[]{0x0000000008200000L});
-    public static final BitSet FOLLOW_variable_in_variable1545 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_function1573 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function1575 = new BitSet(new long[]{0x100C00000FE00330L});
-    public static final BitSet FOLLOW_expression_in_function1580 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_40_in_function1586 = new BitSet(new long[]{0x100C01000FE00330L});
-    public static final BitSet FOLLOW_expression_in_function1592 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function1601 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_61_in_function1604 = new BitSet(new long[]{0x0000000008200000L});
-    public static final BitSet FOLLOW_variable_in_function1606 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_function21627 = new BitSet(new long[]{0x2000000000000000L});
-    public static final BitSet FOLLOW_61_in_function21629 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_WORD_in_function21630 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21632 = new BitSet(new long[]{0x100C00000FE00330L});
-    public static final BitSet FOLLOW_expression_in_function21638 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_40_in_function21646 = new BitSet(new long[]{0x100C01000FE00330L});
-    public static final BitSet FOLLOW_expression_in_function21652 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21661 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1680 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
-    public static final BitSet FOLLOW_89_in_array1686 = new BitSet(new long[]{0x100C01000FE00130L,0x0000000004000000L});
-    public static final BitSet FOLLOW_expression_in_array1691 = new BitSet(new long[]{0x0000010000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_40_in_array1697 = new BitSet(new long[]{0x100C00000FE00130L});
-    public static final BitSet FOLLOW_expression_in_array1701 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_90_in_array1706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_in_variable1515 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_61_in_variable1519 = new BitSet(new long[]{0x0000000008200000L});
+    public static final BitSet FOLLOW_variable_in_variable1523 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_set_in_variable1535 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_61_in_variable1542 = new BitSet(new long[]{0x0000000008200000L});
+    public static final BitSet FOLLOW_variable_in_variable1546 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_function1574 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function1576 = new BitSet(new long[]{0x100C00000FE00330L});
+    public static final BitSet FOLLOW_expression_in_function1581 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_40_in_function1587 = new BitSet(new long[]{0x100C01000FE00330L});
+    public static final BitSet FOLLOW_expression_in_function1593 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function1602 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_61_in_function1605 = new BitSet(new long[]{0x0000000008200000L});
+    public static final BitSet FOLLOW_variable_in_function1607 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_function21628 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_61_in_function21630 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_WORD_in_function21631 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21633 = new BitSet(new long[]{0x100C00000FE00330L});
+    public static final BitSet FOLLOW_expression_in_function21639 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_40_in_function21647 = new BitSet(new long[]{0x100C01000FE00330L});
+    public static final BitSet FOLLOW_expression_in_function21653 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1681 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_89_in_array1687 = new BitSet(new long[]{0x100C01000FE00130L,0x0000000004000000L});
+    public static final BitSet FOLLOW_expression_in_array1692 = new BitSet(new long[]{0x0000010000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_40_in_array1698 = new BitSet(new long[]{0x100C00000FE00130L});
+    public static final BitSet FOLLOW_expression_in_array1702 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_array1707 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_method_in_synpred1196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_function2_in_synpred19322 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_assignment_in_synpred20327 = new BitSet(new long[]{0x0000000000000002L});
@@ -11803,9 +11806,9 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_expression_in_synpred1051214 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_synpred1061225 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_synpred1071336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_synpred1221518 = new BitSet(new long[]{0x0000000008200000L});
-    public static final BitSet FOLLOW_variable_in_synpred1221522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_synpred1251541 = new BitSet(new long[]{0x0000000008200000L});
-    public static final BitSet FOLLOW_variable_in_synpred1251545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_synpred1221519 = new BitSet(new long[]{0x0000000008200000L});
+    public static final BitSet FOLLOW_variable_in_synpred1221523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_synpred1251542 = new BitSet(new long[]{0x0000000008200000L});
+    public static final BitSet FOLLOW_variable_in_synpred1251546 = new BitSet(new long[]{0x0000000000000002L});
 
 }

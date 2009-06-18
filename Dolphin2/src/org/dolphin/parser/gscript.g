@@ -182,7 +182,7 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array  ('.' valueee=variable {$value+="."+$valueee.text;} )*  {$value = pc.variable($a.value+$value);}|valuee=(WORD|GLOBALVAR) ('.' valueee=variable {$value+="."+$valueee.text;} )* {$value = pc.variable($valuee.text+$value);}) 
+: {$value="";} (a=array  ('.' valueee=variable {$value+="."+$valueee.text;} )*  {$value = pc.variable($a.value+$value);}|valuee=(WORD|GLOBALVAR) ('.' valueee=variable {$value+="."+$valueee.text;} )* {$value = pc.variable($valuee.text+$value);}) 
 ;
 
 /*instancevar returns [String value]
