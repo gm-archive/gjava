@@ -178,11 +178,11 @@ withstatement returns [String value]
 ;
 
 assignment returns [String value]
-:  (valueee=array{$value=$valueee.value;}|valuee=variable{$value=$valuee.text;}|e1=pexpression{$value=$e1.value;})  op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&='| '^=') e=expression {$value = pc.assignmentstatement($value,$op.text,$e.value);}
+:  (/*valueee=array{$value=$valueee.value;}|*/valuee=variable{$value=$valuee.text;}|e1=pexpression{$value=$e1.value;})  op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&='| '^=') e=expression {$value = pc.assignmentstatement($value,$op.text,$e.value);}
 ;
 
 variable returns [String value]
-:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}/*|ins=instancevar {$value = pc.variable($ins.value);}*/) //('.' (OIVAR|array|(WORD)) )*
+:  (a=array  ('.' valueee=variable {$value+="."+$valueee.text;} )*  {$value = pc.variable($a.value+$value);}|valuee=(WORD|GLOBALVAR) ('.' valueee=variable {$value+="."+$valueee.text;} )* {$value = pc.variable($valuee.text+$value);}) 
 ;
 
 /*instancevar returns [String value]
@@ -195,10 +195,10 @@ function returns [String value]
 
 
 function2 returns [String value] 
-	:	n=OIVAR '(' ((e=expression {$value = $e.value;})  ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}	;
+	:	n=WORD '.'WORD '(' ((e=expression {$value = $e.value;})  ((',') (e=expression{$value += ", "+$e.value;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}	;
 
 array returns [String value]
-  : valuee=(WORD|OIVAR|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']'  {$value = pc.array($valuee.text,$value);} ('.' vvv=variable {$value+="."+$vvv.text;})*
+  : valuee=(WORD|GLOBALVAR) '[' (e=expression{$value=$e.value;})? (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']'  {$value = pc.array($valuee.text,$value);} //('.' vvv=variable {$value+="."+$vvv.text;})*
 ;
 
 //definestatement: '#define' WORD //used for testing scripts
@@ -224,7 +224,7 @@ HEXNUMBER
 GLOBALVAR
 : 'global' '.' WORD;
 
-OIVAR : (WORD) ('.' WORD) ; /* Other instance variable */
+//OIVAR : (WORD) ('.' WORD) ; /* Other instance variable */
 
 //INSVAR	:	'(' NUMBER ').'
 //	;
