@@ -27,9 +27,9 @@ public class Actor extends Tile implements Serializable {
 private static final long serialVersionUID = 1L;
 
    public Hashtable<java.lang.String, Object> variables = new Hashtable<java.lang.String, Object>();
-    public Sprite sprite;
+    public Sprite sprite,mask_index;
 
-    public Object  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
+    public Object  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent, timeline_index;
     public int[] alarm = new int[11];
    public double xprevious,  xstart,  yprevious,  ystart;
 	public double hspeed;
@@ -259,6 +259,15 @@ private static final long serialVersionUID = 1L;
      * @return
      */
     public Rectangle getBounds() {
+    	if (mask_index !=null){
+    		
+    		if (image_xscale!=1 || image_yscale!=1) //masks are also effected by image scales
+                return new Rectangle((int) ((mask_index.BBLeft*image_xscale) + x - mask_index.sprite_xoffset), (int) ((mask_index.BBTop*image_yscale) + y - mask_index.sprite_yoffset),+((mask_index.BBRight*image_xscale) - mask_index.BBLeft*image_xscale), +((mask_index.BBBottom*image_yscale) - (mask_index.BBTop*image_yscale)));
+                else
+                 return new Rectangle((int) ((mask_index.BBLeft) + x - mask_index.sprite_xoffset), (int) ((mask_index.BBTop) + y - mask_index.sprite_yoffset),+((mask_index.BBRight) - mask_index.BBLeft), +((mask_index.BBBottom) - (mask_index.BBTop)));
+
+    	}
+    	
         if (sprite != null) {
             if (image_xscale!=1 || image_yscale!=1)
             return new Rectangle((int) ((sprite.BBLeft*image_xscale) + x - sprite.sprite_xoffset), (int) ((sprite.BBTop*image_yscale) + y - sprite.sprite_yoffset),+((sprite.BBRight*image_xscale) - sprite.BBLeft*image_xscale), +((sprite.BBBottom*image_yscale) - (sprite.BBTop*image_yscale)));
@@ -561,7 +570,7 @@ private static final long serialVersionUID = 1L;
 
     public Object getMask_index() {
         if (mask_index == null) {
-            mask_index = 0d;
+            return -1d;
         }
         return mask_index;
     }
@@ -973,7 +982,10 @@ private static final long serialVersionUID = 1L;
     }
 
     public void setMask_index(Object mask_index) {
-        this.mask_index = mask_index;
+    	if (mask_index instanceof Sprite)
+        this.mask_index = (Sprite)mask_index;
+    	else
+    		this.mask_index = null;
     }
 
     public void setY(Object y) {

@@ -701,7 +701,7 @@ public /*static*/ Object place_free(Object x, Object y)
                Actor a = (Game.currentRoom.instances.elementAt(i));
                if (Variable.toBoolean(a.getSolid())) {
                    
-                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
                         //if not instance id
                         if (a.instance_id == self.instance_id) {
                            // System.out.println("collided with self");
@@ -723,7 +723,7 @@ public /*static*/ Object place_empty(Object x, Object y)
                Actor a = (Game.currentRoom.instances.elementAt(i));
                {
                    
-                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                    if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
                         //if not instance id
                         if (a.instance_id == self.instance_id) {
                             //System.out.println("collided with self");
@@ -750,7 +750,7 @@ public Object place_meeting(Object x, Object y, Object obj)
         if (Game.currentRoom.instances.elementAt(i) !=null){
             Actor a = (Game.currentRoom.instances.elementAt(i));
             if (a.getClass().getName().equals(name)) {
-                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
 
                      if (a.instance_id == self.instance_id) {
                         // collided with self
@@ -766,7 +766,7 @@ public Object place_meeting(Object x, Object y, Object obj)
             if (Game.currentRoom.instances.elementAt(i) !=null){
                 Actor a = (Game.currentRoom.instances.elementAt(i));
                 {
-                     if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                     if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
 
                          if (a.instance_id == self.instance_id) {
                             // collided with self
@@ -783,7 +783,7 @@ public Object place_meeting(Object x, Object y, Object obj)
 	        if (Game.currentRoom.instances.elementAt(i) !=null){
 	            Actor a = (Game.currentRoom.instances.elementAt(i));
 	            if (a.equals(other)) {
-	                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+	                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
 
 	                     if (a.instance_id == self.instance_id) {
 	                        // collided with self
@@ -801,7 +801,7 @@ public Object place_meeting(Object x, Object y, Object obj)
     	        if (Game.currentRoom.instances.elementAt(i) !=null){
     	            Actor a = (Game.currentRoom.instances.elementAt(i));
     	             {
-    	                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+    	                 if (new Rectangle(((Double)x).intValue(), ((Double)y).intValue(), self.getBounds().width, self.getBounds().height).intersects(a.getBounds())) {
 
     	                     if (a.instance_id == (Double)obj) {
     	                      

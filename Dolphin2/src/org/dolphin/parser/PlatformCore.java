@@ -992,9 +992,19 @@ public class PlatformCore  {
         {
         return "(Game."+variable+")";
         }
+        
+        /*check if it is an object*/
+        if (DolphinWriter.gmFile.sprites.get(variable)!=null)
+        {
+        return "(Game.thegame.loadSprite(\""+variable+"\"))";
         }
         
-
+        
+        } //end check if gmfile !=null
+        
+        
+        
+        
 
         if (stringResources.contains(variable))
         {

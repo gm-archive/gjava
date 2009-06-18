@@ -15,7 +15,7 @@ import org.dolphin.game.api.types.Variable;
  * @author G-Java development team
  * @version 1.0
  */
-public class Sprite extends Variable implements Serializable {
+public class Sprite extends Object implements Serializable {
 private static final long serialVersionUID = 1L;
 
     String filename;
