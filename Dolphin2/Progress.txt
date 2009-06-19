@@ -1,7 +1,6 @@
 |||||| Parser/code output:
 Script.variable does not work (is it important?)
-Multiple '.' variables don't work after normal variables (arrays work tho)
-Complex Instance (). variable don't work
+Complex Instance (). variable don't work (they parse now =)) but not valid output
 parser error with "var;" statement
 Parser: auto do +,/,-,*,== for doubles to other doubles
 
@@ -14,4 +13,9 @@ The bounding box needs to be angled for sprite and mask when the sprite is at an
 Change code so that it doesn't modify the image when scaling, rotating etc (more efficient?)
 
 
+
 ||||| Functions
+
+
+|||||| IDEAS
+Possibly make local variables so that they don't use hash table (faster) (won't work due to arrays)

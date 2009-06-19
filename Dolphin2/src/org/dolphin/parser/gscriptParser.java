@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-19 00:53:01
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-19 13:30:32
 
 package org.dolphin.parser;
 
@@ -1931,12 +1931,12 @@ public class gscriptParser extends Parser {
             _fsp--;
             if (failed) return retval;
             if ( backtracking==0 ) {
-              s = ""+vari.value;
+              s = ""+input.toString(vari.start,vari.stop);
             }
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:72: ( ',' (varii= variable ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:71: ( ',' (varii= variable ) )*
             loop20:
             do {
                 int alt20=2;
@@ -1949,18 +1949,18 @@ public class gscriptParser extends Parser {
 
                 switch (alt20) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:73: ',' (varii= variable )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:72: ',' (varii= variable )
             	    {
             	    match(input,40,FOLLOW_40_in_varstatement572); if (failed) return retval;
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:77: (varii= variable )
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:78: varii= variable
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:76: (varii= variable )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:84:77: varii= variable
             	    {
             	    pushFollow(FOLLOW_variable_in_varstatement577);
             	    varii=variable();
             	    _fsp--;
             	    if (failed) return retval;
             	    if ( backtracking==0 ) {
-            	      s += ", "+varii.value;
+            	      s += ", "+input.toString(varii.start,varii.stop);
             	    }
 
             	    }

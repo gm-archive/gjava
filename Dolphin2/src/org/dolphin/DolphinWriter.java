@@ -18,6 +18,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Vector;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -689,7 +690,7 @@ public class DolphinWriter {
         BufferedWriter tempcode = new BufferedWriter(ftempcode);
         tempcode.write(code);
         tempcode.close();
-        //System.out.println("test");
+        
         lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
         CommonTokenStream tokens = new CommonTokenStream(lex);
         try {
@@ -697,7 +698,7 @@ public class DolphinWriter {
             //parser.DEFAULT_TOKEN_CHANNEL=80;
 
             parser.setPlatform(pc);
-
+            pc.localVariables = new Vector(); //reset local variables
 
             parser.code();
 
@@ -706,6 +707,9 @@ public class DolphinWriter {
             System.out.println("Error with parser:" + e + e.getLocalizedMessage() + " " + e.getMessage() + "\n code:" + code);
         e.printStackTrace();
         }
+        
+        
+        
         return pc.returncode;
     }
 

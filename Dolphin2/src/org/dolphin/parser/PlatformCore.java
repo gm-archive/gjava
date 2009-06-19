@@ -50,7 +50,8 @@ public class PlatformCore  {
     public static String returncode = "";
     //static ParserError pe = new ParserError();
     int usingwith = 0;
-    Vector localVariables  = new Vector(1);
+    public Vector localVariables = new Vector(1); //used by var statement to make sure variables are local only
+    //public String localDeclare="";//used to declare local variable at the start of each block of code
     Vector fieldVariables  = new Vector(1);
     Vector globalVariables = new Vector(1);
     Vector<String> with = new Vector<String>(1);
@@ -292,9 +293,16 @@ public class PlatformCore  {
         //System.out.println("Var statement: " + type + vars);
         if (type.equals("var")) {
             type = "Object";
+            String[] lv;
+            lv = vars.split("[,]");
+            for (int i=0; i<lv.length;i++)
+            localVariables.add(lv[i]);
+            //localDeclare += vars;
         } else if (type.equals("globalvar")) {
             type = "Object";
         }
+        
+        
         return "/*var statement{"+vars+"}*/";//type + " "+vars;
     }
 
@@ -715,6 +723,9 @@ public class PlatformCore  {
     public String assignmentstatement(String variable, String operator, String expression) {
         //System.out.println("assignment:"+expression);
         
+    	if (localVariables.contains(variable)) //make sure local variables are treated differently
+        	variable = "$"+variable;
+    	
         String instance="",value="";
         String tempvar="",originalvariable=variable;
         boolean hasinstance=true;
@@ -903,6 +914,8 @@ public class PlatformCore  {
     public String variable(String variable)
     {
         String instance="",value="";
+        if (localVariables.contains(variable)) //make sure local variables are treated differently
+        	variable = "$"+variable;
         
         ///////////////////////////////////////////
         /// Constants

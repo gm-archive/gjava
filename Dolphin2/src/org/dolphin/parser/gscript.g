@@ -81,7 +81,7 @@ bstatement returns [String value]
 ;
 
 varstatement returns [String value] @init {String s = "";}
-: (w='var'|w=WORD|w='globalvar') (vari=variable{s = ""+$vari.value;})  (',' (varii=variable{s += ", "+$varii.value;}) )*   {$value=pc.varstatement($w.text,s);} 
+: (w='var'|w=WORD|w='globalvar') (vari=variable{s = ""+$vari.text;})  (',' (varii=variable{s += ", "+$varii.text;}) )*   {$value=pc.varstatement($w.text,s);} 
 ;
 
 returnstatement returns [String value]
