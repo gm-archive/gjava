@@ -238,6 +238,10 @@ private static final long serialVersionUID = 1L;
     	
     }
 
+    public void callCollision(){
+    //don't call checkcollision by default
+    }
+
     /**
      * check collision and call the collision event
      */
@@ -421,7 +425,7 @@ private static final long serialVersionUID = 1L;
      */
     @Override
     public void Draw_event(Graphics g) throws RoomChangedException {
-        
+        if (x>-10 && y>-10 && x<Game.thegame.currentRoom.width && y<Game.thegame.currentRoom.width){ //check if it is in the game area
         if (sprite != null) {
             sprite_index += sprite_speed;
         if (sprite_index >= sprite.subimages){ //gone through animation
@@ -434,7 +438,7 @@ private static final long serialVersionUID = 1L;
         } else {
             //System.out.println("sprite is null");
         }
-
+        }
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     

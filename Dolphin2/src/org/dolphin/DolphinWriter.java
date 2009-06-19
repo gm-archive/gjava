@@ -490,7 +490,7 @@ public class DolphinWriter {
                         }
                     } /*
                      * Alarm Event
-                     */ else if (j == 2) {
+                     */ else if (j == 2 && a.mainEvents[j].events.size()>0) {
                     	 callevents+="Alarm();";
                         print(actor, "   public void performAlarm(int alarmid) throws RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
@@ -523,9 +523,12 @@ public class DolphinWriter {
                         }
                     } /*
                      * Collision Event
-                     */ else if (j == 4) {
+                     */ else if (j == 4 && a.mainEvents[j].events.size()>0) {
                     	 pc.event = "Collision Event";
                     	 callevents+="checkCollision();";
+                    	 print(actor, "public void callCollision(){");
+                    			 print(actor, "try{checkCollision();}catch(Exception e){}");
+                    					 print(actor, "    }");
                         print(actor, "   public void Collision(java.lang.String name) throws RoomChangedException{");
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("ev.id" + ev.id);
@@ -537,7 +540,7 @@ public class DolphinWriter {
                         print(actor, "}");
                     } /*
                      * Keyboard Event
-                     */ else if (j == 5) {
+                     */ else if (j == 5 && a.mainEvents[j].events.size()>0) {
                     	 pc.event = "Keyboard Event";
                     	 callevents+="Keyboard();";
                         print(actor, "   public void Keyboard() throws RoomChangedException {");
@@ -553,7 +556,7 @@ public class DolphinWriter {
                         print(actor, "}");
                     } /*
                      * Mouse Event
-                     */ else if (j == 6) {
+                     */ else if (j == 6 && a.mainEvents[j].events.size()>0) {
                     	 pc.event = "Mouse Event";
                         for (Event ev : a.mainEvents[j].events) {
                         	pc.event = "Mouse "+ev.id+" Event";
@@ -568,8 +571,14 @@ public class DolphinWriter {
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("Other event id:" + ev.id);
                             print(actor, "//other event:" + ev.id);
-                            if (ev.id == 7) {
-                            	pc.event = "Animation End Event";
+                            if (ev.id == 0){
+                            	pc.event = "Outside Room Event";
+                            	callevents+="OutsideRoom();";
+                                print(actor, "   public void OutsideRoom() throws DestroyException,RoomChangedException {");
+                                print(actor,"  if (x<0 || x>Game.thegame.currentRoom.width || y<0 || y>Game.thegame.currentRoom.width) {");
+                            }
+                            else if (ev.id == 7) {
+                            	pc.event = "Animation End Event"; //called in actor draw event
                             	//callevents+="EndOfAnimation();";
                                 print(actor, "   public void EndOfAnimation() throws DestroyException,RoomChangedException {");
                             } else {
@@ -579,8 +588,9 @@ public class DolphinWriter {
                     
                             }
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
-                            
                             print(actor, "    }");
+                            if (ev.id == 0){
+                            print(actor, "    }");}
                         }
                     } /*
                      * Draw Event
@@ -658,8 +668,8 @@ public class DolphinWriter {
                  */
                 print(actor,"public void callEvents() throws RoomChangedException {");
                 print(actor,"try{");
-                print(actor,""+callevents+"Move();");
-                print(actor,"} catch (DestroyException d) {}");
+                print(actor,""+callevents+" Move();");//used to add Move
+                print(actor,"} catch (Exception d) {} //DestoryException etc");
                 print(actor,"}");
                 print(actor, "");
                 print(actor, "}");//end the class

@@ -155,6 +155,7 @@ public void setvisible(){
 }
 
 public void setinvisible(){
+    doevents=false; //used for threaded events
     if(!persistent){
 instances = new Vector<Actor>();
 depth=new Vector<Tile>();
@@ -225,19 +226,34 @@ public void createEvents(){
 		        ((Actor)instances.elementAt(i)).Create();
 		    }
 		    }catch(RoomChangedException rce){}
-}
 
+         new Thread() {
+
+                @Override
+                public void run() {
+                    while(doevents){
+                    try{
+                    int size=instances.size();
+                    for (int i = 0; i < size; i++) {
+                        instances.elementAt(i).callCollision();
+                    }
+                    }catch(Exception e){}}
+                }
+            }.start();
+}
+public boolean doevents=true;
+int thesize=0;
 /*
  * Update method. Called every step should not be overridden
  */
 public void update()  {
-   // int thesize = instances.size();
+     thesize = instances.size();
     try{
-   for (int i = 0; i < instances.size(); i++) {
+   for (int i = 0; i < thesize; i++) {
        if (instances.elementAt(i) !=null)
-        ((Actor)instances.elementAt(i)).callEvents();
+        (instances.elementAt(i)).callEvents();
     }
-    }catch(RoomChangedException rce){}
+    }catch(Exception rce){} //room changed etc
    //updateCaption();
 }
 

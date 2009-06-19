@@ -136,7 +136,7 @@ public class BasicGame extends Game {
 	@Override
 	public void update(long elapsedTime) {
 		// update the current room
-		currentRoom.update();
+		currentRoom.update(); //temp remove for thread instead
 		
 	}
 

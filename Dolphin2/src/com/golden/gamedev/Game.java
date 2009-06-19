@@ -430,7 +430,7 @@ public abstract class Game {
 		out: while (true) {
 			if (this.inFocus) {
 				// update game
-				this.update(elapsedTime);
+				this.update(elapsedTime); 
 				this.bsInput.update(elapsedTime); // update input
 				
 			}

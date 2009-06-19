@@ -12,10 +12,11 @@ When doing masks check functions like place_free as they use sprite.sprite_width
 The bounding box needs to be angled for sprite and mask when the sprite is at an angle
 Change code so that it doesn't modify the image when scaling, rotating etc (more efficient?)
 globalvar statement doesn't work (actually changes variables so that they are global threwout whole game)
-
+Use code from gtge game.java to check if focus for the gm setting (freeze the game when the form looses focus)
 
 ||||| Functions
 
 
 |||||| IDEAS
 Possibly make local variables so that they don't use hash table (faster) (won't work due to arrays)
+Make a collision vector so it doesn't go through actors without collision events

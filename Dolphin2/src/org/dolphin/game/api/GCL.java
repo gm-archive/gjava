@@ -1351,7 +1351,16 @@ public Object instance_exists(Object obj)
 
 public static Object instance_number(Object obj)
 {
-return 0d;
+	int number=0;
+	for (int i = 0; i < Game.currentRoom.instances.size(); i++) {
+        if (Game.currentRoom.instances.elementAt(i) !=null){
+            Actor a = (Game.currentRoom.instances.elementAt(i));
+            if (Variable.getActor(obj).isSameAs(a)) {
+            	number++;
+             }
+        }
+     }
+return number;
 }
 
 public static Object instance_position(Object x, Object y, Object obj)

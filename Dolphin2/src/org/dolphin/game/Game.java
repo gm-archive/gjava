@@ -1,110 +1,90 @@
 package org.dolphin.game;
-
 import java.awt.Dimension;
-
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Vector;
-
 import javax.swing.JOptionPane;
-
 import org.dolphin.game.api.Clipboard;
 import org.dolphin.game.api.components.Room2D;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
-
-
 import java.awt.image.BufferedImage;
-import java.io.Externalizable;
-import java.io.Serializable;
-import javax.swing.UIManager;
-
-import org.dolphin.game.api.components.Path;
-import org.dolphin.game.api.components.Sound;
-import org.dolphin.game.api.components.Sprite;
+import org.dolphin.game.api.components.*;
 import org.dolphin.game.api.types.AllOfObject;
+public class Game extends org.dolphin.game.api.gtge.BasicGame {
+public static org.dolphin.game.Game thegame;//used to get this game object
+public static AllOfObject object0= new AllOfObject(new object0()), object1= new AllOfObject(new object1()),  nullallofobject;
 
-public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externalizable {
-	private static final long serialVersionUID = 1L;
+public static void setupGame() {
+	game = new GameLoader();
+        thegame=new Game();
+	game.setup(thegame, new Dimension(640, 480), false);
+	frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();
+   initPaths();
+}
 
-	public static Path DOLPHIN_nullpath;
-	//test fields
-        
+public BufferedImage loadBackground(String name){
+if (!backgrounds.containsKey(name))
+{
+    backgrounds.put(name, getImage(name+".png"));
+}
+return (BufferedImage)backgrounds.get(name);
+}
 
-        //proper fields
-        public static org.dolphin.game.Game thegame;//used to get this game object
-        public static AllOfObject Actor0=new AllOfObject(new Actor0()),Actor1=new AllOfObject(new Actor1());
-	
-	public static void setupGame() {
-		game = new GameLoader();
-                thegame=new Game();
-		game.setup(thegame, new Dimension(640, 480), false);
-		frame = ((WindowedMode) Game.game.getGame().bsGraphics).getFrame();
-                
-	}
+public Sprite loadSprite(String name){
+  if (!sprites.containsKey(name))
+{
+    sprites.put(name, getSprite(name));
+}
+  return (Sprite)sprites.get(name);
+}
+public Sound loadSound(String name){
+  if (!sounds.containsKey(name))
+{
+    sounds.put(name, getSound(name));
+}
+  return (Sound)sounds.get(name);
+}
+  public Sprite getSprite(String name){
+    if (name.equals("sprite0")) return new Sprite("sprite0",157, 158, 0, 157, 156, 0, 0, 0, true, new BufferedImage[]{getImage("sprite0[0].png")});
+ return null;
+  }
+  public Sound getSound(String name){
+ return null;
+  }
+public static Path  DOLPHIN_nullpath;
+  public static void initPaths(){
+  }
+  public static void initRooms(){
+     rooms=new Vector<Room2D>();
+     rooms.add(new room0(0));
+    currentRoom=rooms.firstElement();
+    currentRoom.setvisible();
 
-        public BufferedImage loadBackground(String name){
-        if (!backgrounds.containsKey(name))
-        {
-            backgrounds.put(name, getImage(name+".png"));
-        }
-        return (BufferedImage)backgrounds.get(name);
-        }
+    /*new Thread() {
 
-        public Sprite loadSprite(String name){
-          if (!sprites.containsKey(name))
-        {
-            sprites.put(name, getSprite(name));
-        }
-          return (Sprite)sprites.get(name);
-        }
+                @Override
+                public void run() {
+                    while(true){
+                    try{
 
-        public Sprite getSprite(String name){
+                    for (int i = 0; i < currentRoom.instances.size(); i++) {
+                        currentRoom.instances.elementAt(i).checkCollision();
+
+                    }
+                    }catch(Exception e){}}
+                }
+            }.start();*/
+
             
-            if (name.equals("wall")) return new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0,true, new BufferedImage[]{getImage("sprimg_wall_0.png"),getImage("image.png")});
-            else if (name.equals("image")) return new Sprite("image",24, 24, 0, 23, 23, 0, 0, 0,true, new BufferedImage[]{getImage("image.png")});
 
-            return null;
-        }
-
-        public Sound loadSound(String name){
-          if (!sounds.containsKey(name))
-        {
-            sounds.put(name, getSound(name));
-        }
-          return (Sound)sounds.get(name);
-        }
-
-        public Sound getSound(String name){
-            if (name.equals("sound0")) return new Sound("sound0.wav");
-
-
-            return null;
-        }
-	
-	public static void initRooms(){
-		rooms=new Vector<Room2D>();
-		rooms.add(new Dolphin_Room0(0));
-		rooms.add(new Dolphin_Room1(1));
-		currentRoom=rooms.firstElement();
-		currentRoom.setvisible();
-		//previousRoom();
-		//nextRoom();
-                
-	}
-	
-	
-	
-	@Override
-	public void initResources() {
+  }
+        public void initResources() {
 		super.initResources();
 		initRooms();
 	}
-	
+
 	public static void main(java.lang.String[] args) {
 		parameter_count = args.length;
 		parameters = args;
@@ -119,7 +99,7 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externa
 			final Writer result = new StringWriter();
 			final PrintWriter printWriter = new PrintWriter(result);
 			e.printStackTrace(printWriter);
-			Clipboard.setText("" + result.toString() + Clipboard.getText());
+			Clipboard.setText(("" + result.toString() + Clipboard.getText()));
 			JOptionPane
 					.showMessageDialog(null,"Error: "
 									+ e
@@ -133,13 +113,4 @@ public class Game extends org.dolphin.game.api.gtge.BasicGame implements Externa
 		}
 
 	}
-
-    public void writeExternal(ObjectOutput out) throws IOException {
-
-       //no data
-    }
-
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        //no data
-    }
 }
