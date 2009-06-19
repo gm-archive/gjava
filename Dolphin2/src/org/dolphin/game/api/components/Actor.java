@@ -40,7 +40,7 @@ private static final long serialVersionUID = 1L;
     //public double id=1;
     public java.lang.String name;
     public int sprite_index=0,image_xscale=1,image_yscale=1;
-    public double sprite_speed=0,timeline_speed=1,timeline_position=0;
+    public double sprite_speed=1,timeline_speed=1,timeline_position=0;
     
 
 
@@ -161,15 +161,22 @@ private static final long serialVersionUID = 1L;
     }
     }
     
+    public void EndOfAnimation() throws DestroyException,RoomChangedException {
+    
+    }
+    
     public void Alarm() throws RoomChangedException {
         for (int i = 0; i < alarm.length; i++) {
-            int Object = alarm[i];
+            //int Object = alarm[i];
             if (alarm[i]>0){
             alarm[i]--;
+            //now check alarm if it is equal to 0
             if (alarm[i]==0){
-            performAlarm(i);
-            }
-            } else {
+                performAlarm(i);
+                }
+            } 
+            	
+            	else {
             //alarm not active
             }
         }
@@ -417,8 +424,11 @@ private static final long serialVersionUID = 1L;
         
         if (sprite != null) {
             sprite_index += sprite_speed;
-
+        if (sprite_index >= sprite.subimages){ //gone through animation
         while (sprite_index >= sprite.subimages) sprite_index -= sprite.subimages;
+        try {EndOfAnimation();}catch(Exception e){}
+        }
+        
             g.drawImage(sprite.imshow(sprite_index), (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset,sprite.sprite_width*image_xscale,sprite.sprite_height*image_yscale,null);
 
         } else {

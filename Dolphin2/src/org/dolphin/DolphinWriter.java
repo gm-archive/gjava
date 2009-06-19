@@ -491,6 +491,7 @@ public class DolphinWriter {
                     } /*
                      * Alarm Event
                      */ else if (j == 2) {
+                    	 callevents+="Alarm();";
                         print(actor, "   public void performAlarm(int alarmid) throws RoomChangedException {");
                         for (Event ev : a.mainEvents[j].events) {
                             writeAlarmEvent(actor, ev);
@@ -559,13 +560,27 @@ public class DolphinWriter {
                             System.out.println("Mouse event id:" + ev.id);
                             print(actor, "//mouse event id:" + ev.id);
                         }
-                    } /*
+                    } 
+                    /*
                      * Other Event
                      */ else if (j == 7) {
                     	 pc.event = "Other Event";
                         for (Event ev : a.mainEvents[j].events) {
                             System.out.println("Other event id:" + ev.id);
                             print(actor, "//other event:" + ev.id);
+                            if (ev.id == 7) {
+                            	pc.event = "Animation End Event";
+                            	//callevents+="EndOfAnimation();";
+                                print(actor, "   public void EndOfAnimation() throws DestroyException,RoomChangedException {");
+                            } else {
+                            	pc.event = "Other Event"+ev.id;
+                            	//callevents+="EndOfAnimation();";
+                                print(actor, "   public void OtherEvent"+ev.id+"() throws DestroyException,RoomChangedException {");
+                    
+                            }
+                            print(actor, "   " + parseGCL(getActionsCode(ev)));
+                            
+                            print(actor, "    }");
                         }
                     } /*
                      * Draw Event
