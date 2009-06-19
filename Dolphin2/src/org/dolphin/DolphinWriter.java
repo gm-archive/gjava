@@ -588,7 +588,7 @@ public class DolphinWriter {
                     	 int i=0;
                         for (Event ev : a.mainEvents[j].events) {
                         	if (i!=0) events+=" else ";
-                        	String evname = Event.getGmKeyName(ev.id).replaceAll(" ", "_");
+                        	String evname = "_"+Event.getGmKeyName(ev.id).replaceAll(" ", "_");
                         	pc.event = "Key press "+evname+" Event";
                         	events+="if (keycode==" + ev.id + "){"+evname+"KeyPressed(keycode);}\n";
                         	print(actor, "   public void "+evname+"KeyPressed(int keycode) throws DestroyException, RoomChangedException {");
@@ -611,8 +611,8 @@ public class DolphinWriter {
                     	 String events=""; 
                         for (Event ev : a.mainEvents[j].events) {
                         	pc.event = "Key release "+Event.getGmKeyName(ev.id)+" Event";
-                        	events+=Event.getGmKeyName(ev.id)+"KeyReleased(keycode);";
-                        	print(actor, "   public void "+Event.getGmKeyName(ev.id)+"KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
+                        	events+="_"+Event.getGmKeyName(ev.id)+"KeyReleased(keycode);";
+                        	print(actor, "   public void _"+Event.getGmKeyName(ev.id)+"KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
                             print(actor, "     if (keycode==" + ev.id + "){");
                             print(actor, "        " + parseGCL(getActionsCode(ev)));
                             print(actor, "     }"); 

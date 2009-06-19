@@ -51,9 +51,9 @@ public class PlatformCore  {
     //static ParserError pe = new ParserError();
     int usingwith = 0;
     public Vector localVariables = new Vector(1); //used by var statement to make sure variables are local only
-    //public String localDeclare="";//used to declare local variable at the start of each block of code
+    
     Vector fieldVariables  = new Vector(1);
-    Vector globalVariables = new Vector(1);
+    Vector globalVariables = new Vector(1); //used by globalvar to set all variables after it to global
     Vector<String> with = new Vector<String>(1);
     public String current="",event="";
     public String updateURL="";//,compilername="";
@@ -292,18 +292,24 @@ public class PlatformCore  {
     public String varstatement(String type, String vars) {
         //System.out.println("Var statement: " + type + vars);
         if (type.equals("var")) {
-            type = "Object";
+            //type = "Object";
             String[] lv;
             lv = vars.split("[,]");
             for (int i=0; i<lv.length;i++)
             localVariables.add(lv[i]);
             //localDeclare += vars;
         } else if (type.equals("globalvar")) {
-            type = "Object";
+            //type = "Object";
+            //
+        	String[] lv;
+            lv = vars.split("[,]");
+            for (int i=0; i<lv.length;i++)
+            	globalVariables.add(lv[i]);
+            DolphinWriter.df.ta.append("Error globalvar statement used, not supported in this version of Dolphin! Found in:"+current+":"+event+"\n");
         }
         
         
-        return "/*var statement{"+vars+"}*/";//type + " "+vars;
+        return "/*"+type+" var statement{"+vars+"}*/";//type + " "+vars;
     }
 
     /*
