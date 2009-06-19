@@ -1399,7 +1399,9 @@ public static Object instance_create(Object x, Object y, Object obj)
             Actor o = (Actor) ins.getDeclaredConstructor(double.class,double.class,double.class).newInstance((Double)x,(Double)y,(Game.maxInstanceId));
             
             Game.currentRoom.instances.add(o);
-            
+            Game.currentRoom.depth.add(o);
+            Game.currentRoom.SortDepth();
+            o.Create();
         } catch (Exception ex) {
             //Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         	ex.printStackTrace();

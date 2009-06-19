@@ -130,6 +130,10 @@ public Object action_color(Object... obj)
 return false;
 }
 
+/*
+ * action_create_object needs to be different to instance_create due to relative option
+ * make sure to do any changes to both functions
+ */
 public Object action_create_object(Object... obj)
 {
     try{
@@ -143,6 +147,7 @@ public Object action_create_object(Object... obj)
         Game.currentRoom.instances.add(a);
     Game.currentRoom.depth.add(a);
     Game.currentRoom.SortDepth();
+    a.Create();
     return a;
     }
     }catch(Exception e){e.printStackTrace();}
