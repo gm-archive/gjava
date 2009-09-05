@@ -105,7 +105,8 @@ public class Actor0 extends Actor {
 		// =Game.currentRoom.setActorwithname(self.getVariable("targetHandle").getActor().getClass());
 		//System.out.println("mouse X:"+this.getMouse_x()+" ::"+Game.thegame.bsInput.getMouseX());
 		if (x<0 || x>Game.thegame.currentRoom.width || y<0 || y>Game.thegame.currentRoom.width){}
-		
+		//if (Variable.toBoolean(instance_exists((null))  &&  ((Boolean)Variable.add(Variable.gt(self.getY(),self.getView_yview()),240d))))
+		{}
 	}
 	
 	public Object scr_0(Object... argument){

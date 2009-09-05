@@ -33,6 +33,7 @@ import org.dolphin.game.api.types.Cursor;
 import org.dolphin.game.api.types.File;
 import org.dolphin.game.api.types.AllOfObject;
 import org.dolphin.game.api.types.Global;
+import org.dolphin.game.api.types.Grid;
 import org.dolphin.game.api.types.List;
 import org.dolphin.game.api.types.Map;
 import org.dolphin.game.api.types.PriorityQueue;
@@ -47,9 +48,8 @@ import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
 
 /**
- * This class is valid GCL, don't use java code here
- * This class will be converted to other languages via gcl
- * @author TGMG
+ * All the GCL functions are declared here
+ * @author TGMG(Alasdair Morrison)
  */
 public class GCL extends Variables {
   
@@ -913,6 +913,17 @@ public Object move_outside_all(Object dir, Object maxdist)
 
 public  Object move_bounce_solid(Object advanced)
 {
+	System.out.println("move_bounce_solid"+Variable.toBoolean(advanced));
+	if (!Variable.toBoolean(advanced)){
+		if (!(Variable.toBoolean(place_free(self.x+self.hspeed,0))) )
+		{
+			self.hspeed=-self.hspeed;
+		}
+		if (!(Variable.toBoolean(place_free(0,self.y+self.vspeed))) )
+		{
+			self.vspeed=-self.vspeed;
+		}
+	}
 return 0d;
 }
 
@@ -5470,27 +5481,44 @@ public static Object ds_priority_find_max(Object id)
  */
 public static Object ds_grid_create(Object w, Object h)
 {
-return 0d;
+	return new Grid((Double)w,(Double)h);
 }
 
 public static Object ds_grid_destroy(Object id)
 {
-return 0d;
+	 if (id instanceof Grid)
+	    {
+	      ((Grid)id).destroy();
+	    }
+	return 0d;
 }
 
 public static Object ds_grid_resize(Object id, Object w, Object h)
 {
+	
+	if (id instanceof Grid)
+    {
+      ((Grid)id).resize((Double)w, (Double)h);
+    }
 return 0d;
 }
 
 public static Object ds_grid_width(Object id)
 {
-return 0d;
+	if (id instanceof Grid)
+    {
+      return ((Grid)id).width();
+    }
+	return 0d;
 }
 
 public static Object ds_grid_height(Object id)
 {
-return 0d;
+	if (id instanceof Grid)
+    {
+      return ((Grid)id).height();
+    }
+	return 0d;
 }
 
 public static Object ds_grid_clear(Object id, Object val)

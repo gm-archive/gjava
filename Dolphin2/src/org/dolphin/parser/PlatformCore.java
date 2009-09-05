@@ -543,7 +543,7 @@ public class PlatformCore  {
 	// First of all remove any instance. before the brackets as all .'s before bracket are instance
 	if (variable.indexOf("[") > variable.indexOf(".")) 
     	variable=variable.substring(variable.indexOf(".")+1);
-	System.out.println("arrayassigment variable:"+variable+" operator:"+operator+" expression:"+expression+" instance:"+instance);
+	//System.out.println("arrayassigment variable:"+variable+" operator:"+operator+" expression:"+expression+" instance:"+instance);
     String name =  variable.substring(0,variable.indexOf("["));                   
 	String index = variable.substring(variable.indexOf("[")+1,variable.indexOf("]"));
 	

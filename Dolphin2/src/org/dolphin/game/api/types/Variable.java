@@ -180,5 +180,9 @@ private static final long serialVersionUID = 1L;
 		return false;
 	}
 
-
+	
+	public static Boolean and(Object obj1,Object obj2){
+		return false;//TODO
+	}
+	
 }

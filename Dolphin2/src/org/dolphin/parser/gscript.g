@@ -102,7 +102,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (neg=negate{$value = $neg.value;}|p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value= $aa.value.replaceAll("GJAVA_VALUE",$value);}|aa=bexpression{$value= "(((Integer)"+ $value+")"+ $aa.value+").doubleValue()";})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ((Boolean)"+$e.value+")";}))* {$value =pc.expression($value);}
+:  (neg=negate{$value = $neg.value;}|p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value= $aa.value.replaceAll("GJAVA_VALUE",$value);}|aa=bitwiseexpression{$value= "(((Integer)"+ $value+")"+ $aa.value+").doubleValue()";})* ((an=andexpression{$value =" Variable.and("+$value+","+$value+")";}|orr=orexpression{$value +=$orr.value;}|x=xorexpression{$value +=$x.value;}) (e=expression{$value +=" ((Boolean)"+$e.value+")";}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -114,7 +114,7 @@ aexpression returns [String value]
 : a=('+'|'-'|'*'|'/'|'div'|'%'|'mod') (e=expression) {$value =pc.aexpression($a.text,$e.value);}
 ; //(NUMBER|HEXNUMBER|STRING|variable)
 
-bexpression returns [String value]
+bitwiseexpression returns [String value]
 : a=('|'|'&'|'^'|'<<'|'>>') (e=expression) {$value =pc.aexpression($a.text,$e.value);}
 	;
 

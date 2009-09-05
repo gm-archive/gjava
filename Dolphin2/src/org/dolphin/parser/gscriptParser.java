@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-19 13:30:32
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-22 19:48:41
 
 package org.dolphin.parser;
 
@@ -2406,7 +2406,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start expression
-    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:104:1: expression returns [String value] : (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression | aa= bexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:104:1: expression returns [String value] : (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression | aa= bitwiseexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
     public final String expression() throws RecognitionException {
         String value = null;
         int expression_StartIndex = input.index();
@@ -2432,8 +2432,8 @@ public class gscriptParser extends Parser {
         String a = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 13) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:1: ( (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression | aa= bexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression | aa= bexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:1: ( (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression | aa= bitwiseexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression | aa= bitwiseexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             {
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )
             int alt25=4;
@@ -5057,7 +5057,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:149: (aa= aexpression | aa= bexpression )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:149: (aa= aexpression | aa= bitwiseexpression )*
             loop26:
             do {
                 int alt26=3;
@@ -5132,10 +5132,10 @@ public class gscriptParser extends Parser {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:219: aa= bexpression
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:219: aa= bitwiseexpression
             	    {
-            	    pushFollow(FOLLOW_bexpression_in_expression754);
-            	    aa=bexpression();
+            	    pushFollow(FOLLOW_bitwiseexpression_in_expression754);
+            	    aa=bitwiseexpression();
             	    _fsp--;
             	    if (failed) return value;
             	    if ( backtracking==0 ) {
@@ -5150,7 +5150,7 @@ public class gscriptParser extends Parser {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:301: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:307: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             loop28:
             do {
                 int alt28=2;
@@ -5196,9 +5196,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt28) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:302: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:308: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
             	    {
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:302: (an= andexpression | orr= orexpression | x= xorexpression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:308: (an= andexpression | orr= orexpression | x= xorexpression )
             	    int alt27=3;
             	    switch ( input.LA(1) ) {
             	    case 62:
@@ -5222,47 +5222,47 @@ public class gscriptParser extends Parser {
             	    default:
             	        if (backtracking>0) {failed=true; return value;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("105:302: (an= andexpression | orr= orexpression | x= xorexpression )", 27, 0, input);
+            	            new NoViableAltException("105:308: (an= andexpression | orr= orexpression | x= xorexpression )", 27, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt27) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:303: an= andexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:309: an= andexpression
             	            {
             	            pushFollow(FOLLOW_andexpression_in_expression763);
             	            an=andexpression();
             	            _fsp--;
             	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              value +=" "+an;
+            	              value =" Variable.and("+value+","+value+")";
             	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:345: orr= orexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:375: orr= orexpression
             	            {
             	            pushFollow(FOLLOW_orexpression_in_expression768);
             	            orr=orexpression();
             	            _fsp--;
             	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              value +=" "+orr;
+            	              value +=orr;
             	            }
 
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:388: x= xorexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:414: x= xorexpression
             	            {
             	            pushFollow(FOLLOW_xorexpression_in_expression773);
             	            x=xorexpression();
             	            _fsp--;
             	            if (failed) return value;
             	            if ( backtracking==0 ) {
-            	              value +=" "+x;
+            	              value +=x;
             	            }
 
             	            }
@@ -5270,8 +5270,8 @@ public class gscriptParser extends Parser {
 
             	    }
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:429: (e= expression )
-            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:430: e= expression
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:451: (e= expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:452: e= expression
             	    {
             	    pushFollow(FOLLOW_expression_in_expression780);
             	    e=expression();
@@ -5413,11 +5413,11 @@ public class gscriptParser extends Parser {
     // $ANTLR end aexpression
 
 
-    // $ANTLR start bexpression
-    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:117:1: bexpression returns [String value] : a= ( '|' | '&' | '^' | '<<' | '>>' ) (e= expression ) ;
-    public final String bexpression() throws RecognitionException {
+    // $ANTLR start bitwiseexpression
+    // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:117:1: bitwiseexpression returns [String value] : a= ( '|' | '&' | '^' | '<<' | '>>' ) (e= expression ) ;
+    public final String bitwiseexpression() throws RecognitionException {
         String value = null;
-        int bexpression_StartIndex = input.index();
+        int bitwiseexpression_StartIndex = input.index();
         Token a=null;
         String e = null;
 
@@ -5436,13 +5436,13 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bexpression863);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bitwiseexpression863);    throw mse;
             }
 
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:118:29: (e= expression )
             // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:118:30: e= expression
             {
-            pushFollow(FOLLOW_expression_in_bexpression878);
+            pushFollow(FOLLOW_expression_in_bitwiseexpression878);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -5461,11 +5461,11 @@ public class gscriptParser extends Parser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 16, bexpression_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 16, bitwiseexpression_StartIndex); }
         }
         return value;
     }
-    // $ANTLR end bexpression
+    // $ANTLR end bitwiseexpression
 
 
     // $ANTLR start value
@@ -10637,11 +10637,11 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred51
     public final void synpred51_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:219: ( bexpression )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:219: bexpression
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:219: ( bitwiseexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:219: bitwiseexpression
         {
-        pushFollow(FOLLOW_bexpression_in_synpred51754);
-        bexpression();
+        pushFollow(FOLLOW_bitwiseexpression_in_synpred51754);
+        bitwiseexpression();
         _fsp--;
         if (failed) return ;
 
@@ -10651,10 +10651,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred54
     public final void synpred54_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:302: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:302: ( andexpression | orexpression | xorexpression ) ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:308: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:308: ( andexpression | orexpression | xorexpression ) ( expression )
         {
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:302: ( andexpression | orexpression | xorexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:308: ( andexpression | orexpression | xorexpression )
         int alt60=3;
         switch ( input.LA(1) ) {
         case 62:
@@ -10678,14 +10678,14 @@ public class gscriptParser extends Parser {
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("105:302: ( andexpression | orexpression | xorexpression )", 60, 0, input);
+                new NoViableAltException("105:308: ( andexpression | orexpression | xorexpression )", 60, 0, input);
 
             throw nvae;
         }
 
         switch (alt60) {
             case 1 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:303: andexpression
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:309: andexpression
                 {
                 pushFollow(FOLLOW_andexpression_in_synpred54763);
                 andexpression();
@@ -10695,7 +10695,7 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:345: orexpression
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:375: orexpression
                 {
                 pushFollow(FOLLOW_orexpression_in_synpred54768);
                 orexpression();
@@ -10705,7 +10705,7 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:388: xorexpression
+                // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:414: xorexpression
                 {
                 pushFollow(FOLLOW_xorexpression_in_synpred54773);
                 xorexpression();
@@ -10717,8 +10717,8 @@ public class gscriptParser extends Parser {
 
         }
 
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:429: ( expression )
-        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:430: expression
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:451: ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g:105:452: expression
         {
         pushFollow(FOLLOW_expression_in_synpred54780);
         expression();
@@ -11652,7 +11652,7 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_relationalExpression_in_expression736 = new BitSet(new long[]{0xCFF00000000000F2L,0x000000000000000FL});
     public static final BitSet FOLLOW_notexpression_in_expression741 = new BitSet(new long[]{0xCFF00000000000F2L,0x000000000000000FL});
     public static final BitSet FOLLOW_aexpression_in_expression748 = new BitSet(new long[]{0xCFF00000000000F2L,0x000000000000000FL});
-    public static final BitSet FOLLOW_bexpression_in_expression754 = new BitSet(new long[]{0xCFF00000000000F2L,0x000000000000000FL});
+    public static final BitSet FOLLOW_bitwiseexpression_in_expression754 = new BitSet(new long[]{0xCFF00000000000F2L,0x000000000000000FL});
     public static final BitSet FOLLOW_andexpression_in_expression763 = new BitSet(new long[]{0x100C00000FE00130L});
     public static final BitSet FOLLOW_orexpression_in_expression768 = new BitSet(new long[]{0x100C00000FE00130L});
     public static final BitSet FOLLOW_xorexpression_in_expression773 = new BitSet(new long[]{0x100C00000FE00130L});
@@ -11661,8 +11661,8 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_expression_in_notexpression807 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_aexpression825 = new BitSet(new long[]{0x100C00000FE00130L});
     public static final BitSet FOLLOW_expression_in_aexpression844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_bexpression863 = new BitSet(new long[]{0x100C00000FE00130L});
-    public static final BitSet FOLLOW_expression_in_bexpression878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_bitwiseexpression863 = new BitSet(new long[]{0x100C00000FE00130L});
+    public static final BitSet FOLLOW_expression_in_bitwiseexpression878 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_NUMBER_in_value898 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_HEXNUMBER_in_value900 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_STRING_in_value902 = new BitSet(new long[]{0x0000000000000002L});
@@ -11779,7 +11779,7 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_pexpression_in_synpred48731 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_relationalExpression_in_synpred49736 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_aexpression_in_synpred50748 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_bexpression_in_synpred51754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_bitwiseexpression_in_synpred51754 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_andexpression_in_synpred54763 = new BitSet(new long[]{0x100C00000FE00130L});
     public static final BitSet FOLLOW_orexpression_in_synpred54768 = new BitSet(new long[]{0x100C00000FE00130L});
     public static final BitSet FOLLOW_xorexpression_in_synpred54773 = new BitSet(new long[]{0x100C00000FE00130L});

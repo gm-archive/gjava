@@ -137,10 +137,7 @@ public class Plugin implements ActionListener, SubframeListener {
 		
 	}
 
-	public boolean subframeRequested(Resource<?> res, ResNode node) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 	
 	/*
 	 * 
@@ -215,5 +212,10 @@ public class Plugin implements ActionListener, SubframeListener {
         }
 
         }
+
+	public boolean subframeRequested(Resource<?, ?> res, ResNode node) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

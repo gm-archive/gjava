@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-19 13:30:33
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\workspace\\LGJ\\src\\org\\dolphin\\parser\\gscript.g 2009-06-22 19:48:42
 
 package org.dolphin.parser;
 

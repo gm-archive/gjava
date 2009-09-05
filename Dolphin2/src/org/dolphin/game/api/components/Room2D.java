@@ -237,6 +237,7 @@ public void createEvents(){
                     for (int i = 0; i < size; i++) {
                         instances.elementAt(i).callCollision();
                     }
+                    Game.currentRoom.instances.trimToSize();
                     }catch(Exception e){}}
                 }
             }.start();

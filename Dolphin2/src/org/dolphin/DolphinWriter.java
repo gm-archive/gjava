@@ -38,11 +38,20 @@ import org.lateralgm.components.impl.ResNode;
 import org.lateralgm.file.GmFile;
 import org.lateralgm.file.GmFormatException;
 import org.lateralgm.main.LGM;
+import org.lateralgm.resources.Background;
 import org.lateralgm.resources.GmObject;
 import org.lateralgm.resources.ResourceReference;
 import org.lateralgm.resources.Room;
 import org.lateralgm.resources.Script;
+import org.lateralgm.resources.Sprite;
 import org.lateralgm.resources.Timeline;
+import org.lateralgm.resources.Background.PBackground;
+import org.lateralgm.resources.GmObject.PGmObject;
+import org.lateralgm.resources.Path.PPath;
+import org.lateralgm.resources.Room.PRoom;
+import org.lateralgm.resources.Script.PScript;
+import org.lateralgm.resources.Sound.PSound;
+import org.lateralgm.resources.Sprite.PSprite;
 import org.lateralgm.resources.sub.Action;
 import org.lateralgm.resources.sub.Argument;
 import org.lateralgm.resources.sub.BackgroundDef;
@@ -51,6 +60,10 @@ import org.lateralgm.resources.sub.Instance;
 import org.lateralgm.resources.sub.MainEvent;
 import org.lateralgm.resources.sub.Tile;
 import org.lateralgm.resources.sub.View;
+import org.lateralgm.resources.sub.BackgroundDef.PBackgroundDef;
+import org.lateralgm.resources.sub.Instance.PInstance;
+import org.lateralgm.resources.sub.Tile.PTile;
+import org.lateralgm.resources.sub.View.PView;
 
 public class DolphinWriter {
 
@@ -61,6 +74,52 @@ public class DolphinWriter {
     File location;
     PlatformCore pc = new PlatformCore();
 
+    public DolphinWriter(){}
+    
+    public static void writeEclipseProjectFiles(String location,String name) {
+    	FileWriter projectFileFW;
+		try {
+			projectFileFW = new FileWriter(location + ".classpath");
+			BufferedWriter projectFile = new BufferedWriter(projectFileFW);
+	        print(projectFile, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+	        print(projectFile, "<classpath>");
+	        print(projectFile, "	<classpathentry kind=\"src\" path=\"src\"/>");
+	        print(projectFile, "	<classpathentry kind=\"con\" path=\"org.eclipse.jdt.launching.JRE_CONTAINER\"/>");
+	        print(projectFile, "	<classpathentry kind=\"output\" path=\"bin\"/>");
+	        print(projectFile, "</classpath>");
+	        projectFile.close();
+	        
+	        projectFileFW = new FileWriter(location + ".project");
+			projectFile = new BufferedWriter(projectFileFW);
+			print(projectFile, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+			print(projectFile, "<projectDescription>");
+			print(projectFile, "	<name>"+name+"</name>");
+			print(projectFile, "	<comment></comment>");
+			print(projectFile, "	<projects>");
+			print(projectFile, "	</projects>");
+			print(projectFile, "	<buildSpec>");
+			print(projectFile, "		<buildCommand>");
+			print(projectFile, "			<name>org.eclipse.jdt.core.javabuilder</name>");
+			print(projectFile, "			<arguments>");
+			print(projectFile, "			</arguments>");
+			print(projectFile, "		</buildCommand>");
+			print(projectFile, "	</buildSpec>");
+			print(projectFile, "	<natures>");
+			print(projectFile, "		<nature>org.eclipse.jdt.core.javanature</nature>");
+			print(projectFile, "	</natures>");
+			print(projectFile, "	<linkedResources>");
+			print(projectFile, "		<link>");
+			print(projectFile, "		</link>");
+			print(projectFile, "	</linkedResources>");
+			print(projectFile, "</projectDescription>");
+			projectFile.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+    }
+    
     public DolphinWriter(DolphinFrame df, GmFile gmFile, File file) {
     	System.out.println("gmFile"+gmFile);
     	if (gmFile.filename == null){filename="unnamedgame";}
@@ -70,11 +129,14 @@ public class DolphinWriter {
         this.df = df;
         this.gmFile = gmFile;
         this.location = file;
-        this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator + "org" + File.separator + "dolphin" + File.separator + "game" + File.separator;
-        projectfolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator;
+        
+        this.FileFolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator + "src"+ File.separator + "org" + File.separator + "dolphin" + File.separator + "game" + File.separator;
+        projectfolder = file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator+ "src"+ File.separator;
         new File(FileFolder).mkdirs();
         createFolders();
-        LGM.commitAll();
+        writeEclipseProjectFiles(file.getPath() + File.separator + "Dolphin Projects" + File.separator + filename + File.separator,filename);
+        
+        LGM.commitAll();//make sure all LGM resources are saved
         try {
             df.progress(10, "Writing Game.java", "Writing Game.java and extracting sprites ");
             writeGameJava();
@@ -94,6 +156,7 @@ public class DolphinWriter {
             DolphinCompiler compiler = new DolphinCompiler();
         } catch (Exception e) {
             showException(e);
+            e.printStackTrace();
         }
     }
 
@@ -118,14 +181,13 @@ public class DolphinWriter {
     	print(game, "  public static void initPaths(){");
     for (org.lateralgm.resources.Path p : gmFile.paths) {
     	
-    	
     	if (p!=null){
-            	print(game,"     "+ p.getName() + " = new Path(" + p.closed + ", " + p.smooth + ", " + p.precision + ");");
+            	print(game,"     "+ p.getName() + " = new Path(" + p.get(PPath.CLOSED) + ", " + p.get(PPath.SMOOTH) + ", " + p.get(PPath.PRECISION) + ");");
             for (int i = 0; i < p.points.size(); i++) {
-            	print(game,"     "+p.getName()+".addPoint("+p.points.get(i).x+","+p.points.get(i).y+","+p.points.get(i).speed+");");
+            	print(game,"     "+p.getName()+".addPoint("+p.points.get(i).getX()+","+p.points.get(i).getY()+","+p.points.get(i).getSpeed()+");");
 			}
-            if (p.closed)
-            print(game,"     "+p.getName()+".setClosed("+p.closed+");");
+            if (p.get(PPath.CLOSED))
+            print(game,"     "+p.getName()+".setClosed("+p.get(PPath.CLOSED)+");");
             print(game,"     "+p.getName()+".findDistance();");
         }
     }
@@ -141,6 +203,7 @@ public class DolphinWriter {
         Enumeration e = LGM.root.getChildAt(8).children();
 			while (e.hasMoreElements()){
 				ResNode rn = (ResNode)e.nextElement();
+				if (rn.getRes()!=null)
 				print(game, "     rooms.add(new " + rn.getRes().get().getName() + "(" + i + "));");
 	            i++;
 			}
@@ -268,11 +331,12 @@ public class DolphinWriter {
         print(game, "  public Sound getSound(String name){");
         String theelse = "   ";
         for (org.lateralgm.resources.Sound s : gmFile.sounds) {
-            FileOutputStream f = new FileOutputStream(FileFolder + File.separator + s.getName() + s.fileType);
+        	s.get(PSound.FILE_TYPE);
+            FileOutputStream f = new FileOutputStream(FileFolder + File.separator + s.getName() + s.get(PSound.FILE_TYPE));
             f.write(s.data);
             f.close();
 
-            print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sound(\"" + s.getName() + s.fileType + "\");");
+            print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sound(\"" + s.getName() + s.get(PSound.FILE_TYPE) + "\");");
             theelse = "   else";
 
         }
@@ -305,11 +369,12 @@ public class DolphinWriter {
                 subimg += ",getImage(\"" + s.getName() + "[" + i + "].png" + "\")";
                 }
             }
+            s.get(PSprite.BB_BOTTOM);
             if (s.getDisplayImage() !=null){
-            print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\"," + s.getDisplayImage().getHeight() + ", " + s.getDisplayImage().getWidth() + ", " + s.boundingBoxLeft + ", " + s.boundingBoxRight + ", " + s.boundingBoxBottom + ", " + s.boundingBoxTop + ", " + s.originX + ", " + s.originY + ", " + s.transparent + ", new BufferedImage[]{" + subimg.substring(1) + "});");
+            print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\"," + s.getDisplayImage().getHeight() + ", " + s.getDisplayImage().getWidth() + ", " +  s.get(PSprite.BB_LEFT) + ", " + s.get(PSprite.BB_RIGHT) + ", " + s.get(PSprite.BB_BOTTOM) + ", " + s.get(PSprite.BB_TOP) + ", " + s.get(PSprite.ORIGIN_X) + ", " + s.get(PSprite.ORIGIN_Y) + ", " + s.get(PSprite.TRANSPARENT) + ", new BufferedImage[]{" + subimg.substring(1) + "});");
             } else {
             	//the sprite does not have an image
-            	print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\",0, 0, 0, 0, 0, 0, " + s.originX + ", " + s.originY + ", " + s.transparent + ", new BufferedImage[]{});");
+            	print(game, theelse + " if (name.equals(\"" + s.getName() + "\")) return new Sprite(\"" + s.getName() + "\",0, 0, 0, 0, 0, 0, " + s.get(PSprite.ORIGIN_X) + ", " + s.get(PSprite.ORIGIN_Y) + ", " + s.get(PSprite.TRANSPARENT) + ", new BufferedImage[]{});");
 
             }
             theelse = "   else";
@@ -348,7 +413,8 @@ public class DolphinWriter {
                     throw new GmFormatException(gmFile, "Duplicate object name: " + name);
                 }
                 print(script, "public Object " + name + "(Object... arguments){");
-                print(script, "" + this.parseGCL(s.scriptStr));
+                
+                print(script, "" + this.parseGCL(""+s.get(PScript.CODE)));
                 print(script, "return false;");
                 print(script, "}");
             }
@@ -454,11 +520,12 @@ public class DolphinWriter {
                 print(actor, " public "+name+"(){}");
                 print(actor, "");
                 print(actor, " public   " + name + "(double X,double Y,double instance_id) {");
-
-                if (a.getSprite() == null) {
-                    print(actor, "        super(\"" + a.getName() + "\", null, " + a.solid + ", " + a.visible + ", " + a.depth + ", " + a.persistent + ");");
+                
+                ResourceReference<Sprite> sprite = a.get(PGmObject.SPRITE);
+                if (sprite == null) {
+                    print(actor, "        super(\"" + a.getName() + "\", null, " + a.get(PGmObject.SOLID) + ", " + a.get(PGmObject.VISIBLE) + ", " + a.get(PGmObject.DEPTH) + ", " + a.get(PGmObject.PERSISTENT) + ");");
                 } else {
-                    print(actor, "        super(\"" + a.getName() + "\", Game.thegame.loadSprite(\"" + a.getSprite().get().getName() + "\")," + a.solid + ", " + a.visible + ", " + a.depth + ".0 , " + a.persistent + ");");
+                    print(actor, "        super(\"" + a.getName() + "\", Game.thegame.loadSprite(\"" + sprite.get().getName() + "\")," + a.get(PGmObject.SOLID) + ", " + a.get(PGmObject.VISIBLE) + ", " + a.get(PGmObject.DEPTH) + ".0 , " + a.get(PGmObject.PERSISTENT) + ");");
                 }
                 print(actor, "        xstart = X;xprevious=X;yprevious=Y;");
                 print(actor, "        ystart = Y;");
@@ -479,21 +546,21 @@ public class DolphinWriter {
                      * Create Event
                      */
                     if (j == 0) {
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                             writeCreateEvent(actor, ev);
                         }
                     } /*
                      * Destroy Event
                      */ else if (j == 1) {
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                             writeDestroyEvent(actor, ev);
                         }
                     } /*
                      * Alarm Event
-                     */ else if (j == 2 && a.mainEvents[j].events.size()>0) {
+                     */ else if (j == 2 && a.mainEvents.get(j).events.size()>0) {
                     	 callevents+="Alarm();";
                         print(actor, "   public void performAlarm(int alarmid) throws RoomChangedException {");
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                             writeAlarmEvent(actor, ev);
                         }
                         
@@ -502,7 +569,7 @@ public class DolphinWriter {
                      * Step Event
                      */ else if (j == 3) {
                     	 
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                             
                             if (ev.id == 1) {
                             	pc.event = "Begin Event";
@@ -523,15 +590,15 @@ public class DolphinWriter {
                         }
                     } /*
                      * Collision Event
-                     */ else if (j == 4 && a.mainEvents[j].events.size()>0) {
+                     */ else if (j == 4 && a.mainEvents.get(j).events.size()>0) {
                     	 pc.event = "Collision Event";
                     	 callevents+="checkCollision();";
                     	 print(actor, "public void callCollision(){");
                     			 print(actor, "try{checkCollision();}catch(Exception e){}");
                     					 print(actor, "    }");
                         print(actor, "   public void Collision(java.lang.String name) throws RoomChangedException{");
-                        for (Event ev : a.mainEvents[j].events) {
-                            System.out.println("ev.id" + ev.id);
+                        for (Event ev : a.mainEvents.get(j).events) {
+                            //System.out.println("ev.id" + ev.id);
                             print(actor, "   if(name.equals(\"" + ev.other.get().getName() + "\")){");
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                             print(actor, "}");
@@ -540,12 +607,12 @@ public class DolphinWriter {
                         print(actor, "}");
                     } /*
                      * Keyboard Event
-                     */ else if (j == 5 && a.mainEvents[j].events.size()>0) {
+                     */ else if (j == 5 && a.mainEvents.get(j).events.size()>0) {
                     	 pc.event = "Keyboard Event";
                     	 callevents+="Keyboard();";
                         print(actor, "   public void Keyboard() throws RoomChangedException {");
 //
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                         	pc.event = "Keyboard"+Event.getGmKeyName(ev.id)+" Event";
                             
                             print(actor, "if (Game.game.getGame().keyDown(" + ev.id + ")){");
@@ -556,9 +623,9 @@ public class DolphinWriter {
                         print(actor, "}");
                     } /*
                      * Mouse Event
-                     */ else if (j == 6 && a.mainEvents[j].events.size()>0) {
+                     */ else if (j == 6 && a.mainEvents.get(j).events.size()>0) {
                     	 pc.event = "Mouse Event";
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                         	pc.event = "Mouse "+ev.id+" Event";
                             System.out.println("Mouse event id:" + ev.id);
                             print(actor, "//mouse event id:" + ev.id);
@@ -568,14 +635,14 @@ public class DolphinWriter {
                      * Other Event
                      */ else if (j == 7) {
                     	 pc.event = "Other Event";
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                             System.out.println("Other event id:" + ev.id);
                             print(actor, "//other event:" + ev.id);
                             if (ev.id == 0){
                             	pc.event = "Outside Room Event";
                             	callevents+="OutsideRoom();";
                                 print(actor, "   public void OutsideRoom() throws DestroyException,RoomChangedException {");
-                                print(actor,"  if (x<0 || x>Game.thegame.currentRoom.width || y<0 || y>Game.thegame.currentRoom.width) {");
+                                print(actor,"  if (x<0 || x>Game.thegame.currentRoom.width || y<0 || y>Game.thegame.currentRoom.height) {");
                             }
                             else if (ev.id == 7) {
                             	pc.event = "Animation End Event"; //called in actor draw event
@@ -595,10 +662,10 @@ public class DolphinWriter {
                     } /*
                      * Draw Event
                      */ else if (j == 8) {
-                    	 if (a.mainEvents[j].events.size()>0){
+                    	 if (a.mainEvents.get(j).events.size()>0){
                     	 pc.event = "Draw Event";
                         print(actor, "    public void Draw_event(Graphics g) throws RoomChangedException{");
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                             System.out.println("ev.id" + ev.id);
                             print(actor, "   " + parseGCL(getActionsCode(ev)));
                         }
@@ -611,7 +678,7 @@ public class DolphinWriter {
                     	 String events="";
                     	 pc.event = "Key press Event";
                     	 int i=0;
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                         	if (i!=0) events+=" else ";
                         	String evname = "_"+Event.getGmKeyName(ev.id).replaceAll(" ", "_");
                         	pc.event = "Key press "+evname+" Event";
@@ -634,7 +701,7 @@ public class DolphinWriter {
                      */ else if (j == 10) {
                     	 pc.event = "Key release Event";
                     	 String events=""; 
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
                         	pc.event = "Key release "+Event.getGmKeyName(ev.id)+" Event";
                         	events+="_"+Event.getGmKeyName(ev.id)+"KeyReleased(keycode);";
                         	print(actor, "   public void _"+Event.getGmKeyName(ev.id)+"KeyReleased(int keycode) throws DestroyException, RoomChangedException {");
@@ -649,7 +716,7 @@ public class DolphinWriter {
                         print(actor, "   }");
                         }
                     } else {
-                        for (Event ev : a.mainEvents[j].events) {
+                        for (Event ev : a.mainEvents.get(j).events) {
 
 
                             System.out.println("unknown event" + ev.id + " " + getActionsCode(ev));
@@ -898,11 +965,12 @@ public class DolphinWriter {
                 print(scene, "public class " + r.getName() + " extends org.dolphin.game.api.components.Room2D {");
                 print(scene, "");
                 print(scene, "	public " + r.getName() + "(int vectorid) {");
-                print(scene, "		super(Game.frame,\"" + r.caption + "\"," + r.speed + "," + r.width + "," + r.height + ",new Color(" + r.backgroundColor.getRed() + "," + r.backgroundColor.getGreen() + "," + r.backgroundColor.getBlue() + ")," + r.drawBackgroundColor + "," + r.persistent + "," + r.getId() + ");");
+                print(scene, "		super(Game.frame,\"" + r.get(PRoom.CAPTION) + "\"," + r.get(PRoom.SPEED) + "," + r.get(PRoom.WIDTH) + "," + r.get(PRoom.HEIGHT) + ",new Color(" + ((Color)r.get(PRoom.BACKGROUND_COLOR)).getRed() + "," + ((Color)r.get(PRoom.BACKGROUND_COLOR)).getGreen() + "," + ((Color)r.get(PRoom.BACKGROUND_COLOR)).getBlue() + ")," + r.get(PRoom.DRAW_BACKGROUND_COLOR) + "," + r.get(PRoom.PERSISTENT) + "," + r.getId() + ");");
                 print(scene, "          this.vectorid=vectorid;");
                 print(scene, "  }");
+                
                 print(scene, "public void Creation_code(){");
-                print(scene, " " + parseGCL(r.creationCode));
+                print(scene, " " + parseGCL(""+r.get(PRoom.CREATION_CODE)));
                 print(scene, "}");
 
 
@@ -913,15 +981,16 @@ public class DolphinWriter {
                 /*create the instances*/
                 for (int i = 0; i < r.instances.size(); i++) {
                     Instance in = r.instances.get(i);
-                    print(scene, "    instances.add(new " + in.getObject().get().getName() + "(" + in.getPosition().x + ", " + in.getPosition().y + ", " + in.instanceId + "));");
+                    ;
+                    print(scene, "    instances.add(new " + ((ResourceReference<GmObject>)in.properties.get(PInstance.OBJECT)).get().getName() + "(" + in.getPosition().x + ", " + in.getPosition().y + ", " + (Integer)in.properties.get(PInstance.ID) + "));");
                 }
                 print(scene, "    /*Create the backgrounds*/");
                 /*Create the backgrounds*/
-                for (int i = 0; i < r.backgroundDefs.length; i++) {
-                    BackgroundDef b = r.backgroundDefs[i];
-
-                    if (b.backgroundId != null) {
-                        print(scene, "backgrounds.add(new Background(" + b.visible + "," + b.foreground + "," + b.x + "," + b.y + "," + b.backgroundId.get().width + "," + b.backgroundId.get().height + "," + b.tileHoriz + "," + b.tileVert + "," + b.stretch + "," + b.horizSpeed + "," + b.vertSpeed + "," + b.backgroundId.get().smoothEdges + "," + b.backgroundId.get().transparent + ",Game.thegame.loadBackground(\"" + b.backgroundId.get().getName() + "\")));");
+                for (int i = 0; i < r.backgroundDefs.size(); i++) {
+                    BackgroundDef b = r.backgroundDefs.get(i);
+                    
+                    if (b.properties.get(PBackgroundDef.BACKGROUND) != null) {
+                        print(scene, "backgrounds.add(new Background(" + b.properties.get(PBackgroundDef.VISIBLE) + "," + b.properties.get(PBackgroundDef.FOREGROUND) + "," + b.properties.get(PBackgroundDef.X) + "," + b.properties.get(PBackgroundDef.Y) + "," + ((ResourceReference<Background>)b.properties.get(PBackgroundDef.BACKGROUND)).get().getWidth() + "," + ((ResourceReference<Background>)b.properties.get(PBackgroundDef.BACKGROUND)).get().getHeight() + "," + b.properties.get(PBackgroundDef.TILE_HORIZ) + "," + b.properties.get(PBackgroundDef.TILE_VERT) + "," + b.properties.get(PBackgroundDef.STRETCH) + "," + b.properties.get(PBackgroundDef.H_SPEED) + "," + b.properties.get(PBackgroundDef.V_SPEED) + "," + ((ResourceReference<Background>)b.properties.get(PBackgroundDef.BACKGROUND)).get().get(PBackground.SMOOTH_EDGES) + "," + ((ResourceReference<Background>)b.properties.get(PBackgroundDef.BACKGROUND)).get().get(PBackground.TRANSPARENT) + ",Game.thegame.loadBackground(\"" + ((ResourceReference<Background>)b.properties.get(PBackgroundDef.BACKGROUND)).get().getName() + "\")));");
                     }
                 //TODO fix the above code to write backgrounds
                 }
@@ -931,18 +1000,19 @@ public class DolphinWriter {
                 for (int i = 0; i < r.tiles.size(); i++) {
                     Tile t = r.tiles.get(i);
                     if (t != null) {
-                        print(scene, "tiles.add(new Tile(" + t.getRoomPosition().x + ", " + t.getRoomPosition().y + "," + t.getBackgroundPosition().x + ", " + t.getBackgroundPosition().y + ", " + t.getSize().width + "," + t.getSize().height + "," + t.getDepth() + ", " + t.tileId + ",Game.thegame.loadBackground(\"" + t.getBackground().get().getName() + "\")));");
+                        print(scene, "tiles.add(new Tile(" + t.getRoomPosition().x + ", " + t.getRoomPosition().y + "," + t.getBackgroundPosition().x + ", " + t.getBackgroundPosition().y + ", " + t.getSize().width + "," + t.getSize().height + "," + t.getDepth() + ", " + t.properties.get(PTile.ID) + ",Game.thegame.loadBackground(\"" + ((ResourceReference<Background>)t.properties.get(PTile.BACKGROUND)).get().getName() + "\")));");
                     }
                 }
 
                 print(scene, "    /*Create the views*/");
-                print(scene, "     this.showviews=" + r.enableViews + ";");
+                print(scene, "     this.showviews=" + r.get(PRoom.ENABLE_VIEWS) + ";");
                 /*Create the tiles*/
-                for (int i = 0; i < r.views.length; i++) {
-                    View v = r.views[i];
+                for (int i = 0; i < r.views.size(); i++) {
+                    View v = r.views.get(i);
+                    
                     if (v != null) {
-                        if (v.visible) {
-                            print(scene, "views.add(new View(" + v.viewX + ", " + v.viewY + "," + v.viewW + ", " + v.viewH + ", " + v.portX + "," + v.portY + "," + v.portW + ", " + v.portH + "," + v.hspeed + "," + v.vspeed + "," + v.hbor + "," + v.vbor + "," + v.visible + "));");
+                        if (v.properties.get(PView.VISIBLE)) {
+                            print(scene, "views.add(new View(" + v.properties.get(PView.VIEW_X) + ", " + v.properties.get(PView.VIEW_Y) + "," + v.properties.get(PView.VIEW_W) + ", " + v.properties.get(PView.VIEW_H) + ", " + v.properties.get(PView.PORT_X) + "," + v.properties.get(PView.PORT_Y) + "," + v.properties.get(PView.PORT_W) + ", " + v.properties.get(PView.PORT_H) + "," + v.properties.get(PView.SPEED_H) + "," + v.properties.get(PView.SPEED_V) + "," + v.properties.get(PView.BORDER_H) + "," + v.properties.get(PView.BORDER_V) + "," + v.properties.get(PView.VISIBLE) + "));");
                         }
                     }
                 }
