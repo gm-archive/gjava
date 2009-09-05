@@ -913,13 +913,13 @@ public Object move_outside_all(Object dir, Object maxdist)
 
 public  Object move_bounce_solid(Object advanced)
 {
-	System.out.println("move_bounce_solid"+Variable.toBoolean(advanced));
+	//System.out.println("move_bounce_solid"+Variable.toBoolean(advanced));
 	if (!Variable.toBoolean(advanced)){
-		if (!(Variable.toBoolean(place_free(self.x+self.hspeed,0))) )
+		if (!(Variable.toBoolean(place_free(self.x+self.hspeed,self.y))) )
 		{
 			self.hspeed=-self.hspeed;
 		}
-		if (!(Variable.toBoolean(place_free(0,self.y+self.vspeed))) )
+		if (!(Variable.toBoolean(place_free(self.x,self.y+self.vspeed))) )
 		{
 			self.vspeed=-self.vspeed;
 		}
@@ -929,6 +929,16 @@ return 0d;
 
 public Object move_bounce_all(Object advanced)
 {
+	if (!Variable.toBoolean(advanced)){
+		if (!(Variable.toBoolean(place_empty(self.x+self.hspeed,self.y))) )
+		{
+			self.hspeed=-self.hspeed;
+		}
+		if (!(Variable.toBoolean(place_empty(self.x,self.y+self.vspeed))) )
+		{
+			self.vspeed=-self.vspeed;
+		}
+	}
 return 0d;
 }
 
