@@ -13,6 +13,10 @@ The bounding box needs to be angled for sprite and mask when the sprite is at an
 Change code so that it doesn't modify the image when scaling, rotating etc (more efficient?)
 globalvar statement doesn't work (actually changes variables so that they are global threwout whole game)
 Use code from gtge game.java to check if focus for the gm setting (freeze the game when the form looses focus)
+Fix and/or/xor statements it doesn't compile
+Need to create JUnit tests for gml functions to make sure I don't break anything.
+Need to fix up DolphinWriter so that it is easier to read and write (since new lgm system)
+
 
 ||||| Functions
 

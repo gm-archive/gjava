@@ -252,7 +252,7 @@ private static final long serialVersionUID = 1L;
         for (int i = 0; i < Game.currentRoom.instances.size(); i++)
         {
         Actor G_Java_a = ((Actor)Game.currentRoom.instances.elementAt(i));
-        if (G_Java_a == this) return;
+        if (G_Java_a == this) continue;
         if (G_Java_a.getBounds().intersects(thisbounds)){
             if ((Boolean)G_Java_a.getSolid()){x=xprevious;y=yprevious;}
                 //System.out.println("Collided");

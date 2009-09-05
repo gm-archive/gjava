@@ -152,6 +152,8 @@ public class DolphinWriter {
             parseObjects();
             df.progress(80, "Writing room code", "Writing room code");
             parseRooms();
+            df.progress(80, "Writing Game settings","Writing Game settings");
+            parseSettings();
             df.progress(90, "Compiling java files", "Compiling java files");
             DolphinCompiler compiler = new DolphinCompiler();
         } catch (Exception e) {
@@ -325,6 +327,27 @@ public class DolphinWriter {
         print(game, "}");//end class
         game.close();
     }
+    
+    void parseSettings(){
+    	try {
+    	FileWriter settingsFW = new FileWriter(FileFolder + "GameSettings.java");
+        BufferedWriter settings = new BufferedWriter(settingsFW);
+
+        print(settings, "package org.dolphin.game;");
+        print(settings, "");
+        print(settings, "import java.awt.Color;");
+        print(settings, "");
+        print(settings, "public class GameSettings {");
+        print(settings, "");
+        print(settings, "	public static Color Gameinfoback = Color.BLUE;");
+        print(settings, "");
+        print(settings, "}");
+        settings.close();
+    	} catch (Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    	
 
     void parseSounds(BufferedWriter game) throws IOException {
         df.progress(40, "Extracting Sounds", "Extracting Sounds");
