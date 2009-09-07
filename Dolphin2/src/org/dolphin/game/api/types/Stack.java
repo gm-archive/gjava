@@ -62,15 +62,6 @@ public class Stack extends Variable {
     	 ObjectOutputStream out = new ObjectOutputStream(f);
     	        out.writeObject(s);
     	        out.close();
-    	 /*f.write(101);
-    	 f.write(s.size());
-    	 for (Object obj : s) {
-			if (obj instanceof Double)
-				f.write(1);
-			else
-				f.write(0);
-		}
-    	 f.close();*/
     	 return f.toString();
     	 }catch (Exception e){
     		 ErrorHandler.showError(e, false);

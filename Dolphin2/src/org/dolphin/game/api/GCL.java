@@ -5203,6 +5203,22 @@ public static Object ds_queue_tail(Object id)
 return 0d;
 }
 
+public static Object ds_queue_write(Object id){
+    if (id instanceof Queue)
+   {
+    return ((Queue)id).writeToString();
+   }
+return 0d;
+}
+
+public static Object ds_queue_read(Object id,Object str){
+if (id instanceof Queue)
+{
+((Queue)id).readFromString(""+str);
+}
+return 0d;
+}
+
 /*
  * 
  * Lists
