@@ -1,7 +1,7 @@
 package org.dolphin.game.api.types;
 
 public class Queue extends Variable {
-java.util.LinkedList l;
+public java.util.LinkedList l;
     
     public Queue(){
         l = new java.util.LinkedList();
@@ -16,6 +16,13 @@ java.util.LinkedList l;
     {
         l.clear();
     }
+       
+       public Queue getCopy()
+       {
+       	Queue copy = new Queue();
+       	copy.l.addAll(0, l);
+       	return copy;
+       }
      
      public int size()
     {
@@ -34,18 +41,18 @@ java.util.LinkedList l;
       return  l.add(o);
     } 
              
-              public Variable dequeue()
+              public Object dequeue()
     {
-      return (Variable) l.poll();
+      return l.poll();
     } 
               
-               public Variable head()
+               public Object head()
     {
-      return (Variable) l.getLast();
+      return  l.getLast();
     } 
                
-                public Variable tail()
+                public Object tail()
     {
-      return (Variable) l.getFirst();
+      return  l.getFirst();
     } 
 }

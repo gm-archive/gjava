@@ -314,7 +314,13 @@ return (((Double)str));
 
 public static Object string(Object val)
 {
+	try {
 return val.toString();
+	} catch(Exception e){
+		//null val?
+		ErrorHandler.showError(e,false);
+	}
+	return "";
 }
 
 public static Object tostring(Object val)
@@ -5066,10 +5072,14 @@ return 0d;
 
 public static Object ds_stack_top(Object id)
 {
+	try{
      if (id instanceof Stack)
     {
      return ((Stack)id).top();
     }
+	} catch(Exception e){
+		ErrorHandler.showError(e,false);
+	}
 return 0d;
 }
 
@@ -5098,6 +5108,15 @@ public static Object ds_queue_clear(Object id)
     if (id instanceof Queue)
     {
      ((Queue)id).clear();
+    }
+return 0d;
+}
+
+public static Object ds_queue_copy(Object id,Object source)
+{
+    if (id instanceof Queue && source instanceof Queue)
+    {
+    	((Queue)id).l=((Queue)source).getCopy().l;
     }
 return 0d;
 }
@@ -5131,28 +5150,40 @@ return 0d;
 
 public static Object ds_queue_dequeue(Object id)
 {
+	try{
     if (id instanceof Queue)
     {
     return ((Queue)id).dequeue();
     }
+	} catch(Exception e){
+		ErrorHandler.showError(e,false);
+	}
 return 0d;
 }
 
 public static Object ds_queue_head(Object id)
 {
+	try{
     if (id instanceof Queue)
     {
     return ((Queue)id).head();
     }
+	} catch(Exception e){
+		ErrorHandler.showError(e,false);
+	}
 return 0d;
 }
 
 public static Object ds_queue_tail(Object id)
 {
+	try {
     if (id instanceof Queue)
     {
     return ((Queue)id).tail();
     }
+	} catch(Exception e){
+		ErrorHandler.showError(e,false);
+	}
 return 0d;
 }
 

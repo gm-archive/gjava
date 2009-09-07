@@ -41,11 +41,11 @@ public class Stack extends Variable {
     
      public Object pop()
     {
-     return (Object)s.pop();
+     return s.pop();
     } 
      public Object top()
     {
-      return (Object)s.firstElement();
+      return s.firstElement();
     } 
      
 }
