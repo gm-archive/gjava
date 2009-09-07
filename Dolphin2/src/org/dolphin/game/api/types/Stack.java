@@ -1,10 +1,17 @@
 package org.dolphin.game.api.types;
 
 public class Stack extends Variable {
-	java.util.Stack s;
+	public java.util.Stack s;
 
     public Stack(){
         s = new java.util.Stack();
+    }
+    
+    public Stack getCopy()
+    {
+    	Stack copy = new Stack();
+    	copy.s.addAll(0, s);
+    	return copy;
     }
     
     public void destroy()
@@ -32,13 +39,13 @@ public class Stack extends Variable {
       s.push(o);
     } 
     
-     public Variable pop()
+     public Object pop()
     {
-     return (Variable)s.pop();
+     return (Object)s.pop();
     } 
-     public Variable top()
+     public Object top()
     {
-      return (Variable)s.firstElement();
+      return (Object)s.firstElement();
     } 
      
 }

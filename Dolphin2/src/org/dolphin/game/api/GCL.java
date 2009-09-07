@@ -5006,6 +5006,15 @@ public static Object ds_stack_destroy(Object id)
 return 0d;
 }
 
+public static Object ds_stack_copy(Object id,Object source)
+{
+    if (id instanceof Stack && source instanceof Stack)
+    {
+    	((Stack)id).s=((Stack)source).getCopy().s;
+    }
+return 0d;
+}
+
 public static Object ds_stack_clear(Object id)
 {
     if (id instanceof Stack)
@@ -5044,10 +5053,14 @@ return 0d;
 
 public static Object ds_stack_pop(Object id)
 {
+	try {
     if (id instanceof Stack)
     {
      return ((Stack)id).pop();
     }
+	} catch(Exception e){
+		ErrorHandler.showError(e,false);
+	}
 return 0d;
 }
 
