@@ -23,6 +23,7 @@ import javax.swing.border.BevelBorder;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.components.ErrorHandler;
 import org.dolphin.game.api.components.Path;
 import org.dolphin.game.api.components.Sprite;
 import org.dolphin.game.api.resources.Display;
@@ -1655,8 +1656,8 @@ return 0d;
  */
 public static Object show_debug_message(Object str)
 {
-    //Game.debug.println(str);
-	System.out.println(str);
+    if (ErrorHandler.Debug)
+    	show_message(str);
     return 0d;
 }
 

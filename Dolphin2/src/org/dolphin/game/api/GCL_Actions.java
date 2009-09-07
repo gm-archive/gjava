@@ -49,13 +49,10 @@ return false;
 
 public Object action_bounce(Object... obj)
 {
-	System.out.println("action_bounce"+Variable.toBoolean(obj[1]));
-   // System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
 	if (((Double)obj[1])==0)
-	move_bounce_solid((Double)obj[1]);
+	move_bounce_solid((Double)obj[0]);
 	else
-		move_bounce_all((Double)obj[1]);
-    //System.out.println("bounce");
+		move_bounce_all((Double)obj[0]);
     return false;
 }
 

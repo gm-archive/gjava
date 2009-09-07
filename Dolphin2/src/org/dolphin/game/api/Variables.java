@@ -9,6 +9,7 @@ import java.util.Calendar;
 
 import org.dolphin.game.Game;
 import org.dolphin.game.api.components.Actor;
+import org.dolphin.game.api.components.ErrorHandler;
 import org.dolphin.game.api.gtge.BasicGame;
 import org.dolphin.game.api.types.Color;
 
@@ -64,8 +65,6 @@ public static Object   argument
 = false,  current_weekday
 = false,  current_year
 = false,  cursor_sprite
-= false,  error_last
-= false,  error_occurred
 = false,  event_action
 = false,  event_number
 = false,  event_Object
@@ -511,19 +510,19 @@ public static Object   argument
     }
 
     public static Object getError_last() {
-        return error_last;
+        return ErrorHandler.error_last;
     }
 
     public static void setError_last(Object error_last) {
-        Variables.error_last = error_last;
+        ErrorHandler.error_last = (String)error_last;
     }
 
     public static Object getError_occurred() {
-        return error_occurred;
+        return ErrorHandler.error_occurred;
     }
 
     public static void setError_occurred(Object error_occurred) {
-        Variables.error_occurred = error_occurred;
+    	ErrorHandler.error_occurred = (Boolean)error_occurred;
     }
 
     public static Object getEvent_action() {
