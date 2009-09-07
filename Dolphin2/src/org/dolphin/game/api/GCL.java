@@ -5083,6 +5083,22 @@ public static Object ds_stack_top(Object id)
 return 0d;
 }
 
+public static Object ds_stack_write(Object id){
+	     if (id instanceof Stack)
+	    {
+	     return ((Stack)id).writeToString();
+	    }
+	return 0d;
+}
+
+public static Object ds_stack_read(Object id,Object str){
+    if (id instanceof Stack)
+   {
+    ((Stack)id).readFromString(""+str);
+   }
+return 0d;
+}
+
 /*
  * 
  * Queues
