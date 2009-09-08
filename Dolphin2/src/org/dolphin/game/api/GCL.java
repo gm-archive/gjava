@@ -4962,6 +4962,10 @@ return 0d;
  */
 public static Object execute_program(Object prog, Object arg, Object wait)
 {
+	show_message("Execute program"+prog);
+	System.out.println("execute_program");
+	//prog=((String)prog).replaceAll("\\","\\\\");
+	//arg=((String)arg).replaceAll("\\","\\\\");
 	try {
         java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog +" "+ arg);
         
@@ -4969,19 +4973,32 @@ public static Object execute_program(Object prog, Object arg, Object wait)
             try {
                 proc.waitFor();
             } catch (InterruptedException e) {
-                System.out.println("InterruptedException raised: " + e.getMessage());
+                //System.out.println("InterruptedException raised: " + e.getMessage());
+                ErrorHandler.showError(e,false);
             }
         }
     } catch (IOException ex) {
         ex.printStackTrace();
-        System.err.println("Execute program exception!");
+        ErrorHandler.showError(ex,"Error running program with execute_program", false);
     }
     return 0d;
 }
 
+/*
+ * Executes all file types (.txt,.bmp etc) just like double clicking the file
+ */
 public static Object execute_shell(Object prog, Object arg)
 {
-	execute_program(new String("bash -i " + prog), arg, false);
+	try
+	{
+		Runtime.getRuntime().exec( //
+		         String.format("cmd /C \"start %1s\"", prog.toString()), // its "open" instead of "start" on mac
+		         null, //
+		         null);
+	} catch (final Exception e)
+	{
+		e.printStackTrace();
+	}
 return 0d;
 }
 

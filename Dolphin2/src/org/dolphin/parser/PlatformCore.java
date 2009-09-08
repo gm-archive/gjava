@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -1310,7 +1311,7 @@ public class PlatformCore  {
     }
     
     public static String stringval(String value){
-    	value.replaceAll("\\\\", File.separator);
+    	value=Matcher.quoteReplacement(value); //this is very important, it means that \ and $ are ignored so it just treats it as a normal string
         return ("\"" + value + "\"").replaceAll("\n", "");
     }
     
