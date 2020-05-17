@@ -1,0 +1,107 @@
+
+# /
+/build
+/dist
+
+# /Aurora/
+/Aurora/build
+/Aurora/dist
+/Aurora/.settings
+
+# /Aurora/lib/
+/Aurora/lib/natives
+
+# /Aurora/nbproject/
+/Aurora/nbproject/private
+
+# /Aurora/src/org/gcreator/plugins/platform/
+/Aurora/src/org/gcreator/plugins/platform/classes
+
+# /BobLookAndFeel/
+/BobLookAndFeel/build
+/BobLookAndFeel/dist
+
+# /BobLookAndFeel/nbproject/
+/BobLookAndFeel/nbproject/private
+
+# /Dolphin/
+/Dolphin/.settings
+
+# /Dolphin2/
+/Dolphin2/.settings
+
+# /Ethos/
+/Ethos/build
+/Ethos/dist
+
+# /Ethos/nbproject/
+/Ethos/nbproject/private
+
+# /G-C++/
+/G-C++/build
+/G-C++/dist
+
+# /G-C++/nbproject/
+/G-C++/nbproject/private
+
+# /G-CSharp/
+/G-CSharp/build
+/G-CSharp/dist
+
+# /G-CSharp/nbproject/
+/G-CSharp/nbproject/private
+
+# /G-Creator Installer/nbproject/
+/G-Creator Installer/nbproject/private
+
+# /G-Creator IzPack Install Script/
+/G-Creator IzPack Install Script/dist
+
+# /G-Creator IzPack Install Script/nbproject/
+/G-Creator IzPack Install Script/nbproject/private
+
+# /G-Flash/
+/G-Flash/dist
+/G-Flash/build
+
+# /G-Flash/nbproject/
+/G-Flash/nbproject/private
+
+# /G-Java/
+/G-Java/dist
+/G-Java/build
+
+# /G-Java/nbproject/
+/G-Java/nbproject/private
+
+# /G-Plus Extension Compiler/
+/G-Plus Extension Compiler/dist
+/G-Plus Extension Compiler/build
+
+# /G-Plus Extension Compiler/nbproject/
+/G-Plus Extension Compiler/nbproject/private
+
+# /GM importer/
+/GM importer/build
+/GM importer/dist
+
+# /SGCL/
+/SGCL/build
+/SGCL/dist
+
+# /SGCL/nbproject/
+/SGCL/nbproject/private
+
+# /Sabre/Trunk/Core/
+/Sabre/Trunk/Core/build
+/Sabre/Trunk/Core/dist
+
+# /Sabre/Trunk/Core/nbproject/
+/Sabre/Trunk/Core/nbproject/private
+
+# /Sabre/Trunk/Pineapple/
+/Sabre/Trunk/Pineapple/build
+/Sabre/Trunk/Pineapple/dist
+
+# /Sabre/Trunk/Pineapple/nbproject/
+/Sabre/Trunk/Pineapple/nbproject/private
